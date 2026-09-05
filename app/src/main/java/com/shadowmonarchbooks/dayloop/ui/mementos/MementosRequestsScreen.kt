@@ -36,7 +36,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
-internal val slashMementosRequestPanelColor = Color.Black.copy(alpha = 0.5f)
+internal val slashMementosRequestPanelColor = Color.Black.copy(alpha = 0.75f)
 
 internal data class MementosRequestCounts(
     val completed: Int,
@@ -130,20 +130,25 @@ fun MementosRequestsScreen(
 
 @Composable
 private fun RequestSummary(counts: MementosRequestCounts, total: Int) {
+    val skin = LocalSkin.current
     Surface(
-        color = MaterialTheme.colorScheme.background,
+        shape = skin.shapes.card,
+        color = MaterialTheme.colorScheme.primaryContainer,
         modifier = Modifier.fillMaxWidth(),
     ) {
-        Column(Modifier.padding(bottom = 8.dp)) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = Modifier.skinDecor("panel").padding(14.dp),
+        ) {
             Text(
                 text = "${counts.completed} / $total completed",
                 style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
             )
             Text(
                 text = "${counts.available} available · ${counts.upcoming} upcoming",
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
             )
         }
     }
