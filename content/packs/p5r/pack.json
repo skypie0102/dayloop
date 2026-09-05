@@ -69,6 +69,7 @@
     "art": {
       "card": "art/card.jpg",
       "icon": "art/icon.png",
+    "answers-companion": "art/answers-companion.png",
     "launcherBadge": "art/launcher-badge.png",
     "today-day": "art/today-day.png",
     "today-night": "art/today-night.png",

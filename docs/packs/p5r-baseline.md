@@ -47,6 +47,8 @@ never inserted in a way that silently reassigns a saved mark.
   decoration, so their artwork and text remain legible over the P5R presentation.
 - Mementos Requests uses pack-authored background artwork with plain translucent
   50%-black request panels so the artwork remains visible behind each entry.
+- Today's date uses a heavier single-line treatment, and authored answer sheets
+  show the Shūjin Academy companion artwork at matching height on their left.
 - Calendar navigation retains the month the user browsed when a Day page is
   opened and then closed.
 

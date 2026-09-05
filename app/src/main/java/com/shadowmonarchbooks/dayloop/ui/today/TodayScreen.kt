@@ -10,8 +10,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -35,6 +38,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.collectAsState
@@ -221,6 +225,8 @@ fun TodayScreen(
                 accentFont = true,
                 showPanel = false,
                 hero = true,
+                fontWeight = FontWeight.Black,
+                singleLine = true,
             )
             // Moon-language packs (Phase 14): the date's moon-phase art renders
             // beside the header when the pack anchors media to this date.
@@ -289,11 +295,45 @@ fun TodayScreen(
         // only on days that actually carry a sheet.
         if (pack.pack.capabilities.answers) {
             pack.answersByDate[date]?.let { sheet ->
-                AnswerSheetCard(
-                    sheet = sheet,
-                    onOpenAnswers = onOpenAnswers,
-                    deadlineLabel = pack.deadlines.byId(sheet.deadlineRef)?.label,
-                )
+                val companionAsset = pack.artAsset("answers-companion")
+                val companion = rememberAssetImage(companionAsset)
+                if (companionAsset == null) {
+                    AnswerSheetCard(
+                        sheet = sheet,
+                        onOpenAnswers = onOpenAnswers,
+                        deadlineLabel = pack.deadlines.byId(sheet.deadlineRef)?.label,
+                    )
+                } else {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(IntrinsicSize.Min),
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .weight(0.42f)
+                                .fillMaxHeight(),
+                        ) {
+                            companion?.let { bitmap ->
+                                Image(
+                                    bitmap = bitmap,
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    alignment = Alignment.CenterStart,
+                                    modifier = Modifier.fillMaxSize(),
+                                )
+                            }
+                        }
+                        AnswerSheetCard(
+                            sheet = sheet,
+                            modifier = Modifier.weight(1f),
+                            onOpenAnswers = onOpenAnswers,
+                            deadlineLabel = pack.deadlines.byId(sheet.deadlineRef)?.label,
+                        )
+                    }
+                }
             }
         }
 

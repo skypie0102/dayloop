@@ -62,6 +62,7 @@ import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
@@ -166,10 +167,20 @@ fun SkinHeader(
     accentFont: Boolean = false,
     showPanel: Boolean = true,
     hero: Boolean = false,
+    fontWeight: FontWeight? = null,
+    singleLine: Boolean = false,
 ) {
     val skin = LocalSkin.current
     if (!skin.hasSkin) {
-        Text(text = text, style = MaterialTheme.typography.headlineSmall, modifier = modifier)
+        Text(
+            text = text,
+            style = MaterialTheme.typography.headlineSmall,
+            fontWeight = fontWeight,
+            maxLines = if (singleLine) 1 else Int.MAX_VALUE,
+            overflow = if (singleLine) TextOverflow.Ellipsis else TextOverflow.Clip,
+            softWrap = !singleLine,
+            modifier = modifier,
+        )
         return
     }
     val capped = skin.shapeTokens["header"] == "diamond"
@@ -210,6 +221,10 @@ fun SkinHeader(
                 } else {
                     MaterialTheme.colorScheme.onBackground
                 },
+                fontWeight = fontWeight,
+                maxLines = if (singleLine) 1 else Int.MAX_VALUE,
+                overflow = if (singleLine) TextOverflow.Ellipsis else TextOverflow.Clip,
+                softWrap = !singleLine,
             )
         }
     }
