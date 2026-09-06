@@ -2,6 +2,7 @@
 
 Date: 2026-09-06. Roadmap: [P3R top-priority plan](p3r-roadmap.md).
 Roadmap merged in [PR #70](https://github.com/shdwmnrchbks/dayloop/pull/70).
+First implementation: [draft PR #71](https://github.com/shdwmnrchbks/dayloop/pull/71).
 
 ## Scope of this first change
 
