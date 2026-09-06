@@ -299,51 +299,19 @@ fun TodayScreen(
         if (pack.pack.capabilities.answers) {
             pack.answersByDate[date]?.let { sheet ->
                 val companionAsset = pack.artAsset("answers-companion")
-                val companion = rememberAssetImage(companionAsset)
-                if (companionAsset == null) {
+                if (companionAsset != null && skin.motion == "slash") {
+                    TodayAnswerSheetBanner(
+                        sheet = sheet,
+                        backgroundAssetPath = companionAsset,
+                        onOpenAnswers = onOpenAnswers,
+                        deadlineLabel = pack.deadlines.byId(sheet.deadlineRef)?.label,
+                    )
+                } else {
                     AnswerSheetCard(
                         sheet = sheet,
                         onOpenAnswers = onOpenAnswers,
                         deadlineLabel = pack.deadlines.byId(sheet.deadlineRef)?.label,
                     )
-                } else {
-                    val density = LocalDensity.current
-                    var answerCardHeightPx by remember(date) { mutableIntStateOf(0) }
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(2.dp),
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        // Keep the Shujin companion at the Answer panel's measured
-                        // height, but size its width from the artwork aspect ratio
-                        // instead of reserving a large weighted column beside it.
-                        if (companion != null && answerCardHeightPx > 0) {
-                            val companionAspectRatio = companion.width.toFloat() /
-                                companion.height.coerceAtLeast(1).toFloat()
-                            Image(
-                                bitmap = companion,
-                                contentDescription = null,
-                                contentScale = ContentScale.Fit,
-                                alignment = Alignment.CenterStart,
-                                modifier = Modifier
-                                    .height(with(density) { answerCardHeightPx.toDp() })
-                                    .aspectRatio(
-                                        ratio = companionAspectRatio,
-                                        matchHeightConstraintsFirst = true,
-                                    ),
-                            )
-                        }
-                        AnswerSheetCard(
-                            sheet = sheet,
-                            modifier = Modifier
-                                .weight(1f)
-                                .onGloballyPositioned { coordinates ->
-                                    answerCardHeightPx = coordinates.size.height
-                                },
-                            onOpenAnswers = onOpenAnswers,
-                            deadlineLabel = pack.deadlines.byId(sheet.deadlineRef)?.label,
-                        )
-                    }
                 }
             }
         }
@@ -476,6 +444,90 @@ fun TodayScreen(
                 .align(Alignment.Center)
                 .padding(horizontal = 32.dp),
         )
+    }
+}
+
+@Composable
+private fun TodayAnswerSheetBanner(
+    sheet: com.shadowmonarchbooks.dayloop.pack.schema.AnswerSheet,
+    backgroundAssetPath: String?,
+    onOpenAnswers: (() -> Unit)?,
+    deadlineLabel: String?,
+) {
+    val skin = LocalSkin.current
+    val background = rememberAssetImage(backgroundAssetPath)
+    val panelColor = MaterialTheme.colorScheme.surfaceVariant
+
+    Surface(
+        onClick = { onOpenAnswers?.invoke() },
+        enabled = onOpenAnswers != null,
+        shape = skin.shapes.card,
+        color = panelColor,
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Box(Modifier.skinDecor("panel")) {
+            background?.let { bitmap ->
+                // Repurpose the Shujin companion as a watermark-like answer
+                // banner background. Fit it to the panel, pin it to the right,
+                // and fade it so the answer text remains the visual priority.
+                Image(
+                    bitmap = bitmap,
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    alignment = Alignment.CenterEnd,
+                    modifier = Modifier
+                        .matchParentSize()
+                        .graphicsLayer { alpha = 0.38f },
+                )
+                Box(
+                    Modifier
+                        .matchParentSize()
+                        .background(
+                            androidx.compose.ui.graphics.Brush.horizontalGradient(
+                                0f to panelColor,
+                                0.55f to panelColor.copy(alpha = 0.94f),
+                                1f to panelColor.copy(alpha = 0.48f),
+                            ),
+                        ),
+                )
+            }
+            Column(
+                Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+                verticalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    com.shadowmonarchbooks.dayloop.ui.components.AnswerKindChip(sheet.kind)
+                    if (!sheet.label.equals(
+                            com.shadowmonarchbooks.dayloop.ui.components.answerKindLabel(sheet.kind),
+                            ignoreCase = true,
+                        )
+                    ) {
+                        Text(
+                            text = sheet.label,
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
+                }
+                deadlineLabel?.let {
+                    Text(
+                        text = "Deadline: $it",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.secondary,
+                    )
+                }
+                sheet.answers.forEachIndexed { i, answer ->
+                    Text(
+                        text = "${i + 1}. $answer",
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
+            }
+        }
     }
 }
 
