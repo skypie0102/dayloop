@@ -10,11 +10,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -24,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -37,15 +36,15 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInParent
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.runtime.collectAsState
-import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.byId
-import com.shadowmonarchbooks.dayloop.data.nextDeadline
 import com.shadowmonarchbooks.dayloop.data.deadlineStart
+import com.shadowmonarchbooks.dayloop.data.formatDate
+import com.shadowmonarchbooks.dayloop.data.nextDeadline
 import com.shadowmonarchbooks.dayloop.data.slotLabels
 import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.pack.GameCalendar
@@ -304,23 +303,23 @@ fun TodayScreen(
                         deadlineLabel = pack.deadlines.byId(sheet.deadlineRef)?.label,
                     )
                 } else {
+                    val density = LocalDensity.current
+                    var answerCardHeightPx by remember(date) { mutableIntStateOf(0) }
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(IntrinsicSize.Min),
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
                         Box(
                             modifier = Modifier
                                 .weight(0.42f)
-                                .fillMaxHeight(),
+                                .height(with(density) { answerCardHeightPx.toDp() }),
                         ) {
                             companion?.let { bitmap ->
                                 Image(
                                     bitmap = bitmap,
                                     contentDescription = null,
-                                    contentScale = ContentScale.Crop,
+                                    contentScale = ContentScale.Fit,
                                     alignment = Alignment.CenterStart,
                                     modifier = Modifier.fillMaxSize(),
                                 )
@@ -328,7 +327,11 @@ fun TodayScreen(
                         }
                         AnswerSheetCard(
                             sheet = sheet,
-                            modifier = Modifier.weight(1f),
+                            modifier = Modifier
+                                .weight(1f)
+                                .onGloballyPositioned { coordinates ->
+                                    answerCardHeightPx = coordinates.size.height
+                                },
                             onOpenAnswers = onOpenAnswers,
                             deadlineLabel = pack.deadlines.byId(sheet.deadlineRef)?.label,
                         )
