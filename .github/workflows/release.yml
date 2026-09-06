@@ -5,12 +5,12 @@ on:
     paths:
       - 'app/build.gradle.kts'
       - '.github/workflows/release.yml'
-      - '.github/release-requests/v0.15.0.md'
+      - '.github/release-requests/v0.15.1.md'
       - 'docs/LOCAL_BUILD.md'
   push:
     branches: [ main ]
     paths:
-      - '.github/release-requests/v0.15.0.md'
+      - '.github/release-requests/v0.15.1.md'
 
 permissions:
   contents: write
@@ -19,10 +19,10 @@ env:
   DAYLOOP_ANDROID_SDK_VERSION: '35'
   DAYLOOP_ANDROID_BUILD_TOOLS: '35.0.0'
   DAYLOOP_ANDROID_CMDLINE_TOOLS: '13114758'
-  RELEASE_TAG: 'v0.15.0'
-  RELEASE_NAME: 'v0.15.0 — Persona 5 Royal milestone'
-  RELEASE_NOTES_PATH: '.github/release-requests/v0.15.0.md'
-  APK_NAME: 'dayloop-v0.15.0-release.apk'
+  RELEASE_TAG: 'v0.15.1'
+  RELEASE_NAME: 'v0.15.1 — P5R polish update'
+  RELEASE_NOTES_PATH: '.github/release-requests/v0.15.1.md'
+  APK_NAME: 'dayloop-v0.15.1-release.apk'
 
 jobs:
   release:
@@ -100,7 +100,7 @@ jobs:
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dayloop-v0.15.0-release
+          name: dayloop-v0.15.1-release
           path: release-out/${{ env.APK_NAME }}
           if-no-files-found: error
 
