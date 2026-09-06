@@ -89,7 +89,7 @@ private val HeistDeadlineSuffix = Regex(
     option = RegexOption.IGNORE_CASE,
 )
 
-private const val TodayDateMaxFitStage = 10
+private const val TodayDateMaxFitStage = 13
 
 internal fun todayDeadlineLabel(label: String): String = label.replace(HeistDeadlineSuffix, "").trim()
 
@@ -487,17 +487,22 @@ private fun TodayDateHeader(text: String, modifier: Modifier = Modifier) {
     var fitStage by remember(text) { mutableIntStateOf(0) }
     var containerWidthPx by remember(text) { mutableIntStateOf(-1) }
     val adaptiveModifier = modifier.onSizeChanged { size ->
-        if (containerWidthPx != size.width) {
-            containerWidthPx = size.width
+        if (containerWidthPx >= 0 && containerWidthPx != size.width) {
             fitStage = 0
         }
+        containerWidthPx = size.width
     }
-    val fontScale = if (fitStage < 3) {
+    val fontScale = if (fitStage < 6) {
         1f
     } else {
-        (1f - 0.06f * (fitStage - 2)).coerceAtLeast(0.55f)
+        (1f - 0.06f * (fitStage - 5)).coerceAtLeast(0.52f)
     }
-    val tightenLetterSpacing = fitStage >= 2
+    val letterSpacingOverride = when {
+        fitStage < 3 -> null
+        fitStage == 3 -> (-0.02f).em
+        fitStage == 4 -> (-0.04f).em
+        else -> (-0.06f).em
+    }
     val advanceFitStage: (Boolean) -> Unit = { overflowed ->
         if (overflowed && fitStage < TodayDateMaxFitStage) fitStage += 1
     }
@@ -508,11 +513,11 @@ private fun TodayDateHeader(text: String, modifier: Modifier = Modifier) {
             text = text,
             style = baseStyle.copy(
                 fontSize = baseStyle.fontSize * fontScale,
-                letterSpacing = if (tightenLetterSpacing) (-0.04f).em else baseStyle.letterSpacing,
+                letterSpacing = letterSpacingOverride ?: baseStyle.letterSpacing,
             ),
             fontWeight = FontWeight.Black,
             maxLines = 1,
-            overflow = TextOverflow.Clip,
+            overflow = TextOverflow.Visible,
             softWrap = false,
             onTextLayout = { result -> advanceFitStage(result.didOverflowWidth) },
             modifier = adaptiveModifier,
@@ -521,8 +526,17 @@ private fun TodayDateHeader(text: String, modifier: Modifier = Modifier) {
     }
 
     val capped = skin.shapeTokens["header"] == "diamond"
-    val startPadding = if (fitStage >= 1) 2.dp else if (capped) 12.dp else 14.dp
-    val endPadding = if (fitStage >= 1) 2.dp else 14.dp
+    val normalStartPadding = if (capped) 12.dp else 14.dp
+    val startPadding = when (fitStage) {
+        0 -> normalStartPadding
+        1 -> 6.dp
+        else -> 0.dp
+    }
+    val endPadding = when (fitStage) {
+        0 -> 14.dp
+        1 -> 6.dp
+        else -> 0.dp
+    }
     val baseStyle = MaterialTheme.typography.displayMedium.withSkinFont(skin.type.accent)
     Surface(
         shape = if (capped) SkinSpec.Engine.shapes.header else skin.shapes.header,
@@ -551,14 +565,15 @@ private fun TodayDateHeader(text: String, modifier: Modifier = Modifier) {
                 text = skin.cased(text, "accent"),
                 style = baseStyle.copy(
                     fontSize = baseStyle.fontSize * fontScale,
-                    letterSpacing = if (tightenLetterSpacing) (-0.04f).em else baseStyle.letterSpacing,
+                    letterSpacing = letterSpacingOverride ?: baseStyle.letterSpacing,
                 ),
                 color = MaterialTheme.colorScheme.onBackground,
                 fontWeight = FontWeight.Black,
                 maxLines = 1,
-                overflow = TextOverflow.Clip,
+                overflow = TextOverflow.Visible,
                 softWrap = false,
                 onTextLayout = { result -> advanceFitStage(result.didOverflowWidth) },
+                modifier = Modifier.weight(1f),
             )
         }
     }
