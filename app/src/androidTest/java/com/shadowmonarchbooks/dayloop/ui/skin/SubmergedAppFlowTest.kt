@@ -2,6 +2,7 @@ package com.shadowmonarchbooks.dayloop.ui.skin
 
 import android.content.ContentValues
 import android.graphics.Bitmap
+import androidx.compose.ui.graphics.asAndroidBitmap
 import android.provider.MediaStore
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.SemanticsProperties
@@ -64,7 +65,9 @@ class SubmergedAppFlowTest {
 
     private fun capture(name: String) {
         compose.waitForIdle()
-        val bitmap = requireNotNull(instrumentation.uiAutomation.takeScreenshot())
+        // PixelCopy waits for the Compose root's rendered frame. A raw device
+        // screenshot can still show Android's starting window or a stale scroll.
+        val bitmap = compose.onRoot().captureToImage().asAndroidBitmap()
         val resolver = context.contentResolver
         val values = ContentValues().apply {
             put(MediaStore.Images.Media.DISPLAY_NAME, "$name.png")
@@ -141,6 +144,9 @@ class SubmergedAppFlowTest {
             }
         }
         compose.onNodeWithText("Check all").assertIsNotEnabled()
+        compose.waitUntil(5_000) {
+            compose.onAllNodesWithText("Perfect day").fetchSemanticsNodes().isEmpty()
+        }
         compose.onAllNodesWithText("Done")[2].performScrollTo().assertIsDisplayed()
         compose.onNode(hasScrollAction()).performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.ScrollBy) {
             it(0f, 100_000f)
