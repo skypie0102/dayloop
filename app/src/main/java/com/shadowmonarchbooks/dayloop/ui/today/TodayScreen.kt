@@ -89,7 +89,7 @@ private val HeistDeadlineSuffix = Regex(
     option = RegexOption.IGNORE_CASE,
 )
 
-private const val TodayDateMaxFitStage = 13
+private const val TodayDateMaxFitStage = 24
 
 internal fun todayDeadlineLabel(label: String): String = label.replace(HeistDeadlineSuffix, "").trim()
 
@@ -495,7 +495,7 @@ private fun TodayDateHeader(text: String, modifier: Modifier = Modifier) {
     val fontScale = if (fitStage < 6) {
         1f
     } else {
-        (1f - 0.06f * (fitStage - 5)).coerceAtLeast(0.52f)
+        (1f - 0.05f * (fitStage - 5)).coerceAtLeast(0.28f)
     }
     val letterSpacingOverride = when {
         fitStage < 3 -> null
@@ -530,52 +530,53 @@ private fun TodayDateHeader(text: String, modifier: Modifier = Modifier) {
     val startPadding = when (fitStage) {
         0 -> normalStartPadding
         1 -> 6.dp
-        else -> 0.dp
+        else -> 2.dp
     }
     val endPadding = when (fitStage) {
         0 -> 14.dp
         1 -> 6.dp
-        else -> 0.dp
+        else -> 2.dp
     }
     val baseStyle = MaterialTheme.typography.displayMedium.withSkinFont(skin.type.accent)
-    Surface(
-        shape = if (capped) SkinSpec.Engine.shapes.header else skin.shapes.header,
-        color = Color.Transparent,
-        modifier = adaptiveModifier,
+
+    // This header intentionally has no Surface wrapper. Material Surface clips
+    // its children to the supplied shape; the Persona-style display font has
+    // large painted glyph overhangs, so the last character could be cut even
+    // after its measured advance width technically fit. A plain Row leaves the
+    // glyph ink un-clipped while the normal -> padding -> spacing -> size fit
+    // sequence still constrains the logical text width beside the profile.
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = adaptiveModifier.padding(
+            start = startPadding,
+            end = endPadding,
+            top = 1.dp,
+            bottom = 1.dp,
+        ),
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(
-                start = startPadding,
-                end = endPadding,
-                top = 1.dp,
-                bottom = 1.dp,
-            ),
-        ) {
-            if (capped) {
-                Box(
-                    modifier = Modifier
-                        .size(9.dp)
-                        .graphicsLayer { rotationZ = 45f }
-                        .background(MaterialTheme.colorScheme.onPrimaryContainer, RoundedCornerShape(2.dp)),
-                )
-                Spacer(Modifier.width(8.dp))
-            }
-            Text(
-                text = skin.cased(text, "accent"),
-                style = baseStyle.copy(
-                    fontSize = baseStyle.fontSize * fontScale,
-                    letterSpacing = letterSpacingOverride ?: baseStyle.letterSpacing,
-                ),
-                color = MaterialTheme.colorScheme.onBackground,
-                fontWeight = FontWeight.Black,
-                maxLines = 1,
-                overflow = TextOverflow.Visible,
-                softWrap = false,
-                onTextLayout = { result -> advanceFitStage(result.didOverflowWidth) },
-                modifier = Modifier.weight(1f),
+        if (capped) {
+            Box(
+                modifier = Modifier
+                    .size(9.dp)
+                    .graphicsLayer { rotationZ = 45f }
+                    .background(MaterialTheme.colorScheme.onPrimaryContainer, RoundedCornerShape(2.dp)),
             )
+            Spacer(Modifier.width(8.dp))
         }
+        Text(
+            text = skin.cased(text, "accent"),
+            style = baseStyle.copy(
+                fontSize = baseStyle.fontSize * fontScale,
+                letterSpacing = letterSpacingOverride ?: baseStyle.letterSpacing,
+            ),
+            color = MaterialTheme.colorScheme.onBackground,
+            fontWeight = FontWeight.Black,
+            maxLines = 1,
+            overflow = TextOverflow.Visible,
+            softWrap = false,
+            onTextLayout = { result -> advanceFitStage(result.didOverflowWidth) },
+            modifier = Modifier.weight(1f),
+        )
     }
 }
 
