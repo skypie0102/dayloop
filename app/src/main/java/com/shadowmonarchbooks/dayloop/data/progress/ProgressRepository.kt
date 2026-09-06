@@ -105,6 +105,24 @@ class ProgressRepository @Inject constructor(
             )
         }
 
+    fun requestStages(profileId: Long): Flow<Map<String, String>> = settings.data.map { prefs ->
+        decodeAchievementChoices(prefs[requestStageKey(profileId)].orEmpty())
+            .filterValues { it in com.shadowmonarchbooks.dayloop.pack.schema.RequestStages.ALL }
+    }
+
+    suspend fun setRequestStage(profileId: Long, requestId: String, stage: String?) {
+        require(requestId.isNotBlank() && '=' !in requestId)
+        require(stage == null || stage in com.shadowmonarchbooks.dayloop.pack.schema.RequestStages.ALL)
+        settings.edit { prefs ->
+            val key = requestStageKey(profileId)
+            val entries = prefs[key].orEmpty().filterNot { it.substringBeforeLast('=') == requestId }.toMutableSet()
+            stage?.let { entries += "$requestId=$it" }
+            prefs[key] = entries
+        }
+    }
+
+    private fun requestStageKey(profileId: Long) = stringSetPreferencesKey("requestStages.$profileId")
+
     /** Active profile id for [packId]; null until one is chosen or created. */
     fun activeProfileId(packId: String): Flow<Long?> =
         settings.data.map { it[longPreferencesKey("activeProfile.$packId")] }
@@ -248,6 +266,7 @@ class ProgressRepository @Inject constructor(
             }
         }
         settings.edit {
+            it.remove(requestStageKey(profileId))
             it.remove(achievementKey(profileId))
             it.remove(achievementProgressKey(profileId))
             it.remove(achievementChecklistKey(profileId))
@@ -273,6 +292,7 @@ class ProgressRepository @Inject constructor(
             db.profileDao().delete(profileId)
         }
         settings.edit {
+            it.remove(requestStageKey(profileId))
             it.remove(achievementKey(profileId))
             it.remove(achievementProgressKey(profileId))
             it.remove(achievementChecklistKey(profileId))

@@ -6,7 +6,11 @@
       "description": "Obtained Orpheus.",
       "availableFrom": "2009-04-09",
       "expectedBy": "2009-04-09",
-      "tracking": { "type": "storyDate", "date": "2009-04-09" }
+      "tracking": {
+        "type": "storyDate",
+        "date": "2009-04-09"
+      },
+      "iconMediaRef": "p3r.media.achievement.awakened-power"
     },
     {
       "id": "p3r.achievement.sees-the-day",
@@ -14,7 +18,11 @@
       "description": "Joined the Specialized Extracurricular Execution Squad.",
       "availableFrom": "2009-04-18",
       "expectedBy": "2009-04-18",
-      "tracking": { "type": "storyDate", "date": "2009-04-18" }
+      "tracking": {
+        "type": "storyDate",
+        "date": "2009-04-18"
+      },
+      "iconMediaRef": "p3r.media.achievement.sees-the-day"
     },
     {
       "id": "p3r.achievement.back-on-track",
@@ -22,7 +30,11 @@
       "description": "Defeated the Priestess.",
       "availableFrom": "2009-05-09",
       "expectedBy": "2009-05-09",
-      "tracking": { "type": "storyDate", "date": "2009-05-09" }
+      "tracking": {
+        "type": "storyDate",
+        "date": "2009-05-09"
+      },
+      "iconMediaRef": "p3r.media.achievement.back-on-track"
     },
     {
       "id": "p3r.achievement.empowered-protector",
@@ -30,7 +42,11 @@
       "description": "Defeated the Empress and Emperor.",
       "availableFrom": "2009-06-08",
       "expectedBy": "2009-06-08",
-      "tracking": { "type": "storyDate", "date": "2009-06-08" }
+      "tracking": {
+        "type": "storyDate",
+        "date": "2009-06-08"
+      },
+      "iconMediaRef": "p3r.media.achievement.empowered-protector"
     },
     {
       "id": "p3r.achievement.never-toy",
@@ -38,7 +54,11 @@
       "description": "Defeated the Hierophant and the Lovers.",
       "availableFrom": "2009-07-07",
       "expectedBy": "2009-07-07",
-      "tracking": { "type": "storyDate", "date": "2009-07-07" }
+      "tracking": {
+        "type": "storyDate",
+        "date": "2009-07-07"
+      },
+      "iconMediaRef": "p3r.media.achievement.never-toy"
     },
     {
       "id": "p3r.achievement.armor-disarmed",
@@ -46,7 +66,11 @@
       "description": "Defeated the Chariot and Justice.",
       "availableFrom": "2009-08-06",
       "expectedBy": "2009-08-06",
-      "tracking": { "type": "storyDate", "date": "2009-08-06" }
+      "tracking": {
+        "type": "storyDate",
+        "date": "2009-08-06"
+      },
+      "iconMediaRef": "p3r.media.achievement.armor-disarmed"
     },
     {
       "id": "p3r.achievement.dodging-lightning",
@@ -54,7 +78,11 @@
       "description": "Defeated the Hermit.",
       "availableFrom": "2009-09-05",
       "expectedBy": "2009-09-05",
-      "tracking": { "type": "storyDate", "date": "2009-09-05" }
+      "tracking": {
+        "type": "storyDate",
+        "date": "2009-09-05"
+      },
+      "iconMediaRef": "p3r.media.achievement.dodging-lightning"
     },
     {
       "id": "p3r.achievement.twist-of-fate",
@@ -62,7 +90,11 @@
       "description": "Defeated Fortune and Strength.",
       "availableFrom": "2009-10-04",
       "expectedBy": "2009-10-04",
-      "tracking": { "type": "storyDate", "date": "2009-10-04" }
+      "tracking": {
+        "type": "storyDate",
+        "date": "2009-10-04"
+      },
+      "iconMediaRef": "p3r.media.achievement.twist-of-fate"
     },
     {
       "id": "p3r.achievement.sense-of-finality",
@@ -70,7 +102,11 @@
       "description": "Defeated the Hanged Man.",
       "availableFrom": "2009-11-03",
       "expectedBy": "2009-11-03",
-      "tracking": { "type": "storyDate", "date": "2009-11-03" }
+      "tracking": {
+        "type": "storyDate",
+        "date": "2009-11-03"
+      },
+      "iconMediaRef": "p3r.media.achievement.sense-of-finality"
     },
     {
       "id": "p3r.achievement.great-seal",
@@ -82,13 +118,22 @@
         "type": "choice",
         "date": "2010-01-31",
         "stateKey": "p3r.choice.ryoji-fate",
-        "acceptedItems": ["spare"],
+        "acceptedItems": [
+          "spare"
+        ],
         "prompt": "Record the December 31 story decision here, then confirm after sealing Nyx on The Promised Day.",
         "items": [
-          { "id": "spare", "label": "Spare Ryoji — pursue the good ending" },
-          { "id": "kill", "label": "Kill Ryoji — end the story early" }
+          {
+            "id": "spare",
+            "label": "Spare Ryoji — pursue the good ending"
+          },
+          {
+            "id": "kill",
+            "label": "Kill Ryoji — end the story early"
+          }
         ]
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.great-seal"
     },
     {
       "id": "p3r.achievement.shadows-into-light",
@@ -100,20 +145,33 @@
         "type": "choice",
         "date": "2010-03-05",
         "stateKey": "p3r.choice.ryoji-fate",
-        "acceptedItems": ["spare"],
+        "acceptedItems": [
+          "spare"
+        ],
         "prompt": "Record the December 31 story decision here, then confirm after watching the good ending on Graduation Day.",
         "items": [
-          { "id": "spare", "label": "Spare Ryoji — pursue the good ending" },
-          { "id": "kill", "label": "Kill Ryoji — end the story early" }
+          {
+            "id": "spare",
+            "label": "Spare Ryoji — pursue the good ending"
+          },
+          {
+            "id": "kill",
+            "label": "Kill Ryoji — end the story early"
+          }
         ]
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.shadows-into-light"
     },
     {
       "id": "p3r.achievement.fools-journey",
       "title": "The Fool's Journey",
       "description": "Obtained 10 Major Arcana during Shuffle Time.",
       "availableFrom": "2009-04-20",
-      "tracking": { "type": "manual", "target": 10 }
+      "tracking": {
+        "type": "manual",
+        "target": 10
+      },
+      "iconMediaRef": "p3r.media.achievement.fools-journey"
     },
     {
       "id": "p3r.achievement.distinguished-visitor",
@@ -121,7 +179,11 @@
       "description": "Invited Elizabeth to your room.",
       "availableFrom": "2009-11-06",
       "expectedBy": "2009-11-06",
-      "tracking": { "type": "event", "event": "p3r.event.elizabeth-room" }
+      "tracking": {
+        "type": "event",
+        "event": "p3r.event.elizabeth-room"
+      },
+      "iconMediaRef": "p3r.media.achievement.distinguished-visitor"
     },
     {
       "id": "p3r.achievement.top-of-class",
@@ -133,7 +195,8 @@
         "type": "confirmation",
         "date": "2009-05-25",
         "prompt": "Confirm when the May exam results show that you placed at the top of the class."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.top-of-class"
     },
     {
       "id": "p3r.achievement.legacy-of-friendships",
@@ -142,7 +205,11 @@
       "availableFrom": "2010-01-29",
       "expectedBy": "2010-01-29",
       "missable": true,
-      "tracking": { "type": "event", "event": "p3r.event.social-all-max" }
+      "tracking": {
+        "type": "event",
+        "event": "p3r.event.social-all-max"
+      },
+      "iconMediaRef": "p3r.media.achievement.legacy-of-friendships"
     },
     {
       "id": "p3r.achievement.people-person",
@@ -151,7 +218,11 @@
       "availableFrom": "2010-01-08",
       "expectedBy": "2010-01-08",
       "missable": true,
-      "tracking": { "type": "event", "event": "p3r.event.social-all-unlocked" }
+      "tracking": {
+        "type": "event",
+        "event": "p3r.event.social-all-unlocked"
+      },
+      "iconMediaRef": "p3r.media.achievement.people-person"
     },
     {
       "id": "p3r.achievement.special-someone",
@@ -162,7 +233,8 @@
       "tracking": {
         "type": "confirmation",
         "prompt": "Confirm after choosing a romance branch in any eligible Social Link."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.special-someone"
     },
     {
       "id": "p3r.achievement.unbreakable-link",
@@ -170,7 +242,11 @@
       "description": "Maxed out one Social Link.",
       "availableFrom": "2009-09-01",
       "expectedBy": "2009-09-01",
-      "tracking": { "type": "event", "event": "p3r.event.social-max-devil" }
+      "tracking": {
+        "type": "event",
+        "event": "p3r.event.social-max-devil"
+      },
+      "iconMediaRef": "p3r.media.achievement.unbreakable-link"
     },
     {
       "id": "p3r.achievement.newfound-strength",
@@ -178,14 +254,22 @@
       "description": "Awakened all teammates' ultimate Personas.",
       "availableFrom": "2009-12-30",
       "expectedBy": "2009-12-30",
-      "tracking": { "type": "storyDate", "date": "2009-12-30" }
+      "tracking": {
+        "type": "storyDate",
+        "date": "2009-12-30"
+      },
+      "iconMediaRef": "p3r.media.achievement.newfound-strength"
     },
     {
       "id": "p3r.achievement.power-of-choice",
       "title": "The Power of Choice",
       "description": "Obtained 10 Personas during Shuffle Time.",
       "availableFrom": "2009-04-20",
-      "tracking": { "type": "manual", "target": 10 }
+      "tracking": {
+        "type": "manual",
+        "target": 10
+      },
+      "iconMediaRef": "p3r.media.achievement.power-of-choice"
     },
     {
       "id": "p3r.achievement.no-i-in-team",
@@ -195,7 +279,8 @@
       "tracking": {
         "type": "confirmation",
         "prompt": "Confirm after performing a Shift in battle."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.no-i-in-team"
     },
     {
       "id": "p3r.achievement.strength-of-hearts",
@@ -208,17 +293,46 @@
         "type": "checklist",
         "target": 9,
         "items": [
-          { "id": "yukari", "label": "Yukari" },
-          { "id": "junpei", "label": "Junpei" },
-          { "id": "akihiko", "label": "Akihiko" },
-          { "id": "mitsuru", "label": "Mitsuru" },
-          { "id": "fuuka", "label": "Fuuka" },
-          { "id": "aigis", "label": "Aigis" },
-          { "id": "koromaru", "label": "Koromaru" },
-          { "id": "ken", "label": "Ken" },
-          { "id": "shinjiro", "label": "Shinjiro", "dueBy": "2009-10-03" }
+          {
+            "id": "yukari",
+            "label": "Yukari"
+          },
+          {
+            "id": "junpei",
+            "label": "Junpei"
+          },
+          {
+            "id": "akihiko",
+            "label": "Akihiko"
+          },
+          {
+            "id": "mitsuru",
+            "label": "Mitsuru"
+          },
+          {
+            "id": "fuuka",
+            "label": "Fuuka"
+          },
+          {
+            "id": "aigis",
+            "label": "Aigis"
+          },
+          {
+            "id": "koromaru",
+            "label": "Koromaru"
+          },
+          {
+            "id": "ken",
+            "label": "Ken"
+          },
+          {
+            "id": "shinjiro",
+            "label": "Shinjiro",
+            "dueBy": "2009-10-03"
+          }
         ]
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.strength-of-hearts"
     },
     {
       "id": "p3r.achievement.extracurricular-excellence",
@@ -230,7 +344,8 @@
         "type": "confirmation",
         "date": "2009-06-27",
         "prompt": "Confirm after rescuing at least one missing person from Tartarus."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.extracurricular-excellence"
     },
     {
       "id": "p3r.achievement.load-of-numbers",
@@ -240,14 +355,19 @@
       "tracking": {
         "type": "confirmation",
         "prompt": "Confirm after dealing over 999 damage in one non-All-Out attack."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.load-of-numbers"
     },
     {
       "id": "p3r.achievement.shrouded-assassin",
       "title": "Shrouded Assassin",
       "description": "Initiated 50 Chance Encounters.",
       "availableFrom": "2009-04-20",
-      "tracking": { "type": "manual", "target": 50 }
+      "tracking": {
+        "type": "manual",
+        "target": 50
+      },
+      "iconMediaRef": "p3r.media.achievement.shrouded-assassin"
     },
     {
       "id": "p3r.achievement.thrill-of-hunt",
@@ -257,35 +377,52 @@
       "tracking": {
         "type": "confirmation",
         "prompt": "Confirm after defeating a rare golden enemy in Tartarus."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.thrill-of-hunt"
     },
     {
       "id": "p3r.achievement.dream-work",
       "title": "Making the Dream Work",
       "description": "Performed 50 All-Out Attacks.",
       "availableFrom": "2009-04-20",
-      "tracking": { "type": "manual", "target": 50 }
+      "tracking": {
+        "type": "manual",
+        "target": 50
+      },
+      "iconMediaRef": "p3r.media.achievement.dream-work"
     },
     {
       "id": "p3r.achievement.glimpse-of-depths",
       "title": "Glimpse of the Depths",
       "description": "Discovered and conquered 10 Monad doors.",
       "availableFrom": "2009-08-03",
-      "tracking": { "type": "manual", "target": 10 }
+      "tracking": {
+        "type": "manual",
+        "target": 10
+      },
+      "iconMediaRef": "p3r.media.achievement.glimpse-of-depths"
     },
     {
       "id": "p3r.achievement.briefcase-burglar",
       "title": "Briefcase Burglar",
       "description": "Opened 50 treasure chests.",
       "availableFrom": "2009-04-20",
-      "tracking": { "type": "manual", "target": 50 }
+      "tracking": {
+        "type": "manual",
+        "target": 50
+      },
+      "iconMediaRef": "p3r.media.achievement.briefcase-burglar"
     },
     {
       "id": "p3r.achievement.shattered-plumes",
       "title": "Shattered Plumes",
       "description": "Used a total of 50 Twilight Fragments.",
       "availableFrom": "2009-04-23",
-      "tracking": { "type": "manual", "target": 50 }
+      "tracking": {
+        "type": "manual",
+        "target": 50
+      },
+      "iconMediaRef": "p3r.media.achievement.shattered-plumes"
     },
     {
       "id": "p3r.achievement.horror-of-shade",
@@ -295,7 +432,8 @@
       "tracking": {
         "type": "confirmation",
         "prompt": "Confirm after encountering a random Dark Zone after the Tziah tutorial; the scripted tutorial Dark Zone does not count."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.horror-of-shade"
     },
     {
       "id": "p3r.achievement.reaper-reaped",
@@ -307,7 +445,8 @@
         "type": "confirmation",
         "date": "2010-01-21",
         "prompt": "Confirm after defeating the Reaper; the route starts dedicated preparation here."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.reaper-reaped"
     },
     {
       "id": "p3r.achievement.first-of-many",
@@ -317,7 +456,8 @@
       "tracking": {
         "type": "confirmation",
         "prompt": "Confirm after performing a Dyad Fusion."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.first-of-many"
     },
     {
       "id": "p3r.achievement.fusion-artisan",
@@ -327,7 +467,8 @@
       "tracking": {
         "type": "confirmation",
         "prompt": "Confirm after performing a fusion using three or more Personas."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.fusion-artisan"
     },
     {
       "id": "p3r.achievement.birthday-present",
@@ -337,7 +478,8 @@
       "tracking": {
         "type": "confirmation",
         "prompt": "Confirm after receiving an item from a Persona Conception."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.birthday-present"
     },
     {
       "id": "p3r.achievement.path-to-salvation",
@@ -349,7 +491,8 @@
         "type": "confirmation",
         "date": "2010-01-31",
         "prompt": "Confirm after fusing Messiah; the route notes the Orpheus + Thanatos opportunity on The Promised Day."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.path-to-salvation"
     },
     {
       "id": "p3r.achievement.tempting-fate",
@@ -359,7 +502,8 @@
       "tracking": {
         "type": "confirmation",
         "prompt": "Confirm after a skill changes during fusion."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.tempting-fate"
     },
     {
       "id": "p3r.achievement.eat-your-veggies",
@@ -370,7 +514,8 @@
         "type": "confirmation",
         "event": "p3r.event.teammate-gardening",
         "prompt": "The route tracks your first teammate gardening hangout; confirm after you later harvest a crop grown with a teammate."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.eat-your-veggies"
     },
     {
       "id": "p3r.achievement.grindset-mindset",
@@ -383,7 +528,8 @@
         "target": 50001,
         "unit": "¥",
         "prompt": "Enter your cumulative earnings from part-time jobs; the route expects this to cross the threshold by the December 29 Be Blue V shift."
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.grindset-mindset"
     },
     {
       "id": "p3r.achievement.specialist",
@@ -391,7 +537,11 @@
       "description": "Maxed out one Social Stat.",
       "availableFrom": "2009-06-19",
       "expectedBy": "2009-06-19",
-      "tracking": { "type": "event", "event": "p3r.event.stat-max-courage" }
+      "tracking": {
+        "type": "event",
+        "event": "p3r.event.stat-max-courage"
+      },
+      "iconMediaRef": "p3r.media.achievement.specialist"
     },
     {
       "id": "p3r.achievement.peak-performance",
@@ -406,7 +556,8 @@
           "p3r.event.stat-max-charm",
           "p3r.event.stat-max-academics"
         ]
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.peak-performance"
     },
     {
       "id": "p3r.achievement.dorm-life",
@@ -414,7 +565,11 @@
       "description": "Spent an evening in the dorm with a teammate.",
       "availableFrom": "2009-06-16",
       "expectedBy": "2009-06-16",
-      "tracking": { "type": "event", "event": "p3r.event.dorm-hangout" }
+      "tracking": {
+        "type": "event",
+        "event": "p3r.event.dorm-hangout"
+      },
+      "iconMediaRef": "p3r.media.achievement.dorm-life"
     },
     {
       "id": "p3r.achievement.gourmand",
@@ -422,7 +577,11 @@
       "description": "Ordered from a secret menu at the Iwatodai strip mall at night.",
       "availableFrom": "2009-06-28",
       "expectedBy": "2009-06-28",
-      "tracking": { "type": "event", "event": "p3r.event.gourmand" }
+      "tracking": {
+        "type": "event",
+        "event": "p3r.event.gourmand"
+      },
+      "iconMediaRef": "p3r.media.achievement.gourmand"
     },
     {
       "id": "p3r.achievement.benevolent-purr-tector",
@@ -438,7 +597,8 @@
           "p3r.event.cat-3",
           "p3r.event.cat-4"
         ]
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.benevolent-purr-tector"
     },
     {
       "id": "p3r.achievement.in-high-demand",
@@ -456,7 +616,8 @@
           "p3r.event.invitation-4",
           "p3r.event.invitation-5"
         ]
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.in-high-demand"
     },
     {
       "id": "p3r.achievement.beyond-darkness",
@@ -464,7 +625,11 @@
       "description": "Unlocked access to the remaining Major Arcana.",
       "availableFrom": "2009-08-03",
       "expectedBy": "2009-08-03",
-      "tracking": { "type": "event", "event": "p3r.event.beyond-darkness" }
+      "tracking": {
+        "type": "event",
+        "event": "p3r.event.beyond-darkness"
+      },
+      "iconMediaRef": "p3r.media.achievement.beyond-darkness"
     },
     {
       "id": "p3r.achievement.thick-and-thin",
@@ -472,7 +637,11 @@
       "description": "Unlocked a teammate's Combat Characteristic.",
       "availableFrom": "2009-07-01",
       "expectedBy": "2009-07-01",
-      "tracking": { "type": "event", "event": "p3r.event.combat-characteristic" }
+      "tracking": {
+        "type": "event",
+        "event": "p3r.event.combat-characteristic"
+      },
+      "iconMediaRef": "p3r.media.achievement.thick-and-thin"
     },
     {
       "id": "p3r.achievement.eagle-eye",
@@ -487,7 +656,8 @@
           "p3r.event.fragments-dorm",
           "p3r.event.fragments-remaining"
         ]
-      }
+      },
+      "iconMediaRef": "p3r.media.achievement.eagle-eye"
     }
   ],
   "events": [

@@ -73,6 +73,7 @@ data class LoadedPack(
     /** Semantic event anchors used to derive achievement progress from DONE walkthrough steps. */
     val achievementEvents: List<AchievementEventAnchor> = emptyList(),
     /** Optional task-linked Mementos request catalog. */
+    val requests: com.shadowmonarchbooks.dayloop.pack.schema.RequestsFile? = null,
     val mementosRequests: List<MementosRequestDefinition> = emptyList(),
     val mementosRequestEvents: List<AchievementEventAnchor> = emptyList(),
 ) {
@@ -273,6 +274,7 @@ class PackStore @Inject constructor(
                     media = media,
                     achievements = achievementFile?.achievements.orEmpty(),
                     achievementEvents = achievementFile?.events.orEmpty(),
+                    requests = if ("requests.json" in files) PackLoader.decodeRequests(readAsset(assets, "$slug/requests.json")) else null,
                     mementosRequests = mementosRequestsFile?.requests.orEmpty(),
                     mementosRequestEvents = mementosRequestsFile?.events.orEmpty(),
                 )

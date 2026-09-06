@@ -71,6 +71,7 @@ data class DayloopUiState(
     val marks: Map<StepKey, StepMark> = emptyMap(),
     /** Explicit earned checks for achievement ids in the active profile. */
     val earnedAchievements: Set<String> = emptySet(),
+    val requestStages: Map<String, String> = emptyMap(),
     /** Explicit counters for achievement conditions the walkthrough cannot infer. */
     val achievementCounts: Map<String, Int> = emptyMap(),
     /** Checked item ids for pack-authored manual achievement checklists. */
@@ -157,13 +158,15 @@ class DayloopViewModel @Inject constructor(
                             marksFlow,
                             achievementsFlow,
                             achievementProgressFlow,
-                        ) { rows, earnedAchievements, achievementProgress ->
+                            active?.let { repo.requestStages(it.id) } ?: flowOf(emptyMap()),
+                        ) { rows, earnedAchievements, achievementProgress, requestStages ->
                             buildUiState(
                                 packsState = packs,
                                 pack = pack,
                                 profiles = profiles,
                                 active = active,
                                 rows = rows,
+                                requestStages = requestStages,
                                 earnedAchievements = earnedAchievements,
                                 achievementCounts = achievementProgress.counts,
                                 achievementChecklist = achievementProgress.checkedItems,
@@ -275,6 +278,12 @@ class DayloopViewModel @Inject constructor(
 
     // ---- Achievements ----
 
+    fun setRequestStage(requestId: String, stage: String?) = withActiveProfile { id ->
+        if (state.value.selected?.requests?.requests?.any { it.id == requestId } == true) {
+            repo.setRequestStage(id, requestId, stage)
+        }
+    }
+
     fun setAchievementEarned(achievementId: String, earned: Boolean) = withActiveProfile { id ->
         repo.setAchievementEarned(id, achievementId, earned)
     }
@@ -321,6 +330,7 @@ class DayloopViewModel @Inject constructor(
         profiles: List<ProfileEntity>,
         active: ProfileEntity?,
         rows: List<StepStateEntity>,
+        requestStages: Map<String, String>,
         earnedAchievements: Set<String>,
         achievementCounts: Map<String, Int>,
         achievementChecklist: Map<String, Set<String>>,
@@ -347,6 +357,7 @@ class DayloopViewModel @Inject constructor(
             routeLabel = pack.routeLabel(routeId),
             days = days,
             marks = marks,
+            requestStages = requestStages,
             earnedAchievements = earnedAchievements,
             achievementCounts = achievementCounts,
             achievementChecklist = achievementChecklist,

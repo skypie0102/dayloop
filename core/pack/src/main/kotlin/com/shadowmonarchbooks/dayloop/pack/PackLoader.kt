@@ -7,6 +7,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.AnswersFile
 import com.shadowmonarchbooks.dayloop.pack.schema.BondsFile
 import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaFile
+import com.shadowmonarchbooks.dayloop.pack.schema.RequestsFile
 import com.shadowmonarchbooks.dayloop.pack.schema.MementosRequestsFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Pack
 import com.shadowmonarchbooks.dayloop.pack.schema.Routes
@@ -53,6 +54,7 @@ class PackLoadResult(
     /** Optional task-linked Mementos request catalog. */
     val mementosRequests: MementosRequestsFile?,
     val parseIssues: List<LintIssue>,
+    val requests: RequestsFile? = null,
 )
 
 /**
@@ -96,6 +98,9 @@ object PackLoader {
 
     fun decodeMementosRequests(jsonText: String): MementosRequestsFile? =
         runCatching { json.decodeFromString(MementosRequestsFile.serializer(), jsonText) }.getOrNull()
+
+    fun decodeRequests(jsonText: String): RequestsFile? =
+        runCatching { json.decodeFromString(RequestsFile.serializer(), jsonText) }.getOrNull()
 
     fun decodeWalkthrough(jsonText: String): WalkthroughFile? =
         runCatching { json.decodeFromString(WalkthroughFile.serializer(), jsonText) }.getOrNull()
@@ -440,6 +445,31 @@ object PackLoader {
                 .forEach { eventId -> requestError("request event '$eventId' is not used by any request") }
         }
 
+        val requestPath = packDir.resolve("requests.json")
+        val requestJson = decode(requestPath, "requests.json")
+        issues += requestJson.second
+        val requests = parse(requestJson.first, requestPath, "requests.json", RequestsFile.serializer())
+        fun requestIssue(message: String) {
+            issues += LintIssue(LintIssue.Severity.ERROR, "requests.json", message)
+        }
+        if (pack?.capabilities?.requests == true && requests?.requests.isNullOrEmpty()) {
+            requestIssue("requests capability requires a non-empty catalog")
+        }
+        if (requests != null) {
+            if (pack?.capabilities?.requests != true) requestIssue("catalog requires requests capability")
+            if (requests.title.isBlank() || requests.issuer.isBlank()) requestIssue("catalog title and issuer must not be blank")
+            if (requests.requests.map { it.id }.distinct().size != requests.requests.size) requestIssue("duplicate request id")
+            if (requests.requests.map { it.number }.distinct().size != requests.requests.size) requestIssue("duplicate request number")
+            val dates = walkthroughs.flatMap { it.file.days }.map { it.date }.toSet()
+            requests.requests.forEach { request ->
+                if (request.id.isBlank() || '=' in request.id || request.title.isBlank() || request.number <= 0) requestIssue("invalid request identity")
+                if (request.routeDates.any { it !in dates }) requestIssue("${request.id}: route date is not authored")
+                request.deadline?.let { date ->
+                    if (runCatching { java.time.LocalDate.parse(date) }.isFailure) requestIssue("${request.id}: invalid deadline")
+                }
+            }
+        }
+
         return PackLoadResult(
             pack,
             bonds,
@@ -451,6 +481,7 @@ object PackLoader {
             achievements,
             mementosRequests,
             issues,
+            requests,
         )
     }
 }
