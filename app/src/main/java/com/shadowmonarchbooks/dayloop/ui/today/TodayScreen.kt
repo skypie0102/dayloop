@@ -519,7 +519,13 @@ private fun TodayDateHeader(text: String, modifier: Modifier = Modifier) {
             maxLines = 1,
             overflow = TextOverflow.Visible,
             softWrap = false,
-            onTextLayout = { result -> advanceFitStage(result.didOverflowWidth) },
+            onTextLayout = { result ->
+                val edgeReservePx = result.size.height * 0.18f
+                advanceFitStage(
+                    result.didOverflowWidth ||
+                        (result.lineCount > 0 && result.getLineRight(0) > result.size.width - edgeReservePx),
+                )
+            },
             modifier = adaptiveModifier,
         )
         return
@@ -539,12 +545,10 @@ private fun TodayDateHeader(text: String, modifier: Modifier = Modifier) {
     }
     val baseStyle = MaterialTheme.typography.displayMedium.withSkinFont(skin.type.accent)
 
-    // This header intentionally has no Surface wrapper. Material Surface clips
-    // its children to the supplied shape; the Persona-style display font has
-    // large painted glyph overhangs, so the last character could be cut even
-    // after its measured advance width technically fit. A plain Row leaves the
-    // glyph ink un-clipped while the normal -> padding -> spacing -> size fit
-    // sequence still constrains the logical text width beside the profile.
+    // The P5R display font has painted strokes that extend beyond its logical
+    // advance width. Keep a small visual edge reserve when deciding whether a
+    // date fits; otherwise Compose can report "fits" while the last glyph is
+    // still visibly cut. The fit order remains padding -> spacing -> font size.
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = adaptiveModifier.padding(
@@ -574,7 +578,13 @@ private fun TodayDateHeader(text: String, modifier: Modifier = Modifier) {
             maxLines = 1,
             overflow = TextOverflow.Visible,
             softWrap = false,
-            onTextLayout = { result -> advanceFitStage(result.didOverflowWidth) },
+            onTextLayout = { result ->
+                val edgeReservePx = result.size.height * 0.18f
+                advanceFitStage(
+                    result.didOverflowWidth ||
+                        (result.lineCount > 0 && result.getLineRight(0) > result.size.width - edgeReservePx),
+                )
+            },
             modifier = Modifier.weight(1f),
         )
     }
