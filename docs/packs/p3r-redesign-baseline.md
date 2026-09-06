@@ -45,7 +45,7 @@ regression checks. P5R and Metaphor must have no changed content files.
 | Fixture | What to review | Evidence status |
 |---|---|---|
 | 2009-04-21 school day | Date hierarchy, classroom/After School/Evening sections, long labels | Capture pending |
-| 2009-04-26 free day | Day and Evening grouping; no false After School section | Capture pending |
+| 2009-04-26 free day | Day-only tasks; no empty Evening or After School section | Capture pending |
 | 2009-06-27 Tartarus visit | Dense instructions, rescue objectives, reading contrast | Capture pending |
 | 2009-05-09 full-moon operation | Accurate operation context; no invented phase display | Capture pending |
 | 2009-05-18 exam | Inline answers and preparation context | Capture pending |
@@ -57,7 +57,17 @@ for before/after comparisons. Repeat at enlarged font scale and with TalkBack,
 gesture/three-button navigation, and reduced motion. Capture the baseline commit
 and candidate commit explicitly. Do not approve the skin from token names alone.
 
-## Verification limitations
+## CI result
+
+[CI run 701](https://github.com/shdwmnrchbks/dayloop/actions/runs/34009581065)
+passed for implementation commit `2441807`: debug/candidate builds, app/core/tool
+JVM tests, and all three packlint targets. The first run exposed a test still
+requiring the deliberately replaced Moonlight settings; that contract now verifies
+the new P3R opt-in and the other packs' unchanged opt-ins. Subsequent edits to this
+record are documentation only. Android screenshot/interaction acceptance remains
+pending, and the PR remains draft.
+
+## Local verification limitations
 
 This workspace has Java 17 but no Android SDK/emulator or cached Gradle distribution.
 `./gradlew --version` cannot download Gradle because the network is unreachable.
@@ -68,4 +78,4 @@ implementation PR in draft until build checks and the Android visual review pass
 Local review checks JSON parsing, relative documentation links, diff whitespace,
 and pack isolation. New tests cover opt-in chrome isolation, unknown-token rejection,
 system-mode palette stability, and the existing all-style WCAG contrast matrix.
-Tests being added does not imply that they have run successfully.
+The Gradle tests were executed by CI as recorded above, not in this workspace.
