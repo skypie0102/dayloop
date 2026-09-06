@@ -225,10 +225,8 @@ fun TodayScreen(
                     dateBottomPx = coordinates.positionInParent().y.toInt() + coordinates.size.height
                 },
         ) {
-            // Today keeps the pack's selected date face without placing it on
-            // the standard section-header panel. It never ellipsizes: only an
-            // overflowing date progressively tightens padding, letter spacing,
-            // then font size until the entire date fits on one line.
+            // Treat the weighted left side as the date's cell. P5R centers the
+            // full date in that cell and only reduces font size when it cannot fit.
             TodayDateHeader(
                 text = formatDate(date, pack.calendar),
                 modifier = Modifier.weight(1f),
@@ -484,6 +482,47 @@ fun TodayScreen(
 @Composable
 private fun TodayDateHeader(text: String, modifier: Modifier = Modifier) {
     val skin = LocalSkin.current
+
+    // P5R's date is a centered cell, not edge-anchored text. The weighted
+    // modifier from TodayScreen is the cell boundary; keep the normal display
+    // size whenever it fits and reduce only the font size when it does not.
+    if (skin.hasSkin && skin.motion == "slash") {
+        var fontScale by remember(text) { mutableStateOf(1f) }
+        var cellWidthPx by remember(text) { mutableIntStateOf(-1) }
+        val baseStyle = MaterialTheme.typography.displayMedium.withSkinFont(skin.type.accent)
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = modifier
+                .onSizeChanged { size ->
+                    if (cellWidthPx >= 0 && cellWidthPx != size.width) {
+                        fontScale = 1f
+                    }
+                    cellWidthPx = size.width
+                }
+                // Small symmetric inset keeps the decorative font's painted
+                // strokes inside the cell without biasing the centering.
+                .padding(horizontal = 6.dp),
+        ) {
+            Text(
+                text = skin.cased(text, "accent"),
+                style = baseStyle.copy(fontSize = baseStyle.fontSize * fontScale),
+                color = MaterialTheme.colorScheme.onBackground,
+                fontWeight = FontWeight.Black,
+                maxLines = 1,
+                overflow = TextOverflow.Visible,
+                softWrap = false,
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                onTextLayout = { result ->
+                    if (result.didOverflowWidth && fontScale > 0.30f) {
+                        fontScale = (fontScale * 0.94f).coerceAtLeast(0.30f)
+                    }
+                },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
+        return
+    }
+
     var fitStage by remember(text) { mutableIntStateOf(0) }
     var containerWidthPx by remember(text) { mutableIntStateOf(-1) }
     val adaptiveModifier = modifier.onSizeChanged { size ->
