@@ -194,15 +194,16 @@ private fun submergedSchemeArgb(seed: Int): Map<String, Int> {
     val raised = shade(seed, 0.36)
     val light = tint(0.78)
     val secondary = tint(0.65)
-    // Blue framing and white selection are separate roles. Cap the frame's
-    // brightness because subdued labels are also drawn directly over the wash.
-    var frame = shade(seed, 0.85)
-    while (Wcag.contrastRatio(secondary, frame) < Wcag.AA_NORMAL) {
-        frame = shade(frame, 0.90)
-    }
     // Start from a complete scheme so newly consumed Material roles stay defined.
     val base = buildScheme("content", Hct.fromInt(seed), true)
     val m = com.materialkolor.dynamiccolor.MaterialDynamicColors()
+    val urgent = m.error().getArgb(base)
+    // Blue framing and white selection are separate roles. Cap the frame's
+    // brightness for both subdued backdrop labels and urgent deadline text.
+    var frame = shade(seed, 0.85)
+    while (minOf(Wcag.contrastRatio(secondary, frame), Wcag.contrastRatio(urgent, frame)) < Wcag.AA_NORMAL) {
+        frame = shade(frame, 0.90)
+    }
     return SCHEME_ROLES.associate { (name, role) -> name to role(m).getArgb(base) } + mapOf(
         "primary" to INK_WHITE, "onPrimary" to frame,
         "primaryContainer" to frame, "onPrimaryContainer" to INK_WHITE,
