@@ -2,7 +2,7 @@
 
 Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version 3.
 Priority: **top repository priority**, confirmed by the user on 2026-09-06.
-Status: **active — P3R-0 baseline and P3R-1 replacement skin work starting**.
+Status: **active — P3R-1 daily screen and Android flow validation in progress**.
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
 
@@ -117,7 +117,10 @@ prioritized gap list. Each gap has a route/date or screen, severity, and evidenc
   extend the generic skin system if its current tokens constrain fidelity.
 - [ ] Design and implement the P3R shell, date/deadline header, task row, inline
   Tips, selected state, and Back / End Day controls as a coherent set.
-- [ ] Preview a school day, a free day, and a Tartarus/full-moon day on Android.
+- [x] Preview a school day, a free day, and a Tartarus/full-moon day on Android.
+  Full school/free/full-moon captures reviewed in [PR #71](https://github.com/shdwmnrchbks/dayloop/pull/71),
+  [Android run 4](https://github.com/shdwmnrchbks/dayloop/actions/runs/34037190638).
+  This verifies the Android fixtures, not game-reference parity or milestone exit.
 - [ ] Establish P3R-specific background, display/body roles, panel treatment,
   selection accents, and transition behavior using pack-declared tokens/assets.
 - [ ] Check small screens, long instructions, large font scale, edge-to-edge

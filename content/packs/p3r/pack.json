@@ -39,7 +39,11 @@
   },
   "labels": {
     "bond": "Social Link",
-    "stat": "Social Stat"
+    "stat": "Social Stat",
+    "deadlineKinds": {
+      "routeTarget": "Route target",
+      "other": "Upcoming event"
+    }
   },
   "theme": {
     "accent": "#09134E",
