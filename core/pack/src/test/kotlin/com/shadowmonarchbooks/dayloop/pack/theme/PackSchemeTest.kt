@@ -19,7 +19,7 @@ class PackSchemeTest {
 
     @Test
     fun `style tokens are the closed set`() {
-        assertEquals(setOf("tonalSpot", "vibrant", "expressive", "content", "ink"), THEME_STYLES)
+        assertEquals(setOf("tonalSpot", "vibrant", "expressive", "content", "ink", "submerged"), THEME_STYLES)
     }
 
     @Test
@@ -50,6 +50,15 @@ class PackSchemeTest {
             )
             assertTrue(roles.values.all { it in allowed }, "ink scheme introduced an unrelated hue: $roles")
         }
+    }
+
+    @Test
+    fun `submerged keeps the same palette across system modes`() {
+        val t = theme("#09134E", "#1A46CE", "submerged")
+        assertEquals(schemeArgb(t, true), schemeArgb(t, false))
+        val roles = assertNotNull(schemeArgb(t, true))
+        assertTrue(Wcag.relativeLuminance(roles.getValue("background")) < 0.02)
+        assertTrue(Wcag.contrastRatio(roles.getValue("primary"), roles.getValue("background")) >= 4.5)
     }
 
     @Test

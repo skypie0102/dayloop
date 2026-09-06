@@ -4,6 +4,8 @@ Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version
 Priority: **top repository priority**, confirmed by the user on 2026-09-06.
 Status: **active — P3R-0 baseline and P3R-1 replacement skin work starting**.
 
+Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
+
 ## Goal and scope
 
 Make P3R feel recognizably like **Persona 3 Reload**, adapted for a readable,
@@ -102,7 +104,8 @@ PRs; maintain evidence links here and factual findings in the audit ledger.
   Elizabeth requests, rescues, and base achievements; explicitly classify any
   optional collectibles, fusion/compendium goals, difficulty assumptions, and
   romance choices rather than silently treating “100%” as every possible goal.
-- [ ] Record the current P5R content digest and existing-save fixtures before edits.
+- [x] Record the current P5R content digest (see implementation record).
+- [ ] Capture existing-save fixtures before any task/progress changes.
 
 **Exit:** a bounded completion checklist, screenshot baseline, source matrix, and
 prioritized gap list. Each gap has a route/date or screen, severity, and evidence.

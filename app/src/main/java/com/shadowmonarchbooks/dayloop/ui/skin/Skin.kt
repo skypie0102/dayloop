@@ -111,6 +111,7 @@ data class SkinSpec(
      * look for token-less packs (motif alone does not count).
      */
     val hasSkin: Boolean,
+    val chrome: String? = null,
 ) {
     /** Text transform for a typography role (the case token applied to rendered text). */
     fun cased(text: String, role: String): String {
@@ -228,7 +229,7 @@ private fun resolveSkinBase(theme: PackTheme?, packSlug: String?, density: Densi
     // A pack is "skinned" only when it declares a v3 skin layer; motif alone
     // keeps the engine layout (family painters/shapes still apply) so the
     // Phase 13+ per-surface treatments can't leak into token-less packs.
-    val hasSkin = theme.shapes != null ||
+    val hasSkin = theme.chrome in SkinTokens.CHROMES || theme.shapes != null ||
         theme.motion != null ||
         theme.decor.isNotEmpty() ||
         type.accent != null || type.display != null || type.title != null || type.body != null
@@ -241,6 +242,7 @@ private fun resolveSkinBase(theme: PackTheme?, packSlug: String?, density: Densi
         decor = decor,
         motion = SkinTokens.resolveMotion(theme.motion),
         hasSkin = hasSkin,
+        chrome = theme.chrome?.takeIf { it in SkinTokens.CHROMES },
     )
 }
 

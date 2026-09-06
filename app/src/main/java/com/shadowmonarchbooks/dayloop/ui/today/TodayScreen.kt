@@ -77,6 +77,8 @@ import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkinFx
 import com.shadowmonarchbooks.dayloop.ui.skin.PerfectDaySplash
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDateHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
@@ -227,10 +229,18 @@ fun TodayScreen(
         ) {
             // Treat the weighted left side as the date's cell. P5R centers the
             // full date in that cell and only reduces font size when it cannot fit.
-            TodayDateHeader(
-                text = formatDate(date, pack.calendar),
-                modifier = Modifier.weight(1f),
-            )
+            if (skin.hasSubmergedChrome()) {
+                SubmergedDateHeader(
+                    date = date,
+                    accessibleDate = formatDate(date, pack.calendar),
+                    modifier = Modifier.weight(1f),
+                )
+            } else {
+                TodayDateHeader(
+                    text = formatDate(date, pack.calendar),
+                    modifier = Modifier.weight(1f),
+                )
+            }
             // Moon-language packs (Phase 14): the date's moon-phase art renders
             // beside the header when the pack anchors media to this date.
             if (LocalSkin.current.motif == "moon") {

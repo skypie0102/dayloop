@@ -105,6 +105,14 @@ class PackLintTest {
     }
 
     @Test
+    fun `unknown chrome fails while submerged opts in explicitly`() {
+        val invalid = writeSkin(Fixture.skinPack().copy(theme = skinTheme().copy(chrome = "unknown")))
+        assertTrue(PackLint.runOn(invalid).errorsIn("pack.json").any { "theme.chrome 'unknown'" in it.message })
+        val valid = writeSkin(Fixture.skinPack().copy(theme = skinTheme().copy(chrome = "submerged", style = "submerged")))
+        assertEquals(emptyList(), PackLint.runOn(valid).errorsIn("pack.json"))
+    }
+
+    @Test
     fun `unknown motion token fails`() {
         val theme = skinTheme().copy(motion = "wiggle")
         val dir = writeSkin(Fixture.skinPack().copy(theme = theme))
