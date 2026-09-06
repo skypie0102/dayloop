@@ -9,12 +9,16 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -35,12 +39,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import com.shadowmonarchbooks.dayloop.data.byId
 import com.shadowmonarchbooks.dayloop.data.deadlineStart
 import com.shadowmonarchbooks.dayloop.data.formatDate
@@ -62,7 +68,6 @@ import com.shadowmonarchbooks.dayloop.ui.components.DayKindChip
 import com.shadowmonarchbooks.dayloop.ui.components.DayProgressLine
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
-import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.components.TasksList
 import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
 import com.shadowmonarchbooks.dayloop.ui.skin.AdvanceFx
@@ -72,15 +77,19 @@ import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkinFx
 import com.shadowmonarchbooks.dayloop.ui.skin.PerfectDaySplash
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 import com.shadowmonarchbooks.dayloop.ui.skin.skinTick
+import com.shadowmonarchbooks.dayloop.ui.skin.withSkinFont
 
 private val HeistDeadlineSuffix = Regex(
     pattern = "\\s*[—-]\\s*finish the heist beforehand\\s*$",
     option = RegexOption.IGNORE_CASE,
 )
+
+private const val TodayDateMaxFitStage = 10
 
 internal fun todayDeadlineLabel(label: String): String = label.replace(HeistDeadlineSuffix, "").trim()
 
@@ -217,15 +226,12 @@ fun TodayScreen(
                 },
         ) {
             // Today keeps the pack's selected date face without placing it on
-            // the standard section-header panel.
-            SkinHeader(
-                formatDate(date, pack.calendar),
+            // the standard section-header panel. It never ellipsizes: only an
+            // overflowing date progressively tightens padding, letter spacing,
+            // then font size until the entire date fits on one line.
+            TodayDateHeader(
+                text = formatDate(date, pack.calendar),
                 modifier = Modifier.weight(1f),
-                accentFont = true,
-                showPanel = false,
-                hero = true,
-                fontWeight = FontWeight.Black,
-                singleLine = true,
             )
             // Moon-language packs (Phase 14): the date's moon-phase art renders
             // beside the header when the pack anchors media to this date.
@@ -307,23 +313,27 @@ fun TodayScreen(
                     var answerCardHeightPx by remember(date) { mutableIntStateOf(0) }
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(2.dp),
                         modifier = Modifier.fillMaxWidth(),
                     ) {
-                        Box(
-                            modifier = Modifier
-                                .weight(0.42f)
-                                .height(with(density) { answerCardHeightPx.toDp() }),
-                        ) {
-                            companion?.let { bitmap ->
-                                Image(
-                                    bitmap = bitmap,
-                                    contentDescription = null,
-                                    contentScale = ContentScale.Fit,
-                                    alignment = Alignment.CenterStart,
-                                    modifier = Modifier.fillMaxSize(),
-                                )
-                            }
+                        // Keep the Shujin companion at the Answer panel's measured
+                        // height, but size its width from the artwork aspect ratio
+                        // instead of reserving a large weighted column beside it.
+                        if (companion != null && answerCardHeightPx > 0) {
+                            val companionAspectRatio = companion.width.toFloat() /
+                                companion.height.coerceAtLeast(1).toFloat()
+                            Image(
+                                bitmap = companion,
+                                contentDescription = null,
+                                contentScale = ContentScale.Fit,
+                                alignment = Alignment.CenterStart,
+                                modifier = Modifier
+                                    .height(with(density) { answerCardHeightPx.toDp() })
+                                    .aspectRatio(
+                                        ratio = companionAspectRatio,
+                                        matchHeightConstraintsFirst = true,
+                                    ),
+                            )
                         }
                         AnswerSheetCard(
                             sheet = sheet,
@@ -468,6 +478,89 @@ fun TodayScreen(
                 .align(Alignment.Center)
                 .padding(horizontal = 32.dp),
         )
+    }
+}
+
+@Composable
+private fun TodayDateHeader(text: String, modifier: Modifier = Modifier) {
+    val skin = LocalSkin.current
+    var fitStage by remember(text) { mutableIntStateOf(0) }
+    var containerWidthPx by remember(text) { mutableIntStateOf(-1) }
+    val adaptiveModifier = modifier.onSizeChanged { size ->
+        if (containerWidthPx != size.width) {
+            containerWidthPx = size.width
+            fitStage = 0
+        }
+    }
+    val fontScale = if (fitStage < 3) {
+        1f
+    } else {
+        (1f - 0.06f * (fitStage - 2)).coerceAtLeast(0.55f)
+    }
+    val tightenLetterSpacing = fitStage >= 2
+    val advanceFitStage: (Boolean) -> Unit = { overflowed ->
+        if (overflowed && fitStage < TodayDateMaxFitStage) fitStage += 1
+    }
+
+    if (!skin.hasSkin) {
+        val baseStyle = MaterialTheme.typography.headlineSmall
+        Text(
+            text = text,
+            style = baseStyle.copy(
+                fontSize = baseStyle.fontSize * fontScale,
+                letterSpacing = if (tightenLetterSpacing) (-0.04f).em else baseStyle.letterSpacing,
+            ),
+            fontWeight = FontWeight.Black,
+            maxLines = 1,
+            overflow = TextOverflow.Clip,
+            softWrap = false,
+            onTextLayout = { result -> advanceFitStage(result.didOverflowWidth) },
+            modifier = adaptiveModifier,
+        )
+        return
+    }
+
+    val capped = skin.shapeTokens["header"] == "diamond"
+    val startPadding = if (fitStage >= 1) 2.dp else if (capped) 12.dp else 14.dp
+    val endPadding = if (fitStage >= 1) 2.dp else 14.dp
+    val baseStyle = MaterialTheme.typography.displayMedium.withSkinFont(skin.type.accent)
+    Surface(
+        shape = if (capped) SkinSpec.Engine.shapes.header else skin.shapes.header,
+        color = Color.Transparent,
+        modifier = adaptiveModifier,
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(
+                start = startPadding,
+                end = endPadding,
+                top = 1.dp,
+                bottom = 1.dp,
+            ),
+        ) {
+            if (capped) {
+                Box(
+                    modifier = Modifier
+                        .size(9.dp)
+                        .graphicsLayer { rotationZ = 45f }
+                        .background(MaterialTheme.colorScheme.onPrimaryContainer, RoundedCornerShape(2.dp)),
+                )
+                Spacer(Modifier.width(8.dp))
+            }
+            Text(
+                text = skin.cased(text, "accent"),
+                style = baseStyle.copy(
+                    fontSize = baseStyle.fontSize * fontScale,
+                    letterSpacing = if (tightenLetterSpacing) (-0.04f).em else baseStyle.letterSpacing,
+                ),
+                color = MaterialTheme.colorScheme.onBackground,
+                fontWeight = FontWeight.Black,
+                maxLines = 1,
+                overflow = TextOverflow.Clip,
+                softWrap = false,
+                onTextLayout = { result -> advanceFitStage(result.didOverflowWidth) },
+            )
+        }
     }
 }
 
