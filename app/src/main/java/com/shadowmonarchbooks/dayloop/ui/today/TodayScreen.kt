@@ -139,7 +139,7 @@ fun TodayScreen(
     var dayControlsHeightPx by remember { mutableIntStateOf(0) }
     // Reserve the measured control rail, including enlarged labels, only for this skin.
     val contentBottom = if (submerged && dayControlsHeightPx > 0) {
-        with(density) { dayControlsHeightPx.toDp() } + 14.dp
+        with(density) { dayControlsHeightPx.toDp() }
     } else 100.dp
     LaunchedEffect(date, submerged) {
         if (submerged) scrollState.scrollTo(0)
@@ -225,8 +225,11 @@ fun TodayScreen(
             verticalArrangement = Arrangement.spacedBy(14.dp),
             modifier = Modifier
                 .fillMaxSize()
+                // Shrink the scrolling viewport itself: focused controls must never
+                // scroll underneath the pinned rail, including accessibility scrolls.
+                .then(if (submerged) Modifier.padding(bottom = contentBottom) else Modifier)
                 .verticalScroll(scrollState)
-                .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = contentBottom),
+                .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = if (submerged) 14.dp else 100.dp),
         ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -359,20 +362,20 @@ fun TodayScreen(
                     DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
                 }
             } else {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                SkinSectionHeader("Tasks")
-                SkinTextActionButton(
-                    text = "Check all",
-                    onClick = { vm.markAllDone(date, day.steps.size) },
-                    enabled = !allTasksDone,
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
-            }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    SkinSectionHeader("Tasks")
+                    SkinTextActionButton(
+                        text = "Check all",
+                        onClick = { vm.markAllDone(date, day.steps.size) },
+                        enabled = !allTasksDone,
+                    )
+                    Spacer(modifier = Modifier.weight(1f))
+                    DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
+                }
             }
             TasksList(
                 steps = day.steps,

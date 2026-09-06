@@ -107,7 +107,8 @@ full-screen and game-reference acceptance remain open.
 
 ## Complete daily-flow integration
 
-The next change reserves the measured height of P3R's pinned day controls, gives
+The next change excludes the measured height of P3R's pinned day controls from
+the scrolling viewport (including focus-driven scrolling), gives
 that rail an opaque reading background, and separates task counts from the heading
 and Check all control. P3R returns to the date header after End Day/Back. These
 layout changes are opt-in; other packs keep their current layout/scroll behavior.
@@ -121,3 +122,10 @@ same-build control. Debug-only Hilt fixture access is excluded from candidate an
 release APKs. Existing-save migration, process death, TalkBack and game-reference
 parity are not implied by these tests. The new suite needs a passing Android run
 before these additional gates can be recorded as verified.
+
+
+Reference retrieval follow-up (2026-09-06): the [calendar screenshot file page](https://megatenwiki.com/wiki/File:P3R_Calendar_Screenshot.png)
+and [day-transition screenshot file page](https://megatenwiki.com/wiki/File:P3R_Day_Transition_Screenshot.png)
+identify Reload captures sourced from Game UI Database. File pages were readable;
+image downloads returned HTTP 403 here. These are queued references, not inspected
+captures or new measurements. Do not mark the shipped-game reference gate complete.
