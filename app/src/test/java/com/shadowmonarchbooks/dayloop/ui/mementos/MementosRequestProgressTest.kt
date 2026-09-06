@@ -8,8 +8,8 @@ import kotlin.test.assertEquals
 class MementosRequestProgressTest {
 
     @Test
-    fun `slash mementos request panels are fifty percent black`() {
-        assertEquals(Color.Black.copy(alpha = 0.5f), slashMementosRequestPanelColor)
+    fun `slash mementos request panels are seventy five percent black`() {
+        assertEquals(Color.Black.copy(alpha = 0.75f), slashMementosRequestPanelColor)
     }
 
     @Test
