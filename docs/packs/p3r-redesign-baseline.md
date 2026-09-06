@@ -79,3 +79,23 @@ Local review checks JSON parsing, relative documentation links, diff whitespace,
 and pack isolation. New tests cover opt-in chrome isolation, unknown-token rejection,
 system-mode palette stability, and the existing all-style WCAG contrast matrix.
 The Gradle tests were executed by CI as recorded above, not in this workspace.
+
+## Daily component pass and automated Android evidence
+
+The next pass adds wide task panels, separate 48dp Done/Skip/Later targets, inline
+Tips with the instruction as its larger touch target, section headings, a deadline
+panel, and day action controls. These remain behind the explicit chrome opt-in.
+Task text, order, slot data, and saved progress keys are unchanged.
+
+`P3R Android visual review` runs the instrumented `SubmergedDailyTest` on an API 35
+Pixel 2 emulator for P3R implementation PRs. It captures school, free-day,
+operation, enlarged-text, and marked-task component fixtures, including scrolled
+controls, and checks reversible marks and Tips independence. Artifacts contain PNGs
+and instrumentation reports. These fixtures use real bundled route data and shared
+production components; they are not full Today/navigation-flow screenshots, an
+upgrade test, or proof of visual parity with shipped Reload. Full navigation,
+P5R before/after captures, and motion review remain pending.
+
+Infrastructure follows the [Compose test setup](https://developer.android.com/develop/ui/compose/testing)
+and [Android emulator action](https://github.com/ReactiveCircus/android-emulator-runner).
+The first run of this new workflow must pass before its evidence can be accepted.
