@@ -120,8 +120,19 @@ Check all at system font scale 1.5, and the January 31 → March 4 calendar boun
 It captures full school, free, operation, exam and epilogue screens plus a P5R
 same-build control. Debug-only Hilt fixture access is excluded from candidate and
 release APKs. Existing-save migration, process death, TalkBack and game-reference
-parity are not implied by these tests. The new suite needs a passing Android run
-before these additional gates can be recorded as verified.
+parity are not implied by these tests. [Android run 4](https://github.com/shdwmnrchbks/dayloop/actions/runs/34037190638)
+passed all ten tests at `b644406` and exported 18 PNGs; [CI run 706](https://github.com/shdwmnrchbks/dayloop/actions/runs/34037190686)
+passed the full build/JVM/packlint gates. Full school/free/operation, exam,
+epilogue, restored-state and P5R control captures were inspected. An earlier run
+caught a scrolled task control beneath the pinned rail; shrinking the scroll
+viewport fixed it. Captures now use the rendered Compose root through PixelCopy,
+including inset space but excluding Android's system-bar glyphs. The raw device
+capture path had raced the splash/compositor and was not reliable evidence.
+
+Follow-up visual corrections separate the pinned date from the display-size page
+title, and give P3R's deadline categories readable pack-authored labels (Route
+target / Upcoming event). Task instructions, order, event anchors and save keys
+remain unchanged.
 
 
 Reference retrieval follow-up (2026-09-06): the [calendar screenshot file page](https://megatenwiki.com/wiki/File:P3R_Calendar_Screenshot.png)

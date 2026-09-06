@@ -86,6 +86,8 @@ internal fun SubmergedTopBar(
     onOpenSettings: () -> Unit,
 ) {
     val colors = MaterialTheme.colorScheme
+    // The pinned date is context, not a second display-sized page title.
+    val titleParts = title.split(" · ", limit = 2)
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(2.dp),
@@ -102,7 +104,7 @@ internal fun SubmergedTopBar(
         }
         Column(Modifier.weight(1f)) {
             Text(
-                text = title,
+                text = titleParts.first(),
                 style = MaterialTheme.typography.displaySmall,
                 fontStyle = FontStyle.Italic,
                 fontWeight = FontWeight.Medium,
@@ -110,6 +112,13 @@ internal fun SubmergedTopBar(
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
             )
+            titleParts.getOrNull(1)?.let { context ->
+                Text(
+                    text = context,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = colors.onSurfaceVariant,
+                )
+            }
             Box(
                 Modifier
                     .padding(top = 6.dp)
