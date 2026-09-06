@@ -346,20 +346,20 @@ fun TodayScreen(
 
         if (day != null) {
             if (submerged) {
-                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        SkinSectionHeader("Tasks", Modifier.weight(1f))
-                        SkinTextActionButton(
-                            text = "Check all",
-                            onClick = { vm.markAllDone(date, day.steps.size) },
-                            enabled = !allTasksDone,
-                        )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        SkinSectionHeader("Tasks")
+                        DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
                     }
-                    DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
+                    SkinTextActionButton(
+                        text = "Check all",
+                        onClick = { vm.markAllDone(date, day.steps.size) },
+                        enabled = !allTasksDone,
+                    )
                 }
             } else {
                 Row(

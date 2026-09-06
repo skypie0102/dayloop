@@ -113,6 +113,9 @@ class SubmergedAppFlowTest {
     @Test fun schoolDayNavigationAndSavedDayFlow() {
         launch("2009-04-21")
         dateIs("2009-04-21")
+        // The opening composition must show an actionable task without a scroll.
+        compose.onNodeWithText("Stay awake in class").assertIsDisplayed()
+        compose.onAllNodesWithText("Later")[0].assertIsDisplayed()
         capture("p3r-app-school")
         compose.onAllNodesWithText("Later")[0].performScrollTo().performClick()
         markIs(0, StepMark.LATER, "2009-04-21")

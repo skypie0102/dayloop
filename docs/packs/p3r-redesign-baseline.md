@@ -140,3 +140,14 @@ and [day-transition screenshot file page](https://megatenwiki.com/wiki/File:P3R_
 identify Reload captures sourced from Game UI Database. File pages were readable;
 image downloads returned HTTP 403 here. These are queued references, not inspected
 captures or new measurements. Do not mark the shipped-game reference gate complete.
+
+## Opening composition
+
+The full-school capture exposed a density problem that isolated task fixtures did
+not: the date/deadline/heading stack pushed the first task below the opening
+viewport. The next pass places month/weekday beside the large day numeral (wrapping
+when needed), uses a compact deadline summary above the full instruction, and
+places the task count beneath its heading alongside Check all. Long deadline text
+remains fully visible; enlarged text can grow and scroll. The school-day Android
+flow now requires the first instruction and its Later control to be visible before
+any scroll. This is a mobile reading-layout adaptation, not a claimed game layout.
