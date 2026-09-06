@@ -162,6 +162,13 @@ packlint success alone is not the exit criterion.
 
 ### P3R-3 — Add Elizabeth requests and rescue tracking
 
+User-prioritized delivery in [PR #71](https://github.com/shdwmnrchbks/dayloop/pull/71):
+Requests replaces the Answers bottom tab; 101 numbered entries, 14 audited cutoffs,
+40 context-linked requests, and explicit profile-scoped stages are implemented.
+[Scope and source record](p3r-requests.md). Full solution/reward/prerequisite audits,
+individual rescues and safe automatic reporting anchors remain unchecked below.
+
+
 - [ ] Enumerate the full Reload request catalog against sources, including
   untimed requests; reconcile catalog IDs, names, rewards, prerequisites,
   availability, true deadlines, and this route's planned completion dates.

@@ -1,5 +1,9 @@
 package com.shadowmonarchbooks.dayloop.ui.achievements
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.shape.CutCornerShape
+import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
+import com.shadowmonarchbooks.dayloop.ui.skin.submergedBackdrop
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -134,6 +138,7 @@ private fun RuleBasedAchievements(
                 .thenBy { it.achievement.title },
         )
     }
+    val submerged = LocalSkin.current.hasSubmergedChrome()
     val earnedCount = rows.count { it.earned }
     val actionableCount = rows.count { !it.earned && it.progress.available }
     val upcomingCount = rows.size - earnedCount - actionableCount
@@ -149,7 +154,7 @@ private fun RuleBasedAchievements(
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp),
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = (if (submerged) Modifier.submergedBackdrop() else Modifier).fillMaxSize().padding(16.dp),
     ) {
         stickyHeader(key = "summary") {
             AchievementPinnedSummary(summary)
@@ -212,16 +217,20 @@ private fun RuleAchievementRow(
         selectedChoice = row.selectedChoice,
     )
     val skin = LocalSkin.current
+    val submerged = skin.hasSubmergedChrome()
     val slashPanel = skin.hasSkin && skin.motion == "slash"
 
     Surface(
-        shape = skin.shapes.card,
+        shape = if (submerged) CutCornerShape(topEnd = 16.dp) else skin.shapes.card,
+        border = if (submerged) BorderStroke(1.dp, if (earned) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant) else null,
         color = when {
+            submerged -> MaterialTheme.colorScheme.surface
             slashPanel -> slashAchievementPanelColor
             earned -> MaterialTheme.colorScheme.secondaryContainer
             else -> MaterialTheme.colorScheme.surfaceVariant
         },
         contentColor = when {
+            submerged -> MaterialTheme.colorScheme.onSurface
             slashPanel -> Color.White
             earned -> MaterialTheme.colorScheme.onSecondaryContainer
             else -> MaterialTheme.colorScheme.onSurfaceVariant
@@ -231,7 +240,7 @@ private fun RuleAchievementRow(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier.achievementEntryDecor(slashPanel).padding(10.dp),
+            modifier = Modifier.achievementEntryDecor(slashPanel || submerged).padding(10.dp),
         ) {
             if (icon != null) {
                 MediaImage(

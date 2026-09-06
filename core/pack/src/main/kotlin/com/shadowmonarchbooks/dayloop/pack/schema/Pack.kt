@@ -114,6 +114,7 @@ data class Capabilities(
     val answers: Boolean = false,
     /** Pack ships a task-linked Mementos request catalog. */
     val mementosRequests: Boolean = false,
+    val requests: Boolean = false,
 )
 
 @Serializable

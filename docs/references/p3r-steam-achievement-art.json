@@ -1,0 +1,294 @@
+{
+  "source": "https://steamcommunity.com/stats/2161700/achievements",
+  "scope": "48 main-story achievements; Episode Aigis excluded",
+  "icons": [
+    {
+      "achievement": "p3r.achievement.awakened-power",
+      "file": "images/achievement_awakened-power.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/72dcd4e4707d8feb2fe31ebabeec7cf177dc1c8e.jpg",
+      "sha256": "d2d04c9c11245c38d0dc6e50b999e0fcf5bcd708327b84c82183ae079c1c615d"
+    },
+    {
+      "achievement": "p3r.achievement.sees-the-day",
+      "file": "images/achievement_sees-the-day.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/307214c3efebe26460daca12c4cb02655289a726.jpg",
+      "sha256": "445e743b6e6bf14ad5101288c818c032295a3f8fe07caeb9d4267c11d3703e7a"
+    },
+    {
+      "achievement": "p3r.achievement.back-on-track",
+      "file": "images/achievement_back-on-track.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/0d3f8fb216d4a2db2a33f6cae43fbecbc1cc2e32.jpg",
+      "sha256": "7209f19f0099f48c30ed4d6d55f9e23f657d33570b69fcab4f7836133d4cfee7"
+    },
+    {
+      "achievement": "p3r.achievement.empowered-protector",
+      "file": "images/achievement_empowered-protector.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/d6d3355c5d8c54d1e63a7451c2251b3387725a0f.jpg",
+      "sha256": "d69d7e476adbc10b01280c0745414552f5eec4f568ad845c6100dcb1b8d4597c"
+    },
+    {
+      "achievement": "p3r.achievement.never-toy",
+      "file": "images/achievement_never-toy.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/d8613caadc740915321b59b5dc3568bdc4e4e975.jpg",
+      "sha256": "072e97794b95fde5601d296f11da769aaa30d87bd93f07ac4f86c52d638e2bfc"
+    },
+    {
+      "achievement": "p3r.achievement.armor-disarmed",
+      "file": "images/achievement_armor-disarmed.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/7e5fd859d6d84222d6b44d333c7141a45822dc18.jpg",
+      "sha256": "61f03a7e15403a2ef4f032f70c0ed2e5bc9dff68e64c44757284811c2dc191ee"
+    },
+    {
+      "achievement": "p3r.achievement.dodging-lightning",
+      "file": "images/achievement_dodging-lightning.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/cf213da3090699c7cc9d10f150813d73862e7984.jpg",
+      "sha256": "8e7facc1a4bb9c18fec3a21d7a300f7016a62b1fe4fcc5a37a8ef08cff557640"
+    },
+    {
+      "achievement": "p3r.achievement.twist-of-fate",
+      "file": "images/achievement_twist-of-fate.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/f0c23039e31ecb669cb20a0503fe663463d5a50e.jpg",
+      "sha256": "d9278a1f05279b0c68046fd9b6a8563d7c5028e487eff95b5e5d1b57508ef22d"
+    },
+    {
+      "achievement": "p3r.achievement.sense-of-finality",
+      "file": "images/achievement_sense-of-finality.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/14116fc193364e821577372f10cadb320f2dff40.jpg",
+      "sha256": "c741cbf612b3c9d43bbed83e27097aebca3402bec54c0903d394479092353aa0"
+    },
+    {
+      "achievement": "p3r.achievement.great-seal",
+      "file": "images/achievement_great-seal.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/39f90bc7ea42a2e2c01572e97356a9e9dde8616a.jpg",
+      "sha256": "66f9147a9ffcff6522dae45553ad8807b9022b3e72fe8474dde4c77e8b128fe6"
+    },
+    {
+      "achievement": "p3r.achievement.shadows-into-light",
+      "file": "images/achievement_shadows-into-light.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/0d58f8647e10b903f991df94ba13474dd20e00ee.jpg",
+      "sha256": "103abd30037d859b011cf4514bab6bacdc482a1225dd545e98597ebf4ce9ed2f"
+    },
+    {
+      "achievement": "p3r.achievement.fools-journey",
+      "file": "images/achievement_fools-journey.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/93c248c226f427043b4f61a2876917bf6f638434.jpg",
+      "sha256": "c02822f39ca6088fa617948f4c453a5581af31899e88ab724be8d581b2ae0b90"
+    },
+    {
+      "achievement": "p3r.achievement.distinguished-visitor",
+      "file": "images/achievement_distinguished-visitor.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/eec895da4598ca4112a53ebcc662720154eb1a92.jpg",
+      "sha256": "7d0ae589e1df390c4bf88d471841543bc70d5f49ce1bb3fdddcb3ae20d57e8e4"
+    },
+    {
+      "achievement": "p3r.achievement.top-of-class",
+      "file": "images/achievement_top-of-class.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/651312569cc478cc05e5ad2c3dab93ffe04e9670.jpg",
+      "sha256": "10e6dae907e1e082825d84cd802fdfd4ccf0841f8d9b6c36db4c512717dd95ea"
+    },
+    {
+      "achievement": "p3r.achievement.legacy-of-friendships",
+      "file": "images/achievement_legacy-of-friendships.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/e13241f5d81d1c58f11e58a934da02e7afe9c1c7.jpg",
+      "sha256": "f03d7d1e74be78c5959990ec94965f9a70a258289fb4efb2efcd5c1ff1b94b95"
+    },
+    {
+      "achievement": "p3r.achievement.people-person",
+      "file": "images/achievement_people-person.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/7ef1f9ef4e48b8c15b9dd83c7b5b7013a19d56ba.jpg",
+      "sha256": "b949c52648b15dca409e95501c6376a338d6a711c01d29abcaf3f8fc795b535d"
+    },
+    {
+      "achievement": "p3r.achievement.special-someone",
+      "file": "images/achievement_special-someone.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/8f389a34429e46fa8610e80490befefa3a361573.jpg",
+      "sha256": "9b7c2481997ae6c961916b881c39049f60db255bf29cab408127915ae1fc89ea"
+    },
+    {
+      "achievement": "p3r.achievement.unbreakable-link",
+      "file": "images/achievement_unbreakable-link.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/a779b2dd91bd5f20fe20877381511f901a414c00.jpg",
+      "sha256": "eef165f33a2376186e4bc4e6eee2bffa849bfe232d9161b388f4533579028f28"
+    },
+    {
+      "achievement": "p3r.achievement.newfound-strength",
+      "file": "images/achievement_newfound-strength.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/266b23707fa588742cab527fd146d48630a3548f.jpg",
+      "sha256": "867f542c1ec4636f684af0a7dc7fd671f0dd96c24c25fdbef63ca7b4b271b82b"
+    },
+    {
+      "achievement": "p3r.achievement.power-of-choice",
+      "file": "images/achievement_power-of-choice.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/64fa46f3f5f22ec1a9286cd9c5bda91b89759f8b.jpg",
+      "sha256": "6abf69fd5fa2563db5b1e526a55b0a1dba8bbd979895de7cba210ccf9f9396e2"
+    },
+    {
+      "achievement": "p3r.achievement.no-i-in-team",
+      "file": "images/achievement_no-i-in-team.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/d449b1bd7151fa69e3d34e9b42bd3142a8cbb8a4.jpg",
+      "sha256": "0eeeaa460e941cc01b05872ae48a85dcdb45af2752f0a216ffeb4f2b29209ec8"
+    },
+    {
+      "achievement": "p3r.achievement.strength-of-hearts",
+      "file": "images/achievement_strength-of-hearts.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/0e663e02f247d96c7831a475cb94207c915edef7.jpg",
+      "sha256": "65061b398035deb6d46b58e03d30be4423adc2e0235105807552b6bc71e45bc3"
+    },
+    {
+      "achievement": "p3r.achievement.extracurricular-excellence",
+      "file": "images/achievement_extracurricular-excellence.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/7d664bfdec4a112ad18a5d5034918e58eabdff48.jpg",
+      "sha256": "82d5e3efd2ebe646ce4ba071dc738cb7630fecef8d912a48c9f3c3d08c783bab"
+    },
+    {
+      "achievement": "p3r.achievement.load-of-numbers",
+      "file": "images/achievement_load-of-numbers.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/f632d1d90c0fa88f1bae1de1cc0361ad1b8eb9f7.jpg",
+      "sha256": "4658aad178e8a054e640ef8caf5e17c74850d1c27d1e6853a54584bbdd2bdab8"
+    },
+    {
+      "achievement": "p3r.achievement.shrouded-assassin",
+      "file": "images/achievement_shrouded-assassin.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/f6c209a43bd4c0a9b31a553e4edd885ac856402a.jpg",
+      "sha256": "36b30bed88b254bd7333060bb276631b08b627451e7e5212ef9017520c89c96a"
+    },
+    {
+      "achievement": "p3r.achievement.thrill-of-hunt",
+      "file": "images/achievement_thrill-of-hunt.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/5e5635ae04602803fad7b1f8c195a67a17c82084.jpg",
+      "sha256": "cd136c7dcbb4fea6a1fb0eb21153bef9d3c75bb870713d71180c536a739cb357"
+    },
+    {
+      "achievement": "p3r.achievement.dream-work",
+      "file": "images/achievement_dream-work.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/53e6c89ecef18f0f7e707f51e6471b0eebcf4266.jpg",
+      "sha256": "ae6dcb5980c52c74d09f6b90ac7a66ba5c9f1dbd48834d6a4a31fac213b53ee9"
+    },
+    {
+      "achievement": "p3r.achievement.glimpse-of-depths",
+      "file": "images/achievement_glimpse-of-depths.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/d72ecd4ac7caf3c13292345dd8358b8b29cee243.jpg",
+      "sha256": "3c2531ce26387c43914c29d092d485d337307cbb0bbd15018eea0dd61f6eb90a"
+    },
+    {
+      "achievement": "p3r.achievement.briefcase-burglar",
+      "file": "images/achievement_briefcase-burglar.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/35de0c8a2dd70cfd8642f86eaaf492515ae13b70.jpg",
+      "sha256": "911ae5969d7db921705f3229a49e309afbfd871ea1955df8b5299f049694b836"
+    },
+    {
+      "achievement": "p3r.achievement.shattered-plumes",
+      "file": "images/achievement_shattered-plumes.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/341fd7756c79958d140be96f485a69ad3134272c.jpg",
+      "sha256": "b6498b947f36daabfc2c629e3c232d25f95d2c615841a9e44917de11de2b3e89"
+    },
+    {
+      "achievement": "p3r.achievement.horror-of-shade",
+      "file": "images/achievement_horror-of-shade.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/917b7ce1ba571df9bd1df739f143dc59399f58f2.jpg",
+      "sha256": "7f87e6d65bf29eeac3f3183cedffd7038f855f1459aa0198c600392b9176b0a3"
+    },
+    {
+      "achievement": "p3r.achievement.reaper-reaped",
+      "file": "images/achievement_reaper-reaped.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/f8b5f66d0dc5c3dfcbe2e2c14044a82bd31b0001.jpg",
+      "sha256": "b15d8f33ba7e047932d273b5129ed9538012167bdaae11d0101d28d2feac9fbe"
+    },
+    {
+      "achievement": "p3r.achievement.first-of-many",
+      "file": "images/achievement_first-of-many.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/6e7494b675cda9e4e49c4f69b6db861215297875.jpg",
+      "sha256": "e0a6d3f12894d263a53bdcb3c8af25505e61d0b2dfb298b434dd08227bc542db"
+    },
+    {
+      "achievement": "p3r.achievement.fusion-artisan",
+      "file": "images/achievement_fusion-artisan.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/4c95b21722d1de5b705589d939be9f7451d7173e.jpg",
+      "sha256": "45e99355d977969e7971312de59499c34eaba0e3ebe867c6f76271f2a718834d"
+    },
+    {
+      "achievement": "p3r.achievement.birthday-present",
+      "file": "images/achievement_birthday-present.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/ef63895dfa475a3963084f56ef800536ba252797.jpg",
+      "sha256": "6325fbfa4211265bfa7f862400a12b2d9d6a0dbca4292dc2416ab3f18e3e4c25"
+    },
+    {
+      "achievement": "p3r.achievement.path-to-salvation",
+      "file": "images/achievement_path-to-salvation.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/3575a9f250c867eebc28bbdab3df4eef4f0c991d.jpg",
+      "sha256": "36403b9ecca013e703c09ad52d9e86d25abb7370474ba2482d4e4ba35f331934"
+    },
+    {
+      "achievement": "p3r.achievement.tempting-fate",
+      "file": "images/achievement_tempting-fate.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/a5d711b734350b9454100e5a98b99d7e8f2e43b8.jpg",
+      "sha256": "d924e4036764c96b99c9ffe95b00922292d01cc105d23edcbba70ce283210017"
+    },
+    {
+      "achievement": "p3r.achievement.eat-your-veggies",
+      "file": "images/achievement_eat-your-veggies.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/23a75440bb50db6fc087e447db1fd02810916772.jpg",
+      "sha256": "1b7959e4bced80a59cdcd1340a581c25b55ed37966d7782571942574e6179571"
+    },
+    {
+      "achievement": "p3r.achievement.grindset-mindset",
+      "file": "images/achievement_grindset-mindset.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/73ad8f86e6847d8874e7aa9622108132cd71a2af.jpg",
+      "sha256": "f7618cda80f3dd95bc32fe6f308b591fa07dbbe0347a07819a21b8e2cbd28815"
+    },
+    {
+      "achievement": "p3r.achievement.specialist",
+      "file": "images/achievement_specialist.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/9123883bed538d61e2e7f6bf6fbda9fb66408a0d.jpg",
+      "sha256": "d188e4cbdf33ba3c5ca2292762edb6615f08e14395f2fa4af43756fa712837ca"
+    },
+    {
+      "achievement": "p3r.achievement.peak-performance",
+      "file": "images/achievement_peak-performance.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/3a12a681be0c024a4a91cf2a5de9108f72279a89.jpg",
+      "sha256": "bd70ec439c8c341d530128528ebbc67503387772743887f549e2cc021a9a33c5"
+    },
+    {
+      "achievement": "p3r.achievement.dorm-life",
+      "file": "images/achievement_dorm-life.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/8b40cd9cbfc265b548bd8bc372d0885c0daac48f.jpg",
+      "sha256": "bef057378e956d12e739e83a4fbaa06f06c1a1427c8ff8ff9f13ad5ef18d7356"
+    },
+    {
+      "achievement": "p3r.achievement.gourmand",
+      "file": "images/achievement_gourmand.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/75c750c94c51d8ba4a10472cc4b7a22221bf3d41.jpg",
+      "sha256": "cf573242c9b407852359b1aeb8ae3f11a19f7b9d01275a240e804e388cb7e66e"
+    },
+    {
+      "achievement": "p3r.achievement.benevolent-purr-tector",
+      "file": "images/achievement_benevolent-purr-tector.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/4f79cf8baba93d056928ef91f448f49f20f0cfa9.jpg",
+      "sha256": "c1e3772fa53407c06f07f75db33664c3d68d16b8df11c1e2708ae27259da705d"
+    },
+    {
+      "achievement": "p3r.achievement.in-high-demand",
+      "file": "images/achievement_in-high-demand.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/ea8f554646de2e4fc0048180e590796f62f8707d.jpg",
+      "sha256": "407a66119de26e91595635ac48c51ee5d3a3b28cd41247d4b00e02d50bc86c66"
+    },
+    {
+      "achievement": "p3r.achievement.beyond-darkness",
+      "file": "images/achievement_beyond-darkness.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/0e6f407133cc515e57f87beb86bd249f88c1465e.jpg",
+      "sha256": "d0c20788821129f98af2120ff1e6367f591705c5efdaf9b16861776d74d64b92"
+    },
+    {
+      "achievement": "p3r.achievement.thick-and-thin",
+      "file": "images/achievement_thick-and-thin.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/2d5c8c7dc398608fb1f1fa04f72d5604883ff56d.jpg",
+      "sha256": "e682ecf6511fa509c4d12ab558ef1d047f2ed1270934dcfb12eb3774863bf09c"
+    },
+    {
+      "achievement": "p3r.achievement.eagle-eye",
+      "file": "images/achievement_eagle-eye.jpg",
+      "url": "https://shared.akamai.steamstatic.com/community_assets/images/apps/2161700/a856968e661820563bebd0c6208ff1aa3fd07055.jpg",
+      "sha256": "1dd2fabdb7f90172ef97faab469dee17613b974f2b6c752880662558df9b56e4"
+    }
+  ]
+}

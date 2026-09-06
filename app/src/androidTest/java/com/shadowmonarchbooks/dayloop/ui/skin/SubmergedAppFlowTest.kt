@@ -162,6 +162,69 @@ class SubmergedAppFlowTest {
         dateIs("2009-04-27")
     }
 
+    @Test fun requestStagesAreExplicitReversibleAndSaved() {
+        launch("2009-05-10")
+        tab("Requests").performClick().assertIsSelected()
+        compose.onNodeWithText("Search name or number").performTextInput("1")
+        compose.onNodeWithText("Search name or number").performImeAction()
+        compose.onNodeWithText("Bring me a Muscle Drink").performScrollTo().performClick()
+        compose.onNodeWithText("Accepted").performScrollTo().performClick()
+        compose.onNodeWithText("Ready to report").performScrollTo().performClick()
+        compose.waitUntil(10_000) {
+            runBlocking { dependencies.repo().requestStages(profileId).first()["p3r.request.001"] == "ready" }
+        }
+        compose.onNodeWithText("0 / 101 reported").assertIsDisplayed()
+        capture("p3r-app-request-ready")
+        compose.onAllNodesWithText("Reported").onLast().performScrollTo().performClick()
+        compose.waitUntil(10_000) {
+            runBlocking { dependencies.repo().requestStages(profileId).first()["p3r.request.001"] == "reported" }
+        }
+        scenario!!.recreate()
+        tab("Requests").assertIsSelected()
+        compose.waitUntil(10_000) { compose.onAllNodesWithText("1 / 101 reported").fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithText("1 / 101 reported").assertIsDisplayed()
+        capture("p3r-app-requests")
+        // Clearing a confirmation reverses the count; it never checks a route task.
+        compose.onAllNodesWithText("Reported").filter(hasClickAction()).onLast().performScrollTo().performClick()
+        compose.waitUntil(10_000) { runBlocking { dependencies.repo().requestStages(profileId).first().isEmpty() } }
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
+        val previousProfile = profileId
+        runBlocking { dependencies.repo().setRequestStage(previousProfile, "p3r.request.001", "reported") }
+        scenario!!.close()
+        scenario = null
+        launch("2009-05-10")
+        assertTrue(runBlocking { dependencies.repo().requestStages(profileId).first().isEmpty() })
+        assertEquals("reported", runBlocking { dependencies.repo().requestStages(previousProfile).first()["p3r.request.001"] })
+        val pack = dependencies.store().state.value.selected!!
+        val calendar = pack.pack.calendar
+        val seed = com.shadowmonarchbooks.dayloop.data.progress.PackSeed(
+            pack.slug, pack.pack.contentVersion,
+            com.shadowmonarchbooks.dayloop.progress.CalendarSpan(calendar.startDate, calendar.endDate, calendar.nonPlayableDates.toSet(), calendar.monthLengths),
+            pack.routes.first().id,
+        )
+        runBlocking {
+            dependencies.repo().setRequestStage(profileId, "p3r.request.001", "ready")
+            dependencies.repo().resetProfile(profileId, seed)
+        }
+        assertTrue(runBlocking { dependencies.repo().requestStages(profileId).first().isEmpty() })
+        assertEquals("reported", runBlocking { dependencies.repo().requestStages(previousProfile).first()["p3r.request.001"] })
+    }
+
+    @Test fun achievementArtAndRequestTabKeepDailyAnswersReachable() {
+        launch("2009-05-18")
+        tab("Achievements").performClick()
+        capture("p3r-app-achievement-art")
+        tab("Requests").performClick()
+        capture("p3r-app-request-catalog")
+        compose.onNodeWithText("Search name or number").performTextInput("12")
+        compose.onNodeWithText("Search name or number").performImeAction()
+        compose.onNodeWithText("Bring me pine resin").performScrollTo().performClick()
+        compose.onNodeWithText("Report by 2009-06-06").assertIsDisplayed()
+        capture("p3r-app-request-deadline")
+        tab("Today").performClick()
+        compose.onNodeWithText("End day", ignoreCase = true).assertIsDisplayed()
+    }
+
     @Test fun operationAndExamScreens() {
         launch("2009-05-09")
         dateIs("2009-05-09")
