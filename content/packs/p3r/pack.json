@@ -1,7 +1,7 @@
 {
   "packId": "p3r",
   "title": "Persona 3 Reload",
-  "contentVersion": 3,
+  "contentVersion": 4,
   "pickerOrder": 1,
   "timeModel": "weekdayGrid",
   "calendar": {
@@ -44,7 +44,8 @@
   "theme": {
     "accent": "#09134E",
     "accentDark": "#1A46CE",
-    "style": "tonalSpot",
+    "style": "submerged",
+    "chrome": "submerged",
     "motif": "moon",
     "shapes": {
       "chip": "diamond",
@@ -53,8 +54,7 @@
     "typography": {
       "display": {
         "file": "art/fonts/display.ttf",
-        "case": "upper",
-        "tracking": 0.06
+        "tracking": -0.02
       }
     },
     "decor": {

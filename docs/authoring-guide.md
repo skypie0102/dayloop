@@ -324,3 +324,12 @@ must point at an existing file — orphaned or unresolvable art fails lint, so
   a cutscene note — the route ends October 26.
 - Every pack must keep passing `packlint "-Ppack=content/packs/<slug>"` (CI
   enforces this).
+
+## Opt-in submerged shell
+
+`theme.chrome: "submerged"` selects layered navigation chrome and a numeric Today
+date treatment. Omit it to retain the existing shell; a moon motif alone does not
+activate it. `theme.style: "submerged"` independently selects a dark-only saturated
+palette derived from `accentDark` (falling back to `accent`), with identical colors
+across system modes. Both tokens are linted. The first adopter is the P3R redesign;
+see [its baseline and remaining visual gates](packs/p3r-redesign-baseline.md).
