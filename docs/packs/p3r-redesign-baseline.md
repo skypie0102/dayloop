@@ -151,3 +151,34 @@ places the task count beneath its heading alongside Check all. Long deadline tex
 remains fully visible; enlarged text can grow and scroll. The school-day Android
 flow now requires the first instruction and its Later control to be visible before
 any scroll. This is a mobile reading-layout adaptation, not a claimed game layout.
+
+## Publisher references and color-role correction
+
+The [official Reload site](https://p3re.jp/en/#graphics) and its
+[classroom screenshot](https://p3re.jp/en/resources/img/top/feature_modal/feature1_ss1_a3aa2098aa61cc5713be2e13f357d3f8.webp)
+were visually inspected on September 6, 2026, along with the site's field, battle
+and map-selection images. These publisher marketing images have an unspecified
+build version. They establish visual cues, not exact shipped-build parity or
+animation behavior; no publisher artwork is bundled.
+
+Observed cues include saturated blue framing, translucent navy bodies, white
+selection bars with blue lettering, a compact numeric month/day HUD, cyan context
+labels and angular dialogue plates. This supplies a usable primary reference
+despite the earlier third-party image retrieval failure. Calendar, Social Links,
+motion and small-screen/TalkBack review remain open.
+
+The next color pass separates white selection from blue light. Previously the
+same lavender role colored selected buttons and the backdrop's radial light,
+washing out the blue planes. Submerged selections now use white with seed-derived
+blue text, while the backdrop and deadline frame use a stronger blue. Dark task
+reading surfaces remain. The frame is brightness-limited against subdued labels;
+an additional contrast test covers direct backdrop labels and urgent deadline
+text, which the usual Material container pairs do not cover. All changes require
+the submerged style/chrome opt-in; P5R and Metaphor content is untouched.
+
+Before this color pass, [CI 708](https://github.com/shdwmnrchbks/dayloop/actions/runs/34059697837)
+and [Android review 6](https://github.com/shdwmnrchbks/dayloop/actions/runs/34059697836)
+passed at `cf268725` (10 Android tests, 18 PNGs). The compact school opening and
+1.5x-text final controls were inspected. Those results establish the layout
+baseline; the changed palette requires a fresh CI and screenshot review recorded
+in PR #71 before acceptance.

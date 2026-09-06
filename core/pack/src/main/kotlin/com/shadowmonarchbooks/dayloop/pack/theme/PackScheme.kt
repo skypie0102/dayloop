@@ -193,20 +193,27 @@ private fun submergedSchemeArgb(seed: Int): Map<String, Int> {
     val panel = shade(seed, 0.22)
     val raised = shade(seed, 0.36)
     val light = tint(0.78)
+    val secondary = tint(0.65)
+    // Blue framing and white selection are separate roles. Cap the frame's
+    // brightness because subdued labels are also drawn directly over the wash.
+    var frame = shade(seed, 0.85)
+    while (Wcag.contrastRatio(secondary, frame) < Wcag.AA_NORMAL) {
+        frame = shade(frame, 0.90)
+    }
     // Start from a complete scheme so newly consumed Material roles stay defined.
     val base = buildScheme("content", Hct.fromInt(seed), true)
     val m = com.materialkolor.dynamiccolor.MaterialDynamicColors()
     return SCHEME_ROLES.associate { (name, role) -> name to role(m).getArgb(base) } + mapOf(
-        "primary" to light, "onPrimary" to deep,
-        "primaryContainer" to raised, "onPrimaryContainer" to INK_WHITE,
-        "secondary" to tint(0.65), "onSecondary" to deep,
+        "primary" to INK_WHITE, "onPrimary" to frame,
+        "primaryContainer" to frame, "onPrimaryContainer" to INK_WHITE,
+        "secondary" to secondary, "onSecondary" to deep,
         "secondaryContainer" to panel, "onSecondaryContainer" to INK_WHITE,
         "tertiary" to light, "onTertiary" to deep,
         "tertiaryContainer" to raised, "onTertiaryContainer" to INK_WHITE,
         "background" to deep, "onBackground" to INK_WHITE,
         "surface" to panel, "onSurface" to INK_WHITE,
         "surfaceVariant" to raised, "onSurfaceVariant" to light,
-        "surfaceTint" to light, "outline" to tint(0.50), "outlineVariant" to raised,
+        "surfaceTint" to frame, "outline" to tint(0.50), "outlineVariant" to raised,
         "surfaceDim" to deep, "surfaceBright" to raised,
         "surfaceContainerLowest" to deep, "surfaceContainerLow" to panel,
         "surfaceContainer" to panel, "surfaceContainerHigh" to raised,

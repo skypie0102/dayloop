@@ -57,7 +57,7 @@ internal fun Modifier.submergedBackdrop(): Modifier {
             listOf(colors.primaryContainer, colors.background, colors.background),
         )
         val light = Brush.radialGradient(
-            listOf(colors.primary.copy(alpha = 0.18f), Color.Transparent),
+            listOf(colors.surfaceTint.copy(alpha = 0.30f), Color.Transparent),
             center = Offset(size.width * 0.95f, 0f),
             radius = size.width.coerceAtLeast(1f),
         )
@@ -71,7 +71,7 @@ internal fun Modifier.submergedBackdrop(): Modifier {
         }
         onDrawBehind {
             drawRect(wash)
-            drawPath(plane, colors.primary.copy(alpha = 0.045f))
+            drawPath(plane, colors.surfaceTint.copy(alpha = 0.14f))
             drawRect(light)
         }
     }
