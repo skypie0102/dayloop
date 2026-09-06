@@ -98,4 +98,26 @@ P5R before/after captures, and motion review remain pending.
 
 Infrastructure follows the [Compose test setup](https://developer.android.com/develop/ui/compose/testing)
 and [Android emulator action](https://github.com/ReactiveCircus/android-emulator-runner).
-The first run of this new workflow must pass before its evidence can be accepted.
+[Android review run 2](https://github.com/shdwmnrchbks/dayloop/actions/runs/34022197185)
+passed all five component tests at `6ea0eac` and exported nine PNGs. School-day,
+selected-task, and enlarged-text controls were inspected for readable wrapping and
+selected-state visibility. [CI run 704](https://github.com/shdwmnrchbks/dayloop/actions/runs/34022197191)
+also passed. This supersedes the earlier component-capture-pending status only;
+full-screen and game-reference acceptance remain open.
+
+## Complete daily-flow integration
+
+The next change reserves the measured height of P3R's pinned day controls, gives
+that rail an opaque reading background, and separates task counts from the heading
+and Check all control. P3R returns to the date header after End Day/Back. These
+layout changes are opt-in; other packs keep their current layout/scroll behavior.
+
+`SubmergedAppFlowTest` launches the real MainActivity with isolated test profiles
+in the real Room/DataStore persistence layer. It exercises Later preservation,
+automatic Skip on End Day, Back, Calendar/Today tab switching, activity recreation,
+Check all at system font scale 1.5, and the January 31 → March 4 calendar boundary.
+It captures full school, free, operation, exam and epilogue screens plus a P5R
+same-build control. Debug-only Hilt fixture access is excluded from candidate and
+release APKs. Existing-save migration, process death, TalkBack and game-reference
+parity are not implied by these tests. The new suite needs a passing Android run
+before these additional gates can be recorded as verified.

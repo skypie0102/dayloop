@@ -134,6 +134,16 @@ fun TodayScreen(
     val view = LocalView.current
     val animationsDisabled = rememberAnimationsDisabled()
     val scrollState = rememberScrollState()
+    val submerged = skin.hasSubmergedChrome()
+    val density = LocalDensity.current
+    var dayControlsHeightPx by remember { mutableIntStateOf(0) }
+    // Reserve the measured control rail, including enlarged labels, only for this skin.
+    val contentBottom = if (submerged && dayControlsHeightPx > 0) {
+        with(density) { dayControlsHeightPx.toDp() } + 14.dp
+    } else 100.dp
+    LaunchedEffect(date, submerged) {
+        if (submerged) scrollState.scrollTo(0)
+    }
     var dateBottomPx by remember(date) { mutableIntStateOf(Int.MAX_VALUE) }
     val datePinned by remember(scrollState, dateBottomPx) {
         derivedStateOf { scrollState.value >= dateBottomPx }
@@ -216,7 +226,7 @@ fun TodayScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(scrollState)
-                .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 100.dp),
+                .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = contentBottom),
         ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -332,6 +342,23 @@ fun TodayScreen(
         }
 
         if (day != null) {
+            if (submerged) {
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        SkinSectionHeader("Tasks", Modifier.weight(1f))
+                        SkinTextActionButton(
+                            text = "Check all",
+                            onClick = { vm.markAllDone(date, day.steps.size) },
+                            enabled = !allTasksDone,
+                        )
+                    }
+                    DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
+                }
+            } else {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -345,6 +372,7 @@ fun TodayScreen(
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
+            }
             }
             TasksList(
                 steps = day.steps,
@@ -414,6 +442,9 @@ fun TodayScreen(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
+                .then(if (submerged) Modifier
+                    .onSizeChanged { dayControlsHeightPx = it.height }
+                    .background(MaterialTheme.colorScheme.background) else Modifier)
                 .padding(horizontal = 12.dp, vertical = 8.dp),
         ) {
             if (state.hasPreviousDay()) {
