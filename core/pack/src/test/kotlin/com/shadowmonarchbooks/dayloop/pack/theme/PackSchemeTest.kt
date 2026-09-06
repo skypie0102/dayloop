@@ -62,6 +62,19 @@ class PackSchemeTest {
     }
 
     @Test
+    fun `submerged backdrop and deadline labels remain readable on the brightest plane`() {
+        // The wash and decorative light blend towards primaryContainer; the
+        // normal Material pairs do not cover text rendered over that backdrop.
+        for (seed in listOf("#1A46CE", "#FFFFFF", "#000000", "#DCA11E", "#1B5E20")) {
+            val roles = assertNotNull(schemeArgb(theme(seed, style = "submerged"), true))
+            for (foreground in listOf("primary", "secondary", "onSurfaceVariant", "onBackground", "error")) {
+                val ratio = Wcag.contrastRatio(roles.getValue(foreground), roles.getValue("primaryContainer"))
+                assertTrue(ratio >= Wcag.AA_NORMAL, "$seed: $foreground on blue frame = $ratio")
+            }
+        }
+    }
+
+    @Test
     fun `scheme without parseable seed is null`() {
         assertNull(schemeArgb(PackTheme(accent = "nothex"), dark = true))
         assertNull(schemeArgb(PackTheme(), dark = false))
