@@ -158,6 +158,11 @@ private fun SlashActionButton(
     fallback: @Composable () -> Unit,
 ) {
     val skin = LocalSkin.current
+    if (skin.hasSubmergedChrome()) {
+        SubmergedActionButton(text, onClick, modifier, enabled,
+            primary = treatment == SlashActionTreatment.Primary, fillWidth = fillWidth, largeLabel = largeLabel)
+        return
+    }
     if (!skin.hasSkin || skin.motion != "slash") {
         fallback()
         return

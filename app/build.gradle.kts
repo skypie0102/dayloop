@@ -25,6 +25,7 @@ android {
     defaultConfig {
         applicationId = "com.shadowmonarchbooks.dayloop"
         minSdk = 26          // per docs/PLAN.md architecture table
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         targetSdk = 35
         versionCode = 32
         versionName = "0.15.1"
@@ -108,6 +109,11 @@ dependencies {
 
     // Home-screen widget (docs/PLAN.md Phase 5).
     implementation(libs.androidx.glance.appwidget)
+
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    androidTestImplementation("androidx.test:runner:1.6.2")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:${libs.versions.kotlin.get()}")
     testRuntimeOnly(libs.junit.jupiter.engine)
