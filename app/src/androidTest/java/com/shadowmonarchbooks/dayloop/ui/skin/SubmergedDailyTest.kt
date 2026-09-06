@@ -1,5 +1,7 @@
 package com.shadowmonarchbooks.dayloop.ui.skin
 
+import android.content.ContentValues
+import android.provider.MediaStore
 import android.graphics.Bitmap
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -27,7 +29,6 @@ import com.shadowmonarchbooks.dayloop.ui.theme.DayloopTheme
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
-import java.io.File
 
 /** Real Android component fixtures. These are not captures of the full Today/navigation flow. */
 class SubmergedDailyTest {
@@ -58,10 +59,22 @@ class SubmergedDailyTest {
     }
 
     private fun capture(name: String) {
-        val folder = File(context.getExternalFilesDir(null), "ui-captures").apply { mkdirs() }
-        File(folder, "$name.png").outputStream().use {
-            compose.onRoot().captureToImage().asAndroidBitmap().compress(Bitmap.CompressFormat.PNG, 100, it)
+        // UTP uninstalls the tested APK after the suite, deleting app-private storage.
+        // Shared emulator media survives long enough for the workflow's adb export.
+        val resolver = context.contentResolver
+        val values = ContentValues().apply {
+            put(MediaStore.Images.Media.DISPLAY_NAME, "$name.png")
+            put(MediaStore.Images.Media.MIME_TYPE, "image/png")
+            put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/dayloop-ui")
+            put(MediaStore.Images.Media.IS_PENDING, 1)
         }
+        val uri = requireNotNull(resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values))
+        requireNotNull(resolver.openOutputStream(uri)).use {
+            check(compose.onRoot().captureToImage().asAndroidBitmap().compress(Bitmap.CompressFormat.PNG, 100, it))
+        }
+        values.clear()
+        values.put(MediaStore.Images.Media.IS_PENDING, 0)
+        resolver.update(uri, values, null, null)
     }
 
     private fun dayFixture(date: String, name: String, scale: Float = 1f, slug: String = "p3r") {
