@@ -121,6 +121,7 @@ internal fun SubmergedSectionHeading(text: String, modifier: Modifier = Modifier
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun SubmergedDeadline(label: String, daysLeft: Long, kindLabel: String?, modifier: Modifier = Modifier) {
     val colors = MaterialTheme.colorScheme
@@ -130,20 +131,26 @@ internal fun SubmergedDeadline(label: String, daysLeft: Long, kindLabel: String?
         color = colors.primaryContainer,
         modifier = modifier.fillMaxWidth(),
     ) {
-        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            Text(kindLabel ?: "Next deadline", style = MaterialTheme.typography.labelLarge, color = colors.onPrimaryContainer)
-            Text(
-                when {
-                    daysLeft < 0 -> "Overdue"
-                    daysLeft == 0L -> "Due today"
-                    daysLeft == 1L -> "1 day left"
-                    else -> "$daysLeft days left"
-                },
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.SemiBold,
-                color = if (urgent) colors.error else colors.onPrimaryContainer,
-            )
-            Text(label, style = MaterialTheme.typography.bodyLarge, color = colors.onPrimaryContainer)
+        Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                Text(kindLabel ?: "Next deadline", style = MaterialTheme.typography.labelLarge,
+                    color = colors.onPrimaryContainer, modifier = Modifier.align(Alignment.CenterVertically))
+                Text(
+                    when {
+                        daysLeft < 0 -> "Overdue"
+                        daysLeft == 0L -> "Due today"
+                        daysLeft == 1L -> "1 day left"
+                        else -> "$daysLeft days left"
+                    },
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = if (urgent) colors.error else colors.onPrimaryContainer,
+                )
+            }
+            Text(label, style = MaterialTheme.typography.bodyMedium, color = colors.onPrimaryContainer)
         }
     }
 }

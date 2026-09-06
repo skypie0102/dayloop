@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -203,7 +205,8 @@ internal fun SubmergedBottomBar(
     }
 }
 
-/** A large day numeral with month/year context; no invented moon-phase calculation. */
+/** A compact HUD date; context wraps below the numeral when space is narrow. */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun SubmergedDateHeader(
     date: String,
@@ -218,25 +221,28 @@ internal fun SubmergedDateHeader(
         return
     }
     val colors = MaterialTheme.colorScheme
-    Column(modifier.clearAndSetSemantics { contentDescription = accessibleDate }) {
+    FlowRow(
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalArrangement = Arrangement.spacedBy(2.dp),
+        modifier = modifier.clearAndSetSemantics { contentDescription = accessibleDate },
+    ) {
         Text(
-            text = parsed.format(DateTimeFormatter.ofPattern("MMM yyyy", Locale.ENGLISH)),
-            style = MaterialTheme.typography.labelLarge,
-            color = colors.primary,
+            text = parsed.dayOfMonth.toString().padStart(2, '0'),
+            style = MaterialTheme.typography.displayLarge.copy(fontSize = 58.sp, lineHeight = 62.sp),
+            fontStyle = FontStyle.Italic,
+            fontWeight = FontWeight.Medium,
+            color = colors.onBackground,
         )
-        Column {
+        Column(Modifier.padding(top = 8.dp)) {
             Text(
-                text = parsed.dayOfMonth.toString().padStart(2, '0'),
-                style = MaterialTheme.typography.displayLarge.copy(fontSize = 58.sp, lineHeight = 62.sp),
-                fontStyle = FontStyle.Italic,
-                fontWeight = FontWeight.Medium,
-                color = colors.onBackground,
+                text = parsed.format(DateTimeFormatter.ofPattern("MMM yyyy", Locale.ENGLISH)),
+                style = MaterialTheme.typography.labelLarge,
+                color = colors.primary,
             )
             Text(
                 text = weekdayLabel ?: parsed.format(DateTimeFormatter.ofPattern("EEE", Locale.ENGLISH)),
                 style = MaterialTheme.typography.titleMedium,
                 color = colors.onSurfaceVariant,
-                modifier = Modifier.padding(top = 2.dp),
             )
         }
     }
