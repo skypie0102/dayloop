@@ -1,7 +1,8 @@
 # Persona 3 Reload — UI and walkthrough roadmap
 
 Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version 3.
-Status: **planned; repository inventory complete, implementation milestones pending**.
+Priority: **top repository priority**, confirmed by the user on 2026-09-06.
+Status: **active — P3R-0 baseline and P3R-1 replacement skin work starting**.
 
 ## Goal and scope
 

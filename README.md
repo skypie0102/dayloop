@@ -27,6 +27,11 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 
 ## Roadmap
 
+**Top priority: [Persona 3 Reload — full skin redesign and walkthrough completion](docs/packs/p3r-roadmap.md).**
+Replace the current P3R appearance with a Reload-aligned UI/UX, then complete the
+pack's guidance and tracking. This is the active delivery roadmap; the phase table
+below records earlier milestones. P5R remains the protected reference pack.
+
 | Phase | Deliverable | Status |
 |---|---|---|
 | 0 | Repo skeleton, Gradle version catalog, CI (build + test + packlint) | ✅ |
