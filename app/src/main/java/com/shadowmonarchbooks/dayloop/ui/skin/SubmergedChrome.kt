@@ -196,8 +196,18 @@ internal fun SubmergedBottomBar(
 
 /** A large day numeral with month/year context; no invented moon-phase calculation. */
 @Composable
-internal fun SubmergedDateHeader(date: String, accessibleDate: String, modifier: Modifier = Modifier) {
-    val parsed = LocalDate.parse(date)
+internal fun SubmergedDateHeader(
+    date: String,
+    accessibleDate: String,
+    weekdayLabel: String? = null,
+    modifier: Modifier = Modifier,
+) {
+    val parsed = runCatching { LocalDate.parse(date) }.getOrNull()
+    // Custom game calendars can contain non-Gregorian dates. Keep their label usable.
+    if (parsed == null) {
+        Text(accessibleDate, style = MaterialTheme.typography.headlineMedium, modifier = modifier)
+        return
+    }
     val colors = MaterialTheme.colorScheme
     Column(modifier.clearAndSetSemantics { contentDescription = accessibleDate }) {
         Text(
@@ -205,7 +215,7 @@ internal fun SubmergedDateHeader(date: String, accessibleDate: String, modifier:
             style = MaterialTheme.typography.labelLarge,
             color = colors.primary,
         )
-        Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Column {
             Text(
                 text = parsed.dayOfMonth.toString().padStart(2, '0'),
                 style = MaterialTheme.typography.displayLarge.copy(fontSize = 58.sp, lineHeight = 62.sp),
@@ -214,10 +224,10 @@ internal fun SubmergedDateHeader(date: String, accessibleDate: String, modifier:
                 color = colors.onBackground,
             )
             Text(
-                text = parsed.format(DateTimeFormatter.ofPattern("EEE", Locale.ENGLISH)),
+                text = weekdayLabel ?: parsed.format(DateTimeFormatter.ofPattern("EEE", Locale.ENGLISH)),
                 style = MaterialTheme.typography.titleMedium,
                 color = colors.onSurfaceVariant,
-                modifier = Modifier.padding(bottom = 8.dp),
+                modifier = Modifier.padding(top = 2.dp),
             )
         }
     }

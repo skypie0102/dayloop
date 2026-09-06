@@ -233,6 +233,7 @@ fun TodayScreen(
                 SubmergedDateHeader(
                     date = date,
                     accessibleDate = formatDate(date, pack.calendar),
+                    weekdayLabel = pack.calendar?.weekdayOf(date)?.replaceFirstChar { it.uppercase() },
                     modifier = Modifier.weight(1f),
                 )
             } else {
