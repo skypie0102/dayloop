@@ -77,8 +77,8 @@ class SubmergedAppFlowTest {
     private fun capture(name: String) {
         compose.waitForIdle()
         scenario!!.onActivity { activity ->
-            assertEquals("Capture must use the requested font scale", expectedFontScale,
-                activity.resources.configuration.fontScale)
+            assertTrue("Capture must use the requested font scale",
+                activity.resources.configuration.fontScale == expectedFontScale)
         }
         // PixelCopy waits for the Compose root's rendered frame. A raw device
         // screenshot can still show Android's starting window or a stale scroll.
