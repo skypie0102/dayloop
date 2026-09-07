@@ -42,8 +42,11 @@ and the 14 cutoffs in this delivery.
 
 The user's preferred [Game UI Database reference](https://www.gameuidatabase.com/gameData.php?id=1884)
 was attempted through the web retrieval service and an ordinary HTTP request;
-the latter returned 403. No new screenshot measurement is claimed. The previously
-inspected publisher captures continue to guide blue framing and white selection.
+the latter returned 403. Subsequent original captures on the user-supplied
+[Adrian Kowalik page](https://adrian-kowalik.com/projects/persona-3-reload-ui-recreation)
+were inspected for the shell redesign; see the
+[current inspection record](p3r-redesign-baseline.md). Reference work is not blocked.
+Pause-menu selection and publisher field/dialogue selection are distinct treatments.
 
 All 48 Journey achievement icons come from the user's
 [Steam achievement page](https://steamcommunity.com/stats/2161700/achievements),

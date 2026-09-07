@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -50,7 +51,7 @@ internal fun SkinSpec.hasSubmergedChrome(): Boolean = hasSkin && chrome == "subm
 @Composable
 internal fun Modifier.submergedBackdrop(): Modifier {
     val colors = MaterialTheme.colorScheme
-    return background(colors.background).drawWithCache {
+    return background(colors.background).clipToBounds().drawWithCache {
         val width = size.width
         // Use a stable physical depth, so short headers and long lists do not stretch the water.
         val depth = 480.dp.toPx()
@@ -70,7 +71,7 @@ internal fun Modifier.submergedBackdrop(): Modifier {
         }
         // Dark refraction preserves the tested primaryContainer contrast ceiling.
         val refraction = Brush.verticalGradient(
-            listOf(colors.background.copy(alpha = 0.65f), Color.Transparent),
+            listOf(colors.background.copy(alpha = 0.16f), Color.Transparent),
             endY = depth,
         )
         onDrawBehind {
@@ -88,7 +89,7 @@ private fun Modifier.submergedTitlePlate(): Modifier {
     val colors = MaterialTheme.colorScheme
     return drawWithCache {
         val water = Brush.linearGradient(
-            listOf(Color(0xFF66FFF2), Color(0xFF00C8F5), colors.primaryContainer),
+            listOf(colors.primaryContainer, Color(0xFF00C8F5), Color(0xFF66FFF2)),
             end = Offset(size.width, size.height),
         )
         val plate = Path().apply {
