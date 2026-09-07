@@ -2,6 +2,7 @@ package com.shadowmonarchbooks.dayloop.ui.skin
 
 import android.content.ContentValues
 import android.os.ParcelFileDescriptor
+import android.provider.Settings
 import android.graphics.Bitmap
 import androidx.compose.ui.graphics.asAndroidBitmap
 import android.provider.MediaStore
@@ -42,7 +43,9 @@ class SubmergedAppFlowTest {
         ParcelFileDescriptor.AutoCloseInputStream(
             instrumentation.uiAutomation.executeShellCommand("settings put system font_scale $scale"),
         ).use { it.readBytes() }
-        compose.waitUntil(10_000) { context.resources.configuration.fontScale == scale }
+        compose.waitUntil(10_000) {
+            Settings.System.getFloat(context.contentResolver, Settings.System.FONT_SCALE, -1f) == scale
+        }
     }
 
     /** Seed a separate test profile before launching; subsequent actions use the real UI. */
@@ -63,6 +66,13 @@ class SubmergedAppFlowTest {
             store.state.first { it.selectedSlug == slug }
         }
         scenario = ActivityScenario.launch(MainActivity::class.java)
+        // Application resources may retain the prior configuration while no activity exists.
+        // Verify the actual window receiving the system configuration before interacting.
+        compose.waitUntil(10_000) {
+            var applied = false
+            scenario!!.onActivity { applied = it.resources.configuration.fontScale == scale }
+            applied
+        }
         compose.waitUntil(20_000) {
             compose.onAllNodesWithText("End day", ignoreCase = true).fetchSemanticsNodes().isNotEmpty()
         }
