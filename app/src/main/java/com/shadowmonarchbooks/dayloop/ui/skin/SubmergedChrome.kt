@@ -30,6 +30,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -45,34 +46,61 @@ import java.util.Locale
 /** Explicit opt-in: a motif, motion, or blue seed alone never replaces existing chrome. */
 internal fun SkinSpec.hasSubmergedChrome(): Boolean = hasSkin && chrome == "submerged"
 
-/**
- * Static layered light, with cached paths/brushes and no continuous animation.
- * The broad planes stay behind content; this decoration carries no calendar state.
- */
+/** Cached, static refraction: no perpetual animation or motion preference dependency. */
 @Composable
 internal fun Modifier.submergedBackdrop(): Modifier {
     val colors = MaterialTheme.colorScheme
     return background(colors.background).drawWithCache {
+        val width = size.width
+        // Use a stable physical depth, so short headers and long lists do not stretch the water.
+        val depth = 480.dp.toPx()
         val wash = Brush.verticalGradient(
-            listOf(colors.primaryContainer, colors.background, colors.background),
+            listOf(colors.primaryContainer, colors.background),
+            endY = depth,
         )
-        val light = Brush.radialGradient(
-            listOf(colors.surfaceTint.copy(alpha = 0.30f), Color.Transparent),
-            center = Offset(size.width * 0.95f, 0f),
-            radius = size.width.coerceAtLeast(1f),
+        val ripples = List(9) { index ->
+            val y = index * 34.dp.toPx()
+            Path().apply {
+                moveTo(-width * 0.15f, y)
+                cubicTo(width * 0.20f, y - 46.dp.toPx(), width * 0.45f,
+                    y + 60.dp.toPx(), width * 0.72f, y + 12.dp.toPx())
+                cubicTo(width * 0.88f, y - 18.dp.toPx(), width * 1.05f,
+                    y + 4.dp.toPx(), width * 1.15f, y - 32.dp.toPx())
+            }
+        }
+        // Dark refraction preserves the tested primaryContainer contrast ceiling.
+        val refraction = Brush.verticalGradient(
+            listOf(colors.background.copy(alpha = 0.65f), Color.Transparent),
+            endY = depth,
         )
-        val plane = Path().apply {
-            moveTo(size.width * 0.68f, 0f)
+        onDrawBehind {
+            drawRect(wash)
+            ripples.forEachIndexed { index, path ->
+                drawPath(path, refraction, style = Stroke((7 + index % 3 * 5).dp.toPx()))
+            }
+        }
+    }
+}
+
+/** Bright water is confined to decoration; text and actions have opaque reading plates. */
+@Composable
+private fun Modifier.submergedTitlePlate(): Modifier {
+    val colors = MaterialTheme.colorScheme
+    return drawWithCache {
+        val water = Brush.linearGradient(
+            listOf(Color(0xFF66FFF2), Color(0xFF00C8F5), colors.primaryContainer),
+            end = Offset(size.width, size.height),
+        )
+        val plate = Path().apply {
+            moveTo(0f, 0f)
             lineTo(size.width, 0f)
-            lineTo(size.width, size.height * 0.72f)
-            lineTo(size.width * 0.30f, size.height)
-            lineTo(size.width * 0.45f, size.height * 0.45f)
+            lineTo(size.width - 20.dp.toPx(), size.height)
+            lineTo(0f, size.height)
             close()
         }
         onDrawBehind {
-            drawRect(wash)
-            drawPath(plane, colors.surfaceTint.copy(alpha = 0.14f))
-            drawRect(light)
+            drawRect(water)
+            drawPath(plate, colors.primary)
         }
     }
 }
@@ -104,13 +132,13 @@ internal fun SubmergedTopBar(
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = colors.onBackground)
             }
         }
-        Column(Modifier.weight(1f)) {
+        Column(Modifier.weight(1f).submergedTitlePlate().padding(start = 10.dp, end = 24.dp, top = 5.dp, bottom = 7.dp)) {
             Text(
                 text = titleParts.first(),
                 style = MaterialTheme.typography.displaySmall,
                 fontStyle = FontStyle.Italic,
-                fontWeight = FontWeight.Medium,
-                color = colors.onBackground,
+                fontWeight = FontWeight.Black,
+                color = colors.onPrimary,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
             )
@@ -118,14 +146,14 @@ internal fun SubmergedTopBar(
                 Text(
                     text = context,
                     style = MaterialTheme.typography.labelLarge,
-                    color = colors.onSurfaceVariant,
+                    color = colors.onPrimary,
                 )
             }
             Box(
                 Modifier
                     .padding(top = 6.dp)
                     .size(width = 34.dp, height = 2.dp)
-                    .background(colors.primary),
+                    .background(colors.onPrimary),
             )
         }
         IconButton(onClick = onOpenSearch) {
@@ -196,6 +224,7 @@ internal fun SubmergedBottomBar(
                 Text(
                     item.label,
                     style = MaterialTheme.typography.labelSmall,
+                    fontStyle = FontStyle.Italic,
                     fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
                     color = if (selected) colors.onBackground else colors.onSurfaceVariant,
                     textAlign = androidx.compose.ui.text.style.TextAlign.Center,

@@ -182,3 +182,20 @@ passed at `cf268725` (10 Android tests, 18 PNGs). The compact school opening and
 1.5x-text final controls were inspected. Those results establish the layout
 baseline; the changed palette requires a fresh CI and screenshot review recorded
 in PR #71 before acceptance.
+
+## Original pause-menu reference and refraction pass — September 7, 2026
+
+The user supplied [Adrian Kowalik's recreation breakdown](https://adrian-kowalik.com/projects/persona-3-reload-ui-recreation).
+Its **The Original** image was downloaded and visually inspected. It shows cyan
+water highlights, saturated blue depth, large slanted menu labels, and a white/pink
+triangular selection crossing black/red text. The page labels its recreation
+separately; its UE5 implementation is not evidence of the game's internals.
+Game UI Database availability is no longer a prerequisite for visual work.
+
+The mobile shell now replaces flat angular backdrop planes with cached curved
+refraction bands. The header uses a white angled title plate with a cyan water
+edge, heavier italic title lettering, and slanted navigation labels. Bright
+highlights stay outside text; reading surfaces retain their contrast roles.
+This is a mobile adaptation, not a reproduction of the original pause menu.
+Character composition, animated water and per-screen selection treatments remain
+open. Static refraction introduces no continuous animation or motion-setting gap.

@@ -59,6 +59,13 @@ using its dates or implementation proposals; it is not an unchecked task list.
 
 ## Visual direction
 
+Original pause-menu captures are available in the user-supplied
+[Adrian Kowalik breakdown](https://adrian-kowalik.com/projects/persona-3-reload-ui-recreation).
+Use its explicitly labeled original captures alongside publisher references;
+Game UI Database being unavailable does not block this work. Keep recreation
+implementation details separate from observations of the original game.
+
+
 The [existing UI reference](../references/p3r-ui.md) is a starting research index.
 It mixes screenshot measurements, developer statements, fan recreations, and
 inferences. Recheck each surface against **shipped Reload captures**, especially
