@@ -23,7 +23,7 @@ and Today/Day retain their answer access. P5R keeps its Mementos destination.
   and deletion clear it. Request IDs are stable and do not share achievement IDs
   or date/index task marks. No database migration or task rewrite is needed.
 
-This is a complete numbered catalog and functional manual tracker, not a claim
+This is a complete numbered catalog and a tracker with manual and task-derived progress, not a claim
 that every reward, prerequisite, item window or solution has been verified.
 Those details and additional safe automatic hand-in anchors remain P3R-3 work. Untimed rows
 make no promise that their required items can be obtained at any time.
@@ -63,3 +63,7 @@ isolation and the #100 hand-in versus #101 acceptance boundary.
 Android captures include the request catalog, detail/deadline, saved reported state,
 ready state and achievement artwork. Exact game-reference parity, TalkBack,
 small-screen review and the remaining completion-anchor audit remain open.
+
+Visual review of Android run 9 found rounded filter/summary controls and excessive
+achievement explanation. Follow-up controls use white selected cut-corner plates,
+and the P3R achievement summary uses a shorter player-facing explanation.
