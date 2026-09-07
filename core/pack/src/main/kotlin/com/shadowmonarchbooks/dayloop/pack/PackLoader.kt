@@ -460,9 +460,22 @@ object PackLoader {
             if (requests.title.isBlank() || requests.issuer.isBlank()) requestIssue("catalog title and issuer must not be blank")
             if (requests.requests.map { it.id }.distinct().size != requests.requests.size) requestIssue("duplicate request id")
             if (requests.requests.map { it.number }.distinct().size != requests.requests.size) requestIssue("duplicate request number")
+            val events = requests.events.associateBy { it.id }
+            if (events.size != requests.events.size) requestIssue("duplicate request event id")
+            requests.events.forEach { event ->
+                val matches = walkthroughs.filter { it.routeId == (event.routeId ?: Routes.DEFAULT) }
+                    .flatMap { it.file.days }.filter { it.date == event.date }.flatMap { it.steps }
+                    .count { it.label.contains(event.labelContains, ignoreCase = true) }
+                if (event.id.isBlank() || event.labelContains.isBlank() || matches != 1) requestIssue("${event.id}: event must match exactly one reporting task")
+                if (requests.requests.count { it.completionEvent == event.id } != 1) requestIssue("${event.id}: event must belong to exactly one request")
+            }
             val dates = walkthroughs.flatMap { it.file.days }.map { it.date }.toSet()
             requests.requests.forEach { request ->
                 if (request.id.isBlank() || '=' in request.id || request.title.isBlank() || request.number <= 0) requestIssue("invalid request identity")
+                request.completionEvent?.let { event ->
+                    if (event !in events) requestIssue("${request.id}: missing completion event")
+                    if (events[event]?.date !in request.routeDates) requestIssue("${request.id}: reporting task needs a route link")
+                }
                 if (request.routeDates.any { it !in dates }) requestIssue("${request.id}: route date is not authored")
                 request.deadline?.let { date ->
                     if (runCatching { java.time.LocalDate.parse(date) }.isFailure) requestIssue("${request.id}: invalid deadline")

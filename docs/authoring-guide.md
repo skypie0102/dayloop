@@ -333,3 +333,19 @@ activate it. `theme.style: "submerged"` independently selects a dark-only satura
 palette derived from `accentDark` (falling back to `accent`), with identical colors
 across system modes. Both tokens are linted. The first adopter is the P3R redesign;
 see [its baseline and remaining visual gates](packs/p3r-redesign-baseline.md).
+
+### Optional request stages and reporting
+
+Use `capabilities.requests: true` with `requests.json` to replace the Answers
+bottom tab with a request tracker while retaining daily answer access. Declare
+`title`, `issuer` and `requests` with stable `id`, positive `number`, and `title`.
+Optional `deadline` is a verified reporting cutoff; `routeDates` links to existing
+walkthrough dates, including preparation. They never imply completion.
+
+For safe automation, an optional `completionEvent` references one entry in the
+file's `events` list (the same date/labelContains/routeId anchor contract used by
+achievements). It must resolve exactly one actual reporting task. An acceptance,
+item pickup, or reward preparation must not complete a request. Only DONE counts;
+unchecking reverses the derived state. Otherwise the player explicitly selects
+Accepted, Ready to report, or Reported, with each stage reversible and stored per
+profile. P5R continues to use its existing Mementos contract.

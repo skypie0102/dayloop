@@ -16,7 +16,8 @@
       "title": "Retrieve the First Old Document",
       "routeDates": [
         "2009-05-10"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.002"
     },
     {
       "id": "p3r.request.003",
@@ -79,7 +80,8 @@
       "deadline": "2009-06-06",
       "routeDates": [
         "2009-05-10"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.012"
     },
     {
       "id": "p3r.request.013",
@@ -88,7 +90,8 @@
       "deadline": "2009-06-06",
       "routeDates": [
         "2009-05-10"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.013"
     },
     {
       "id": "p3r.request.014",
@@ -188,7 +191,8 @@
         "2009-06-14",
         "2009-06-27",
         "2009-06-28"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.029"
     },
     {
       "id": "p3r.request.030",
@@ -237,7 +241,8 @@
       "routeDates": [
         "2009-07-01",
         "2009-07-09"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.038"
     },
     {
       "id": "p3r.request.039",
@@ -245,7 +250,8 @@
       "title": "Let me hear music unique to Gekkoukan",
       "routeDates": [
         "2009-07-09"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.039"
     },
     {
       "id": "p3r.request.040",
@@ -255,7 +261,8 @@
         "2009-07-09",
         "2009-07-12",
         "2009-07-18"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.040"
     },
     {
       "id": "p3r.request.041",
@@ -274,7 +281,8 @@
         "2009-07-10",
         "2009-07-11",
         "2009-07-13"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.042"
     },
     {
       "id": "p3r.request.043",
@@ -283,7 +291,8 @@
       "deadline": "2009-08-04",
       "routeDates": [
         "2009-07-09"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.043"
     },
     {
       "id": "p3r.request.044",
@@ -295,7 +304,8 @@
         "2009-07-20",
         "2009-07-21",
         "2009-07-23"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.044"
     },
     {
       "id": "p3r.request.045",
@@ -356,7 +366,8 @@
         "2009-08-08",
         "2009-08-09",
         "2009-08-20"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.054"
     },
     {
       "id": "p3r.request.055",
@@ -364,7 +375,8 @@
       "title": "I’d like to see proof of a bond",
       "routeDates": [
         "2009-09-01"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.055"
     },
     {
       "id": "p3r.request.056",
@@ -437,7 +449,8 @@
       "deadline": "2009-10-02",
       "routeDates": [
         "2009-09-10"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.068"
     },
     {
       "id": "p3r.request.069",
@@ -446,7 +459,8 @@
       "deadline": "2009-10-02",
       "routeDates": [
         "2009-09-10"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.069"
     },
     {
       "id": "p3r.request.070",
@@ -489,7 +503,8 @@
         "2009-10-17",
         "2009-10-19",
         "2009-10-20"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.075"
     },
     {
       "id": "p3r.request.076",
@@ -499,7 +514,8 @@
       "routeDates": [
         "2009-10-06",
         "2009-10-07"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.076"
     },
     {
       "id": "p3r.request.077",
@@ -585,7 +601,8 @@
       "title": "Go Clean a Restroom",
       "routeDates": [
         "2009-11-06"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.092"
     },
     {
       "id": "p3r.request.093",
@@ -593,7 +610,8 @@
       "title": "Go Water the Flowers",
       "routeDates": [
         "2009-11-06"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.093"
     },
     {
       "id": "p3r.request.094",
@@ -602,7 +620,8 @@
       "deadline": "2009-11-30",
       "routeDates": [
         "2009-11-06"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.094"
     },
     {
       "id": "p3r.request.095",
@@ -611,7 +630,8 @@
       "deadline": "2009-11-30",
       "routeDates": [
         "2009-11-06"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.095"
     },
     {
       "id": "p3r.request.096",
@@ -630,7 +650,8 @@
       "deadline": "2009-12-25",
       "routeDates": [
         "2009-12-04"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.097"
     },
     {
       "id": "p3r.request.098",
@@ -639,7 +660,8 @@
       "routeDates": [
         "2010-01-06",
         "2010-01-15"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.098"
     },
     {
       "id": "p3r.request.099",
@@ -647,7 +669,8 @@
       "title": "Defeat the Shadow of the Void",
       "routeDates": [
         "2010-01-15"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.099"
     },
     {
       "id": "p3r.request.100",
@@ -655,7 +678,8 @@
       "title": "Bring me a Bloody Button",
       "routeDates": [
         "2010-01-21"
-      ]
+      ],
+      "completionEvent": "p3r.request.reported.100"
     },
     {
       "id": "p3r.request.101",
@@ -665,6 +689,152 @@
         "2010-01-21",
         "2010-01-30"
       ]
+    }
+  ],
+  "events": [
+    {
+      "id": "p3r.request.reported.002",
+      "date": "2009-05-10",
+      "labelContains": "Visit the Velvet Room — Elizabeth's requests unlock today; hand in Request #2 using Old Document 01 from Thebel 22F for ¥10,000",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.012",
+      "date": "2009-05-10",
+      "labelContains": "Evening request prep: accept Request #12, talk to Yukari at the dorm for Pine Resin, and report it to Elizabeth before the 6/6 deadline",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.013",
+      "date": "2009-05-10",
+      "labelContains": "Evening request prep: accept Request #13, talk to Junpei at the dorm for the Handheld Game Console, and report it to Elizabeth before the 6/6 deadline",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.029",
+      "date": "2009-06-28",
+      "labelContains": "At Club Escapade, use the Black Quartz for the discounted fashionable item and hand it to Elizabeth to complete Request #29 before July 5",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.038",
+      "date": "2009-07-09",
+      "labelContains": "Hand the saved Chilled Taiyaki to Elizabeth to complete Request #38",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.039",
+      "date": "2009-07-09",
+      "labelContains": "After accepting Request #39, enter the school PA Room to obtain Gekkoukan Boogie, then return the CD to Elizabeth to complete Request #39",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.040",
+      "date": "2009-07-18",
+      "labelContains": "Report the delivered Max Safety Shoes to Elizabeth to complete Request #40; this unlocks Request #41",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.042",
+      "date": "2009-07-13",
+      "labelContains": "Feed the weak cat a final time (Request #42, feeding 4 of 4), then report to Elizabeth to complete Request #42",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.043",
+      "date": "2009-07-09",
+      "labelContains": "Talk to Fuuka at the dorm for the Poinsettia and return it to Elizabeth to complete Request #43 before August 4",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.044",
+      "date": "2009-07-23",
+      "labelContains": "Bring a Yakushima beach souvenir to Elizabeth to complete Request #44 before August 4",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.054",
+      "date": "2009-08-20",
+      "labelContains": "Check Naganaki Shrine's Monetary Offering a third time, then return the found 500-yen bill to Elizabeth to complete Request #54 (shrine visit 3 of 3)",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.055",
+      "date": "2009-09-01",
+      "labelContains": "After Devil reaches MAX, bring the Social Link max-rank item to Elizabeth to complete Request #55 (proof of a bond)",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.068",
+      "date": "2009-09-10",
+      "labelContains": "Accept Request #68, get the Fruit Knife from Shinjiro at the dorm, and report it to Elizabeth before October 2",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.069",
+      "date": "2009-09-10",
+      "labelContains": "After completing #68, accept Request #69, get the Machine Oil from Aigis at the dorm, and report it to Elizabeth before October 2",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.075",
+      "date": "2009-10-20",
+      "labelContains": "Visit the Faculty Office for Request #75 (visit 8 of 8) — receive Kanetsugu's Helm and report it to Elizabeth to complete the Sengoku-era helm request",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.076",
+      "date": "2009-10-07",
+      "labelContains": "Talk to Ikutsuki for the Glasses Wipe and report it to Elizabeth to complete Request #76 before November 1",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.092",
+      "date": "2009-11-06",
+      "labelContains": "For Request #92, use the Port Island Station restroom and choose to scrub harder until it is clean, then report to Elizabeth to complete the request",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.093",
+      "date": "2009-11-06",
+      "labelContains": "For Request #93, water the flowers on Gekkoukan High's rooftop, then report to Elizabeth to complete the request",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.094",
+      "date": "2009-11-06",
+      "labelContains": "Talk to Koromaru for Gourmet Dog Food and report it to Elizabeth to complete Request #94; then accept Request #95",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.095",
+      "date": "2009-11-06",
+      "labelContains": "Talk to Ken for the Featherman R action figure and report it to Elizabeth to complete Request #95 before November 30",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.097",
+      "date": "2009-12-04",
+      "labelContains": "Talk to the Eccentric Man on Iwatodai Strip Mall 2F, show a Thank-You Letter from a rescued Tartarus victim, receive the Christmas Present, and return it to Elizabeth to complete Request #97 before December 25",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.098",
+      "date": "2010-01-15",
+      "labelContains": "Before or after the climb, complete Request #98 by reporting a Masakado with Charge once the request is available",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.099",
+      "date": "2010-01-15",
+      "labelContains": "Clear the final Monad Passage on 255F, defeat the Shadow of the Void, and report it to Elizabeth to complete Request #99",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.request.reported.100",
+      "date": "2010-01-21",
+      "labelContains": "Tartarus — defeat the Reaper, keep the Bloody Button, return it to Elizabeth to complete Request #100, then accept Request #101 before attempting the ultimate adversary",
+      "routeId": "standard"
     }
   ]
 }

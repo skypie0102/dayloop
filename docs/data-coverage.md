@@ -183,3 +183,22 @@ duplicate already-correct route effects.
 - Statuses: **Served** / **Intentionally not served**. Anything that would need
   a third status is a gap: file it as a Phase-9-style work item instead of
   letting a row drift.
+
+## requests.json (`RequestsFile`, `RequestDefinition`)
+
+P3R opts into the generic `capabilities.requests` destination. P5R's Mementos
+schema and behavior remain independent.
+
+| Field | Serving path | Status |
+|---|---|---|
+| `title` / `issuer` | Page title and confirmation guidance | Served |
+| `requests[].id` | Stable list and profile-state identity | Intentionally not displayed |
+| `number` / `title` | Request list, details and search | Served |
+| `deadline` | Reporting cutoff and Timed filter | Served |
+| `routeDates` | Context links to authored days | Served; not completion evidence |
+| `completionEvent` / `events` | Exact DONE reporting task; reversal on uncheck | Served |
+
+The initial Journey catalog has 101 requests, 14 audited cutoffs, 40 requests with
+numbered walkthrough context and 24 exact automatic reporting anchors. Other
+requests retain explicit confirmation. Rewards, prerequisites and full solutions
+remain an audit gap, not an implied part of the schema.

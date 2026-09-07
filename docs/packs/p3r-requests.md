@@ -15,13 +15,17 @@ and Today/Day retain their answer access. P5R keeps its Mementos destination.
 - Accepted, Ready to report and Reported are mutually exclusive player-confirmed
   stages. Selecting the current stage again clears it. Only Reported increments
   the completion count. Date passage and checking a preparation task do not.
+- 24 explicit hand-in/reporting tasks automatically derive Reported from DONE.
+  Skip/Later do not count; unchecking reverses derived completion. A task that
+  reports #100 and accepts #101 completes only #100. Automatic rows link back
+  to their task for reversal; independent manual confirmations remain separate.
 - A separate profile-scoped DataStore key stores request stages. Profile reset
   and deletion clear it. Request IDs are stable and do not share achievement IDs
   or date/index task marks. No database migration or task rewrite is needed.
 
 This is a complete numbered catalog and functional manual tracker, not a claim
 that every reward, prerequisite, item window or solution has been verified.
-Those details and safe automatic hand-in anchors remain P3R-3 work. Untimed rows
+Those details and additional safe automatic hand-in anchors remain P3R-3 work. Untimed rows
 make no promise that their required items can be obtained at any time.
 
 ## Sources and limits
@@ -54,6 +58,8 @@ Artwork remains ATLUS / SEGA's. No achievement rule was altered by the icon impo
 PR #71 records the current CI and Android results. Added checks cover catalog
 identity, artwork resolution, request filtering, navigation isolation, independent
 preparation/reporting, clearing, activity recreation, profile isolation and reset.
+Exact reporting anchors additionally test DONE/Skip/Later, unchecking, route
+isolation and the #100 hand-in versus #101 acceptance boundary.
 Android captures include the request catalog, detail/deadline, saved reported state,
 ready state and achievement artwork. Exact game-reference parity, TalkBack,
-small-screen review and automatic completion remain open.
+small-screen review and the remaining completion-anchor audit remain open.

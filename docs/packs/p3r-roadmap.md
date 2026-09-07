@@ -164,7 +164,8 @@ packlint success alone is not the exit criterion.
 
 User-prioritized delivery in [PR #71](https://github.com/shdwmnrchbks/dayloop/pull/71):
 Requests replaces the Answers bottom tab; 101 numbered entries, 14 audited cutoffs,
-40 context-linked requests, and explicit profile-scoped stages are implemented.
+40 context-linked requests, 24 exact automatic reporting anchors, and explicit
+profile-scoped stages are implemented.
 [Scope and source record](p3r-requests.md). Full solution/reward/prerequisite audits,
 individual rescues and safe automatic reporting anchors remain unchecked below.
 

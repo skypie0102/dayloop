@@ -225,6 +225,27 @@ class SubmergedAppFlowTest {
         compose.onNodeWithText("End day", ignoreCase = true).assertIsDisplayed()
     }
 
+    @Test fun exactHandInUpdatesRequestsAndUncheckingReversesIt() {
+        launch("2009-05-10")
+        val pack = dependencies.store().state.value.selected!!
+        val event = pack.requests!!.events.single { it.id == "p3r.request.reported.002" }
+        val day = pack.day(pack.routes.first().id, event.date)!!
+        val index = day.steps.indexOfFirst { it.label == event.labelContains }
+        compose.onAllNodesWithText("Done")[index].performScrollTo().performClick()
+        markIs(index, StepMark.DONE, event.date)
+        tab("Requests").performClick()
+        compose.onNodeWithText("1 / 101 reported").assertIsDisplayed()
+        compose.onNodeWithText("Search name or number").performTextInput("2")
+        compose.onNodeWithText("Search name or number").performImeAction()
+        compose.onNodeWithText("Retrieve the First Old Document").performScrollTo().performClick()
+        compose.onNodeWithText("Reported by the walkthrough. To reverse this, uncheck the linked hand-in task.").performScrollTo().assertIsDisplayed()
+        capture("p3r-app-request-automatic")
+        tab("Today").performClick()
+        compose.onAllNodesWithText("Done")[index].performScrollTo().performClick()
+        tab("Requests").performClick()
+        compose.onNodeWithText("0 / 101 reported").assertIsDisplayed()
+    }
+
     @Test fun operationAndExamScreens() {
         launch("2009-05-09")
         dateIs("2009-05-09")
