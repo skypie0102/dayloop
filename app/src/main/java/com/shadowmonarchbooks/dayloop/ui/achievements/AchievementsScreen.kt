@@ -149,7 +149,8 @@ private fun RuleBasedAchievements(
         due = actionableCount,
         upcoming = upcomingCount,
         currentDate = currentDate,
-        detail = "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; cumulative goals keep profile-scoped counters/checklists, while route choices and uncertain results stay explicitly confirmable.",
+        detail = if (submerged) "$autoCount earned automatically. Track counters as you play; confirm other achievements when earned in game."
+        else "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; cumulative goals keep profile-scoped counters/checklists, while route choices and uncertain results stay explicitly confirmable.",
     )
 
     LazyColumn(
@@ -575,14 +576,15 @@ internal fun achievementSummaryCopy(
 @Composable
 private fun AchievementPinnedSummary(summary: AchievementSummaryCopy) {
     val skin = LocalSkin.current
+    val submerged = skin.hasSubmergedChrome()
     Surface(
-        shape = skin.shapes.card,
+        shape = if (submerged) CutCornerShape(bottomEnd = 16.dp) else skin.shapes.card,
         color = MaterialTheme.colorScheme.primaryContainer,
         modifier = Modifier.fillMaxWidth(),
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp),
-            modifier = Modifier.skinDecor("panel").padding(14.dp),
+            modifier = (if (submerged) Modifier else Modifier.skinDecor("panel")).padding(14.dp),
         ) {
             Text(
                 text = summary.pinnedEarned,

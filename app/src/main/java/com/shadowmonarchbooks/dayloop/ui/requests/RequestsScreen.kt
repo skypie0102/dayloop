@@ -78,13 +78,13 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text("Exact hand-in tasks update Reported automatically. Otherwise, confirm reporting to ${catalog.issuer}.",
                     style = MaterialTheme.typography.bodyMedium, color = colors.onBackground)
-                OutlinedTextField(value = query, onValueChange = { query = it }, label = { Text("Search name or number") },
+                OutlinedTextField(shape = CutCornerShape(topEnd = 8.dp), value = query, onValueChange = { query = it }, label = { Text("Search name or number") },
                     singleLine = true, keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                     keyboardActions = KeyboardActions(onSearch = { focus.clearFocus() }), modifier = Modifier.fillMaxWidth())
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     listOf("All", "In progress", "Reported", "Timed").forEach { value ->
-                        FilterChip(selected = filter == value, onClick = { filter = value }, label = { Text(value) },
-                            modifier = Modifier.heightIn(min = 48.dp))
+                        SubmergedActionButton(value, onClick = { filter = value }, primary = filter == value,
+                            modifier = Modifier.semantics { selected = filter == value })
                     }
                 }
             }
