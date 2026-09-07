@@ -1,6 +1,7 @@
 package com.shadowmonarchbooks.dayloop.ui.skin
 
 import android.content.ContentValues
+import android.os.ParcelFileDescriptor
 import android.graphics.Bitmap
 import androidx.compose.ui.graphics.asAndroidBitmap
 import android.provider.MediaStore
@@ -34,10 +35,20 @@ class SubmergedAppFlowTest {
     }
     private var scenario: ActivityScenario<MainActivity>? = null
     private var profileId = 0L
+    private var expectedFontScale = 1f
+
+    private fun setFontScale(scale: Float) {
+        // Read to EOF: closing the command descriptor immediately races the next test.
+        ParcelFileDescriptor.AutoCloseInputStream(
+            instrumentation.uiAutomation.executeShellCommand("settings put system font_scale $scale"),
+        ).use { it.readBytes() }
+        compose.waitUntil(10_000) { context.resources.configuration.fontScale == scale }
+    }
 
     /** Seed a separate test profile before launching; subsequent actions use the real UI. */
     private fun launch(date: String, slug: String = "p3r", scale: Float = 1f) {
-        instrumentation.uiAutomation.executeShellCommand("settings put system font_scale $scale").close()
+        expectedFontScale = scale
+        setFontScale(scale)
         val store = dependencies.store()
         val pack = store.state.value.packs.single { it.slug == slug }
         runBlocking {
@@ -60,11 +71,15 @@ class SubmergedAppFlowTest {
 
     @After fun close() {
         scenario?.close()
-        instrumentation.uiAutomation.executeShellCommand("settings put system font_scale 1.0").close()
+        setFontScale(1f)
     }
 
     private fun capture(name: String) {
         compose.waitForIdle()
+        scenario!!.onActivity { activity ->
+            assertEquals("Capture must use the requested font scale", expectedFontScale,
+                activity.resources.configuration.fontScale)
+        }
         // PixelCopy waits for the Compose root's rendered frame. A raw device
         // screenshot can still show Android's starting window or a stale scroll.
         val bitmap = compose.onRoot().captureToImage().asAndroidBitmap()
