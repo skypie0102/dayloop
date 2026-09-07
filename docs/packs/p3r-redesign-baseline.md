@@ -230,3 +230,23 @@ This advances composition and typography, but the actual game’s large characte
 staging, animated refraction and per-surface Calendar/Social Link layouts remain
 open. Existing request facts and progress anchors are unchanged. P3R content
 version increases to 6 for its new assets and font declaration.
+
+
+## Task commands and Requests browsing — September 7, 2026
+
+The user's next correction removes the Requests search field and the P3R Later
+command. The numbered catalog retains All, In progress, Reported and Timed filters;
+Android flows now find requests by scrolling the catalog, including at 1.5× text.
+
+Offline captures 095/096 show compact bold italic confirmation commands, while
+044/045 establish the white/pink selection treatment. Done and Skip now use italic
+command lettering with cyan idle text and a slanted white strip, pink edge and
+navy pointer for the selected mark. Transparent idle targets replace filled tiles.
+Each target remains at least 48dp tall and can wrap at larger text sizes.
+
+The P3R UI offers only Done and Skip. Selecting the current mark clears it. Legacy
+LATER marks remain readable and replaceable; the shared mark model, saved data and
+other packs retain their existing behavior. Component coverage starts with a legacy
+LATER mark and checks replacement, reversal and independent tips. App coverage now
+checks Skip persistence across End Day, Back and activity recreation. Current
+validation and screenshots are recorded in PR #71 after the runner completes.

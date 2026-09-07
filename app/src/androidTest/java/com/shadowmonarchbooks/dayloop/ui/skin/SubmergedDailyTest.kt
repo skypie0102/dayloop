@@ -107,23 +107,29 @@ class SubmergedDailyTest {
     @Test fun largeText() = dayFixture("2009-04-26", "p3r-large-text", 1.5f)
 
     @Test fun markToggleAndTipsRemainIndependent() {
-        var selected: StepMark? = null
+        var selected: StepMark? = StepMark.LATER
         val instruction = "Read the task guidance before choosing how to mark this action."
         show {
-            var mark by remember { mutableStateOf<StepMark?>(null) }
+            var mark by remember { mutableStateOf<StepMark?>(StepMark.LATER) }
             StepRow(0, Step(instruction, tip = "This is fixture guidance, not game data."), mark,
                 { value -> mark = value.takeUnless { it == mark }; selected = mark }, emptyMap(), null)
         }
+        // Old saves may still carry LATER, but P3R offers only Done and Skip now.
+        compose.onNodeWithText("Later").assertDoesNotExist()
+        compose.onNodeWithText("Done").assertIsNotSelected()
+        compose.onNodeWithText("Skip").assertIsNotSelected()
         compose.onNodeWithText("Done").performClick().assertIsSelected()
         assertEquals(StepMark.DONE, selected)
         compose.onNodeWithText("Done").performClick().assertIsNotSelected()
         assertEquals(null, selected)
-        compose.onNodeWithText("Later").performClick().assertIsSelected()
+        compose.onNodeWithText("Skip").performClick().assertIsSelected()
         compose.onNodeWithText(instruction, substring = true).performClick()
         compose.onNodeWithText("This is fixture guidance, not game data.").assertIsDisplayed()
         compose.onNodeWithText("Close").performClick()
-        assertEquals(StepMark.LATER, selected)
-        compose.onNodeWithText("Skip").performClick().assertIsSelected()
+        assertEquals(StepMark.SKIP, selected)
+        compose.onNodeWithText("Skip").performClick().assertIsNotSelected()
+        assertEquals(null, selected)
+        compose.onNodeWithText("Done").performClick().assertIsSelected()
         capture("p3r-task-marked")
     }
 }

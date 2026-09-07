@@ -216,7 +216,7 @@ Timed requests and individual rescue obligations are reachable from Today.
   Prefer exact completion evidence where available; changes must be P3R-scoped.
 - [ ] Explain partial progress and remaining requirements for Social Links,
   Linked Episodes, requests, rescues, social stats, and relevant achievements.
-- [ ] Test unchecking, Skip/Later, check-all, Back, End Day, replaying an earlier
+- [ ] Test unchecking, Done/Skip, legacy Later saves, check-all, Back, End Day, replaying an earlier
   day, profile switching, restart, reset, and final-day completion. Preserve manual
   confirmations according to documented rules; never silently award optional goals.
 - [ ] Protect existing saves before task edits. Event anchors currently use

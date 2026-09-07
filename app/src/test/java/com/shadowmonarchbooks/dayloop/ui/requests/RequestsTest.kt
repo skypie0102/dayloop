@@ -17,12 +17,14 @@ import kotlin.test.assertTrue
 class RequestsTest {
     private val request = RequestDefinition("fixture.12", 12, "Bring me pine resin", "2009-06-06")
 
-    @Test fun `preparation never counts as reported and search combines with filters`() {
-        assertTrue(requestMatches(request, RequestStages.READY, "#12", "In progress"))
-        assertFalse(requestMatches(request, RequestStages.READY, "12", "Reported"))
-        assertTrue(requestMatches(request, RequestStages.REPORTED, "PINE", "Reported"))
-        assertFalse(requestMatches(request, null, "13", "Timed"))
-        assertTrue(requestMatches(request, null, "", "Timed"))
+    @Test fun `preparation never counts as reported and catalog filters preserve availability`() {
+        assertTrue(requestMatches(request, RequestStages.READY, "In progress"))
+        assertTrue(requestMatches(request, RequestStages.ACCEPTED, "In progress"))
+        assertFalse(requestMatches(request, RequestStages.READY, "Reported"))
+        assertTrue(requestMatches(request, RequestStages.REPORTED, "Reported"))
+        assertTrue(requestMatches(request, null, "Timed"))
+        assertFalse(requestMatches(request.copy(deadline = null), null, "Timed"))
+        assertTrue(requestMatches(request, null, "All"))
     }
     @Test fun `exact reporting anchors reverse and never award the next accepted request`() {
         val root = generateSequence(Path.of("").toAbsolutePath()) { it.parent }

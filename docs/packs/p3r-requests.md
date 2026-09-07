@@ -11,7 +11,8 @@ and Today/Day retain their answer access. P5R keeps its Mementos destination.
 - 14 reporting dates reused from the audited P3R deadline catalog.
 - 40 requests link to explicit numbered mentions in the unchanged walkthrough.
   These are context links, including preparation, not completion anchors.
-- Search by title or exact number, with All, In progress, Reported and Timed filters.
+- Browse the numbered list with All, In progress, Reported and Timed filters.
+  The search field was removed at the user’s request on September 7, 2026.
 - Accepted, Ready to report and Reported are mutually exclusive player-confirmed
   stages. Selecting the current stage again clears it. Only Reported increments
   the completion count. Date passage and checking a preparation task do not.
