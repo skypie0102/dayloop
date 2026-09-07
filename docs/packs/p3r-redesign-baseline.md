@@ -199,3 +199,34 @@ highlights stay outside text; reading surfaces retain their contrast roles.
 This is a mobile adaptation, not a reproduction of the original pause menu.
 Character composition, animated water and per-screen selection treatments remain
 open. Static refraction introduces no continuous animation or motion-setting gap.
+
+## Offline gallery review — September 7, 2026
+
+The user rejected the previous wave/boxed-header pass and supplied a Chrome MHTML
+archive of Game UI Database. It contains **94 500px gallery thumbnails and one
+1920×1080 tutorial capture**, not 94 full-size captures. All gallery thumbnails
+were reviewed in contact sheets; Requests list/detail, Calendar, Social Links,
+System and the main pause menu were inspected as composition references.
+[Source fingerprints and focused captures](../references/p3r-offline-ui-review.json)
+make this inspection reproducible without bundling the complete website.
+
+The Requests reference has a compact numbered list on a continuous navy plane,
+cyan text, a white selected row with pink edging, and a separate detail area.
+The implemented list now follows that hierarchy: rows replace separated cards,
+selection carries an explicit semantic state, and expanded details retain all
+stage controls and walkthrough links. Mobile targets remain at least 48dp and
+long text wraps. The two-line count card and large filter tiles are removed.
+
+The repeated wave stripes and boxed header are removed. P3R now declares a
+Roboto Condensed Black Italic font instance (OFL bundled), replacing Poppins in
+the display role. This is a visual substitute, not a claim of the game's font.
+The original publisher mobile menu loop supplies an unretouched still at one
+second; the header crops the portrait in Compose. Attribution and hashes are
+recorded in the source manifest. Artwork remains ATLUS / SEGA's. A still does
+not establish motion parity. Header controls retain opaque reading backgrounds;
+cyan secondary and pink tertiary roles are generated only for submerged schemes.
+
+This advances composition and typography, but the actual game’s large character
+staging, animated refraction and per-surface Calendar/Social Link layouts remain
+open. Existing request facts and progress anchors are unchanged. P3R content
+version increases to 6 for its new assets and font declaration.

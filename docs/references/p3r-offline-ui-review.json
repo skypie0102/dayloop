@@ -1,0 +1,99 @@
+{
+  "attachmentSha256": "c3fac2d17d3a86d7a00bd37838eed94c484efa1e8be8da10148b51778c155801",
+  "galleryThumbnails": 94,
+  "fullSizeCaptures": 1,
+  "inspectedFocusCaptures": [
+    {
+      "sourceUrl": "https://www.gameuidatabase.com/uploads/Persona-3-Reload02182024-103859-85959_thumb.jpg",
+      "size": [
+        500,
+        281
+      ],
+      "sha256": "5f3fbe0c813e63352855691546d5f1fe524e9f305fc4eba32779d4b7a1a6f48c"
+    },
+    {
+      "sourceUrl": "https://www.gameuidatabase.com/uploads/Persona-3-Reload02182024-103859-38123_thumb.jpg",
+      "size": [
+        500,
+        281
+      ],
+      "sha256": "031522b6df38b687e484dab7740d8c82926fa15ebd92676b1e27c85148ff3fea"
+    },
+    {
+      "sourceUrl": "https://www.gameuidatabase.com/uploads/Persona-3-Reload02182024-103900-6968_thumb.jpg",
+      "size": [
+        500,
+        281
+      ],
+      "sha256": "dc5401823d16aa1a078fbba989aa95fcaceff8a1dfdc7fed873011d9bf3cce39"
+    },
+    {
+      "sourceUrl": "https://www.gameuidatabase.com/uploads/Persona-3-Reload02182024-103859-89064_thumb.jpg",
+      "size": [
+        500,
+        281
+      ],
+      "sha256": "404e64861ec2cf26cf4a5bb2e5351b7a4c98c71a7f57013a85bbec04eff33837"
+    },
+    {
+      "sourceUrl": "https://www.gameuidatabase.com/uploads/Persona-3-Reload02182024-103859-95695_thumb.jpg",
+      "size": [
+        500,
+        281
+      ],
+      "sha256": "f535bf45cf1750416dd1360ae3bb5199555dd7f081619757497b04ed3140daa6"
+    },
+    {
+      "sourceUrl": "https://www.gameuidatabase.com/uploads/Persona-3-Reload02182024-103859-62358_thumb.jpg",
+      "size": [
+        500,
+        281
+      ],
+      "sha256": "e41ef2e82c1ff486d00ff934bf7073bfcf0e6d0481c2e96e6562912384702252"
+    },
+    {
+      "sourceUrl": "https://www.gameuidatabase.com/uploads/Persona-3-Reload02182024-103856-27402_thumb.jpg",
+      "size": [
+        500,
+        281
+      ],
+      "sha256": "67cc52999798153ce1f5ab07b8fa15abd2db7f539e703396b06e78c358140c52"
+    },
+    {
+      "sourceUrl": "https://www.gameuidatabase.com/uploads/Persona-3-Reload02182024-103845-46979_thumb.jpg",
+      "size": [
+        500,
+        281
+      ],
+      "sha256": "fc1bc5c61a981b5b3427cc30e9849bdf853c2f5f8647e8fa76185175a863c823"
+    },
+    {
+      "sourceUrl": "https://www.gameuidatabase.com/uploads/Persona-3-Reload02182024-103900-70427_thumb.jpg",
+      "size": [
+        500,
+        281
+      ],
+      "sha256": "848044a5fb5db6746b799bbea4c788a0d4d3a65b1b81e1539047530b21930698"
+    },
+    {
+      "sourceUrl": "https://www.gameuidatabase.com/uploads/Persona-3-Reload02182024-103848-33949.jpg",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "850c86331767e3c86d13627e3120daf8098940c9ce4b374464aeb8c3e9383895"
+    }
+  ],
+  "menuArt": {
+    "sourceUrl": "https://p3re.jp/resources/img/sp/top/fv_movie2_52dc5fe4e1e1e0d4986c75a132ec97c0.mp4",
+    "extraction": "Unretouched decoded frame at 1 second; in-app crop isolates portrait for header.",
+    "sourceSha256": "41ef7169d5a7e1d35f39d27ca2dc656fc9cd975d24849c48de16c1eef9d9c504",
+    "asset": "art/menu-character.png",
+    "assetSha256": "0f4be8c8366e4d089bcee4bd842f9d00817b62c6391b578f7da75ba4c812b805"
+  },
+  "font": {
+    "sourceUrl": "https://github.com/google/fonts/tree/main/ofl/robotocondensed",
+    "asset": "art/fonts/menu-italic.ttf",
+    "derivation": "Static weight 900 instance from italic variable font; OFL bundled. A substitute, not a claim of the game font."
+  }
+}

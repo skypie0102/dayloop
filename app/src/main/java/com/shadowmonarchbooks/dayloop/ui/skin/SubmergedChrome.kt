@@ -31,13 +31,14 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.time.LocalDate
@@ -47,61 +48,42 @@ import java.util.Locale
 /** Explicit opt-in: a motif, motion, or blue seed alone never replaces existing chrome. */
 internal fun SkinSpec.hasSubmergedChrome(): Boolean = hasSkin && chrome == "submerged"
 
-/** Cached, static refraction: no perpetual animation or motion preference dependency. */
+/** Quiet depth behind reading surfaces. Water/character art belongs to the menu header. */
 @Composable
 internal fun Modifier.submergedBackdrop(): Modifier {
     val colors = MaterialTheme.colorScheme
     return background(colors.background).clipToBounds().drawWithCache {
-        val width = size.width
-        // Use a stable physical depth, so short headers and long lists do not stretch the water.
-        val depth = 480.dp.toPx()
-        val wash = Brush.verticalGradient(
-            listOf(colors.primaryContainer, colors.background),
-            endY = depth,
+        val wash = Brush.linearGradient(
+            listOf(colors.primaryContainer, colors.surface, colors.background),
+            end = Offset(size.width * 0.7f, 640.dp.toPx()),
         )
-        val ripples = List(9) { index ->
-            val y = index * 34.dp.toPx()
-            Path().apply {
-                moveTo(-width * 0.15f, y)
-                cubicTo(width * 0.20f, y - 46.dp.toPx(), width * 0.45f,
-                    y + 60.dp.toPx(), width * 0.72f, y + 12.dp.toPx())
-                cubicTo(width * 0.88f, y - 18.dp.toPx(), width * 1.05f,
-                    y + 4.dp.toPx(), width * 1.15f, y - 32.dp.toPx())
-            }
-        }
-        // Dark refraction preserves the tested primaryContainer contrast ceiling.
-        val refraction = Brush.verticalGradient(
-            listOf(colors.background.copy(alpha = 0.16f), Color.Transparent),
-            endY = depth,
-        )
-        onDrawBehind {
-            drawRect(wash)
-            ripples.forEachIndexed { index, path ->
-                drawPath(path, refraction, style = Stroke((7 + index % 3 * 5).dp.toPx()))
-            }
-        }
+        onDrawBehind { drawRect(wash) }
     }
 }
 
-/** Bright water is confined to decoration; text and actions have opaque reading plates. */
+/** The pack supplies the artwork; the engine keeps it out of the title's reading area. */
 @Composable
-private fun Modifier.submergedTitlePlate(): Modifier {
+private fun Modifier.submergedMenuArt(): Modifier {
     val colors = MaterialTheme.colorScheme
-    return drawWithCache {
-        val water = Brush.linearGradient(
-            listOf(colors.primaryContainer, Color(0xFF00C8F5), Color(0xFF66FFF2)),
-            end = Offset(size.width, size.height),
+    val bitmap = rememberDecorBitmap(LocalSkin.current.decor.art["header"])?.asImageBitmap()
+    return clipToBounds().drawWithCache {
+        val edge = size.height.toInt().coerceAtLeast(1)
+        val fade = Brush.horizontalGradient(
+            0f to colors.primaryContainer,
+            0.50f to colors.primaryContainer,
+            0.78f to colors.primaryContainer.copy(alpha = 0.85f),
+            1f to Color.Transparent,
         )
-        val plate = Path().apply {
-            moveTo(0f, 0f)
-            lineTo(size.width, 0f)
-            lineTo(size.width - 20.dp.toPx(), size.height)
-            lineTo(0f, size.height)
-            close()
-        }
         onDrawBehind {
-            drawRect(water)
-            drawPath(plate, colors.primary)
+            drawRect(colors.primaryContainer)
+            bitmap?.let {
+                val crop = minOf(it.width, it.height)
+                drawImage(it, srcOffset = IntOffset(0, it.height - crop),
+                    srcSize = IntSize(crop, crop),
+                    dstOffset = IntOffset(size.width.toInt() - edge, 0),
+                    dstSize = IntSize(edge, edge))
+            }
+            drawRect(fade)
         }
     }
 }
@@ -125,7 +107,7 @@ internal fun SubmergedTopBar(
         modifier = Modifier
             .fillMaxWidth()
             .submergedBackdrop()
-            .heightIn(min = 80.dp)
+            .heightIn(min = 88.dp)
             .padding(start = 12.dp, end = 4.dp, top = 8.dp, bottom = 8.dp),
     ) {
         if (canGoBack) {
@@ -133,39 +115,35 @@ internal fun SubmergedTopBar(
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = colors.onBackground)
             }
         }
-        Column(Modifier.weight(1f).submergedTitlePlate().padding(start = 10.dp, end = 24.dp, top = 5.dp, bottom = 7.dp)) {
+        Column(Modifier.weight(1f).heightIn(min = 96.dp).submergedMenuArt().padding(start = 4.dp, end = 62.dp, top = 8.dp, bottom = 8.dp)) {
             Text(
-                text = titleParts.first(),
-                style = MaterialTheme.typography.displaySmall,
+                text = titleParts.first().uppercase(Locale.ENGLISH),
+                style = MaterialTheme.typography.displaySmall.copy(fontSize = 32.sp, lineHeight = 32.sp),
                 fontStyle = FontStyle.Italic,
                 fontWeight = FontWeight.Black,
-                color = colors.onPrimary,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
+                color = colors.onBackground,
+
             )
             titleParts.getOrNull(1)?.let { context ->
                 Text(
                     text = context,
                     style = MaterialTheme.typography.labelLarge,
-                    color = colors.onPrimary,
+                    color = colors.secondary,
                 )
             }
-            Box(
-                Modifier
-                    .padding(top = 6.dp)
-                    .size(width = 34.dp, height = 2.dp)
-                    .background(colors.onPrimary),
-            )
+
         }
-        IconButton(onClick = onOpenSearch) {
-            Icon(Icons.Filled.Search, "Search", tint = colors.onBackground)
-        }
-        IconButton(onClick = onOpenSettings, enabled = settingsEnabled) {
-            Icon(
-                Icons.Filled.Settings,
-                "Settings",
-                tint = colors.onBackground.copy(alpha = if (settingsEnabled) 1f else 0.38f),
-            )
+        Column {
+            IconButton(onClick = onOpenSearch) {
+                Icon(Icons.Filled.Search, "Search", tint = colors.onBackground)
+            }
+            IconButton(onClick = onOpenSettings, enabled = settingsEnabled) {
+                Icon(
+                    Icons.Filled.Settings,
+                    "Settings",
+                    tint = colors.onBackground.copy(alpha = if (settingsEnabled) 1f else 0.38f),
+                )
+            }
         }
     }
 }

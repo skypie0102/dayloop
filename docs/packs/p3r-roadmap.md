@@ -59,6 +59,12 @@ using its dates or implementation proposals; it is not an unchecked task list.
 
 ## Visual direction
 
+The September 7 offline Chrome gallery is now the principal composition reference.
+The prior boxed header and wave stripes were rejected by the user. The active
+pass replaces those treatments, starting with the Requests list/detail hierarchy,
+condensed italic typography and original publisher character art; see the
+[offline inspection record](p3r-redesign-baseline.md#offline-gallery-review--september-7-2026).
+
 Original pause-menu captures are available in the user-supplied
 [Adrian Kowalik breakdown](https://adrian-kowalik.com/projects/persona-3-reload-ui-recreation).
 Use its explicitly labeled original captures alongside publisher references;
