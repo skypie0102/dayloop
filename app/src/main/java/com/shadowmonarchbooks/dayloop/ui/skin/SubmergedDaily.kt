@@ -130,8 +130,8 @@ internal fun SubmergedTaskCard(
                             .heightIn(min = 48.dp).widthIn(min = 96.dp)
                             .padding(horizontal = 22.dp, vertical = 10.dp),
                     ) {
-                        Text(label, style = MaterialTheme.typography.titleMedium,
-                            fontStyle = FontStyle.Italic,
+                        Text(label, style = MaterialTheme.typography.titleLarge.withSkinFont(LocalSkin.current.type.display),
+                            fontWeight = FontWeight.Black, fontStyle = FontStyle.Italic,
                             color = if (active) colors.onPrimary else colors.secondary)
                     }
                 }
