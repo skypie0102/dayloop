@@ -70,9 +70,10 @@ private fun Modifier.submergedMenuArt(): Modifier {
         val edge = size.height.toInt().coerceAtLeast(1)
         val fade = Brush.horizontalGradient(
             0f to colors.primaryContainer,
-            0.50f to colors.primaryContainer,
-            0.78f to colors.primaryContainer.copy(alpha = 0.85f),
+            0.35f to colors.primaryContainer.copy(alpha = 0.90f),
             1f to Color.Transparent,
+            startX = (size.width - edge).coerceAtLeast(0f),
+            endX = size.width.coerceAtLeast(1f),
         )
         onDrawBehind {
             drawRect(colors.primaryContainer)
@@ -115,7 +116,7 @@ internal fun SubmergedTopBar(
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = colors.onBackground)
             }
         }
-        Column(Modifier.weight(1f).heightIn(min = 96.dp).submergedMenuArt().padding(start = 4.dp, end = 62.dp, top = 8.dp, bottom = 8.dp)) {
+        Column(Modifier.weight(1f).heightIn(min = 72.dp).submergedMenuArt().padding(start = 4.dp, end = 50.dp, top = 8.dp, bottom = 8.dp)) {
             Text(
                 text = titleParts.first().uppercase(Locale.ENGLISH),
                 style = MaterialTheme.typography.displaySmall.copy(fontSize = 32.sp, lineHeight = 32.sp),
@@ -133,7 +134,7 @@ internal fun SubmergedTopBar(
             }
 
         }
-        Column {
+        Row {
             IconButton(onClick = onOpenSearch) {
                 Icon(Icons.Filled.Search, "Search", tint = colors.onBackground)
             }
