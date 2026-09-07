@@ -1,5 +1,12 @@
 # Persona 3 Reload — UI Design Language Reference
 
+> Historical research index. The September 2026 redesign has not reproduced the
+> 94-image measurements claimed below. Fan recreation techniques describe those
+> implementations, not verified original-game internals. Use the current
+> [inspection record](../packs/p3r-redesign-baseline.md) for directly reviewed
+> captures and the [roadmap](../packs/p3r-roadmap.md) for acceptance gates.
+> Game UI Database availability does not block reference work.
+
 Written for the dayloop skin-token engine. Facts are tagged `[verified: <url>]` (stated by the cited
 source), `[measured]` (derived programmatically from the Game UI Database screenshot set for P3R —
 94 full-res captures, pixel-sampled and hue-banded), or `[inference]` (our extrapolation; not
