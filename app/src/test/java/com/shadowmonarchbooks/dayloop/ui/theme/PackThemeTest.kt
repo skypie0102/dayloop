@@ -284,9 +284,10 @@ class PackThemeTest {
         assertEquals("diamond", theme.shapes?.header)
         assertEquals("fade", theme.motion)
         val display = assertNotNull(theme.typography?.display)
-        assertEquals("art/fonts/display.ttf", display.file)
+        assertEquals("art/fonts/menu-italic.ttf", display.file)
         assertEquals(null, display.case, "titles preserve authored case")
-        assertEquals(-0.02, display.tracking)
+        assertEquals(-0.015, display.tracking)
+        assertTrue(display.italic, "menu display face is italic")
         assertTrue("header" in theme.decor)
         assertEquals("#09134E", theme.accent)
         assertEquals("#1A46CE", theme.accentDark)
@@ -300,13 +301,13 @@ class PackThemeTest {
     fun `p3r bundles its display font and license`() {
         val root = contentPacksDir() ?: error("no content checkout")
         val dir = root.resolve("p3r")
-        val font = dir.resolve("art/fonts/display.ttf")
+        val font = dir.resolve("art/fonts/menu-italic.ttf")
         assertTrue(font.isRegularFile(), "bundled display font missing")
         assertTrue(font.fileSize() <= 2L * 1024 * 1024, "font exceeds the 2 MB cap")
         assertTrue(font.fileSize() > 10_000, "font suspiciously small — truncated download?")
         val head = Files.readAllBytes(font).take(4)
-        assertEquals(listOf<Byte>(0, 1, 0, 0), head, "display.ttf must start with the TTF magic")
-        assertTrue(dir.resolve("art/fonts/OFL.txt").isRegularFile(), "OFL license must ship beside the font")
+        assertEquals(listOf<Byte>(0, 1, 0, 0), head, "menu-italic.ttf must start with the TTF magic")
+        assertTrue(dir.resolve("art/fonts/RobotoCondensed-OFL.txt").isRegularFile(), "OFL license must ship beside the font")
     }
 
     @Test

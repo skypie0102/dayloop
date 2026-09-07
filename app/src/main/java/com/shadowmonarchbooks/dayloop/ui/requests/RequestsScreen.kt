@@ -60,12 +60,14 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
     var query by rememberSaveable(pack.slug) { mutableStateOf("") }
     var filter by rememberSaveable(pack.slug) { mutableStateOf("All") }
     var expanded by rememberSaveable(pack.slug) { mutableStateOf<String?>(null) }
+    var highlighted by rememberSaveable(pack.slug) { mutableStateOf<String?>(null) }
     val completedEvents = remember(catalog.events, state.days, state.marks, state.activeRouteId) {
         completedAchievementEvents(catalog.events, state.days, state.marks, state.activeRouteId)
     }
     val stages = catalog.requests.associate { it.id to requestStage(it, state.requestStages[it.id], completedEvents) }
     val reported = stages.values.count { it == RequestStages.REPORTED }
     val rows = catalog.requests.filter { requestMatches(it, stages[it.id], query, filter) }
+    val highlightedId = highlighted?.takeIf { id -> rows.any { it.id == id } } ?: rows.firstOrNull()?.id
     LazyColumn(
         modifier = Modifier.fillMaxSize().submergedBackdrop().padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(0.dp),
@@ -112,22 +114,23 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
             val stage = stages[request.id]
             val automatic = request.completionEvent != null && request.completionEvent in completedEvents
             val open = expanded == request.id
+            val active = highlightedId == request.id
             val status = when (stage) {
                 RequestStages.ACCEPTED -> "Accepted"
                 RequestStages.READY -> "Ready to report"
                 RequestStages.REPORTED -> "Reported"
                 else -> "Not started"
             }
-            val rowInk = if (open) colors.onPrimary else colors.secondary
+            val rowInk = if (active) colors.onPrimary else colors.secondary
             Column(Modifier.fillMaxWidth().background(colors.surface.copy(alpha = 0.85f))) {
                 Row(Modifier.fillMaxWidth()
-                    .background(if (open) colors.primary else androidx.compose.ui.graphics.Color.Transparent)
+                    .background(if (active) colors.primary else androidx.compose.ui.graphics.Color.Transparent)
                     .clickable(role = Role.Button,
                         onClickLabel = if (open) "Collapse request" else "Expand request",
-                        onClick = { expanded = if (open) null else request.id })
-                    .semantics { selected = open }
+                        onClick = { highlighted = request.id; expanded = if (open) null else request.id })
+                    .semantics { selected = active }
                     .drawBehind {
-                        if (open) {
+                        if (active) {
                             drawLine(colors.tertiary, Offset.Zero, Offset(size.width, 0f), 2.dp.toPx())
                             val cursor = Path().apply {
                                 moveTo(0f, size.height / 2 - 5.dp.toPx())
