@@ -1,26 +1,21 @@
 package com.shadowmonarchbooks.dayloop.ui.requests
 
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.foundation.background
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
@@ -37,10 +32,8 @@ import com.shadowmonarchbooks.dayloop.ui.skin.submergedBackdrop
 internal fun requestStage(request: RequestDefinition, manual: String?, completedEvents: Set<String>): String? =
     if (request.completionEvent != null && request.completionEvent in completedEvents) RequestStages.REPORTED else manual
 
-internal fun requestMatches(request: RequestDefinition, stage: String?, query: String, filter: String): Boolean {
-    val matchesText = query.isBlank() || request.title.contains(query.trim(), ignoreCase = true) ||
-        request.number.toString() == query.trim().removePrefix("#")
-    return matchesText && when (filter) {
+internal fun requestMatches(request: RequestDefinition, stage: String?, filter: String): Boolean {
+    return when (filter) {
         "In progress" -> stage == RequestStages.ACCEPTED || stage == RequestStages.READY
         "Reported" -> stage == RequestStages.REPORTED
         "Timed" -> request.deadline != null
@@ -55,9 +48,7 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
     val state by vm.state.collectAsState()
     val pack = state.selected
     val catalog = pack?.requests ?: run { EmptyState("This pack has no request catalog."); return }
-    val focus = LocalFocusManager.current
     val colors = MaterialTheme.colorScheme
-    var query by rememberSaveable(pack.slug) { mutableStateOf("") }
     var filter by rememberSaveable(pack.slug) { mutableStateOf("All") }
     var expanded by rememberSaveable(pack.slug) { mutableStateOf<String?>(null) }
     var highlighted by rememberSaveable(pack.slug) { mutableStateOf<String?>(null) }
@@ -66,10 +57,10 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
     }
     val stages = catalog.requests.associate { it.id to requestStage(it, state.requestStages[it.id], completedEvents) }
     val reported = stages.values.count { it == RequestStages.REPORTED }
-    val rows = catalog.requests.filter { requestMatches(it, stages[it.id], query, filter) }
+    val rows = catalog.requests.filter { requestMatches(it, stages[it.id], filter) }
     val highlightedId = highlighted?.takeIf { id -> rows.any { it.id == id } } ?: rows.firstOrNull()?.id
     LazyColumn(
-        modifier = Modifier.fillMaxSize().submergedBackdrop().padding(horizontal = 16.dp),
+        modifier = Modifier.testTag("request-list").fillMaxSize().submergedBackdrop().padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(0.dp),
         contentPadding = PaddingValues(vertical = 12.dp),
     ) {
@@ -99,9 +90,6 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
                         }
                     }
                 }
-                OutlinedTextField(shape = CutCornerShape(0.dp), value = query, onValueChange = { query = it }, label = { Text("Search name or number") },
-                    singleLine = true, keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                    keyboardActions = KeyboardActions(onSearch = { focus.clearFocus() }), modifier = Modifier.fillMaxWidth())
                 Row(Modifier.fillMaxWidth().padding(top = 12.dp, bottom = 5.dp, start = 8.dp, end = 8.dp)) {
                     Text("No.", style = MaterialTheme.typography.labelSmall, color = colors.secondary, modifier = Modifier.width(32.dp))
                     Text("Request", style = MaterialTheme.typography.labelSmall, color = colors.secondary, modifier = Modifier.weight(1f))

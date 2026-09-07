@@ -16,6 +16,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
@@ -92,19 +95,44 @@ internal fun SubmergedTaskCard(
                     }
                 }
             }
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                listOf(StepMark.DONE to "Done", StepMark.SKIP to "Skip", StepMark.LATER to "Later").forEach { (value, label) ->
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                listOf(StepMark.DONE to "Done", StepMark.SKIP to "Skip").forEach { (value, label) ->
                     val active = mark == value
+                    // P3R command lettering with a slanted selection strip, rather than tiled chips.
+                    // Keep the whole 48dp target selectable, including the clear space at its edges.
                     Box(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
-                            .heightIn(min = 48.dp).widthIn(min = 64.dp)
-                            .background(if (active) colors.primary else colors.surfaceVariant, CutCornerShape(4.dp))
                             .selectable(selected = active, role = Role.Button, onClick = { feedback(); onToggle(value) })
-                            .padding(horizontal = 12.dp, vertical = 10.dp),
+                            .drawBehind {
+                                if (active) {
+                                    val inset = 6.dp.toPx()
+                                    val slant = 10.dp.toPx()
+                                    val strip = Path().apply {
+                                        moveTo(slant, inset)
+                                        lineTo(size.width, inset)
+                                        lineTo(size.width - slant, size.height - inset)
+                                        lineTo(0f, size.height - inset)
+                                        close()
+                                    }
+                                    drawPath(strip, colors.primary)
+                                    drawLine(colors.tertiary, Offset(slant, inset),
+                                        Offset(size.width, inset), 2.dp.toPx())
+                                    val cursor = Path().apply {
+                                        moveTo(9.dp.toPx(), size.height / 2 - 4.dp.toPx())
+                                        lineTo(14.dp.toPx(), size.height / 2)
+                                        lineTo(9.dp.toPx(), size.height / 2 + 4.dp.toPx())
+                                        close()
+                                    }
+                                    drawPath(cursor, colors.onPrimary)
+                                }
+                            }
+                            .heightIn(min = 48.dp).widthIn(min = 96.dp)
+                            .padding(horizontal = 22.dp, vertical = 10.dp),
                     ) {
-                        Text(label, style = MaterialTheme.typography.labelLarge,
-                            color = if (active) colors.onPrimary else colors.onSurfaceVariant)
+                        Text(label, style = MaterialTheme.typography.titleMedium,
+                            fontStyle = FontStyle.Italic,
+                            color = if (active) colors.onPrimary else colors.secondary)
                     }
                 }
             }

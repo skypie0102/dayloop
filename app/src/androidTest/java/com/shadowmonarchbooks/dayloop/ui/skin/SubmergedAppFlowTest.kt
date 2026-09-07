@@ -135,18 +135,25 @@ class SubmergedAppFlowTest {
         hasText(label) and SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Tab),
     )
 
+    private fun openRequest(title: String) {
+        compose.onNodeWithText("Search name or number").assertDoesNotExist()
+        compose.onNodeWithTag("request-list").performScrollToNode(hasText(title))
+        compose.onNodeWithText(title).performClick()
+    }
+
     @Test fun schoolDayNavigationAndSavedDayFlow() {
         launch("2009-04-21")
         dateIs("2009-04-21")
         // The opening composition must show an actionable task without a scroll.
         compose.onNodeWithText("Stay awake in class").assertIsDisplayed()
-        compose.onAllNodesWithText("Later")[0].assertIsDisplayed()
+        compose.onAllNodesWithText("Skip")[0].assertIsDisplayed()
+        compose.onNodeWithText("Later").assertDoesNotExist()
         capture("p3r-app-school")
-        compose.onAllNodesWithText("Later")[0].performScrollTo().performClick()
-        markIs(0, StepMark.LATER, "2009-04-21")
+        compose.onAllNodesWithText("Skip")[0].performScrollTo().performClick()
+        markIs(0, StepMark.SKIP, "2009-04-21")
         compose.onNodeWithText("End day", ignoreCase = true).performClick()
         dateIs("2009-04-22")
-        markIs(0, StepMark.LATER, "2009-04-21")
+        markIs(0, StepMark.SKIP, "2009-04-21")
         markIs(1, StepMark.SKIP, "2009-04-21")
         capture("p3r-app-next-day")
         compose.onNodeWithText("Back").performClick()
@@ -156,7 +163,7 @@ class SubmergedAppFlowTest {
         dateIs("2009-04-21")
         scenario!!.recreate()
         dateIs("2009-04-21")
-        compose.onAllNodesWithText("Later")[0].performScrollTo().assertIsSelected()
+        compose.onAllNodesWithText("Skip")[0].performScrollTo().assertIsSelected()
         capture("p3r-app-restored")
     }
 
@@ -190,9 +197,7 @@ class SubmergedAppFlowTest {
     @Test fun requestStagesAreExplicitReversibleAndSaved() {
         launch("2009-05-10")
         tab("Requests").performClick().assertIsSelected()
-        compose.onNodeWithText("Search name or number").performTextInput("1")
-        compose.onNodeWithText("Search name or number").performImeAction()
-        compose.onNodeWithText("Bring me a Muscle Drink").performScrollTo().performClick()
+        openRequest("Bring me a Muscle Drink")
         compose.onNodeWithText("Accepted").performScrollTo().performClick()
         compose.onNodeWithText("Ready to report").performScrollTo().performClick()
         compose.waitUntil(10_000) {
@@ -241,10 +246,8 @@ class SubmergedAppFlowTest {
         capture("p3r-app-achievement-art")
         tab("Requests").performClick()
         capture("p3r-app-request-catalog")
-        compose.onNodeWithText("Search name or number").performTextInput("12")
-        compose.onNodeWithText("Search name or number").performImeAction()
-        compose.onNodeWithText("Bring me pine resin").performScrollTo().performClick()
-        compose.onNodeWithText("Report by 2009-06-06").assertIsDisplayed()
+        openRequest("Bring me pine resin")
+        compose.onNodeWithText("Report by 2009-06-06").performScrollTo().assertIsDisplayed()
         capture("p3r-app-request-deadline")
         tab("Today").performClick()
         compose.onNodeWithText("End day", ignoreCase = true).assertIsDisplayed()
@@ -253,9 +256,7 @@ class SubmergedAppFlowTest {
     @Test fun requestDetailsRemainReachableWithLargeText() {
         launch("2009-05-18", scale = 1.5f)
         tab("Requests").performClick()
-        compose.onNodeWithText("Search name or number").performTextInput("12")
-        compose.onNodeWithText("Search name or number").performImeAction()
-        compose.onNodeWithText("Bring me pine resin").performScrollTo().performClick()
+        openRequest("Bring me pine resin")
         compose.onNodeWithText("Report by 2009-06-06").performScrollTo().assertIsDisplayed()
         capture("p3r-app-request-large-text")
         compose.onNodeWithText("Ready to report").performScrollTo().performClick()
@@ -276,9 +277,7 @@ class SubmergedAppFlowTest {
         markIs(index, StepMark.DONE, event.date)
         tab("Requests").performClick()
         compose.onNodeWithText("1 / 101 reported").assertIsDisplayed()
-        compose.onNodeWithText("Search name or number").performTextInput("2")
-        compose.onNodeWithText("Search name or number").performImeAction()
-        compose.onNodeWithText("Retrieve the First Old Document").performScrollTo().performClick()
+        openRequest("Retrieve the First Old Document")
         compose.onNodeWithText("Reported by the walkthrough. To reverse this, uncheck the linked hand-in task.").performScrollTo().assertIsDisplayed()
         capture("p3r-app-request-automatic")
         tab("Today").performClick()
