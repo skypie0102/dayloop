@@ -22,10 +22,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.pack.schema.RequestDefinition
 import com.shadowmonarchbooks.dayloop.pack.schema.RequestStages
+import com.shadowmonarchbooks.dayloop.ui.achievements.completedAchievementEvents
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.submergedBackdrop
+
+internal fun requestStage(request: RequestDefinition, manual: String?, completedEvents: Set<String>): String? =
+    if (request.completionEvent != null && request.completionEvent in completedEvents) RequestStages.REPORTED else manual
 
 internal fun requestMatches(request: RequestDefinition, stage: String?, query: String, filter: String): Boolean {
     val matchesText = query.isBlank() || request.title.contains(query.trim(), ignoreCase = true) ||
@@ -50,8 +54,12 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
     var query by rememberSaveable(pack.slug) { mutableStateOf("") }
     var filter by rememberSaveable(pack.slug) { mutableStateOf("All") }
     var expanded by rememberSaveable(pack.slug) { mutableStateOf<String?>(null) }
-    val reported = catalog.requests.count { state.requestStages[it.id] == RequestStages.REPORTED }
-    val rows = catalog.requests.filter { requestMatches(it, state.requestStages[it.id], query, filter) }
+    val completedEvents = remember(catalog.events, state.days, state.marks, state.activeRouteId) {
+        completedAchievementEvents(catalog.events, state.days, state.marks, state.activeRouteId)
+    }
+    val stages = catalog.requests.associate { it.id to requestStage(it, state.requestStages[it.id], completedEvents) }
+    val reported = stages.values.count { it == RequestStages.REPORTED }
+    val rows = catalog.requests.filter { requestMatches(it, stages[it.id], query, filter) }
     LazyColumn(
         modifier = Modifier.fillMaxSize().submergedBackdrop().padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -68,7 +76,7 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
         }
         item {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text("Mark Reported after ${catalog.issuer} confirms completion. Route links may include preparation.",
+                Text("Exact hand-in tasks update Reported automatically. Otherwise, confirm reporting to ${catalog.issuer}.",
                     style = MaterialTheme.typography.bodyMedium, color = colors.onBackground)
                 OutlinedTextField(value = query, onValueChange = { query = it }, label = { Text("Search name or number") },
                     singleLine = true, keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
@@ -83,7 +91,8 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
         }
         if (rows.isEmpty()) item { Text("No requests match these filters.", color = colors.onBackground) }
         items(rows, key = { it.id }) { request ->
-            val stage = state.requestStages[request.id]
+            val stage = stages[request.id]
+            val automatic = request.completionEvent != null && request.completionEvent in completedEvents
             val open = expanded == request.id
             val status = when (stage) {
                 RequestStages.ACCEPTED -> "Accepted"
@@ -111,9 +120,10 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
                     }
                     if (open) Column(Modifier.padding(start = 14.dp, end = 14.dp, bottom = 14.dp),
                         verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                        Text("Check ${catalog.issuer} for availability and prerequisites. Select the current stage; tap it again to clear.",
+                        Text(if (automatic) "Reported by the walkthrough. To reverse this, uncheck the linked hand-in task."
+                            else "Check ${catalog.issuer} for availability and prerequisites. Select the current stage; tap it again to clear.",
                             style = MaterialTheme.typography.bodyMedium)
-                        FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        if (!automatic) FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                             listOf(RequestStages.ACCEPTED to "Accepted", RequestStages.READY to "Ready to report",
                                 RequestStages.REPORTED to "Reported").forEach { (value, label) ->
                                 SubmergedActionButton(label, onClick = { vm.setRequestStage(request.id, if (stage == value) null else value) },

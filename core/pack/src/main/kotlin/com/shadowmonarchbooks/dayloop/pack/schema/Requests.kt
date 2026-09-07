@@ -4,7 +4,9 @@ import kotlinx.serialization.Serializable
 
 /** Optional, pack-neutral catalog with explicit acceptance / preparation / reporting. */
 @Serializable
-data class RequestsFile(val title: String, val issuer: String, val requests: List<RequestDefinition> = emptyList())
+data class RequestsFile(val title: String, val issuer: String, val requests: List<RequestDefinition> = emptyList(),
+    val events: List<AchievementEventAnchor> = emptyList(),
+)
 
 @Serializable
 data class RequestDefinition(
@@ -15,6 +17,8 @@ data class RequestDefinition(
     val deadline: String? = null,
     /** Context links, never automatic completion anchors. */
     val routeDates: List<String> = emptyList(),
+    /** Exact hand-in/reporting task, never acquisition or acceptance. */
+    val completionEvent: String? = null,
 )
 
 /** Mutually exclusive manual states; preparing an item never reports it automatically. */

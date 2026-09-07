@@ -15,7 +15,9 @@ class P3rRequestsTest {
         val dir = root.resolve("content/packs/p3r")
         val loaded = PackLoader.load(dir)
         assertTrue(loaded.parseIssues.isEmpty(), loaded.parseIssues.joinToString())
-        val requests = assertNotNull(loaded.requests).requests
+        val catalog = assertNotNull(loaded.requests)
+        assertEquals(24, catalog.events.size)
+        val requests = catalog.requests
         assertEquals((1..101).toList(), requests.map { it.number })
         assertEquals(14, requests.count { it.deadline != null })
         val media = assertNotNull(loaded.media).media.associateBy { it.id }
