@@ -4,7 +4,13 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -62,30 +68,42 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
     val rows = catalog.requests.filter { requestMatches(it, stages[it.id], query, filter) }
     LazyColumn(
         modifier = Modifier.fillMaxSize().submergedBackdrop().padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp),
+        verticalArrangement = Arrangement.spacedBy(0.dp),
         contentPadding = PaddingValues(vertical = 12.dp),
     ) {
         stickyHeader {
-            Surface(color = colors.primaryContainer, shape = CutCornerShape(bottomEnd = 16.dp)) {
-                Column(Modifier.fillMaxWidth().padding(14.dp)) {
-                    Text("$reported / ${catalog.requests.size} reported", style = MaterialTheme.typography.titleLarge,
+            Surface(color = colors.primaryContainer) {
+                Row(Modifier.fillMaxWidth().padding(vertical = 8.dp, horizontal = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween) {
+                    Text("$reported / ${catalog.requests.size} reported", style = MaterialTheme.typography.titleMedium,
                         color = colors.onPrimaryContainer)
-                    Text("${rows.size} shown", style = MaterialTheme.typography.labelLarge, color = colors.onPrimaryContainer)
+                    Text("${rows.size} shown", style = MaterialTheme.typography.labelMedium, color = colors.secondary)
                 }
             }
         }
         item {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text("Exact hand-in tasks update Reported automatically. Otherwise, confirm reporting to ${catalog.issuer}.",
-                    style = MaterialTheme.typography.bodyMedium, color = colors.onBackground)
-                OutlinedTextField(shape = CutCornerShape(topEnd = 8.dp), value = query, onValueChange = { query = it }, label = { Text("Search name or number") },
+            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+                    listOf("All", "In progress", "Reported", "Timed").forEach { value ->
+                        val active = filter == value
+                        TextButton(onClick = { filter = value },
+                            modifier = Modifier.semantics { selected = active }.drawBehind {
+                                if (active) drawLine(colors.tertiary, Offset(0f, size.height),
+                                    Offset(size.width, size.height), 2.dp.toPx())
+                            },
+                            colors = ButtonDefaults.textButtonColors(contentColor = if (active) colors.primary else colors.secondary)) {
+                            Text(value, fontWeight = if (active) FontWeight.Bold else FontWeight.Normal)
+                        }
+                    }
+                }
+                OutlinedTextField(shape = CutCornerShape(0.dp), value = query, onValueChange = { query = it }, label = { Text("Search name or number") },
                     singleLine = true, keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                     keyboardActions = KeyboardActions(onSearch = { focus.clearFocus() }), modifier = Modifier.fillMaxWidth())
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    listOf("All", "In progress", "Reported", "Timed").forEach { value ->
-                        SubmergedActionButton(value, onClick = { filter = value }, primary = filter == value,
-                            modifier = Modifier.semantics { selected = filter == value })
-                    }
+                Row(Modifier.fillMaxWidth().padding(top = 12.dp, bottom = 5.dp, start = 8.dp, end = 8.dp)) {
+                    Text("No.", style = MaterialTheme.typography.labelSmall, color = colors.secondary, modifier = Modifier.width(32.dp))
+                    Text("Request", style = MaterialTheme.typography.labelSmall, color = colors.secondary, modifier = Modifier.weight(1f))
+                    Text("Status", style = MaterialTheme.typography.labelSmall, color = colors.secondary, modifier = Modifier.width(76.dp))
                 }
             }
         }
@@ -100,26 +118,45 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
                 RequestStages.REPORTED -> "Reported"
                 else -> "Not started"
             }
-            Surface(color = colors.surface, contentColor = colors.onSurface,
-                shape = CutCornerShape(topEnd = 16.dp),
-                border = BorderStroke(1.dp, if (open) colors.primary else colors.outlineVariant)) {
-                Column {
-                    Column(Modifier.fillMaxWidth().clickable(role = Role.Button,
+            val rowInk = if (open) colors.onPrimary else colors.secondary
+            Column(Modifier.fillMaxWidth().background(colors.surface.copy(alpha = 0.85f))) {
+                Row(Modifier.fillMaxWidth()
+                    .background(if (open) colors.primary else androidx.compose.ui.graphics.Color.Transparent)
+                    .clickable(role = Role.Button,
                         onClickLabel = if (open) "Collapse request" else "Expand request",
-                        onClick = { expanded = if (open) null else request.id }).padding(14.dp),
-                        verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Text("${request.number.toString().padStart(3, '0')} / $status",
-                            style = MaterialTheme.typography.labelLarge, color = colors.secondary)
-                        Text(request.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                        onClick = { expanded = if (open) null else request.id })
+                    .semantics { selected = open }
+                    .drawBehind {
+                        if (open) {
+                            drawLine(colors.tertiary, Offset.Zero, Offset(size.width, 0f), 2.dp.toPx())
+                            val cursor = Path().apply {
+                                moveTo(0f, size.height / 2 - 5.dp.toPx())
+                                lineTo(5.dp.toPx(), size.height / 2)
+                                lineTo(0f, size.height / 2 + 5.dp.toPx()); close()
+                            }
+                            drawPath(cursor, colors.onPrimary)
+                        }
+                    }
+                    .heightIn(min = 52.dp).padding(horizontal = 8.dp, vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically) {
+                    Text(request.number.toString().padStart(2, '0'), color = rowInk,
+                        fontStyle = FontStyle.Italic, style = MaterialTheme.typography.labelLarge,
+                        modifier = Modifier.width(32.dp))
+                    Text(request.title, color = rowInk, style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.weight(1f).padding(end = 8.dp))
+                    Text(status, color = rowInk, style = MaterialTheme.typography.labelSmall,
+                        modifier = Modifier.width(76.dp))
+                }
+                    if (open) Column(Modifier.fillMaxWidth().background(colors.surface).padding(14.dp),
+                        verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Text("Request details", style = MaterialTheme.typography.titleMedium,
+                            fontStyle = FontStyle.Italic, color = colors.secondary)
                         request.deadline?.let { deadline ->
                             val passed = state.currentDate.orEmpty() > deadline && stage != RequestStages.REPORTED
                             Text(if (passed) "Reporting cutoff passed: $deadline" else "Report by $deadline",
                                 style = MaterialTheme.typography.labelLarge,
                                 color = if (passed) colors.error else colors.secondary)
                         }
-                    }
-                    if (open) Column(Modifier.padding(start = 14.dp, end = 14.dp, bottom = 14.dp),
-                        verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text(if (automatic) "Reported by the walkthrough. To reverse this, uncheck the linked hand-in task."
                             else "Check ${catalog.issuer} for availability and prerequisites. Select the current stage; tap it again to clear.",
                             style = MaterialTheme.typography.bodyMedium)
@@ -139,7 +176,6 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
                             }
                         }
                     }
-                }
             }
         }
     }

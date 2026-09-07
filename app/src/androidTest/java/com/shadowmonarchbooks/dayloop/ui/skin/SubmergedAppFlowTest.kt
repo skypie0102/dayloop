@@ -225,6 +225,22 @@ class SubmergedAppFlowTest {
         compose.onNodeWithText("End day", ignoreCase = true).assertIsDisplayed()
     }
 
+    @Test fun requestDetailsRemainReachableWithLargeText() {
+        launch("2009-05-18", scale = 1.5f)
+        tab("Requests").performClick()
+        compose.onNodeWithText("Search name or number").performTextInput("12")
+        compose.onNodeWithText("Search name or number").performImeAction()
+        compose.onNodeWithText("Bring me pine resin").performScrollTo().performClick()
+        compose.onNodeWithText("Report by 2009-06-06").performScrollTo().assertIsDisplayed()
+        capture("p3r-app-request-large-text")
+        compose.onNodeWithText("Ready to report").performScrollTo().performClick()
+        compose.waitUntil(10_000) {
+            runBlocking { dependencies.repo().requestStages(profileId).first()["p3r.request.012"] == "ready" }
+        }
+        compose.onNodeWithText("Walkthrough mentions").performScrollTo().assertIsDisplayed()
+        capture("p3r-app-request-large-text-controls")
+    }
+
     @Test fun exactHandInUpdatesRequestsAndUncheckingReversesIt() {
         launch("2009-05-10")
         val pack = dependencies.store().state.value.selected!!

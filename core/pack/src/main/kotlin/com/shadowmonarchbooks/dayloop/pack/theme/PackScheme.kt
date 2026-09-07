@@ -193,7 +193,7 @@ private fun submergedSchemeArgb(seed: Int): Map<String, Int> {
     val panel = shade(seed, 0.22)
     val raised = shade(seed, 0.36)
     val light = tint(0.78)
-    val secondary = tint(0.65)
+    val secondary = Hct.from(Hct.fromInt(seed).hue - 70.0, 48.0, 85.0).toInt()
     // Start from a complete scheme so newly consumed Material roles stay defined.
     val base = buildScheme("content", Hct.fromInt(seed), true)
     val m = com.materialkolor.dynamiccolor.MaterialDynamicColors()
@@ -209,7 +209,7 @@ private fun submergedSchemeArgb(seed: Int): Map<String, Int> {
         "primaryContainer" to frame, "onPrimaryContainer" to INK_WHITE,
         "secondary" to secondary, "onSecondary" to deep,
         "secondaryContainer" to panel, "onSecondaryContainer" to INK_WHITE,
-        "tertiary" to light, "onTertiary" to deep,
+        "tertiary" to Hct.from(Hct.fromInt(seed).hue + 75.0, 48.0, 80.0).toInt(), "onTertiary" to deep,
         "tertiaryContainer" to raised, "onTertiaryContainer" to INK_WHITE,
         "background" to deep, "onBackground" to INK_WHITE,
         "surface" to panel, "onSurface" to INK_WHITE,
