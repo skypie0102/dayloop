@@ -6,7 +6,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.unit.em
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -19,6 +18,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
@@ -46,9 +47,10 @@ internal fun SubmergedTaskCard(
     val feedback = rememberMarkFeedback()
     Surface(
         color = colors.surface,
-        shape = CutCornerShape(topEnd = 12.dp),
-        border = BorderStroke(1.dp, if (mark == StepMark.DONE) colors.primary else colors.outlineVariant),
-        modifier = Modifier.fillMaxWidth(),
+        shape = RectangleShape,
+        modifier = Modifier.fillMaxWidth().drawBehind {
+            drawLine(colors.outlineVariant, Offset(0f, size.height), Offset(size.width, size.height), 1.dp.toPx())
+        },
     ) {
         Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -104,29 +106,7 @@ internal fun SubmergedTaskCard(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
                             .selectable(selected = active, role = Role.Button, onClick = { feedback(); onToggle(value) })
-                            .drawBehind {
-                                if (active) {
-                                    val inset = 6.dp.toPx()
-                                    val slant = 10.dp.toPx()
-                                    val strip = Path().apply {
-                                        moveTo(slant, inset)
-                                        lineTo(size.width, inset)
-                                        lineTo(size.width - slant, size.height - inset)
-                                        lineTo(0f, size.height - inset)
-                                        close()
-                                    }
-                                    drawPath(strip, colors.primary)
-                                    drawLine(colors.tertiary, Offset(slant, inset),
-                                        Offset(size.width, inset), 2.dp.toPx())
-                                    val cursor = Path().apply {
-                                        moveTo(9.dp.toPx(), size.height / 2 - 4.dp.toPx())
-                                        lineTo(14.dp.toPx(), size.height / 2)
-                                        lineTo(9.dp.toPx(), size.height / 2 + 4.dp.toPx())
-                                        close()
-                                    }
-                                    drawPath(cursor, colors.onPrimary)
-                                }
-                            }
+                            .submergedCommandSelection(active)
                             .heightIn(min = 48.dp).widthIn(min = 96.dp)
                             .padding(horizontal = 22.dp, vertical = 10.dp),
                     ) {
@@ -145,7 +125,8 @@ internal fun SubmergedSectionHeading(text: String, modifier: Modifier = Modifier
     val colors = MaterialTheme.colorScheme
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = modifier) {
         Box(Modifier.size(width = 3.dp, height = 22.dp).background(colors.primary))
-        Text(text, style = MaterialTheme.typography.titleLarge, fontStyle = FontStyle.Italic, color = colors.onBackground)
+        Text(text, style = MaterialTheme.typography.titleLarge.withSkinFont(LocalSkin.current.type.display),
+            fontStyle = FontStyle.Italic, color = colors.onBackground)
     }
 }
 
@@ -183,6 +164,31 @@ internal fun SubmergedDeadline(label: String, daysLeft: Long, kindLabel: String?
     }
 }
 
+/** Shared P3R selection treatment for commands, including task marks and report stages. */
+@Composable
+private fun Modifier.submergedCommandSelection(active: Boolean): Modifier {
+    val colors = MaterialTheme.colorScheme
+    return drawBehind {
+        if (active) {
+            val inset = 6.dp.toPx()
+            val slant = 10.dp.toPx()
+            val strip = Path().apply {
+                moveTo(slant, inset); lineTo(size.width, inset)
+                lineTo(size.width - slant, size.height - inset)
+                lineTo(0f, size.height - inset); close()
+            }
+            drawPath(strip, colors.primary)
+            drawLine(colors.tertiary, Offset(slant, inset), Offset(size.width, inset), 2.dp.toPx())
+            val cursor = Path().apply {
+                moveTo(9.dp.toPx(), size.height / 2 - 4.dp.toPx())
+                lineTo(14.dp.toPx(), size.height / 2)
+                lineTo(9.dp.toPx(), size.height / 2 + 4.dp.toPx()); close()
+            }
+            drawPath(cursor, colors.onPrimary)
+        }
+    }
+}
+
 @Composable
 internal fun SubmergedActionButton(
     text: String,
@@ -194,20 +200,17 @@ internal fun SubmergedActionButton(
     largeLabel: Boolean = false,
 ) {
     val colors = MaterialTheme.colorScheme
-    Surface(
-        onClick = onClick,
-        enabled = enabled,
-        shape = CutCornerShape(topStart = 8.dp, bottomEnd = 8.dp),
-        color = if (primary) colors.primary else colors.surface,
-        contentColor = if (primary) colors.onPrimary else colors.onSurface,
-        border = if (primary) null else BorderStroke(1.dp, colors.outlineVariant),
+    val style = MaterialTheme.typography.titleLarge.withSkinFont(LocalSkin.current.type.display)
+    Box(
+        contentAlignment = Alignment.Center,
         modifier = modifier.then(if (fillWidth) Modifier.fillMaxWidth() else Modifier)
-            .heightIn(min = 48.dp).widthIn(min = 48.dp),
+            .clickable(enabled = enabled, role = Role.Button, onClick = onClick)
+            .submergedCommandSelection(primary)
+            .heightIn(min = 48.dp).widthIn(min = 48.dp)
+            .padding(horizontal = 22.dp, vertical = 10.dp),
     ) {
-        Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
-            Text(text, style = if (largeLabel) MaterialTheme.typography.titleLarge else MaterialTheme.typography.labelLarge,
-                fontStyle = if (primary) FontStyle.Italic else FontStyle.Normal,
-                color = (if (primary) colors.onPrimary else colors.onSurface).copy(alpha = if (enabled) 1f else 0.38f))
-        }
+        Text(text, style = if (largeLabel) style.copy(fontSize = 26.sp, lineHeight = 30.sp) else style,
+            fontWeight = FontWeight.Black, fontStyle = FontStyle.Italic,
+            color = (if (primary) colors.onPrimary else colors.secondary).copy(alpha = if (enabled) 1f else 0.38f))
     }
 }

@@ -250,3 +250,41 @@ other packs retain their existing behavior. Component coverage starts with a leg
 LATER mark and checks replacement, reversal and independent tips. App coverage now
 checks Skip persistence across End Day, Back and activity recreation. Current
 validation and screenshots are recorded in PR #71 after the runner completes.
+
+
+## Calendar and command consistency — September 8, 2026
+
+The user requested the short **Requests** title and a further comparison with the
+original game. Offline Calendar captures 033/034 show a Sunday-first open grid,
+an oversized month numeral and a broad blue circular plane. This pass replaces
+P3R's colored day tiles with that hierarchy, retaining authored-day navigation,
+the browsed month on return and a clear current-day ring. A monthly agenda exposes
+audited deadlines; a pink dot marks their grid dates. No unverified moon-phase
+calculation or job schedule is introduced. Grid cells remain at least 48dp wide;
+narrow windows can pan the grid. Month swipes belong to the heading so they do
+not compete with that pan gesture. Weekday columns and six-row months are checked.
+
+The page title now matches the Requests tab. The header's separate portrait card
+is removed; art blends into the full-width blue plane and recedes at enlarged
+text to keep long headings readable. Bottom labels use measured condensed text
+widths with whole words, sharing spare space across tabs. Narrow windows can pan
+the tab row. These are Android adaptations, not the game's controller navigation.
+
+Task cards lose their individual cut-corner outlines. Section titles, Back, End
+Day, Check all, request stages and date-link commands now share the P3R display
+font and the selection treatment introduced for Done/Skip. Idle commands show
+cyan lettering on the reading plane; active commands have the slanted white
+strip, pink edge and navy pointer. Disabled controls remain disabled. Previously
+saved marks, request confirmations and the P5R rendering path are preserved.
+
+The scan also found nine imported full-moon artwork dates that disagreed with the
+already-audited deadline calendar. The artwork metadata now uses those canonical
+dates (for example May 9 rather than May 10), correcting Today/Day decorations as
+well. P3R content version increases to 7; walkthrough labels/order, mark keys and
+achievement rules are unchanged. The existing deadline audit supplies the dates;
+this change makes no new gameplay-source claim.
+
+The [roadmap scan](p3r-roadmap.md#september-8-uiux-scan-and-delivery-queue) records
+remaining Social Link composition, day-detail headings, request solutions,
+achievement density, Dark Hour/motion and accessibility work. Android evidence
+and exact CI results are recorded in PR #71. Full visual parity remains open.

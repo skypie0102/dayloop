@@ -54,6 +54,7 @@ import com.shadowmonarchbooks.dayloop.ui.achievements.MonthlyAchievementChecklis
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
 import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
@@ -138,6 +139,15 @@ fun MonthScreen(
     val index = resolvedCalendarMonthIndex(months, selectedMonth, state.currentDate)
     val month = months[index]
     val skin = LocalSkin.current
+    if (skin.hasSubmergedChrome()) {
+        SubmergedMonthScreen(pack, state.days, months, index, state.currentDate, onSelectedMonthChange, onOpenDay) {
+            if (pack.mediaForMonth(month).any { it.kind == "achievement" }) {
+                SkinSectionHeader("Achievements this month")
+                MonthlyAchievementChecklist(pack, state, month, vm::setAchievementEarned)
+            }
+        }
+        return
+    }
     val markerItems = when {
         skin.motion == "slash" -> slashDeadlineMarkerItems(
             month = month,

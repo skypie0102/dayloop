@@ -32,6 +32,30 @@ This roadmap governs the new P3R work; historical Moonlight milestones in
 [ROADMAP-v3](../ROADMAP-v3.md) describe the existing foundation. It complements,
 rather than resets, the [P3R data audit](../audits/p3r-data-audit.md).
 
+## September 8 UI/UX scan and delivery queue
+
+The user again rejected the current overall resemblance and asked for **Requests**
+as the page title. Compare the next Android evidence with the offline gallery;
+the following improvements do not close the full redesign milestone.
+
+| Priority | Finding | Action / status |
+|---|---|---|
+| P0 | The Requests banner repeats Elizabeth's name and takes two lines | Use Requests consistently in navigation and the banner; implemented in this pass |
+| P0 | Calendar uses generic colored tiles and a small month caption | P3R-only Sunday-first open grid, oversized month, current-date ring and deadline agenda; Android review required |
+| P0 | Imported full-moon artwork dates conflict with audited deadlines (May 10 vs May 9, plus eight other dates) | Reconciled the nine artwork dates to the existing audited calendar; protects Today/Day as well as Calendar |
+| P1 | Done/Skip differ from Back, End Day, Check all and request-stage controls | Share condensed command lettering and white/pink selection treatment; remove idle outline tiles and task-card borders |
+| P1 | Header is a separate rectangular card; large navigation labels split inside words | Blend the portrait into the full header plane; measure tab-label widths, retain whole words and allow narrow windows to pan |
+| P1 | Social Links use generic cards and a linear detail page | Next screen redesign: Arcana/rank hierarchy, character staging, next rank context; verify all character assets before import |
+| P1 | Request details explain tracker mechanics before showing a useful solution | Complete prerequisites, item windows, rewards and independently written solution guidance; do not invent unverified details |
+| P1 | Day detail still uses legacy diamond headings and redundant media strips | Extend the daily date/reading hierarchy to day detail; verify contextual answers and navigation before removing duplication |
+| P2 | Achievements put long explanations and mixed counter/checkbox controls into every row | Separate compact status rows from expanded tracking controls; keep exact completion semantics |
+| P2 | There is no distinct Dark Hour composition or faithful menu/day transition | Inspect original motion sequences, then add bounded effects with reduced-motion support |
+| P2 | Accessibility coverage does not yet cover TalkBack order or every narrow window | Keep 48dp date/command targets; review spoken date/deadline states, tab panning and small-screen captures |
+
+The next visual acceptance evidence covers Calendar browse/open/return, actual
+1.5× text, the renamed Requests banner, the complete daily controls and the P5R
+control screen. Detailed notes: [September 8 refinement](p3r-redesign-baseline.md#calendar-and-command-consistency--september-8-2026).
+
 ## Verified repository starting point
 
 Counts below come from the bundled JSON, not the older README phase summaries.
