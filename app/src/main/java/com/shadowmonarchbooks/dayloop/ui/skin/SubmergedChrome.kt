@@ -7,6 +7,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -61,19 +68,23 @@ internal fun Modifier.submergedBackdrop(): Modifier {
     }
 }
 
-/** The pack supplies the artwork; the engine keeps it out of the title's reading area. */
+/** One continuous header plane; the portrait has no separate card boundary. */
 @Composable
 private fun Modifier.submergedMenuArt(): Modifier {
     val colors = MaterialTheme.colorScheme
     val bitmap = rememberDecorBitmap(LocalSkin.current.decor.art["header"])?.asImageBitmap()
+    val portraitAlpha = if (LocalDensity.current.fontScale > 1.2f) 0.18f else 1f
     return clipToBounds().drawWithCache {
         val edge = size.height.toInt().coerceAtLeast(1)
+        // Reserve the rightmost 96dp for the two utility targets.
+        val right = (size.width - 96.dp.toPx()).coerceAtLeast(edge.toFloat())
+        val left = right - edge
         val fade = Brush.horizontalGradient(
             0f to colors.primaryContainer,
-            0.35f to colors.primaryContainer.copy(alpha = 0.90f),
-            1f to Color.Transparent,
-            startX = (size.width - edge).coerceAtLeast(0f),
-            endX = size.width.coerceAtLeast(1f),
+            0.20f to colors.primaryContainer.copy(alpha = 0.82f),
+            0.70f to Color.Transparent,
+            1f to colors.primaryContainer,
+            startX = left, endX = right,
         )
         onDrawBehind {
             drawRect(colors.primaryContainer)
@@ -81,10 +92,10 @@ private fun Modifier.submergedMenuArt(): Modifier {
                 val crop = minOf(it.width, it.height)
                 drawImage(it, srcOffset = IntOffset(0, it.height - crop),
                     srcSize = IntSize(crop, crop),
-                    dstOffset = IntOffset(size.width.toInt() - edge, 0),
-                    dstSize = IntSize(edge, edge))
+                    dstOffset = IntOffset(left.toInt(), 0), dstSize = IntSize(edge, edge), alpha = portraitAlpha)
+                drawRect(fade, topLeft = Offset(left, 0f),
+                    size = androidx.compose.ui.geometry.Size(edge.toFloat(), size.height))
             }
-            drawRect(fade)
         }
     }
 }
@@ -107,8 +118,8 @@ internal fun SubmergedTopBar(
         horizontalArrangement = Arrangement.spacedBy(2.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .submergedBackdrop()
-            .heightIn(min = 88.dp)
+            .submergedMenuArt()
+            .heightIn(min = 80.dp)
             .padding(start = 12.dp, end = 4.dp, top = 8.dp, bottom = 8.dp),
     ) {
         if (canGoBack) {
@@ -116,7 +127,7 @@ internal fun SubmergedTopBar(
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = colors.onBackground)
             }
         }
-        Column(Modifier.weight(1f).heightIn(min = 72.dp).submergedMenuArt().padding(start = 4.dp, end = 50.dp, top = 8.dp, bottom = 8.dp)) {
+        Column(Modifier.weight(1f).heightIn(min = 64.dp).padding(start = 4.dp, end = 12.dp, top = 8.dp, bottom = 8.dp)) {
             Text(
                 text = titleParts.first().uppercase(Locale.ENGLISH),
                 style = MaterialTheme.typography.displaySmall.copy(fontSize = 32.sp, lineHeight = 32.sp),
@@ -149,7 +160,7 @@ internal fun SubmergedTopBar(
     }
 }
 
-/** Equal touch targets, explicit tab semantics, and labels that remain visible. */
+/** Measured command labels keep complete words; narrow windows can pan the tab row. */
 @Composable
 internal fun SubmergedBottomBar(
     items: List<SkinNavItem>,
@@ -157,58 +168,52 @@ internal fun SubmergedBottomBar(
     onSelect: (String) -> Unit,
 ) {
     val colors = MaterialTheme.colorScheme
-    Row(
-        verticalAlignment = Alignment.Top,
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(colors.background)
-            .navigationBarsPadding()
-            .selectableGroup()
-            .padding(horizontal = 4.dp),
-    ) {
-        items.forEach { item ->
-            val selected = item.route == selectedRoute
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(5.dp),
-                modifier = Modifier
-                    .weight(1f)
-                    .heightIn(min = 76.dp)
-                    .selectable(
-                        selected = selected,
-                        role = Role.Tab,
-                        onClick = { if (!selected) onSelect(item.route) },
-                    )
-                    .drawWithCache {
-                        val cursor = Path().apply {
-                            moveTo(size.width / 2 - 5.dp.toPx(), 0f)
-                            lineTo(size.width / 2 + 5.dp.toPx(), 0f)
-                            lineTo(size.width / 2, 5.dp.toPx())
-                            close()
-                        }
-                        onDrawBehind {
-                            if (selected) {
-                                drawLine(colors.primary, Offset.Zero, Offset(size.width, 0f), 2.dp.toPx())
-                                drawPath(cursor, colors.primary)
+    val style = MaterialTheme.typography.labelSmall.withSkinFont(LocalSkin.current.type.display)
+    val measurer = rememberTextMeasurer()
+    val density = LocalDensity.current
+    val widths = items.map { item ->
+        with(density) { measurer.measure(AnnotatedString(item.label), style).size.width.toDp() }
+            .plus(12.dp).coerceAtLeast(56.dp)
+    }
+    BoxWithConstraints(Modifier.fillMaxWidth().background(colors.background).navigationBarsPadding()) {
+        val spare = (maxWidth - widths.fold(0.dp) { sum, width -> sum + width }).coerceAtLeast(0.dp)
+        Row(
+            verticalAlignment = Alignment.Top,
+            modifier = Modifier.horizontalScroll(rememberScrollState()).selectableGroup(),
+        ) {
+            items.forEachIndexed { index, item ->
+                val selected = item.route == selectedRoute
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(5.dp),
+                    modifier = Modifier
+                        .width(widths[index] + spare / items.size)
+                        .heightIn(min = 68.dp)
+                        .selectable(selected = selected, role = Role.Tab,
+                            onClick = { if (!selected) onSelect(item.route) })
+                        .drawWithCache {
+                            val cursor = Path().apply {
+                                moveTo(size.width / 2 - 5.dp.toPx(), 2.dp.toPx())
+                                lineTo(size.width / 2 + 5.dp.toPx(), 2.dp.toPx())
+                                lineTo(size.width / 2, 7.dp.toPx()); close()
+                            }
+                            onDrawBehind {
+                                if (selected) {
+                                    drawLine(colors.tertiary, Offset.Zero, Offset(size.width, 0f), 2.dp.toPx())
+                                    drawPath(cursor, colors.primary)
+                                }
                             }
                         }
-                    }
-                    .padding(horizontal = 2.dp, vertical = 13.dp),
-            ) {
-                Icon(
-                    item.icon,
-                    contentDescription = null,
-                    tint = if (selected) colors.onBackground else colors.onSurfaceVariant,
-                    modifier = Modifier.size(22.dp),
-                )
-                Text(
-                    item.label,
-                    style = MaterialTheme.typography.labelSmall,
-                    fontStyle = FontStyle.Italic,
-                    fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
-                    color = if (selected) colors.onBackground else colors.onSurfaceVariant,
-                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-                )
+                        .padding(horizontal = 6.dp, vertical = 11.dp),
+                ) {
+                    Icon(item.icon, contentDescription = null,
+                        tint = if (selected) colors.primary else colors.secondary,
+                        modifier = Modifier.size(20.dp))
+                    Text(item.label, style = style, fontStyle = FontStyle.Italic,
+                        color = if (selected) colors.primary else colors.secondary,
+                        maxLines = 1, softWrap = false,
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+                }
             }
         }
     }

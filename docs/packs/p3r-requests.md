@@ -2,7 +2,7 @@
 
 The user explicitly prioritized this destination on September 6, 2026 (UTC), replacing
 P3R's Answers bottom tab. The bottom label is Requests to fit mobile navigation;
-the page title is Elizabeth's Requests. The answer catalog remains registered,
+the page title is also Requests (user correction, September 8, 2026). The answer catalog remains registered,
 and Today/Day retain their answer access. P5R keeps its Mementos destination.
 
 ## Data and behavior

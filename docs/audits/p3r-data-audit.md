@@ -372,3 +372,14 @@ route order and gameplay facts do not.
   date for game-wide availability.
 - Run the complete CI + packlint suite and perform final PR metadata/diff review
   before considering the baseline ready to merge.
+
+
+## September 8 — Full-moon artwork date consistency
+
+The UI review found that `p3r.media.full-moon` retained dates from the original
+image import instead of the corrected `p3r.deadline.fullmoon.*` calendar. April
+was April 18 instead of April 9; May–December were each one day later than their
+audited deadline. The nine media dates now match the existing deadline record.
+No walkthrough task or deadline was moved. A consistency check prevents the
+artwork from drifting again. This is a metadata reconciliation against the
+previous audit, not a fresh game-calendar research claim.

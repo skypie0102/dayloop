@@ -96,7 +96,6 @@ private fun bannerTitle(
     pinnedTodayDate: String? = null,
 ): String {
     if (route == "today" && pinnedTodayDate != null) return "Today · $pinnedTodayDate"
-    if (route == "requests") return pack?.requests?.title ?: "Requests"
     tabs.firstOrNull { it.route == route }?.let { return it.label }
     return when (route?.substringBefore('/')) {
         "day" -> "Day"

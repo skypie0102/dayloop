@@ -183,7 +183,7 @@ class SubmergedAppFlowTest {
             compose.onAllNodesWithText("Perfect day").fetchSemanticsNodes().isEmpty()
         }
         compose.onAllNodesWithText("Done")[2].performScrollTo().assertIsDisplayed()
-        compose.onNode(hasScrollAction()).performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.ScrollBy) {
+        compose.onNode(hasScrollAction() and SemanticsMatcher.keyIsDefined(SemanticsProperties.VerticalScrollAxisRange)).performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.ScrollBy) {
             it(0f, 100_000f)
         }
         val taskBottom = compose.onAllNodesWithText("Done")[2].fetchSemanticsNode().boundsInRoot.bottom
@@ -245,6 +245,8 @@ class SubmergedAppFlowTest {
         tab("Achievements").performClick()
         capture("p3r-app-achievement-art")
         tab("Requests").performClick()
+        compose.onNodeWithText("REQUESTS").assertIsDisplayed()
+        compose.onNodeWithText("ELIZABETH'S REQUESTS").assertDoesNotExist()
         capture("p3r-app-request-catalog")
         openRequest("Bring me pine resin")
         compose.onNodeWithText("Report by 2009-06-06").performScrollTo().assertIsDisplayed()
@@ -304,6 +306,42 @@ class SubmergedAppFlowTest {
         capture("p3r-app-epilogue")
         compose.onNodeWithText("Back").performClick()
         dateIs("2010-01-31")
+    }
+
+    @Test fun calendarBrowseOpenAndReturn() {
+        launch("2009-04-21")
+        tab("Calendar").performClick()
+        compose.onNodeWithTag("p3r-date-2009-04-01").assertIsNotEnabled()
+        compose.onNodeWithTag("p3r-date-2009-04-21").assertIsEnabled()
+        capture("p3r-app-calendar-april")
+        compose.onNodeWithContentDescription("Next month").performClick()
+        compose.onNodeWithTag("p3r-month-heading").assertContentDescriptionEquals("May 2009")
+        compose.onNodeWithTag("p3r-date-2009-05-09").assert(
+            SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Deadline"))
+        capture("p3r-app-calendar-may")
+        compose.onNodeWithTag("p3r-date-2009-05-09").performClick()
+        compose.onNodeWithContentDescription("Back").performClick()
+        tab("Calendar").assertIsSelected()
+        compose.onNodeWithTag("p3r-month-heading").assertContentDescriptionEquals("May 2009")
+        assertEquals("2009-04-21", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
+        capture("p3r-app-calendar-returned")
+        tab("Social Links").performClick()
+        capture("p3r-app-social-links-audit")
+    }
+
+    @Test fun calendarAndNavigationAtLargeText() {
+        launch("2009-05-18", scale = 1.5f)
+        tab("Calendar").performClick()
+        compose.onNodeWithTag("p3r-date-2009-05-18").assertIsDisplayed()
+        tab("Achievements").assertIsDisplayed()
+        tab("Social Links").assertIsDisplayed()
+        tab("Requests").assertIsDisplayed()
+        capture("p3r-app-calendar-large-text")
+        compose.onNodeWithContentDescription("Next month").performClick()
+        compose.onNodeWithTag("p3r-month-heading").assertContentDescriptionEquals("June 2009")
+        compose.onNodeWithTag("p3r-date-2009-06-06").performScrollTo().performClick()
+        compose.onNodeWithContentDescription("Back").performClick()
+        capture("p3r-app-calendar-large-text-returned")
     }
 
     @Test fun p5rSameBuildControlCapture() {

@@ -11,6 +11,19 @@ import kotlin.test.assertTrue
 class CalendarInteractionTest {
 
     @Test
+    fun `Reload calendar uses Sunday columns and preserves sixth week dates`() {
+        val april = submergedMonthCells("2009-04")
+        assertEquals(listOf(null, null, null, "2009-04-01"), april.take(4))
+        assertEquals("2009-04-21", april[23]) // Tuesday, fourth row.
+        assertEquals(30, april.filterNotNull().distinct().size)
+        val january = submergedMonthCells("2010-01")
+        assertEquals(42, january.size)
+        assertEquals("2010-01-31", january[35]) // Sunday, sixth row.
+        assertTrue(january.takeLast(6).all { it == null })
+        assertEquals("2009-11-01", submergedMonthCells("2009-11").first())
+    }
+
+    @Test
     fun `horizontal swipe changes one month and clamps`() {
         assertEquals(2, monthIndexAfterSwipe(current = 1, last = 4, dragPx = -90f, thresholdPx = 56f))
         assertEquals(0, monthIndexAfterSwipe(current = 1, last = 4, dragPx = 90f, thresholdPx = 56f))
