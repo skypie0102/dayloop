@@ -446,6 +446,19 @@ class PackContentTest {
     }
 
     @Test
+    fun `p3r bond portraits match the named social link character`() {
+        val loaded = loadPacks().first { it.first == "p3r" }.third
+        val bonds = loaded.bonds!!.bonds.associateBy { it.id }
+        val portraits = loaded.media!!.media.filter { it.kind == MediaKinds.PORTRAIT && it.bonds.isNotEmpty() }
+        assertTrue(portraits.isNotEmpty())
+        portraits.forEach { art ->
+            art.bonds.forEach { id ->
+                assertEquals(bonds.getValue(id).characterLabel, art.title, "$id must not show another character")
+            }
+        }
+    }
+
+    @Test
     fun `every media bond anchor resolves to a real bond`() {
         loadPacks().forEach { (slug, _, loaded) ->
             val bondIds = loaded.bonds?.bonds?.map { it.id }?.toSet().orEmpty()
