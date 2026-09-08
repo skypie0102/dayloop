@@ -17,6 +17,14 @@ jobs:
     if: github.event_name == 'workflow_dispatch' || contains(github.head_ref, 'p3r')
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - review: full
+            classes: com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDailyTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedAppFlowTest
+          - review: hand-in-isolated
+            classes: com.shadowmonarchbooks.dayloop.ui.skin.SubmergedAppFlowTest#exactHandInUpdatesRequestsAndUncheckingReversesIt
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -35,6 +43,8 @@ jobs:
           sudo udevadm trigger --name-match=kvm
       - name: Exercise daily components and capture Android screenshots
         uses: reactivecircus/android-emulator-runner@v2
+        env:
+          P3R_UI_TEST_CLASSES: ${{ matrix.classes }}
         with:
           api-level: 35
           arch: x86_64
@@ -44,13 +54,13 @@ jobs:
           # Use the supported software renderer and GLES for this Compose review.
           # https://developer.android.com/studio/run/emulator-acceleration
           # https://developer.android.com/studio/run/emulator-troubleshooting
-          emulator-options: -no-window -gpu swiftshader -feature -Vulkan -no-snapshot -noaudio -no-boot-anim -camera-back none
+          emulator-options: -no-window -gpu swiftshader -feature -Vulkan -no-snapshot -noaudio -no-boot-anim -camera-back none -show-kernel
           script: bash tools/android/capture-p3r-ui.sh
       - name: Upload review evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: p3r-android-review-${{ github.sha }}
+          name: p3r-android-review-${{ matrix.review }}-${{ github.sha }}
           path: |
             build/ui-captures/
             app/build/reports/androidTests/

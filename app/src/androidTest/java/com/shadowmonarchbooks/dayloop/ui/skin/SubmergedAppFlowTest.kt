@@ -3,6 +3,7 @@ package com.shadowmonarchbooks.dayloop.ui.skin
 import android.content.ContentValues
 import android.os.ParcelFileDescriptor
 import android.provider.Settings
+import android.util.Log
 import android.graphics.Bitmap
 import androidx.compose.ui.graphics.asAndroidBitmap
 import android.provider.MediaStore
@@ -270,13 +271,19 @@ class SubmergedAppFlowTest {
     }
 
     @Test fun exactHandInUpdatesRequestsAndUncheckingReversesIt() {
+        Log.i("P3rReview", "Hand-in: launching May 10")
         launch("2009-05-10")
+        Log.i("P3rReview", "Hand-in: activity ready")
         val pack = dependencies.store().state.value.selected!!
         val event = pack.requests!!.events.single { it.id == "p3r.request.reported.002" }
         val day = pack.day(pack.routes.first().id, event.date)!!
         val index = day.steps.indexOfFirst { it.label == event.labelContains }
-        compose.onAllNodesWithText("Done")[index].performScrollTo().performClick()
+        Log.i("P3rReview", "Hand-in: scrolling to task $index")
+        compose.onAllNodesWithText("Done")[index].performScrollTo()
+        Log.i("P3rReview", "Hand-in: marking task $index")
+        compose.onAllNodesWithText("Done")[index].performClick()
         markIs(index, StepMark.DONE, event.date)
+        Log.i("P3rReview", "Hand-in: opening Requests")
         tab("Requests").performClick()
         compose.onNodeWithText("1 / 101 reported").assertIsDisplayed()
         openRequest("Retrieve the First Old Document")
