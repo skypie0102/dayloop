@@ -45,9 +45,9 @@ the following improvements do not close the full redesign milestone.
 | P0 | Imported full-moon artwork dates conflict with audited deadlines (May 10 vs May 9, plus eight other dates) | Reconciled the nine artwork dates to the existing audited calendar; protects Today/Day as well as Calendar |
 | P1 | Done/Skip differ from Back, End Day, Check all and request-stage controls | Share condensed command lettering and white/pink selection treatment; remove idle outline tiles and task-card borders |
 | P1 | Header is a separate rectangular card; large navigation labels split inside words | Blend the portrait into the full header plane; measure tab-label widths, retain whole words and allow narrow windows to pan |
-| P1 | Social Links use generic cards and a linear detail page | Next screen redesign: Arcana/rank hierarchy, character staging, next rank context; verify all character assets before import |
+| P1 | Social Links use generic cards and a linear detail page | Implemented compact Arcana/name bands, prominent ranks, selected rows, filters and an expandable rank route with date links; Android visual acceptance pending. Removed the incorrect Junpei portrait anchor from Kenji's Magician link |
 | P1 | Request details explain tracker mechanics before showing a useful solution | Complete prerequisites, item windows, rewards and independently written solution guidance; do not invent unverified details |
-| P1 | Day detail still uses legacy diamond headings and redundant media strips | Extend the daily date/reading hierarchy to day detail; verify contextual answers and navigation before removing duplication |
+| P1 | Day detail still uses legacy diamond headings and redundant media strips | Implemented compact date/reading hierarchy, one moon marker, date-relative deadlines and measured Previous/Next rail; contextual answers retained. Android visual acceptance pending |
 | P2 | Achievements put long explanations and mixed counter/checkbox controls into every row | Separate compact status rows from expanded tracking controls; keep exact completion semantics |
 | P2 | There is no distinct Dark Hour composition or faithful menu/day transition | Inspect original motion sequences, then add bounded effects with reduced-motion support |
 | P2 | Accessibility coverage does not yet cover TalkBack order or every narrow window | Keep 48dp date/command targets; review spoken date/deadline states, tab panning and small-screen captures |
@@ -55,6 +55,30 @@ the following improvements do not close the full redesign milestone.
 The next visual acceptance evidence covers Calendar browse/open/return, actual
 1.5× text, the renamed Requests banner, the complete daily controls and the P5R
 control screen. Detailed notes: [September 8 refinement](p3r-redesign-baseline.md#calendar-and-command-consistency--september-8-2026).
+
+### September 8 continuation: prioritize UI delivery
+
+The user requested continued UI/UX work without spending more time on the emulator.
+The Social Links/day-detail pass uses source review, focused JVM regressions and
+normal build CI. It does not claim new Android screenshots or a resolved emulator
+exit. Existing emulator coverage remains configured; repeated diagnostic reruns
+are deferred so they do not block design implementation.
+
+Additional findings from this pass:
+- Magician rank 1 uses explicit introduction wording that the existing rank
+  recognizer missed. DONE now recognizes that declaration; Skip, Later,
+  preparation and clearing the task do not award a rank.
+- Next-rank guidance follows the authored ladder, including automatic rank skips.
+- Day detail previously counted down from the active profile date even while
+  browsing another date. P3R now counts down from the displayed date.
+- Only four Social Links currently have correctly matched portrait assets.
+  Missing character/Arcana artwork remains a visual gap; unrelated art is not a
+  substitute. The source gallery's 043 and 077 captures guide list and rank scale.
+
+Next UI work: compact achievement rows with expanded tracking controls, richer
+request solutions, and distinct Dark Hour/motion composition. Review Social Link
+rank/date navigation and day controls at enlarged text in the next stable Android
+capture session; retain the saved-progress, calendar and P5R acceptance gates.
 
 ## Verified repository starting point
 

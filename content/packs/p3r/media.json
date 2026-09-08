@@ -78,10 +78,7 @@
       "file": "images/img009_B207081737B893E3.png",
       "kind": "portrait",
       "title": "Junpei Iori",
-      "caption": "Portrait from the guide's Theurgy & personality section.",
-      "bonds": [
-        "p3r.bond.magician"
-      ]
+      "caption": "Portrait from the guide's Theurgy & personality section."
     },
     {
       "id": "p3r.media.portrait-akihiko",

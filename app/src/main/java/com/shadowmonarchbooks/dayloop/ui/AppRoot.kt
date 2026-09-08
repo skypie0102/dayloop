@@ -280,6 +280,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                         pack = pack,
                         days = state.days,
                         marks = state.marks,
+                        onOpenDay = { date -> nav.navigate("day/$date") },
                     )
                 }
                 composable("deadlines") {

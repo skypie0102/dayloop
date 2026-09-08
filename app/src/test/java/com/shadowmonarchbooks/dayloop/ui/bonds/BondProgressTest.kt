@@ -10,8 +10,34 @@ import com.shadowmonarchbooks.dayloop.progress.StepKey
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class BondProgressTest {
+
+    @Test
+    fun `next rank follows authored skips and ends at max`() {
+        val bond = Bond("test.bond.story", "Story", ranks = listOf(1, 3, 7, 10).map { RankStep(it) })
+        assertEquals(1, nextBondRankStep(bond, 0)?.rank)
+        assertEquals(3, nextBondRankStep(bond, 1)?.rank)
+        assertEquals(10, nextBondRankStep(bond, 7)?.rank)
+        assertNull(nextBondRankStep(bond, 10))
+        assertNull(nextBondRankStep(bond.copy(ranks = emptyList()), 0))
+    }
+
+    @Test
+    fun `explicit first rank requires its own done task and reverses when cleared`() {
+        val bond = Bond("p3r.bond.magician", "Magician", ranks = (1..10).map { RankStep(it) })
+        val day = Day(date = "2009-04-22", weekday = "wed", steps = listOf(
+            Step("Magician starts automatically with Kenji Tomochika — rank 1"),
+            Step("Prepare for Magician rank 2"),
+        ))
+        val days = mapOf(day.date to day)
+        assertEquals(1, completedBondRank(bond, days, mapOf(StepKey(day.date, 0) to StepMark.DONE)))
+        assertEquals(0, completedBondRank(bond, days, mapOf(StepKey(day.date, 0) to StepMark.SKIP)))
+        assertEquals(0, completedBondRank(bond, days, mapOf(StepKey(day.date, 0) to StepMark.LATER)))
+        assertEquals(0, completedBondRank(bond, days, mapOf(StepKey(day.date, 1) to StepMark.DONE)))
+        assertEquals(0, completedBondRank(bond, days, emptyMap()))
+    }
 
     private val chariot = Bond(
         id = "p5r.bond.chariot",

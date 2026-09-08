@@ -288,3 +288,35 @@ The [roadmap scan](p3r-roadmap.md#september-8-uiux-scan-and-delivery-queue) reco
 remaining Social Link composition, day-detail headings, request solutions,
 achievement density, Dark Hour/motion and accessibility work. Android evidence
 and exact CI results are recorded in PR #71. Full visual parity remains open.
+
+## Social Links and day detail — September 8, 2026
+
+The offline gallery's Social Link list (043.jpg, source URL ending
+`103859-89064_thumb.jpg`) uses compact Arcana/name bands with large rank numerals,
+cyan inactive rows and a white selected row. The rank-up capture (077.jpg) makes
+rank the dominant numeral. These supplied captures guide this pass; no new claim
+of exact typeface, character-art coverage or motion fidelity is made.
+
+- Social Links has a dedicated P3R list with name bands, large rank/MAX labels,
+  white selection, pink cursor edge and All / In progress / Max filters.
+- Detail uses a prominent current rank and an expandable rank route. The next
+  authored rank opens first, respecting skipped automatic ranks. Requirements,
+  availability and notes remain visible in the expanded section; an authored
+  route date opens its walkthrough without moving the profile clock.
+- Ranks still require DONE task evidence. Explicit first-rank introduction
+  wording now counts; preparation, Skip, legacy Later and clearing do not.
+- The media scan caught Junpei anchored to Magician despite the bond naming
+  Kenji. That association is removed while retaining Junpei in the media catalog.
+  The four correctly matched existing portraits remain usable. P3R content
+  version is 8; task labels/order, mark keys and achievement rules are unchanged.
+- Day detail uses the compact date header, one moon marker and the shared task
+  hierarchy. Its deadline countdown follows the browsed date. Previous/Next uses
+  a measured bottom rail; its space is removed from the scrolling viewport, and
+  changing the displayed date starts its text at the top. Contextual answers and
+  non-marker media remain present.
+
+The user asked to prioritize UI/UX over emulator troubleshooting. Build/JVM CI
+and focused rank/media regressions are the checks for this pass. Android visual
+acceptance remains open; no new screenshot or successful emulator fix is claimed.
+PR #71 records the exact commit and check result. The existing P5R and Metaphor
+rendering branches remain outside the new layout.
