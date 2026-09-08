@@ -1,20 +1,11 @@
 #!/usr/bin/env bash
 set -uo pipefail
 mkdir -p build/ui-captures
-# Keep completed captures and the last device frame even if the emulator exits.
+# Keep the device log for an unexpected emulator exit without issuing concurrent
+# framebuffer requests while Compose is scrolling a long task list.
 adb logcat -v threadtime > build/ui-captures/device-logcat.txt 2>&1 &
 p3r_logcat_pid=$!
-(
-  while true; do
-    timeout 5 adb pull /sdcard/Pictures/dayloop-ui/. build/ui-captures/ > /dev/null 2>&1 || true
-    if timeout 5 adb exec-out screencap -p > build/ui-captures/device-last-frame.tmp; then
-      mv build/ui-captures/device-last-frame.tmp build/ui-captures/device-last-frame.png
-    fi
-    sleep 3
-  done
-) &
-p3r_capture_pid=$!
-trap 'kill "$p3r_capture_pid" "$p3r_logcat_pid" 2>/dev/null || true' EXIT
+trap 'kill "$p3r_logcat_pid" 2>/dev/null || true' EXIT
 p3r_review_classes=${P3R_UI_TEST_CLASSES:-com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDailyTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedAppFlowTest}
 ./gradlew :app:connectedDebugAndroidTest --max-workers=2 "-Dorg.gradle.jvmargs=-Xmx1024m -Dfile.encoding=UTF-8" -Pkotlin.compiler.execution.strategy=in-process "-Pandroid.testInstrumentationRunnerArguments.class=$p3r_review_classes"
 test_exit=$?
