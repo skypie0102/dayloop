@@ -317,7 +317,7 @@ class SubmergedAppFlowTest {
         compose.onNodeWithContentDescription("Next month").performClick()
         compose.onNodeWithTag("p3r-month-heading").assertContentDescriptionEquals("May 2009")
         compose.onNodeWithTag("p3r-date-2009-05-09").assert(
-            SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Deadline"))
+            SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Calendar event"))
         capture("p3r-app-calendar-may")
         compose.onNodeWithTag("p3r-date-2009-05-09").performClick()
         compose.onNodeWithContentDescription("Back").performClick()

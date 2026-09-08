@@ -321,9 +321,9 @@ class PackThemeTest {
     }
 
     @Test
-    fun `moon marker anchors pin exactly the ten accepted dates`() {
-        // Phase 14 acceptance: "the moon icon must appear on exactly the nine
-        // full-moon dates + 2010-01-31 already anchored in media.json".
+    fun `moon marker anchors use the audited dates and the Promised Day`() {
+        // Keep the nine corrected full-moon dates plus the distinct Promised Day.
+        // Original imported anchors were reconciled against the deadline audit.
         val root = contentPacksDir() ?: error("no content checkout")
         val media = PackLoader.decodeMedia(
             String(Files.readAllBytes(root.resolve("p3r").resolve("media.json"))),
@@ -333,8 +333,8 @@ class PackThemeTest {
         assertEquals(10, dates.size, "exactly ten moon-marked dates expected")
         assertEquals(
             setOf(
-                "2009-04-18", "2009-05-10", "2009-06-09", "2009-07-08", "2009-08-07",
-                "2009-09-06", "2009-10-05", "2009-11-04", "2009-12-03", "2010-01-31",
+                "2009-04-09", "2009-05-09", "2009-06-08", "2009-07-07", "2009-08-06",
+                "2009-09-05", "2009-10-04", "2009-11-03", "2009-12-02", "2010-01-31",
             ),
             dates,
             "nine full moons + the Promised Day",

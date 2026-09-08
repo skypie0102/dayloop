@@ -143,7 +143,7 @@ internal fun SubmergedMonthScreen(
                                                 contentDescription = formatDate(date, pack.calendar)
                                                 stateDescription = listOfNotNull(
                                                     if (today) "Today" else null,
-                                                    if (due) "Deadline" else null,
+                                                    if (due) "Calendar event" else null,
                                                     if (authored == null) "No walkthrough" else null,
                                                 ).joinToString(", ")
                                             }
@@ -167,7 +167,7 @@ internal fun SubmergedMonthScreen(
                 }
             }
         }
-        Text("Ring: today  ·  Pink dot: deadline", style = MaterialTheme.typography.labelMedium, color = colors.secondary)
+        Text("Ring: today  ·  Pink dot: calendar event", style = MaterialTheme.typography.labelMedium, color = colors.secondary)
         if (events.isNotEmpty()) {
             SubmergedSectionHeading("This month")
             events.forEach { (date, event) ->
