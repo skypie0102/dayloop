@@ -76,7 +76,11 @@ internal fun SubmergedTaskCard(
                             .clickable(role = Role.Button, onClickLabel = "Open task tips", onClick = onTip),
                         style = MaterialTheme.typography.bodyLarge,
                         color = colors.onSurface,
-                        textDecoration = if (mark == StepMark.DONE) TextDecoration.LineThrough else null,
+                        // The selected Done command already communicates completion. Avoid
+                        // line-through glyph decoration here: on API 35's software renderer,
+                        // applying it to a long wrapped task can crash RenderThread while the
+                        // row is being re-laid out after a mark change.
+                        textDecoration = null,
                     )
                     if (step.statGains.isNotEmpty()) {
                         Text(
