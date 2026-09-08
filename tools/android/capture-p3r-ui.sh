@@ -12,6 +12,9 @@ if [ "$test_exit" -ne 0 ]; then
     ps -eo pid,comm,rss --sort=-rss | head -20
     sudo dmesg --ctime | tail -80
   } > build/ui-captures/runner-diagnostics.txt 2>&1
+  if [ -d /tmp/android-runner ]; then
+    tar -czf build/ui-captures/emulator-crash-reports.tar.gz -C /tmp android-runner
+  fi
   exit "$test_exit"
 fi
 exit "$capture_exit"
