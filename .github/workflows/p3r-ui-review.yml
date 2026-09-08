@@ -46,15 +46,18 @@ jobs:
         env:
           P3R_UI_TEST_CLASSES: ${{ matrix.classes }}
         with:
-          api-level: 35
+          # The review does not use Google services; the AOSP image avoids the
+          # background GMS/binder churn that has been taking the API 35 guest
+          # down while the app is switching screens.
+          api-level: 34
           arch: x86_64
-          target: google_apis
+          target: default
           profile: pixel_2
           disable-animations: true
-          # Use the supported software renderer and GLES for this Compose review.
+          # Use the emulator's software GLES path for this Compose review.
           # https://developer.android.com/studio/run/emulator-acceleration
           # https://developer.android.com/studio/run/emulator-troubleshooting
-          emulator-options: -no-window -gpu swiftshader -feature -Vulkan -no-snapshot -noaudio -no-boot-anim -camera-back none -show-kernel
+          emulator-options: -no-window -gpu software -feature -Vulkan -no-snapshot -noaudio -no-boot-anim -camera-back none -show-kernel
           script: bash tools/android/capture-p3r-ui.sh
       - name: Upload review evidence
         if: always()
