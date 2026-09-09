@@ -4,17 +4,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.platform.testTag
@@ -59,23 +56,19 @@ internal fun SubmergedDayComplete(fx: AdvanceFx, progress: Float) {
     }
 }
 
-/** Compact, dismissible white selection strip with no full-screen scrim. */
+/** Transparent text fallback if a custom skin has no readable celebration graphic. */
 @Composable
 internal fun SubmergedPerfectDay(onDismiss: () -> Unit) {
     val colors = MaterialTheme.colorScheme
-    Surface(
-        shape = CutCornerShape(topStart = 12.dp, bottomEnd = 12.dp),
-        color = colors.primary,
+    Column(
         modifier = Modifier.widthIn(max = 340.dp)
             .clickable(role = Role.Button, onClickLabel = "Dismiss perfect day", onClick = onDismiss)
-            .semantics { liveRegion = LiveRegionMode.Polite }.testTag("submerged-perfect-day"),
+            .semantics { liveRegion = LiveRegionMode.Polite }.testTag("submerged-perfect-day")
+            .padding(horizontal = 22.dp, vertical = 12.dp),
+        verticalArrangement = Arrangement.spacedBy(3.dp),
     ) {
-        Column(Modifier.drawBehind {
-            drawLine(colors.tertiary, Offset.Zero, Offset(size.width, 0f), 3.dp.toPx())
-        }.padding(horizontal = 22.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(3.dp)) {
-            Text("PERFECT DAY", style = MaterialTheme.typography.headlineMedium
-                .withSkinFont(LocalSkin.current.type.display).copy(fontStyle = FontStyle.Italic), color = colors.onPrimary)
-            Text("All tasks complete", style = MaterialTheme.typography.bodyMedium, color = colors.onPrimary)
-        }
+        Text("PERFECT DAY", style = MaterialTheme.typography.headlineMedium
+            .withSkinFont(LocalSkin.current.type.display).copy(fontStyle = FontStyle.Italic), color = colors.primary)
+        Text("All tasks complete", style = MaterialTheme.typography.bodyMedium, color = colors.primary)
     }
 }

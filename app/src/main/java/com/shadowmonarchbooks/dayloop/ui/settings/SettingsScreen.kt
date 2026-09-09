@@ -284,6 +284,8 @@ fun SettingsScreen(
             )
         }
 
+        BackupControls(panelShape, panelColor, state.packs.associate { it.slug to it.pack.title })
+
         // ---- Orphaned marks review (docs/PLAN.md §3.6) ----
         if (state.orphans.isNotEmpty()) {
             SectionTitle("Saved marks no longer in content")

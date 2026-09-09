@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
 }
@@ -75,6 +76,8 @@ android {
         buildConfig = true
     }
 
+    testOptions.unitTests.isIncludeAndroidResources = true
+
     // Bundled pack content (docs/PLAN.md §2): every directory under
     // /content/packs becomes an asset root, so lint-validated JSON ships as-is.
     sourceSets["main"].assets.srcDir(rootDir.resolve("content/packs"))
@@ -117,6 +120,8 @@ dependencies {
 
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:${libs.versions.kotlin.get()}")
     testRuntimeOnly(libs.junit.jupiter.engine)
+    testImplementation("org.robolectric:robolectric:4.14.1")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.10.2")
 }
 
 tasks.withType<Test>().configureEach {

@@ -71,7 +71,7 @@ private fun loadCelebrationArt(assets: AssetManager, path: String, slot: String)
         slot.removePrefix("perfect-day-").replaceFirstChar { it.uppercase() })
 }.getOrNull()
 
-/** Art stays in the measured rail above day controls, clear of the task viewport. */
+/** Transparent artwork floats at the screen center; only its own bounds dismiss it. */
 @Composable
 internal fun SubmergedPerfectDaySplash(allDone: Boolean, key: Any?, suppressed: Boolean, modifier: Modifier) {
     val decor = LocalSkin.current.decor.art
@@ -108,7 +108,8 @@ internal fun SubmergedPerfectDaySplash(allDone: Boolean, key: Any?, suppressed: 
         } else {
             BoxWithConstraints(Modifier.widthIn(max = 480.dp).fillMaxWidth()) {
                 val ratio = selected.visible.width.toFloat() / selected.visible.height
-                val height = (maxWidth / ratio).coerceIn(48.dp, 168.dp)
+                val heightLimit = (maxHeight * 0.6f).coerceIn(48.dp, 280.dp)
+                val height = (maxWidth / ratio).coerceIn(48.dp, heightLimit)
                 Canvas(Modifier.fillMaxWidth().height(height)
                     .clickable(role = Role.Button, onClickLabel = "Dismiss perfect day", onClick = { show = false })
                     .semantics {
