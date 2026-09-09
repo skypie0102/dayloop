@@ -1,7 +1,7 @@
 {
   "packId": "p3r",
   "title": "Persona 3 Reload",
-  "contentVersion": 8,
+  "contentVersion": 9,
   "pickerOrder": 1,
   "timeModel": "weekdayGrid",
   "calendar": {
@@ -108,7 +108,16 @@
       }
     },
     "decor": {
-      "header": "art/menu-character.png"
+      "header": "art/menu-character.png",
+      "perfect-day-aigis": "art/perfect-day/aigis.png",
+      "perfect-day-akihiko": "art/perfect-day/akihiko.png",
+      "perfect-day-junpei": "art/perfect-day/junpei.png",
+      "perfect-day-koromaru": "art/perfect-day/koromaru.png",
+      "perfect-day-metis": "art/perfect-day/metis.png",
+      "perfect-day-mitsuru": "art/perfect-day/mitsuru.png",
+      "perfect-day-protagonist": "art/perfect-day/protagonist.png",
+      "perfect-day-shinjiro": "art/perfect-day/shinjiro.png",
+      "perfect-day-yukari": "art/perfect-day/yukari.png"
     },
     "motion": "fade",
     "art": {

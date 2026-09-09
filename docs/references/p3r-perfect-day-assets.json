@@ -1,0 +1,153 @@
+{
+  "source": "User-supplied P3R Day Complete Splash.zip",
+  "received": "2026-09-09",
+  "archiveSha256": "a33a1e69c6556ac5f35a9726590742601647294a15eb6d915c3691c0a90b86b8",
+  "use": "Random Perfect Day celebration art only. Includes all nine supplied graphics; no gameplay content is added.",
+  "rendering": "Original PNG bytes and colors; transparent margins omitted at draw time, aspect ratio preserved, fitted into at most 168dp of height above the day controls.",
+  "assets": [
+    {
+      "slot": "perfect-day-aigis",
+      "file": "art/perfect-day/aigis.png",
+      "originalFilename": "Aigis (Mark 2) (AOA Text).png",
+      "sha256": "8e0f2912bc5c7804181fb035137ef607b894872d821b2ed5d79633f41ac4703c",
+      "size": [
+        1024,
+        256
+      ],
+      "visibleBounds": [
+        72,
+        32,
+        956,
+        225
+      ]
+    },
+    {
+      "slot": "perfect-day-akihiko",
+      "file": "art/perfect-day/akihiko.png",
+      "originalFilename": "Akihiko Sanada (AOA Text).png",
+      "sha256": "7e07112d6d1c560e590e83d4ffbfffdc0a3d912d134fbf22769889316b8d8bd2",
+      "size": [
+        1024,
+        1024
+      ],
+      "visibleBounds": [
+        99,
+        108,
+        926,
+        916
+      ]
+    },
+    {
+      "slot": "perfect-day-junpei",
+      "file": "art/perfect-day/junpei.png",
+      "originalFilename": "Junpei Iori (AOA Text).png",
+      "sha256": "d9a3eefef5df84fbf8616bdad06e5f2a6de6d70a8ba5ebcc0c5caeb9ec253dd7",
+      "size": [
+        1024,
+        512
+      ],
+      "visibleBounds": [
+        37,
+        87,
+        987,
+        402
+      ]
+    },
+    {
+      "slot": "perfect-day-koromaru",
+      "file": "art/perfect-day/koromaru.png",
+      "originalFilename": "Koromaru (AOA Text).png",
+      "sha256": "4a06c6683de29ecb559d71b085387f49e3e5a8bce6700e08254dbdaf041488c0",
+      "size": [
+        1024,
+        512
+      ],
+      "visibleBounds": [
+        3,
+        19,
+        1022,
+        497
+      ]
+    },
+    {
+      "slot": "perfect-day-metis",
+      "file": "art/perfect-day/metis.png",
+      "originalFilename": "Metis (AOA Text).png",
+      "sha256": "2ed0d025c975f1e64befc865c3b08b83aa33ddd8df0b4019617a02de8bad7893",
+      "size": [
+        1024,
+        256
+      ],
+      "visibleBounds": [
+        48,
+        32,
+        716,
+        228
+      ]
+    },
+    {
+      "slot": "perfect-day-mitsuru",
+      "file": "art/perfect-day/mitsuru.png",
+      "originalFilename": "Mitsuru Kirijo (AOA Text).png",
+      "sha256": "66bf8686e8da86498a7ac0fd919937535741e23aa38e9f774944da75653cd020",
+      "size": [
+        1024,
+        128
+      ],
+      "visibleBounds": [
+        75,
+        24,
+        950,
+        104
+      ]
+    },
+    {
+      "slot": "perfect-day-protagonist",
+      "file": "art/perfect-day/protagonist.png",
+      "originalFilename": "Protagonist (AOA Text).png",
+      "sha256": "b658b211b0eccb969fb3f509103c6e02e4c55c9baf65e63b22d924a26c3b3805",
+      "size": [
+        512,
+        256
+      ],
+      "visibleBounds": [
+        56,
+        8,
+        508,
+        249
+      ]
+    },
+    {
+      "slot": "perfect-day-shinjiro",
+      "file": "art/perfect-day/shinjiro.png",
+      "originalFilename": "Shinjiro Aragaki (AOA Text).png",
+      "sha256": "842bf45708be1820b24c8f7a32e6ad6250c7b03b4a57059daa2762ec199362f1",
+      "size": [
+        1024,
+        512
+      ],
+      "visibleBounds": [
+        252,
+        40,
+        995,
+        454
+      ]
+    },
+    {
+      "slot": "perfect-day-yukari",
+      "file": "art/perfect-day/yukari.png",
+      "originalFilename": "Yukari Takeba (AOA Text).png",
+      "sha256": "eaafd177e991d55b7bc83ac5ce3e02ad7060257d690a98cfd7a472d6b35704f0",
+      "size": [
+        1024,
+        128
+      ],
+      "visibleBounds": [
+        48,
+        44,
+        977,
+        84
+      ]
+    }
+  ]
+}

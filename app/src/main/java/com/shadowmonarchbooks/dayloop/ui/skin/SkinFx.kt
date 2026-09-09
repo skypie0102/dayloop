@@ -447,6 +447,10 @@ fun PerfectDaySplash(
     suppressed: Boolean = false,
     modifier: Modifier = Modifier,
 ) {
+    if (LocalSkin.current.hasSubmergedChrome()) {
+        SubmergedPerfectDaySplash(allDone, key, suppressed, modifier)
+        return
+    }
     var show by remember { mutableStateOf(false) }
     val skinFx = LocalSkinFx.current
     val reduceMotion = LocalSkin.current.hasSubmergedChrome() && rememberAnimationsDisabled()
