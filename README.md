@@ -19,6 +19,7 @@ Checklists, bond/confidant roadmaps, palace/deadline tracking, exam windows — 
 - **Anti-deviation UX.** Every item supports Done / Skip / Later — never a red failure state. Going off-guide just changes future suggestions.
 - **Spoiler-safe by default.** Deadlines visible, story commentary hidden behind taps.
 - **Offline-first.** Content ships bundled; progress saves locally (Room); no account required.
+- **Portable progress.** Settings → Backup & restore exports every game's profiles to one file. Import restores separate copies. See [backup instructions](docs/progress-backups.md).
 - **In-game-time honesty.** Always-visible deadline bars + home-screen widget beat push notifications nobody plays at the right pace for.
 
 ## Tech stack

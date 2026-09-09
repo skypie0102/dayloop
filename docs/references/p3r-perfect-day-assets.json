@@ -3,7 +3,7 @@
   "received": "2026-09-09",
   "archiveSha256": "a33a1e69c6556ac5f35a9726590742601647294a15eb6d915c3691c0a90b86b8",
   "use": "Random Perfect Day celebration art only. Includes all nine supplied graphics; no gameplay content is added.",
-  "rendering": "Original PNG bytes and colors; transparent margins omitted at draw time, aspect ratio preserved, fitted into at most 168dp of height above the day controls.",
+  "rendering": "Original PNG bytes, alpha and colors; transparent margins omitted at draw time, aspect ratio preserved. Artwork floats at the center of the content viewport with no background panel or scrim, fitted to available width and at most 280dp / 60% of viewport height.",
   "assets": [
     {
       "slot": "perfect-day-aigis",

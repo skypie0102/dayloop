@@ -6,6 +6,30 @@ Status: **active — P3R-1 daily screen and Android flow validation in progress*
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
 
+## September 9 follow-up: centered artwork, compact header and backups
+
+The latest user feedback supersedes the earlier Perfect Day rail placement.
+All nine supplied PNGs now display transparently at the center of Today/Day's
+content viewport, without a panel or scrim. Their visible bounds retain the
+original aspect ratio, capped at 280dp and 60% of available height. Random choice,
+no adjacent repeats, load-before-display timing and tap dismissal are retained.
+Only day controls reserve space at the bottom of the task viewport.
+
+P3R's title bar is now 64dp, matching the P5R bar's base height, with tighter
+−0.09em tracking and oversized lettering fitted to the available height. The
+scrolled Today date remains on the title's line. Utility buttons keep their
+48dp touch targets.
+
+The user also requested app-wide progress backups. Settings now offers export
+and import for all games/profiles, with a preview and separate restored copies.
+Task marks, achievement confirmations/counters/checklists/choices, request stages,
+route and clock are included. See [backup behavior and persistence checks](../progress-backups.md).
+No pack content or database schema changes accompany this pass.
+
+Build/JVM validation is required for this update; new device review of the
+centered artwork and tighter heading remains pending. Continue UI work without
+repeated emulator diagnosis, as requested.
+
 ## Goal and scope
 
 Make P3R feel recognizably like **Persona 3 Reload**, adapted for a readable,

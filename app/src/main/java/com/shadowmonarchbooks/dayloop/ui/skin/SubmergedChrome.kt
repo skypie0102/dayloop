@@ -166,7 +166,7 @@ internal fun SubmergedTopBar(
         modifier = Modifier
             .fillMaxWidth()
             .submergedMenuArt()
-            .height(80.dp)
+            .height(64.dp)
             .padding(start = 12.dp, end = 4.dp),
     ) {
         if (canGoBack) {
@@ -185,16 +185,16 @@ internal fun SubmergedTopBar(
                 SubmergedHeaderLettering(
                     titleParts.first().uppercase(Locale.ENGLISH),
                     MaterialTheme.typography.displayLarge.withSkinFont(LocalSkin.current.type.display).copy(
-                        fontSize = 100.sp, lineHeight = 120.sp, letterSpacing = (-0.065).em,
+                        fontSize = 100.sp, lineHeight = 120.sp, letterSpacing = (-0.09).em,
                         fontWeight = FontWeight.Black, fontStyle = FontStyle.Italic, color = colors.onBackground,
                         platformStyle = PlatformTextStyle(includeFontPadding = false),
                     ),
                     fillHeight = true,
-                    modifier = Modifier.weight(1f).height(80.dp).testTag("p3r-toolbar-title").semantics { heading() },
+                    modifier = Modifier.weight(1f).height(64.dp).testTag("p3r-toolbar-title").semantics { heading() },
                 )
                 if (context != null) {
                     SubmergedHeaderLettering(context, contextStyle, fillHeight = false,
-                        modifier = Modifier.width(contextWidth).height(80.dp).testTag("p3r-toolbar-date"))
+                        modifier = Modifier.width(contextWidth).height(64.dp).testTag("p3r-toolbar-date"))
                 }
             }
         }

@@ -62,6 +62,9 @@ data class StepStateEntity(
 @Dao
 interface ProfileDao {
 
+    @Query("SELECT * FROM profiles ORDER BY packId, createdAt, id")
+    suspend fun all(): List<ProfileEntity>
+
     @Query("SELECT * FROM profiles WHERE packId = :packId ORDER BY createdAt, id")
     fun observeForPack(packId: String): Flow<List<ProfileEntity>>
 
@@ -86,6 +89,9 @@ interface ProfileDao {
 
 @Dao
 interface StepStateDao {
+
+    @Query("SELECT * FROM step_states ORDER BY profileId, date, stepIndex")
+    suspend fun all(): List<StepStateEntity>
 
     @Query("SELECT * FROM step_states WHERE profileId = :profileId")
     fun observeForProfile(profileId: Long): Flow<List<StepStateEntity>>

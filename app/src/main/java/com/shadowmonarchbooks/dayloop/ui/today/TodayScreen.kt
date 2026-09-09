@@ -465,13 +465,10 @@ fun TodayScreen(
         }
 
         if (submerged) {
-            // Feedback is part of the measured rail, so it cannot cover task text
-            // or command targets even while the player scrolls at enlarged text.
+            // Only day controls reserve space; celebration artwork floats centrally.
             Column(Modifier.align(Alignment.BottomCenter).fillMaxWidth()
                 .onSizeChanged { dayControlsHeightPx = it.height }
                 .background(MaterialTheme.colorScheme.background)) {
-                PerfectDaySplash(allDone = allTasksDone, key = date, suppressed = advance != null,
-                    modifier = Modifier.align(Alignment.End).padding(horizontal = 20.dp, vertical = 4.dp))
                 dayActions(Modifier)
             }
         } else {
@@ -492,7 +489,7 @@ fun TodayScreen(
 
         // Perfect-day splash (Phase 16): engine-triggered, skin-styled, and
         // never blocking — only the card itself is tappable.
-        if (!submerged) PerfectDaySplash(
+        PerfectDaySplash(
             allDone = allTasksDone,
             key = date,
             suppressed = advance != null,

@@ -232,8 +232,6 @@ fun DayScreen(
                     .background(MaterialTheme.colorScheme.background)
                     .padding(horizontal = 12.dp, vertical = 6.dp),
             ) {
-                PerfectDaySplash(allDone = allTasksDone, key = date,
-                    modifier = Modifier.align(Alignment.End).padding(horizontal = 8.dp, vertical = 4.dp))
                 FlowRow(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
                     SubmergedActionButton("Previous", onClick = { prevDate?.let(onOpenDay) },
                         enabled = prevDate != null, primary = false)
@@ -274,7 +272,7 @@ fun DayScreen(
             }
         }
 
-        if (!submerged) PerfectDaySplash(
+        PerfectDaySplash(
             allDone = allTasksDone,
             key = date,
             modifier = Modifier
