@@ -185,7 +185,7 @@ internal fun SubmergedTopBar(
                 SubmergedHeaderLettering(
                     titleParts.first().uppercase(Locale.ENGLISH),
                     MaterialTheme.typography.displayLarge.withSkinFont(LocalSkin.current.type.display).copy(
-                        fontSize = 100.sp, letterSpacing = (-0.065).em,
+                        fontSize = 100.sp, lineHeight = 120.sp, letterSpacing = (-0.065).em,
                         fontWeight = FontWeight.Black, fontStyle = FontStyle.Italic, color = colors.onBackground,
                         platformStyle = PlatformTextStyle(includeFontPadding = false),
                     ),
