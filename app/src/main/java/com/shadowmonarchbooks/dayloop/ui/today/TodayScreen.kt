@@ -441,31 +441,41 @@ fun TodayScreen(
 
         }
 
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(10.dp),
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .then(if (submerged) Modifier
-                    .onSizeChanged { dayControlsHeightPx = it.height }
-                    .background(MaterialTheme.colorScheme.background) else Modifier)
-                .padding(horizontal = 12.dp, vertical = 8.dp),
-        ) {
-            if (state.hasPreviousDay()) {
-                SkinTextActionButton(
-                    text = "Back",
-                    onClick = vm::rerollDay,
-                    modifier = Modifier.heightIn(min = 52.dp),
+        val dayActions: @Composable (Modifier) -> Unit = { actionsModifier ->
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                modifier = actionsModifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
+            ) {
+                if (state.hasPreviousDay()) {
+                    SkinTextActionButton(
+                        text = "Back",
+                        onClick = vm::rerollDay,
+                        modifier = Modifier.heightIn(min = 52.dp),
+                    )
+                }
+                SkinActionButton(
+                    text = "End day",
+                    onClick = ::advanceDay,
+                    enabled = state.hasNextDay(),
+                    largeLabel = true,
+                    fillWidth = true,
+                    modifier = Modifier.weight(1f).heightIn(min = 52.dp),
                 )
             }
-            SkinActionButton(
-                text = "End day",
-                onClick = ::advanceDay,
-                enabled = state.hasNextDay(),
-                largeLabel = true,
-                fillWidth = true,
-                modifier = Modifier.weight(1f).heightIn(min = 52.dp),
-            )
+        }
+
+        if (submerged) {
+            // Feedback is part of the measured rail, so it cannot cover task text
+            // or command targets even while the player scrolls at enlarged text.
+            Column(Modifier.align(Alignment.BottomCenter).fillMaxWidth()
+                .onSizeChanged { dayControlsHeightPx = it.height }
+                .background(MaterialTheme.colorScheme.background)) {
+                PerfectDaySplash(allDone = allTasksDone, key = date, suppressed = advance != null,
+                    modifier = Modifier.align(Alignment.End).padding(horizontal = 20.dp, vertical = 4.dp))
+                dayActions(Modifier)
+            }
+        } else {
+            dayActions(Modifier.align(Alignment.BottomCenter))
         }
 
         // Day-advance sequence (docs/ROADMAP-v3.md Phase 16): the per-skin
@@ -482,7 +492,7 @@ fun TodayScreen(
 
         // Perfect-day splash (Phase 16): engine-triggered, skin-styled, and
         // never blocking — only the card itself is tappable.
-        PerfectDaySplash(
+        if (!submerged) PerfectDaySplash(
             allDone = allTasksDone,
             key = date,
             suppressed = advance != null,

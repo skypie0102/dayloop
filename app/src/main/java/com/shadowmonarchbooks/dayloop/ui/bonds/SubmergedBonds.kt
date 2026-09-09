@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -42,6 +41,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedActionButton
+import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedFilters
 import com.shadowmonarchbooks.dayloop.ui.skin.withSkinFont
 
 /** Compact Arcana/name/rank bands based on the offline Social Link list. */
@@ -83,18 +83,7 @@ internal fun SubmergedBondsScreen(
                     Text("$maxed / ${pack.bonds.size} maxed", style = MaterialTheme.typography.labelLarge,
                         color = colors.secondary)
                 }
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                    listOf("All", "In progress", "Max").forEach { label ->
-                        val active = filter == label
-                        Text(label, style = MaterialTheme.typography.titleMedium.withSkinFont(LocalSkin.current.type.display),
-                            color = if (active) colors.primary else colors.secondary,
-                            modifier = Modifier.selectable(active, role = Role.Tab, onClick = { filter = label })
-                                .heightIn(min = 48.dp).drawBehind {
-                                    if (active) drawLine(colors.tertiary, Offset(0f, size.height),
-                                        Offset(size.width, size.height), 2.dp.toPx())
-                                }.padding(horizontal = 4.dp, vertical = 12.dp))
-                    }
-                }
+                SubmergedFilters(listOf("All", "In progress", "Max"), filter) { filter = it }
             }
         }
         if (rows.isEmpty()) item {

@@ -364,3 +364,37 @@ preserved. One Android flow is added to check that an expanded achievement at
 wait now accepts the heading's new capitalization. Build/JVM/packlint results are
 recorded in PR #71; the new layouts still need updated device captures. Per the
 user's direction, emulator troubleshooting does not gate this implementation pass.
+
+## Follow-up device review — September 9, 2026
+
+The second set of eight user captures confirms the dated blue Day Complete
+result, the white/pink Perfect Day card, flat class-answer and Settings panels,
+and compact collapsed achievement rows. The October Calendar grid is readable.
+The files are fingerprinted under `followupReviews` in the device-review record.
+The APK SHA and font scale are still unknown, and no expanded achievement or
+Social Link detail is included in this set.
+
+The review also exposes two remaining composition problems. Perfect Day covers
+the Tasks/Day area, and the header portrait reads as a small rectangular cutout.
+P3R feedback now belongs to the measured bottom control rail on Today and Day
+detail. Its visible height is reserved in the scrolling viewport, keeping the
+notice and instructions apart. Day Complete still suppresses Perfect Day and the
+established durations are retained. Other skins retain their centered splash.
+
+The header now stages a larger portrait crop beyond its top/right/bottom bounds,
+blending its left and lower edges into the blue plane. A blue wash preserves
+utility-icon contrast, and the existing reduced artwork opacity at enlarged
+text remains. This is still a static mobile adaptation of the publisher asset;
+no new artwork or claim of full menu/motion fidelity is introduced.
+
+Requests adopts the same condensed filter commands as Social Links, with 48dp
+minimum targets and tab-group semantics. On narrow windows or enlarged text,
+status moves below the request title; wider windows keep the table columns.
+The number column grows with font scale so three-digit request numbers fit.
+Deadlines and walkthrough links now use readable game-calendar dates; reporting
+cutoffs, saved stages, automatic hand-in evidence and navigation dates do not
+change. Existing Android date-label assertions are updated accordingly.
+
+Source review and normal build/JVM/packlint CI validate this code pass. Updated
+rail placement, crop and responsive Requests rendering still need fresh visual
+evidence; the supplied screenshots establish only the preceding appearance.

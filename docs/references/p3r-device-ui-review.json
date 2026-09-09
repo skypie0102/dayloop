@@ -55,5 +55,86 @@
       "height": 2048,
       "sha256": "c8799a351768d132fd3709cc99da07379f0814c88136b595403328dfcc2e41af"
     }
+  ],
+  "followupReviews": [
+    {
+      "reviewedOn": "2026-09-09",
+      "source": "Second user-supplied Android screenshot batch",
+      "visibleAppVersion": "0.15.1",
+      "visibleP3rContentVersion": 8,
+      "buildSha": null,
+      "fontScale": null,
+      "confirmedAppearance": [
+        "Dated blue Day Complete panel",
+        "White/pink Perfect Day card",
+        "Flat class-answer and Settings panels",
+        "Compact collapsed achievement rows",
+        "Readable October calendar grid"
+      ],
+      "remainingEvidence": [
+        "Revised Perfect Day rail placement and header crop",
+        "Expanded achievement controls",
+        "Social Link detail",
+        "Enlarged text, navigation and saved-state interactions"
+      ],
+      "captures": [
+        {
+          "screen": "day_complete",
+          "filename": "Screenshot_2026-09-09-11-51-19-946_com.shadowmonarchbooks.dayloop.candidate.jpg",
+          "width": 921,
+          "height": 2048,
+          "sha256": "23f989ddde761e52c84367d99b76385fe25f55d378c7be321a8eb04feab5056a"
+        },
+        {
+          "screen": "perfect_day",
+          "filename": "Screenshot_2026-09-09-11-51-16-755_com.shadowmonarchbooks.dayloop.candidate.jpg",
+          "width": 921,
+          "height": 2048,
+          "sha256": "ba862e22baa61a783835739eb47f99e8672e7b59c7e17f9f07a76d343fa9cb59"
+        },
+        {
+          "screen": "settings",
+          "filename": "Screenshot_2026-09-09-11-51-11-992_com.shadowmonarchbooks.dayloop.candidate.jpg",
+          "width": 921,
+          "height": 2048,
+          "sha256": "237eb8ccad60bd29fc9d8388368963dd0ab5a4ff95c49ffb818684244e0db28a"
+        },
+        {
+          "screen": "requests",
+          "filename": "Screenshot_2026-09-09-11-51-08-920_com.shadowmonarchbooks.dayloop.candidate.jpg",
+          "width": 921,
+          "height": 2048,
+          "sha256": "a4e80166893ad2e932bc3d759d51b3f3477ab938c78049503a390b6eb7d3cb29"
+        },
+        {
+          "screen": "social_links",
+          "filename": "Screenshot_2026-09-09-11-51-07-221_com.shadowmonarchbooks.dayloop.candidate.jpg",
+          "width": 921,
+          "height": 2048,
+          "sha256": "ca019a739b1c0a00ae3fe4e557de24447739017c02c2c75f7cd0793882094400"
+        },
+        {
+          "screen": "calendar_october",
+          "filename": "Screenshot_2026-09-09-11-51-00-989_com.shadowmonarchbooks.dayloop.candidate.jpg",
+          "width": 921,
+          "height": 2048,
+          "sha256": "3a596bd857eca7ce7f70cc80d3066442ef33c4c87a72010755971cb718a4f1e5"
+        },
+        {
+          "screen": "today_skipped",
+          "filename": "Screenshot_2026-09-09-11-50-57-245_com.shadowmonarchbooks.dayloop.candidate.jpg",
+          "width": 921,
+          "height": 2048,
+          "sha256": "c3b41c979bd3a29224cc7cfe59b591341668a288a712d75e5cf2a286741fa228"
+        },
+        {
+          "screen": "achievements_collapsed",
+          "filename": "Screenshot_2026-09-09-11-51-02-839_com.shadowmonarchbooks.dayloop.candidate.jpg",
+          "width": 921,
+          "height": 2048,
+          "sha256": "21dd1ad282ddfd0eec140123c248f09014217de0eab922f9ec30121e90abae0c"
+        }
+      ]
+    }
   ]
 }
