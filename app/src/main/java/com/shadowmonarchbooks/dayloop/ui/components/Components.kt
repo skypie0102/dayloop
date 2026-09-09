@@ -93,6 +93,11 @@ import kotlin.math.hypot
 
 @Composable
 fun DayKindChip(kind: String) {
+    if (LocalSkin.current.hasSubmergedChrome()) {
+        Text(kind.replaceFirstChar { it.uppercase() }, style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.onBackground)
+        return
+    }
     val colors = when (kind) {
         "school" -> MaterialTheme.colorScheme.surfaceVariant to MaterialTheme.colorScheme.onSurfaceVariant
         "story" -> MaterialTheme.colorScheme.primaryContainer to MaterialTheme.colorScheme.onPrimaryContainer
@@ -1014,6 +1019,10 @@ fun AnswerSheetCard(
     onOpenAnswers: (() -> Unit)? = null,
     deadlineLabel: String? = null,
 ) {
+    if (LocalSkin.current.hasSubmergedChrome()) {
+        SubmergedAnswerSheet(sheet, onOpenAnswers, deadlineLabel, modifier)
+        return
+    }
     Surface(
         onClick = { onOpenAnswers?.invoke() },
         enabled = onOpenAnswers != null,

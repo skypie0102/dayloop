@@ -181,7 +181,7 @@ class SubmergedAppFlowTest {
         }
         compose.onNodeWithText("Check all").assertIsNotEnabled()
         compose.waitUntil(5_000) {
-            compose.onAllNodesWithText("Perfect day").fetchSemanticsNodes().isEmpty()
+            compose.onAllNodesWithText("Perfect day", ignoreCase = true).fetchSemanticsNodes().isEmpty()
         }
         compose.onAllNodesWithText("Done")[2].performScrollTo().assertIsDisplayed()
         compose.onNode(hasScrollAction() and SemanticsMatcher.keyIsDefined(SemanticsProperties.VerticalScrollAxisRange)).performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.ScrollBy) {
@@ -254,6 +254,28 @@ class SubmergedAppFlowTest {
         capture("p3r-app-request-deadline")
         tab("Today").performClick()
         compose.onNodeWithText("End day", ignoreCase = true).assertIsDisplayed()
+    }
+
+    @Test fun achievementDetailsRequireExplicitConfirmationAtLargeText() {
+        launch("2009-05-18", scale = 1.5f)
+        tab("Achievements").performClick()
+        val id = "p3r.achievement.birthday-present"
+        val rowTag = "achievement-$id"
+        compose.onNodeWithTag("achievement-list").performScrollToNode(hasTestTag(rowTag))
+        compose.onNodeWithTag(rowTag).performClick()
+        // Inspecting artwork or guidance must never award the achievement.
+        assertTrue(runBlocking { id !in dependencies.repo().earnedAchievements(profileId).first() })
+        compose.onNodeWithTag("achievement-list").performScrollToNode(hasText("Confirm earned"))
+        compose.onNodeWithText("Confirm earned").assertIsDisplayed().performClick()
+        compose.waitUntil(10_000) {
+            runBlocking { id in dependencies.repo().earnedAchievements(profileId).first() }
+        }
+        // Earned rows move in the sorted list; the same entry stays expanded.
+        compose.onNodeWithTag("achievement-list").performScrollToNode(hasText("Clear confirmation"))
+        compose.onNodeWithText("Clear confirmation").assertIsDisplayed().performClick()
+        compose.waitUntil(10_000) {
+            runBlocking { id !in dependencies.repo().earnedAchievements(profileId).first() }
+        }
     }
 
     @Test fun requestDetailsRemainReachableWithLargeText() {

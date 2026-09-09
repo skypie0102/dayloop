@@ -1,0 +1,59 @@
+{
+  "source": "User-supplied Android device screenshots",
+  "reviewedOn": "2026-09-09",
+  "visibleAppVersion": "0.15.1",
+  "visibleP3rContentVersion": 8,
+  "buildSha": null,
+  "fontScale": null,
+  "purpose": "Observed baseline for the completion, achievement density, Social Link detail and Settings refinements. Does not verify the revised layouts or interactions.",
+  "captures": [
+    {
+      "filename": "day_complete_splash.jpg",
+      "width": 921,
+      "height": 2048,
+      "sha256": "dd96ab390bcaf77cd8e3e342c2a0a1b11fea5615ca4443908360a9dfcfa1b9f6"
+    },
+    {
+      "filename": "perfect_day_splash.jpg",
+      "width": 921,
+      "height": 2048,
+      "sha256": "0f58aa7da47da6404c42ec29a751955d2b98f111f76f8a929dc25588435a4eb1"
+    },
+    {
+      "filename": "today_tab.jpg",
+      "width": 921,
+      "height": 2048,
+      "sha256": "43a48305660eb3373167f247ba5cdfc0d4a1c64d27f84802ff8b05033e02f0df"
+    },
+    {
+      "filename": "calendar_tab.jpg",
+      "width": 921,
+      "height": 2048,
+      "sha256": "9d945b15b96566c65038c0d6442e2f65b3ce67ba44368879af029266234fe4d1"
+    },
+    {
+      "filename": "achievements _tab.jpg",
+      "width": 921,
+      "height": 2048,
+      "sha256": "b8ea533da410c13fd9f1e28b3315b52e53070b7977a850da7bb1e11d38024eeb"
+    },
+    {
+      "filename": "social_link.jpg",
+      "width": 921,
+      "height": 2048,
+      "sha256": "19336751ee592dce110d4c0dd489ef5671c4283671e9a619a120a2885b7fa3f4"
+    },
+    {
+      "filename": "social_links_tab.jpg",
+      "width": 921,
+      "height": 2048,
+      "sha256": "af0c98a18751f1f1553180e6993f4bbf6cbe8de20d906974b1cca96f8768a965"
+    },
+    {
+      "filename": "settings.jpg",
+      "width": 921,
+      "height": 2048,
+      "sha256": "c8799a351768d132fd3709cc99da07379f0814c88136b595403328dfcc2e41af"
+    }
+  ]
+}

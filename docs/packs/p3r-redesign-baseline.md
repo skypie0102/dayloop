@@ -320,3 +320,47 @@ and focused rank/media regressions are the checks for this pass. Android visual
 acceptance remains open; no new screenshot or successful emulator fix is claimed.
 PR #71 records the exact commit and check result. The existing P5R and Metaphor
 rendering branches remain outside the new layout.
+
+## User device screenshots and feedback pass — September 9, 2026
+
+The user supplied eight 921×2048 device captures covering Today, day completion,
+Perfect Day, Calendar, Achievements, Social Links, one link detail and Settings.
+They visibly show content v8 and app v0.15.1. Their exact build SHA and font-scale
+setting are unknown; these are a visual baseline, not a new interaction-test run.
+[Capture fingerprints](../references/p3r-device-ui-review.json) identify the files
+without copying the user's device images into the repository.
+
+The captures identify several remaining treatments inherited from the old skin:
+
+- Day completion is an almost empty inverse-color field with a dark moon disc.
+  P3R now renders a blue result plane with the ending date, a large DAY COMPLETE
+  heading and a tap-to-continue cue. The existing clock commit, skippable hold and
+  timing remain. The dismissal also exposes an accessibility click action.
+- Perfect Day is a rounded gray glass card. It becomes a compact white selection
+  strip with pink edging; the P3R reduced-motion path uses fades.
+- Today's class answer and School label still use diamond/glass decoration.
+  The answer now uses a flat reading strip, cyan category label and numbered
+  answers. The School label is plain text. Answer text and access remain intact.
+- Achievement descriptions, prompts, counters and checkboxes crowd every row.
+  Compact artwork/title/status rows now expand to reveal full-width guidance and
+  explicit confirmation/count controls. Browsing does not award an achievement.
+  Confirmations remain reversible, and automatic/checklist/choice/count rules are
+  unchanged. Dates use the same readable format as the walkthrough.
+- Link detail has a tall mostly empty hero and repeated "Availability & guidance"
+  labels. The hero places rank beside the Arcana; rank rows show an authored route
+  date or a labeled availability boundary when one exists. No date is invented.
+- Settings still has rounded panels, verbose implementation copy and a confusing
+  Reroll label. P3R uses flat panels and wrapping command controls, calls that
+  action Back, and shortens the artwork/save information.
+
+The Calendar capture has a readable open grid and clear current-day/event marks;
+its composition is retained. The Social Links list already shows the intended
+name bands and rank hierarchy. Character/Arcana coverage, header art composition,
+request solutions and distinct Dark Hour/motion remain further work.
+
+These changes are P3R-only. Content files, save keys and the other skin paths are
+preserved. One Android flow is added to check that an expanded achievement at
+1.5× text requires an explicit confirmation and can be cleared. The Perfect Day
+wait now accepts the heading's new capitalization. Build/JVM/packlint results are
+recorded in PR #71; the new layouts still need updated device captures. Per the
+user's direction, emulator troubleshooting does not gate this implementation pass.
