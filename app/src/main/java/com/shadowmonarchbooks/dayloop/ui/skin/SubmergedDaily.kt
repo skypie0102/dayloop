@@ -22,16 +22,17 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.pack.schema.Step
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 
-/** A wide reading surface; controls never steal width from the instruction. */
-@OptIn(ExperimentalLayoutApi::class)
+/** A reading column with Done/Skip anchored to its right, matching the P5R task flow. */
 @Composable
 internal fun SubmergedTaskCard(
     index: Int,
@@ -45,6 +46,14 @@ internal fun SubmergedTaskCard(
 ) {
     val colors = MaterialTheme.colorScheme
     val feedback = rememberMarkFeedback()
+    val commandStyle = MaterialTheme.typography.titleLarge.withSkinFont(LocalSkin.current.type.display)
+        .copy(fontSize = 22.sp, lineHeight = 26.sp, fontWeight = FontWeight.Black, fontStyle = FontStyle.Italic)
+    val measurer = rememberTextMeasurer()
+    val density = LocalDensity.current
+    val commandWidth = with(density) {
+        maxOf(measurer.measure(AnnotatedString("Done"), commandStyle).size.width,
+            measurer.measure(AnnotatedString("Skip"), commandStyle).size.width).toDp()
+    }.plus(32.dp).coerceAtLeast(76.dp)
     Surface(
         color = colors.surface,
         shape = RectangleShape,
@@ -52,8 +61,8 @@ internal fun SubmergedTaskCard(
             drawLine(colors.outlineVariant, Offset(0f, size.height), Offset(size.width, size.height), 1.dp.toPx())
         },
     ) {
-        Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        Row(Modifier.padding(12.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Row(Modifier.weight(1f), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(
                     (index + 1).toString().padStart(2, '0'),
                     style = MaterialTheme.typography.labelLarge,
@@ -101,7 +110,7 @@ internal fun SubmergedTaskCard(
                     }
                 }
             }
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Column(Modifier.width(commandWidth), verticalArrangement = Arrangement.spacedBy(2.dp)) {
                 listOf(StepMark.DONE to "Done", StepMark.SKIP to "Skip").forEach { (value, label) ->
                     val active = mark == value
                     // P3R command lettering with a slanted selection strip, rather than tiled chips.
@@ -111,11 +120,10 @@ internal fun SubmergedTaskCard(
                         modifier = Modifier
                             .selectable(selected = active, role = Role.Button, onClick = { feedback(); onToggle(value) })
                             .submergedCommandSelection(active)
-                            .heightIn(min = 48.dp).widthIn(min = 96.dp)
-                            .padding(horizontal = 22.dp, vertical = 10.dp),
+                            .fillMaxWidth().heightIn(min = 48.dp)
+                            .padding(start = 18.dp, end = 10.dp, top = 10.dp, bottom = 10.dp),
                     ) {
-                        Text(label, style = MaterialTheme.typography.titleLarge.withSkinFont(LocalSkin.current.type.display),
-                            fontWeight = FontWeight.Black, fontStyle = FontStyle.Italic,
+                        Text(label, style = commandStyle, maxLines = 1, softWrap = false,
                             color = if (active) colors.onPrimary else colors.secondary)
                     }
                 }

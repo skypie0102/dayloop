@@ -1,9 +1,9 @@
 package com.shadowmonarchbooks.dayloop.ui.month
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -39,6 +39,7 @@ import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedSectionHeading
 import com.shadowmonarchbooks.dayloop.ui.skin.submergedBackdrop
+import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -66,14 +67,29 @@ internal fun SubmergedMonthScreen(
     val month = months[index]
     val parsed = YearMonth.parse(month)
     val colors = MaterialTheme.colorScheme
-    // Use the audited deadline dates. Old imported moon thumbnails disagree with the route.
+    // Deadline and media anchors were reconciled against the same route audit.
     val events = pack.deadlines.mapNotNull { deadline ->
         deadlineEnd(deadline)?.takeIf { it.startsWith("$month-") }?.let { it to deadline }
     }.sortedBy { it.first }
     val eventDates = events.map { it.first }.toSet()
+    val moon = pack.media.firstOrNull { it.id == "p3r.media.full-moon" }
+    val moonImage = rememberAssetImage(moon?.let(pack::assetOf))
+    val moonDates = moon?.dates.orEmpty().toSet()
     val threshold = with(LocalDensity.current) { 56.dp.toPx() }
     Column(
         modifier = Modifier.fillMaxSize().submergedBackdrop()
+            .pointerInput(index, months.size, threshold) {
+                var drag = 0f
+                detectHorizontalDragGestures(
+                    onDragStart = { drag = 0f },
+                    onHorizontalDrag = { change, amount -> change.consume(); drag += amount },
+                    onDragCancel = { drag = 0f },
+                    onDragEnd = {
+                        val next = monthIndexAfterSwipe(index, months.lastIndex, drag, threshold)
+                        if (next != index) onMonthChange(months[next])
+                    },
+                )
+            }
             .verticalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
@@ -88,18 +104,7 @@ internal fun SubmergedMonthScreen(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth().testTag("p3r-month-heading")
-                    .semantics(mergeDescendants = true) { contentDescription = parsed.format(DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ENGLISH)) }
-                    .pointerInput(index, months.size, threshold) {
-                        var drag = 0f
-                        detectHorizontalDragGestures(
-                            onDragStart = { drag = 0f },
-                            onHorizontalDrag = { change, amount -> change.consume(); drag += amount },
-                            onDragEnd = {
-                                val next = monthIndexAfterSwipe(index, months.lastIndex, drag, threshold)
-                                if (next != index) onMonthChange(months[next])
-                            },
-                        )
-                    },
+                    .semantics(mergeDescendants = true) { contentDescription = parsed.format(DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ENGLISH)) },
             ) {
                 IconButton(onClick = { onMonthChange(months[index - 1]) }, enabled = index > 0) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, "Previous month", tint = if (index > 0) colors.primary else colors.onSurfaceVariant)
@@ -116,15 +121,17 @@ internal fun SubmergedMonthScreen(
                     Icon(Icons.AutoMirrored.Filled.ArrowForward, "Next month", tint = if (index < months.lastIndex) colors.primary else colors.onSurfaceVariant)
                 }
             }
-            // Preserve 48dp targets on narrow phones; pan the grid independently of month changes.
+            // The entire grid swipes between months, as in P5R. Never put a
+            // horizontal scroller here: it consumes the month-change gesture.
             BoxWithConstraints(Modifier.fillMaxWidth()) {
-                val gridWidth = maxWidth.coerceAtLeast(336.dp)
-                Column(Modifier.horizontalScroll(rememberScrollState()).width(gridWidth)) {
+                val shortWeekdays = maxWidth / LocalDensity.current.fontScale < 320.dp
+                Column(Modifier.fillMaxWidth().testTag("p3r-month-grid")) {
                     Row(Modifier.fillMaxWidth().padding(bottom = 8.dp)) {
                         listOf("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT").forEachIndexed { day, label ->
-                            Text(label, style = MaterialTheme.typography.labelSmall,
+                            Text(if (shortWeekdays) label.take(1) else label, style = MaterialTheme.typography.labelSmall,
                                 color = when (day) { 0 -> colors.tertiary; 6 -> colors.secondary; else -> colors.primary },
-                                textAlign = TextAlign.Center, modifier = Modifier.weight(1f))
+                                textAlign = TextAlign.Center, maxLines = 1,
+                                modifier = Modifier.weight(1f).clearAndSetSemantics { contentDescription = label })
                         }
                     }
                     submergedMonthCells(month).chunked(7).forEach { week ->
@@ -133,6 +140,7 @@ internal fun SubmergedMonthScreen(
                                 val authored = date?.let(days::get)
                                 val today = date != null && date == clockDate
                                 val due = date != null && date in eventDates
+                                val fullMoon = date != null && date in moonDates
                                 Box(contentAlignment = Alignment.Center,
                                     modifier = Modifier.weight(1f).heightIn(min = 52.dp)
                                         .then(if (date != null) Modifier.testTag("p3r-date-$date") else Modifier)
@@ -143,6 +151,7 @@ internal fun SubmergedMonthScreen(
                                                 contentDescription = formatDate(date, pack.calendar)
                                                 stateDescription = listOfNotNull(
                                                     if (today) "Today" else null,
+                                                    if (fullMoon) "Full moon" else null,
                                                     if (due) "Calendar event" else null,
                                                     if (authored == null) "No walkthrough" else null,
                                                 ).joinToString(", ")
@@ -151,14 +160,19 @@ internal fun SubmergedMonthScreen(
                                         .drawBehind {
                                             if (today) drawCircle(colors.primary, radius = minOf(size.width, size.height) / 2 - 3.dp.toPx(),
                                                 style = Stroke(1.5.dp.toPx()))
-                                            if (due) drawCircle(colors.tertiary, 2.dp.toPx(), Offset(size.width / 2, size.height - 3.dp.toPx()))
+                                            if (due && !fullMoon) drawCircle(colors.tertiary, 2.dp.toPx(), Offset(size.width / 2, size.height - 3.dp.toPx()))
                                         }.padding(vertical = 6.dp),
                                 ) {
+                                    if (fullMoon && moonImage != null) {
+                                        Image(moonImage, contentDescription = null,
+                                            modifier = Modifier.align(Alignment.BottomCenter).offset(y = 6.dp)
+                                                .size(18.dp).testTag("p3r-full-moon-$date"))
+                                    }
                                     date?.let {
                                         Text(it.takeLast(2).toInt().toString(),
                                             style = MaterialTheme.typography.displaySmall.copy(fontSize = 23.sp, lineHeight = 27.sp),
                                             color = if (authored != null) colors.primary else colors.onSurfaceVariant.copy(alpha = 0.45f),
-                                            modifier = Modifier.clearAndSetSemantics {})
+                                            modifier = Modifier.offset(y = if (fullMoon) (-6).dp else 0.dp).clearAndSetSemantics {})
                                     }
                                 }
                             }
@@ -167,7 +181,11 @@ internal fun SubmergedMonthScreen(
                 }
             }
         }
-        Text("Ring: today  ·  Pink dot: calendar event", style = MaterialTheme.typography.labelMedium, color = colors.secondary)
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            moonImage?.let { Image(it, contentDescription = null, modifier = Modifier.size(20.dp)) }
+            Text("Full moon  ·  Ring: today\nPink dot: other calendar event",
+                style = MaterialTheme.typography.labelMedium, color = colors.secondary)
+        }
         if (events.isNotEmpty()) {
             SubmergedSectionHeading("This month")
             events.forEach { (date, event) ->

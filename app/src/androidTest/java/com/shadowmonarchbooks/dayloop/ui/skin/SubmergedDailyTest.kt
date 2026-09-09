@@ -27,6 +27,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.StepRow
 import com.shadowmonarchbooks.dayloop.ui.components.TasksList
 import com.shadowmonarchbooks.dayloop.ui.theme.DayloopTheme
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 
@@ -118,6 +119,11 @@ class SubmergedDailyTest {
         compose.onNodeWithText("Later").assertDoesNotExist()
         compose.onNodeWithText("Done").assertIsNotSelected()
         compose.onNodeWithText("Skip").assertIsNotSelected()
+        val taskBounds = compose.onNodeWithText(instruction, substring = true).fetchSemanticsNode().boundsInRoot
+        val doneBounds = compose.onNodeWithText("Done").fetchSemanticsNode().boundsInRoot
+        val skipBounds = compose.onNodeWithText("Skip").fetchSemanticsNode().boundsInRoot
+        assertTrue("commands must be beside the instruction", doneBounds.left >= taskBounds.right)
+        assertEquals("commands share the right edge", doneBounds.right, skipBounds.right, 1f)
         compose.onNodeWithText("Done").performClick().assertIsSelected()
         assertEquals(StepMark.DONE, selected)
         compose.onNodeWithText("Done").performClick().assertIsNotSelected()
@@ -131,5 +137,18 @@ class SubmergedDailyTest {
         assertEquals(null, selected)
         compose.onNodeWithText("Done").performClick().assertIsSelected()
         capture("p3r-task-marked")
+    }
+
+    @Test fun pinnedDateSharesOversizedTitleLine() {
+        show(scale = 1.5f) {
+            SubmergedTopBar("Today · Tue, Apr 21", false, {}, {}, true, {})
+        }
+        val title = compose.onNodeWithTag("p3r-toolbar-title").fetchSemanticsNode().boundsInRoot
+        val date = compose.onNodeWithTag("p3r-toolbar-date").fetchSemanticsNode().boundsInRoot
+        compose.onNodeWithText("TODAY").assertIsDisplayed()
+        compose.onNodeWithText("Tue, Apr 21").assertIsDisplayed()
+        assertTrue("date must sit beside the title", date.left >= title.right)
+        assertEquals("one header line", title.center.y, date.center.y, 1f)
+        capture("p3r-pinned-title-large-text")
     }
 }

@@ -345,10 +345,18 @@ class SubmergedAppFlowTest {
         compose.onNodeWithTag("p3r-date-2009-04-01").assertIsNotEnabled()
         compose.onNodeWithTag("p3r-date-2009-04-21").assertIsEnabled()
         capture("p3r-app-calendar-april")
-        compose.onNodeWithContentDescription("Next month").performClick()
+        // A gesture across the date grid must change the month, not pan its cells.
+        compose.onNodeWithTag("p3r-month-grid").performTouchInput { swipeLeft() }
         compose.onNodeWithTag("p3r-month-heading").assertContentDescriptionEquals("May 2009")
         compose.onNodeWithTag("p3r-date-2009-05-09").assert(
-            SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Calendar event"))
+            SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Full moon, Calendar event"))
+        compose.waitUntil(5_000) {
+            compose.onAllNodesWithTag("p3r-full-moon-2009-05-09", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.onNodeWithTag("p3r-full-moon-2009-05-09", useUnmergedTree = true).assertIsDisplayed()
+        compose.onNodeWithTag("p3r-month-grid").performTouchInput { swipeRight() }
+        compose.onNodeWithTag("p3r-month-heading").assertContentDescriptionEquals("April 2009")
+        compose.onNodeWithContentDescription("Next month").performClick()
         capture("p3r-app-calendar-may")
         compose.onNodeWithTag("p3r-date-2009-05-09").performClick()
         compose.onNodeWithContentDescription("Back").performClick()

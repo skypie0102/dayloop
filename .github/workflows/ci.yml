@@ -22,7 +22,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build and test
-        run: ./gradlew assembleDebug assembleCandidate :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest
+        run: ./gradlew assembleDebug assembleCandidate :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest :app:compileDebugAndroidTestKotlin
 
       - name: Validate content packs (packlint)
         run: |

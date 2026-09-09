@@ -108,6 +108,38 @@ Expanded achievements, Social Link detail, enlarged text and the revised rail/
 header/Requests rendering still need visual evidence; screenshots alone do not
 close interaction or persistence gates.
 
+### September 9 requested controls and celebration artwork
+
+The user's five follow-up requirements supersede the earlier task-control and
+header placement decisions. Implemented:
+
+- Calendar swipes across the heading, dates and agenda to change month, using
+  P5R's existing one-month threshold and bounds. Removed the grid's competing
+  horizontal scroller; seven columns stay visible and weekday labels shorten
+  on narrow or enlarged-text windows.
+- Restored the original full-moon graphic beneath the date numeral on the nine
+  audited moon dates. Other calendar events retain pink dots; Today keeps its ring.
+- The pinned Today date shares one line with the title. Header titles use tight
+  negative tracking and fit their visible letter shapes to the bar height, with
+  horizontal compression for long labels. Text semantics and utility targets remain.
+- Done/Skip sit in a measured column anchored to the right of each task, retaining
+  48dp targets, reversible marks and independent Tips behavior. Later remains absent.
+- All nine supplied PNGs now form the random Perfect Day pool. Original bytes,
+  colors and aspect ratios are preserved; only transparent margins are omitted
+  at render time. Images stay above day controls, at most 168dp tall. Decode finishes
+  before the 1.25-second visible lifetime begins; adjacent repeats are avoided.
+
+P3R content version is now 9 for the new decor assets. No walkthrough text,
+deadlines, progress identifiers or P5R/Metaphor content changed. Asset provenance
+and hashes: [Perfect Day graphics](../references/p3r-perfect-day-assets.json).
+The separate Day Complete result continues to use its existing treatment.
+
+Validation targets: random selection/fallback JVM coverage, grid swipe/open/return,
+visible moon marker, right-aligned task controls, and one-line header at 1.5× text.
+Normal CI now compiles the Android tests without booting an emulator. New device
+captures and execution of those interaction checks remain pending; continue
+UI delivery without repeated emulator diagnosis as requested.
+
 ## Verified repository starting point
 
 Counts below come from the bundled JSON, not the older README phase summaries.
