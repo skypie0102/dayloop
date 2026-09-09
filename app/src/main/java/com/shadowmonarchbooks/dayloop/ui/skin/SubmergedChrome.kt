@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.ui.platform.LocalDensity
@@ -75,16 +76,22 @@ private fun Modifier.submergedMenuArt(): Modifier {
     val bitmap = rememberDecorBitmap(LocalSkin.current.decor.art["header"])?.asImageBitmap()
     val portraitAlpha = if (LocalDensity.current.fontScale > 1.2f) 0.18f else 1f
     return clipToBounds().drawWithCache {
-        val edge = size.height.toInt().coerceAtLeast(1)
-        // Reserve the rightmost 96dp for the two utility targets.
-        val right = (size.width - 96.dp.toPx()).coerceAtLeast(edge.toFloat())
-        val left = right - edge
+        // Stage the portrait beyond the header edges rather than fitting a small
+        // square between the title and utility buttons. No bitmap edge is exposed.
+        val edge = (size.height * 2.2f).toInt().coerceAtLeast(1)
+        val left = size.width - edge + 16.dp.toPx()
+        val top = -edge * 0.4f
         val fade = Brush.horizontalGradient(
             0f to colors.primaryContainer,
-            0.20f to colors.primaryContainer.copy(alpha = 0.82f),
-            0.70f to Color.Transparent,
+            0.32f to colors.primaryContainer.copy(alpha = 0.90f),
+            0.65f to colors.primaryContainer.copy(alpha = 0.72f),
+            1f to colors.primaryContainer.copy(alpha = 0.80f),
+            startX = left, endX = size.width,
+        )
+        val lowerFade = Brush.verticalGradient(
+            0f to Color.Transparent,
+            0.72f to Color.Transparent,
             1f to colors.primaryContainer,
-            startX = left, endX = right,
         )
         onDrawBehind {
             drawRect(colors.primaryContainer)
@@ -92,10 +99,34 @@ private fun Modifier.submergedMenuArt(): Modifier {
                 val crop = minOf(it.width, it.height)
                 drawImage(it, srcOffset = IntOffset(0, it.height - crop),
                     srcSize = IntSize(crop, crop),
-                    dstOffset = IntOffset(left.toInt(), 0), dstSize = IntSize(edge, edge), alpha = portraitAlpha)
+                    dstOffset = IntOffset(left.toInt(), top.toInt()), dstSize = IntSize(edge, edge), alpha = portraitAlpha)
                 drawRect(fade, topLeft = Offset(left, 0f),
-                    size = androidx.compose.ui.geometry.Size(edge.toFloat(), size.height))
+                    size = androidx.compose.ui.geometry.Size(size.width - left, size.height))
+                drawRect(lowerFade)
             }
+        }
+    }
+}
+
+/** Shared filter commands for P3R lists, with wrapping and complete tab semantics. */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+internal fun SubmergedFilters(options: List<String>, selected: String, onSelect: (String) -> Unit) {
+    val colors = MaterialTheme.colorScheme
+    val style = MaterialTheme.typography.titleMedium.withSkinFont(LocalSkin.current.type.display)
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = Modifier.fillMaxWidth().selectableGroup()) {
+        options.forEach { label ->
+            val active = selected == label
+            Text(label, style = style, color = if (active) colors.primary else colors.secondary,
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                modifier = Modifier.selectable(active, role = Role.Tab, onClick = { onSelect(label) })
+                    .heightIn(min = 48.dp).widthIn(min = 48.dp).drawWithCache {
+                        onDrawBehind {
+                            if (active) drawLine(colors.tertiary, Offset(0f, size.height),
+                                Offset(size.width, size.height), 2.dp.toPx())
+                        }
+                    }.padding(horizontal = 4.dp, vertical = 12.dp))
         }
     }
 }

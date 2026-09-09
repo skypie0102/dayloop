@@ -98,6 +98,16 @@ Supplied images do not establish enlarged-text, TalkBack, navigation or motion
 acceptance, and the revised screens still need fresh visual review. Continue
 UI implementation without repeated emulator diagnosis, as requested.
 
+The follow-up device batch confirms the new completion, collapsed achievement,
+answer and Settings treatments. It also shows Perfect Day covering the task
+area and a visible portrait rectangle in the header. The next refinement moves
+Perfect Day into the measured day-control rail, blends a larger portrait crop,
+and adapts Requests to narrow windows with shared filter commands and readable
+dates. See the [follow-up review](p3r-redesign-baseline.md#follow-up-device-review--september-9-2026).
+Expanded achievements, Social Link detail, enlarged text and the revised rail/
+header/Requests rendering still need visual evidence; screenshots alone do not
+close interaction or persistence gates.
+
 ## Verified repository starting point
 
 Counts below come from the bundled JSON, not the older README phase summaries.
