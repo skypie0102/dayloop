@@ -181,6 +181,7 @@ fun TodayScreen(
         if (skin.hasSkin && motif != null && !animationsDisabled) {
             advance = AdvanceFx(
                 motif = motif,
+                dateLabel = formatDate(date, pack.calendar),
                 steps = day?.steps?.mapIndexed { i, step ->
                     step.label to (state.markAt(date, i) == StepMark.DONE)
                 }.orEmpty(),

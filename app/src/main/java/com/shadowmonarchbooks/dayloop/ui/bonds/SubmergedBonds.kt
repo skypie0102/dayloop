@@ -166,34 +166,31 @@ internal fun SubmergedBondDetail(
         item {
             Column(Modifier.fillMaxWidth().background(colors.primaryContainer).padding(14.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text("RANK", style = MaterialTheme.typography.labelSmall, color = colors.onPrimaryContainer)
+                        Text(if (rank > 0 && next == null) "MAX" else "$rank",
+                            style = bondDisplayStyle().copy(fontSize = 48.sp, lineHeight = 50.sp),
+                            color = colors.onPrimaryContainer)
+                    }
                     Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                        Text(bond.label, style = bondDisplayStyle().copy(fontSize = 34.sp, lineHeight = 38.sp),
+                        Text(bond.label, style = bondDisplayStyle().copy(fontSize = 30.sp, lineHeight = 34.sp),
                             color = colors.onPrimaryContainer, modifier = Modifier.semantics { heading() })
                         bond.characterLabel?.let {
                             Text(it, style = MaterialTheme.typography.bodyLarge, color = colors.onPrimaryContainer)
                         }
-                        Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Text(if (rank > 0 && next == null) "MAX" else "$rank",
-                                style = bondDisplayStyle().copy(fontSize = 56.sp, lineHeight = 60.sp),
-                                color = colors.onPrimaryContainer)
-                            Text("RANK", style = MaterialTheme.typography.labelLarge,
-                                color = colors.onPrimaryContainer, modifier = Modifier.padding(bottom = 6.dp))
-                        }
                     }
                     bitmap?.let {
                         Image(it, contentDescription = portrait?.title, contentScale = ContentScale.Fit,
-                            modifier = Modifier.width(76.dp).heightIn(max = 126.dp))
+                            modifier = Modifier.width(56.dp).heightIn(max = 88.dp))
                     }
                 }
-                Text(if (next == null && rank > 0) "All authored ranks reached." else "Next: rank ${next?.rank ?: 1}",
-                    style = MaterialTheme.typography.labelLarge, color = colors.onPrimaryContainer)
             }
         }
         item {
             Column(Modifier.padding(vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 SkinSectionHeader("Rank route")
-                Text("Choose a rank for its requirements and walkthrough date.",
+                Text("Select a rank for details.",
                     style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
             }
         }
@@ -210,7 +207,10 @@ internal fun SubmergedBondDetail(
                 ) {
                     Text("${step.rank}", style = bondDisplayStyle(), color = ink)
                     Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                        Text(step.scheduledFor?.let { formatDate(it, pack.calendar) } ?: "Availability & guidance",
+                        Text(step.scheduledFor?.let { formatDate(it, pack.calendar) }
+                            ?: step.availableFrom?.let { "From ${formatDate(it, pack.calendar)}" }
+                            ?: step.availableUntil?.let { "Until ${formatDate(it, pack.calendar)}" }
+                            ?: "Rank ${step.rank}",
                             style = MaterialTheme.typography.titleMedium, color = ink)
                         Text(when {
                             step.rank <= rank -> "Reached"
