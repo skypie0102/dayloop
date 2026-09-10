@@ -123,7 +123,10 @@ class SubmergedDailyTest {
         val doneBounds = compose.onNodeWithText("Done").fetchSemanticsNode().boundsInRoot
         val skipBounds = compose.onNodeWithText("Skip").fetchSemanticsNode().boundsInRoot
         assertTrue("commands must be beside the instruction", doneBounds.left >= taskBounds.right)
-        assertEquals("commands share the right edge", doneBounds.right, skipBounds.right, 1f)
+        assertTrue("Skip follows Done horizontally", skipBounds.left >= doneBounds.right)
+        assertEquals("commands share a row", doneBounds.center.y, skipBounds.center.y, 1f)
+        compose.onNodeWithText("Done").assertWidthIsEqualTo(40.dp).assertHeightIsEqualTo(40.dp)
+        compose.onNodeWithText("Skip").assertWidthIsEqualTo(40.dp).assertHeightIsEqualTo(40.dp)
         compose.onNodeWithText("Done").performClick().assertIsSelected()
         assertEquals(StepMark.DONE, selected)
         compose.onNodeWithText("Done").performClick().assertIsNotSelected()
@@ -146,9 +149,21 @@ class SubmergedDailyTest {
         val title = compose.onNodeWithTag("p3r-toolbar-title").fetchSemanticsNode().boundsInRoot
         val date = compose.onNodeWithTag("p3r-toolbar-date").fetchSemanticsNode().boundsInRoot
         compose.onNodeWithText("TODAY").assertIsDisplayed()
+        compose.onNodeWithTag("p3r-toolbar-title").assertHeightIsEqualTo(64.dp)
         compose.onNodeWithText("Tue, Apr 21").assertIsDisplayed()
         assertTrue("date must sit beside the title", date.left >= title.right)
         assertEquals("one header line", title.center.y, date.center.y, 1f)
         capture("p3r-pinned-title-large-text")
+    }
+
+    @Test fun settingsBackReplacesTheTrailingCog() {
+        var wentBack = false
+        show { SubmergedTopBar("Settings", true, { wentBack = true }, {}, false, {}) }
+        compose.onNodeWithContentDescription("Settings").assertDoesNotExist()
+        val title = compose.onNodeWithTag("p3r-toolbar-title").fetchSemanticsNode().boundsInRoot
+        val back = compose.onNodeWithContentDescription("Back").fetchSemanticsNode().boundsInRoot
+        assertTrue("Back occupies the right utility slot", back.left >= title.right)
+        compose.onNodeWithContentDescription("Back").performClick()
+        assertTrue(wentBack)
     }
 }
