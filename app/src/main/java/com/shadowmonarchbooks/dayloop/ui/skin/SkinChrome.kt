@@ -147,7 +147,7 @@ fun SkinTopBar(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .heightIn(min = 64.dp)
+                        .heightIn(min = PersonaToolbarHeight)
                         .drawBehind {
                             drawLine(
                                 color = colors.onBackground,

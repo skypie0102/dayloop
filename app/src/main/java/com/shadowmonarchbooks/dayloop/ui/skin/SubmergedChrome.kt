@@ -160,16 +160,18 @@ internal fun SubmergedTopBar(
 ) {
     val colors = MaterialTheme.colorScheme
     val titleParts = title.split(" · ", limit = 2)
+    val settingsBack = !settingsEnabled && canGoBack
+    val titleMargin = with(LocalDensity.current) { 3f.toDp() }
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(2.dp),
         modifier = Modifier
             .fillMaxWidth()
             .submergedMenuArt()
-            .height(64.dp)
-            .padding(start = 12.dp, end = 4.dp),
+            .height(PersonaToolbarHeight)
+            .padding(start = titleMargin, end = 4.dp),
     ) {
-        if (canGoBack) {
+        if (canGoBack && !settingsBack) {
             IconButton(onClick = onBack) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = colors.onBackground)
             }
@@ -190,11 +192,11 @@ internal fun SubmergedTopBar(
                         platformStyle = PlatformTextStyle(includeFontPadding = false),
                     ),
                     fillHeight = true,
-                    modifier = Modifier.weight(1f).height(64.dp).testTag("p3r-toolbar-title").semantics { heading() },
+                    modifier = Modifier.weight(1f).height(PersonaToolbarHeight).testTag("p3r-toolbar-title").semantics { heading() },
                 )
                 if (context != null) {
                     SubmergedHeaderLettering(context, contextStyle, fillHeight = false,
-                        modifier = Modifier.width(contextWidth).height(64.dp).testTag("p3r-toolbar-date"))
+                        modifier = Modifier.width(contextWidth).height(PersonaToolbarHeight).testTag("p3r-toolbar-date"))
                 }
             }
         }
@@ -202,11 +204,12 @@ internal fun SubmergedTopBar(
             IconButton(onClick = onOpenSearch) {
                 Icon(Icons.Filled.Search, "Search", tint = colors.onBackground)
             }
-            IconButton(onClick = onOpenSettings, enabled = settingsEnabled) {
+            IconButton(onClick = if (settingsBack) onBack else onOpenSettings,
+                enabled = settingsBack || settingsEnabled) {
                 Icon(
-                    Icons.Filled.Settings,
-                    "Settings",
-                    tint = colors.onBackground.copy(alpha = if (settingsEnabled) 1f else 0.38f),
+                    if (settingsBack) Icons.AutoMirrored.Filled.ArrowBack else Icons.Filled.Settings,
+                    if (settingsBack) "Back" else "Settings",
+                    tint = colors.onBackground.copy(alpha = if (settingsBack || settingsEnabled) 1f else 0.38f),
                 )
             }
         }
@@ -233,12 +236,12 @@ private fun SubmergedHeaderLettering(label: String, style: TextStyle, fillHeight
         // so the last letter survives even in ACHIEVEMENTS and narrow windows.
         val overhang = if (fillHeight) fontPx * 0.10f else 0f
         val sy = if (fillHeight) (size.height - 4.dp.toPx()) / ink.height().coerceAtLeast(1) else 1f
-        val sx = minOf(sy, size.width / (layout.size.width + overhang).coerceAtLeast(1f))
+        val sx = minOf(sy, size.width / (layout.size.width - ink.left + overhang).coerceAtLeast(1f))
         val top = (size.height - ink.height() * sy) / 2f
         onDrawBehind {
             translate(left = 0f, top = top) {
                 scale(sx, sy, pivot = Offset.Zero) {
-                    drawText(layout, topLeft = Offset(overhang * 0.3f, -layout.firstBaseline - ink.top))
+                    drawText(layout, topLeft = Offset(-ink.left.toFloat(), -layout.firstBaseline - ink.top))
                 }
             }
         }

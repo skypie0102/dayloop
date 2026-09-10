@@ -313,7 +313,7 @@ private fun MarkButton(
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
-                .size(40.dp)
+                .size(com.shadowmonarchbooks.dayloop.ui.skin.PersonaTaskMarkSize)
                 .clickable {
                     feedback()
                     onToggle(mark)

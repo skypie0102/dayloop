@@ -2,6 +2,9 @@ package com.shadowmonarchbooks.dayloop.ui.skin
 
 import android.content.res.AssetManager
 import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import android.graphics.BlurMaskFilter
+import android.graphics.Paint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -22,6 +25,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
@@ -47,7 +52,13 @@ internal fun nextPerfectDayArt(slots: Collection<String>, previous: String?, ran
     return candidates.randomOrNull(random)
 }
 
-private data class CelebrationArt(val image: ImageBitmap, val visible: IntRect, val character: String)
+private data class CelebrationArt(
+    val image: ImageBitmap,
+    val visible: IntRect,
+    val character: String,
+    val shadow: ImageBitmap,
+    val shadowOffset: IntOffset,
+)
 
 /** Decode just the chosen original. Trim transparent padding at draw time, never edit its pixels. */
 private fun loadCelebrationArt(assets: AssetManager, path: String, slot: String): CelebrationArt? = runCatching {
@@ -67,8 +78,18 @@ private fun loadCelebrationArt(assets: AssetManager, path: String, slot: String)
         }
     }
     if (right < left || bottom < top) return@runCatching null
+    val visible = IntRect(left, top, right + 1, bottom + 1)
+    val cropped = Bitmap.createBitmap(bitmap, left, top, visible.width, visible.height)
+    val offset = IntArray(2)
+    // Build a soft alpha-only shadow once, off the UI thread. Original colors
+    // and transparency remain intact; no rectangular elevation shadow is used.
+    val shadow = cropped.extractAlpha(Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        maskFilter = BlurMaskFilter(maxOf(visible.width, visible.height) * 0.018f, BlurMaskFilter.Blur.NORMAL)
+    }, offset)
+    if (cropped !== bitmap) cropped.recycle()
     CelebrationArt(bitmap.asImageBitmap(), IntRect(left, top, right + 1, bottom + 1),
-        slot.removePrefix("perfect-day-").replaceFirstChar { it.uppercase() })
+        slot.removePrefix("perfect-day-").replaceFirstChar { it.uppercase() },
+        shadow.asImageBitmap(), IntOffset(offset[0], offset[1]))
 }.getOrNull()
 
 /** Transparent artwork floats at the screen center; only its own bounds dismiss it. */
@@ -109,20 +130,34 @@ internal fun SubmergedPerfectDaySplash(allDone: Boolean, key: Any?, suppressed: 
             BoxWithConstraints(Modifier.widthIn(max = 480.dp).fillMaxWidth()) {
                 val ratio = selected.visible.width.toFloat() / selected.visible.height
                 val heightLimit = (maxHeight * 0.6f).coerceIn(48.dp, 280.dp)
-                val height = (maxWidth / ratio).coerceIn(48.dp, heightLimit)
+                val height = ((maxWidth - 24.dp) / ratio + 24.dp).coerceIn(48.dp, heightLimit)
                 Canvas(Modifier.fillMaxWidth().height(height)
                     .clickable(role = Role.Button, onClickLabel = "Dismiss perfect day", onClick = { show = false })
                     .semantics {
                         contentDescription = "Perfect day · ${selected.character}"
                         liveRegion = LiveRegionMode.Polite
                     }.testTag("submerged-perfect-day")) {
-                    val scale = minOf(size.width / selected.visible.width, size.height / selected.visible.height)
+                    val inset = 12.dp.toPx()
+                    val scale = minOf((size.width - inset * 2).coerceAtLeast(1f) / selected.visible.width,
+                        (size.height - inset * 2).coerceAtLeast(1f) / selected.visible.height)
                     val widthPx = (selected.visible.width * scale).roundToInt().coerceAtLeast(1)
                     val heightPx = (selected.visible.height * scale).roundToInt().coerceAtLeast(1)
+                    val origin = IntOffset(((size.width - widthPx) / 2).roundToInt(), ((size.height - heightPx) / 2).roundToInt())
+                    drawImage(selected.shadow,
+                        dstOffset = IntOffset(origin.x + (selected.shadowOffset.x * scale).roundToInt(),
+                            origin.y + (selected.shadowOffset.y * scale + 3.dp.toPx()).roundToInt()),
+                        dstSize = IntSize((selected.shadow.width * scale).roundToInt().coerceAtLeast(1),
+                            (selected.shadow.height * scale).roundToInt().coerceAtLeast(1)),
+                        colorFilter = ColorFilter.tint(Color.Black), alpha = 0.95f)
                     drawImage(selected.image,
                         srcOffset = IntOffset(selected.visible.left, selected.visible.top),
                         srcSize = IntSize(selected.visible.width, selected.visible.height),
-                        dstOffset = IntOffset(((size.width - widthPx) / 2).roundToInt(), ((size.height - heightPx) / 2).roundToInt()),
+                        dstOffset = origin.copy(y = origin.y + 1.dp.toPx().roundToInt()),
+                        dstSize = IntSize(widthPx, heightPx), colorFilter = ColorFilter.tint(Color.Black), alpha = 0.7f)
+                    drawImage(selected.image,
+                        srcOffset = IntOffset(selected.visible.left, selected.visible.top),
+                        srcSize = IntSize(selected.visible.width, selected.visible.height),
+                        dstOffset = origin,
                         dstSize = IntSize(widthPx, heightPx))
                 }
             }
