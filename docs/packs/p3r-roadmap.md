@@ -6,6 +6,18 @@ Status: **active — P3R-1 daily screen and Android flow validation in progress*
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
 
+## September 12 continuation: actionable Tartarus guidance
+
+Continued on `skypie0102/dayloop` from the migrated P3R development branch.
+Added 19 inline Tips covering tutorial/main climbs, all eight rescue batches,
+carried Arcana and late-game request obligations. Dungeon tasks now have explicit
+Tartarus/Full Moon evening headings without creating a new time slot. Existing
+labels, order, indices and event anchors are preserved; P3R content version is 10.
+See the [guidance audit and remaining gaps](../audits/p3r-tartarus-guidance.md).
+The full walkthrough milestone remains open, including boss strategies, Social
+Link answer text and complete request solutions. Build/packlint and visual
+acceptance remain required; this content pass does not close UI acceptance.
+
 ## September 9 follow-up: centered artwork, compact header and backups
 
 The latest user feedback supersedes the earlier Perfect Day rail placement.

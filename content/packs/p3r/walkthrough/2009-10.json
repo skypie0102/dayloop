@@ -25,7 +25,9 @@
         {
           "label": "Tartarus — Tziah introduces the scripted Dark Zone tutorial; it does not count for The Horror of the Shade, which requires a later random Dark Zone",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Climb to the 144F border. Gatekeepers: 125F, 126F, 132F, 136F.\n\nRescue Bunkichi and the other two missing people on 120F, 135F and 140F. Their last actionable rescue date is October 3; Bunkichi's rescue also protects the Hierophant route.\n\nThe scripted Dark Zone tutorial does not satisfy The Horror of the Shade. Keep that achievement unconfirmed until you experience a later random Dark Zone. Check that you have actually used everyone's Theurgy for The Strength of Our Hearts.\n\nLeave carrying Priestess, Hierophant, Lovers, Star and Moon Personas for the route through November 2.",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },
@@ -78,7 +80,8 @@
         {
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "groupLabel": "Full Moon · Evening"
         }
       ]
     },

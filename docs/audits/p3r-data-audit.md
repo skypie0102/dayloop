@@ -7,6 +7,12 @@ The audit follows the same route-vs-game-fact discipline used by the P5R audit.
 
 ## Status
 
+September 12 continuation: [Tartarus guidance pass](p3r-tartarus-guidance.md)
+adds inline instructions for every audited rescue batch, climb/preparation Tips
+and evening dungeon headings. It preserves all task keys and advances P3R to
+content version 10. Full combat strategies and remaining route-detail work are
+still open; the baseline audit below is not a claim of instructional completeness.
+
 **The P3R baseline route audit is corrected and regression-protected from April
 through the January 31 Promised Day, including the February-to-March epilogue
 calendar transition.** Social Links, answers, exams, Social Stat point units,

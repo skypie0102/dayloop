@@ -54,7 +54,9 @@
         {
           "label": "Tartarus — clearing the 91F Monad Passage rewards the Temperance Tarot (the schedule never spends it on Arcana Bursts)",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Climb to the 92F border. Gatekeepers: 77F, 82F, 90F.\n\nRescue the missing people on 79F and 84F before leaving. Their last actionable rescue date is August 5.\n\nComplete the fixed 91F Monad Passage for the Temperance Tarot. A different Monad encounter does not satisfy that specific objective. The route does not rely on Temperance's bonus for its social-stat totals.\n\nLeave carrying Priestess, Strength, Justice, Tower, Star and Moon Personas for the route through September 4.",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },
@@ -99,7 +101,8 @@
         {
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "groupLabel": "Full Moon · Evening"
         }
       ]
     },
