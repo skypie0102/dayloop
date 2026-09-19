@@ -20,6 +20,9 @@ class P3rRequestsTest {
         val requests = catalog.requests
         assertEquals((1..101).toList(), requests.map { it.number })
         assertEquals(14, requests.count { it.deadline != null })
+        assertEquals(37, requests.count { it.solution != null })
+        assertTrue(requests.filter { it.deadline != null || it.completionEvent != null }
+            .all { !it.solution.isNullOrBlank() }, "Every timed or automatically reported request needs guidance")
         val media = assertNotNull(loaded.media).media.associateBy { it.id }
         val achievements = assertNotNull(loaded.achievements).achievements
         assertEquals(48, achievements.size)

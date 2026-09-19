@@ -283,6 +283,12 @@ class SubmergedAppFlowTest {
         launch("2009-05-18", scale = 1.5f)
         tab("Requests").performClick()
         openRequest("Bring me pine resin")
+        val solution = dependencies.store().state.value.selected!!.requests!!.requests
+            .single { it.number == 12 }.solution!!
+        compose.onNodeWithText("How to complete").performScrollTo().assertIsDisplayed()
+        compose.onNodeWithText(solution).performScrollTo().assertIsDisplayed()
+        // Reading instructions must not accept or report a request.
+        assertTrue(runBlocking { dependencies.repo().requestStages(profileId).first().isEmpty() })
         compose.onNodeWithText("Report by ${formatDate("2009-06-06", dependencies.store().state.value.selected!!.calendar)}")
             .performScrollTo().assertIsDisplayed()
         capture("p3r-app-request-large-text")

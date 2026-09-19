@@ -6,6 +6,17 @@ Status: **active — P3R-1 daily screen and Android flow validation in progress*
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
 
+## September 19 continuation: request instructions
+
+Added an optional generic request `solution` field and visible instructions in
+expanded request details. P3R now authors 37 solutions from its audited route,
+covering every timed hand-in and exact reporting anchor. Kept all request IDs,
+cutoffs, route links, event anchors and saved task keys intact; content version 11.
+See [coverage and remaining gaps](../audits/p3r-request-guidance.md). The previous
+Tartarus pass's full and isolated Android visual-review jobs both passed.
+Full boss strategies remain open: source retrieval in this session did not
+provide usable verified battle guidance, so no speculative strategies were added.
+
 ## September 12 continuation: actionable Tartarus guidance
 
 Continued on `skypie0102/dayloop` from the migrated P3R development branch.

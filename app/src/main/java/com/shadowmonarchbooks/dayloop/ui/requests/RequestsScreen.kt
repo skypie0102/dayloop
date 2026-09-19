@@ -151,6 +151,12 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
                                     style = MaterialTheme.typography.labelLarge,
                                     color = if (passed) colors.error else colors.secondary)
                             }
+                            request.solution?.let { solution ->
+                                Text("How to complete", style = MaterialTheme.typography.labelLarge,
+                                    color = colors.secondary)
+                                Text(solution, style = MaterialTheme.typography.bodyMedium,
+                                    modifier = Modifier.testTag("request-solution-${request.id}"))
+                            }
                             Text(if (automatic) "Reported by the walkthrough. To reverse this, uncheck the linked hand-in task."
                                 else "Check ${catalog.issuer} for availability and prerequisites. Select the current stage; tap it again to clear.",
                                 style = MaterialTheme.typography.bodyMedium)

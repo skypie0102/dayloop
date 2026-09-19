@@ -472,6 +472,7 @@ object PackLoader {
             val dates = walkthroughs.flatMap { it.file.days }.map { it.date }.toSet()
             requests.requests.forEach { request ->
                 if (request.id.isBlank() || '=' in request.id || request.title.isBlank() || request.number <= 0) requestIssue("invalid request identity")
+                if (request.solution?.isBlank() == true) requestIssue("${request.id}: solution must not be blank")
                 request.completionEvent?.let { event ->
                     if (event !in events) requestIssue("${request.id}: missing completion event")
                     if (events[event]?.date !in request.routeDates) requestIssue("${request.id}: reporting task needs a route link")

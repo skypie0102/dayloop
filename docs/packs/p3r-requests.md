@@ -7,6 +7,12 @@ and Today/Day retain their answer access. P5R keeps its Mementos destination.
 
 ## Data and behavior
 
+September 19 continuation: 37 requests now show authored solutions before their
+tracking controls, including all 14 timed requests and all 24 with exact reporting
+anchors. See the [coverage/evidence record](../audits/p3r-request-guidance.md).
+Missing solutions retain the existing issuer/availability guidance. Completion
+rules, route links and saved stages are unchanged. P3R content version is 11.
+
 - 101 numbered Journey requests; Episode Aigis is outside this pack.
 - 14 reporting dates reused from the audited P3R deadline catalog.
 - 40 requests link to explicit numbered mentions in the unchanged walkthrough.

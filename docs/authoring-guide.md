@@ -342,6 +342,13 @@ bottom tab with a request tracker while retaining daily answer access. Declare
 Optional `deadline` is a verified reporting cutoff; `routeDates` links to existing
 walkthrough dates, including preparation. They never imply completion.
 
+An optional `solution` contains independently written, verified completion
+instructions. It appears in expanded request details before the stage controls.
+Omit it when guidance is not verified; a supplied blank string is invalid.
+Explain prerequisites and pickup/reporting separately, and distinguish route
+preparation dates from game availability. This field never changes saved stages
+or provides automatic completion evidence.
+
 For safe automation, an optional `completionEvent` references one entry in the
 file's `events` list (the same date/labelContains/routeId anchor contract used by
 achievements). It must resolve exactly one actual reporting task. An acceptance,

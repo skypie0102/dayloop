@@ -8,7 +8,8 @@
       "title": "Bring me a Muscle Drink",
       "routeDates": [
         "2009-05-10"
-      ]
+      ],
+      "solution": "Buy a Muscle Drink from Aohige Pharmacy at Paulownia Mall and keep it for Elizabeth. This route buys it during the April 25 Saturday sale and reports the request on May 10. Buying the drink is preparation; bring it to Elizabeth to finish."
     },
     {
       "id": "p3r.request.002",
@@ -17,7 +18,8 @@
       "routeDates": [
         "2009-05-10"
       ],
-      "completionEvent": "p3r.request.reported.002"
+      "completionEvent": "p3r.request.reported.002",
+      "solution": "Open the purple chest at Thebel's 22F border and keep Old Document 01. The route collects it on April 23, then hands it to Elizabeth on May 10 for ¥10,000. Reaching the border without collecting and reporting the document does not finish the request."
     },
     {
       "id": "p3r.request.003",
@@ -55,7 +57,8 @@
       "title": "I’d like to try all kinds of drinks",
       "routeDates": [
         "2009-05-10"
-      ]
+      ],
+      "solution": "After Request #1, collect 12 different vending-machine drinks. Use Dorm 2F, Dorm 3F, Port Island Station and Iwatodai Strip Mall 3F. The Iwatodai Station selection duplicates Dorm 2F, so extra copies do not replace missing varieties. Bring the complete set to Elizabeth."
     },
     {
       "id": "p3r.request.010",
@@ -63,7 +66,8 @@
       "title": "I’d like to try a beef bowl",
       "routeDates": [
         "2009-06-04"
-      ]
+      ],
+      "solution": "Buy the Umiushi Fan Book for ¥450 at MangaStar Net Café and read it on the dorm's shared computer. Then buy an Umiushi Beef Bowl from Umiushi Beef Bowls on Iwatodai Strip Mall 3F and bring it to Elizabeth. The route purchases the bowl on June 4; reading the book only enables the purchase."
     },
     {
       "id": "p3r.request.011",
@@ -71,7 +75,8 @@
       "title": "Please prevail in the Big Eater Challenge",
       "routeDates": [
         "2009-05-10"
-      ]
+      ],
+      "solution": "Accept the request after the route's drink hand-in, then take the Big Eater Challenge at Wilduck Burger. Choose options 2 → 1 → 2: look away from the burgers, eat without stopping, and imagine something sour. After winning, report to Elizabeth; accepting the challenge is not completion."
     },
     {
       "id": "p3r.request.012",
@@ -81,7 +86,8 @@
       "routeDates": [
         "2009-05-10"
       ],
-      "completionEvent": "p3r.request.reported.012"
+      "completionEvent": "p3r.request.reported.012",
+      "solution": "Accept the request before asking Yukari at the dorm for Pine Resin. Bring the resin back to Elizabeth by June 6. The route handles collection and reporting on May 10; do not stop after receiving the item."
     },
     {
       "id": "p3r.request.013",
@@ -91,7 +97,8 @@
       "routeDates": [
         "2009-05-10"
       ],
-      "completionEvent": "p3r.request.reported.013"
+      "completionEvent": "p3r.request.reported.013",
+      "solution": "Finish Request #12, then accept this request and ask Junpei at the dorm for the Handheld Game Console. Return it to Elizabeth by June 6. The route completes the chain on May 10."
     },
     {
       "id": "p3r.request.014",
@@ -99,7 +106,8 @@
       "title": "Retrieve the Second Old Document",
       "routeDates": [
         "2009-05-24"
-      ]
+      ],
+      "solution": "Collect Old Document 02 at the 43F border during the May 24 climb, then hand it to Elizabeth for ¥20,000. Keep the document until the hand-in; the reward only counts toward your budget after reporting."
     },
     {
       "id": "p3r.request.015",
@@ -132,7 +140,8 @@
       "title": "Bring me some potent medicine",
       "routeDates": [
         "2009-06-15"
-      ]
+      ],
+      "solution": "Accept the request and visit the school Nurse's Office for Potent Medicine. This route schedules the pickup on June 15. Keep the medicine and return it to Elizabeth; the pickup task alone is not a completed hand-in."
     },
     {
       "id": "p3r.request.021",
@@ -171,7 +180,8 @@
       "deadline": "2009-07-05",
       "routeDates": [
         "2009-06-14"
-      ]
+      ],
+      "solution": "Accept the request, ask Mitsuru at the dorm for the Fencing Epee, then hand it to Elizabeth. Finish by July 5. The route does this on June 14 and follows it with Request #28."
     },
     {
       "id": "p3r.request.028",
@@ -180,7 +190,8 @@
       "deadline": "2009-07-05",
       "routeDates": [
         "2009-06-14"
-      ]
+      ],
+      "solution": "Report Request #27 first, then accept this request. Ask Akihiko at the dorm for Amateur Protein and bring it back to Elizabeth by July 5. The route completes both requests on June 14."
     },
     {
       "id": "p3r.request.029",
@@ -192,7 +203,8 @@
         "2009-06-27",
         "2009-06-28"
       ],
-      "completionEvent": "p3r.request.reported.029"
+      "completionEvent": "p3r.request.reported.029",
+      "solution": "Accept the request on the June 14 route visit. During the June 27 Tartarus climb, obtain a Black Quartz from a Formidable Shadow or the relevant rescue reward. Keep it for the discounted fashionable-item purchase at Club Escapade on June 28, then take the item to Elizabeth by July 5. The Quartz itself is not the requested item."
     },
     {
       "id": "p3r.request.030",
@@ -242,7 +254,8 @@
         "2009-07-01",
         "2009-07-09"
       ],
-      "completionEvent": "p3r.request.reported.038"
+      "completionEvent": "p3r.request.reported.038",
+      "solution": "Read the School X Site Note to unlock Lukewarm Taiyaki at the School Store, then buy one and chill it in the dorm kitchen fridge. The route places one on June 30 and retrieves the Chilled Taiyaki on July 1. Save it, accept Request #38 on July 9, and hand it to Elizabeth."
     },
     {
       "id": "p3r.request.039",
@@ -251,7 +264,8 @@
       "routeDates": [
         "2009-07-09"
       ],
-      "completionEvent": "p3r.request.reported.039"
+      "completionEvent": "p3r.request.reported.039",
+      "solution": "Accept the request before entering Gekkoukan High's PA Room. Obtain the Gekkoukan Boogie CD there, then bring it back to Elizabeth. The route completes this on July 9."
     },
     {
       "id": "p3r.request.040",
@@ -262,7 +276,8 @@
         "2009-07-12",
         "2009-07-18"
       ],
-      "completionEvent": "p3r.request.reported.040"
+      "completionEvent": "p3r.request.reported.040",
+      "solution": "Accept the request, then buy the ¥9,800 Max Safety Shoes set from TV Shopping on July 12. Wait for delivery and show Elizabeth the shoes; the route reports them on July 18. Placing the order is only preparation. Reporting this request opens the route's next autograph request."
     },
     {
       "id": "p3r.request.041",
@@ -270,7 +285,8 @@
       "title": "Bring me the Mysterious Person’s Autograph",
       "routeDates": [
         "2009-07-18"
-      ]
+      ],
+      "solution": "After reporting Request #40, accept this request. Bring Tanaka's Signature, obtained from starting the Devil Social Link, to Elizabeth. The route hands it over on July 18; the autograph must already be in your inventory."
     },
     {
       "id": "p3r.request.042",
@@ -282,7 +298,8 @@
         "2009-07-11",
         "2009-07-13"
       ],
-      "completionEvent": "p3r.request.reported.042"
+      "completionEvent": "p3r.request.reported.042",
+      "solution": "Accept the request and buy four Super Cat Food at Aohige Pharmacy. Feed the weak cat at the Station Outskirts on four separate visits; this route uses July 9, 10, 11 and 13. After the fourth feeding, report to Elizabeth. Buying all four portions or feeding the cat once does not finish the request."
     },
     {
       "id": "p3r.request.043",
@@ -292,7 +309,8 @@
       "routeDates": [
         "2009-07-09"
       ],
-      "completionEvent": "p3r.request.reported.043"
+      "completionEvent": "p3r.request.reported.043",
+      "solution": "Accept the request, then speak to Fuuka at the dorm for the Poinsettia. Return it to Elizabeth by August 4. The route obtains and reports it on July 9; keep the item until the hand-in."
     },
     {
       "id": "p3r.request.044",
@@ -305,7 +323,8 @@
         "2009-07-21",
         "2009-07-23"
       ],
-      "completionEvent": "p3r.request.reported.044"
+      "completionEvent": "p3r.request.reported.044",
+      "solution": "Accept this request before the Yakushima trip so the beach-item interaction is available. Collect a Pretty Seashell or another beach souvenir on July 20 or 21. After returning, bring it to Elizabeth; the route reports on July 23, before the August 4 cutoff."
     },
     {
       "id": "p3r.request.045",
@@ -348,7 +367,8 @@
       "title": "I’d Like to Try a Home-Cooked Meal",
       "routeDates": [
         "2009-06-17"
-      ]
+      ],
+      "solution": "Save the Iron-Athlete Meal from the route's June 17 cooking hangout with Akihiko. Once this request is available and accepted, bring the saved meal to Elizabeth. The early cooking date is preparation, not the request's unlock date or a report."
     },
     {
       "id": "p3r.request.053",
@@ -367,7 +387,8 @@
         "2009-08-09",
         "2009-08-20"
       ],
-      "completionEvent": "p3r.request.reported.054"
+      "completionEvent": "p3r.request.reported.054",
+      "solution": "Accept the request, then check Naganaki Shrine's Monetary Offering three times. The route uses August 8, August 9 and August 20; these checks do not consume the daytime slot. On the third visit, take the found 500-yen bill to Elizabeth. The request title does not require one hundred actual visits."
     },
     {
       "id": "p3r.request.055",
@@ -376,7 +397,8 @@
       "routeDates": [
         "2009-09-01"
       ],
-      "completionEvent": "p3r.request.reported.055"
+      "completionEvent": "p3r.request.reported.055",
+      "solution": "Max a Social Link and retain its max-rank item. This route uses the item obtained when Devil reaches MAX on September 1. Show it to Elizabeth to report the request; a lower Social Link rank is not enough."
     },
     {
       "id": "p3r.request.056",
@@ -395,7 +417,8 @@
       "deadline": "2009-08-31",
       "routeDates": [
         "2009-08-08"
-      ]
+      ],
+      "solution": "Accept the request and take Elizabeth's Wrapped Bandage. Trade it at Port Island Station Outskirts for the Student Handbook; trade the handbook at Port Island Station for Irresistible Catnip; trade the catnip to the cat-loving boy at Iwatodai Strip Mall for the Cat Ear Headband. Return the headband to Elizabeth by August 31. The route completes the chain on August 8."
     },
     {
       "id": "p3r.request.059",
@@ -450,7 +473,8 @@
       "routeDates": [
         "2009-09-10"
       ],
-      "completionEvent": "p3r.request.reported.068"
+      "completionEvent": "p3r.request.reported.068",
+      "solution": "Accept the request before speaking to Shinjiro at the dorm for the Fruit Knife. Return it to Elizabeth by October 2. The route reports it on September 10, then starts Request #69."
     },
     {
       "id": "p3r.request.069",
@@ -460,7 +484,8 @@
       "routeDates": [
         "2009-09-10"
       ],
-      "completionEvent": "p3r.request.reported.069"
+      "completionEvent": "p3r.request.reported.069",
+      "solution": "Finish Request #68 before accepting this request. Ask Aigis at the dorm for Machine Oil, then return it to Elizabeth by October 2. The route completes the chain on September 10."
     },
     {
       "id": "p3r.request.070",
@@ -488,7 +513,8 @@
       "title": "I’d Like to Try Sushi",
       "routeDates": [
         "2009-10-06"
-      ]
+      ],
+      "solution": "Accept the request before inspecting the Inari at Naganaki Shrine. Collect Inari Sushi and return it to Elizabeth. The route handles this on October 6; visiting the shrine without the accepted request is not the instructed pickup."
     },
     {
       "id": "p3r.request.075",
@@ -504,7 +530,8 @@
         "2009-10-19",
         "2009-10-20"
       ],
-      "completionEvent": "p3r.request.reported.075"
+      "completionEvent": "p3r.request.reported.075",
+      "solution": "Accept the request before beginning the Faculty Office visits. Make eight visits: this route uses October 6, 7, 8, 9, 10, 17, 19 and 20. Receive Kanetsugu's Helm on the eighth visit and hand it to Elizabeth. Earlier visits advance the chain but do not finish it."
     },
     {
       "id": "p3r.request.076",
@@ -515,7 +542,8 @@
         "2009-10-06",
         "2009-10-07"
       ],
-      "completionEvent": "p3r.request.reported.076"
+      "completionEvent": "p3r.request.reported.076",
+      "solution": "Accept the request on the October 6 route visit. Speak to Ikutsuki for the Glasses Wipe on October 7 and return it to Elizabeth. Report by November 1; obtaining the wipe is only the pickup stage."
     },
     {
       "id": "p3r.request.077",
@@ -602,7 +630,8 @@
       "routeDates": [
         "2009-11-06"
       ],
-      "completionEvent": "p3r.request.reported.092"
+      "completionEvent": "p3r.request.reported.092",
+      "solution": "Accept the request, enter the Port Island Station restroom, and choose to scrub harder until it is clean. Return to Elizabeth to report the work. The route completes this on November 6."
     },
     {
       "id": "p3r.request.093",
@@ -611,7 +640,8 @@
       "routeDates": [
         "2009-11-06"
       ],
-      "completionEvent": "p3r.request.reported.093"
+      "completionEvent": "p3r.request.reported.093",
+      "solution": "Accept the request, visit Gekkoukan High's rooftop, and water the flowers. Return to Elizabeth to report the work. The route completes this on November 6."
     },
     {
       "id": "p3r.request.094",
@@ -621,7 +651,8 @@
       "routeDates": [
         "2009-11-06"
       ],
-      "completionEvent": "p3r.request.reported.094"
+      "completionEvent": "p3r.request.reported.094",
+      "solution": "Accept the request and talk to Koromaru for Gourmet Dog Food. Bring it to Elizabeth by November 30. The route reports on November 6, then accepts Request #95; do not confuse accepting the next request with completing it."
     },
     {
       "id": "p3r.request.095",
@@ -631,7 +662,8 @@
       "routeDates": [
         "2009-11-06"
       ],
-      "completionEvent": "p3r.request.reported.095"
+      "completionEvent": "p3r.request.reported.095",
+      "solution": "After reporting Request #94, accept this request and ask Ken for the Featherman R action figure. Bring it to Elizabeth by November 30. The route completes the hand-in on November 6."
     },
     {
       "id": "p3r.request.096",
@@ -641,7 +673,8 @@
         "2009-11-06",
         "2009-11-17",
         "2009-11-28"
-      ]
+      ],
+      "solution": "Accept the request and talk to the Friendly Student by the Persimmon Tree before the Kyoto trip. In Kyoto, buy Durian Soda, Jumbo Juice and V6 from the vending machine; keep all three. After returning, trade them with the Friendly Student and pay ¥5,000 for Oden Juice, then take it to Elizabeth. The route prepares on November 6, buys the drinks on November 17, and reports on November 28."
     },
     {
       "id": "p3r.request.097",
@@ -651,7 +684,8 @@
       "routeDates": [
         "2009-12-04"
       ],
-      "completionEvent": "p3r.request.reported.097"
+      "completionEvent": "p3r.request.reported.097",
+      "solution": "Accept the request before speaking to the Eccentric Man on Iwatodai Strip Mall 2F. Show a Thank-You Letter from a rescued Tartarus victim to receive the Christmas Present. Return the present to Elizabeth by December 25. The route completes this on December 4; a rescue or the letter alone is not the hand-in."
     },
     {
       "id": "p3r.request.098",
@@ -661,7 +695,8 @@
         "2010-01-06",
         "2010-01-15"
       ],
-      "completionEvent": "p3r.request.reported.098"
+      "completionEvent": "p3r.request.reported.098",
+      "solution": "Once the request is available, prepare a Masakado that knows Charge and report it to Elizabeth. Check the skill before confirming your fusion. The route plans the report around the January 15 climb; fusing Masakado without Charge does not meet the request."
     },
     {
       "id": "p3r.request.099",
@@ -670,7 +705,8 @@
       "routeDates": [
         "2010-01-15"
       ],
-      "completionEvent": "p3r.request.reported.099"
+      "completionEvent": "p3r.request.reported.099",
+      "solution": "Clear the final Monad Passage on 255F and defeat the Shadow of the Void, then return to Elizabeth to report. The route completes this during the January 15 climb. This is separate from the later solo ultimate-adversary challenge for Request #101."
     },
     {
       "id": "p3r.request.100",
@@ -679,7 +715,8 @@
       "routeDates": [
         "2010-01-21"
       ],
-      "completionEvent": "p3r.request.reported.100"
+      "completionEvent": "p3r.request.reported.100",
+      "solution": "Defeat the Reaper, keep the Bloody Button, and return it to Elizabeth. The route reports this on January 21 and then accepts Request #101. The new acceptance is preparation for a separate fight; it does not report Request #101."
     },
     {
       "id": "p3r.request.101",
