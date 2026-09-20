@@ -7,11 +7,13 @@ and Today/Day retain their answer access. P5R keeps its Mementos destination.
 
 ## Data and behavior
 
-September 19 continuation: 37 requests now show authored solutions before their
+September 19 continuation: 98 requests now show authored solutions before their
 tracking controls, including all 14 timed requests and all 24 with exact reporting
 anchors. See the [coverage/evidence record](../audits/p3r-request-guidance.md).
 Missing solutions retain the existing issuer/availability guidance. Completion
-rules, route links and saved stages are unchanged. P3R content version is 11.
+rules, route links and saved stages are unchanged. P3R content version is 12.
+Requests #7, #91 and #101 still need verified guidance. Request #62's display
+title now spells Titania correctly; its ID is unchanged.
 
 - 101 numbered Journey requests; Episode Aigis is outside this pack.
 - 14 reporting dates reused from the audited P3R deadline catalog.
@@ -41,9 +43,11 @@ Names and request numbers were cross-checked between:
 - [Samurai Gamers main-story request index](https://samurai-gamers.com/persona-3-reload/p3re-elizabeth-request-list/)
 - [RPG Site request guide](https://www.rpgsite.net/guide/15324-persona-3-reload-elizabeth-requests-guide-solutions-rewards-for-every-quest)
 
-Only the numbered catalog was imported from these references. Guide solutions,
-reward tables and prerequisite claims were not copied: RPG Site includes a
-self-referencing prerequisite for request 9, and the sources require reconciliation.
+The initial delivery imported only the numbered catalog. The September 19
+continuations add independently written instructions, using the audited route
+and focused checks against individual guides; the evidence record distinguishes
+conflicting claims and remaining gaps. Reward and prerequisite tables are not
+imported wholesale: RPG Site includes a self-referencing prerequisite for request 9.
 The existing audited route/deadline data remains authoritative for route links
 and the 14 cutoffs in this delivery.
 
@@ -65,7 +69,8 @@ Artwork remains ATLUS / SEGA's. No achievement rule was altered by the icon impo
 
 ## Validation
 
-PR #71 records the current CI and Android results. Added checks cover catalog
+The historical PR #71 recorded the original CI and Android results. Current work
+continues in [PR #1](https://github.com/skypie0102/dayloop/pull/1). Checks cover catalog
 identity, artwork resolution, request filtering, navigation isolation, independent
 preparation/reporting, clearing, activity recreation, profile isolation and reset.
 Exact reporting anchors additionally test DONE/Skip/Later, unchecking, route

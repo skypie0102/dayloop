@@ -10,7 +10,7 @@ field now appears under **How to complete**, before the stage controls.
 The field is descriptive: no progress or reporting behavior reads it.
 Old catalogs decode with `solution = null`; blank authored solutions are rejected.
 
-P3R content version 11 includes **37 solutions**, covering all **14 timed
+The first pass, P3R content version 11, added **37 solutions**, covering all **14 timed
 requests** and all **24 requests with exact automatic reporting anchors**.
 
 | Requests | Guidance |
@@ -40,10 +40,67 @@ Focused external checks on September 19:
   route's existing numeric choices and item sequence. Its conflicting #11 unlock
   claim and self-referencing #9 prerequisite are not imported.
 
-No source reward/prerequisite table is imported wholesale. Request 53 remains
-without a solution: the early route pickup is not enough evidence to resolve the
-precise potato requirement. Request 101 remains without a full solution because
-the solo boss strategy still needs verified battle guidance.
+No source reward/prerequisite table is imported wholesale. The first pass left
+request 53 unresolved; the second pass below identifies the item. Request 101
+remains without a solution because the solo boss strategy still needs verified
+battle guidance.
+
+## Second pass: 98 solutions, content version 12
+
+Added 61 independently written instructions. Request #62's display title now
+spells Titania correctly; its stable identity is unchanged. Existing solutions
+and walkthrough tasks are preserved.
+
+| Requests | Added guidance |
+|---|---|
+| 3, 15, 22, 31, 46, 60 | Shadow totals and reporting |
+| 4, 16, 32, 47 | Chest totals and reporting |
+| 23, 33, 48 | Fusion totals |
+| 5, 24, 49, 61 | Required Persona level and possession |
+| 6, 17, 25, 34, 35, 62, 63, 71, 72, 84, 85, 86, 87 | Persona, skill, inheritance or level requirements |
+| 21, 30, 45, 59, 70, 82, 83 | Document floors and collection before reporting |
+| 26, 51, 65, 73, 89, 90 | Weapon chest locations or antique-shop crafting |
+| 8, 18, 19, 50, 53, 56, 57, 66, 67 | Fortune, purchases, Theurgy, gardening and item trades |
+| 36, 64, 88 | Required block and request drop |
+| 77–81 | Starting and completing an offered outing |
+
+### Focused evidence and decisions
+
+The [individual-source ledger](p3r-request-sources.md) maps every new instruction
+to its reference. Each short instruction uses only the relevant objective or
+action; no guide text, reward table or broad prerequisite table is reproduced.
+
+- #53: the individual guide identifies Tarukaja Potato. The route supplies the
+  Buff Potato Sprout purchase/planting on June 4 and saved harvest on June 16.
+  These are preparation dates, not universal request unlocks. The guide's
+  generic seed wording and September unlock claim are not imported.
+- #30 uses 92F, cross-checked against the route and PowerPyx, rather than the
+  individual guide's 91F. #59 uses 144F without importing the incorrect block
+  name. #82 uses 198F rather than the vague top-of-block description.
+- #50 excludes the individual guide's swapped fusion recipe headings. The
+  instructions distinguish registering the Personas from using the Theurgy.
+- Fusion instructions prefer the required result and skill. Where a pairing is
+  supplied, the player checks its preview before confirming; installed DLC can
+  change fusion results. No unverified skill transformation is assumed for #62.
+- #51 and #73 use the antique-shop path supported by both RPG Site and the
+  individual guides. #51 leaves material quantities to the shop's recipe screen
+  because its individual guide does not provide a complete material list.
+- #67 uses Station Outskirts and the Courage gate, avoiding the conflicting
+  station naming. Outing instructions apply once offered and do not invent a
+  universal unlock count or promise that every calendar date permits a visit.
+
+### Remaining solutions
+
+| Request | Open question |
+|---|---|
+| 7 — Juzumaru | Retrieve reliable floor/chest details; the individual page could not be read successfully |
+| 91 — Tonbo-kiri | Reconcile chest versus crafting guidance and exact crafting base/materials |
+| 101 — Ultimate adversary | Verify access conditions and a usable solo battle strategy |
+
+These three rows retain the existing fallback. Objective guidance for the other
+98 requests does not imply complete reward/prerequisite coverage or full boss
+strategies. Source search returned unrelated results; failed retrievals were not
+used as evidence.
 
 ## Compatibility and verification
 
@@ -54,11 +111,12 @@ also unchanged.
 
 Schema coverage verifies legacy decoding and multiline instruction round trips.
 The catalog regression requires instructions for every timed or automatically
-reported request. The existing enlarged-text Android flow now checks that the
+reported request and records the three remaining unsupported IDs explicitly.
+The existing enlarged-text Android flow checks that the
 solution is reachable and that reading it leaves stages unchanged, then exercises
 the stage controls and date links. Existing hand-in reversal/profile/reset tests
 remain applicable. Full CI and all three packlint targets are required.
 
-The remaining **64 solutions**, reward/prerequisite completeness, remaining
+The remaining **3 solutions**, reward/prerequisite completeness, remaining
 automatic hand-in anchors and full boss strategies are still open. This pass
 does not declare the full P3R pack complete.

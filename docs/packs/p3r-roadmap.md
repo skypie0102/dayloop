@@ -9,9 +9,11 @@ Implementation record: [replacement-skin baseline and review fixtures](p3r-redes
 ## September 19 continuation: request instructions
 
 Added an optional generic request `solution` field and visible instructions in
-expanded request details. P3R now authors 37 solutions from its audited route,
-covering every timed hand-in and exact reporting anchor. Kept all request IDs,
-cutoffs, route links, event anchors and saved task keys intact; content version 11.
+expanded request details. P3R now authors 98 solutions, using the audited route
+and individual request guides, covering every timed hand-in and exact reporting
+anchor. The second pass adds 61 instructions and corrects Titania's display name.
+All request IDs, cutoffs, route links, event anchors and saved task keys remain
+intact; content version 12. Requests #7, #91 and #101 remain without solutions.
 See [coverage and remaining gaps](../audits/p3r-request-guidance.md). The previous
 Tartarus pass's full and isolated Android visual-review jobs both passed.
 Full boss strategies remain open: source retrieval in this session did not

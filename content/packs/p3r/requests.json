@@ -24,22 +24,26 @@
     {
       "id": "p3r.request.003",
       "number": 3,
-      "title": "Shadow Hunting Milestone"
+      "title": "Shadow Hunting Milestone",
+      "solution": "Defeat a total of 100 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in."
     },
     {
       "id": "p3r.request.004",
       "number": 4,
-      "title": "Treasure Hunting Milestone"
+      "title": "Treasure Hunting Milestone",
+      "solution": "Open a total of 50 treasure chests while exploring Tartarus. Check the request with Elizabeth and report once the target is met. Mark Reported after the in-game hand-in."
     },
     {
       "id": "p3r.request.005",
       "number": 5,
-      "title": "Create a Persona that’s Level 13 or Above"
+      "title": "Create a Persona that’s Level 13 or Above",
+      "solution": "Create or level a Persona to at least level 13. Keep it in your carried Personas and report to Elizabeth. Check the Persona’s level, not only the protagonist’s level."
     },
     {
       "id": "p3r.request.006",
       "number": 6,
-      "title": "Create a Persona with Kouha"
+      "title": "Create a Persona with Kouha",
+      "solution": "Obtain Archangel through fusion or Shuffle Time and retain Kouha in its skill list. Carry it when you report to Elizabeth; a Compendium entry alone is not the requested Persona in your possession."
     },
     {
       "id": "p3r.request.007",
@@ -49,7 +53,8 @@
     {
       "id": "p3r.request.008",
       "number": 8,
-      "title": "Experiment with Fortune Telling"
+      "title": "Experiment with Fortune Telling",
+      "solution": "Before a Tartarus visit, buy the ¥3,000 Rarity Fortune from the fortune teller in Club Escapade at Paulownia Mall. Explore Tartarus that same night, then report the experiment to Elizabeth."
     },
     {
       "id": "p3r.request.009",
@@ -112,27 +117,32 @@
     {
       "id": "p3r.request.015",
       "number": 15,
-      "title": "Shadow hunting Milestone 2"
+      "title": "Shadow hunting Milestone 2",
+      "solution": "Defeat a total of 200 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in."
     },
     {
       "id": "p3r.request.016",
       "number": 16,
-      "title": "Treasure Hunting Milestone 2"
+      "title": "Treasure Hunting Milestone 2",
+      "solution": "Open a total of 100 treasure chests while exploring Tartarus. Check the request with Elizabeth and report once the target is met. Mark Reported after the in-game hand-in."
     },
     {
       "id": "p3r.request.017",
       "number": 17,
-      "title": "Fusion Series 1: Emperor, Oberon"
+      "title": "Fusion Series 1: Emperor, Oberon",
+      "solution": "Create Oberon and keep Mazio in its skill list, learning it through leveling if needed. Show Elizabeth the carried Oberon with Mazio; another Persona with the skill does not meet this request."
     },
     {
       "id": "p3r.request.018",
       "number": 18,
-      "title": "I’d like to be gifted a bouquet of flowers"
+      "title": "I’d like to be gifted a bouquet of flowers",
+      "solution": "Buy a Rose Bouquet for ¥2,000 from the flower shop at Port Island Station. Keep it in your inventory and bring it to Elizabeth."
     },
     {
       "id": "p3r.request.019",
       "number": 19,
-      "title": "I want Jack Frost dolls"
+      "title": "I want Jack Frost dolls",
+      "solution": "Check the crane machine by the Paulownia Mall arcade when its displayed prize is Jack Frost. Play until you have three Jack Frost dolls, then bring all three to Elizabeth. Each attempt costs ¥200 and may fail, so budget for retries."
     },
     {
       "id": "p3r.request.020",
@@ -146,32 +156,38 @@
     {
       "id": "p3r.request.021",
       "number": 21,
-      "title": "Retrieve the third old document"
+      "title": "Retrieve the third old document",
+      "solution": "Collect Old Document 03 from the chest at Tartarus 69F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
     },
     {
       "id": "p3r.request.022",
       "number": 22,
-      "title": "Shadow Hunting Milestone 3"
+      "title": "Shadow Hunting Milestone 3",
+      "solution": "Defeat a total of 300 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in."
     },
     {
       "id": "p3r.request.023",
       "number": 23,
-      "title": "Persona Fusion Milestone"
+      "title": "Persona Fusion Milestone",
+      "solution": "Perform a total of 20 Persona fusions in the Velvet Room. Work toward this while creating Personas for the route, then report the milestone to Elizabeth."
     },
     {
       "id": "p3r.request.024",
       "number": 24,
-      "title": "Create a Persona that’s level 23 or above"
+      "title": "Create a Persona that’s level 23 or above",
+      "solution": "Create or level a Persona to at least level 23. Keep it in your carried Personas and report to Elizabeth. Check the Persona’s level, not only the protagonist’s level."
     },
     {
       "id": "p3r.request.025",
       "number": 25,
-      "title": "Fusion Series 2: Chariot, Mithras"
+      "title": "Fusion Series 2: Chariot, Mithras",
+      "solution": "Use the Velvet Room fusion search to create Mithras, then raise it to level 26 or higher. Check the Persona’s own level and carry it when reporting to Elizabeth."
     },
     {
       "id": "p3r.request.026",
       "number": 26,
-      "title": "Bring me an Onimaru Kunitsuma"
+      "title": "Bring me an Onimaru Kunitsuma",
+      "solution": "Search the treasure chests on Tartarus 54F in Arqa for Onimaru Kunitsuma. Keep the weapon and show it to Elizabeth before selling it."
     },
     {
       "id": "p3r.request.027",
@@ -209,42 +225,50 @@
     {
       "id": "p3r.request.030",
       "number": 30,
-      "title": "Retrieve the Fourth Old Document"
+      "title": "Retrieve the Fourth Old Document",
+      "solution": "Collect Old Document 04 from the chest at Tartarus 92F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
     },
     {
       "id": "p3r.request.031",
       "number": 31,
-      "title": "Shadow Hunting Milestone 4"
+      "title": "Shadow Hunting Milestone 4",
+      "solution": "Defeat a total of 450 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in."
     },
     {
       "id": "p3r.request.032",
       "number": 32,
-      "title": "Treasure Hunting Milestone 3"
+      "title": "Treasure Hunting Milestone 3",
+      "solution": "Open a total of 150 treasure chests while exploring Tartarus. Check the request with Elizabeth and report once the target is met. Mark Reported after the in-game hand-in."
     },
     {
       "id": "p3r.request.033",
       "number": 33,
-      "title": "Persona Fusion Milestone 2"
+      "title": "Persona Fusion Milestone 2",
+      "solution": "Perform a total of 35 Persona fusions in the Velvet Room. Work toward this while creating Personas for the route, then report the milestone to Elizabeth."
     },
     {
       "id": "p3r.request.034",
       "number": 34,
-      "title": "Create a Persona with Torrent Shot"
+      "title": "Create a Persona with Torrent Shot",
+      "solution": "Create Eligor and retain Torrent Shot. One fusion pairing is Mokoi with Leanan Sidhe; check the result preview before confirming. Carry the Persona with Torrent Shot when you report to Elizabeth."
     },
     {
       "id": "p3r.request.035",
       "number": 35,
-      "title": "Fusion Series 3: Hermit, Mothman"
+      "title": "Fusion Series 3: Hermit, Mothman",
+      "solution": "Create Mothman with Agilao inherited from a parent that knows it. Lamia with Agilao plus Dakini is one pairing to preview. Select Agilao during skill inheritance, then carry the resulting Mothman when reporting."
     },
     {
       "id": "p3r.request.036",
       "number": 36,
-      "title": "Defeat a Rare Shadow 1"
+      "title": "Defeat a Rare Shadow 1",
+      "solution": "Hunt a rare Shadow in Yabbashah and collect its Rustic Coin. A Rarity Fortune before the trip can help with encounters. Keep one coin for Elizabeth and report after collecting it."
     },
     {
       "id": "p3r.request.037",
       "number": 37,
-      "title": "Traverse the Monad Passage"
+      "title": "Traverse the Monad Passage",
+      "solution": "Clear the enemies inside the Monad Passage on Tartarus 91F in Yabbashah, then report to Elizabeth. Entering the passage or clearing a different Monad Door does not finish this objective."
     },
     {
       "id": "p3r.request.038",
@@ -329,37 +353,44 @@
     {
       "id": "p3r.request.045",
       "number": 45,
-      "title": "Retrieve the Fifth Old Document"
+      "title": "Retrieve the Fifth Old Document",
+      "solution": "Collect Old Document 05 from the chest at Tartarus 118F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
     },
     {
       "id": "p3r.request.046",
       "number": 46,
-      "title": "Shadow Hunting Milestone 5"
+      "title": "Shadow Hunting Milestone 5",
+      "solution": "Defeat a total of 600 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in."
     },
     {
       "id": "p3r.request.047",
       "number": 47,
-      "title": "Treasure Hunting Milestone 4"
+      "title": "Treasure Hunting Milestone 4",
+      "solution": "Open a total of 200 treasure chests while exploring Tartarus. Check the request with Elizabeth and report once the target is met. Mark Reported after the in-game hand-in."
     },
     {
       "id": "p3r.request.048",
       "number": 48,
-      "title": "Persona Fusion Milestone 3"
+      "title": "Persona Fusion Milestone 3",
+      "solution": "Perform a total of 50 Persona fusions in the Velvet Room. Work toward this while creating Personas for the route, then report the milestone to Elizabeth."
     },
     {
       "id": "p3r.request.049",
       "number": 49,
-      "title": "Create a Persona that’s level 38 or above"
+      "title": "Create a Persona that’s level 38 or above",
+      "solution": "Create or level a Persona to at least level 38. Keep it in your carried Personas and report to Elizabeth. Check the Persona’s level, not only the protagonist’s level."
     },
     {
       "id": "p3r.request.050",
       "number": 50,
-      "title": "Perform King and I"
+      "title": "Perform King and I",
+      "solution": "Register King Frost and Black Frost in the Compendium to unlock King and I. Charge the protagonist’s Theurgy gauge, use King and I in battle, then report to Elizabeth. Unlocking the move is preparation for performing it."
     },
     {
       "id": "p3r.request.051",
       "number": 51,
-      "title": "Bring me an Outenta Mitsuyo"
+      "title": "Bring me an Outenta Mitsuyo",
+      "solution": "Visit Mayoido Antiques at Paulownia Mall and select the Outenta Mitsuyo weapon recipe. Gather the materials listed by the shop, craft the weapon, and show it to Elizabeth before selling it."
     },
     {
       "id": "p3r.request.052",
@@ -376,7 +407,8 @@
       "title": "I’d like to see a Mysterious Potato",
       "routeDates": [
         "2009-06-16"
-      ]
+      ],
+      "solution": "Buy a Buff Potato Sprout at Rafflesia in Port Island Station and grow it in the dorm rooftop garden. Harvest and save a Tarukaja Potato for Elizabeth. This route plants on June 4 and harvests on June 16 as advance preparation; report once the request is available."
     },
     {
       "id": "p3r.request.054",
@@ -403,12 +435,14 @@
     {
       "id": "p3r.request.056",
       "number": 56,
-      "title": "Look for the drink with my name"
+      "title": "Look for the drink with my name",
+      "solution": "Accept the request, then visit Que Sera Sera in Station Outskirts and ask for the drink named after Elizabeth. If entry is refused, raise Charm and return. Bring the drink back to Elizabeth."
     },
     {
       "id": "p3r.request.057",
       "number": 57,
-      "title": "I’d Like to Try Aojiru"
+      "title": "I’d Like to Try Aojiru",
+      "solution": "Ask about Aojiru at Aohige Pharmacy in Paulownia Mall. Trade two Topaz and one Turquoise for a Vintage Yagen at Mayoido Antiques, then exchange the Yagen at the pharmacy for True Aohige Aojiru. Bring that drink to Elizabeth."
     },
     {
       "id": "p3r.request.058",
@@ -423,47 +457,56 @@
     {
       "id": "p3r.request.059",
       "number": 59,
-      "title": "Retrieve the Sixth Old Document"
+      "title": "Retrieve the Sixth Old Document",
+      "solution": "Collect Old Document 06 from the chest at Tartarus 144F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
     },
     {
       "id": "p3r.request.060",
       "number": 60,
-      "title": "Shadow Hunting Milestone 6"
+      "title": "Shadow Hunting Milestone 6",
+      "solution": "Defeat a total of 800 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in."
     },
     {
       "id": "p3r.request.061",
       "number": 61,
-      "title": "Create a Persona that’s level 46 or above"
+      "title": "Create a Persona that’s level 46 or above",
+      "solution": "Create or level a Persona to at least level 46. Keep it in your carried Personas and report to Elizabeth. Check the Persona’s level, not only the protagonist’s level."
     },
     {
       "id": "p3r.request.062",
       "number": 62,
-      "title": "Fusion Series 4: Lovers, Titani"
+      "title": "Fusion Series 4: Lovers, Titania",
+      "solution": "Create Titania with Matarukaja, inheriting the skill during fusion or teaching it with a skill card. Check for Matarukaja, not the single-target Tarukaja, and carry Titania when reporting to Elizabeth."
     },
     {
       "id": "p3r.request.063",
       "number": 63,
-      "title": "Fusion Series 5: Magician, Rangda"
+      "title": "Fusion Series 5: Magician, Rangda",
+      "solution": "Create Rangda with the Velvet Room fusion search. Magician Social Link experience can help raise its level after fusion; otherwise level it in battle until it reaches at least 54. Carry that Rangda when reporting to Elizabeth."
     },
     {
       "id": "p3r.request.064",
       "number": 64,
-      "title": "Defeat a Rare Shadow 2"
+      "title": "Defeat a Rare Shadow 2",
+      "solution": "Defeat a rare Shadow in Tziah and keep its Sumptuous Coin for Elizabeth. A Rarity Fortune before entering Tartarus can help you find rare Shadows. Report with the coin after the battle."
     },
     {
       "id": "p3r.request.065",
       "number": 65,
-      "title": "Bring me an Ote-gine"
+      "title": "Bring me an Ote-gine",
+      "solution": "After clearing the boss on Tartarus 143F, check that floor’s special treasure chests for Ote-gine. Keep the weapon and show it to Elizabeth."
     },
     {
       "id": "p3r.request.066",
       "number": 66,
-      "title": "Bring me a Giant, Creepy Doll"
+      "title": "Bring me a Giant, Creepy Doll",
+      "solution": "Accept the request and visit the school laboratory while school is accessible. Collect the teaching doll and bring it to Elizabeth. Complete the pickup on a school visit instead of leaving it for the final day."
     },
     {
       "id": "p3r.request.067",
       "number": 67,
-      "title": "Find me a Beautiful Tile"
+      "title": "Find me a Beautiful Tile",
+      "solution": "After accepting the request, visit Mahjong Parlor Red Hawk in Station Outskirts. Entry requires maximum Courage. Complete the interaction there, keep the peacock tile, and bring it to Elizabeth."
     },
     {
       "id": "p3r.request.068",
@@ -490,22 +533,26 @@
     {
       "id": "p3r.request.070",
       "number": 70,
-      "title": "Retrieve the Seventh Old Document"
+      "title": "Retrieve the Seventh Old Document",
+      "solution": "Collect Old Document 07 from the chest at Tartarus 172F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
     },
     {
       "id": "p3r.request.071",
       "number": 71,
-      "title": "Fusion Series 6: Strength, Siegfried"
+      "title": "Fusion Series 6: Strength, Siegfried",
+      "solution": "Create Siegfried, then teach it Endure using the skill card rewarded by Request #73. Keep the skill and carry Siegfried when reporting to Elizabeth."
     },
     {
       "id": "p3r.request.072",
       "number": 72,
-      "title": "Fusion Series 7: Hierophant, Daisoujou"
+      "title": "Fusion Series 7: Hierophant, Daisoujou",
+      "solution": "Create Daisoujou with Regenerate 3 inherited from Suzaku. Use fusion search to preview a Daisoujou result, select Regenerate 3 for inheritance, and carry the finished Persona to Elizabeth."
     },
     {
       "id": "p3r.request.073",
       "number": 73,
-      "title": "Bring me a Mikazuki Munechika"
+      "title": "Bring me a Mikazuki Munechika",
+      "solution": "Craft Mikazuki Munechika at Mayoido Antiques using a Quality Nihil Blade, three Emeralds and two Silver Quartz. Show Elizabeth the finished weapon. The Endure card reward can then help with Request #71."
     },
     {
       "id": "p3r.request.074",
@@ -548,22 +595,26 @@
     {
       "id": "p3r.request.077",
       "number": 77,
-      "title": "I’d Like to Walk Around Paulownia Mall"
+      "title": "I’d Like to Walk Around Paulownia Mall",
+      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to Paulownia Mall before marking the request Reported. Accepting the invitation alone does not complete the visit."
     },
     {
       "id": "p3r.request.078",
       "number": 78,
-      "title": "I’d Like to Visit Iwatodai Station"
+      "title": "I’d Like to Visit Iwatodai Station",
+      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to Iwatodai Station before marking the request Reported. Accepting the invitation alone does not complete the visit."
     },
     {
       "id": "p3r.request.079",
       "number": 79,
-      "title": "I’d Like to Visit Naganaki Shrine"
+      "title": "I’d Like to Visit Naganaki Shrine",
+      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to Naganaki Shrine before marking the request Reported. Accepting the invitation alone does not complete the visit."
     },
     {
       "id": "p3r.request.080",
       "number": 80,
-      "title": "I’d Like to Visit Gekkoukan High"
+      "title": "I’d Like to Visit Gekkoukan High",
+      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to Gekkoukan High before marking the request Reported. Accepting the invitation alone does not complete the visit."
     },
     {
       "id": "p3r.request.081",
@@ -571,52 +622,62 @@
       "title": "I’d Like to Visit your Room",
       "routeDates": [
         "2009-11-06"
-      ]
+      ],
+      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to your dorm room before marking the request Reported. Accepting the invitation alone does not complete the visit."
     },
     {
       "id": "p3r.request.082",
       "number": 82,
-      "title": "Retrieve the Last Old Document"
+      "title": "Retrieve the Last Old Document",
+      "solution": "Collect Old Document 08 from the chest at Tartarus 198F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
     },
     {
       "id": "p3r.request.083",
       "number": 83,
-      "title": "Bring the Progress Report"
+      "title": "Bring the Progress Report",
+      "solution": "Collect Progress Report from the chest at Tartarus 226F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
     },
     {
       "id": "p3r.request.084",
       "number": 84,
-      "title": "Create a Persona with Tempest Slash"
+      "title": "Create a Persona with Tempest Slash",
+      "solution": "Obtain Chernobog through fusion and keep its Tempest Slash skill. Carry it when reporting to Elizabeth."
     },
     {
       "id": "p3r.request.085",
       "number": 85,
-      "title": "Create a Persona with Auto-Marakukaja"
+      "title": "Create a Persona with Auto-Marakukaja",
+      "solution": "Create Hecatoncheires and level it to 53 to learn Auto-Maraku. Keep that skill and carry the Persona to Elizabeth. The automatic defense buff is the requested skill; ordinary Marakukaja is different."
     },
     {
       "id": "p3r.request.086",
       "number": 86,
-      "title": "Fusion Series 8: Death, Alice"
+      "title": "Fusion Series 8: Death, Alice",
+      "solution": "Use Special Fusion with Pixie, Lilim, Narcissus and Titania to create Alice. Keep Alice in your carried Personas and report to Elizabeth."
     },
     {
       "id": "p3r.request.087",
       "number": 87,
-      "title": "Fusion Series 9: Fool, Loki"
+      "title": "Fusion Series 9: Fool, Loki",
+      "solution": "Create Loki, then raise it to at least level 75. Keep that Loki in your carried Personas and report to Elizabeth."
     },
     {
       "id": "p3r.request.088",
       "number": 88,
-      "title": "Defeat a Greedy Shadow"
+      "title": "Defeat a Greedy Shadow",
+      "solution": "Catch and defeat a Greedy Shadow in Harabah, then keep its Gold Medal. Bring one Gold Medal to Elizabeth; a rare Shadow’s coin is a different request item."
     },
     {
       "id": "p3r.request.089",
       "number": 89,
-      "title": "Bring me a Rai Kunimitsu"
+      "title": "Bring me a Rai Kunimitsu",
+      "solution": "Clear the boss on Tartarus 184F and open the locked treasure chest containing Rai Kunimitsu. Keep the weapon and show it to Elizabeth."
     },
     {
       "id": "p3r.request.090",
       "number": 90,
-      "title": "Bring me a Dojigiri Yasutsuna"
+      "title": "Bring me a Dojigiri Yasutsuna",
+      "solution": "Open the locked treasure chests on Tartarus 212F in Harabah to obtain Dojigiri Yasutsuna. Keep the weapon and show it to Elizabeth."
     },
     {
       "id": "p3r.request.091",
