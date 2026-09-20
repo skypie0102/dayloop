@@ -7,12 +7,12 @@ and Today/Day retain their answer access. P5R keeps its Mementos destination.
 
 ## Data and behavior
 
-September 19 continuation: 98 requests now show authored solutions before their
+September 19 continuation: 100 requests now show authored solutions before their
 tracking controls, including all 14 timed requests and all 24 with exact reporting
 anchors. See the [coverage/evidence record](../audits/p3r-request-guidance.md).
 Missing solutions retain the existing issuer/availability guidance. Completion
-rules, route links and saved stages are unchanged. P3R content version is 12.
-Requests #7, #91 and #101 still need verified guidance. Request #62's display
+rules, route links and saved stages are unchanged. P3R content version is 13.
+Request #101 still needs verified guidance. Request #62's display
 title now spells Titania correctly; its ID is unchanged.
 
 - 101 numbered Journey requests; Episode Aigis is outside this pack.

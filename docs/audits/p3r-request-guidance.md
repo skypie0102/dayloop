@@ -2,6 +2,9 @@
 
 Continuation of P3R-2/P3R-3 from `0cfaa45` on the migrated repository.
 
+Current coverage: **100/101 solutions**, content version **13**. Request #101
+is the only missing solution. The sections below retain the earlier audit history.
+
 ## Delivery
 
 Expanded Requests previously showed deadline, tracker mechanics and date links,
@@ -89,7 +92,7 @@ action; no guide text, reward table or broad prerequisite table is reproduced.
   station naming. Outing instructions apply once offered and do not invent a
   universal unlock count or promise that every calendar date permits a visit.
 
-### Remaining solutions
+### Remaining solutions after the second pass
 
 | Request | Open question |
 |---|---|
@@ -102,6 +105,25 @@ These three rows retain the existing fallback. Objective guidance for the other
 strategies. Source search returned unrelated results; failed retrievals were not
 used as evidence.
 
+## September 20: weapon requests and first boss tactics
+
+Resolved #7 and #91 using Reload-specific equipment entries. #7 now explains the
+chest location and fragment cost, while #91 identifies the exact crafting base
+and gems. The [source ledger](p3r-request-sources.md) records the references.
+The generic boss-chest suggestion for #91 and the incomplete base name in its
+individual request guide are superseded by the explicit Reload recipe.
+
+Expanded #99 with recovery and burst-damage timing, plus responses to the two
+charge cues. This is a concise battle plan, not a prescribed party/loadout.
+No walkthrough task, request title, deadline, route link, event or saved state
+changes in this pass. Content version increases from 12 to 13.
+
+#101 remains open. Samurai Gamers' boss page has an unfinished strategy section;
+RPG Site supplies no battle plan. The Megami Tensei Wiki character summary mixes
+in New Game Plus/Infinity claims that do not establish Reload battle rules, and
+its separate gameplay page provides stats rather than a phase strategy. Those
+claims are not imported. A verified access/phase/loadout guide is still needed.
+
 ## Compatibility and verification
 
 All 101 identities, 14 deadlines, 40 route-link sets and 24 event anchors are
@@ -111,12 +133,12 @@ also unchanged.
 
 Schema coverage verifies legacy decoding and multiline instruction round trips.
 The catalog regression requires instructions for every timed or automatically
-reported request and records the three remaining unsupported IDs explicitly.
+reported request and records #101 as the remaining unsupported ID explicitly.
 The existing enlarged-text Android flow checks that the
 solution is reachable and that reading it leaves stages unchanged, then exercises
 the stage controls and date links. Existing hand-in reversal/profile/reset tests
 remain applicable. Full CI and all three packlint targets are required.
 
-The remaining **3 solutions**, reward/prerequisite completeness, remaining
+The remaining **1 solution**, reward/prerequisite completeness, remaining
 automatic hand-in anchors and full boss strategies are still open. This pass
 does not declare the full P3R pack complete.

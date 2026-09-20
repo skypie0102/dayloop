@@ -48,7 +48,8 @@
     {
       "id": "p3r.request.007",
       "number": 7,
-      "title": "Bring me a Juzumaru"
+      "title": "Bring me a Juzumaru",
+      "solution": "Defeat the gatekeeper on Tartarus 36F in Arqa, then use three Twilight Fragments to open the locked chest containing Juzumaru. Keep the sword and show it to Elizabeth before selling it. Reaching the floor or defeating its boss alone does not complete the request."
     },
     {
       "id": "p3r.request.008",
@@ -682,7 +683,8 @@
     {
       "id": "p3r.request.091",
       "number": 91,
-      "title": "Bring me a Tonbo-kiri"
+      "title": "Bring me a Tonbo-kiri",
+      "solution": "Craft Tonbo-kiri at Mayoido Antiques using one Prime Nihil Blade, five Diamonds and two Gold Quartz. Check the base material carefully: the recipe needs the Prime version. Keep the finished spear and show it to Elizabeth before selling it."
     },
     {
       "id": "p3r.request.092",
@@ -767,7 +769,7 @@
         "2010-01-15"
       ],
       "completionEvent": "p3r.request.reported.099",
-      "solution": "Clear the final Monad Passage on 255F and defeat the Shadow of the Void, then return to Elizabeth to report. The route completes this during the January 15 climb. This is separate from the later solo ultimate-adversary challenge for Request #101."
+      "solution": "Clear the final Monad Passage on 255F and defeat the Shadow of the Void, then return to Elizabeth to report. The route completes this during the January 15 climb. This is separate from the later solo ultimate-adversary challenge for Request #101.\n\nBattle plan: enter with charged Theurgy gauges. The boss restores 300 HP each turn and uses Diarahan at half health. Save your burst for after that full heal, then build damage and spend your strongest single-target attacks and Theurgies to finish. Guard after Charge to withstand Akasha Arts, or after Concentrate to withstand Megidolaon; restore the party before resuming damage."
     },
     {
       "id": "p3r.request.100",

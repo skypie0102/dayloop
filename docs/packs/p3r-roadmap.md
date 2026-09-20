@@ -6,6 +6,13 @@ Status: **active — P3R-1 daily screen and Android flow validation in progress*
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
 
+## September 20 continuation: remaining weapon requests
+
+Resolved Juzumaru (#7) and Tonbo-kiri (#91), bringing instructions to 100/101.
+Added a concise Shadow of the Void (#99) battle plan. Content version is 13;
+request #101 still needs a verified strategy. Progress identity and all existing
+walkthrough tasks are preserved. See the [request audit](../audits/p3r-request-guidance.md).
+
 ## September 19 continuation: request instructions
 
 Added an optional generic request `solution` field and visible instructions in

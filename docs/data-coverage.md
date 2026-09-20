@@ -201,7 +201,7 @@ schema and behavior remain independent.
 
 The initial Journey catalog has 101 requests, 14 audited cutoffs, 40 requests with
 numbered walkthrough context and 24 exact automatic reporting anchors. Other
-requests retain explicit confirmation. The September 19 continuation provides 98
+requests retain explicit confirmation. The September 19 continuation provides 100
 authored solutions, covering every timed request and every exact reporting anchor.
-Solutions for #7, #91 and #101, complete reward coverage and remaining
+The solution for #101, complete reward coverage and remaining
 prerequisites still require audit. See [request guidance](audits/p3r-request-guidance.md).

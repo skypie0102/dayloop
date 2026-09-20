@@ -67,3 +67,20 @@ Source ledger for the 61 additions in content version 12. See the [audit](p3r-re
 | 90 | [Samurai Gamers #90](https://samurai-gamers.com/persona-3-reload/p3re-elizabeth-request-90-guide/) |
 
 Cross-checks: RPG Site confirms the shop path for #51/#73 and the Courage gate for #67. PowerPyx confirms #8’s same-night trip and #17’s leveling option. #53 combines the individual item identification with the existing June 4/16 route. All instructions are newly written.
+
+## September 20 additions — content version 13
+
+| Request | References and scope |
+|---|---|
+| 7 | [Megami Tensei Wiki, Juzumaru — Reload section](https://megatenwiki.com/wiki/Juzumaru): chest and fragment requirement. [RPG Site request guide](https://www.rpgsite.net/guide/15324-persona-3-reload-elizabeth-requests-guide-solutions-rewards-for-every-quest) independently confirms the floor and reporting step. |
+| 91 | [Megami Tensei Wiki, Tonbo-kiri — Reload section](https://megatenwiki.com/wiki/Tonbo-kiri): complete shop recipe, including the Prime base material. |
+| 99 | [RPG Site request guide](https://www.rpgsite.net/guide/15324-persona-3-reload-elizabeth-requests-guide-solutions-rewards-for-every-quest): battle cues and recovery/burst sequence. |
+
+Only short, independently written factual instructions are added. Equipment
+entries for the original Persona 3, FES and Portable are excluded.
+
+Insufficient for #101: [Samurai Gamers boss guide](https://samurai-gamers.com/persona-3-reload/p3re-elizabeth-boss-guide/)
+has no strategy, and [Megami Tensei Wiki gameplay tables](https://megatenwiki.com/wiki/Gameplay:Elizabeth)
+do not specify a usable phase plan. The [character summary](https://megatenwiki.com/wiki/Elizabeth)
+is not used for battle rules. These are recorded as research limits, not accepted
+evidence for a solution.
