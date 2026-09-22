@@ -12,8 +12,18 @@
       "file": "images/img002_A3D12CE8D2D477D7.png",
       "kind": "day",
       "title": "Full Moon",
-      "caption": "Marks the guide's full-moon operation entries.",
-      "dates": ["2009-04-18", "2009-05-10", "2009-06-09", "2009-07-08", "2009-08-07", "2009-09-06", "2009-10-05", "2009-11-04", "2009-12-03"]
+      "caption": "Marks full-moon dates from the audited deadline calendar.",
+      "dates": [
+        "2009-04-09",
+        "2009-05-09",
+        "2009-06-08",
+        "2009-07-07",
+        "2009-08-06",
+        "2009-09-05",
+        "2009-10-04",
+        "2009-11-03",
+        "2009-12-02"
+      ]
     },
     {
       "id": "p3r.media.promised-day",
@@ -21,7 +31,9 @@
       "kind": "day",
       "title": "Tartarus — The Promised Day",
       "caption": "Marks the final Tartarus climb in the guide's January schedule.",
-      "dates": ["2010-01-31"]
+      "dates": [
+        "2010-01-31"
+      ]
     },
     {
       "id": "p3r.media.epilogue-ending",
@@ -57,15 +69,16 @@
       "kind": "portrait",
       "title": "Yukari Takeba",
       "caption": "Portrait from the guide's Theurgy & personality section.",
-      "bonds": ["p3r.bond.lovers"]
+      "bonds": [
+        "p3r.bond.lovers"
+      ]
     },
     {
       "id": "p3r.media.portrait-junpei",
       "file": "images/img009_B207081737B893E3.png",
       "kind": "portrait",
       "title": "Junpei Iori",
-      "caption": "Portrait from the guide's Theurgy & personality section.",
-      "bonds": ["p3r.bond.magician"]
+      "caption": "Portrait from the guide's Theurgy & personality section."
     },
     {
       "id": "p3r.media.portrait-akihiko",
@@ -80,7 +93,9 @@
       "kind": "portrait",
       "title": "Mitsuru Kirijo",
       "caption": "Portrait from the guide's Theurgy & personality section.",
-      "bonds": ["p3r.bond.empress"]
+      "bonds": [
+        "p3r.bond.empress"
+      ]
     },
     {
       "id": "p3r.media.portrait-fuuka",
@@ -88,7 +103,9 @@
       "kind": "portrait",
       "title": "Fuuka Yamagishi",
       "caption": "Portrait from the guide's Theurgy & personality section.",
-      "bonds": ["p3r.bond.priestess"]
+      "bonds": [
+        "p3r.bond.priestess"
+      ]
     },
     {
       "id": "p3r.media.portrait-aigis",
@@ -96,7 +113,9 @@
       "kind": "portrait",
       "title": "Aigis",
       "caption": "Portrait from the guide's Theurgy & personality section.",
-      "bonds": ["p3r.bond.aeon"]
+      "bonds": [
+        "p3r.bond.aeon"
+      ]
     },
     {
       "id": "p3r.media.portrait-koromaru",
@@ -118,6 +137,342 @@
       "kind": "portrait",
       "title": "Shinjiro Aragaki",
       "caption": "Portrait from the guide's Theurgy & personality section."
+    },
+    {
+      "id": "p3r.media.achievement.awakened-power",
+      "file": "images/achievement_awakened-power.jpg",
+      "kind": "achievement",
+      "title": "Awakened Power",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.sees-the-day",
+      "file": "images/achievement_sees-the-day.jpg",
+      "kind": "achievement",
+      "title": "SEES the Day",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.back-on-track",
+      "file": "images/achievement_back-on-track.jpg",
+      "kind": "achievement",
+      "title": "Back on Track",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.empowered-protector",
+      "file": "images/achievement_empowered-protector.jpg",
+      "kind": "achievement",
+      "title": "Empowered Protector",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.never-toy",
+      "file": "images/achievement_never-toy.jpg",
+      "kind": "achievement",
+      "title": "Never Toy with Matters of the Heart",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.armor-disarmed",
+      "file": "images/achievement_armor-disarmed.jpg",
+      "kind": "achievement",
+      "title": "Armor Disarmed",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.dodging-lightning",
+      "file": "images/achievement_dodging-lightning.jpg",
+      "kind": "achievement",
+      "title": "Dodging Lightning",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.twist-of-fate",
+      "file": "images/achievement_twist-of-fate.jpg",
+      "kind": "achievement",
+      "title": "Twist of Fate",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.sense-of-finality",
+      "file": "images/achievement_sense-of-finality.jpg",
+      "kind": "achievement",
+      "title": "A Sense of Finality",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.great-seal",
+      "file": "images/achievement_great-seal.jpg",
+      "kind": "achievement",
+      "title": "The Great Seal",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.shadows-into-light",
+      "file": "images/achievement_shadows-into-light.jpg",
+      "kind": "achievement",
+      "title": "From Shadows into Light",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.fools-journey",
+      "file": "images/achievement_fools-journey.jpg",
+      "kind": "achievement",
+      "title": "The Fool's Journey",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.distinguished-visitor",
+      "file": "images/achievement_distinguished-visitor.jpg",
+      "kind": "achievement",
+      "title": "Distinguished Visitor",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.top-of-class",
+      "file": "images/achievement_top-of-class.jpg",
+      "kind": "achievement",
+      "title": "Top of the Class",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.legacy-of-friendships",
+      "file": "images/achievement_legacy-of-friendships.jpg",
+      "kind": "achievement",
+      "title": "A Legacy of Friendships",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.people-person",
+      "file": "images/achievement_people-person.jpg",
+      "kind": "achievement",
+      "title": "People Person",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.special-someone",
+      "file": "images/achievement_special-someone.jpg",
+      "kind": "achievement",
+      "title": "That Special Someone",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.unbreakable-link",
+      "file": "images/achievement_unbreakable-link.jpg",
+      "kind": "achievement",
+      "title": "Unbreakable Link",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.newfound-strength",
+      "file": "images/achievement_newfound-strength.jpg",
+      "kind": "achievement",
+      "title": "A Newfound Strength",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.power-of-choice",
+      "file": "images/achievement_power-of-choice.jpg",
+      "kind": "achievement",
+      "title": "The Power of Choice",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.no-i-in-team",
+      "file": "images/achievement_no-i-in-team.jpg",
+      "kind": "achievement",
+      "title": "There's No “I” in “Team”",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.strength-of-hearts",
+      "file": "images/achievement_strength-of-hearts.jpg",
+      "kind": "achievement",
+      "title": "The Strength of Our Hearts",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.extracurricular-excellence",
+      "file": "images/achievement_extracurricular-excellence.jpg",
+      "kind": "achievement",
+      "title": "Extracurricular Excellence",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.load-of-numbers",
+      "file": "images/achievement_load-of-numbers.jpg",
+      "kind": "achievement",
+      "title": "Get a Load of Those Numbers!",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.shrouded-assassin",
+      "file": "images/achievement_shrouded-assassin.jpg",
+      "kind": "achievement",
+      "title": "Shrouded Assassin",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.thrill-of-hunt",
+      "file": "images/achievement_thrill-of-hunt.jpg",
+      "kind": "achievement",
+      "title": "The Thrill of the Hunt",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.dream-work",
+      "file": "images/achievement_dream-work.jpg",
+      "kind": "achievement",
+      "title": "Making the Dream Work",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.glimpse-of-depths",
+      "file": "images/achievement_glimpse-of-depths.jpg",
+      "kind": "achievement",
+      "title": "Glimpse of the Depths",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.briefcase-burglar",
+      "file": "images/achievement_briefcase-burglar.jpg",
+      "kind": "achievement",
+      "title": "Briefcase Burglar",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.shattered-plumes",
+      "file": "images/achievement_shattered-plumes.jpg",
+      "kind": "achievement",
+      "title": "Shattered Plumes",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.horror-of-shade",
+      "file": "images/achievement_horror-of-shade.jpg",
+      "kind": "achievement",
+      "title": "The Horror of the Shade",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.reaper-reaped",
+      "file": "images/achievement_reaper-reaped.jpg",
+      "kind": "achievement",
+      "title": "Reaper Reaped",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.first-of-many",
+      "file": "images/achievement_first-of-many.jpg",
+      "kind": "achievement",
+      "title": "The First of Many",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.fusion-artisan",
+      "file": "images/achievement_fusion-artisan.jpg",
+      "kind": "achievement",
+      "title": "Fusion Artisan",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.birthday-present",
+      "file": "images/achievement_birthday-present.jpg",
+      "kind": "achievement",
+      "title": "Birthday Present",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.path-to-salvation",
+      "file": "images/achievement_path-to-salvation.jpg",
+      "kind": "achievement",
+      "title": "Path to Salvation",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.tempting-fate",
+      "file": "images/achievement_tempting-fate.jpg",
+      "kind": "achievement",
+      "title": "Tempting Fate",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.eat-your-veggies",
+      "file": "images/achievement_eat-your-veggies.jpg",
+      "kind": "achievement",
+      "title": "Eat Your Veggies, Peas!",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.grindset-mindset",
+      "file": "images/achievement_grindset-mindset.jpg",
+      "kind": "achievement",
+      "title": "The Grindset Mindset",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.specialist",
+      "file": "images/achievement_specialist.jpg",
+      "kind": "achievement",
+      "title": "Specialist",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.peak-performance",
+      "file": "images/achievement_peak-performance.jpg",
+      "kind": "achievement",
+      "title": "Peak Performance",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.dorm-life",
+      "file": "images/achievement_dorm-life.jpg",
+      "kind": "achievement",
+      "title": "Dorm Life",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.gourmand",
+      "file": "images/achievement_gourmand.jpg",
+      "kind": "achievement",
+      "title": "Gourmand",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.benevolent-purr-tector",
+      "file": "images/achievement_benevolent-purr-tector.jpg",
+      "kind": "achievement",
+      "title": "Benevolent Purr-tector",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.in-high-demand",
+      "file": "images/achievement_in-high-demand.jpg",
+      "kind": "achievement",
+      "title": "In High Demand",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.beyond-darkness",
+      "file": "images/achievement_beyond-darkness.jpg",
+      "kind": "achievement",
+      "title": "Beyond the Darkness",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.thick-and-thin",
+      "file": "images/achievement_thick-and-thin.jpg",
+      "kind": "achievement",
+      "title": "Through Thick and Thin",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
+    },
+    {
+      "id": "p3r.media.achievement.eagle-eye",
+      "file": "images/achievement_eagle-eye.jpg",
+      "kind": "achievement",
+      "title": "Eagle Eye",
+      "caption": "Steam achievement icon — ATLUS / SEGA. Source: https://steamcommunity.com/stats/2161700/achievements"
     }
   ]
 }

@@ -28,6 +28,10 @@ fun SkinSectionHeader(
     modifier: Modifier = Modifier,
 ) {
     val skin = LocalSkin.current
+    if (skin.hasSubmergedChrome()) {
+        SubmergedSectionHeading(text, modifier)
+        return
+    }
     if (!skin.hasSkin || skin.motion != "slash") {
         Text(
             text = text,

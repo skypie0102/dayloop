@@ -1,0 +1,169 @@
+package com.shadowmonarchbooks.dayloop.ui.skin
+
+import android.content.ContentValues
+import android.provider.MediaStore
+import android.graphics.Bitmap
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.asAndroidBitmap
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.test.*
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.test.platform.app.InstrumentationRegistry
+import com.shadowmonarchbooks.dayloop.data.nextDeadline
+import com.shadowmonarchbooks.dayloop.data.LoadedPack
+import com.shadowmonarchbooks.dayloop.pack.PackLoader
+import com.shadowmonarchbooks.dayloop.pack.schema.Step
+import com.shadowmonarchbooks.dayloop.progress.StepMark
+import com.shadowmonarchbooks.dayloop.ui.components.DeadlineBanner
+import com.shadowmonarchbooks.dayloop.ui.components.StepRow
+import com.shadowmonarchbooks.dayloop.ui.components.TasksList
+import com.shadowmonarchbooks.dayloop.ui.theme.DayloopTheme
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Rule
+import org.junit.Test
+
+/** Real Android component fixtures. These are not captures of the full Today/navigation flow. */
+class SubmergedDailyTest {
+    @get:Rule val compose = createComposeRule()
+    private val context get() = InstrumentationRegistry.getInstrumentation().targetContext
+    @Volatile private var fontReady = false
+
+    private fun asset(path: String) = context.assets.open(path).bufferedReader().use { it.readText() }
+    private fun pack(slug: String) = LoadedPack(slug, requireNotNull(PackLoader.decodePack(asset("$slug/pack.json"))))
+
+    private fun show(slug: String = "p3r", scale: Float = 1f, content: @Composable () -> Unit) {
+        val loaded = pack(slug)
+        compose.setContent {
+            val density = LocalDensity.current
+            CompositionLocalProvider(LocalDensity provides Density(density.density, scale)) {
+                DayloopTheme(loaded) {
+                    val skin = LocalSkin.current
+                    SideEffect { fontReady = skin.type.display?.family != null }
+                    Column(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)
+                        .skinBackdrop(skin).verticalScroll(rememberScrollState()).padding(16.dp)) {
+                        content()
+                    }
+                }
+            }
+        }
+        compose.waitUntil(15_000) { fontReady }
+        compose.waitForIdle()
+    }
+
+    private fun capture(name: String) {
+        // UTP uninstalls the tested APK after the suite, deleting app-private storage.
+        // Shared emulator media survives long enough for the workflow's adb export.
+        val resolver = context.contentResolver
+        val values = ContentValues().apply {
+            put(MediaStore.Images.Media.DISPLAY_NAME, "$name.png")
+            put(MediaStore.Images.Media.MIME_TYPE, "image/png")
+            put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/dayloop-ui")
+            put(MediaStore.Images.Media.IS_PENDING, 1)
+        }
+        val uri = requireNotNull(resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values))
+        requireNotNull(resolver.openOutputStream(uri)).use {
+            check(compose.onRoot().captureToImage().asAndroidBitmap().compress(Bitmap.CompressFormat.PNG, 100, it))
+        }
+        values.clear()
+        values.put(MediaStore.Images.Media.IS_PENDING, 0)
+        resolver.update(uri, values, null, null)
+    }
+
+    private fun dayFixture(date: String, name: String, scale: Float = 1f, slug: String = "p3r") {
+        val p = pack(slug)
+        val days = requireNotNull(PackLoader.decodeWalkthrough(asset("$slug/walkthrough/${date.take(7)}.json"))).days
+        val day = days.single { it.date == date }
+        show(slug, scale) {
+            SkinSectionHeader("Daily plan")
+            Spacer(Modifier.height(12.dp))
+            if (slug == "p3r") SubmergedDateHeader(date, date)
+            val deadlines = requireNotNull(PackLoader.decodeDeadlines(asset("$slug/deadlines.json"))).deadlines
+            nextDeadline(deadlines, date, p.calendar)?.let { (deadline, remaining) -> DeadlineBanner(deadline, remaining) }
+            Spacer(Modifier.height(14.dp))
+            TasksList(day.steps, { null }, { _, _ -> }, p.pack.stats.associate { it.id to it.label }, emptyMap(),
+                slotLabels = p.pack.slots.associate { it.id to it.label })
+            Spacer(Modifier.height(14.dp))
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                SkinTextActionButton("Back", {})
+                SkinActionButton("End Day", {})
+            }
+        }
+        capture(name)
+        compose.onNodeWithText("End Day").performScrollTo().assertIsDisplayed()
+        capture("$name-controls")
+    }
+
+    @Test fun schoolDay() = dayFixture("2009-04-21", "p3r-school")
+    @Test fun freeDay() = dayFixture("2009-04-26", "p3r-free")
+    @Test fun operationDay() = dayFixture("2009-05-09", "p3r-operation")
+    @Test fun largeText() = dayFixture("2009-04-26", "p3r-large-text", 1.5f)
+
+    @Test fun markToggleAndTipsRemainIndependent() {
+        var selected: StepMark? = StepMark.LATER
+        val instruction = "Read the task guidance before choosing how to mark this action."
+        show {
+            var mark by remember { mutableStateOf<StepMark?>(StepMark.LATER) }
+            StepRow(0, Step(instruction, tip = "This is fixture guidance, not game data."), mark,
+                { value -> mark = value.takeUnless { it == mark }; selected = mark }, emptyMap(), null)
+        }
+        // Old saves may still carry LATER, but P3R offers only Done and Skip now.
+        compose.onNodeWithText("Later").assertDoesNotExist()
+        compose.onNodeWithText("Done").assertIsNotSelected()
+        compose.onNodeWithText("Skip").assertIsNotSelected()
+        val taskBounds = compose.onNodeWithText(instruction, substring = true).fetchSemanticsNode().boundsInRoot
+        val doneBounds = compose.onNodeWithText("Done").fetchSemanticsNode().boundsInRoot
+        val skipBounds = compose.onNodeWithText("Skip").fetchSemanticsNode().boundsInRoot
+        assertTrue("commands must be beside the instruction", doneBounds.left >= taskBounds.right)
+        assertTrue("Skip follows Done horizontally", skipBounds.left >= doneBounds.right)
+        assertEquals("commands share a row", doneBounds.center.y, skipBounds.center.y, 1f)
+        compose.onNodeWithText("Done").assertWidthIsEqualTo(40.dp).assertHeightIsEqualTo(40.dp)
+        compose.onNodeWithText("Skip").assertWidthIsEqualTo(40.dp).assertHeightIsEqualTo(40.dp)
+        compose.onNodeWithText("Done").performClick().assertIsSelected()
+        assertEquals(StepMark.DONE, selected)
+        compose.onNodeWithText("Done").performClick().assertIsNotSelected()
+        assertEquals(null, selected)
+        compose.onNodeWithText("Skip").performClick().assertIsSelected()
+        compose.onNodeWithText(instruction, substring = true).performClick()
+        compose.onNodeWithText("This is fixture guidance, not game data.").assertIsDisplayed()
+        compose.onNodeWithText("Close").performClick()
+        assertEquals(StepMark.SKIP, selected)
+        compose.onNodeWithText("Skip").performClick().assertIsNotSelected()
+        assertEquals(null, selected)
+        compose.onNodeWithText("Done").performClick().assertIsSelected()
+        capture("p3r-task-marked")
+    }
+
+    @Test fun pinnedDateSharesOversizedTitleLine() {
+        show(scale = 1.5f) {
+            SubmergedTopBar("Today · Tue, Apr 21", false, {}, {}, true, {})
+        }
+        val title = compose.onNodeWithTag("p3r-toolbar-title").fetchSemanticsNode().boundsInRoot
+        val date = compose.onNodeWithTag("p3r-toolbar-date").fetchSemanticsNode().boundsInRoot
+        compose.onNodeWithText("TODAY").assertIsDisplayed()
+        compose.onNodeWithTag("p3r-toolbar-title").assertHeightIsEqualTo(64.dp)
+        compose.onNodeWithText("Tue, Apr 21").assertIsDisplayed()
+        assertTrue("date must sit beside the title", date.left >= title.right)
+        assertEquals("one header line", title.center.y, date.center.y, 1f)
+        capture("p3r-pinned-title-large-text")
+    }
+
+    @Test fun settingsBackReplacesTheTrailingCog() {
+        var wentBack = false
+        show { SubmergedTopBar("Settings", true, { wentBack = true }, {}, false, {}) }
+        compose.onNodeWithContentDescription("Settings").assertDoesNotExist()
+        val title = compose.onNodeWithTag("p3r-toolbar-title").fetchSemanticsNode().boundsInRoot
+        val back = compose.onNodeWithContentDescription("Back").fetchSemanticsNode().boundsInRoot
+        assertTrue("Back occupies the right utility slot", back.left >= title.right)
+        compose.onNodeWithContentDescription("Back").performClick()
+        assertTrue(wentBack)
+    }
+}

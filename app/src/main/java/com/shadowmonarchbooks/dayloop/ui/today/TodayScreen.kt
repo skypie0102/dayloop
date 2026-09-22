@@ -77,6 +77,8 @@ import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkinFx
 import com.shadowmonarchbooks.dayloop.ui.skin.PerfectDaySplash
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDateHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
@@ -132,6 +134,16 @@ fun TodayScreen(
     val view = LocalView.current
     val animationsDisabled = rememberAnimationsDisabled()
     val scrollState = rememberScrollState()
+    val submerged = skin.hasSubmergedChrome()
+    val density = LocalDensity.current
+    var dayControlsHeightPx by remember { mutableIntStateOf(0) }
+    // Reserve the measured control rail, including enlarged labels, only for this skin.
+    val contentBottom = if (submerged && dayControlsHeightPx > 0) {
+        with(density) { dayControlsHeightPx.toDp() }
+    } else 100.dp
+    LaunchedEffect(date, submerged) {
+        if (submerged) scrollState.scrollTo(0)
+    }
     var dateBottomPx by remember(date) { mutableIntStateOf(Int.MAX_VALUE) }
     val datePinned by remember(scrollState, dateBottomPx) {
         derivedStateOf { scrollState.value >= dateBottomPx }
@@ -169,6 +181,7 @@ fun TodayScreen(
         if (skin.hasSkin && motif != null && !animationsDisabled) {
             advance = AdvanceFx(
                 motif = motif,
+                dateLabel = formatDate(date, pack.calendar),
                 steps = day?.steps?.mapIndexed { i, step ->
                     step.label to (state.markAt(date, i) == StepMark.DONE)
                 }.orEmpty(),
@@ -213,8 +226,11 @@ fun TodayScreen(
             verticalArrangement = Arrangement.spacedBy(14.dp),
             modifier = Modifier
                 .fillMaxSize()
+                // Shrink the scrolling viewport itself: focused controls must never
+                // scroll underneath the pinned rail, including accessibility scrolls.
+                .then(if (submerged) Modifier.padding(bottom = contentBottom) else Modifier)
                 .verticalScroll(scrollState)
-                .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 100.dp),
+                .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = if (submerged) 14.dp else 100.dp),
         ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -227,10 +243,19 @@ fun TodayScreen(
         ) {
             // Treat the weighted left side as the date's cell. P5R centers the
             // full date in that cell and only reduces font size when it cannot fit.
-            TodayDateHeader(
-                text = formatDate(date, pack.calendar),
-                modifier = Modifier.weight(1f),
-            )
+            if (skin.hasSubmergedChrome()) {
+                SubmergedDateHeader(
+                    date = date,
+                    accessibleDate = formatDate(date, pack.calendar),
+                    weekdayLabel = pack.calendar?.weekdayOf(date)?.replaceFirstChar { it.uppercase() },
+                    modifier = Modifier.weight(1f),
+                )
+            } else {
+                TodayDateHeader(
+                    text = formatDate(date, pack.calendar),
+                    modifier = Modifier.weight(1f),
+                )
+            }
             // Moon-language packs (Phase 14): the date's moon-phase art renders
             // beside the header when the pack anchors media to this date.
             if (LocalSkin.current.motif == "moon") {
@@ -321,19 +346,37 @@ fun TodayScreen(
         }
 
         if (day != null) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                SkinSectionHeader("Tasks")
-                SkinTextActionButton(
-                    text = "Check all",
-                    onClick = { vm.markAllDone(date, day.steps.size) },
-                    enabled = !allTasksDone,
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
+            if (submerged) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        SkinSectionHeader("Tasks")
+                        DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
+                    }
+                    SkinTextActionButton(
+                        text = "Check all",
+                        onClick = { vm.markAllDone(date, day.steps.size) },
+                        enabled = !allTasksDone,
+                    )
+                }
+            } else {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    SkinSectionHeader("Tasks")
+                    SkinTextActionButton(
+                        text = "Check all",
+                        onClick = { vm.markAllDone(date, day.steps.size) },
+                        enabled = !allTasksDone,
+                    )
+                    Spacer(modifier = Modifier.weight(1f))
+                    DayProgressLine(ProgressLogic.dayProgress(state.marks, date, day.steps.size))
+                }
             }
             TasksList(
                 steps = day.steps,
@@ -398,28 +441,38 @@ fun TodayScreen(
 
         }
 
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(10.dp),
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .padding(horizontal = 12.dp, vertical = 8.dp),
-        ) {
-            if (state.hasPreviousDay()) {
-                SkinTextActionButton(
-                    text = "Back",
-                    onClick = vm::rerollDay,
-                    modifier = Modifier.heightIn(min = 52.dp),
+        val dayActions: @Composable (Modifier) -> Unit = { actionsModifier ->
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                modifier = actionsModifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
+            ) {
+                if (state.hasPreviousDay()) {
+                    SkinTextActionButton(
+                        text = "Back",
+                        onClick = vm::rerollDay,
+                        modifier = Modifier.heightIn(min = 52.dp),
+                    )
+                }
+                SkinActionButton(
+                    text = "End day",
+                    onClick = ::advanceDay,
+                    enabled = state.hasNextDay(),
+                    largeLabel = true,
+                    fillWidth = true,
+                    modifier = Modifier.weight(1f).heightIn(min = 52.dp),
                 )
             }
-            SkinActionButton(
-                text = "End day",
-                onClick = ::advanceDay,
-                enabled = state.hasNextDay(),
-                largeLabel = true,
-                fillWidth = true,
-                modifier = Modifier.weight(1f).heightIn(min = 52.dp),
-            )
+        }
+
+        if (submerged) {
+            // Only day controls reserve space; celebration artwork floats centrally.
+            Column(Modifier.align(Alignment.BottomCenter).fillMaxWidth()
+                .onSizeChanged { dayControlsHeightPx = it.height }
+                .background(MaterialTheme.colorScheme.background)) {
+                dayActions(Modifier)
+            }
+        } else {
+            dayActions(Modifier.align(Alignment.BottomCenter))
         }
 
         // Day-advance sequence (docs/ROADMAP-v3.md Phase 16): the per-skin

@@ -53,6 +53,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.SkinTag
 import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
 /** Bond list — labels come from the pack ("Confidant", "Social Link", "Follower"). */
@@ -69,6 +70,10 @@ fun BondsScreen(
     }
     if (pack.bonds.isEmpty()) {
         EmptyState("No bonds authored in this pack yet.")
+        return
+    }
+    if (LocalSkin.current.hasSubmergedChrome()) {
+        SubmergedBondsScreen(pack, days, marks, onOpenBond)
         return
     }
 
@@ -226,9 +231,14 @@ fun BondDetailScreen(
     pack: LoadedPack?,
     days: Map<String, Day> = emptyMap(),
     marks: Map<StepKey, StepMark> = emptyMap(),
+    onOpenDay: (String) -> Unit = {},
 ) {
     val bond = pack?.bonds?.firstOrNull { it.id == bondId } ?: run {
         EmptyState("Bond not found in this pack.")
+        return
+    }
+    if (LocalSkin.current.hasSubmergedChrome()) {
+        SubmergedBondDetail(bond, pack, days, marks, onOpenDay)
         return
     }
     val bondLabels = pack.bonds.associate { it.id to it.label }

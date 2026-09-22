@@ -271,39 +271,43 @@ class PackThemeTest {
         assertEquals("2100-10-26", cal.endDate, "the journey's last day")
     }
 
-    // ---- Phase 14 (docs/ROADMAP-v3.md): the Moonlight skin data ----
+    // P3R-1: replacement shell opt-in; legacy panel/motion work remains staged.
 
     @Test
-    fun `p3r declares the moonlight skin data`() {
+    fun `p3r declares replacement chrome without changing other pack opt-ins`() {
         val theme = themeOf("p3r")
         assertEquals("moon", theme.motif)
-        assertNotNull(theme.shapes, "p3r must declare shapes")
-        assertEquals("diamond", theme.shapes?.chip, "slot pills become diamond tags")
-        assertEquals("diamond", theme.shapes?.header, "diamond-capped headers")
-        assertEquals("fade", theme.motion, "moonlight motion is calm fades")
-        val display = assertNotNull(theme.typography?.display, "p3r must declare a display font role")
-        assertEquals("art/fonts/display.ttf", display.file)
-        assertEquals("upper", display.case, "display case token")
-        assertTrue(!display.italic, "moonlight type is upright")
-        assertTrue((display.tracking ?: 0.0) > 0.0, "elegant wide tracking")
-        assertTrue("header" in theme.decor, "p3r decor header slot")
-        // Moonlit dark + dawn light seeds (docs/references/p3r-ui.md §2).
-        assertEquals("#09134E", theme.accent, "dawn light seed")
-        assertEquals("#1A46CE", theme.accentDark, "moonlit dark seed")
-        assertEquals("tonalSpot", theme.style)
+        assertEquals("submerged", theme.chrome)
+        assertEquals("submerged", theme.style)
+        assertNotNull(theme.shapes)
+        assertEquals("diamond", theme.shapes?.chip)
+        assertEquals("diamond", theme.shapes?.header)
+        assertEquals("fade", theme.motion)
+        val display = assertNotNull(theme.typography?.display)
+        assertEquals("art/fonts/menu-italic.ttf", display.file)
+        assertEquals(null, display.case, "titles preserve authored case")
+        assertEquals(-0.015, display.tracking)
+        assertTrue(display.italic, "menu display face is italic")
+        assertTrue("header" in theme.decor)
+        assertEquals("#09134E", theme.accent)
+        assertEquals("#1A46CE", theme.accentDark)
+        assertEquals(null, themeOf("p5r").chrome, "protected pack keeps existing chrome")
+        assertEquals(null, themeOf("metaphor").chrome, "other pack keeps existing chrome")
+        assertEquals(packColorScheme(theme, true).background, packColorScheme(theme, false).background)
+        assertEquals(packColorScheme(theme, true).primary, packColorScheme(theme, false).primary)
     }
 
     @Test
     fun `p3r bundles its display font and license`() {
         val root = contentPacksDir() ?: error("no content checkout")
         val dir = root.resolve("p3r")
-        val font = dir.resolve("art/fonts/display.ttf")
+        val font = dir.resolve("art/fonts/menu-italic.ttf")
         assertTrue(font.isRegularFile(), "bundled display font missing")
         assertTrue(font.fileSize() <= 2L * 1024 * 1024, "font exceeds the 2 MB cap")
         assertTrue(font.fileSize() > 10_000, "font suspiciously small — truncated download?")
         val head = Files.readAllBytes(font).take(4)
-        assertEquals(listOf<Byte>(0, 1, 0, 0), head, "display.ttf must start with the TTF magic")
-        assertTrue(dir.resolve("art/fonts/OFL.txt").isRegularFile(), "OFL license must ship beside the font")
+        assertEquals(listOf<Byte>(0, 1, 0, 0), head, "menu-italic.ttf must start with the TTF magic")
+        assertTrue(dir.resolve("art/fonts/RobotoCondensed-OFL.txt").isRegularFile(), "OFL license must ship beside the font")
     }
 
     @Test
@@ -317,9 +321,9 @@ class PackThemeTest {
     }
 
     @Test
-    fun `moon marker anchors pin exactly the ten accepted dates`() {
-        // Phase 14 acceptance: "the moon icon must appear on exactly the nine
-        // full-moon dates + 2010-01-31 already anchored in media.json".
+    fun `moon marker anchors use the audited dates and the Promised Day`() {
+        // Keep the nine corrected full-moon dates plus the distinct Promised Day.
+        // Original imported anchors were reconciled against the deadline audit.
         val root = contentPacksDir() ?: error("no content checkout")
         val media = PackLoader.decodeMedia(
             String(Files.readAllBytes(root.resolve("p3r").resolve("media.json"))),
@@ -329,8 +333,8 @@ class PackThemeTest {
         assertEquals(10, dates.size, "exactly ten moon-marked dates expected")
         assertEquals(
             setOf(
-                "2009-04-18", "2009-05-10", "2009-06-09", "2009-07-08", "2009-08-07",
-                "2009-09-06", "2009-10-05", "2009-11-04", "2009-12-03", "2010-01-31",
+                "2009-04-09", "2009-05-09", "2009-06-08", "2009-07-07", "2009-08-06",
+                "2009-09-05", "2009-10-04", "2009-11-03", "2009-12-02", "2010-01-31",
             ),
             dates,
             "nine full moons + the Promised Day",

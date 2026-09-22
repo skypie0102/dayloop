@@ -6,6 +6,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.ui.graphics.RectangleShape
+import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -55,6 +59,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.skinTick
  * it redirects to the first-run game-selection carousel (docs/ROADMAP-v3.md
  * Phase 11), so there is exactly one place in the app that picks a game.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SettingsScreen(
     vm: DayloopViewModel = hiltViewModel(),
@@ -76,9 +81,16 @@ fun SettingsScreen(
     val view = LocalView.current
     val skin = LocalSkin.current
     val slashPanels = skin.hasSkin && skin.motion == "slash"
+    val submerged = skin.hasSubmergedChrome()
+    val panelShape = when {
+        submerged -> RectangleShape
+        slashPanels -> skin.shapes.card
+        else -> MaterialTheme.shapes.medium
+    }
+    val panelColor = if (submerged) MaterialTheme.colorScheme.surface else MaterialTheme.colorScheme.surfaceVariant
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(18.dp),
+        verticalArrangement = Arrangement.spacedBy(if (submerged) 12.dp else 18.dp),
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
@@ -88,8 +100,8 @@ fun SettingsScreen(
         SectionTitle("Game")
         Surface(
             onClick = onSwitchGame,
-            shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
-            color = MaterialTheme.colorScheme.surfaceVariant,
+            shape = panelShape,
+            color = panelColor,
             modifier = Modifier.fillMaxWidth(),
         ) {
             Row(
@@ -112,7 +124,7 @@ fun SettingsScreen(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                     Text(
-                        text = "Tap to choose a different game — every game keeps its saves.",
+                        text = if (submerged) "Change game · saves are kept" else "Tap to choose a different game — every game keeps its saves.",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -123,11 +135,11 @@ fun SettingsScreen(
 
         // ---- Pack media (ROADMAP-v3 Phase 11): the pack's bundled graphics ----
         if (pack.media.isNotEmpty()) {
-            SectionTitle("Pack media")
+            SectionTitle(if (submerged) "Artwork" else "Pack media")
             Surface(
                 onClick = onOpenMedia,
-                shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
-                color = MaterialTheme.colorScheme.surfaceVariant,
+                shape = panelShape,
+                color = panelColor,
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Row(
@@ -136,7 +148,7 @@ fun SettingsScreen(
                     modifier = Modifier.padding(10.dp),
                 ) {
                     Text(
-                        text = "${pack.media.size} bundled graphics from the guide sources",
+                        text = if (submerged) "${pack.media.size} images" else "${pack.media.size} bundled graphics from the guide sources",
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.weight(1f),
                     )
@@ -148,8 +160,8 @@ fun SettingsScreen(
         // ---- In-game clock ----
         SectionTitle("In-game clock")
         Surface(
-            shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
-            color = MaterialTheme.colorScheme.surfaceVariant,
+            shape = panelShape,
+            color = panelColor,
             modifier = Modifier.fillMaxWidth(),
         ) {
             Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -161,12 +173,12 @@ fun SettingsScreen(
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.SemiBold,
                 )
-                Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                val clockActions: @Composable () -> Unit = {
                     // Day advance here gets the same light haptic tick + the
                     // pack's `advance` sound (if Skin sounds are on) as the
                     // End-Day button (docs/ROADMAP-v3.md Phase 16).
                     SkinActionButton(
-                        text = "Advance a day",
+                        text = if (submerged) "Next day" else "Advance a day",
                         onClick = {
                             view.skinTick()
                             vm.skinFx.play("advance")
@@ -175,10 +187,15 @@ fun SettingsScreen(
                         enabled = state.hasNextDay(),
                     )
                     SkinOutlinedActionButton(
-                        text = "Reroll",
+                        text = if (submerged) "Back" else "Reroll",
                         onClick = vm::rerollDay,
                         enabled = state.hasPreviousDay(),
                     )
+                }
+                if (submerged) {
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) { clockActions() }
+                } else {
+                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) { clockActions() }
                 }
                 SkinOutlinedActionButton(
                     text = "Reset profile",
@@ -201,8 +218,8 @@ fun SettingsScreen(
             val soundsEnabled by vm.soundsEnabled.collectAsState()
             SectionTitle("Skin sounds")
             Surface(
-                shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
-                color = MaterialTheme.colorScheme.surfaceVariant,
+                shape = panelShape,
+                color = panelColor,
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Row(
@@ -234,8 +251,8 @@ fun SettingsScreen(
             state.profiles.forEach { profile ->
                 val active = profile.id == state.activeProfile?.id
                 Surface(
-                    shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.small,
-                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    shape = if (submerged) RectangleShape else if (slashPanels) skin.shapes.card else MaterialTheme.shapes.small,
+                    color = panelColor,
                     modifier = Modifier.fillMaxWidth(),
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = 4.dp, end = 4.dp)) {
@@ -267,11 +284,13 @@ fun SettingsScreen(
             )
         }
 
+        BackupControls(panelShape, panelColor, state.packs.associate { it.slug to it.pack.title })
+
         // ---- Orphaned marks review (docs/PLAN.md §3.6) ----
         if (state.orphans.isNotEmpty()) {
             SectionTitle("Saved marks no longer in content")
             Surface(
-                shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.medium,
+                shape = panelShape,
                 color = MaterialTheme.colorScheme.errorContainer,
                 modifier = Modifier.fillMaxWidth(),
             ) {
@@ -305,7 +324,8 @@ fun SettingsScreen(
 
         // ---- About this pack's save stamp (docs/PLAN.md §3.6) ----
         Text(
-            text = "${pack.pack.title} · save stamp ${pack.pack.packId} @ content v${pack.pack.contentVersion}",
+            text = if (submerged) "${pack.pack.title} · content v${pack.pack.contentVersion}" else
+                "${pack.pack.title} · save stamp ${pack.pack.packId} @ content v${pack.pack.contentVersion}",
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )

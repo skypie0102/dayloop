@@ -19,7 +19,7 @@ class PackSchemeTest {
 
     @Test
     fun `style tokens are the closed set`() {
-        assertEquals(setOf("tonalSpot", "vibrant", "expressive", "content", "ink"), THEME_STYLES)
+        assertEquals(setOf("tonalSpot", "vibrant", "expressive", "content", "ink", "submerged"), THEME_STYLES)
     }
 
     @Test
@@ -49,6 +49,28 @@ class PackSchemeTest {
                 0xFFF21B00.toInt(),
             )
             assertTrue(roles.values.all { it in allowed }, "ink scheme introduced an unrelated hue: $roles")
+        }
+    }
+
+    @Test
+    fun `submerged keeps the same palette across system modes`() {
+        val t = theme("#09134E", "#1A46CE", "submerged")
+        assertEquals(schemeArgb(t, true), schemeArgb(t, false))
+        val roles = assertNotNull(schemeArgb(t, true))
+        assertTrue(Wcag.relativeLuminance(roles.getValue("background")) < 0.02)
+        assertTrue(Wcag.contrastRatio(roles.getValue("primary"), roles.getValue("background")) >= 4.5)
+    }
+
+    @Test
+    fun `submerged backdrop and deadline labels remain readable on the brightest plane`() {
+        // The wash and decorative light blend towards primaryContainer; the
+        // normal Material pairs do not cover text rendered over that backdrop.
+        for (seed in listOf("#1A46CE", "#FFFFFF", "#000000", "#DCA11E", "#1B5E20")) {
+            val roles = assertNotNull(schemeArgb(theme(seed, style = "submerged"), true))
+            for (foreground in listOf("primary", "secondary", "onSurfaceVariant", "onBackground", "error")) {
+                val ratio = Wcag.contrastRatio(roles.getValue(foreground), roles.getValue("primaryContainer"))
+                assertTrue(ratio >= Wcag.AA_NORMAL, "$seed: $foreground on blue frame = $ratio")
+            }
         }
     }
 

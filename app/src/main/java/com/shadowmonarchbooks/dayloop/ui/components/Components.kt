@@ -73,6 +73,10 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Step
 import com.shadowmonarchbooks.dayloop.progress.DayProgress
 import com.shadowmonarchbooks.dayloop.progress.StepKey
 import com.shadowmonarchbooks.dayloop.progress.StepMark
+import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
+import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedTaskCard
+import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDeadline
+import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedSectionHeading
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.MoonFillBadge
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinFxTiming
@@ -89,6 +93,11 @@ import kotlin.math.hypot
 
 @Composable
 fun DayKindChip(kind: String) {
+    if (LocalSkin.current.hasSubmergedChrome()) {
+        Text(kind.replaceFirstChar { it.uppercase() }, style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.onBackground)
+        return
+    }
     val colors = when (kind) {
         "school" -> MaterialTheme.colorScheme.surfaceVariant to MaterialTheme.colorScheme.onSurfaceVariant
         "story" -> MaterialTheme.colorScheme.primaryContainer to MaterialTheme.colorScheme.onPrimaryContainer
@@ -304,7 +313,7 @@ private fun MarkButton(
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
-                .size(40.dp)
+                .size(com.shadowmonarchbooks.dayloop.ui.skin.PersonaTaskMarkSize)
                 .clickable {
                     feedback()
                     onToggle(mark)
@@ -466,6 +475,10 @@ fun StepRow(
             tip = step.tip.orEmpty(),
             onDismiss = { showTip = false },
         )
+    }
+    if (skin.hasSubmergedChrome()) {
+        SubmergedTaskCard(index, step, mark, onToggleMark, statLabels, activityLabel, onOpenActivity) { showTip = true }
+        return
     }
     Row(
         verticalAlignment = Alignment.Top,
@@ -662,11 +675,12 @@ fun TasksList(
     Column(verticalArrangement = Arrangement.spacedBy(14.dp), modifier = modifier) {
         groupTasksBySlot(steps).forEachIndexed { groupIndex, group ->
             if (crown && groupIndex > 0) FiligreeDivider()
-            Text(
-                text = group.groupLabel ?: group.slotId?.let(slotLabels::get) ?: "Any time",
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.secondary,
-            )
+            val heading = group.groupLabel ?: group.slotId?.let(slotLabels::get) ?: "Any time"
+            if (skin.hasSubmergedChrome()) {
+                SubmergedSectionHeading(heading)
+            } else {
+                Text(text = heading, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.secondary)
+            }
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 group.tasks.forEach { indexed ->
                     val i = indexed.index
@@ -796,6 +810,10 @@ fun DeadlineBanner(
     kindLabel: String? = null,
 ) {
     val skin = LocalSkin.current
+    if (skin.hasSubmergedChrome()) {
+        SubmergedDeadline(deadline.label, daysLeft, kindLabel, modifier)
+        return
+    }
     if (skin.motion == "slash") {
         val background = rememberAssetImage(backgroundAssetPath)
         // Calling-card treatment (docs/ROADMAP-v3.md Phase 13, slash-language
@@ -1001,6 +1019,10 @@ fun AnswerSheetCard(
     onOpenAnswers: (() -> Unit)? = null,
     deadlineLabel: String? = null,
 ) {
+    if (LocalSkin.current.hasSubmergedChrome()) {
+        SubmergedAnswerSheet(sheet, onOpenAnswers, deadlineLabel, modifier)
+        return
+    }
     Surface(
         onClick = { onOpenAnswers?.invoke() },
         enabled = onOpenAnswers != null,

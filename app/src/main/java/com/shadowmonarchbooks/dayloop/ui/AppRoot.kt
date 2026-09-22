@@ -60,7 +60,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.skinBackdrop
 import com.shadowmonarchbooks.dayloop.ui.today.TodayScreen
 
 /** Every top-level destination stays registered, whatever the active pack ships. */
-internal val TopLevelRoutes = setOf("today", "calendar", "achievements", "bonds", "answers", "mementos")
+internal val TopLevelRoutes = setOf("today", "calendar", "achievements", "bonds", "answers", "mementos", "requests")
 
 /** Prevent a top-level control from reloading the destination already on screen. */
 internal fun shouldNavigate(currentRoute: String?, destination: String): Boolean =
@@ -81,6 +81,8 @@ internal fun topLevelTabs(pack: LoadedPack?): List<SkinNavItem> = buildList {
     }
     if (pack?.pack?.capabilities?.mementosRequests == true) {
         add(SkinNavItem("mementos", "Mementos Requests", Icons.Filled.List))
+    } else if (pack?.pack?.capabilities?.requests == true) {
+        add(SkinNavItem("requests", "Requests", Icons.Filled.List))
     } else if (pack == null || pack.pack.capabilities.answers) {
         add(SkinNavItem("answers", "Answers", Icons.Filled.Info))
     }
@@ -278,6 +280,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                         pack = pack,
                         days = state.days,
                         marks = state.marks,
+                        onOpenDay = { date -> nav.navigate("day/$date") },
                     )
                 }
                 composable("deadlines") {
@@ -285,6 +288,9 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                 }
                 composable("answers") {
                     AnswersScreen(vm = vm, onOpenDay = { date -> nav.navigate("day/$date") })
+                }
+                composable("requests") {
+                    com.shadowmonarchbooks.dayloop.ui.requests.RequestsScreen(vm = vm, onOpenDay = { date -> nav.navigate("day/$date") })
                 }
                 composable("mementos") {
                     MementosRequestsScreen(vm = vm, onOpenDay = { date -> nav.navigate("day/$date") })

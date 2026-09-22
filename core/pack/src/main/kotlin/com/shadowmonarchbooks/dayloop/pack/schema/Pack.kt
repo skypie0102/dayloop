@@ -114,6 +114,7 @@ data class Capabilities(
     val answers: Boolean = false,
     /** Pack ships a task-linked Mementos request catalog. */
     val mementosRequests: Boolean = false,
+    val requests: Boolean = false,
 )
 
 @Serializable
@@ -187,6 +188,8 @@ data class PackTheme(
      * user enables "Skin sounds" in Settings.
      */
     val sfx: Map<String, String> = emptyMap(),
+    /** Optional chrome composition token; null preserves the existing shell. */
+    val chrome: String? = null,
 ) {
     /** The scheme seed for [dark] mode as an ARGB int, or null when undeclared. */
     fun seedArgb(dark: Boolean): Int? {

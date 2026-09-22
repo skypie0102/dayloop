@@ -58,6 +58,7 @@ private fun SkinSpec.isSlashChrome(): Boolean = hasSkin && motion == "slash"
  */
 @Composable
 fun Modifier.skinBackdrop(skin: SkinSpec, showHaze: Boolean = true): Modifier {
+    if (skin.hasSubmergedChrome()) return this.submergedBackdrop()
     if (!skin.isSlashChrome()) return this
     val colors = MaterialTheme.colorScheme
     val background = Color.Black
@@ -110,7 +111,9 @@ fun SkinTopBar(
                 .fillMaxWidth()
                 .windowInsetsTopHeight(WindowInsets.statusBars),
         )
-        if (!skin.isSlashChrome()) {
+        if (skin.hasSubmergedChrome()) {
+            SubmergedTopBar(title, canGoBack, onBack, onOpenSearch, settingsEnabled, onOpenSettings)
+        } else if (!skin.isSlashChrome()) {
             TopAppBar(
                 modifier = Modifier
                     .background(colors.surface)
@@ -144,7 +147,7 @@ fun SkinTopBar(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .heightIn(min = 64.dp)
+                        .heightIn(min = PersonaToolbarHeight)
                         .drawBehind {
                             drawLine(
                                 color = colors.onBackground,
@@ -226,6 +229,10 @@ fun SkinBottomBar(
 ) {
     val skin = LocalSkin.current
     val colors = MaterialTheme.colorScheme
+    if (skin.hasSubmergedChrome()) {
+        SubmergedBottomBar(items, selectedRoute, onSelect)
+        return
+    }
     if (!skin.isSlashChrome()) {
         NavigationBar {
             items.forEach { item ->

@@ -80,7 +80,7 @@ fun Modifier.skinDecor(slot: String, accent: Color = Unspecified): Modifier = co
 }
 
 @Composable
-private fun rememberDecorBitmap(asset: String?): Bitmap? {
+internal fun rememberDecorBitmap(asset: String?): Bitmap? {
     val context = LocalContext.current
     return produceState<Bitmap?>(initialValue = null, key1 = asset) {
         value = asset?.let { path ->

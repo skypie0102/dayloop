@@ -324,3 +324,35 @@ must point at an existing file — orphaned or unresolvable art fails lint, so
   a cutscene note — the route ends October 26.
 - Every pack must keep passing `packlint "-Ppack=content/packs/<slug>"` (CI
   enforces this).
+
+## Opt-in submerged shell
+
+`theme.chrome: "submerged"` selects layered navigation chrome and a numeric Today
+date treatment. Omit it to retain the existing shell; a moon motif alone does not
+activate it. `theme.style: "submerged"` independently selects a dark-only saturated
+palette derived from `accentDark` (falling back to `accent`), with identical colors
+across system modes. Both tokens are linted. The first adopter is the P3R redesign;
+see [its baseline and remaining visual gates](packs/p3r-redesign-baseline.md).
+
+### Optional request stages and reporting
+
+Use `capabilities.requests: true` with `requests.json` to replace the Answers
+bottom tab with a request tracker while retaining daily answer access. Declare
+`title`, `issuer` and `requests` with stable `id`, positive `number`, and `title`.
+Optional `deadline` is a verified reporting cutoff; `routeDates` links to existing
+walkthrough dates, including preparation. They never imply completion.
+
+An optional `solution` contains independently written, verified completion
+instructions. It appears in expanded request details before the stage controls.
+Omit it when guidance is not verified; a supplied blank string is invalid.
+Explain prerequisites and pickup/reporting separately, and distinguish route
+preparation dates from game availability. This field never changes saved stages
+or provides automatic completion evidence.
+
+For safe automation, an optional `completionEvent` references one entry in the
+file's `events` list (the same date/labelContains/routeId anchor contract used by
+achievements). It must resolve exactly one actual reporting task. An acceptance,
+item pickup, or reward preparation must not complete a request. Only DONE counts;
+unchecking reverses the derived state. Otherwise the player explicitly selects
+Accepted, Ready to report, or Reported, with each stage reversible and stored per
+profile. P5R continues to use its existing Mementos contract.

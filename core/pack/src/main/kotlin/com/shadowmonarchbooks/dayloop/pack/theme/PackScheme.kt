@@ -21,7 +21,7 @@ import kotlin.math.roundToInt
  */
 
 /** Closed-set scheme character tokens (pack.json `theme.style`). */
-val THEME_STYLES: Set<String> = setOf("tonalSpot", "vibrant", "expressive", "content", "ink")
+val THEME_STYLES: Set<String> = setOf("tonalSpot", "vibrant", "expressive", "content", "ink", "submerged")
 
 /** Builds a Material dynamic scheme variant (null = calm default). */
 fun buildScheme(style: String?, seed: Hct, dark: Boolean): DynamicScheme = when (style) {
@@ -183,13 +183,53 @@ private fun inkSchemeArgb(seedArgb: Int, dark: Boolean): Map<String, Int> {
     }
 }
 
+/** Saturated, dark-only planes and luminous highlights, derived from the pack seed. */
+private fun submergedSchemeArgb(seed: Int): Map<String, Int> {
+    fun tint(white: Double): Int {
+        fun c(shift: Int): Int = (((seed shr shift) and 255) * (1 - white) + 255 * white).roundToInt()
+        return INK_BLACK or (c(16) shl 16) or (c(8) shl 8) or c(0)
+    }
+    val deep = shade(seed, 0.10)
+    val panel = shade(seed, 0.22)
+    val raised = shade(seed, 0.36)
+    val light = tint(0.78)
+    val secondary = Hct.from(Hct.fromInt(seed).hue - 70.0, 48.0, 85.0).toInt()
+    // Start from a complete scheme so newly consumed Material roles stay defined.
+    val base = buildScheme("content", Hct.fromInt(seed), true)
+    val m = com.materialkolor.dynamiccolor.MaterialDynamicColors()
+    val urgent = m.error().getArgb(base)
+    // Blue framing and white selection are separate roles. Cap the frame's
+    // brightness for both subdued backdrop labels and urgent deadline text.
+    var frame = shade(seed, 0.85)
+    while (minOf(Wcag.contrastRatio(secondary, frame), Wcag.contrastRatio(urgent, frame)) < Wcag.AA_NORMAL) {
+        frame = shade(frame, 0.90)
+    }
+    return SCHEME_ROLES.associate { (name, role) -> name to role(m).getArgb(base) } + mapOf(
+        "primary" to INK_WHITE, "onPrimary" to frame,
+        "primaryContainer" to frame, "onPrimaryContainer" to INK_WHITE,
+        "secondary" to secondary, "onSecondary" to deep,
+        "secondaryContainer" to panel, "onSecondaryContainer" to INK_WHITE,
+        "tertiary" to Hct.from(Hct.fromInt(seed).hue + 75.0, 48.0, 80.0).toInt(), "onTertiary" to deep,
+        "tertiaryContainer" to raised, "onTertiaryContainer" to INK_WHITE,
+        "background" to deep, "onBackground" to INK_WHITE,
+        "surface" to panel, "onSurface" to INK_WHITE,
+        "surfaceVariant" to raised, "onSurfaceVariant" to light,
+        "surfaceTint" to frame, "outline" to tint(0.50), "outlineVariant" to raised,
+        "surfaceDim" to deep, "surfaceBright" to raised,
+        "surfaceContainerLowest" to deep, "surfaceContainerLow" to panel,
+        "surfaceContainer" to panel, "surfaceContainerHigh" to raised,
+        "surfaceContainerHighest" to raised,
+    )
+}
+
 /**
  * Materializes a pack's scheme for [dark] mode into role name → ARGB int.
  * Returns null when the theme declares no parseable seed (the engine then
  * renders its own fixed palette — never lint-checked as pack data).
  */
 fun schemeArgb(theme: PackTheme, dark: Boolean): Map<String, Int>? {
-    val seedArgb = theme.seedArgb(dark) ?: return null
+    val seedArgb = theme.seedArgb(if (theme.style == "submerged") true else dark) ?: return null
+    if (theme.style == "submerged") return submergedSchemeArgb(seedArgb)
     if (theme.style == "ink") return inkSchemeArgb(seedArgb, dark)
 
     val scheme = buildScheme(theme.style, Hct.fromInt(seedArgb), dark)

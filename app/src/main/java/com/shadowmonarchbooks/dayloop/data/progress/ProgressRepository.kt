@@ -1,6 +1,9 @@
 package com.shadowmonarchbooks.dayloop.data.progress
 
 import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
@@ -16,6 +19,8 @@ import com.shadowmonarchbooks.dayloop.progress.StepMark
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -78,18 +83,112 @@ internal fun decodeAchievementChoices(entries: Set<String>): Map<String, String>
  * directly.
  */
 @Singleton
-class ProgressRepository @Inject constructor(
+class ProgressRepository internal constructor(
     private val db: ProgressDb,
-    @ApplicationContext private val context: Context,
+    private val settings: DataStore<Preferences>,
 ) {
-    private val settings = context.settingsDataStore
-    private val bootstrapMutex = Mutex()
+    @Inject constructor(db: ProgressDb, @ApplicationContext context: Context) : this(db, context.settingsDataStore)
+
+    private val progressMutex = Mutex()
+    private val pendingImportKey = stringSetPreferencesKey("pendingBackupProfileIds")
+
+    // A backup sees a single completed mutation across Room and DataStore.
+    private suspend fun <T> mutate(block: suspend () -> T): T = progressMutex.withLock {
+        recoverInterruptedImport()
+        block()
+    }
+
+    /** DataStore can commit just before Room rolls back on process death. Clear
+     * those unpublished IDs before any new profile can reuse an auto-generated ID.
+     * If Room committed, all imported tracker state is already present and is kept. */
+    private suspend fun recoverInterruptedImport() {
+        val pending = settings.data.first()[pendingImportKey].orEmpty()
+        if (pending.isEmpty()) return
+        val unpublished = pending.mapNotNull(String::toLongOrNull).filter { db.profileDao().byId(it) == null }
+        settings.edit { prefs ->
+            unpublished.forEach { clearProfilePreferences(prefs, it) }
+            prefs.remove(pendingImportKey)
+        }
+    }
+
+    private fun clearProfilePreferences(prefs: MutablePreferences, id: Long) {
+        prefs.remove(requestStageKey(id))
+        prefs.remove(achievementKey(id))
+        prefs.remove(achievementProgressKey(id))
+        prefs.remove(achievementChecklistKey(id))
+        prefs.remove(achievementChoiceKey(id))
+    }
 
     fun profilesFor(packId: String): Flow<List<ProfileEntity>> =
         db.profileDao().observeForPack(packId)
 
     fun marksFor(profileId: Long): Flow<List<StepStateEntity>> =
         db.stepStateDao().observeForProfile(profileId)
+
+    suspend fun exportBackup(appVersion: String): ProgressBackup = mutate {
+        db.withTransaction {
+            val prefs = settings.data.first()
+            val marks = db.stepStateDao().all().groupBy { it.profileId }
+            ProgressBackup(ProgressBackupCodec.FORMAT, ProgressBackupCodec.VERSION, System.currentTimeMillis(), appVersion,
+                db.profileDao().all().map { p ->
+                    BackupProfile(p.packId, p.name, p.routeId, p.clockDate, p.contentVersion, p.createdAt,
+                        marks[p.id].orEmpty().map { BackupMark(it.date, it.stepIndex, it.mark, it.updatedAt) },
+                        prefs[achievementKey(p.id)].orEmpty(),
+                        decodeAchievementCounts(prefs[achievementProgressKey(p.id)].orEmpty()),
+                        decodeAchievementChecklist(prefs[achievementChecklistKey(p.id)].orEmpty()),
+                        decodeAchievementChoices(prefs[achievementChoiceKey(p.id)].orEmpty()),
+                        decodeAchievementChoices(prefs[requestStageKey(p.id)].orEmpty()))
+                })
+        }
+    }
+
+    /** Add copies with new IDs. Existing profiles, selections and preferences are never overwritten. */
+    suspend fun importBackup(backup: ProgressBackup): List<Long> = mutate {
+        ProgressBackupCodec.validate(backup)
+        withContext(NonCancellable) {
+            val imported = mutableListOf<Long>()
+            try {
+                db.withTransaction {
+                    val names = db.profileDao().all().groupBy { it.packId }
+                        .mapValues { (_, rows) -> rows.map { it.name }.toMutableSet() }.toMutableMap()
+                    backup.profiles.forEach { p ->
+                        val used = names.getOrPut(p.packId) { mutableSetOf() }
+                        var suffix = 1
+                        var name = "${p.name} (imported)"
+                        while (name in used) { suffix++; name = "${p.name} (imported $suffix)" }
+                        used += name
+                        val id = db.profileDao().insert(ProfileEntity(packId = p.packId, name = name, routeId = p.routeId,
+                            clockDate = p.clockDate, contentVersion = p.contentVersion, createdAt = p.createdAt))
+                        imported += id
+                        p.marks.forEach { m ->
+                            db.stepStateDao().upsert(StepStateEntity(id, m.date, m.stepIndex, m.mark, m.updatedAt))
+                        }
+                    }
+                    // Persist all tracker fields and a recovery journal before the
+                    // Room transaction publishes these profiles to observers.
+                    settings.edit { prefs ->
+                        backup.profiles.zip(imported).forEach { (p, id) ->
+                            prefs[achievementKey(id)] = p.earnedAchievements
+                            prefs[achievementProgressKey(id)] = p.achievementCounts.map { (key, value) -> "$key=$value" }.toSet()
+                            prefs[achievementChecklistKey(id)] = p.achievementChecklist.flatMap { (key, values) -> values.map { "$key=$it" } }.toSet()
+                            prefs[achievementChoiceKey(id)] = p.achievementChoices.map { (key, value) -> "$key=$value" }.toSet()
+                            prefs[requestStageKey(id)] = p.requestStages.map { (key, value) -> "$key=$value" }.toSet()
+                        }
+                        prefs[pendingImportKey] = imported.map(Long::toString).toSet()
+                    }
+                }
+            } catch (e: Exception) {
+                // A failed DataStore write rolls back Room. If cleanup also fails,
+                // the journal is retried before the next mutation or bootstrap.
+                runCatching { recoverInterruptedImport() }
+                throw e
+            }
+            // Both stores committed. A failed journal cleanup does not make a
+            // completed import fail; recovery retains these now-published IDs.
+            runCatching { recoverInterruptedImport() }
+            imported
+        }
+    }
 
     /** Explicitly earned achievements for one profile. Availability is clock-derived in UI. */
     fun earnedAchievements(profileId: Long): Flow<Set<String>> =
@@ -105,6 +204,24 @@ class ProgressRepository @Inject constructor(
             )
         }
 
+    fun requestStages(profileId: Long): Flow<Map<String, String>> = settings.data.map { prefs ->
+        decodeAchievementChoices(prefs[requestStageKey(profileId)].orEmpty())
+            .filterValues { it in com.shadowmonarchbooks.dayloop.pack.schema.RequestStages.ALL }
+    }
+
+    suspend fun setRequestStage(profileId: Long, requestId: String, stage: String?): Unit = mutate {
+        require(requestId.isNotBlank() && '=' !in requestId)
+        require(stage == null || stage in com.shadowmonarchbooks.dayloop.pack.schema.RequestStages.ALL)
+        settings.edit { prefs ->
+            val key = requestStageKey(profileId)
+            val entries = prefs[key].orEmpty().filterNot { it.substringBeforeLast('=') == requestId }.toMutableSet()
+            stage?.let { entries += "$requestId=$it" }
+            prefs[key] = entries
+        }
+    }
+
+    private fun requestStageKey(profileId: Long) = stringSetPreferencesKey("requestStages.$profileId")
+
     /** Active profile id for [packId]; null until one is chosen or created. */
     fun activeProfileId(packId: String): Flow<Long?> =
         settings.data.map { it[longPreferencesKey("activeProfile.$packId")] }
@@ -114,7 +231,7 @@ class ProgressRepository @Inject constructor(
         settings.data.map { it[stringPreferencesKey("selectedPack")] }
 
     /** Persist the user's pack choice so the app reopens on the same game. */
-    suspend fun selectPack(slug: String) {
+    suspend fun selectPack(slug: String): Unit = mutate {
         settings.edit { it[stringPreferencesKey("selectedPack")] = slug }
     }
 
@@ -126,7 +243,7 @@ class ProgressRepository @Inject constructor(
     fun skinSounds(): Flow<Boolean> =
         settings.data.map { it[booleanPreferencesKey("skinSounds")] ?: false }
 
-    suspend fun setSkinSounds(enabled: Boolean) {
+    suspend fun setSkinSounds(enabled: Boolean): Unit = mutate {
         settings.edit { it[booleanPreferencesKey("skinSounds")] = enabled }
     }
 
@@ -135,7 +252,7 @@ class ProgressRepository @Inject constructor(
      * works out of the box, and the DataStore pointer is kept valid. Safe to
      * call from every ViewModel instance; idempotent and race-guarded.
      */
-    suspend fun ensureProfiles(seeds: List<PackSeed>) = bootstrapMutex.withLock {
+    suspend fun ensureProfiles(seeds: List<PackSeed>) = mutate {
         for (seed in seeds) {
             if (db.profileDao().countForPack(seed.packId) == 0) {
                 insertProfile(seed, defaultName(seed.packId))
@@ -154,7 +271,7 @@ class ProgressRepository @Inject constructor(
      * clears it — that lives in the UI via core:progress's withMark; storage
      * just takes the resolved outcome.
      */
-    suspend fun setMark(profileId: Long, key: StepKey, mark: StepMark?) {
+    suspend fun setMark(profileId: Long, key: StepKey, mark: StepMark?): Unit = mutate {
         if (mark == null) {
             db.stepStateDao().delete(profileId, key.date, key.index)
         } else {
@@ -171,7 +288,7 @@ class ProgressRepository @Inject constructor(
     }
 
     /** Persist manual earned state; the clock only controls due/upcoming status. */
-    suspend fun setAchievementEarned(profileId: Long, achievementId: String, earned: Boolean) {
+    suspend fun setAchievementEarned(profileId: Long, achievementId: String, earned: Boolean): Unit = mutate {
         val key = achievementKey(profileId)
         settings.edit { prefs ->
             val ids = prefs[key].orEmpty().toMutableSet()
@@ -181,7 +298,7 @@ class ProgressRepository @Inject constructor(
     }
 
     /** Persist one explicit achievement counter. Zero removes the stored entry. */
-    suspend fun setAchievementCount(profileId: Long, achievementId: String, count: Int) {
+    suspend fun setAchievementCount(profileId: Long, achievementId: String, count: Int): Unit = mutate {
         require('=' !in achievementId) { "Achievement ids cannot contain '='" }
         val key = achievementProgressKey(profileId)
         val normalized = count.coerceAtLeast(0)
@@ -201,7 +318,7 @@ class ProgressRepository @Inject constructor(
         achievementId: String,
         itemId: String,
         checked: Boolean,
-    ) {
+    ): Unit = mutate {
         require('=' !in achievementId && '=' !in itemId) { "Achievement checklist ids cannot contain '='" }
         val key = achievementChecklistKey(profileId)
         val entry = "$achievementId=$itemId"
@@ -213,7 +330,7 @@ class ProgressRepository @Inject constructor(
     }
 
     /** Persist one choice selection; null clears that shared state key. */
-    suspend fun setAchievementChoice(profileId: Long, stateKey: String, itemId: String?) {
+    suspend fun setAchievementChoice(profileId: Long, stateKey: String, itemId: String?): Unit = mutate {
         require('=' !in stateKey && (itemId == null || '=' !in itemId)) { "Achievement choice ids cannot contain '='" }
         val key = achievementChoiceKey(profileId)
         val prefix = "$stateKey="
@@ -228,14 +345,14 @@ class ProgressRepository @Inject constructor(
 
     /** End Day: advance the clock to the next playable date; false at the end. */
     suspend fun endDay(profileId: Long, pack: PackSeed): Boolean =
-        shiftClock(profileId, pack) { Clock.next(pack.span, it) }
+        mutate { shiftClock(profileId, pack) { Clock.next(pack.span, it) } }
 
     /** Undo one End-Day (reroll); false at the start of the calendar. */
     suspend fun rerollDay(profileId: Long, pack: PackSeed): Boolean =
-        shiftClock(profileId, pack) { Clock.previous(pack.span, it) }
+        mutate { shiftClock(profileId, pack) { Clock.previous(pack.span, it) } }
 
     /** Reset: wipe marks/achievements and return the clock to the pack's first day. */
-    suspend fun resetProfile(profileId: Long, pack: PackSeed) {
+    suspend fun resetProfile(profileId: Long, pack: PackSeed): Unit = mutate {
         db.withTransaction {
             db.stepStateDao().deleteForProfile(profileId)
             db.profileDao().byId(profileId)?.let { profile ->
@@ -248,6 +365,7 @@ class ProgressRepository @Inject constructor(
             }
         }
         settings.edit {
+            it.remove(requestStageKey(profileId))
             it.remove(achievementKey(profileId))
             it.remove(achievementProgressKey(profileId))
             it.remove(achievementChecklistKey(profileId))
@@ -256,23 +374,24 @@ class ProgressRepository @Inject constructor(
     }
 
     suspend fun createProfile(pack: PackSeed, name: String): Long =
-        insertProfile(pack, name)
+        mutate { insertProfile(pack, name) }
 
-    suspend fun renameProfile(profileId: Long, name: String) {
+    suspend fun renameProfile(profileId: Long, name: String): Unit = mutate {
         db.profileDao().byId(profileId)?.let { db.profileDao().update(it.copy(name = name)) }
     }
 
-    suspend fun selectProfile(packId: String, profileId: Long) {
+    suspend fun selectProfile(packId: String, profileId: Long): Unit = mutate {
         settings.edit { it[longPreferencesKey("activeProfile.$packId")] = profileId }
     }
 
     /** Delete a profile and all profile-scoped progress; active pointer falls back safely. */
-    suspend fun deleteProfile(profileId: Long, pack: PackSeed) {
+    suspend fun deleteProfile(profileId: Long, pack: PackSeed): Unit = mutate {
         db.withTransaction {
             db.stepStateDao().deleteForProfile(profileId)
             db.profileDao().delete(profileId)
         }
         settings.edit {
+            it.remove(requestStageKey(profileId))
             it.remove(achievementKey(profileId))
             it.remove(achievementProgressKey(profileId))
             it.remove(achievementChecklistKey(profileId))
@@ -291,7 +410,7 @@ class ProgressRepository @Inject constructor(
      * Review outcome for orphaned marks (docs/PLAN.md §3.6): content changed
      * under a save, and the user chose to discard the strays explicitly.
      */
-    suspend fun discardOrphans(profileId: Long, keys: Collection<StepKey>) {
+    suspend fun discardOrphans(profileId: Long, keys: Collection<StepKey>): Unit = mutate {
         db.withTransaction {
             for (key in keys) {
                 db.stepStateDao().delete(profileId, key.date, key.index)

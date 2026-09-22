@@ -5,12 +5,12 @@ on:
     paths:
       - 'app/build.gradle.kts'
       - '.github/workflows/release-candidate.yml'
-      - '.github/release-requests/v0.12.0-rc17.md'
+      - '.github/release-requests/v0.16.0-rc1.md'
       - 'docs/LOCAL_BUILD.md'
   push:
     branches: [ main ]
     paths:
-      - '.github/release-requests/v0.12.0-rc17.md'
+      - '.github/release-requests/v0.16.0-rc1.md'
 
 permissions:
   contents: write
@@ -19,10 +19,10 @@ env:
   DAYLOOP_ANDROID_SDK_VERSION: '35'
   DAYLOOP_ANDROID_BUILD_TOOLS: '35.0.0'
   DAYLOOP_ANDROID_CMDLINE_TOOLS: '13114758'
-  RELEASE_TAG: 'v0.12.0-rc17'
-  RELEASE_NAME: 'v0.12.0-rc17 — P5R Mementos Requests'
-  RELEASE_NOTES_PATH: '.github/release-requests/v0.12.0-rc17.md'
-  APK_NAME: 'dayloop-v0.12.0-rc17-candidate.apk'
+  RELEASE_TAG: 'v0.16.0-rc1'
+  RELEASE_NAME: 'v0.16.0-rc1 — P3R UI and complete request guidance'
+  RELEASE_NOTES_PATH: '.github/release-requests/v0.16.0-rc1.md'
+  APK_NAME: 'dayloop-v0.16.0-rc1-candidate.apk'
 
 jobs:
   candidate:
@@ -91,16 +91,20 @@ jobs:
           ./gradlew packlint "-Ppack=content/packs/p3r"
           ./gradlew packlint "-Ppack=content/packs/metaphor"
 
-      - name: Prepare APK asset
+      - name: Verify and stage APK
         run: |
+          set -euo pipefail
+          APK_PATH='app/build/outputs/apk/candidate/app-candidate.apk'
+          "${ANDROID_SDK_ROOT}/build-tools/${DAYLOOP_ANDROID_BUILD_TOOLS}/apksigner" verify --verbose "$APK_PATH"
           mkdir -p release-out
-          cp app/build/outputs/apk/candidate/app-candidate.apk "release-out/${APK_NAME}"
+          cp "$APK_PATH" "release-out/${APK_NAME}"
+          (cd release-out && sha256sum "${APK_NAME}" > "${APK_NAME}.sha256")
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dayloop-v0.12.0-rc17-candidate
-          path: release-out/${{ env.APK_NAME }}
+          name: dayloop-v0.16.0-rc1-candidate
+          path: release-out/*
           if-no-files-found: error
 
       - name: Publish GitHub prerelease
@@ -115,7 +119,7 @@ jobs:
             const { owner, repo } = context.repo;
             const tag = process.env.RELEASE_TAG;
             const apkName = process.env.APK_NAME;
-            const body = fs.readFileSync(process.env.RELEASE_NOTES_PATH, 'utf8');
+            const body = fs.readFileSync(process.env.RELEASE_NOTES_PATH, 'utf8') + `\n\nSource commit: ${context.sha}\n`;
 
             let release;
             try {

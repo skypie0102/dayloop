@@ -1,5 +1,25 @@
 package com.shadowmonarchbooks.dayloop.ui.achievements
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.material3.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.platform.testTag
+import androidx.compose.foundation.shape.CutCornerShape
+import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
+import com.shadowmonarchbooks.dayloop.ui.skin.submergedBackdrop
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,6 +43,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,6 +54,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
+import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.pack.schema.AchievementDefinition
 import com.shadowmonarchbooks.dayloop.pack.schema.AchievementTrackingTypes
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
@@ -42,6 +66,8 @@ import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinCheckboxIndicator
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinChoiceIndicator
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
+import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedActionButton
+import com.shadowmonarchbooks.dayloop.ui.skin.withSkinFont
 
 internal val slashAchievementPanelColor = Color.Black.copy(alpha = 0.75f)
 
@@ -134,6 +160,8 @@ private fun RuleBasedAchievements(
                 .thenBy { it.achievement.title },
         )
     }
+    val submerged = LocalSkin.current.hasSubmergedChrome()
+    var expandedId by rememberSaveable(pack.slug) { mutableStateOf<String?>(null) }
     val earnedCount = rows.count { it.earned }
     val actionableCount = rows.count { !it.earned && it.progress.available }
     val upcomingCount = rows.size - earnedCount - actionableCount
@@ -144,18 +172,19 @@ private fun RuleBasedAchievements(
         due = actionableCount,
         upcoming = upcomingCount,
         currentDate = currentDate,
-        detail = "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; cumulative goals keep profile-scoped counters/checklists, while route choices and uncertain results stay explicitly confirmable.",
+        detail = if (submerged) "$autoCount earned automatically. Track counters as you play; confirm other achievements when earned in game."
+        else "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; cumulative goals keep profile-scoped counters/checklists, while route choices and uncertain results stay explicitly confirmable.",
     )
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp),
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = (if (submerged) Modifier.submergedBackdrop().testTag("achievement-list") else Modifier).fillMaxSize().padding(16.dp),
     ) {
         stickyHeader(key = "summary") {
             AchievementPinnedSummary(summary)
         }
         item(key = "summary-detail") {
-            AchievementSummaryDetail(summary.scrollingDetail)
+            AchievementSummaryDetail(if (submerged) "Select an achievement for details and tracking." else summary.scrollingDetail)
         }
         items(rows, key = { it.achievement.id }) { row ->
             val choiceKey = row.achievement.tracking.stateKey ?: row.achievement.id
@@ -163,6 +192,8 @@ private fun RuleBasedAchievements(
                 pack = pack,
                 row = row,
                 currentDate = currentDate,
+                expanded = expandedId == row.achievement.id,
+                onExpand = { expandedId = if (expandedId == row.achievement.id) null else row.achievement.id },
                 onEarnedChange = { earned ->
                     vm.setAchievementEarned(row.achievement.id, earned)
                 },
@@ -195,6 +226,8 @@ private fun RuleAchievementRow(
     pack: LoadedPack,
     row: AchievementRowState,
     currentDate: String,
+    expanded: Boolean,
+    onExpand: () -> Unit,
     onEarnedChange: (Boolean) -> Unit,
     onProgressChange: (Int) -> Unit,
     onChecklistItemChange: (String, Boolean) -> Unit,
@@ -212,16 +245,26 @@ private fun RuleAchievementRow(
         selectedChoice = row.selectedChoice,
     )
     val skin = LocalSkin.current
+    val submerged = skin.hasSubmergedChrome()
     val slashPanel = skin.hasSkin && skin.motion == "slash"
 
+    if (submerged) {
+        SubmergedAchievementRow(pack, row, currentDate, status, icon, expanded, onExpand,
+            onEarnedChange, onProgressChange, onChecklistItemChange, onChoiceChange)
+        return
+    }
+
     Surface(
-        shape = skin.shapes.card,
+        shape = if (submerged) CutCornerShape(topEnd = 16.dp) else skin.shapes.card,
+        border = if (submerged) BorderStroke(1.dp, if (earned) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant) else null,
         color = when {
+            submerged -> MaterialTheme.colorScheme.surface
             slashPanel -> slashAchievementPanelColor
             earned -> MaterialTheme.colorScheme.secondaryContainer
             else -> MaterialTheme.colorScheme.surfaceVariant
         },
         contentColor = when {
+            submerged -> MaterialTheme.colorScheme.onSurface
             slashPanel -> Color.White
             earned -> MaterialTheme.colorScheme.onSecondaryContainer
             else -> MaterialTheme.colorScheme.onSurfaceVariant
@@ -231,7 +274,7 @@ private fun RuleAchievementRow(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier.achievementEntryDecor(slashPanel).padding(10.dp),
+            modifier = Modifier.achievementEntryDecor(slashPanel || submerged).padding(10.dp),
         ) {
             if (icon != null) {
                 MediaImage(
@@ -320,6 +363,70 @@ private fun RuleAchievementRow(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun SubmergedAchievementRow(
+    pack: LoadedPack,
+    row: AchievementRowState,
+    currentDate: String,
+    status: String,
+    icon: MediaItem?,
+    expanded: Boolean,
+    onExpand: () -> Unit,
+    onEarnedChange: (Boolean) -> Unit,
+    onProgressChange: (Int) -> Unit,
+    onChecklistItemChange: (String, Boolean) -> Unit,
+    onChoiceChange: (String) -> Unit,
+) {
+    val colors = MaterialTheme.colorScheme
+    val achievement = row.achievement
+    val progress = row.progress
+    val ink = if (expanded) colors.onPrimary else colors.onSurface
+    val statusText = Regex("\\d{4}-\\d{2}-\\d{2}").replace(status) { formatDate(it.value, pack.calendar) }
+    val confirmEnabled = when (achievement.tracking.type) {
+        AchievementTrackingTypes.CHOICE, AchievementTrackingTypes.CONFIRMATION -> progress.available && progress.conditionReady
+        else -> progress.available
+    }
+    Column(Modifier.fillMaxWidth().background(colors.surface)) {
+        Row(
+            Modifier.fillMaxWidth().background(if (expanded) colors.primary else colors.surface)
+                .clickable(role = Role.Button, onClickLabel = if (expanded) "Hide achievement details" else "Show achievement details", onClick = onExpand)
+                .semantics { stateDescription = if (expanded) "Expanded" else "Collapsed" }
+                .testTag("achievement-${achievement.id}").heightIn(min = 72.dp)
+                .drawBehind {
+                    if (expanded) drawLine(colors.tertiary, Offset.Zero, Offset(0f, size.height), 3.dp.toPx())
+                }.padding(12.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically,
+        ) {
+            if (icon != null) MediaImage(pack.assetOf(icon), achievement.title, size = 48.dp)
+            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
+                Text(achievement.title, style = MaterialTheme.typography.titleLarge.withSkinFont(LocalSkin.current.type.display), color = ink)
+                Text(statusText, style = MaterialTheme.typography.labelMedium, color = if (expanded) ink else colors.secondary)
+            }
+            Icon(if (expanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
+                contentDescription = null, tint = ink, modifier = Modifier.size(20.dp))
+        }
+        if (expanded) {
+            Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                achievement.description?.let { Text(it, style = MaterialTheme.typography.bodyLarge, color = colors.onSurface) }
+                achievement.tracking.prompt?.let { Text(it, style = MaterialTheme.typography.bodyMedium, color = colors.onSurfaceVariant) }
+                when {
+                    achievement.tracking.type == AchievementTrackingTypes.CHECKLIST -> AchievementChecklistControls(
+                        achievement, row.checkedItems, currentDate, progress.available && !row.manualEarned, onChecklistItemChange)
+                    achievement.tracking.type == AchievementTrackingTypes.CHOICE -> AchievementChoiceControls(
+                        achievement, row.selectedChoice, progress.available && !row.manualEarned, onChoiceChange)
+                    !progress.automatic && progress.totalUnits > 1 -> AchievementCounterControls(progress, achievement.tracking.unit, onProgressChange)
+                }
+                if (!progress.completed) {
+                    SubmergedActionButton(if (row.manualEarned) "Clear confirmation" else "Confirm earned",
+                        onClick = { onEarnedChange(!row.manualEarned) }, primary = !row.manualEarned,
+                        enabled = row.manualEarned || confirmEnabled)
+                }
+            }
+        }
+    }
+}
+
 @Composable
 private fun AchievementChecklistControls(
     achievement: AchievementDefinition,
@@ -379,6 +486,10 @@ private fun AchievementCounterControls(
     onProgressChange: (Int) -> Unit,
 ) {
     Spacer(Modifier.height(2.dp))
+    if (LocalSkin.current.hasSubmergedChrome()) {
+        SubmergedAchievementCounter(progress, unit, onProgressChange)
+        return
+    }
     if (progress.totalUnits >= 1_000) {
         OutlinedTextField(
             value = progress.completedUnits.toString(),
@@ -413,6 +524,34 @@ private fun AchievementCounterControls(
             onClick = { onProgressChange(progress.completedUnits + 1) },
         ) {
             Text("+1")
+        }
+    }
+}
+
+/** Command controls use the full detail width, including at enlarged text sizes. */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun SubmergedAchievementCounter(progress: AchievementProgress, unit: String?, onProgressChange: (Int) -> Unit) {
+    if (progress.totalUnits >= 1_000) {
+        OutlinedTextField(
+            value = progress.completedUnits.toString(),
+            onValueChange = { raw -> onProgressChange((raw.filter { it.isDigit() }.take(9).toIntOrNull() ?: 0).coerceAtMost(progress.totalUnits)) },
+            enabled = progress.available && !progress.completed,
+            singleLine = true,
+            label = { Text(unit?.let { "Current total ($it)" } ?: "Current total") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.fillMaxWidth(),
+        )
+    } else {
+        Text("${formatTrackedUnits(progress.completedUnits, unit)} / ${formatTrackedUnits(progress.totalUnits, unit)}",
+            style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.primary)
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            SubmergedActionButton("−1", { onProgressChange(progress.completedUnits - 1) },
+                enabled = progress.available && progress.completedUnits > 0, primary = false,
+                modifier = Modifier.semantics { contentDescription = "Decrease tracked count" })
+            SubmergedActionButton("+1", { onProgressChange(progress.completedUnits + 1) },
+                enabled = progress.available && progress.completedUnits < progress.totalUnits, primary = true,
+                modifier = Modifier.semantics { contentDescription = "Increase tracked count" })
         }
     }
 }
@@ -566,18 +705,19 @@ internal fun achievementSummaryCopy(
 @Composable
 private fun AchievementPinnedSummary(summary: AchievementSummaryCopy) {
     val skin = LocalSkin.current
+    val submerged = skin.hasSubmergedChrome()
     Surface(
-        shape = skin.shapes.card,
+        shape = if (submerged) CutCornerShape(bottomEnd = 16.dp) else skin.shapes.card,
         color = MaterialTheme.colorScheme.primaryContainer,
         modifier = Modifier.fillMaxWidth(),
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp),
-            modifier = Modifier.skinDecor("panel").padding(14.dp),
+            modifier = (if (submerged) Modifier else Modifier.skinDecor("panel")).padding(if (submerged) 10.dp else 14.dp),
         ) {
             Text(
                 text = summary.pinnedEarned,
-                style = MaterialTheme.typography.titleLarge,
+                style = if (submerged) MaterialTheme.typography.titleLarge.withSkinFont(skin.type.display) else MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
             )
             Text(

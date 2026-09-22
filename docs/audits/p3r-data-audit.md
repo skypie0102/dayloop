@@ -7,6 +7,12 @@ The audit follows the same route-vs-game-fact discipline used by the P5R audit.
 
 ## Status
 
+September 12 continuation: [Tartarus guidance pass](p3r-tartarus-guidance.md)
+adds inline instructions for every audited rescue batch, climb/preparation Tips
+and evening dungeon headings. It preserves all task keys and advances P3R to
+content version 10. Full combat strategies and remaining route-detail work are
+still open; the baseline audit below is not a claim of instructional completeness.
+
 **The P3R baseline route audit is corrected and regression-protected from April
 through the January 31 Promised Day, including the February-to-March epilogue
 calendar transition.** Social Links, answers, exams, Social Stat point units,
@@ -372,3 +378,14 @@ route order and gameplay facts do not.
   date for game-wide availability.
 - Run the complete CI + packlint suite and perform final PR metadata/diff review
   before considering the baseline ready to merge.
+
+
+## September 8 — Full-moon artwork date consistency
+
+The UI review found that `p3r.media.full-moon` retained dates from the original
+image import instead of the corrected `p3r.deadline.fullmoon.*` calendar. April
+was April 18 instead of April 9; May–December were each one day later than their
+audited deadline. The nine media dates now match the existing deadline record.
+No walkthrough task or deadline was moved. A consistency check prevents the
+artwork from drifting again. This is a metadata reconciliation against the
+previous audit, not a fresh game-calendar research claim.

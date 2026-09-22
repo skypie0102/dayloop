@@ -2,7 +2,75 @@
 
 Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version 3.
 Priority: **top repository priority**, confirmed by the user on 2026-09-06.
-Status: **active — P3R-0 baseline and P3R-1 replacement skin work starting**.
+Status: **active — P3R-1 daily screen and Android flow validation in progress**.
+
+Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
+
+## September 22 continuation: all request solutions authored
+
+Resolved the ultimate-adversary request (#101), bringing guidance to **101/101**.
+The entry includes preparation, Reload battle rules and phase handling. Content
+version is **14**. Catalog coverage now requires every solution to be nonblank.
+Progress identities and automatic reporting semantics are unchanged. See the
+[request audit](../audits/p3r-request-guidance.md) and
+[source ledger](../audits/p3r-request-sources.md). Reward/prerequisite coverage,
+other boss strategies and remaining P3R UI work continue separately.
+
+## September 20 continuation: remaining weapon requests
+
+Resolved Juzumaru (#7) and Tonbo-kiri (#91), bringing instructions to 100/101.
+Added a concise Shadow of the Void (#99) battle plan. Content version is 13;
+request #101 still needs a verified strategy. Progress identity and all existing
+walkthrough tasks are preserved. See the [request audit](../audits/p3r-request-guidance.md).
+
+## September 19 continuation: request instructions
+
+Added an optional generic request `solution` field and visible instructions in
+expanded request details. P3R now authors 98 solutions, using the audited route
+and individual request guides, covering every timed hand-in and exact reporting
+anchor. The second pass adds 61 instructions and corrects Titania's display name.
+All request IDs, cutoffs, route links, event anchors and saved task keys remain
+intact; content version 12. Requests #7, #91 and #101 remain without solutions.
+See [coverage and remaining gaps](../audits/p3r-request-guidance.md). The previous
+Tartarus pass's full and isolated Android visual-review jobs both passed.
+Full boss strategies remain open: source retrieval in this session did not
+provide usable verified battle guidance, so no speculative strategies were added.
+
+## September 12 continuation: actionable Tartarus guidance
+
+Continued on `skypie0102/dayloop` from the migrated P3R development branch.
+Added 19 inline Tips covering tutorial/main climbs, all eight rescue batches,
+carried Arcana and late-game request obligations. Dungeon tasks now have explicit
+Tartarus/Full Moon evening headings without creating a new time slot. Existing
+labels, order, indices and event anchors are preserved; P3R content version is 10.
+See the [guidance audit and remaining gaps](../audits/p3r-tartarus-guidance.md).
+The full walkthrough milestone remains open, including boss strategies, Social
+Link answer text and complete request solutions. Build/packlint and visual
+acceptance remain required; this content pass does not close UI acceptance.
+
+## September 9 follow-up: centered artwork, compact header and backups
+
+The latest user feedback supersedes the earlier Perfect Day rail placement.
+All nine supplied PNGs now display transparently at the center of Today/Day's
+content viewport, without a panel or scrim. Their visible bounds retain the
+original aspect ratio, capped at 280dp and 60% of available height. Random choice,
+no adjacent repeats, load-before-display timing and tap dismissal are retained.
+Only day controls reserve space at the bottom of the task viewport.
+
+P3R's title bar is now 64dp, matching the P5R bar's base height, with tighter
+−0.09em tracking and oversized lettering fitted to the available height. The
+scrolled Today date remains on the title's line. Utility buttons keep their
+48dp touch targets.
+
+The user also requested app-wide progress backups. Settings now offers export
+and import for all games/profiles, with a preview and separate restored copies.
+Task marks, achievement confirmations/counters/checklists/choices, request stages,
+route and clock are included. See [backup behavior and persistence checks](../progress-backups.md).
+No pack content or database schema changes accompany this pass.
+
+Build/JVM validation is required for this update; new device review of the
+centered artwork and tighter heading remains pending. Continue UI work without
+repeated emulator diagnosis, as requested.
 
 ## Goal and scope
 
@@ -30,6 +98,114 @@ This roadmap governs the new P3R work; historical Moonlight milestones in
 [ROADMAP-v3](../ROADMAP-v3.md) describe the existing foundation. It complements,
 rather than resets, the [P3R data audit](../audits/p3r-data-audit.md).
 
+## September 8 UI/UX scan and delivery queue
+
+The user again rejected the current overall resemblance and asked for **Requests**
+as the page title. Compare the next Android evidence with the offline gallery;
+the following improvements do not close the full redesign milestone.
+
+| Priority | Finding | Action / status |
+|---|---|---|
+| P0 | The Requests banner repeats Elizabeth's name and takes two lines | Use Requests consistently in navigation and the banner; implemented in this pass |
+| P0 | Calendar uses generic colored tiles and a small month caption | P3R-only Sunday-first open grid, oversized month, current-date ring and deadline agenda; Android review required |
+| P0 | Imported full-moon artwork dates conflict with audited deadlines (May 10 vs May 9, plus eight other dates) | Reconciled the nine artwork dates to the existing audited calendar; protects Today/Day as well as Calendar |
+| P1 | Done/Skip differ from Back, End Day, Check all and request-stage controls | Share condensed command lettering and white/pink selection treatment; remove idle outline tiles and task-card borders |
+| P1 | Header is a separate rectangular card; large navigation labels split inside words | Blend the portrait into the full header plane; measure tab-label widths, retain whole words and allow narrow windows to pan |
+| P1 | Social Links use generic cards and a linear detail page | Implemented compact Arcana/name bands, prominent ranks, selected rows, filters and an expandable rank route with date links; Android visual acceptance pending. Removed the incorrect Junpei portrait anchor from Kenji's Magician link |
+| P1 | Request details explain tracker mechanics before showing a useful solution | Complete prerequisites, item windows, rewards and independently written solution guidance; do not invent unverified details |
+| P1 | Day detail still uses legacy diamond headings and redundant media strips | Implemented compact date/reading hierarchy, one moon marker, date-relative deadlines and measured Previous/Next rail; contextual answers retained. Android visual acceptance pending |
+| P2 | Achievements put long explanations and mixed counter/checkbox controls into every row | Implemented compact artwork/status rows with expanded tracking controls after the user's device review; updated captures pending |
+| P2 | There is no distinct Dark Hour composition or faithful menu/day transition | Inspect original motion sequences, then add bounded effects with reduced-motion support |
+| P2 | Accessibility coverage does not yet cover TalkBack order or every narrow window | Keep 48dp date/command targets; review spoken date/deadline states, tab panning and small-screen captures |
+
+The next visual acceptance evidence covers Calendar browse/open/return, actual
+1.5× text, the renamed Requests banner, the complete daily controls and the P5R
+control screen. Detailed notes: [September 8 refinement](p3r-redesign-baseline.md#calendar-and-command-consistency--september-8-2026).
+
+### September 8 continuation: prioritize UI delivery
+
+The user requested continued UI/UX work without spending more time on the emulator.
+The Social Links/day-detail pass uses source review, focused JVM regressions and
+normal build CI. It does not claim new Android screenshots or a resolved emulator
+exit. Existing emulator coverage remains configured; repeated diagnostic reruns
+are deferred so they do not block design implementation.
+
+Additional findings from this pass:
+- Magician rank 1 uses explicit introduction wording that the existing rank
+  recognizer missed. DONE now recognizes that declaration; Skip, Later,
+  preparation and clearing the task do not award a rank.
+- Next-rank guidance follows the authored ladder, including automatic rank skips.
+- Day detail previously counted down from the active profile date even while
+  browsing another date. P3R now counts down from the displayed date.
+- Only four Social Links currently have correctly matched portrait assets.
+  Missing character/Arcana artwork remains a visual gap; unrelated art is not a
+  substitute. The source gallery's 043 and 077 captures guide list and rank scale.
+
+Next UI work: richer request solutions and distinct Dark Hour/motion composition. Review Social Link
+rank/date navigation and day controls at enlarged text in the next stable Android
+capture session; retain the saved-progress, calendar and P5R acceptance gates.
+
+### September 9 device review: completion and density
+
+The user's eight device screenshots now supply the missing static baseline for
+the Calendar and Social Link layouts. They also reveal an almost blank day
+completion surface, the old rounded Perfect Day/class-answer/Settings panels,
+crowded achievement controls and an oversized Social Link detail hero.
+
+Implemented a readable blue day-complete result, a white/pink Perfect Day strip,
+flat contextual answers and Settings panels, compact expandable achievements,
+and a shorter rank hero with date-bearing rank rows. Calendar composition stays
+as shown. No content or progress-key changes are included in this pass. The
+achievement confirmation flow has focused Android coverage; its execution and
+the new captures remain separate from build/JVM verification.
+
+See the [device review](p3r-redesign-baseline.md#user-device-screenshots-and-feedback-pass--september-9-2026).
+Supplied images do not establish enlarged-text, TalkBack, navigation or motion
+acceptance, and the revised screens still need fresh visual review. Continue
+UI implementation without repeated emulator diagnosis, as requested.
+
+The follow-up device batch confirms the new completion, collapsed achievement,
+answer and Settings treatments. It also shows Perfect Day covering the task
+area and a visible portrait rectangle in the header. The next refinement moves
+Perfect Day into the measured day-control rail, blends a larger portrait crop,
+and adapts Requests to narrow windows with shared filter commands and readable
+dates. See the [follow-up review](p3r-redesign-baseline.md#follow-up-device-review--september-9-2026).
+Expanded achievements, Social Link detail, enlarged text and the revised rail/
+header/Requests rendering still need visual evidence; screenshots alone do not
+close interaction or persistence gates.
+
+### September 9 requested controls and celebration artwork
+
+The user's five follow-up requirements supersede the earlier task-control and
+header placement decisions. Implemented:
+
+- Calendar swipes across the heading, dates and agenda to change month, using
+  P5R's existing one-month threshold and bounds. Removed the grid's competing
+  horizontal scroller; seven columns stay visible and weekday labels shorten
+  on narrow or enlarged-text windows.
+- Restored the original full-moon graphic beneath the date numeral on the nine
+  audited moon dates. Other calendar events retain pink dots; Today keeps its ring.
+- The pinned Today date shares one line with the title. Header titles use tight
+  negative tracking and fit their visible letter shapes to the bar height, with
+  horizontal compression for long labels. Text semantics and utility targets remain.
+- Done/Skip sit in a measured column anchored to the right of each task, retaining
+  48dp targets, reversible marks and independent Tips behavior. Later remains absent.
+- All nine supplied PNGs now form the random Perfect Day pool. Original bytes,
+  colors and aspect ratios are preserved; only transparent margins are omitted
+  at render time. Images stay above day controls, at most 168dp tall. Decode finishes
+  before the 1.25-second visible lifetime begins; adjacent repeats are avoided.
+
+P3R content version is now 9 for the new decor assets. No walkthrough text,
+deadlines, progress identifiers or P5R/Metaphor content changed. Asset provenance
+and hashes: [Perfect Day graphics](../references/p3r-perfect-day-assets.json).
+The separate Day Complete result continues to use its existing treatment.
+
+Validation targets: random selection/fallback JVM coverage, grid swipe/open/return,
+visible moon marker, right-aligned task controls, and one-line header at 1.5× text.
+Normal CI now compiles the Android tests without booting an emulator. New device
+captures and execution of those interaction checks remain pending; continue
+UI delivery without repeated emulator diagnosis as requested.
+
 ## Verified repository starting point
 
 Counts below come from the bundled JSON, not the older README phase summaries.
@@ -56,6 +232,19 @@ predates the implemented schema and later route corrections. Reconcile it before
 using its dates or implementation proposals; it is not an unchecked task list.
 
 ## Visual direction
+
+The September 7 offline Chrome gallery is now the principal composition reference.
+The prior boxed header and wave stripes were rejected by the user. The active
+pass replaces those treatments, starting with the Requests list/detail hierarchy,
+condensed italic typography and original publisher character art; see the
+[offline inspection record](p3r-redesign-baseline.md#offline-gallery-review--september-7-2026).
+
+Original pause-menu captures are available in the user-supplied
+[Adrian Kowalik breakdown](https://adrian-kowalik.com/projects/persona-3-reload-ui-recreation).
+Use its explicitly labeled original captures alongside publisher references;
+Game UI Database being unavailable does not block this work. Keep recreation
+implementation details separate from observations of the original game.
+
 
 The [existing UI reference](../references/p3r-ui.md) is a starting research index.
 It mixes screenshot measurements, developer statements, fan recreations, and
@@ -102,7 +291,8 @@ PRs; maintain evidence links here and factual findings in the audit ledger.
   Elizabeth requests, rescues, and base achievements; explicitly classify any
   optional collectibles, fusion/compendium goals, difficulty assumptions, and
   romance choices rather than silently treating “100%” as every possible goal.
-- [ ] Record the current P5R content digest and existing-save fixtures before edits.
+- [x] Record the current P5R content digest (see implementation record).
+- [ ] Capture existing-save fixtures before any task/progress changes.
 
 **Exit:** a bounded completion checklist, screenshot baseline, source matrix, and
 prioritized gap list. Each gap has a route/date or screen, severity, and evidence.
@@ -114,7 +304,10 @@ prioritized gap list. Each gap has a route/date or screen, severity, and evidenc
   extend the generic skin system if its current tokens constrain fidelity.
 - [ ] Design and implement the P3R shell, date/deadline header, task row, inline
   Tips, selected state, and Back / End Day controls as a coherent set.
-- [ ] Preview a school day, a free day, and a Tartarus/full-moon day on Android.
+- [x] Preview a school day, a free day, and a Tartarus/full-moon day on Android.
+  Full school/free/full-moon captures reviewed in [PR #71](https://github.com/shdwmnrchbks/dayloop/pull/71),
+  [Android run 4](https://github.com/shdwmnrchbks/dayloop/actions/runs/34037190638).
+  This verifies the Android fixtures, not game-reference parity or milestone exit.
 - [ ] Establish P3R-specific background, display/body roles, panel treatment,
   selection accents, and transition behavior using pack-declared tokens/assets.
 - [ ] Check small screens, long instructions, large font scale, edge-to-edge
@@ -156,6 +349,14 @@ packlint success alone is not the exit criterion.
 
 ### P3R-3 — Add Elizabeth requests and rescue tracking
 
+User-prioritized delivery in [PR #71](https://github.com/shdwmnrchbks/dayloop/pull/71):
+Requests replaces the Answers bottom tab; 101 numbered entries, 14 audited cutoffs,
+40 context-linked requests, 24 exact automatic reporting anchors, and explicit
+profile-scoped stages are implemented.
+[Scope and source record](p3r-requests.md). Full solution/reward/prerequisite audits,
+individual rescues and safe automatic reporting anchors remain unchecked below.
+
+
 - [ ] Enumerate the full Reload request catalog against sources, including
   untimed requests; reconcile catalog IDs, names, rewards, prerequisites,
   availability, true deadlines, and this route's planned completion dates.
@@ -189,7 +390,7 @@ Timed requests and individual rescue obligations are reachable from Today.
   Prefer exact completion evidence where available; changes must be P3R-scoped.
 - [ ] Explain partial progress and remaining requirements for Social Links,
   Linked Episodes, requests, rescues, social stats, and relevant achievements.
-- [ ] Test unchecking, Skip/Later, check-all, Back, End Day, replaying an earlier
+- [ ] Test unchecking, Done/Skip, legacy Later saves, check-all, Back, End Day, replaying an earlier
   day, profile switching, restart, reset, and final-day completion. Preserve manual
   confirmations according to documented rules; never silently award optional goals.
 - [ ] Protect existing saves before task edits. Event anchors currently use

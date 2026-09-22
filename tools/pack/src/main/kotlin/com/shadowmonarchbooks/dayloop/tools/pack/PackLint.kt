@@ -396,6 +396,11 @@ object PackLint {
                     }
                 }
             }
+            theme.chrome?.let { chrome ->
+                if (chrome !in SkinTokens.CHROMES) {
+                    issues += err("pack.json", "theme.chrome '$chrome' is not one of ${SkinTokens.CHROMES}")
+                }
+            }
             theme.motion?.let { motion ->
                 if (motion !in SkinTokens.MOTIONS) {
                     issues += err("pack.json", "theme.motion '$motion' is not one of ${SkinTokens.MOTIONS}")

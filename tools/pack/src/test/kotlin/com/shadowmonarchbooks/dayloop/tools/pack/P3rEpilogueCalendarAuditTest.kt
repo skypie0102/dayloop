@@ -54,6 +54,17 @@ class P3rEpilogueCalendarAuditTest {
         assertEquals(listOf("2010-03-04", "2010-03-05"), march.days.map { it.date })
     }
 
+    @Test
+    fun `full moon artwork follows the audited operation calendar`() {
+        val loaded = loadP3r()
+        val moon = assertNotNull(loaded.media).media.single { it.id == "p3r.media.full-moon" }
+        val expected = assertNotNull(loaded.deadlines).deadlines.filter { ".fullmoon." in it.id }.mapNotNull { it.date }
+        assertEquals(9, expected.size)
+        assertEquals(expected, moon.dates)
+        assertTrue("2009-05-09" in moon.dates)
+        assertFalse("2009-05-10" in moon.dates)
+    }
+
     private fun loadP3r() = PackLoader.load(p3rDir()).also { loaded ->
         assertTrue(loaded.parseIssues.isEmpty(), loaded.parseIssues.joinToString())
     }

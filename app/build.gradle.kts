@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
 }
@@ -25,9 +26,10 @@ android {
     defaultConfig {
         applicationId = "com.shadowmonarchbooks.dayloop"
         minSdk = 26          // per docs/PLAN.md architecture table
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         targetSdk = 35
-        versionCode = 32
-        versionName = "0.15.1"
+        versionCode = 33
+        versionName = "0.16.0-rc1"
     }
 
     signingConfigs {
@@ -74,6 +76,8 @@ android {
         buildConfig = true
     }
 
+    testOptions.unitTests.isIncludeAndroidResources = true
+
     // Bundled pack content (docs/PLAN.md §2): every directory under
     // /content/packs becomes an asset root, so lint-validated JSON ships as-is.
     sourceSets["main"].assets.srcDir(rootDir.resolve("content/packs"))
@@ -109,8 +113,16 @@ dependencies {
     // Home-screen widget (docs/PLAN.md Phase 5).
     implementation(libs.androidx.glance.appwidget)
 
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    androidTestImplementation("androidx.test:runner:1.6.2")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:${libs.versions.kotlin.get()}")
     testRuntimeOnly(libs.junit.jupiter.engine)
+    testImplementation("org.robolectric:robolectric:4.14.1")
+    testImplementation("junit:junit:4.13.2")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.10.2")
 }
 
 tasks.withType<Test>().configureEach {

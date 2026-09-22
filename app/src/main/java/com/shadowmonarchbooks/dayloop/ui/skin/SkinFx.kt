@@ -54,6 +54,8 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.semantics.onClick
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.progress.ProgressRepository
@@ -201,12 +203,15 @@ data class AdvanceFx(
     val motif: String,
     /** (step label, done?) for the ending day, in authored order. */
     val steps: List<Pair<String, Boolean>>,
+    /** Snapshot of the ending day's display date; independent of the clock commit. */
+    val dateLabel: String? = null,
 )
 
 /**
  * The per-skin End-Day transition: masks slash a black results panel across
- * the screen (ticking the day's checklist), moon packs cross-fade the moon
- * phase to full, crown packs turn a parchment page. Cover → the caller
+ * the screen (ticking the day's checklist), submerged P3R shows a dated result
+ * plane, other moon packs cross-fade the moon phase to full, and crown packs
+ * turn a parchment page. Cover → the caller
  * commits the clock → a readable results hold → reveal. The animated parts
  * remain ≤ 400 ms ([SkinFxTiming]); a tap anywhere skips the passive hold.
  * Engine look and
@@ -237,9 +242,20 @@ fun DayAdvanceOverlay(
 
     if (fx == null) return
     val p = progress.value
+    val submerged = LocalSkin.current.hasSubmergedChrome()
     Box(
         modifier = modifier
             .fillMaxSize()
+            .then(if (submerged) Modifier.semantics {
+                onClick(label = "Continue to next day") {
+                    if (!covered) {
+                        covered = true
+                        onCovered()
+                    }
+                    onFinished()
+                    true
+                }
+            } else Modifier)
             .pointerInput(fx) {
                 detectTapGestures {
                     // Skippable (accessibility): jump straight to the commit.
@@ -252,7 +268,9 @@ fun DayAdvanceOverlay(
             },
         contentAlignment = Alignment.Center,
     ) {
-        when (fx.motif) {
+        if (submerged) {
+            SubmergedDayComplete(fx, p)
+        } else when (fx.motif) {
             "masks" -> MasksAdvancePanel(fx, p, background)
             "moon" -> MoonAdvancePanel(p)
             "crown" -> CrownAdvancePanel(p)
@@ -429,8 +447,13 @@ fun PerfectDaySplash(
     suppressed: Boolean = false,
     modifier: Modifier = Modifier,
 ) {
+    if (LocalSkin.current.hasSubmergedChrome()) {
+        SubmergedPerfectDaySplash(allDone, key, suppressed, modifier)
+        return
+    }
     var show by remember { mutableStateOf(false) }
     val skinFx = LocalSkinFx.current
+    val reduceMotion = LocalSkin.current.hasSubmergedChrome() && rememberAnimationsDisabled()
     LaunchedEffect(key, allDone, suppressed) {
         if (shouldShowPerfectDay(allDone, suppressed)) {
             show = true
@@ -443,12 +466,12 @@ fun PerfectDaySplash(
     }
     AnimatedVisibility(
         visible = show && !suppressed,
-        enter = slideInHorizontally(
+        enter = if (reduceMotion) fadeIn(tween(SkinFxTiming.SPLASH_IN_MS)) else slideInHorizontally(
             initialOffsetX = { it * 2 },
             animationSpec = tween(SkinFxTiming.SPLASH_IN_MS),
         ) + fadeIn(tween(SkinFxTiming.SPLASH_IN_MS)) +
             scaleIn(initialScale = 0.86f, animationSpec = tween(SkinFxTiming.SPLASH_IN_MS)),
-        exit = slideOutHorizontally(
+        exit = if (reduceMotion) fadeOut(tween(SkinFxTiming.SPLASH_OUT_MS)) else slideOutHorizontally(
             targetOffsetX = { -it },
             animationSpec = tween(SkinFxTiming.SPLASH_OUT_MS),
         ) + fadeOut(tween(SkinFxTiming.SPLASH_OUT_MS)),
@@ -465,6 +488,10 @@ internal fun shouldShowPerfectDay(allDone: Boolean, dayCompleteVisible: Boolean)
 @Composable
 private fun PerfectDayCard(onDismiss: () -> Unit) {
     val skin = LocalSkin.current
+    if (skin.hasSubmergedChrome()) {
+        SubmergedPerfectDay(onDismiss)
+        return
+    }
     val slash = skin.hasSkin && skin.motif == "masks"
     Box(
         modifier = Modifier
