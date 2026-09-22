@@ -197,8 +197,10 @@ schema and behavior remain independent.
 | `deadline` | Reporting cutoff and Timed filter | Served |
 | `routeDates` | Context links to authored days | Served; not completion evidence |
 | `completionEvent` / `events` | Exact DONE reporting task; reversal on uncheck | Served |
+| `solution` | Expanded details, before progress controls | Served when authored; optional |
 
 The initial Journey catalog has 101 requests, 14 audited cutoffs, 40 requests with
 numbered walkthrough context and 24 exact automatic reporting anchors. Other
-requests retain explicit confirmation. Rewards, prerequisites and full solutions
-remain an audit gap, not an implied part of the schema.
+requests retain explicit confirmation. The September 22 continuation completes all 101
+authored solutions, including the ultimate-adversary preparation and phase plan.
+Complete reward coverage and remaining prerequisites still require audit. See [request guidance](audits/p3r-request-guidance.md).

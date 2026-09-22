@@ -128,11 +128,13 @@
         {
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "groupLabel": "Full Moon · Evening"
         },
         {
           "label": "Fool reaches rank 4 (story)",
-          "slot": "evening"
+          "slot": "evening",
+          "groupLabel": "Full Moon · Evening"
         }
       ]
     },

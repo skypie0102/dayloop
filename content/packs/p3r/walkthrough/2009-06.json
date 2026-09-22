@@ -170,7 +170,8 @@
         {
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "groupLabel": "Full Moon · Evening"
         }
       ]
     },
@@ -280,7 +281,9 @@
         {
           "label": "Tartarus — the Theurgy system and new S.E.E.S. combat uniforms unlock",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Follow the new combat-uniform and Theurgy tutorials. This story introduction is separate from the main June 27 climb. Missing-person missions are introduced on June 18; do not mark that later rescue batch complete after tonight's tutorial.",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },
@@ -596,7 +599,9 @@
         {
           "label": "Tartarus — obtain a Black Quartz for Request #29 from a Formidable Shadow or rescue reward",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Climb to the 69F border. Gatekeepers: 47F, 54F, 60F.\n\nRescue all three missing people on 50F, 56F and 64F during this visit. July 6 is their last actionable rescue date; reaching the upper border alone does not rescue them.\n\nObtain a Black Quartz for Request #29 from a Formidable Shadow or the relevant rescue reward. Keep it for tomorrow's Club Escapade purchase and Elizabeth hand-in; finding the Quartz alone does not finish the request.\n\nLeave carrying Magician, Priestess, Hermit, Hanged-Man and Moon Personas for the route through August 3.",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },

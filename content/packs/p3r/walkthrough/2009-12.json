@@ -507,7 +507,9 @@
         {
           "label": "Tartarus — rescue the missing persons on 209F and 221F before the December 30 cutoff, then finish the planned Harabah progression",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Climb to the 226F border. Gatekeepers: 203F, 212F, 218F.\n\nTonight is the last actionable rescue night for the people on 209F and 221F. Rescue both before leaving; they first appeared on December 22.\n\nKeep a Star Persona for the route's remaining Star visits through January 10. Tomorrow's Ryoji decision determines the ending route: follow the explicit good-ending instruction on December 31 to retain the January schedule.",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },

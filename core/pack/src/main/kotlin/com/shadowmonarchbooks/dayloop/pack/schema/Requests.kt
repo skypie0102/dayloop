@@ -19,6 +19,8 @@ data class RequestDefinition(
     val routeDates: List<String> = emptyList(),
     /** Exact hand-in/reporting task, never acquisition or acceptance. */
     val completionEvent: String? = null,
+    /** Optional authored instructions. Descriptive only; never completion evidence. */
+    val solution: String? = null,
 )
 
 /** Mutually exclusive manual states; preparing an item never reports it automatically. */

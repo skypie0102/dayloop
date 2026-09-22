@@ -30,7 +30,8 @@
         {
           "label": "Full moon — the night is a mandatory story event, no free time",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "groupLabel": "Full Moon · Evening"
         }
       ]
     },
@@ -124,16 +125,20 @@
         {
           "label": "Initial Tartarus exploration of Thebel",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "This is the introductory visit. Follow the combat and exploration tutorials tonight; the route's full Thebel clear and shopping budget are scheduled for April 23. Do not treat this tutorial as completion of the later 22F objective.",
+          "groupLabel": "Tartarus · Evening"
         },
         {
           "label": "When Shuffle Time appears, pick the Coins card (money bonus)",
-          "slot": "evening"
+          "slot": "evening",
+          "groupLabel": "Tartarus · Evening"
         },
         {
           "label": "Fool reaches rank 2 (story)",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },
@@ -222,11 +227,15 @@
         {
           "label": "Tartarus — clear Thebel through the 22F border, collect Old Document 01 from the purple chest, grind ¥36,000+, loot an Odd Morsel from a common chest, and exploit gatekeeper weaknesses (5F Fire, 11F Wind on Barbaric Beast Wheel / Fire on Magic Hands, 17F Electricity)",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Before climbing, finish today's vending-machine purchases and keep the SP items for the run.\n\nThebel objectives: reach the 22F border, open the purple chest for Old Document 01, and keep an Odd Morsel from a common chest for Nozomi's later Moon introduction. Do not consume that Morsel.\n\nGatekeepers: use Fire on 5F; on 11F use Wind against Barbaric Beast Wheel and Fire against the Magic Hands; use Electricity on 17F. Bring access to these elements before starting the fights.\n\nLeave with at least ¥36,000 for the route's upcoming expenses. Keep Old Document 01 for Request #2 on May 10. Finish the separate Hermit/Hanged-Man preparation task before leaving.",
+          "groupLabel": "Tartarus · Evening"
         },
         {
           "label": "Leave Tartarus carrying Hermit and Hanged-Man Personas (fusion options: Nekomata + Omoikane, Orpheus + Omoikane)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Keep both a Hermit and a Hanged-Man Persona in your carried stock for the upcoming Social Link visits. The listed fusion pairs are alternatives for preparing those Arcanas; check the displayed result before confirming a fusion. This is preparation for future visits, not a Social Link rank-up itself.",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },

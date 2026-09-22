@@ -262,22 +262,29 @@
         },
         {
           "label": "Before or after the climb, complete Request #98 by reporting a Masakado with Charge once the request is available",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Check that Request #98 is available, then show Elizabeth a Masakado that actually knows Charge. Merely creating Masakado without the requested skill is not enough. If you prepare it during tonight's climb, return to Elizabeth afterward; complete the report before marking this task done."
         },
         {
           "label": "Tartarus — rescue the two missing persons on 232F and 250F before the January 30 cutoff",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Climb to the 256F border. Gatekeepers: 230F, 236F, 241F, 246F, 247F, 253F, 254F, 255F.\n\nThe final two missing people appear today on 232F and 250F. Rescue both during this visit; January 30 is their last actionable rescue date.\n\nContinue with today's separate Judgment and 255F Monad Passage tasks. Border progress, rescues and the request report are distinct objectives. If you split the climb over later free evenings, retain every unfinished objective and finish the rescues by January 30.",
+          "groupLabel": "Tartarus · Evening"
         },
         {
           "label": "Continue through Adamah: Judgment reaches ranks 2–10 at 227F, 230F, 236F, 241F, 246F, 247F, 253F, 254F, and 255F respectively",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Judgment progression follows the floors you actually reach: ranks 2–10 correspond to 227F, 230F, 236F, 241F, 246F, 247F, 253F, 254F and 255F, in that order. January 15 is this route's planned climb, not a date that grants all those ranks automatically. If you stop early, leave this combined task unfinished until you have reached the final milestone.",
+          "groupLabel": "Tartarus · Evening"
         },
         {
           "label": "Clear the final Monad Passage on 255F, defeat the Shadow of the Void, and report it to Elizabeth to complete Request #99",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Complete the final Monad Passage on 255F and defeat the Shadow of the Void, then report back to Elizabeth for Request #99. Reaching 255F or entering the passage is only preparation. The later Request #101 challenge is a separate objective with its own acceptance and solo-entry requirements.",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },
@@ -377,7 +384,9 @@
         {
           "label": "Tartarus — defeat the Reaper, keep the Bloody Button, return it to Elizabeth to complete Request #100, then accept Request #101 before attempting the ultimate adversary",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Follow the request chain in order: defeat the Reaper, retain the Bloody Button, report Request #100 to Elizabeth, then accept Request #101. Keep this task unfinished if the report or next-request acceptance is still outstanding.\n\nUse the remaining preparation time for the January 30 solo challenge. Completing the Reaper request does not also complete Request #101.",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },
@@ -539,7 +548,9 @@
         {
           "label": "Tartarus — with Request #101 accepted, enter the 255F Monad door alone and defeat the ultimate adversary to complete Elizabeth's final request; finish any remaining preparations afterward",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Before the optional boss attempt, confirm that both final missing people on 232F and 250F are safe: tonight is their last actionable rescue night.\n\nFor Request #101, first finish the Reaper/Bloody Button hand-in chain and accept the request. Enter the designated 255F Monad door alone for the ultimate-adversary challenge. The January 15 Shadow of the Void clear is a different fight.\n\nThis task requires defeating the adversary, not merely accepting the request or entering the door. Keep it unfinished if you only prepare tonight; finish any remaining preparations for tomorrow's Promised Day separately.",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },
@@ -556,7 +567,9 @@
         {
           "label": "Tartarus — The Promised Day",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Final ascent: 259F, 263F, then 264F.\n\nUse today's final free time for remaining conversations and the recovery described in the day notes before committing to the finale. January's missing-person cutoff was yesterday; tonight is the Promised Day, not a replacement rescue window.\n\nFollow the story through the finale. The next playable calendar dates in this route are March 4 and March 5; February 1 through March 3 is the story skip.",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     }

@@ -37,11 +37,14 @@
         {
           "label": "Tartarus",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Climb to the 172F border. Gatekeepers: 151F, 155F, 161F, 170F, 171F.\n\nTonight is the last actionable rescue night for Maiko and the other two people on 146F, 159F and 165F. Rescue all three before leaving; Maiko's rescue also protects the Hanged-Man route. Tomorrow's operation is not another free rescue evening.\n\nLeave carrying Hierophant, Lovers and Chariot Personas for the route through November 29. Fool rank 6 has its own story task today; it does not stand in for the rescue objective.",
+          "groupLabel": "Tartarus · Evening"
         },
         {
           "label": "Fool reaches rank 6 (story)",
-          "slot": "evening"
+          "slot": "evening",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },
@@ -53,7 +56,8 @@
         {
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "groupLabel": "Full Moon · Evening"
         }
       ]
     },
@@ -541,7 +545,9 @@
         {
           "label": "Tartarus",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Climb to the 198F border. Gatekeepers: 179F, 184F, 188F, 193F.\n\nRescue both missing people on 177F and 196F during this visit. Their last actionable rescue date is December 1.\n\nLeave carrying Hierophant, Chariot, Hanged-Man and Star Personas for the route through December 30. Today's optional TV Shopping equipment is preparation for the secret boss, not a requirement to rescue this batch.",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },

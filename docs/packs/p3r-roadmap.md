@@ -6,6 +6,48 @@ Status: **active — P3R-1 daily screen and Android flow validation in progress*
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
 
+## September 22 continuation: all request solutions authored
+
+Resolved the ultimate-adversary request (#101), bringing guidance to **101/101**.
+The entry includes preparation, Reload battle rules and phase handling. Content
+version is **14**. Catalog coverage now requires every solution to be nonblank.
+Progress identities and automatic reporting semantics are unchanged. See the
+[request audit](../audits/p3r-request-guidance.md) and
+[source ledger](../audits/p3r-request-sources.md). Reward/prerequisite coverage,
+other boss strategies and remaining P3R UI work continue separately.
+
+## September 20 continuation: remaining weapon requests
+
+Resolved Juzumaru (#7) and Tonbo-kiri (#91), bringing instructions to 100/101.
+Added a concise Shadow of the Void (#99) battle plan. Content version is 13;
+request #101 still needs a verified strategy. Progress identity and all existing
+walkthrough tasks are preserved. See the [request audit](../audits/p3r-request-guidance.md).
+
+## September 19 continuation: request instructions
+
+Added an optional generic request `solution` field and visible instructions in
+expanded request details. P3R now authors 98 solutions, using the audited route
+and individual request guides, covering every timed hand-in and exact reporting
+anchor. The second pass adds 61 instructions and corrects Titania's display name.
+All request IDs, cutoffs, route links, event anchors and saved task keys remain
+intact; content version 12. Requests #7, #91 and #101 remain without solutions.
+See [coverage and remaining gaps](../audits/p3r-request-guidance.md). The previous
+Tartarus pass's full and isolated Android visual-review jobs both passed.
+Full boss strategies remain open: source retrieval in this session did not
+provide usable verified battle guidance, so no speculative strategies were added.
+
+## September 12 continuation: actionable Tartarus guidance
+
+Continued on `skypie0102/dayloop` from the migrated P3R development branch.
+Added 19 inline Tips covering tutorial/main climbs, all eight rescue batches,
+carried Arcana and late-game request obligations. Dungeon tasks now have explicit
+Tartarus/Full Moon evening headings without creating a new time slot. Existing
+labels, order, indices and event anchors are preserved; P3R content version is 10.
+See the [guidance audit and remaining gaps](../audits/p3r-tartarus-guidance.md).
+The full walkthrough milestone remains open, including boss strategies, Social
+Link answer text and complete request solutions. Build/packlint and visual
+acceptance remain required; this content pass does not close UI acceptance.
+
 ## September 9 follow-up: centered artwork, compact header and backups
 
 The latest user feedback supersedes the earlier Perfect Day rail placement.

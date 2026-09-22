@@ -95,7 +95,9 @@
         {
           "label": "Tartarus — bring Koromaru, Ken, and Shinjiro to watch their Persona summoning cutscenes",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Climb to the 118F border. Gatekeepers: 99F, 105F, 112F.\n\nTonight is the last actionable rescue night for the people on 101F, 109F and 114F. Rescue all three before leaving; tomorrow is a mandatory full-moon operation.\n\nAlso bring Koromaru, Ken and Shinjiro for the summoning scenes specified in today's task. The scenes and the rescues are separate objectives: check both before marking the whole task done.\n\nLeave carrying Priestess, Lovers, Strength, Temperance and Tower Personas for the route through October 1.",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },
@@ -107,7 +109,8 @@
         {
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "groupLabel": "Full Moon · Evening"
         }
       ]
     },

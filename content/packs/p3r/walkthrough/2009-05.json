@@ -196,11 +196,13 @@
         {
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "groupLabel": "Full Moon · Evening"
         },
         {
           "label": "Fool reaches rank 3 (story)",
-          "slot": "evening"
+          "slot": "evening",
+          "groupLabel": "Full Moon · Evening"
         }
       ]
     },
@@ -513,7 +515,9 @@
         {
           "label": "Tartarus — grind ¥75,000 before leaving (Request #14 pays ¥20,000)",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Climb to the 43F border. Gatekeepers: 28F, 35F, 36F, 42F.\n\nCollect the Second Old Document for Request #14 and report it to Elizabeth for the route's ¥20,000 reward. Budget around the ¥75,000 target before leaving; do not count the reward as money received until you have reported the request.\n\nLeave carrying Justice and Strength Personas for the Social Link schedule through the next main climb on June 27.",
+          "groupLabel": "Tartarus · Evening"
         }
       ]
     },
