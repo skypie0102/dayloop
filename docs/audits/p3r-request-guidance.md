@@ -2,8 +2,8 @@
 
 Continuation of P3R-2/P3R-3 from `0cfaa45` on the migrated repository.
 
-Current coverage: **100/101 solutions**, content version **13**. Request #101
-is the only missing solution. The sections below retain the earlier audit history.
+Current coverage: **101/101 solutions**, content version **14**. Request #101
+is resolved. The sections below retain the earlier audit history.
 
 ## Delivery
 
@@ -45,8 +45,7 @@ Focused external checks on September 19:
 
 No source reward/prerequisite table is imported wholesale. The first pass left
 request 53 unresolved; the second pass below identifies the item. Request 101
-remains without a solution because the solo boss strategy still needs verified
-battle guidance.
+was left for the later verified battle-guidance pass below.
 
 ## Second pass: 98 solutions, content version 12
 
@@ -118,11 +117,21 @@ charge cues. This is a concise battle plan, not a prescribed party/loadout.
 No walkthrough task, request title, deadline, route link, event or saved state
 changes in this pass. Content version increases from 12 to 13.
 
-#101 remains open. Samurai Gamers' boss page has an unfinished strategy section;
+At the end of September 20, #101 remained open. Samurai Gamers' boss page has
+an unfinished strategy section;
 RPG Site supplies no battle plan. The Megami Tensei Wiki character summary mixes
 in New Game Plus/Infinity claims that do not establish Reload battle rules, and
 its separate gameplay page provides stats rather than a phase strategy. Those
-claims are not imported. A verified access/phase/loadout guide is still needed.
+claims are not imported. That gap is resolved by the September 22 pass below.
+
+## September 22: final request solution
+
+Resolved #101 with Reload-specific preparation, rule constraints, phase cues and
+an Armageddon finish. Coverage is now **101/101**, content version **14**. The
+[source ledger](p3r-request-sources.md) records accepted references and exclusions.
+The entry distinguishes the route's January 30 attempt from general availability.
+It preserves manual reporting; the January 21 #100 hand-in still does not complete
+#101. The catalog regression now rejects a missing or blank solution anywhere.
 
 ## Compatibility and verification
 
@@ -133,12 +142,12 @@ also unchanged.
 
 Schema coverage verifies legacy decoding and multiline instruction round trips.
 The catalog regression requires instructions for every timed or automatically
-reported request and records #101 as the remaining unsupported ID explicitly.
+reported request; it now also requires nonblank guidance for all 101 entries.
 The existing enlarged-text Android flow checks that the
 solution is reachable and that reading it leaves stages unchanged, then exercises
 the stage controls and date links. Existing hand-in reversal/profile/reset tests
 remain applicable. Full CI and all three packlint targets are required.
 
-The remaining **1 solution**, reward/prerequisite completeness, remaining
-automatic hand-in anchors and full boss strategies are still open. This pass
+Reward/prerequisite completeness, remaining automatic hand-in anchors and
+other full boss strategies are still open. This pass
 does not declare the full P3R pack complete.

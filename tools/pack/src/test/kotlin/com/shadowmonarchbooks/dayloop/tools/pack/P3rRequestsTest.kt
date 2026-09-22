@@ -20,11 +20,8 @@ class P3rRequestsTest {
         val requests = catalog.requests
         assertEquals((1..101).toList(), requests.map { it.number })
         assertEquals(14, requests.count { it.deadline != null })
-        assertEquals(100, requests.count { it.solution != null })
-        assertEquals(listOf(101), requests.filter { it.solution == null }.map { it.number },
-            "Keep the unresolved request guidance explicit until its evidence is reconciled")
-        assertTrue(requests.filter { it.deadline != null || it.completionEvent != null }
-            .all { !it.solution.isNullOrBlank() }, "Every timed or automatically reported request needs guidance")
+        assertTrue(requests.all { !it.solution.isNullOrBlank() },
+            "Every Journey request needs authored completion guidance")
         val media = assertNotNull(loaded.media).media.associateBy { it.id }
         val achievements = assertNotNull(loaded.achievements).achievements
         assertEquals(48, achievements.size)

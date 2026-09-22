@@ -7,13 +7,13 @@ and Today/Day retain their answer access. P5R keeps its Mementos destination.
 
 ## Data and behavior
 
-September 19 continuation: 100 requests now show authored solutions before their
+September 22 continuation: all 101 requests now show authored solutions before their
 tracking controls, including all 14 timed requests and all 24 with exact reporting
 anchors. See the [coverage/evidence record](../audits/p3r-request-guidance.md).
-Missing solutions retain the existing issuer/availability guidance. Completion
-rules, route links and saved stages are unchanged. P3R content version is 13.
-Request #101 still needs verified guidance. Request #62's display
-title now spells Titania correctly; its ID is unchanged.
+The generic missing-solution fallback remains available for other catalogs.
+Completion rules, route links and saved stages are unchanged. P3R content version
+is 14. Request #101 includes preparation, battle rules and a three-phase plan.
+Request #62's display title now spells Titania correctly; its ID is unchanged.
 
 - 101 numbered Journey requests; Episode Aigis is outside this pack.
 - 14 reporting dates reused from the audited P3R deadline catalog.
@@ -33,7 +33,7 @@ title now spells Titania correctly; its ID is unchanged.
   or date/index task marks. No database migration or task rewrite is needed.
 
 This is a complete numbered catalog and a tracker with manual and task-derived progress, not a claim
-that every reward, prerequisite, item window or solution has been verified.
+that every reward, prerequisite or item window has been verified.
 Those details and additional safe automatic hand-in anchors remain P3R-3 work. Untimed rows
 make no promise that their required items can be obtained at any time.
 
@@ -43,7 +43,7 @@ Names and request numbers were cross-checked between:
 - [Samurai Gamers main-story request index](https://samurai-gamers.com/persona-3-reload/p3re-elizabeth-request-list/)
 - [RPG Site request guide](https://www.rpgsite.net/guide/15324-persona-3-reload-elizabeth-requests-guide-solutions-rewards-for-every-quest)
 
-The initial delivery imported only the numbered catalog. The September 19
+The initial delivery imported only the numbered catalog. The September 19–22
 continuations add independently written instructions, using the audited route
 and focused checks against individual guides; the evidence record distinguishes
 conflicting claims and remaining gaps. Reward and prerequisite tables are not

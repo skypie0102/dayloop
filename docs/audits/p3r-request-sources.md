@@ -1,6 +1,6 @@
 # P3R request instruction sources — September 19, 2026
 
-Source ledger for the 61 additions in content version 12. See the [audit](p3r-request-guidance.md) for conflicts and limits. Existing route preparation and reporting behavior remain authoritative.
+Source ledger for additions in content versions 12–14. See the [audit](p3r-request-guidance.md) for conflicts and limits. Existing route preparation and reporting behavior remain authoritative.
 
 | Request | Objective reference |
 |---|---|
@@ -79,8 +79,27 @@ Cross-checks: RPG Site confirms the shop path for #51/#73 and the Courage gate f
 Only short, independently written factual instructions are added. Equipment
 entries for the original Persona 3, FES and Portable are excluded.
 
-Insufficient for #101: [Samurai Gamers boss guide](https://samurai-gamers.com/persona-3-reload/p3re-elizabeth-boss-guide/)
+September 20 references insufficient for #101: [Samurai Gamers boss guide](https://samurai-gamers.com/persona-3-reload/p3re-elizabeth-boss-guide/)
 has no strategy, and [Megami Tensei Wiki gameplay tables](https://megatenwiki.com/wiki/Gameplay:Elizabeth)
 do not specify a usable phase plan. The [character summary](https://megatenwiki.com/wiki/Elizabeth)
 is not used for battle rules. These are recorded as research limits, not accepted
 evidence for a solution.
+
+## September 22 — request #101, content version 14
+
+| Reference | Accepted scope |
+|---|---|
+| [TenSquare3, GameFAQs: main-game secret boss](https://gamefaqs.gamespot.com/xbox-series-x/409940-persona-3-reload/faqs/81159/guide-for-the-secret-boss-main-game) | Reload phase timing, damage check, survival-skill sequencing and Theurgy management; firsthand Merciless strategy with a linked demonstration. |
+| [BAI Gaming: Elizabeth in Reload](https://bai-gaming.com/how-to-beat-elizabeth-in-persona-3-reload/) | Preparation, Armageddon unlock, counter/barrier restrictions and transition cues; firsthand strategy with a linked demonstration. |
+| [Prima Games: Elizabeth in Reload](https://primagames.com/tips/how-to-defeat-elizabeth-in-persona-3-reload-p3r) | Independent checks of equipment, damage affinities and final-phase handling. |
+
+The authored entry synthesizes a compact strategy rather than copying a build or
+turn-by-turn guide. Equipment, resistance and skill advice is for Reload. No
+FES/Portable Infinity strategy or New Game Plus requirement is imported. The
+route remains the authority for the January 30 attempt; a guide's January 31
+example is not treated as an exclusive unlock date. Orpheus Telos is recommended,
+not declared mandatory. Complete fusion recipes and fixed damage estimates are
+excluded because loadouts and difficulty change the required attacks. The short
+middle-phase window is anchored to the first scripted hit and Thor's warning,
+not an ambiguous count from the initial dialogue. Endure and Enduring Soul are
+kept separate so both planned lethal hits can be survived.
