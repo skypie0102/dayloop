@@ -89,7 +89,7 @@ Game-switcher lists installed packs (bundled now, imported later); separate prof
 
 ### 4.1 Pack-isolation rule after v0.15.0
 
-- Persona 5 Royal is the reference pack. Its v0.15.0 milestone and explicitly requested version 15 reading-flow changes are recorded in [`docs/packs/p5r-baseline.md`](packs/p5r-baseline.md). Content validation and walkthrough usability are separate acceptance criteria.
+- Persona 5 Royal is the reference pack. Its v0.15.0 milestone and explicitly requested version 16 reading-flow and request tracking changes are recorded in [`docs/packs/p5r-baseline.md`](packs/p5r-baseline.md). Content validation and walkthrough usability are separate acceptance criteria.
 - P3R- or Metaphor-scoped work must not modify `content/packs/p5r/`, increment P5R's `contentVersion`, or weaken a P5R regression test.
 - Shared engine/schema/UI changes are allowed only when pack-generic. They must preserve P5R behavior and keep the full P5R regression suite and `packlint` green.
 - P5R may be used as a reference implementation, never as data to copy blindly. Each title keeps its own mechanics, dates, terminology, sources, artwork, and completion semantics.

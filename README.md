@@ -21,7 +21,7 @@ Checklists, bond/confidant roadmaps, palace/deadline tracking, exam windows — 
 ## Design pillars
 
 - **Engine + data packs.** The app is a generic calendar-engine; every game is a swappable JSON pack (`/content/packs/<slug>/`). No Kotlin/UI code knows what a "Palace", "Confidant", or "Royal Virtue" is — those words live in pack data.
-- **Anti-deviation UX.** Every item supports Done / Skip / Later — never a red failure state. Going off-guide just changes future suggestions.
+- **Anti-deviation UX.** Every item supports Done / Skip / Later — never a red failure state. Skipped or deferred tasks stay explicit; the fixed source route does not automatically replan.
 - **Spoiler-safe by default.** Deadlines visible, story commentary hidden behind taps.
 - **Offline-first.** Content ships bundled; progress saves locally (Room); no account required.
 - **Portable progress.** Settings → Backup & restore exports every game's profiles to one file. Import restores separate copies. See [backup instructions](docs/progress-backups.md).
@@ -67,7 +67,7 @@ See [docs/PLAN.md](docs/PLAN.md) for the architecture plan and [docs/ROADMAP-v3.
 
 **P5R walkthrough usability fixes are in review.** The v0.15.0 milestone remains
 the historical content baseline; it did not establish that the walkthrough was
-easy to follow. Pack version 15 adds explicit reading order for all 301 dates,
+easy to follow. Pack version 16 retains explicit reading order for all 301 dates,
 corrects 38 Day/Night placements, and expands inline guidance to 572 tasks,
 including dialogue instructions for 193 events. Original task indexes and
 completion anchors remain stable. See the [usability review](docs/audits/p5r-walkthrough-usability.md)

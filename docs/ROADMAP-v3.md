@@ -10,7 +10,8 @@ while staying the same pack-generic engine for P3R, Metaphor, and future drops.
 > priority before the isolated P3R audit resumes, followed by Metaphor.
 > Phase 18 remains the final cross-pack verification and release-hardening
 > pass.** P5R's stability contract lives in `docs/packs/p5r-baseline.md`;
-> current reading-flow work is recorded in `docs/audits/p5r-walkthrough-usability.md`.
+> current reading-flow work is recorded in `docs/audits/p5r-walkthrough-usability.md`,
+> with request unlocks and lightweight motion in `docs/audits/p5r-mementos-motion.md`.
 
 | # | Ask | Phase | Status |
 |---|-----|-------|--------|
