@@ -974,7 +974,8 @@
         },
         {
           "label": "Listen to the woman and girl near Sojiro's house",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Listen to the woman and girl near Sojiro’s house. Then go down the alley past LeBlanc and speak with the man on the bench to confirm If Cats Disappeared from the City."
         },
         {
           "label": "Hang out with Ann — Lovers reaches rank 5",

@@ -435,13 +435,32 @@ object PackLoader {
                 if (request.completionEvent !in eventIds) {
                     requestError("request '${request.id}' references unknown completion event '${request.completionEvent}'")
                 }
+                val completion = mementosRequests.events.firstOrNull { it.id == request.completionEvent }
+                if (completion != null && completion.date != request.expectedBy) {
+                    requestError("request '${request.id}' completion event date must equal expectedBy")
+                }
+                val prerequisites = listOfNotNull(request.receivedEvent) + request.unlockEvents
+                prerequisites.forEach { eventId ->
+                    if (eventId !in eventIds) requestError("request '${request.id}' references unknown prerequisite '$eventId'")
+                    if (eventId == request.completionEvent) requestError("request '${request.id}' cannot unlock from its completion event")
+                    val anchor = mementosRequests.events.firstOrNull { it.id == eventId }
+                    if (anchor != null && anchor.date > request.expectedBy) {
+                        requestError("request '${request.id}' prerequisite '$eventId' occurs after its guide clear")
+                    }
+                }
+                val receipt = mementosRequests.events.firstOrNull { it.id == request.receivedEvent }
+                if (receipt != null && receipt.date != request.receivedOn) {
+                    requestError("request '${request.id}' receipt event date must equal receivedOn")
+                }
             }
             mementosRequests.requests.groupBy { it.completionEvent }.forEach { (eventId, requests) ->
                 if (requests.size != 1) {
                     requestError("completion event '$eventId' must belong to exactly one request")
                 }
             }
-            eventIds.filterNot { eventId -> mementosRequests.requests.any { it.completionEvent == eventId } }
+            eventIds.filterNot { eventId -> mementosRequests.requests.any {
+                it.completionEvent == eventId || it.receivedEvent == eventId || eventId in it.unlockEvents
+            } }
                 .forEach { eventId -> requestError("request event '$eventId' is not used by any request") }
         }
 

@@ -187,12 +187,12 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                     .skinBackdrop(skin, showHaze = route != "today"),
                 enterTransition = {
                     if (
-                        initialState.destination.route == "onboarding" &&
+                        !animationsDisabled && initialState.destination.route == "onboarding" &&
                         targetState.destination.route == "today"
                     ) {
-                        fadeIn(tween(360)) + slideInVertically(
+                        fadeIn(tween(220)) + slideInVertically(
                             initialOffsetY = { it / 12 },
-                            animationSpec = tween(360),
+                            animationSpec = tween(220),
                         )
                     } else {
                         motion.enter
@@ -200,10 +200,10 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                 },
                 exitTransition = {
                     if (
-                        initialState.destination.route == "onboarding" &&
+                        !animationsDisabled && initialState.destination.route == "onboarding" &&
                         targetState.destination.route == "today"
                     ) {
-                        fadeOut(tween(220))
+                        fadeOut(tween(160))
                     } else {
                         motion.exit
                     }

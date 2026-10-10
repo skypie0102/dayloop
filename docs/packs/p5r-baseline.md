@@ -2,9 +2,10 @@
 
 The v0.15.0 milestone established the reference content and saved-progress
 boundary. The explicit October 10, 2026 request reopens P5R walkthrough usability
-before further P3R work. Pack version 15 updates the reading treatment described
+before further P3R work. Pack version 16 updates the reading treatment described
 below; it does not reopen the other packs. See the
-[focused review](../audits/p5r-walkthrough-usability.md).
+[focused review](../audits/p5r-walkthrough-usability.md) and
+[Mementos and motion review](../audits/p5r-mementos-motion.md).
 
 ## Content contract
 
@@ -17,9 +18,9 @@ below; it does not reopen the other packs. See the
 | Deadlines | 24 |
 | Answers | 68 sheets: 12 exam days and 56 class questions |
 | Achievements | 53 definitions; route-observable completions are task-derived |
-| Mementos Requests | 33 definitions and 33 exact completion-task anchors |
+| Mementos Requests | 33 definitions, 33 clear anchors, 33 receipt anchors, 15 preparation anchors |
 | Declared media | 101 items: 53 achievement icons, 23 character backgrounds, 24 tarot variants, and 1 month opener |
-| Pack version | `p5r @ contentVersion 15` (v0.15.0 shipped version 14) |
+| Pack version | `p5r @ contentVersion 16` (v0.15.0 shipped version 14) |
 | Visible task guidance | 572 tasks, including dialogue directions for 193 events |
 
 All route-selected dates remain distinct from universal availability facts.
@@ -49,7 +50,8 @@ existing index; it preserves all dates, task counts, and completion anchors.
   P5R's former Answers bottom tab is replaced by Mementos Requests.
 - Confidant ranks, achievements, and Mementos Requests derive completion from
   their relevant checked route tasks. Multi-step setup does not complete a
-  request; only its exact completion anchor does.
+  request; only its exact completion anchor does. Receipt and investigation or
+  job-shift anchors gate availability. Skipped prerequisites remain pending.
 - Confidant detail pages layer an Arcana tarot backdrop at the top-right;
   Faith changes from its rank 0–5 card to its rank 6–10 card at rank 6.
 - Achievement progress keeps only its two counter lines pinned while its longer
@@ -57,7 +59,7 @@ existing index; it preserves all dates, task counts, and completion anchors.
 - Achievement entries use plain translucent 75%-black panels, without panel
   decoration, so their artwork and text remain legible over the P5R presentation.
 - Mementos Requests uses pack-authored background artwork with plain translucent
-  50%-black request panels so the artwork remains visible behind each entry.
+  75%-black request panels so the artwork remains visible behind each entry.
 - Today's date uses a heavier single-line treatment, and authored answer sheets
   show the Shūjin Academy companion artwork at matching height on their left.
 - Calendar navigation retains the month the user browsed when a Day page is

@@ -31,7 +31,7 @@ class P5RStableBaselineTest {
 
         val pack = requireNotNull(loaded.pack)
         assertEquals("p5r", pack.packId)
-        assertEquals(15, pack.contentVersion)
+        assertEquals(16, pack.contentVersion)
         assertEquals("2016-04-09", pack.calendar.startDate)
         assertEquals("2017-02-03", pack.calendar.endDate)
 
@@ -51,7 +51,7 @@ class P5RStableBaselineTest {
         assertEquals(53, requireNotNull(loaded.achievements).achievements.size)
         val requests = requireNotNull(loaded.mementosRequests)
         assertEquals(33, requests.requests.size)
-        assertEquals(33, requests.events.size)
+        assertEquals(81, requests.events.size)
         assertEquals(101, requireNotNull(loaded.media).media.size)
     }
 }

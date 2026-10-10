@@ -80,6 +80,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedTaskCard
 import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDeadline
 import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedSectionHeading
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
 import com.shadowmonarchbooks.dayloop.ui.skin.MoonFillBadge
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinFxTiming
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
@@ -297,13 +298,15 @@ private fun MarkButton(
     // Done-mark micro-animation, per motif family: the moon language fills a
     // disc like a moon phase and the crown language stamps a wax seal. Task
     // labels use an ordinary strikethrough in every skin.
-    val fx by animateFloatAsState(
-        targetValue = if (active && mark == StepMark.DONE && skin.hasSkin) 1f else 0f,
-        animationSpec = tween(SkinFxTiming.MARK_MS),
-        label = "markFx",
-    )
+
 
     if (skin.hasSkin && skin.motion == "slash") {
+        val animationsDisabled = rememberAnimationsDisabled()
+        val plateScale by animateFloatAsState(
+            targetValue = if (active) 1f else 0.94f,
+            animationSpec = tween(if (animationsDisabled) 0 else SkinFxTiming.MARK_MS),
+            label = "selection plate",
+        )
         val colors = MaterialTheme.colorScheme
         val container = if (active) colors.primary else colors.background
         val content = if (active) colors.onPrimary else colors.onBackground
@@ -321,7 +324,7 @@ private fun MarkButton(
                     onToggle(mark)
                 }
                 .padding(5.dp)
-                .graphicsLayer { rotationZ = rotation }
+                .graphicsLayer { rotationZ = rotation; scaleX = plateScale; scaleY = plateScale }
                 .background(container, skin.shapes.chip)
                 .border(1.dp, colors.onBackground, skin.shapes.chip),
         ) {
@@ -349,11 +352,17 @@ private fun MarkButton(
         },
     ) {
         Box(contentAlignment = Alignment.Center) {
-            if (mark == StepMark.DONE && skin.hasSkin && fx > 0f) {
+            if (mark == StepMark.DONE && skin.hasSkin && skin.motif in setOf("moon", "crown")) {
+                val animationsDisabled = rememberAnimationsDisabled()
+                val fx by animateFloatAsState(
+                    targetValue = if (active) 1f else 0f,
+                    animationSpec = tween(if (animationsDisabled) 0 else SkinFxTiming.MARK_MS),
+                    label = "completion badge",
+                )
                 when (skin.motif) {
                     "moon" -> MoonFillBadge(
-                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.30f * fx),
-                        modifier = Modifier.size(26.dp),
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.30f),
+                        modifier = Modifier.size(26.dp).graphicsLayer { alpha = fx },
                     )
                     "crown" -> Box(
                         modifier = Modifier

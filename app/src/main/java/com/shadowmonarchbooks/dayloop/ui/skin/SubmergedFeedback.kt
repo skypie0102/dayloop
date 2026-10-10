@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Path
@@ -25,10 +25,10 @@ import androidx.compose.ui.unit.sp
 
 /** A readable result plane, replacing the inherited inverse-color moon disc. */
 @Composable
-internal fun SubmergedDayComplete(fx: AdvanceFx, progress: Float) {
+internal fun SubmergedDayComplete(fx: AdvanceFx, progress: () -> Float) {
     val colors = MaterialTheme.colorScheme
     Column(
-        Modifier.fillMaxSize().alpha(progress)
+        Modifier.fillMaxSize().graphicsLayer { alpha = progress() }
             .background(Brush.verticalGradient(listOf(colors.primaryContainer, colors.surface, colors.background)))
             .drawBehind {
                 val plane = Path().apply {

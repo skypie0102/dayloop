@@ -172,6 +172,10 @@ duplicate already-correct route effects.
 | `request.completionEvent` | Automatic completion lookup | Served (state derived from the exact DONE walkthrough task) |
 | `events[].id` | Request-to-event cross-reference; packlint | Intentionally not served (stable identity) |
 | `events[].date` / `labelContains` / `routeId` | Exact semantic walkthrough-task resolution | Served (automatic completion behavior) |
+| `request.receivedEvent` | Receipt-task Done mark gates receipt; old catalogs without this field retain date-based availability | Served |
+| `request.unlockEvents` | All investigation/preparation tasks must be Done before the target is available; pending row opens the next unmet task | Served |
+| `request.guidance` | Source-based preparation notes beneath the request status | Served |
+
 
 ## Keeping this honest
 

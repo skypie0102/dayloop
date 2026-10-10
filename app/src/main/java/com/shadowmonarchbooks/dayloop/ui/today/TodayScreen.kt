@@ -164,7 +164,7 @@ fun TodayScreen(
     val dayTasksDone = areSlotTasksDone(day, daySlotId) { state.markAt(date, it) }
     val nightBlend by animateFloatAsState(
         targetValue = if (dayTasksDone) 1f else 0f,
-        animationSpec = tween(durationMillis = if (animationsDisabled) 0 else 1_200),
+        animationSpec = tween(durationMillis = if (animationsDisabled) 0 else 300),
         label = "Today day-to-night scene",
     )
     val dayScene = rememberAssetImage(pack.artAsset("today-day"))

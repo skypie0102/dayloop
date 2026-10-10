@@ -70,6 +70,12 @@ content/packs/p5r/
 
 ## Mementos requests
 
+- Mementos requests may add `receivedEvent` and `unlockEvents` (event IDs) to
+  gate availability on confirmed receipt and every investigation or preparation
+  task. `guidance` explains target preparation. All selectors must uniquely
+  resolve an authored task; receipt and clear event dates must match `receivedOn`
+  and `expectedBy`. Prerequisites cannot occur after the clear or reference the
+  clear itself. Never use dungeon entry or a failed attempt as a clear event.
 - `mementos-requests.json` carries request identity, route receipt/completion
   dates, optional target/location/reward facts, and one `completionEvent` per
   request.

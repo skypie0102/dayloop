@@ -31,7 +31,7 @@ All checklist items, confidant roadmaps, and palace/exam deadlines hang off that
 - Multiple routes per pack — schema, profiles, and UI shipped in Phase 5; per-pack route authoring is content work
 - Home-screen widget (Glance) — shipped in Phase 5
 - Exam/test answer sheets — shipped in Phase 5 (`answers.json`; shown on daily pages, with an Answers tab for packs that do not replace it)
-- Mementos Requests tracker — shipped for P5R (`mementos-requests.json` + exact completion-task anchors)
+- Mementos Requests tracker — P5R receipts, source preparation, and individual clear tasks are tracked from Done marks (content version 16)
 - Current priority (October 10, 2026): P5R walkthrough usability first, then resume P3R and Metaphor: ReFantazio audits; P4G and further titles stay drop-in candidates via schema (deferred)
 
 ## 2. Key design decision: model entities, not paragraphs

@@ -1,5 +1,10 @@
 # dayloop
 
+Current P5R priority: source-ordered inline walkthrough guidance plus request
+receipt/preparation tracking and lighter themed motion. See the
+[Mementos and motion review](docs/audits/p5r-mementos-motion.md). P3R content
+expansion remains paused pending P5R usability testing.
+
 **Unofficial Android companion/checklist app for calendar-based ATLUS-style JRPGs** — launching with Persona 5 Royal, Persona 3 Reload, and Metaphor: ReFantazio. The engine stays pack-generic; further ATLUS titles can drop in later.
 
 > *This is a fan-made tool. It is not affiliated with or endorsed by ATLUS/SEGA. Guide-derived art is bundled for this private, non-commercial build only and is stripped before any public release (docs/PLAN.md §9).*

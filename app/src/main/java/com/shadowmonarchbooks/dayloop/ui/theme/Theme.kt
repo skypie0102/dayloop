@@ -8,6 +8,8 @@ import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import com.shadowmonarchbooks.dayloop.ui.skin.LocalAnimationsDisabled
+import com.shadowmonarchbooks.dayloop.ui.skin.rememberSystemAnimationsDisabled
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -223,7 +225,7 @@ fun DayloopTheme(
         shapes = materialShapesFor(skin),
         typography = skinTypography(Typography(), skin.type),
         content = {
-            CompositionLocalProvider(LocalSkin provides skin) {
+            CompositionLocalProvider(LocalSkin provides skin, LocalAnimationsDisabled provides rememberSystemAnimationsDisabled()) {
                 content()
             }
         },

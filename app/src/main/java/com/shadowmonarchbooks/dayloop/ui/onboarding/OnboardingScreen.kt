@@ -2,7 +2,7 @@ package com.shadowmonarchbooks.dayloop.ui.onboarding
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
@@ -83,6 +83,7 @@ fun OnboardingScreen(
     onCancel: (() -> Unit)? = null,
 ) {
     val state by vm.state.collectAsState()
+    val animationsDisabled = rememberAnimationsDisabled()
     val packs = state.packs.sortedBy { it.pack.pickerOrder }
     val profileCounts by vm.profileCounts.collectAsState()
     val reselecting = state.selectedSlug != null
@@ -183,10 +184,11 @@ fun OnboardingScreen(
         ) {
             repeat(packs.size) { i ->
                 val active = i == pagerState.currentPage
-                val dotSize by animateDpAsState(if (active) 9.dp else 6.dp, label = "dot")
+                val dotScale by animateFloatAsState(if (active) 1f else 2f / 3f,
+                    animationSpec = tween(if (animationsDisabled) 0 else 140), label = "dot")
                 Box(
                     Modifier
-                        .size(dotSize)
+                        .size(9.dp).graphicsLayer { scaleX = dotScale; scaleY = dotScale }
                         .clip(CircleShape)
                         .background(
                             if (active) MaterialTheme.colorScheme.primary
@@ -226,13 +228,13 @@ private fun PackLoadingOverlay(pack: LoadedPack) {
             while (true) {
                 progress.snapTo(0f)
                 progress.animateTo(1f, tween(300, easing = LinearEasing))
+                delay(600)
             }
         }
     }
 
-    val phase = progress.value
     val message = when (motif) {
-        "masks" -> "LOADING" + ".".repeat((phase * 4).toInt().coerceIn(0, 3))
+        "masks" -> "LOADING"
         "moon" -> "NOW LOADING"
         "crown" -> "PREPARING JOURNEY"
         else -> "LOADING"
@@ -245,7 +247,7 @@ private fun PackLoadingOverlay(pack: LoadedPack) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             PackLoadingMotif(
                 motif = motif,
-                phase = phase,
+                phase = { progress.value },
                 accent = accent,
                 foreground = foreground,
                 modifier = Modifier.size(220.dp),
@@ -280,14 +282,14 @@ private fun PackLoadingOverlay(pack: LoadedPack) {
 @Composable
 private fun PackLoadingMotif(
     motif: String?,
-    phase: Float,
+    phase: () -> Float,
     accent: Color,
     foreground: Color,
     modifier: Modifier = Modifier,
 ) {
     when (motif) {
         "masks" -> Canvas(modifier.graphicsLayer { rotationZ = -8f }) {
-            val sweep = size.width * (phase * 1.8f - 0.4f)
+            val sweep = size.width * (phase() * 1.8f - 0.4f)
             val slash = Path().apply {
                 moveTo(sweep - size.width * 0.28f, 0f)
                 lineTo(sweep + size.width * 0.08f, 0f)
@@ -308,14 +310,14 @@ private fun PackLoadingMotif(
                 style = Stroke(width = 5.dp.toPx()),
             )
         }
-        "moon" -> Canvas(modifier.graphicsLayer { rotationZ = phase * 360f }) {
+        "moon" -> Canvas(modifier.graphicsLayer { rotationZ = phase() * 360f }) {
             val radius = size.minDimension * 0.25f
             drawCircle(color = foreground.copy(alpha = 0.16f), radius = size.minDimension * 0.48f)
             drawCircle(color = foreground, radius = radius)
             drawCircle(
                 color = Color(0xFF030A28),
                 radius = radius,
-                center = Offset(center.x + radius * (0.85f - phase * 0.7f), center.y),
+                center = Offset(center.x + radius * (0.85f - phase() * 0.7f), center.y),
             )
             drawCircle(
                 color = accent,
@@ -329,10 +331,10 @@ private fun PackLoadingMotif(
             )
         }
         "crown" -> Canvas(modifier.graphicsLayer {
-            val pulse = 0.92f + phase * 0.08f
+            val pulse = 0.92f + phase() * 0.08f
             scaleX = pulse
             scaleY = pulse
-            rotationZ = (phase - 0.5f) * 5f
+            rotationZ = (phase() - 0.5f) * 5f
         }) {
             val outer = Path().apply {
                 moveTo(center.x, size.height * 0.08f)
@@ -367,7 +369,7 @@ private fun PackLoadingMotif(
             )
             drawArc(
                 color = foreground,
-                startAngle = phase * 360f,
+                startAngle = phase() * 360f,
                 sweepAngle = 80f,
                 useCenter = false,
                 style = Stroke(width = 6.dp.toPx()),

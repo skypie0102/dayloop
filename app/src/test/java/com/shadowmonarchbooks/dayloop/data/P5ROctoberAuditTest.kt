@@ -25,7 +25,7 @@ class P5ROctoberAuditTest {
         val root = contentPacksDir() ?: return
         val p5r = PackLoader.load(root.resolve("p5r"))
         assertEquals(emptyList(), p5r.parseIssues)
-        assertEquals(15, p5r.pack?.contentVersion)
+        assertEquals(16, p5r.pack?.contentVersion)
 
         val days = p5r.walkthroughs.flatMap { it.file.days }
             .filter { it.date.startsWith("2016-10") }

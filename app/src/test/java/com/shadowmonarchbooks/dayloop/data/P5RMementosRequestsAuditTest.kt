@@ -29,8 +29,10 @@ class P5RMementosRequestsAuditTest {
 
         assertEquals(33, catalog.requests.size)
         assertEquals(33, catalog.requests.map { it.id }.distinct().size)
-        assertEquals(33, catalog.events.size)
-        assertEquals(catalog.events.map { it.id }.toSet(), catalog.requests.map { it.completionEvent }.toSet())
+        assertEquals(81, catalog.events.size)
+        assertEquals(33, catalog.requests.map { it.completionEvent }.distinct().size)
+        assertTrue(catalog.requests.all { it.receivedEvent != null })
+        assertEquals(15, catalog.requests.sumOf { it.unlockEvents.size })
         assertTrue(catalog.requests.all { it.expectedBy >= it.receivedOn })
 
         val routeDays = loaded.walkthroughs.flatMap { it.file.days }.associateBy { it.date }

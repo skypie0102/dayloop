@@ -448,6 +448,59 @@ class SubmergedAppFlowTest {
         capture("p5r-app-next-day-start")
     }
 
+    @Test fun p5rMementosReceiptInvestigationAndClearRemainReversible() {
+        launch("2016-05-26", "p5r", 2f)
+        val title = "If Cats Disappeared from the City"
+        val id = "p5r.request.if-cats-disappeared-from-the-city"
+        val pack = dependencies.store().state.value.selected!!
+        fun openTracker() {
+            compose.onNodeWithContentDescription("Mementos Requests").performClick()
+            compose.onNodeWithTag("mementos-request-list").performScrollToNode(hasText(title))
+        }
+        fun status(text: String) {
+            compose.onNodeWithTag("mementos-request-list").performScrollToNode(hasText(title))
+            compose.onNodeWithTag(id).assertTextContains(text)
+        }
+        fun mark(date: String, index: Int) {
+            val day = pack.day("standard", date)!!
+            compose.waitUntil(15_000) { compose.onAllNodesWithTag("task-label-$index").fetchSemanticsNodes().isNotEmpty() }
+            val position = day.displayOrder.indexOf(index)
+            compose.onAllNodesWithContentDescription("Done")[position].performScrollTo().performClick()
+        }
+        openTracker()
+        status("TO RECEIVE")
+        capture("p5r-mementos-receipt-large-text")
+        compose.onNodeWithTag(id).performClick()
+        mark("2016-05-26", 1)
+        markIs(1, StepMark.DONE, "2016-05-26")
+        compose.onNodeWithContentDescription("Back").performClick()
+        status("PREPARATION")
+        compose.onNodeWithTag(id).performClick()
+        compose.onNodeWithText("Listen to the woman and girl near Sojiro's house").assertExists()
+        compose.onNodeWithTag("task-guidance-1").performScrollTo().assertTextContains("man on the bench", substring = true)
+        mark("2016-05-28", 1)
+        markIs(1, StepMark.DONE, "2016-05-28")
+        compose.onNodeWithContentDescription("Back").performClick()
+        status("AVAILABLE")
+        capture("p5r-mementos-available-large-text")
+        compose.onNodeWithTag(id).performClick()
+        val clearIndex = pack.day("standard", "2016-06-02")!!.steps.indexOfFirst { it.label == "Complete request: $title" }
+        assertTrue(clearIndex >= 0)
+        mark("2016-06-02", clearIndex)
+        markIs(clearIndex, StepMark.DONE, "2016-06-02")
+        compose.onNodeWithContentDescription("Back").performClick()
+        status("COMPLETED")
+        scenario!!.recreate()
+        compose.waitUntil(20_000) { compose.onAllNodesWithTag("mementos-request-list").fetchSemanticsNodes().isNotEmpty() }
+        status("COMPLETED")
+        capture("p5r-mementos-completed-large-text")
+        compose.onNodeWithTag(id).performClick()
+        mark("2016-06-02", clearIndex)
+        compose.onNodeWithContentDescription("Back").performClick()
+        status("AVAILABLE")
+        assertEquals("2016-05-26", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
+    }
+
     @Test fun p5rSameBuildControlCapture() {
         launch("2016-04-15", "p5r")
         capture("p5r-app-control")
