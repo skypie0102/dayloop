@@ -1,8 +1,9 @@
 # Persona 3 Reload — UI and walkthrough roadmap
 
 Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version 3.
-Priority: **top repository priority**, confirmed by the user on 2026-09-06.
-Status: **active — P3R-1 daily screen and Android flow validation in progress**.
+Priority: **resume after P5R walkthrough usability**, per the October 10, 2026 request.
+Status: **paused for the focused P5R fix**; P3R-1 daily screen and Android flow
+validation remain open. See the [P5R usability review](../audits/p5r-walkthrough-usability.md).
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
 

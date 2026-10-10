@@ -84,7 +84,10 @@ original saved index, and a request appended after Night in storage but displaye
 before it. A real-activity flow also checks Today, saved Room marks after activity
 recreation, Calendar-to-Day navigation, and reversal on the original task key.
 Screenshots and an installable candidate APK are workflow artifacts.
-CI results and screenshot inspection are pending at this revision.
+The full build/JVM/three-packlint run passed for implementation revision
+`33014bf`: [CI result](https://github.com/skypie0102/dayloop/actions/runs/38025835873).
+Final-head CI results, Android evidence, visual inspection and the candidate
+download are recorded in [PR #3](https://github.com/skypie0102/dayloop/pull/3).
 
 The next acceptance step is using the candidate during a real play session.
 This change is a focused reading-flow fix; it does not mark all remaining

@@ -104,9 +104,11 @@ class P5rWalkthroughTest {
 
     @Test fun twoHundredPercentTextRetainsFullWidthGuidanceAndOriginalProgressKeys() {
         show("2016-04-23", 2f)
+        val label = compose.onNodeWithTag("task-label-2").performScrollTo().fetchSemanticsNode().boundsInRoot
         val guidance = compose.onNodeWithTag("task-guidance-2").performScrollTo().fetchSemanticsNode().boundsInRoot
-        val label = compose.onNodeWithTag("task-label-2").fetchSemanticsNode().boundsInRoot
+        assertTrue("the measured task label must be visible", label.width > 0)
         assertTrue("guidance must use the width beneath the controls", guidance.width > label.width)
+        capture("p5r-large-text-guidance")
         compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().performClick()
         assertEquals(2, markedIndex)
         assertEquals(StepMark.DONE, markedValue)

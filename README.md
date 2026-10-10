@@ -142,7 +142,10 @@ The current Moonlight appearance is being replaced with a Reload-aligned design.
 The plan builds on the existing route audit and separately tracks richer daily
 guidance, Elizabeth requests/rescues, progress reliability, and release acceptance.
 
-**Pack audit focus: Persona 3 Reload.** Reuse P5R's proven schema and UX patterns where they fit, but implement and validate P3R against its own route, mechanics, vocabulary, dates, artwork, and theme. Shared-engine changes must keep the frozen P5R regression suite green and must not rewrite `content/packs/p5r/` as a side effect.
+**Pack audit focus: P5R walkthrough usability first, then Persona 3 Reload.**
+When P3R work resumes, validate it against its own route, mechanics, vocabulary,
+dates, artwork, and theme. Shared-engine changes must keep the P5R regression
+suite green and must not rewrite `content/packs/p5r/` as a side effect.
 
 After P3R, continue the same isolated audit process for **Metaphor: ReFantazio**. Phase 18 remains the final cross-pack release-hardening pass: screenshot/parity tests, pack asset budgets, the public-release `strip-art` pipeline, and performance gates.
 

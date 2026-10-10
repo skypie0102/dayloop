@@ -6,7 +6,7 @@ before further P3R work. Pack version 15 updates the reading treatment described
 below; it does not reopen the other packs. See the
 [focused review](../audits/p5r-walkthrough-usability.md).
 
-## Shipped content contract
+## Content contract
 
 | Area | Current content contract |
 |---|---:|
