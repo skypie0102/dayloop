@@ -78,11 +78,20 @@ The integrity audit passes against `62289ba`: all stored labels/indexes and
 original report anchors are unchanged; every new selector resolves to exactly
 one route task and has one request owner. Class/exam answer coverage is 53/53.
 
-JVM/schema/lint checks and the API 34 Android review are pending at the initial
-commit. The Android review covers actual saved navigation/request flows, source
-ready-proof reversal at 200% text, inline class/social/dungeon reading, 40dp mark
-controls, P5R walkthrough/Mementos regressions and live motion settings. The
-isolated hand-in review remains a second independent fixture.
+Verified implementation: `bb29d2281457ed98b826fdb5b0163497be385154`.
+
+- [CI build, JVM tests and all three packlint targets](https://github.com/skypie0102/dayloop/actions/runs/38062843047): passed.
+- [API 34 Android review](https://github.com/skypie0102/dayloop/actions/runs/38062843290): **31 tests, zero failures/errors/skips**; the independent isolated hand-in review also passed.
+- [Screenshots and XML reports](https://github.com/skypie0102/dayloop/actions/runs/38062843290/artifacts/11673079714): reviewed for school/free days, requests, class/exam guidance, social/dungeon reading and large text.
+- [Installable candidate APK](https://github.com/skypie0102/dayloop/actions/runs/38062843290/artifacts/11673877996): `0.16.0-rc3`, with the audited content version 15.
+
+The review exercises actual saved navigation/request flows, source ready-proof
+reversal at 200% text, inline class/social/dungeon reading, 40dp mark controls,
+selected whole-word tab visibility, P5R walkthrough/Mementos regressions and live
+motion settings. Test corrections wait for the real system font setting, reveal
+the scrolling summary after activity recreation and pan oversized footer commands
+before tapping. This result records behavioral and screenshot evidence; the wider
+reward/prerequisite and boss-strategy audits remain separately scoped.
 
 ## Time-heading corrections
 
