@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
@@ -315,7 +316,7 @@ private fun MarkButton(
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .size(com.shadowmonarchbooks.dayloop.ui.skin.PersonaTaskMarkSize)
-                .clickable {
+                .selectable(selected = active, role = Role.Button) {
                     feedback()
                     onToggle(mark)
                 }
@@ -521,6 +522,7 @@ fun StepRow(
                     text = taskText,
                     modifier = Modifier.testTag("task-label-$index"),
                     style = MaterialTheme.typography.bodyLarge,
+                fontWeight = if (inlineTips) FontWeight.Bold else null,
                     textDecoration = if (mark == StepMark.DONE) TextDecoration.LineThrough else null,
                     color = when (mark) {
                         StepMark.SKIP -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f)

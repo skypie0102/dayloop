@@ -516,7 +516,7 @@
             "guts": 2
           },
           "slot": "afternoon",
-          "tip": "Where: Yongen-Jaya clinic. Required before starting: Guts rank 2. Carry a Death Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Mention a bad heart\n• agree with her\n• reassure her that you feel completely fine. No Death Persona is needed at rank 2."
+          "tip": "Where: Yongen-Jaya clinic. Required before starting: Guts rank 2. No Death Persona is needed at rank 2.\n\nDialogue choices — follow the listed responses in order:\n• Mention a bad heart\n• agree with her\n• reassure her that you feel completely fine."
         },
         {
           "label": "Craft lock picks at the attic table (reload trick for a bonus item)",

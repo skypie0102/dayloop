@@ -31,7 +31,8 @@ source's musical-note counts.
   Mementos completion tasks stay together before the nighttime activity.
 - P5R opts into generic `walkthroughPresentation.inlineTips`. Guidance uses the
   width beneath the task and controls, including at enlarged font sizes. The
-  existing artwork panels become 75%-black for this treatment.
+  existing artwork panels become 75%-black for this treatment, task titles are
+  bold, and P5R mark controls expose their selected state to accessibility.
 - 572 tasks have visible guidance, including dialogue directions for 193 events.
   Preparation, Arcana/stat gates, crafting targets, retry conditions, optional
   gifts, deliberately low-affinity decoration choices and ending/romance branches

@@ -107,10 +107,10 @@ class P5rWalkthroughTest {
         val guidance = compose.onNodeWithTag("task-guidance-2").performScrollTo().fetchSemanticsNode().boundsInRoot
         val label = compose.onNodeWithTag("task-label-2").fetchSemanticsNode().boundsInRoot
         assertTrue("guidance must use the width beneath the controls", guidance.width > label.width)
-        compose.onAllNodesWithText("Done")[2].performScrollTo().performClick()
+        compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().performClick()
         assertEquals(2, markedIndex)
         assertEquals(StepMark.DONE, markedValue)
-        compose.onAllNodesWithText("Done")[2].performClick()
+        compose.onAllNodesWithContentDescription("Done")[2].performClick()
         assertEquals(null, markedValue)
         capture("p5r-large-text")
     }
@@ -119,7 +119,7 @@ class P5rWalkthroughTest {
         show("2016-05-07")
         // Reading order is task indexes 0, 1, 3, 2. The third visible Done button
         // belongs to the appended request, not to the earlier stored night row.
-        compose.onAllNodesWithText("Done")[2].performScrollTo().performClick()
+        compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().performClick()
         assertEquals(3, markedIndex)
         assertEquals(StepMark.DONE, markedValue)
         compose.onNodeWithTag("task-label-3").performScrollTo().assertIsDisplayed()
