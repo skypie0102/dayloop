@@ -342,7 +342,7 @@ class SubmergedAppFlowTest {
         runBlocking { dependencies.repo().setMark(profileId,
             com.shadowmonarchbooks.dayloop.progress.StepKey("2009-07-01", 1), StepMark.DONE) }
         markIs(1, StepMark.DONE, "2009-07-01")
-        tab("Requests").performClick()
+        tab("Requests").performScrollTo().performClick()
         compose.onNodeWithText("0 / 101 reported").performScrollTo().assertIsDisplayed()
         val rootBounds = compose.onRoot().getUnclippedBoundsInRoot()
         val selectedTabBounds = tab("Requests").getUnclippedBoundsInRoot()
@@ -365,10 +365,10 @@ class SubmergedAppFlowTest {
         assertTrue(runBlocking { dependencies.repo().requestStages(profileId).first().isEmpty() })
         assertEquals("2009-07-09", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
         capture("p3r-source-readiness-reversed-large-text")
-        tab("Today").performClick()
+        tab("Today").performScrollTo().performClick()
         compose.onAllNodesWithText("Done")[2].performScrollTo().performClick()
         markIs(2, StepMark.DONE, "2009-07-09")
-        tab("Requests").performClick()
+        tab("Requests").performScrollTo().performClick()
         compose.onNodeWithText("1 / 101 reported").performScrollTo().assertIsDisplayed()
         scenario!!.recreate()
         compose.onNodeWithText("1 / 101 reported").performScrollTo().assertIsDisplayed()
