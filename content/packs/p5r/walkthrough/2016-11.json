@@ -18,12 +18,12 @@
         {
           "label": "Buy a Black Kogatana at the second-hand shop (monthly)",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Fountain Pen at the Kichijoji stationery store",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Ohya — Sushi Teacup (room decoration 5/20)",
@@ -50,7 +50,7 @@
             "guts": 5
           },
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Answer the class question",
@@ -62,7 +62,7 @@
         {
           "label": "Borrow 'Dressed in Ashes' from the school library",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Futaba — Hermit reaches rank 7",
@@ -162,7 +162,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Save first, then duel Akechi at the Penguin Sniper Lounge and win — reflect Physical with Girimehkala, block Curse and Bless",
@@ -200,7 +200,7 @@
             "knowledge": 7
           },
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Finish 'Dressed in Ashes' during class",
@@ -209,7 +209,7 @@
             "charm": 5
           },
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Third casino infiltration — clear the high-limit floor",
@@ -259,7 +259,7 @@
         {
           "label": "Buy items from the Kanda priest",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Sunday drink in the Underground Walkway",
@@ -268,7 +268,7 @@
             "proficiency": 2
           },
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Iwai (no rank-up today)",
@@ -307,7 +307,7 @@
         {
           "label": "Buy SP-recovery drinks from the vending machines",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Shinya — Tower reaches rank 8",
@@ -476,7 +476,7 @@
           "label": "Read 'Call Me Chief' on the metro",
           "activityRef": "p5r.activity.book.call-me-chief",
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Answer the class question",
@@ -529,7 +529,7 @@
             "kindness": 7
           },
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Grab a Yakisoba Pan or Autumn Bread at the school store",
@@ -574,7 +574,7 @@
         {
           "label": "Buy the Book Cover at the Underground Mall sundries shop",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Hifumi — King Piece (room decoration 7/20)",
@@ -597,12 +597,12 @@
         {
           "label": "Buy the Moon Dango at the Backstreet supermarket",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Give the Moon Dango to the Kichijoji alley man — Kintaro Axe (12/16)",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Futaba — Hermit reaches rank 10",
@@ -620,7 +620,7 @@
             "guts": 2
           },
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Watch 'Pach Saw' with Haru (Craft of Cinema bonus active)",
@@ -654,7 +654,7 @@
           "label": "Read 'Reckless Casanova' on the metro",
           "activityRef": "p5r.activity.book.reckless-casanova",
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Answer the class question",
@@ -674,7 +674,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Hang out with Sojiro — Hierophant reaches rank 10",
@@ -713,7 +713,7 @@
             "kindness": 5
           },
           "slot": "evening",
-          "tip": "Feeding the attic plant does not advance the time slot. Have the listed nutrient in your inventory first."
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         },
         {
           "label": "Hang out with Chihaya — Fortune reaches rank 8",
@@ -740,17 +740,17 @@
             "charm": 7
           },
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Buy SP-recovery drinks from the vending machines",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Katana Keychain at the Akihabara Otaku Goods Store",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Ryuji in Ogikubo — Ramen Bowl (room decoration 8/20)",
@@ -760,7 +760,7 @@
         {
           "label": "Buy 'Knowing the Heart' in Jinbocho",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Mishima — Moon reaches rank 8",
@@ -786,7 +786,7 @@
           "label": "Read 'Knowing the Heart' on the metro",
           "activityRef": "p5r.activity.book.knowing-the-heart",
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Answer the class question",
@@ -1020,7 +1020,7 @@
         {
           "label": "Buy SP-recovery drinks from the vending machines",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Yusuke — Emperor reaches rank 8",
@@ -1030,7 +1030,7 @@
         {
           "label": "Claim your retro-game accessory at the Akihabara retro store",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Win the Sheep Man Doll at the Akihabara arcade (5/8)",
@@ -1086,12 +1086,12 @@
         {
           "label": "Buy the Legendary Yaki-imo from the vendor in front of Takemi's clinic",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Give the Legendary Yaki-imo to the Kichijoji alley man — Empowering Ofuda x3 (13/16)",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Sunday drink in the Underground Walkway",
@@ -1100,7 +1100,7 @@
             "kindness": 2
           },
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Yusuke — Emperor reaches rank 9",
@@ -1114,7 +1114,7 @@
         {
           "label": "Buy items from the Kanda priest",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Iwai — Hanged Man reaches rank 9",
@@ -1158,7 +1158,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Watch 'Over the Pigeon's Nest' in Yongen-Jaya (Craft of Cinema bonus active)",
@@ -1216,7 +1216,7 @@
         {
           "label": "Buy the Local Mascot Set at the Akihabara Otaku Goods Shop",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Futaba in Akihabara — Hero Figure (room decoration 9/20)",
@@ -1226,7 +1226,7 @@
         {
           "label": "Buy the Robot Vacuum at the Akihabara electronics shop",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Call Kawakami, then give her the Robot Vacuum",

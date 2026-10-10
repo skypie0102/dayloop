@@ -9,12 +9,12 @@
         {
           "label": "Buy a Black Kogatana at the second-hand shop (monthly stock)",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy SP-recovery drinks and the summer-only items",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Itemize a Persona in the Velvet Room's electric chair (achievement check)",
@@ -53,7 +53,7 @@
         {
           "label": "Buy 'Master Swordsman' in Jinbocho",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Ryuji — Chariot reaches rank 8",
@@ -101,7 +101,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Meet the Twins on Shibuya Central Street (5/13)",
@@ -221,7 +221,7 @@
         {
           "label": "Buy an Exorcism Water from the Kanda priest",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Sunday drink in the Underground Walkway",
@@ -230,7 +230,7 @@
             "proficiency": 2
           },
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Ask Chihaya for a luck reading about Charm",
@@ -250,7 +250,7 @@
         {
           "label": "Give the Exorcism Water to the Kichijoji alley man — Model Gun (5/16)",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Work at the Crossroads Bar in Shinjuku — talk to the downcast woman (Luck Reading boosts the base Charm)",
@@ -280,7 +280,7 @@
         {
           "label": "Buy SP-recovery drinks and the summer-only items",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Visit Takemi at the clinic (no rank-up)",
@@ -297,7 +297,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Work at the Crossroads Bar again — talk to the downcast woman (Kindness Luck Reading active)",
@@ -359,7 +359,7 @@
             "kindness": 7
           },
           "slot": "evening",
-          "tip": "Feeding the attic plant does not advance the time slot. Have the listed nutrient in your inventory first."
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         },
         {
           "label": "Talk to Iwai at the Airsoft shop — Hanged Man reaches rank 1",
@@ -469,7 +469,7 @@
         {
           "label": "Buy items from the Kanda priest",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Sunday drink in the Underground Walkway",
@@ -478,7 +478,7 @@
             "guts": 2
           },
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Ryuji — Chariot reaches rank 10",
@@ -642,7 +642,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Save your game, then play billiards at the Penguin Sniper Lounge",
@@ -663,7 +663,7 @@
         {
           "label": "Buy SP-recovery drinks and the summer-only items",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Sell Mementos loot at the Airsoft shop",
@@ -672,7 +672,7 @@
         {
           "label": "Buy 'Expert Billiards', the Dart Set, and the Jump Cue at the Underground Mall",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hit at least one ball at the batting cages for Batter Up!",
@@ -688,7 +688,7 @@
         {
           "label": "Buy 'Batting Science' in Shinjuku",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Ohya — Devil reaches rank 5",
@@ -719,7 +719,7 @@
         {
           "label": "Rent 'D.Housewives' on Central Street",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Read 'Expert Billiards'",
@@ -832,7 +832,7 @@
         {
           "label": "Give a Melon Pan to the Kichijoji alley man — Old Man's Fist (6/16)",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Ask Chihaya for an affinity reading for Ohya",
@@ -894,7 +894,7 @@
             "knowledge": 2
           },
           "slot": "afternoon",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Hang out with Yoshida — Sun reaches rank 9",
@@ -923,12 +923,12 @@
             "kindness": 5
           },
           "slot": "afternoon",
-          "tip": "Feeding the attic plant does not advance the time slot. Have the listed nutrient in your inventory first."
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         },
         {
           "label": "Buy SP-recovery drinks and the summer-only items",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Save your game, then play billiards (Technical) at the Penguin Sniper Lounge",
@@ -992,7 +992,7 @@
             "kindness": 2
           },
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Yoshida — Sun reaches rank 10 (Luck Reading active)",
@@ -1028,7 +1028,7 @@
         {
           "label": "Buy SP-recovery drinks and the summer-only items",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Ohya — Devil reaches rank 6",
@@ -1064,7 +1064,7 @@
             "knowledge": 2
           },
           "slot": "afternoon",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Hang out with Ohya — Devil reaches rank 7 (required answer for a later story event)",

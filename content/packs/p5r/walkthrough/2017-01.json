@@ -239,7 +239,7 @@
         {
           "label": "Give the Special Chimaki to the Kichijoji alley man — Strength Belt (15/16)",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Meet Lavenza on Central Street (13/13) — Enduring Soul skill card",
@@ -283,7 +283,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Save first, then have Kawakami wash the Sooty Scale Armor — reload until you get the Dragon Scale Scarf",
@@ -319,12 +319,12 @@
             "proficiency": 2
           },
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy items from the Kanda priest",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Futaba — her awakening",
@@ -420,7 +420,7 @@
         {
           "label": "Buy a Black Kogatana at the Yongen-Jaya second-hand shop",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Watch 'Bite Club' in Shinjuku (Craft of Cinema bonus active)",
@@ -447,7 +447,7 @@
           "label": "Read 'Batting Science' on the metro",
           "activityRef": "p5r.activity.book.batting-science",
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Carry a Faith Persona",
@@ -464,7 +464,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Have Kawakami craft 4 Treasure Traps (need at least 2)",
@@ -499,7 +499,7 @@
           "label": "Read 'Factorization Guide' during class",
           "activityRef": "p5r.activity.book.factorization-guide",
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Grab a Yakisoba Pan at the school store",
@@ -508,7 +508,7 @@
         {
           "label": "Buy the Special Chimaki at the Kichijoji Chinese bun shop",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Explore Mementos — 2 requests; set Treasure Traps for any missing Treasure Demons; reach the Cognitive Control Room",
@@ -594,12 +594,12 @@
         {
           "label": "Buy the Supernova Burger at the Central Street Big Bang Burger",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Give the Supernova Burger to the Kichijoji alley man — Old Man's Elixir (16/16)",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Sunday drink in the Underground Walkway",
@@ -608,12 +608,12 @@
             "guts": 2
           },
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy items from the Kanda priest",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Sumire — Faith reaches rank 8",
@@ -656,7 +656,7 @@
         {
           "label": "Claim any outstanding badges for the five completed retro games at the Akihabara Retro Game Shop: Forneus Badge, Gambla Badge, Featherman Badge, Punch Badge, and Train Badge",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Sumire — Faith reaches rank 9 (romance choice available)",
@@ -669,12 +669,12 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Buy the Flower Basket at the Shinjuku flower shop",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Take the Big Bang Challenge (3 of 3) — the challenge is cleared",
@@ -737,7 +737,7 @@
           "label": "Read every remaining book during class, finishing with 'Chinese Sweets' — the book list and all city locations are complete",
           "activityRef": "p5r.activity.book.chinese-sweets",
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Hang out with Sumire — Faith reaches rank 10",
@@ -834,7 +834,7 @@
         {
           "label": "Buy the Special Chimaki at the Kichijoji Chinese bun shop",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Watch 'Finding Beemo' on Central Street (Craft of Cinema bonus active)",
@@ -850,7 +850,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Beat 'Golfer Sarutahiko' with 'the technique' — reload until you win",
@@ -889,7 +889,7 @@
         {
           "label": "Claim the PI Badge for completing Power Intuition at the Akihabara Retro Game Shop",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Ask Chihaya for a money reading and a celestial reading",
@@ -959,17 +959,17 @@
             "kindness": 2
           },
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy items from the Kanda priest",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Motorcycle Figure at the Akihabara Otaku Goods Store",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Makoto in Chinatown — Shumai Cushion (room decoration 20/20)",
@@ -1030,7 +1030,7 @@
         {
           "label": "Claim the Golfer Badge for completing Golfer Sarutahiko at the Akihabara Retro Game Shop",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Talk to Star Lilina by the Machine Parts Shop for her new CD",

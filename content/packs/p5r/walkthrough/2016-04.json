@@ -283,16 +283,16 @@
           "label": "Borrow 'The Great Thief' from the school library",
           "activityRef": "p5r.activity.book.great-thief",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy SP-recovery drinks from the vending machines",
           "slot": "afternoon",
-          "tip": "Check the School Courtyard, Shibuya Central Street arcade and the bathhouse across from LeBlanc for Arginade and Water of Rebirth. Restock weekly when the route asks; these supplies support the early Palace clears.\n\nFree errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Check the School Courtyard, Shibuya Central Street arcade and the bathhouse across from LeBlanc for Arginade and Water of Rebirth. Restock weekly when the route asks; these supplies support the early Palace clears.\n\nFree errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy enough Silk Yarn and Tin Clasps at the Second-hand Shop to own 2 of each",
-          "tip": "Count any Palace drops before buying. Tin Clasps cost ¥2,050 each and Silk Yarn costs ¥1,150 each, so only purchase the shortfall.\n\nFree errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity.",
+          "tip": "Count any Palace drops before buying. Tin Clasps cost ¥2,050 each and Silk Yarn costs ¥1,150 each, so only purchase the shortfall.\n\nFree errand: no time passes. Finish it before the main activity.",
           "slot": "afternoon"
         },
         {
@@ -309,7 +309,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Clean the attic floor — recovers two books and a CRT TV",
@@ -340,7 +340,7 @@
         {
           "label": "Buy a Bio Nutrient at the Underground Mall flower shop if your storage/DLC items did not provide one",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Study in a library booth",
@@ -356,7 +356,7 @@
             "kindness": 3
           },
           "slot": "evening",
-          "tip": "Feeding the attic plant does not advance the time slot. Have the listed nutrient in your inventory first."
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         },
         {
           "label": "Chat with the café customers, then read 'The Great Thief'",
@@ -385,12 +385,12 @@
             "knowledge": 5
           },
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Borrow 'Pirate Legend' from the school library",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Study in the library during rain (pre-Kamoshida Guts bonus)",
@@ -423,7 +423,7 @@
         {
           "label": "Buy the DVD player at the Second-hand Shop",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Pay the DVD rental subscription on Central Street",
@@ -433,7 +433,7 @@
           "label": "Rent 'The X Folders'",
           "activityRef": "p5r.activity.dvd.x-folders",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Study in the school library (rainy-day bonus)",
@@ -508,7 +508,7 @@
           "label": "Rent 'Wraith'",
           "activityRef": "p5r.activity.dvd.wraith",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Takemi — Death reaches rank 2",
@@ -550,7 +550,7 @@
             "charm": 2
           },
           "slot": "afternoon",
-          "tip": "The Sunday drink’s next stat depends on the drinks you have already bought. Keep every scheduled purchase to preserve this route’s stat progression.\n\nFree errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "The Sunday drink’s next stat depends on the drinks you have already bought. Keep every scheduled purchase to preserve this route’s stat progression.\n\nFree errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Infiltrate the castle again — return through the painting and use the newly activated elevator",
@@ -639,7 +639,7 @@
           "label": "Read 'Pirate Legend' on the train",
           "activityRef": "p5r.activity.book.pirate-legend",
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Answer the class question",
@@ -651,12 +651,12 @@
         {
           "label": "Buy SP-recovery drinks from the vending machines",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Sell loot at the Airsoft shop; buy 2 Takemedic-All and 2 Revivadrin at the clinic",
           "slot": "afternoon",
-          "tip": "Sell Palace valuables at Untouchable on Shibuya Central Street. Buy the listed supplies from Takemi’s clinic before sending the Calling Card; the source uses about ¥30,000 after selling as a comfortable preparation budget.\n\nFree errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Sell Palace valuables at Untouchable on Shibuya Central Street. Buy the listed supplies from Takemi’s clinic before sending the Calling Card; the source uses about ¥30,000 after selling as a comfortable preparation budget.\n\nFree errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Send the Calling Card from the hideout",
@@ -744,7 +744,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Watch 'Wraith' part 2",
@@ -772,13 +772,13 @@
           "label": "Rent 'Guy McVer'",
           "activityRef": "p5r.activity.dvd.guy-mcver",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Borrow 'Zorro, the Outlaw' from the school library",
           "activityRef": "p5r.activity.book.zorro",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Study in the school library",
@@ -837,7 +837,7 @@
           "label": "Read 'Social Thought' on the train",
           "activityRef": "p5r.activity.book.social-thought",
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Answer the class question",
@@ -850,7 +850,7 @@
           "label": "Borrow 'The Alluring Dancer' from the school library",
           "activityRef": "p5r.activity.book.alluring-dancer",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Takemi — Death reaches rank 4",

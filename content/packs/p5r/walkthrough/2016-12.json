@@ -19,7 +19,7 @@
         {
           "label": "Buy SP-recovery drinks from the vending machines",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Use the Mega Fertilizer on the plant",
@@ -27,7 +27,7 @@
             "kindness": 5
           },
           "slot": "evening",
-          "tip": "Feeding the attic plant does not advance the time slot. Have the listed nutrient in your inventory first."
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         },
         {
           "label": "Hang out with Iwai — Hanged Man reaches rank 10",
@@ -62,12 +62,12 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Buy the Blaring Alarm Clock at the Akihabara electronics store",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Call Kawakami, then give her the alarm clock — Night Pennant (room decoration 10/20)",
@@ -113,12 +113,12 @@
         {
           "label": "Buy items from the Kanda priest",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Uji Matcha Flan at the Underground Mall supermarket",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Yusuke in Ikebukuro — Star Stickers (room decoration 11/20)",
@@ -132,7 +132,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
@@ -165,7 +165,7 @@
         {
           "label": "Buy SP-recovery drinks from the vending machines",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Save your game, then fish at Ichigaya — use the free small boilies and don't miss a cast; buy 7 Medium Boilies",
@@ -194,12 +194,12 @@
         {
           "label": "Buy 'Essence of Fishing' at the Shinjuku bookstore",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Star Mirror at the Shinjuku general store",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Chihaya — give her the Star Mirror",
@@ -221,7 +221,7 @@
         {
           "label": "Buy the Heart Ring at the Underground Mall jewelry store",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Futaba in Asakusa — I <3 Tokyo Shirt (room decoration 12/20)",
@@ -234,7 +234,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Watch 'Clean Hard' on Central Street (Craft of Cinema bonus active)",
@@ -303,7 +303,7 @@
         {
           "label": "Buy the Glass Vase at the Underground Mall sundries shop",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Chihaya at Skytree — Skytree Lamp (room decoration 13/20); give her the Glass Vase",
@@ -394,17 +394,17 @@
             "charm": 2
           },
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy items from the Kanda priest",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Give the Angel Tart to the Kichijoji alley man — Fervent Bat (14/16)",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Ask Chihaya for a money reading and a celestial reading",
@@ -481,7 +481,7 @@
         {
           "label": "Buy SP-recovery drinks from the vending machines",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Haru — Empress reaches rank 9 (romance choice available)",
@@ -494,7 +494,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Hang out with Mishima — Moon reaches rank 9",
@@ -517,7 +517,7 @@
         {
           "label": "Buy the Hi-Tech Rod at the Underground Mall sports shop",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Ryuji in Nakano — Featherman Dolls (room decoration 14/20)",
@@ -577,7 +577,7 @@
         {
           "label": "Buy the Designer Perfume at the Underground Mall cosmetics shop",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Makoto in Suidobashi — Gi-Nyant Doll (room decoration 16/20)",
@@ -633,7 +633,7 @@
         {
           "label": "Buy the Watercolor Postcard at the Kichijoji stationery store",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Yusuke at Meiji Shrine — Hamaya (room decoration 17/20)",
@@ -646,7 +646,7 @@
             "kindness": 5
           },
           "slot": "evening",
-          "tip": "Feeding the attic plant does not advance the time slot. Have the listed nutrient in your inventory first."
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         },
         {
           "label": "Order the Sincere Omelette at the maid cafe",
@@ -710,7 +710,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Watch 'Merry Christmess' in Yongen-Jaya (Craft of Cinema bonus active)",
@@ -768,7 +768,7 @@
         {
           "label": "Buy the Castella at the Underground Mall supermarket",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Yusuke in Ueno — Nude Statue (room decoration 18/20)",

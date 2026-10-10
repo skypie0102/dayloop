@@ -13,12 +13,12 @@
             "proficiency": 2
           },
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy a Bio Nutrient at the Underground Mall flower shop",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Ryuji — Chariot reaches rank 2",
@@ -52,7 +52,7 @@
             "knowledge": 2
           },
           "slot": "afternoon",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Study at LeBlanc",
@@ -122,7 +122,7 @@
             "kindness": 3
           },
           "slot": "afternoon",
-          "tip": "Feeding the attic plant does not advance the time slot. Have the listed nutrient in your inventory first."
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         },
         {
           "label": "Study at LeBlanc — Fool reaches rank 3",
@@ -161,7 +161,7 @@
         {
           "label": "Buy SP-recovery drinks from the vending machines; grab a Yakisoba Pan at the school store",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Takemi — Death reaches rank 5",
@@ -178,7 +178,7 @@
         {
           "label": "Buy 'Medjed Menace' at the bookstore; get the Riot Police E gun from Iwai",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Read 'Medjed Menace' in the evening",
@@ -251,7 +251,7 @@
         {
           "label": "Buy the TV Shopping Program's Bio Nutrients Set (includes Mega Fertilizer)",
           "slot": "evening",
-          "tip": "Choose the Bio Nutrients Set. It supplies a Mega Fertilizer before the shop normally sells it; keep it for the plant schedule.\n\nFree errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Choose the Bio Nutrients Set. It supplies a Mega Fertilizer before the shop normally sells it; keep it for the plant schedule.\n\nFree errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Sunday drink in the Underground Walkway",
@@ -260,7 +260,7 @@
             "guts": 2
           },
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Sojiro — Hierophant reaches rank 2",
@@ -290,7 +290,7 @@
         {
           "label": "Buy SP-recovery drinks from the vending machines",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Takemi — Death reaches rank 6",
@@ -342,7 +342,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Evening: study with Ryuji — Knowledge reaches rank 3",
@@ -445,7 +445,7 @@
         {
           "label": "Buy the TV Shopping Program's Allergy Relief Pack (x20 Wide Eye Drops)",
           "slot": "afternoon",
-          "tip": "Choose the Allergy Relief Pack. Its Wide Eye Drops can be requested during negotiations on the next pollen-warning Mementos visit.\n\nFree errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Choose the Allergy Relief Pack. Its Wide Eye Drops can be requested during negotiations on the next pollen-warning Mementos visit.\n\nFree errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Save first, then craft 3 lock picks and reload for the bonus result — finish with 5 lock picks total",
@@ -508,18 +508,18 @@
         {
           "label": "Buy SP-recovery drinks from the vending machines",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy all the books at the Central Street bookstore",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Rent 'Bubbly Hills, 90210'",
           "activityRef": "p5r.activity.dvd.bubbly-hills",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Takemi — Death reaches rank 7",
@@ -535,7 +535,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Apply at the Beef Bowl Shop job flyer, then work the evening shift",
@@ -668,7 +668,7 @@
           "label": "Read 'The Art of Charm' on the train",
           "activityRef": "p5r.activity.book.art-of-charm",
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Answer the class question",
@@ -681,7 +681,7 @@
           "label": "Borrow 'The Gallant Rogue' from the school library",
           "activityRef": "p5r.activity.book.gallant-rogue",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Ann in the Underground Mall — Lovers reaches rank 3",
@@ -694,7 +694,7 @@
             "kindness": 5
           },
           "slot": "evening",
-          "tip": "Feeding the attic plant does not advance the time slot. Have the listed nutrient in your inventory first."
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         },
         {
           "label": "Work at the Beef Bowl Shop (get every order right)",
@@ -734,7 +734,7 @@
             "kindness": 2
           },
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Talk to the politician in Shibuya Station Square",
@@ -763,7 +763,7 @@
         {
           "label": "Buy SP-recovery drinks from the vending machines",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Complete the fourth museum infiltration and secure the Treasure route",
@@ -826,12 +826,12 @@
             "charm": 5
           },
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Buy 2 Revivadrin, 2 Recov-R 100mg, 2 Takemedic-All V at the clinic",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Send the Calling Card",
@@ -919,7 +919,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Talk to the politician, then hang out with Yoshida — Sun reaches rank 1",
@@ -1015,7 +1015,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Watch the movie 'The Cake Knight Rises' with Ryuji",
@@ -1071,7 +1071,7 @@
         {
           "label": "Buy SP-recovery drinks from the vending machines",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Ann — Lovers reaches rank 6",
@@ -1084,7 +1084,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Take the Big Bang Burger challenge (1 of 3)",

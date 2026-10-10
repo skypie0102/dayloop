@@ -10,7 +10,7 @@
           "label": "Read 'ABC of Crafting' on the metro",
           "activityRef": "p5r.activity.book.abc-of-crafting",
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Answer the class question",
@@ -22,7 +22,7 @@
         {
           "label": "Borrow 'Speed Reader' from the school library",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Grab a Yakisoba Pan at the school store",
@@ -67,12 +67,12 @@
           "label": "Read 'Speed Reader' during class",
           "activityRef": "p5r.activity.book.speed-reader",
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Borrow 'The Illusory Popess' — Makoto is waiting by the library door",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Makoto — Priestess reaches rank 1",
@@ -112,7 +112,7 @@
             "kindness": 2
           },
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
@@ -147,7 +147,7 @@
             "kindness": 5
           },
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Answer the class question",
@@ -159,7 +159,7 @@
         {
           "label": "Buy SP-recovery drinks and the summer-only items",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Explore Mementos — all 7 pending requests; leave locked chests alone",
@@ -280,7 +280,7 @@
         {
           "label": "Buy 'Ghost Encounters' at the Central Street bookstore",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Makoto — Priestess reaches rank 2",
@@ -290,7 +290,7 @@
         {
           "label": "Buy a Rose Bouquet or Bath of Roses at the Shinjuku flower shop",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Chihaya — Fortune reaches rank 1",
@@ -317,7 +317,7 @@
             "guts": 5
           },
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Hang out with Ann in Shibuya — give her the bouquet and receive the Choco Fountain (room decoration 1/20)",
@@ -351,7 +351,7 @@
         {
           "label": "Buy Black Rocks at the Kichijoji crystal shop",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Kasumi — Faith reaches rank 4",
@@ -364,12 +364,12 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Buy 12 Mega Fertilizers at the Shinjuku flower shop",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Chihaya — Fortune reaches rank 2",
@@ -398,7 +398,7 @@
             "proficiency": 5
           },
           "slot": "afternoon",
-          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Grab a Yakisoba Pan at the school store",
@@ -407,7 +407,7 @@
         {
           "label": "Buy the Chocolate Truffles in the Underground Mall",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Ann in Harajuku — Idol Poster (room decoration 2/20)",
@@ -420,7 +420,7 @@
             "kindness": 5
           },
           "slot": "evening",
-          "tip": "Feeding the attic plant does not advance the time slot. Have the listed nutrient in your inventory first."
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         },
         {
           "label": "Call Kawakami — Temperance reaches rank 10 (special massage unlocked)",
@@ -555,7 +555,7 @@
         {
           "label": "Buy SP-recovery drinks and the summer-only items",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Yusuke — Emperor reaches rank 4",
@@ -568,12 +568,12 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Give a Soothing Soba to the Kichijoji alley man — Koedo Sword (3/16)",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Chihaya — Fortune reaches rank 3",
@@ -663,7 +663,7 @@
             "knowledge": 2
           },
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
@@ -728,7 +728,7 @@
         {
           "label": "Buy SP-recovery drinks and the summer-only items",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Ask Chihaya for a Luck Reading about Kindness",
@@ -759,12 +759,12 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Buy 'Flowerpedia' and 'Learn Pro Darts' in Shinjuku",
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Hifumi (bring a Star Persona) — Star reaches rank 2",
@@ -920,7 +920,7 @@
             "kindness": 5
           },
           "slot": "evening",
-          "tip": "Feeding the attic plant does not advance the time slot. Have the listed nutrient in your inventory first."
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         },
         {
           "label": "Clean the LeBlanc bathroom again",
@@ -945,7 +945,7 @@
         {
           "label": "Buy 'Gambla Goemon' at the second-hand shop",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Play the Airsoft ration machine until you win an MRE ration",
@@ -954,7 +954,7 @@
         {
           "label": "Give the MRE Ration to the Kichijoji alley man — Factorization Guide (4/16)",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Ask Chihaya for a money reading",
@@ -1024,7 +1024,7 @@
             "knowledge": 2
           },
           "slot": "evening",
-          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Carry Faith, Devil, Star, Priestess, Chariot, Emperor, Fortune, and Justice Personas",
@@ -1075,7 +1075,7 @@
             "guts": 3
           },
           "slot": "evening",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Watch 'Like a Dragon' with Makoto (Craft of Cinema + Luck Reading active)",
@@ -1150,7 +1150,7 @@
         {
           "label": "Buy support items from the Kanda priest",
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Ask Chihaya for a Luck Reading about Charm",
@@ -1163,7 +1163,7 @@
             "charm": 3
           },
           "slot": "afternoon",
-          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Apply at the Triple Seven convenience store (flyer shelf)",
