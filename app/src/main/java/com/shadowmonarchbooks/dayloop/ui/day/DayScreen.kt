@@ -211,6 +211,8 @@ fun DayScreen(
                     activityLabels = pack.activities.mapValues { it.value.label },
                     slotLabels = pack.pack.slotLabels(),
                     onOpenActivity = onOpenActivity,
+                    inlineTips = pack.pack.walkthroughPresentation.inlineTips,
+                    displayOrder = day.displayOrder,
                 )
 
                 if (showDatedAchievements) {

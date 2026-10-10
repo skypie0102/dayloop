@@ -28,7 +28,7 @@ class P5RPalaceCompanionAuditTest {
         val root = contentPacksDir() ?: return
         val loaded = PackLoader.load(root.resolve("p5r"))
         assertTrue(loaded.parseIssues.isEmpty(), loaded.parseIssues.joinToString())
-        assertEquals(14, loaded.pack?.contentVersion)
+        assertEquals(15, loaded.pack?.contentVersion)
         val days = loaded.walkthroughs.flatMap { it.file.days }.associateBy { it.date }
 
         val april15 = days.getValue("2016-04-15")

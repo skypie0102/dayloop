@@ -272,6 +272,9 @@ object PackLint {
                 }
                 if (day.dayKind !in DAY_KINDS) issues += err(loc, "day '${day.date}' has unknown dayKind '${day.dayKind}'")
                 dayKindsByDate.getOrPut(day.date) { mutableSetOf() }.add(day.dayKind)
+                if (day.displayOrder.isNotEmpty() && day.displayOrder.sorted() != day.steps.indices.toList()) {
+                    issues += err(loc, "day '${day.date}' displayOrder must contain every step index exactly once")
+                }
                 day.steps.forEachIndexed { i, step ->
                     if (step.label.isBlank()) {
                         issues += err(loc, "day '${day.date}' step $i needs a non-blank label")

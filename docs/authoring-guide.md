@@ -36,6 +36,26 @@ content/packs/p5r/
 - Day uniqueness is scoped per route: two routes may author the same date
   differently; one route may not repeat a date.
 
+## Walkthrough reading order and guidance
+
+- Saved marks address a date and its original `steps` index. Do not rearrange
+  the stored array to improve presentation. Append additions and declare
+  `day.displayOrder`, a complete permutation of the original indexes, when the
+  reading sequence differs. For example, `[0, 2, 1]` presents an appended daytime
+  task before a stored nighttime task without moving either saved mark.
+- `packlint` rejects duplicate, missing, negative and out-of-range indexes.
+  Without an explicit order, existing packs retain their prior grouping. With
+  one, Today and Day merge only adjacent `(slot, groupLabel)` sections and number
+  tasks in reading order. Completion anchors always resolve the stored tasks.
+- `pack.json` may opt into `"walkthroughPresentation": { "inlineTips": true }`.
+  This renders each `step.tip` at full width beneath its task. Omitted or false
+  retains the task's Tips control. Put required preparation, scored dialogue,
+  retry targets and branch consequences next to the action that needs them;
+  rewrite instructions in your own words.
+- Check the actual in-game period when a source table merges cells. A Day
+  column that includes returning home does not make its nighttime errands Day
+  actions. Reading order and time-slot facts are distinct from saved indexes.
+
 ## Answer sheets (docs/PLAN.md Phase 5)
 
 - `answers.json` carries **facts only**: `id` (`<pack>.answers.exam.<date>` /

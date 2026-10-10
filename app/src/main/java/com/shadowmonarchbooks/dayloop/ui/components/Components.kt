@@ -46,6 +46,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Brush
@@ -456,6 +457,8 @@ fun StepRow(
     activityLabel: String?,
     onOpenActivity: (() -> Unit)? = null,
     artworkBackdrop: Boolean = false,
+    inlineTips: Boolean = false,
+    displayNumber: Int = index + 1,
 ) {
     val skin = LocalSkin.current
     val density = LocalDensity.current
@@ -480,128 +483,144 @@ fun StepRow(
         SubmergedTaskCard(index, step, mark, onToggleMark, statLabels, activityLabel, onOpenActivity) { showTip = true }
         return
     }
-    Row(
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    Column(
+        verticalArrangement = Arrangement.spacedBy(10.dp),
         modifier = Modifier
             .fillMaxWidth()
             .then(
                 if (artworkBackdrop) {
                     Modifier
                         .padding(start = panelInsets.first, end = panelInsets.second)
-                        .background(Color.Black.copy(alpha = 0.5f), panelShape)
+                        .background(Color.Black.copy(alpha = if (inlineTips) 0.75f else 0.5f), panelShape)
                         .padding(horizontal = 12.dp, vertical = 10.dp)
                 } else {
                     Modifier
                 },
             ),
     ) {
-        Text(
-            text = "${index + 1}.",
-            style = MaterialTheme.typography.labelLarge,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        Column(modifier = Modifier.weight(1f)) {
-            val tipInlineId = "task-tip"
-            val taskText = buildAnnotatedString {
-                append(step.label)
-                if (step.tip != null) {
-                    append(" ")
-                    appendInlineContent(tipInlineId, "Tips")
-                }
-            }
+        Row(
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.fillMaxWidth(),
+        ) {
             Text(
-                text = taskText,
-                style = MaterialTheme.typography.bodyLarge,
-                textDecoration = if (mark == StepMark.DONE) TextDecoration.LineThrough else null,
-                color = when (mark) {
-                    StepMark.SKIP -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f)
-                    StepMark.LATER -> MaterialTheme.colorScheme.tertiary
-                    else -> MaterialTheme.colorScheme.onSurface
-                },
-                inlineContent = if (step.tip == null) {
-                    emptyMap()
-                } else {
-                    mapOf(
-                        tipInlineId to InlineTextContent(
-                            placeholder = Placeholder(
-                                width = 2.65.em,
-                                height = 1.em,
-                                placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
-                            ),
-                        ) {
-                            Box(
-                                contentAlignment = Alignment.Center,
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .background(MaterialTheme.colorScheme.primary, skin.shapes.chip)
-                                    .clickable(role = Role.Button) { showTip = true },
-                            ) {
-                                Text(
-                                    text = "TIPS",
-                                    color = MaterialTheme.colorScheme.onPrimary,
-                                    style = MaterialTheme.typography.labelSmall,
-                                    fontWeight = FontWeight.Black,
-                                    maxLines = 1,
-                                )
-                            }
-                        },
-                    )
-                },
+                text = "$displayNumber.",
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            step.activityRef?.let {
-                activityLabel?.let { label ->
-                    Text(
-                        text = label,
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.secondary,
-                        modifier = if (onOpenActivity != null) {
-                            Modifier
-                                .padding(top = 1.dp)
-                                .clickable(onClick = onOpenActivity)
-                        } else {
-                            Modifier.padding(top = 1.dp)
-                        },
-                    )
+            Column(modifier = Modifier.weight(1f)) {
+                val tipInlineId = "task-tip"
+                val taskText = buildAnnotatedString {
+                    append(step.label)
+                    if (step.tip != null && !inlineTips) {
+                        append(" ")
+                        appendInlineContent(tipInlineId, "Tips")
+                    }
                 }
-            }
-            if (step.statGains.isNotEmpty()) {
-                val gains = step.statGains.entries.joinToString(" · ") { (stat, gain) ->
-                    "${statLabels[stat] ?: stat} +$gain"
+                Text(
+                    text = taskText,
+                    modifier = Modifier.testTag("task-label-$index"),
+                    style = MaterialTheme.typography.bodyLarge,
+                    textDecoration = if (mark == StepMark.DONE) TextDecoration.LineThrough else null,
+                    color = when (mark) {
+                        StepMark.SKIP -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f)
+                        StepMark.LATER -> MaterialTheme.colorScheme.tertiary
+                        else -> MaterialTheme.colorScheme.onSurface
+                    },
+                    inlineContent = if (step.tip == null || inlineTips) {
+                        emptyMap()
+                    } else {
+                        mapOf(
+                            tipInlineId to InlineTextContent(
+                                placeholder = Placeholder(
+                                    width = 2.65.em,
+                                    height = 1.em,
+                                    placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
+                                ),
+                            ) {
+                                Box(
+                                    contentAlignment = Alignment.Center,
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(MaterialTheme.colorScheme.primary, skin.shapes.chip)
+                                        .clickable(role = Role.Button) { showTip = true },
+                                ) {
+                                    Text(
+                                        text = "TIPS",
+                                        color = MaterialTheme.colorScheme.onPrimary,
+                                        style = MaterialTheme.typography.labelSmall,
+                                        fontWeight = FontWeight.Black,
+                                        maxLines = 1,
+                                    )
+                                }
+                            },
+                        )
+                    },
+                )
+                step.activityRef?.let {
+                    activityLabel?.let { label ->
+                        Text(
+                            text = label,
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.secondary,
+                            modifier = if (onOpenActivity != null) {
+                                Modifier
+                                    .padding(top = 1.dp)
+                                    .clickable(onClick = onOpenActivity)
+                            } else {
+                                Modifier.padding(top = 1.dp)
+                            },
+                        )
+                    }
                 }
-                if (skin.hasSkin && skin.motif == "crown") {
-                    // Crown language (Phase 15): follower-step gains framed
-                    // as a small laurel medallion with flanking leaf marks.
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(top = 2.dp),
-                    ) {
-                        LaurelLeaf(mirrored = true)
+                if (step.statGains.isNotEmpty()) {
+                    val gains = step.statGains.entries.joinToString(" · ") { (stat, gain) ->
+                        "${statLabels[stat] ?: stat} +$gain"
+                    }
+                    if (skin.hasSkin && skin.motif == "crown") {
+                        // Crown language (Phase 15): follower-step gains framed
+                        // as a small laurel medallion with flanking leaf marks.
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(top = 2.dp),
+                        ) {
+                            LaurelLeaf(mirrored = true)
+                            Text(
+                                text = gains,
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.tertiary,
+                                modifier = Modifier
+                                    .padding(horizontal = 5.dp)
+                                    .border(
+                                        1.dp,
+                                        MaterialTheme.colorScheme.primary.copy(alpha = 0.45f),
+                                        RoundedCornerShape(9.dp),
+                                    )
+                                    .padding(horizontal = 8.dp, vertical = 2.dp),
+                            )
+                            LaurelLeaf(mirrored = false)
+                        }
+                    } else {
                         Text(
                             text = gains,
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.tertiary,
-                            modifier = Modifier
-                                .padding(horizontal = 5.dp)
-                                .border(
-                                    1.dp,
-                                    MaterialTheme.colorScheme.primary.copy(alpha = 0.45f),
-                                    RoundedCornerShape(9.dp),
-                                )
-                                .padding(horizontal = 8.dp, vertical = 2.dp),
                         )
-                        LaurelLeaf(mirrored = false)
                     }
-                } else {
-                    Text(
-                        text = gains,
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.tertiary,
-                    )
                 }
             }
+            MarkActions(selected = mark, onToggle = onToggleMark)
         }
-        MarkActions(selected = mark, onToggle = onToggleMark)
+        if (inlineTips) {
+            step.tip?.let { guidance ->
+                Text(
+                    text = guidance,
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.fillMaxWidth().testTag("task-guidance-$index"),
+                )
+            }
+        }
     }
 }
 
@@ -643,10 +662,27 @@ internal data class TaskGroup(
 )
 
 /** Group authored tasks by time slot and optional guide section while retaining progress keys. */
-internal fun groupTasksBySlot(steps: List<Step>): List<TaskGroup> =
-    steps.withIndex()
-        .groupByTo(linkedMapOf()) { it.value.slot to it.value.groupLabel }
-        .map { (key, tasks) -> TaskGroup(key.first, key.second, tasks) }
+internal fun groupTasksBySlot(steps: List<Step>, displayOrder: List<Int> = emptyList()): List<TaskGroup> {
+    if (displayOrder.isEmpty() || displayOrder.sorted() != steps.indices.toList()) {
+        return steps.withIndex()
+            .groupByTo(linkedMapOf()) { it.value.slot to it.value.groupLabel }
+            .map { (key, tasks) -> TaskGroup(key.first, key.second, tasks) }
+    }
+    // Only adjacent sections can merge: returning from a dungeon must not move
+    // later errands ahead of it. The index always remains the saved progress key.
+    val groups = mutableListOf<TaskGroup>()
+    displayOrder.forEach { index ->
+        val step = steps[index]
+        val indexed = IndexedValue(index, step)
+        val last = groups.lastOrNull()
+        if (last != null && last.slotId == step.slot && last.groupLabel == step.groupLabel) {
+            groups[groups.lastIndex] = last.copy(tasks = last.tasks + indexed)
+        } else {
+            groups += TaskGroup(step.slot, step.groupLabel, listOf(indexed))
+        }
+    }
+    return groups
+}
 
 /** Checkbox-aware, time-grouped task list shared by Today and Day detail. */
 @Composable
@@ -660,6 +696,8 @@ fun TasksList(
     slotLabels: Map<String, String> = emptyMap(),
     onOpenActivity: ((String) -> Unit)? = null,
     artworkBackdrop: Boolean = false,
+    inlineTips: Boolean = false,
+    displayOrder: List<Int> = emptyList(),
 ) {
     if (steps.isEmpty()) {
         Text(
@@ -672,8 +710,11 @@ fun TasksList(
     }
     val skin = LocalSkin.current
     val crown = skin.hasSkin && skin.motif == "crown"
+    val displayNumbers = if (displayOrder.isNotEmpty() && displayOrder.sorted() == steps.indices.toList()) {
+        displayOrder.withIndex().associate { it.value to it.index + 1 }
+    } else emptyMap()
     Column(verticalArrangement = Arrangement.spacedBy(14.dp), modifier = modifier) {
-        groupTasksBySlot(steps).forEachIndexed { groupIndex, group ->
+        groupTasksBySlot(steps, displayOrder).forEachIndexed { groupIndex, group ->
             if (crown && groupIndex > 0) FiligreeDivider()
             val heading = group.groupLabel ?: group.slotId?.let(slotLabels::get) ?: "Any time"
             if (skin.hasSubmergedChrome()) {
@@ -696,6 +737,8 @@ fun TasksList(
                             onOpenActivity?.let { open -> { open(ref) } }
                         },
                         artworkBackdrop = artworkBackdrop,
+                        inlineTips = inlineTips,
+                        displayNumber = displayNumbers[i] ?: i + 1,
                     )
                 }
             }

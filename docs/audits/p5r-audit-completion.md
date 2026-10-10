@@ -4,6 +4,11 @@ Issue #12 asked for the Persona 5 Royal pack to move from structurally valid / p
 
 This record maps that definition of done to the audit artifacts in PR #10.
 
+The October 10, 2026 request reopens walkthrough usability before further P3R
+work. The factual audit below is historical: it did not verify that the rendered
+task sequence and hidden guidance were easy to follow. The separate
+[reading-flow review](p5r-walkthrough-usability.md) records the version 15 fix.
+
 ## Checklist mapping
 
 - **Every authored walkthrough date / step:** dedicated route-order/state audits cover the entire schedule from **2016-04-09 through 2017-02-03**. The month tests distinguish school, exam, holiday, fixed story, LeBlanc confinement and flexible route choices, and pin Palace infiltration / Treasure route / Calling Card / heist chronology.

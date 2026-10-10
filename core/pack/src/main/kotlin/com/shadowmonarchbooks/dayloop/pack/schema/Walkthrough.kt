@@ -18,9 +18,11 @@ data class Day(
     val weekday: String,
     /** free | school | story | exam | forced */
     val dayKind: String = "free",
-    /** Ordered steps for the day (v1 has no slot split — see integration plan). */
+    /** Stored steps for the day; their indexes are stable saved-progress keys. */
     val steps: List<Step> = emptyList(),
     val notes: String? = null,
+    /** Optional permutation of step indexes for reading order; saved progress still uses [steps]. */
+    val displayOrder: List<Int> = emptyList(),
 )
 
 @Serializable

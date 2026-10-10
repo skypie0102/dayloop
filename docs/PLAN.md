@@ -32,7 +32,7 @@ All checklist items, confidant roadmaps, and palace/exam deadlines hang off that
 - Home-screen widget (Glance) — shipped in Phase 5
 - Exam/test answer sheets — shipped in Phase 5 (`answers.json`; shown on daily pages, with an Answers tab for packs that do not replace it)
 - Mementos Requests tracker — shipped for P5R (`mementos-requests.json` + exact completion-task anchors)
-- Pack audit order after the P5R milestone: P3R, then Metaphor: ReFantazio; P4G and further titles stay drop-in candidates via schema (deferred)
+- Current priority (October 10, 2026): P5R walkthrough usability first, then resume P3R and Metaphor: ReFantazio audits; P4G and further titles stay drop-in candidates via schema (deferred)
 
 ## 2. Key design decision: model entities, not paragraphs
 
@@ -89,7 +89,7 @@ Game-switcher lists installed packs (bundled now, imported later); separate prof
 
 ### 4.1 Pack-isolation rule after v0.15.0
 
-- Persona 5 Royal is the completed reference pack. Its v0.15.0 facts, task order, IDs, completion anchors, navigation, and Phantom presentation are recorded in [`docs/packs/p5r-baseline.md`](packs/p5r-baseline.md).
+- Persona 5 Royal is the reference pack. Its v0.15.0 milestone and explicitly requested version 15 reading-flow changes are recorded in [`docs/packs/p5r-baseline.md`](packs/p5r-baseline.md). Content validation and walkthrough usability are separate acceptance criteria.
 - P3R- or Metaphor-scoped work must not modify `content/packs/p5r/`, increment P5R's `contentVersion`, or weaken a P5R regression test.
 - Shared engine/schema/UI changes are allowed only when pack-generic. They must preserve P5R behavior and keep the full P5R regression suite and `packlint` green.
 - P5R may be used as a reference implementation, never as data to copy blindly. Each title keeps its own mechanics, dates, terminology, sources, artwork, and completion semantics.

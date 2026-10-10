@@ -12,15 +12,18 @@
           "statGains": {
             "proficiency": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Buy a Bio Nutrient at the Underground Mall flower shop",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Hang out with Ryuji — Chariot reaches rank 2",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Chariot Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\nTell Ryuji you are counting on him. Questions 3 and 4 allow any response."
         },
         {
           "label": "Watch 'Guy McVer' (first viewing)",
@@ -30,6 +33,12 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -42,7 +51,8 @@
           "statGains": {
             "knowledge": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
         },
         {
           "label": "Study at LeBlanc",
@@ -51,6 +61,10 @@
           },
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -65,6 +79,9 @@
           },
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -83,6 +100,10 @@
           },
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -100,7 +121,8 @@
           "statGains": {
             "kindness": 3
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Feeding the attic plant does not advance the time slot. Have the listed nutrient in your inventory first."
         },
         {
           "label": "Study at LeBlanc — Fool reaches rank 3",
@@ -109,6 +131,11 @@
           },
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -133,14 +160,16 @@
         },
         {
           "label": "Buy SP-recovery drinks from the vending machines; grab a Yakisoba Pan at the school store",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Hang out with Takemi — Death reaches rank 5",
           "statGains": {
             "guts": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Yongen-Jaya clinic. Carry a Death Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Respond positively to the news\n• ask about Miwa-chan."
         },
         {
           "label": "Talk to the politician in Shibuya Station Square",
@@ -148,13 +177,24 @@
         },
         {
           "label": "Buy 'Medjed Menace' at the bookstore; get the Riot Police E gun from Iwai",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Read 'Medjed Menace' in the evening",
           "activityRef": "p5r.activity.book.medjed-menace",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
       ]
     },
     {
@@ -190,6 +230,12 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        3,
+        2
       ]
     },
     {
@@ -199,11 +245,13 @@
       "steps": [
         {
           "label": "Automatic Mishima hang-out — Moon reaches rank 2",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Dialogue choices — follow the listed responses in order:\n• Praise Mishima's work\n• say the idea sounds cool\n• compliment his effort as image manager."
         },
         {
           "label": "Buy the TV Shopping Program's Bio Nutrients Set (includes Mega Fertilizer)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Choose the Bio Nutrients Set. It supplies a Mega Fertilizer before the shop normally sells it; keep it for the plant schedule.\n\nFree errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Buy the Sunday drink in the Underground Walkway",
@@ -211,15 +259,23 @@
           "statGains": {
             "guts": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Hang out with Sojiro — Hierophant reaches rank 2",
           "statGains": {
             "kindness": 3
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: Café LeBlanc. Carry a Hierophant Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Choose coffee-making\n• point out the suspicious customer\n• say you want to be popular with women\n• acknowledge his instructions."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -233,14 +289,16 @@
         },
         {
           "label": "Buy SP-recovery drinks from the vending machines",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Hang out with Takemi — Death reaches rank 6",
           "statGains": {
             "guts": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Yongen-Jaya clinic. Carry a Death Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Say the outfit suits her\n• offer to do anything for her."
         },
         {
           "label": "Evening: study with Ann (text message)",
@@ -249,6 +307,12 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -269,14 +333,16 @@
         },
         {
           "label": "Hang out with Ann — Lovers reaches rank 2",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Dialogue choices — follow the listed responses in order:\n• Ask whether Ann feels better\n• concede she may be right\n• explain you could not ignore her. Questions 4 and 5 allow any response.\n\nRequired before starting: Kindness rank 2. Carry a Lovers Persona before starting to receive the matching-Arcana affinity bonus."
         },
         {
           "label": "Solve the LeBlanc crossword: 'Malaise'",
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
         },
         {
           "label": "Evening: study with Ryuji — Knowledge reaches rank 3",
@@ -285,6 +351,13 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -296,6 +369,9 @@
           "label": "Exams day 1",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -307,6 +383,9 @@
           "label": "Exams day 2",
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -321,8 +400,13 @@
         {
           "label": "Councilor reaches rank 1, then rank 2 (story)",
           "spoiler": true,
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Dialogue choices — follow the listed responses in order:\n• Mention your deal\n• say his explanation sounds right\n• accept."
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -342,6 +426,10 @@
           },
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -356,7 +444,8 @@
         },
         {
           "label": "Buy the TV Shopping Program's Allergy Relief Pack (x20 Wide Eye Drops)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Choose the Allergy Relief Pack. Its Wide Eye Drops can be requested during negotiations on the next pollen-warning Mementos visit.\n\nFree errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Save first, then craft 3 lock picks and reload for the bonus result — finish with 5 lock picks total",
@@ -365,6 +454,11 @@
           },
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -385,6 +479,10 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -397,6 +495,9 @@
           "activityRef": "p5r.activity.book.alluring-dancer",
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -406,30 +507,35 @@
       "steps": [
         {
           "label": "Buy SP-recovery drinks from the vending machines",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Buy all the books at the Central Street bookstore",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Rent 'Bubbly Hills, 90210'",
           "activityRef": "p5r.activity.dvd.bubbly-hills",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Hang out with Takemi — Death reaches rank 7",
           "statGains": {
             "guts": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Yongen-Jaya clinic. Carry a Death Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Question 1 allows any response. Suggest resting today\n• reassure her that everyone feels that way sometimes."
         },
         {
           "label": "Solve the LeBlanc crossword: 'Gallery'",
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
         },
         {
           "label": "Apply at the Beef Bowl Shop job flyer, then work the evening shift",
@@ -438,6 +544,14 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -484,7 +598,7 @@
           "statGains": {
             "knowledge": 2
           },
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Finish 'The Alluring Dancer' — Charm reaches rank 2",
@@ -492,8 +606,18 @@
           "statGains": {
             "charm": 5
           },
-          "slot": "afternoon"
+          "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
       ]
     },
     {
@@ -527,6 +651,12 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -537,7 +667,8 @@
         {
           "label": "Read 'The Art of Charm' on the train",
           "activityRef": "p5r.activity.book.art-of-charm",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
         },
         {
           "label": "Answer the class question",
@@ -549,18 +680,21 @@
         {
           "label": "Borrow 'The Gallant Rogue' from the school library",
           "activityRef": "p5r.activity.book.gallant-rogue",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Hang out with Ann in the Underground Mall — Lovers reaches rank 3",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Lovers Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Ask whether you can stop\n• ask if it has happened to her\n• say that freedom sounds appealing\n• allow that it could be true."
         },
         {
           "label": "Use the Mega Fertilizer from the May 8 shopping set on the plant",
           "statGains": {
             "kindness": 5
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Feeding the attic plant does not advance the time slot. Have the listed nutrient in your inventory first."
         },
         {
           "label": "Work at the Beef Bowl Shop (get every order right)",
@@ -569,6 +703,14 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -582,7 +724,8 @@
         },
         {
           "label": "Ryuji hang-out — Chariot reaches rank 3",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Chariot Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Discourage fighting\n• ask Ryuji to calm down\n• say you cannot blame him."
         },
         {
           "label": "Buy the Sunday drink in the Underground Walkway",
@@ -590,12 +733,19 @@
           "statGains": {
             "kindness": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Talk to the politician in Shibuya Station Square",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -612,7 +762,8 @@
         },
         {
           "label": "Buy SP-recovery drinks from the vending machines",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Complete the fourth museum infiltration and secure the Treasure route",
@@ -649,8 +800,18 @@
           "statGains": {
             "charm": 3
           },
-          "slot": "afternoon"
+          "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
       ]
     },
     {
@@ -664,11 +825,13 @@
           "statGains": {
             "charm": 5
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
         },
         {
           "label": "Buy 2 Revivadrin, 2 Recov-R 100mg, 2 Takemedic-All V at the clinic",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Send the Calling Card",
@@ -681,6 +844,12 @@
           "activityRef": "p5r.activity.book.gallant-rogue",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -706,8 +875,13 @@
           "statGains": {
             "guts": 5
           },
-          "slot": "afternoon"
+          "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -729,7 +903,8 @@
         },
         {
           "label": "Hang out with Ann — Lovers reaches rank 4",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Lovers Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Say you understand\n• laugh at the story\n• ask her to explain\n• approve the idea\n• wish her luck\n• mention carrying Morgana in your bag."
         },
         {
           "label": "Answer the TV game show: '\"Queen\" of evidence'",
@@ -743,12 +918,22 @@
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
         },
         {
           "label": "Talk to the politician, then hang out with Yoshida — Sun reaches rank 1",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Dialogue choices — follow the listed responses in order:\nSay you want to write down Yoshida's advice."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -762,13 +947,19 @@
         },
         {
           "label": "Hang out with Maruki at the practice building",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Dialogue choices — follow the listed responses in order:\n• Credit Maruki\n• agree\n• say the proposed step seems necessary\n• ask whether it helped\n• praise his work."
         },
         {
           "label": "Evening: 'operation Maidwatch' event with Ryuji (Chariot +3)",
           "spoiler": true,
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -786,12 +977,20 @@
         },
         {
           "label": "Hang out with Ann — Lovers reaches rank 5",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Lovers Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Tell Ann to give up\n• acknowledge the other woman's talent\n• praise the performance's grace."
         },
         {
           "label": "Call Kawakami from the yellow phone — Temperance reaches rank 1",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: Café LeBlanc (phone). Required before starting: Guts rank 3. No matching Arcana Persona is needed to start this rank.\n\nDialogue choices — follow the listed responses in order:\nTell Kawakami that you understand."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -801,7 +1000,8 @@
       "steps": [
         {
           "label": "Accept Ryuji's Harajuku invitation (track 1 of 10)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Dialogue choices — follow the listed responses in order:\n• Ask whether Mishima is tingling\n• express interest in trying it. Accept this outing for the route's invitation checkpoint."
         },
         {
           "label": "TV Shopping Program: Folding Screen Set",
@@ -813,7 +1013,8 @@
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Watch the movie 'The Cake Knight Rises' with Ryuji",
@@ -823,6 +1024,12 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -842,6 +1049,10 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -858,18 +1069,21 @@
         },
         {
           "label": "Buy SP-recovery drinks from the vending machines",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Hang out with Ann — Lovers reaches rank 6",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Lovers Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Agree that it seems that way\n• comfort Ann\n• notice her motivation."
         },
         {
           "label": "Solve the LeBlanc crossword: 'Japanese'",
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
         },
         {
           "label": "Take the Big Bang Burger challenge (1 of 3)",
@@ -881,6 +1095,13 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     }
   ]

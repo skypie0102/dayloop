@@ -388,6 +388,8 @@ fun TodayScreen(
                 slotLabels = pack.pack.slotLabels(),
                 onOpenActivity = onOpenActivity,
                 artworkBackdrop = dayScene != null || nightScene != null,
+                inlineTips = pack.pack.walkthroughPresentation.inlineTips,
+                displayOrder = day.displayOrder,
             )
             if (showDatedAchievements) {
                 SkinSectionHeader("Achievements")

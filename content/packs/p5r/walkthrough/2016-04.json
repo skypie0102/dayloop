@@ -8,7 +8,8 @@
       "steps": [
         {
           "label": "Leave the metro into the Backstreets",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Go from the station to Yongen-Jaya Backstreets. Visit Sojiro’s home first, then enter Café LeBlanc."
         },
         {
           "label": "Examine the doorbell at Sojiro's house",
@@ -30,7 +31,16 @@
           "label": "During the flashback, just follow the road",
           "slot": "evening"
         }
-      ]
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "notes": "Read each day in the numbered order, finishing errands before the activity that spends the time slot. The dialogue instructions list scored or branch-critical responses; unlisted prompts do not affect this source route. Bring matching Arcana Personas for ordinary Confidant visits unless the task says otherwise. This fixed completion route uses romance branches for its later affinity and decoration schedule. Keep separate saves before major choices and retry outcomes only where a task gives a specific target. Stat gains below use hidden points; the Steam guide often counts the musical notes shown by the game instead."
     },
     {
       "date": "2016-04-10",
@@ -45,6 +55,10 @@
           "label": "Step outside, then go back in and flip the sign to CLOSED",
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -54,7 +68,8 @@
       "steps": [
         {
           "label": "Talk to Sojiro, then ride the train toward Shibuya",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "From Yongen-Jaya Station, ride to Shibuya. Enter the Underground Walkway, take the large northern staircase to Station Square, then enter the Teikyu building for the Ginza Line."
         },
         {
           "label": "Enter the Ginza Line gate and ride to school",
@@ -73,6 +88,13 @@
           "label": "Meet the others on the rooftop",
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -90,18 +112,26 @@
         {
           "label": "Second infiltration — follow tutorials up to the first mini-boss",
           "groupLabel": "Infiltration",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "This is a scripted tutorial visit, not a Treasure-route clear. After the gun tutorial, one more encounter occurs before the party receives a full HP/SP refill. Ammunition refills after each Royal battle; save healing supplies unless you need them to survive."
         },
         {
-          "label": "Reach the Treasure security level needed, then leave",
+          "label": "Complete the scripted encounters, then leave when the story returns you to LeBlanc",
           "groupLabel": "Infiltration",
           "spoiler": true,
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "There is no freely selectable Treasure route to secure on this date. Follow the tutorials and story exit; Chariot and Fool begin through these opening story events."
         },
         {
           "label": "Check the LeBlanc storage box for DLC items, then sleep",
-          "slot": "afternoon"
+          "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -115,8 +145,13 @@
         },
         {
           "label": "Speak with the students outside Classrooms 3C and 1B",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Speak to the group outside Classroom 3C on Classroom Building 1F, then the student outside Classroom 1B on 3F."
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -128,6 +163,9 @@
           "label": "Ride to school, then follow Ann into the Shibuya Underground Walkway and talk to her",
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -176,8 +214,18 @@
         },
         {
           "label": "Talk to the punk-rock woman at LeBlanc — Magician reaches rank 1",
-          "slot": "afternoon"
+          "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
       ]
     },
     {
@@ -193,6 +241,10 @@
           "label": "Visit the clinic but buy nothing (money plan depends on it)",
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -215,6 +267,11 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -225,15 +282,17 @@
         {
           "label": "Borrow 'The Great Thief' from the school library",
           "activityRef": "p5r.activity.book.great-thief",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Buy SP-recovery drinks from the vending machines",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Check the School Courtyard, Shibuya Central Street arcade and the bathhouse across from LeBlanc for Arginade and Water of Rebirth. Restock weekly when the route asks; these supplies support the early Palace clears.\n\nFree errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Buy enough Silk Yarn and Tin Clasps at the Second-hand Shop to own 2 of each",
-          "tip": "Count any Palace drops before buying. Tin Clasps cost ¥2,050 each and Silk Yarn costs ¥1,150 each, so only purchase the shortfall.",
+          "tip": "Count any Palace drops before buying. Tin Clasps cost ¥2,050 each and Silk Yarn costs ¥1,150 each, so only purchase the shortfall.\n\nFree errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity.",
           "slot": "afternoon"
         },
         {
@@ -241,19 +300,29 @@
           "statGains": {
             "guts": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Yongen-Jaya clinic. No matching Arcana Persona is needed to start this rank."
         },
         {
           "label": "Solve the LeBlanc crossword: 'Semesters'",
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
         },
         {
           "label": "Clean the attic floor — recovers two books and a CRT TV",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -270,7 +339,8 @@
         },
         {
           "label": "Buy a Bio Nutrient at the Underground Mall flower shop if your storage/DLC items did not provide one",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Study in a library booth",
@@ -285,13 +355,22 @@
           "statGains": {
             "kindness": 3
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Feeding the attic plant does not advance the time slot. Have the listed nutrient in your inventory first."
         },
         {
           "label": "Chat with the café customers, then read 'The Great Thief'",
           "activityRef": "p5r.activity.book.great-thief",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Speak to the café customers until they leave, then examine the books beside the yellow telephone downstairs in LeBlanc."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -305,11 +384,13 @@
           "statGains": {
             "knowledge": 5
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
         },
         {
           "label": "Borrow 'Pirate Legend' from the school library",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Study in the library during rain (pre-Kamoshida Guts bonus)",
@@ -326,6 +407,12 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -335,7 +422,8 @@
       "steps": [
         {
           "label": "Buy the DVD player at the Second-hand Shop",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Pay the DVD rental subscription on Central Street",
@@ -344,7 +432,8 @@
         {
           "label": "Rent 'The X Folders'",
           "activityRef": "p5r.activity.dvd.x-folders",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Study in the school library (rainy-day bonus)",
@@ -362,6 +451,13 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -389,6 +485,11 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -406,22 +507,31 @@
         {
           "label": "Rent 'Wraith'",
           "activityRef": "p5r.activity.dvd.wraith",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Hang out with Takemi — Death reaches rank 2",
           "statGains": {
             "guts": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Yongen-Jaya clinic. Required before starting: Guts rank 2. Carry a Death Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Mention a bad heart\n• agree with her\n• reassure her that you feel completely fine. No Death Persona is needed at rank 2."
         },
         {
           "label": "Craft lock picks at the attic table (reload trick for a bonus item)",
           "statGains": {
             "proficiency": 3
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Save before crafting. Use the two sets of materials bought on April 18 to craft two lock picks. Reload until Morgana’s efficiency bonus adds a third. Including the tutorial pick, your inventory must finish at four lock picks."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -439,13 +549,15 @@
           "statGains": {
             "charm": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "The Sunday drink’s next stat depends on the drinks you have already bought. Keep every scheduled purchase to preserve this route’s stat progression.\n\nFree errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Infiltrate the castle again — return through the painting and use the newly activated elevator",
           "groupLabel": "Infiltration",
           "spoiler": true,
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Start at the Aoyama-Itchome hideout. The tutorial fuses Arsène and Pixie into Agathion. Inherit Eiha and Zio if two slots are offered; prioritize Eiha if only one is available, since Agathion learns Zio later. Finish this Palace route in one visit, using your vending-machine SP supplies and separate saves."
         },
         {
           "label": "Defeat the first Will Seed guardian",
@@ -457,7 +569,8 @@
           "label": "Collect all three Will Seeds before leaving the castle",
           "groupLabel": "Infiltration",
           "spoiler": true,
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Red: collect the seed introduced by the tutorial. Green: climb the exterior tower, enter the window and use the vent to reach the higher grapple point. Blue: take the elevator in the shifting rooms, pass through Kamoshida’s painting and activate the lever near the entrance; return through the painting and use the newly powered elevator to reach its guardian. Seeds restore some SP when collected."
         },
         {
           "label": "Reach the Treasure and secure its infiltration route",
@@ -493,12 +606,28 @@
         },
         {
           "label": "Check the TV Shopping Program in the evening",
-          "slot": "afternoon"
+          "slot": "evening",
+          "tip": "Use the TV at LeBlanc after returning from the Palace. The source route recommends the Share of Spring Set for early SP recovery. This shopping check does not consume the night’s social activity."
         },
         {
           "label": "Hang out with Sojiro — Hierophant reaches rank 1",
-          "slot": "afternoon"
+          "slot": "evening",
+          "tip": "Where: Café LeBlanc. No matching Arcana Persona is needed to start this rank.\n\nDialogue choices — follow the listed responses in order:\nAcknowledge Sojiro's instructions. The positive response is the one saying you understand."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
       ]
     },
     {
@@ -509,7 +638,8 @@
         {
           "label": "Read 'Pirate Legend' on the train",
           "activityRef": "p5r.activity.book.pirate-legend",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
         },
         {
           "label": "Answer the class question",
@@ -520,11 +650,13 @@
         },
         {
           "label": "Buy SP-recovery drinks from the vending machines",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Sell loot at the Airsoft shop; buy 2 Takemedic-All and 2 Revivadrin at the clinic",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Sell Palace valuables at Untouchable on Shibuya Central Street. Buy the listed supplies from Takemi’s clinic before sending the Calling Card; the source uses about ¥30,000 after selling as a comfortable preparation budget.\n\nFree errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Send the Calling Card from the hideout",
@@ -540,6 +672,14 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -565,8 +705,13 @@
           "statGains": {
             "kindness": 3
           },
-          "slot": "afternoon"
+          "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -590,14 +735,16 @@
           "statGains": {
             "guts": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Yongen-Jaya clinic. Carry a Death Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Say you do not mind\n• deny it when she asks whether you are bothered."
         },
         {
           "label": "Solve the LeBlanc crossword: 'Blossom'",
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Solving the crossword does not advance the time slot; continue with the scheduled night activity afterward."
         },
         {
           "label": "Watch 'Wraith' part 2",
@@ -607,6 +754,13 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -617,12 +771,14 @@
         {
           "label": "Rent 'Guy McVer'",
           "activityRef": "p5r.activity.dvd.guy-mcver",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Borrow 'Zorro, the Outlaw' from the school library",
           "activityRef": "p5r.activity.book.zorro",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Study in the school library",
@@ -637,6 +793,12 @@
           "activityRef": "p5r.activity.book.zorro",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -660,6 +822,10 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -670,7 +836,8 @@
         {
           "label": "Read 'Social Thought' on the train",
           "activityRef": "p5r.activity.book.social-thought",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Use the train seat or free classroom reading opportunity; this is not the later free-time reading session."
         },
         {
           "label": "Answer the class question",
@@ -682,14 +849,16 @@
         {
           "label": "Borrow 'The Alluring Dancer' from the school library",
           "activityRef": "p5r.activity.book.alluring-dancer",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: this interaction does not advance the time slot. Do it before the day’s time-consuming activity."
         },
         {
           "label": "Hang out with Takemi — Death reaches rank 4",
           "statGains": {
             "guts": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Yongen-Jaya clinic. Carry a Death Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Express confidence that Dr. Takemi will help\n• notice that she seems happy\n• promise to reflect on your mistakes."
         },
         {
           "label": "Finish 'Social Thought' in the evening",
@@ -699,6 +868,13 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     }
   ]

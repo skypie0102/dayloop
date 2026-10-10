@@ -6,10 +6,11 @@ like Persona 5 Royal's own UI — the graphic language, not just the palette** �
 while staying the same pack-generic engine for P3R, Metaphor, and future drops.
 
 > **Current state: v0.15.0 is the P5R milestone release; Phases 11–17 are
-> complete. Focus now moves to the isolated P3R pack audit, followed by
-> Metaphor. Phase 18 remains the final cross-pack verification and release-
-> hardening pass.** P5R's frozen reference contract lives in
-> `docs/packs/p5r-baseline.md`.
+> complete. The October 10 request makes P5R walkthrough usability the immediate
+> priority before the isolated P3R audit resumes, followed by Metaphor.
+> Phase 18 remains the final cross-pack verification and release-hardening
+> pass.** P5R's stability contract lives in `docs/packs/p5r-baseline.md`;
+> current reading-flow work is recorded in `docs/audits/p5r-walkthrough-usability.md`.
 
 | # | Ask | Phase | Status |
 |---|-----|-------|--------|

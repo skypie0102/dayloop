@@ -19,6 +19,10 @@
           "spoiler": true,
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -40,7 +44,8 @@
         {
           "label": "Refuse Maruki's deal when he visits LeBlanc",
           "spoiler": true,
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Refuse the offer if following this completion route. The Laboratory Treasure route must already be secured, and tonight’s Calling Card leads to the February 3 confrontation."
         },
         {
           "label": "Send Maruki the final Calling Card at night",
@@ -53,6 +58,13 @@
           "spoiler": true,
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -75,6 +87,11 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     }
   ]
