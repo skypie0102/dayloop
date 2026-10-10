@@ -1,6 +1,5 @@
 package com.shadowmonarchbooks.dayloop.ui.mementos
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -42,7 +41,6 @@ internal val slashMementosRequestPanelColor = Color.Black.copy(alpha = 0.75f)
 
 /** P5R request tracker. Only the exact completion task attached to a request can finish it. */
 @Composable
-@OptIn(ExperimentalFoundationApi::class)
 fun MementosRequestsScreen(
     vm: DayloopViewModel,
     onOpenDay: (String) -> Unit,
@@ -92,7 +90,7 @@ fun MementosRequestsScreen(
             verticalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier.fillMaxSize().padding(16.dp).testTag("mementos-request-list"),
         ) {
-            stickyHeader(key = "request-summary") {
+            item(key = "request-summary") {
                 RequestSummary(counts, requests.size)
             }
             item(key = "request-tracking-rule") {

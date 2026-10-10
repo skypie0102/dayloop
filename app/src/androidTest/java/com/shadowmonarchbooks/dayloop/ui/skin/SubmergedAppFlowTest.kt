@@ -497,6 +497,9 @@ class SubmergedAppFlowTest {
         capture("p5r-mementos-completed-large-text")
         compose.onNodeWithTag(id).performClick()
         mark("2016-06-02", clearIndex)
+        compose.waitUntil(10_000) {
+            runBlocking { dependencies.repo().marksFor(profileId).first().none { it.date == "2016-06-02" && it.stepIndex == clearIndex } }
+        }
         compose.onNodeWithContentDescription("Back").performClick()
         status("AVAILABLE")
         assertEquals("2016-05-26", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
