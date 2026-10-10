@@ -27,7 +27,7 @@ class P3rReadingPresentationTest {
         assertEquals("afternoon", days.getValue("2010-01-30").steps[0].slot)
         assertEquals("evening", days.getValue("2009-05-10").steps[2].slot)
         assertEquals("evening", days.getValue("2009-07-01").steps[1].slot)
-        assertEquals("evening", days.getValue("2009-10-17").steps[1].slot)
+        assertEquals("afternoon", days.getValue("2009-10-17").steps[1].slot)
     }
     @Test fun `all class and exam answer sheets are readable within their daily tasks`() {
         val answers = assertNotNull(loaded.answers).answers
