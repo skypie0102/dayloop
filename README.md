@@ -63,8 +63,8 @@ See [docs/PLAN.md](docs/PLAN.md) for the architecture plan and [docs/ROADMAP-v3.
 **P5R walkthrough usability fixes are in review.** The v0.15.0 milestone remains
 the historical content baseline; it did not establish that the walkthrough was
 easy to follow. Pack version 15 adds explicit reading order for all 301 dates,
-corrects 38 Day/Night placements, and expands inline guidance to 571 tasks,
-including dialogue instructions for 192 events. Original task indexes and
+corrects 38 Day/Night placements, and expands inline guidance to 572 tasks,
+including dialogue instructions for 193 events. Original task indexes and
 completion anchors remain stable. See the [usability review](docs/audits/p5r-walkthrough-usability.md)
 and [P5R stability contract](docs/packs/p5r-baseline.md). Latest builds remain on
 [Releases](https://github.com/skypie0102/dayloop/releases).

@@ -32,7 +32,7 @@ source's musical-note counts.
 - P5R opts into generic `walkthroughPresentation.inlineTips`. Guidance uses the
   width beneath the task and controls, including at enlarged font sizes. The
   existing artwork panels become 75%-black for this treatment.
-- 571 tasks have visible guidance, including dialogue directions for 192 events.
+- 572 tasks have visible guidance, including dialogue directions for 193 events.
   Preparation, Arcana/stat gates, crafting targets, retry conditions, optional
   gifts, deliberately low-affinity decoration choices and ending/romance branches
   appear beside the relevant action. Existing Tips content is retained.
@@ -42,7 +42,7 @@ source's musical-note counts.
 | Month | Dates | Tasks with guidance | Dialogue events | Period corrections |
 |---|---:|---:|---:|---:|
 | April 2016 | 22 | 40 | 4 | 5 |
-| May 2016 | 31 | 48 | 17 | 4 |
+| May 2016 | 31 | 49 | 18 | 4 |
 | June 2016 | 30 | 75 | 27 | 5 |
 | July 2016 | 31 | 66 | 23 | 4 |
 | August 2016 | 31 | 65 | 33 | 2 |
@@ -52,7 +52,7 @@ source's musical-note counts.
 | December 2016 | 31 | 53 | 11 | 5 |
 | January 2017 | 31 | 40 | 5 | 2 |
 | February 2017 | 3 | 1 | 0 | 0 |
-| **Total** | **301** | **571** | **192** | **38** |
+| **Total** | **301** | **572** | **193** | **38** |
 
 ## Saved-progress boundary
 

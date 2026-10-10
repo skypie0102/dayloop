@@ -20,7 +20,7 @@ below; it does not reopen the other packs. See the
 | Mementos Requests | 33 definitions and 33 exact completion-task anchors |
 | Declared media | 101 items: 53 achievement icons, 23 character backgrounds, 24 tarot variants, and 1 month opener |
 | Pack version | `p5r @ contentVersion 15` (v0.15.0 shipped version 14) |
-| Visible task guidance | 571 tasks, including dialogue directions for 192 events |
+| Visible task guidance | 572 tasks, including dialogue directions for 193 events |
 
 All route-selected dates remain distinct from universal availability facts.
 Stored task indexes and IDs are save data: additions are appended or migrated,

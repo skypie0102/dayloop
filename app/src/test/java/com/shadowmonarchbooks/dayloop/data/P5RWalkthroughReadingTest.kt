@@ -53,6 +53,9 @@ class P5RWalkthroughReadingTest {
         val crafting = days.getValue("2016-04-23").steps[3].tip.orEmpty()
         assertTrue(crafting.contains("four lock picks"))
         assertTrue(crafting.contains("Reload"))
+        val maidwatch = days.getValue("2016-05-27").steps[2].tip.orEmpty()
+        assertTrue(maidwatch.contains("Mishima on Shibuya Central Street"))
+        assertTrue(maidwatch.contains("genius"))
     }
 
     @Test

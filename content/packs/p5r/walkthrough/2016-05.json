@@ -948,12 +948,13 @@
         {
           "label": "Hang out with Maruki at the practice building",
           "slot": "afternoon",
-          "tip": "Dialogue choices — follow the listed responses in order:\n• Credit Maruki\n• agree\n• say the proposed step seems necessary\n• ask whether it helped\n• praise his work."
+          "tip": "Where: school practice building. Carry a Councillor Arcana Persona before starting for the affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Credit Maruki\n• agree\n• say the proposed step seems necessary\n• ask whether it helped\n• praise his work."
         },
         {
           "label": "Evening: 'operation Maidwatch' event with Ryuji (Chariot +3)",
           "spoiler": true,
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: talk to Mishima on Shibuya Central Street to start Operation Maidwatch.\n\nDialogue choices — follow the listed responses in order:\n• Compliment Ryuji’s plan by calling him a genius; this is the response that earns Chariot affinity."
         }
       ],
       "displayOrder": [
