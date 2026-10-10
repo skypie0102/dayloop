@@ -319,11 +319,14 @@ class SubmergedAppFlowTest {
         compose.onNodeWithText("1 / 101 reported").performScrollTo().assertIsDisplayed()
         openRequest("Retrieve the First Old Document")
         compose.onNodeWithText("Reported by the walkthrough. To reverse this, uncheck the linked hand-in task.").performScrollTo().assertIsDisplayed()
+        compose.onNodeWithText("0 / 1 guide preparation tasks checked").assertDoesNotExist()
+        compose.onNodeWithTag("request-checkpoint-p3r.request.002").performScrollTo().assertIsDisplayed()
         capture("p3r-app-request-automatic")
-        tab("Today").performClick()
+        compose.onNodeWithTag("request-checkpoint-p3r.request.002").performClick()
         compose.onAllNodesWithText("Done")[index].performScrollTo().performClick()
-        tab("Requests").performClick()
+        compose.onNodeWithContentDescription("Back").performClick()
         compose.onNodeWithText("0 / 101 reported").performScrollTo().assertIsDisplayed()
+        assertEquals("2009-05-10", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
     }
 
     @Test fun sourceReadinessLinksReverseAtTwoHundredPercentTextWithoutAdvancingClock() {

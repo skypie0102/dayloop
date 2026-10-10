@@ -43,7 +43,8 @@ request and accept the next, using independent IDs. Only Done counts; Skip,
 Later, viewing links and advancing the clock do not. Unchecking evidence reverses
 the derived stage, while explicit manual confirmations remain independently
 reversible. Requests show the next source action, preparation count and a link
-to reverse the current guide checkpoint. The summary scrolls with the list so it
+to reverse the current guide checkpoint, including completed hand-ins. Reported
+requests omit the unfinished preparation count. The summary scrolls with the list so it
 cannot obscure expanded instructions at large text sizes.
 
 Examples: May 10 reports #1 and #9 while accepting #11; the Big Eater win only

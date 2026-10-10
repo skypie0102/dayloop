@@ -95,6 +95,7 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
                 val guideCheckpoint = when (guideStage) {
                     RequestStages.READY -> request.readyEvents.firstOrNull { it in completedEvents }
                     RequestStages.ACCEPTED -> request.acceptanceEvent
+                    RequestStages.REPORTED -> request.completionEvent
                     else -> null
                 }?.let(eventsById::get)
                 val open = expanded == request.id
@@ -162,7 +163,7 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
                                 }
                             }
                             guideCheckpoint?.let { event ->
-                                Text("Guide stage: ${requestStageLabel(guideStage)}. Uncheck this source task to reverse it.",
+                                if (!automatic) Text("Guide stage: ${requestStageLabel(guideStage)}. Uncheck this source task to reverse it.",
                                     style = MaterialTheme.typography.bodyMedium)
                                 SubmergedActionButton("Open guide checkpoint", onClick = { onOpenDay(event.date) },
                                     primary = false, modifier = Modifier.testTag("request-checkpoint-${request.id}"))
@@ -175,7 +176,7 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
                                     onClick = { onOpenDay(event.date) }, primary = false,
                                     modifier = Modifier.testTag("request-next-date-${request.id}"))
                             }
-                            if (request.preparationEvents.isNotEmpty()) {
+                            if (stage != RequestStages.REPORTED && request.preparationEvents.isNotEmpty()) {
                                 val prepared = request.preparationEvents.count { it in completedEvents }
                                 Text("$prepared / ${request.preparationEvents.size} guide preparation tasks checked",
                                     style = MaterialTheme.typography.labelMedium, color = colors.secondary)
