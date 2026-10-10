@@ -23,7 +23,9 @@ clock advancement, and dungeon entry never award a request.
 
 Pending rows open the next missing source task; available/completed rows open
 the guide clear day. Status is beneath the title for enlarged text. Summary
-counts expose pending actions. Existing saves use their original date/index
+counts expose pending actions. The pinned summary stays compact; tracking
+explanation scrolls away instead of covering request titles and tap targets at
+200% text. Existing saves use their original date/index
 keys; no new persistence table or migration is needed.
 
 | Request with preparation | Required source actions |

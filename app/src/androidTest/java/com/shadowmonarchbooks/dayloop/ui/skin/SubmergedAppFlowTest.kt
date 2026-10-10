@@ -40,13 +40,14 @@ class SubmergedAppFlowTest {
     private var expectedFontScale = 1f
 
     private fun setFontScale(scale: Float) {
-        // Read to EOF: closing the command descriptor immediately races the next test.
-        ParcelFileDescriptor.AutoCloseInputStream(
-            instrumentation.uiAutomation.executeShellCommand("settings put system font_scale $scale"),
-        ).use { it.readBytes() }
-        compose.waitUntil(10_000) {
-            Settings.System.getFloat(context.contentResolver, Settings.System.FONT_SCALE, -1f) == scale
-        }
+        fun shell(command: String) = ParcelFileDescriptor.AutoCloseInputStream(
+            instrumentation.uiAutomation.executeShellCommand(command),
+        ).use { it.readBytes().toString(Charsets.UTF_8).trim() }
+        // Use the active user's provider value: a cached Settings.System read can
+        // remain stale while the preceding activity is being recreated/closed.
+        shell("settings --user current put system font_scale $scale")
+        assertEquals(scale, shell("settings --user current get system font_scale").toFloatOrNull())
+        // launch() independently verifies the actual receiving window's fontScale.
     }
 
     /** Seed a separate test profile before launching; subsequent actions use the real UI. */

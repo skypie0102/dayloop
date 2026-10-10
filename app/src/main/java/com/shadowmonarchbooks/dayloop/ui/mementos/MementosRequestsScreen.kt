@@ -2,7 +2,6 @@ package com.shadowmonarchbooks.dayloop.ui.mementos
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,6 +24,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.data.formatDate
@@ -94,6 +95,15 @@ fun MementosRequestsScreen(
             stickyHeader(key = "request-summary") {
                 RequestSummary(counts, requests.size)
             }
+            item(key = "request-tracking-rule") {
+                Surface(color = slashMementosRequestPanelColor, contentColor = Color.White) {
+                    Text(
+                        text = "Mark receipt and preparation tasks Done to unlock a target. Only its individual clear task completes it.",
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(12.dp),
+                    )
+                }
+            }
             items(rows, key = MementosRequestDefinition::id) { request ->
                 RequestRow(
                     pack = pack,
@@ -124,13 +134,8 @@ private fun RequestSummary(counts: MementosRequestCounts, total: Int) {
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
             )
             Text(
-                text = "${counts.available} available · ${counts.pending} need action · ${counts.upcoming} upcoming",
+                text = "${counts.available} ready · ${counts.pending} pending · ${counts.upcoming} upcoming",
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
-            )
-            Text(
-                text = "Unlocks follow your receipt and preparation checkmarks. Only each request’s clear task completes it.",
-                style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
             )
         }
@@ -150,6 +155,7 @@ private fun RequestRow(
     val skin = LocalSkin.current
     val slashPanel = skin.hasSkin && skin.motion == "slash"
     Surface(
+        onClick = { onOpenDay(openDate) },
         shape = skin.shapes.card,
         color = when {
             slashPanel -> slashMementosRequestPanelColor
@@ -160,7 +166,7 @@ private fun RequestRow(
         modifier = Modifier
             .fillMaxWidth()
             .testTag(request.id)
-            .clickable(role = Role.Button, onClickLabel = "Open the next walkthrough task") { onOpenDay(openDate) },
+            .semantics { role = Role.Button },
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(5.dp),
@@ -193,7 +199,9 @@ private fun RequestRow(
                     style = MaterialTheme.typography.bodyMedium,
                 )
             }
-            request.guidance?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+            if (progress.status == MementosRequestStatus.PREPARATION) {
+                request.guidance?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+            }
             request.target?.let { MetadataLine("Target", it) }
             request.location?.let { MetadataLine("Location", it) }
             request.reward?.let { MetadataLine("Reward", it) }
