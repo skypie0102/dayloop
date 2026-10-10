@@ -39,7 +39,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.snapshotFlow
+import kotlinx.coroutines.flow.first
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -73,16 +76,24 @@ import java.util.Locale
 /** Explicit opt-in: a motif, motion, or blue seed alone never replaces existing chrome. */
 internal fun SkinSpec.hasSubmergedChrome(): Boolean = hasSkin && chrome == "submerged"
 
-/** Quiet depth behind reading surfaces. Water/character art belongs to the menu header. */
+/** Cached blue planes and diagonal seams; the reading backdrop has no idle animation. */
 @Composable
 internal fun Modifier.submergedBackdrop(): Modifier {
     val colors = MaterialTheme.colorScheme
     return background(colors.background).clipToBounds().drawWithCache {
-        val wash = Brush.linearGradient(
-            listOf(colors.primaryContainer, colors.surface, colors.background),
-            end = Offset(size.width * 0.7f, 640.dp.toPx()),
-        )
-        onDrawBehind { drawRect(wash) }
+        val wash = Brush.linearGradient(listOf(colors.primaryContainer, colors.surface, colors.background),
+            end = Offset(size.width * 0.7f, maxOf(size.height, 640.dp.toPx())))
+        val readingPlane = Path().apply {
+            moveTo(size.width * 0.04f, 0f); lineTo(size.width * 0.94f, 0f)
+            lineTo(size.width * 0.78f, size.height); lineTo(0f, size.height); close()
+        }
+        val seamStart = Offset(size.width * 0.94f, 0f)
+        val seamEnd = Offset(size.width * 0.78f, size.height)
+        onDrawBehind {
+            drawRect(wash)
+            drawPath(readingPlane, colors.surface.copy(alpha = 0.28f))
+            drawLine(colors.secondary.copy(alpha = 0.12f), seamStart, seamEnd, 1.dp.toPx())
+        }
     }
 }
 
@@ -135,15 +146,11 @@ internal fun SubmergedFilters(options: List<String>, selected: String, onSelect:
         modifier = Modifier.fillMaxWidth().selectableGroup()) {
         options.forEach { label ->
             val active = selected == label
-            Text(label, style = style, color = if (active) colors.primary else colors.secondary,
+            Text(label, style = style, color = if (active) colors.onPrimary else colors.secondary,
                 textAlign = androidx.compose.ui.text.style.TextAlign.Center,
                 modifier = Modifier.selectable(active, role = Role.Tab, onClick = { onSelect(label) })
-                    .heightIn(min = 48.dp).widthIn(min = 48.dp).drawWithCache {
-                        onDrawBehind {
-                            if (active) drawLine(colors.tertiary, Offset(0f, size.height),
-                                Offset(size.width, size.height), 2.dp.toPx())
-                        }
-                    }.padding(horizontal = 4.dp, vertical = 12.dp))
+                    .heightIn(min = 48.dp).widthIn(min = 48.dp)
+                    .submergedCommandSelection(active).padding(horizontal = 12.dp, vertical = 12.dp))
         }
     }
 }
@@ -256,18 +263,40 @@ internal fun SubmergedBottomBar(
     onSelect: (String) -> Unit,
 ) {
     val colors = MaterialTheme.colorScheme
-    val style = MaterialTheme.typography.labelSmall.withSkinFont(LocalSkin.current.type.display)
+    val style = MaterialTheme.typography.labelSmall.withSkinFont(LocalSkin.current.type.display).copy(fontStyle = FontStyle.Italic)
     val measurer = rememberTextMeasurer()
     val density = LocalDensity.current
-    val widths = items.map { item ->
-        with(density) { measurer.measure(AnnotatedString(item.label), style).size.width.toDp() }
-            .plus(12.dp).coerceAtLeast(56.dp)
+    val scroll = rememberScrollState()
+    val widths = remember(items, style, density) {
+        items.map { item ->
+            with(density) { measurer.measure(AnnotatedString(item.label), style).size.width.toDp() }
+                .plus(12.dp).coerceAtLeast(56.dp)
+        }
     }
     BoxWithConstraints(Modifier.fillMaxWidth().background(colors.background).navigationBarsPadding()) {
         val spare = (maxWidth - widths.fold(0.dp) { sum, width -> sum + width }).coerceAtLeast(0.dp)
+        // Keep the selected whole word visible when the command row exceeds the viewport.
+        LaunchedEffect(selectedRoute, widths, maxWidth) {
+            val selectedIndex = items.indexOfFirst { it.route == selectedRoute }
+            if (selectedIndex >= 0) {
+                val tabWidths = widths.map { with(density) { (it + spare / items.size).toPx() } }
+                val viewport = with(density) { maxWidth.toPx() }
+                val left = tabWidths.take(selectedIndex).sum()
+                val right = left + tabWidths[selectedIndex]
+                // Use the measured scroll range (including rounded tab widths).
+                snapshotFlow { scroll.maxValue }.first { it != Int.MAX_VALUE }
+                val target = when {
+                    selectedIndex == items.lastIndex -> scroll.maxValue
+                    left < scroll.value -> left.toInt()
+                    right > scroll.value + viewport -> kotlin.math.ceil((right - viewport).toDouble()).toInt()
+                    else -> scroll.value
+                }
+                scroll.scrollTo(target.coerceIn(0, scroll.maxValue))
+            }
+        }
         Row(
             verticalAlignment = Alignment.Top,
-            modifier = Modifier.horizontalScroll(rememberScrollState()).selectableGroup(),
+            modifier = Modifier.horizontalScroll(scroll).selectableGroup(),
         ) {
             items.forEachIndexed { index, item ->
                 val selected = item.route == selectedRoute
@@ -279,26 +308,14 @@ internal fun SubmergedBottomBar(
                         .heightIn(min = 68.dp)
                         .selectable(selected = selected, role = Role.Tab,
                             onClick = { if (!selected) onSelect(item.route) })
-                        .drawWithCache {
-                            val cursor = Path().apply {
-                                moveTo(size.width / 2 - 5.dp.toPx(), 2.dp.toPx())
-                                lineTo(size.width / 2 + 5.dp.toPx(), 2.dp.toPx())
-                                lineTo(size.width / 2, 7.dp.toPx()); close()
-                            }
-                            onDrawBehind {
-                                if (selected) {
-                                    drawLine(colors.tertiary, Offset.Zero, Offset(size.width, 0f), 2.dp.toPx())
-                                    drawPath(cursor, colors.primary)
-                                }
-                            }
-                        }
+                        .submergedCommandSelection(selected)
                         .padding(horizontal = 6.dp, vertical = 11.dp),
                 ) {
                     Icon(item.icon, contentDescription = null,
-                        tint = if (selected) colors.primary else colors.secondary,
+                        tint = if (selected) colors.onPrimary else colors.secondary,
                         modifier = Modifier.size(20.dp))
                     Text(item.label, style = style, fontStyle = FontStyle.Italic,
-                        color = if (selected) colors.primary else colors.secondary,
+                        color = if (selected) colors.onPrimary else colors.secondary,
                         maxLines = 1, softWrap = false,
                         textAlign = androidx.compose.ui.text.style.TextAlign.Center)
                 }

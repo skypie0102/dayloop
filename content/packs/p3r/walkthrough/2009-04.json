@@ -11,8 +11,13 @@
           "slot": "day",
           "statGains": {
             "charm": 2
-          }
+          },
+          "groupLabel": "Class · Morning",
+          "tip": "Answer: Vivid Carp Streamers."
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -25,14 +30,19 @@
           "slot": "day",
           "statGains": {
             "academics": 2
-          }
+          },
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Full moon — the night is a mandatory story event, no free time",
           "slot": "evening",
           "spoiler": true,
-          "groupLabel": "Full Moon · Evening"
+          "groupLabel": "Dark Hour · Full Moon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -40,56 +50,64 @@
       "weekday": "fri",
       "dayKind": "story",
       "steps": [],
-      "notes": "Opening-story stretch — the guide schedules no player actions."
+      "notes": "Opening-story stretch — the guide schedules no player actions.",
+      "displayOrder": []
     },
     {
       "date": "2009-04-11",
       "weekday": "sat",
       "dayKind": "story",
       "steps": [],
-      "notes": "Opening-story stretch — the guide schedules no player actions."
+      "notes": "Opening-story stretch — the guide schedules no player actions.",
+      "displayOrder": []
     },
     {
       "date": "2009-04-12",
       "weekday": "sun",
       "dayKind": "story",
       "steps": [],
-      "notes": "Opening-story stretch — the guide schedules no player actions."
+      "notes": "Opening-story stretch — the guide schedules no player actions.",
+      "displayOrder": []
     },
     {
       "date": "2009-04-13",
       "weekday": "mon",
       "dayKind": "story",
       "steps": [],
-      "notes": "Opening-story stretch — the guide schedules no player actions."
+      "notes": "Opening-story stretch — the guide schedules no player actions.",
+      "displayOrder": []
     },
     {
       "date": "2009-04-14",
       "weekday": "tue",
       "dayKind": "story",
       "steps": [],
-      "notes": "Opening-story stretch — the guide schedules no player actions."
+      "notes": "Opening-story stretch — the guide schedules no player actions.",
+      "displayOrder": []
     },
     {
       "date": "2009-04-15",
       "weekday": "wed",
       "dayKind": "story",
       "steps": [],
-      "notes": "Opening-story stretch — the guide schedules no player actions."
+      "notes": "Opening-story stretch — the guide schedules no player actions.",
+      "displayOrder": []
     },
     {
       "date": "2009-04-16",
       "weekday": "thu",
       "dayKind": "story",
       "steps": [],
-      "notes": "Opening-story stretch — the guide schedules no player actions."
+      "notes": "Opening-story stretch — the guide schedules no player actions.",
+      "displayOrder": []
     },
     {
       "date": "2009-04-17",
       "weekday": "fri",
       "dayKind": "story",
       "steps": [],
-      "notes": "Opening-story stretch — the guide schedules no player actions."
+      "notes": "Opening-story stretch — the guide schedules no player actions.",
+      "displayOrder": []
     },
     {
       "date": "2009-04-18",
@@ -101,13 +119,19 @@
           "slot": "day",
           "statGains": {
             "charm": 2
-          }
+          },
+          "groupLabel": "Class · Morning",
+          "tip": "Answer: Middens."
         },
         {
           "label": "Fool reaches rank 1 (story)",
           "slot": "afternoon",
           "spoiler": true
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -115,7 +139,8 @@
       "weekday": "sun",
       "dayKind": "story",
       "steps": [],
-      "notes": "Story day between the S.E.E.S. join and the first Tartarus visit — the guide schedules nothing."
+      "notes": "Story day between the S.E.E.S. join and the first Tartarus visit — the guide schedules nothing.",
+      "displayOrder": []
     },
     {
       "date": "2009-04-20",
@@ -127,19 +152,24 @@
           "slot": "evening",
           "spoiler": true,
           "tip": "This is the introductory visit. Follow the combat and exploration tutorials tonight; the route's full Thebel clear and shopping budget are scheduled for April 23. Do not treat this tutorial as completion of the later 22F objective.",
-          "groupLabel": "Tartarus · Evening"
+          "groupLabel": "Dark Hour · Tartarus"
         },
         {
           "label": "When Shuffle Time appears, pick the Coins card (money bonus)",
           "slot": "evening",
-          "groupLabel": "Tartarus · Evening"
+          "groupLabel": "Dark Hour · Tartarus"
         },
         {
           "label": "Fool reaches rank 2 (story)",
           "slot": "evening",
           "spoiler": true,
-          "groupLabel": "Tartarus · Evening"
+          "groupLabel": "Dark Hour · Tartarus"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -152,7 +182,8 @@
           "slot": "day",
           "statGains": {
             "academics": 2
-          }
+          },
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Police Station: make no purchases today (budget plan)",
@@ -179,6 +210,13 @@
             "courage": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -197,6 +235,10 @@
             "academics": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -210,7 +252,8 @@
         },
         {
           "label": "Join the track team at the Practice Field — Chariot reaches rank 1",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "For later meetings, carry a Chariot Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Greet Yuko and ask to walk home with her (Strength flag)",
@@ -218,25 +261,34 @@
         },
         {
           "label": "Collect the Twilight Fragments hidden inside the dorm",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Buy SP items from the vending machines (Iwatodai Station, Strip Mall 3F, Dorm 2F)",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Tartarus — clear Thebel through the 22F border, collect Old Document 01 from the purple chest, grind ¥36,000+, loot an Odd Morsel from a common chest, and exploit gatekeeper weaknesses (5F Fire, 11F Wind on Barbaric Beast Wheel / Fire on Magic Hands, 17F Electricity)",
           "slot": "evening",
           "spoiler": true,
-          "tip": "Before climbing, finish today's vending-machine purchases and keep the SP items for the run.\n\nThebel objectives: reach the 22F border, open the purple chest for Old Document 01, and keep an Odd Morsel from a common chest for Nozomi's later Moon introduction. Do not consume that Morsel.\n\nGatekeepers: use Fire on 5F; on 11F use Wind against Barbaric Beast Wheel and Fire against the Magic Hands; use Electricity on 17F. Bring access to these elements before starting the fights.\n\nLeave with at least ¥36,000 for the route's upcoming expenses. Keep Old Document 01 for Request #2 on May 10. Finish the separate Hermit/Hanged-Man preparation task before leaving.",
-          "groupLabel": "Tartarus · Evening"
+          "tip": "Before climbing, finish today's vending-machine purchases and keep the SP items for the run.\n\nThebel objectives: reach the 22F border, open the purple chest for Old Document 01, and keep an Odd Morsel from a common chest for Nozomi's later Moon introduction. Do not consume that Morsel.\n\nGatekeepers: use Fire on 5F; on 11F use Wind against Barbaric Beast Wheel and Fire against the Magic Hands; use Electricity on 17F. Bring access to these elements before starting the fights.\n\nLeave with at least ¥36,000 for the route's upcoming expenses. Keep Old Document 01 for Request #2 on May 10. Finish the separate Hermit/Hanged-Man preparation task before leaving.\n\nRequest #2: keep the required item or objective proof for Elizabeth. Preparing it does not count as reporting.",
+          "groupLabel": "Dark Hour · Tartarus"
         },
         {
           "label": "Leave Tartarus carrying Hermit and Hanged-Man Personas (fusion options: Nekomata + Omoikane, Orpheus + Omoikane)",
           "slot": "evening",
           "tip": "Keep both a Hermit and a Hanged-Man Persona in your carried stock for the upcoming Social Link visits. The listed fusion pairs are alternatives for preparing those Arcanas; check the displayed result before confirming a fusion. This is preparation for future visits, not a Social Link rank-up itself.",
-          "groupLabel": "Tartarus · Evening"
+          "groupLabel": "Dark Hour · Tartarus"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
       ]
     },
     {
@@ -253,7 +305,8 @@
         },
         {
           "label": "Hang out with Kazushi — Chariot reaches rank 2 (best answers: 2 > A > A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Chariot Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 2 → Any → Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Greet Yuko and ask to walk home with her again (Strength flag)",
@@ -261,7 +314,8 @@
         },
         {
           "label": "Hang out with Yuko — Strength reaches rank 1",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "For later meetings, carry a Strength Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Play House of the Deceased at Game Parade",
@@ -270,6 +324,13 @@
             "courage": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -283,11 +344,13 @@
         },
         {
           "label": "Hang out with Yuko — Strength reaches rank 2 (best answers: 1 > 2 > 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Strength Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → 2 → 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Buy a discounted Muscle Drink during Aohige Pharmacy's Saturday sale (Elizabeth request prep)",
-          "slot": "afternoon"
+          "slot": "evening",
+          "tip": "Request #1: keep the required item or objective proof for Elizabeth. Preparing it does not count as reporting."
         },
         {
           "label": "Play You're the Answer at Game Parade",
@@ -296,6 +359,12 @@
             "academics": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -305,19 +374,25 @@
       "steps": [
         {
           "label": "Visit Bookworms — Hierophant reaches rank 1",
-          "slot": "day"
+          "slot": "day",
+          "tip": "For later meetings, carry a Hierophant Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Buy SP drinks from the restocked vending machines",
-          "slot": "day"
+          "slot": "evening"
         },
         {
           "label": "Eat the Mystery Burger at Wilduck Burger (Courage reaches rank 2)",
-          "slot": "day",
+          "slot": "evening",
           "statGains": {
             "courage": 3
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -330,11 +405,14 @@
           "slot": "day",
           "statGains": {
             "charm": 2
-          }
+          },
+          "groupLabel": "Class · Morning",
+          "tip": "Answer: A."
         },
         {
           "label": "Sign your papers at the Faculty Office (1F Faculty Office Hallway) — Emperor reaches rank 1",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "For later meetings, carry an Emperor Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Play High School of Youth at Game Parade",
@@ -343,6 +421,11 @@
             "charm": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -356,7 +439,8 @@
         },
         {
           "label": "Hang out with Kenji — Magician reaches rank 2 (best answers: 2/3 > 1/3)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Magician Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 2/3 → 1/3. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Play House of the Deceased at Game Parade",
@@ -365,6 +449,11 @@
             "courage": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -374,7 +463,8 @@
       "steps": [
         {
           "label": "Play the MMORPG at your desk — Hermit reaches rank 1",
-          "slot": "day"
+          "slot": "day",
+          "tip": "For later meetings, carry a Hermit Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "The dorm's shared computer unlocks today",
@@ -387,6 +477,11 @@
             "academics": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -399,7 +494,8 @@
           "slot": "day",
           "statGains": {
             "academics": 2
-          }
+          },
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Talk to Chihiro again (Justice flag)",
@@ -407,7 +503,8 @@
         },
         {
           "label": "Hang out with Kenji — Magician reaches rank 3 (best answers: 3 > 2)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Magician Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 3 → 2. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Play High School of Youth at Game Parade (Charm reaches rank 2)",
@@ -416,6 +513,12 @@
             "charm": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     }
   ]

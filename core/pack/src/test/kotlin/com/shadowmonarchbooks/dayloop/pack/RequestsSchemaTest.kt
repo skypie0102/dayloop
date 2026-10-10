@@ -11,10 +11,13 @@ class RequestsSchemaTest {
         val catalog = PackLoader.json.decodeFromString(RequestsFile.serializer(), original)
         val request = catalog.requests.single()
         assertNull(request.solution)
-        val enriched = catalog.copy(requests = listOf(request.copy(solution = "Collect the item.\n\nReturn to the issuer.")))
+        assertNull(request.acceptanceEvent)
+        assertEquals(emptyList(), request.preparationEvents)
+        assertEquals(emptyList(), request.readyEvents)
+        val enriched = catalog.copy(requests = listOf(request.copy(solution = "Collect the item.\n\nReturn to the issuer.", acceptanceEvent = "test.accept", preparationEvents = listOf("test.collect"), readyEvents = listOf("test.collect", "test.alternative"))))
         val decoded = PackLoader.json.decodeFromString(RequestsFile.serializer(),
             PackLoader.json.encodeToString(RequestsFile.serializer(), enriched))
         assertEquals(enriched, decoded)
-        assertEquals(request, decoded.requests.single().copy(solution = null))
+        assertEquals(request, decoded.requests.single().copy(solution = null, acceptanceEvent = null, preparationEvents = emptyList(), readyEvents = emptyList()))
     }
 }

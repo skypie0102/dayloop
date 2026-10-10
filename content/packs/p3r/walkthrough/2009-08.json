@@ -17,6 +17,10 @@
             "academics": 2
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -35,6 +39,10 @@
             "academics": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -45,19 +53,25 @@
       "steps": [
         {
           "label": "Visit the girl at the shrine — Hanged-Man reaches rank 7 (best answers: A > A)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Carry a Hanged-Man Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any → Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Buy the Fortune Teller's 'Rarity Fortune' or 'Gamble Fortune' at Club Escapade",
-          "slot": "day"
+          "slot": "evening"
         },
         {
           "label": "Tartarus — clearing the 91F Monad Passage rewards the Temperance Tarot (the schedule never spends it on Arcana Bursts)",
           "slot": "evening",
           "spoiler": true,
           "tip": "Climb to the 92F border. Gatekeepers: 77F, 82F, 90F.\n\nRescue the missing people on 79F and 84F before leaving. Their last actionable rescue date is August 5.\n\nComplete the fixed 91F Monad Passage for the Temperance Tarot. A different Monad encounter does not satisfy that specific objective. The route does not rely on Temperance's bonus for its social-stat totals.\n\nLeave carrying Priestess, Strength, Justice, Tower, Star and Moon Personas for the route through September 4.",
-          "groupLabel": "Tartarus · Evening"
+          "groupLabel": "Dark Hour · Tartarus"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -67,12 +81,17 @@
       "steps": [
         {
           "label": "Hang out with Nozomi — Moon reaches rank 5 (best answer: 1)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Carry a Moon Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Visit the businessman at Paulownia Mall — Devil reaches rank 6",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -82,7 +101,8 @@
       "steps": [
         {
           "label": "Meet the rival athlete — Star reaches rank 1",
-          "slot": "day"
+          "slot": "day",
+          "tip": "For later meetings, carry a Star Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Play You're the Answer at Game Parade",
@@ -91,6 +111,10 @@
             "academics": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -102,8 +126,11 @@
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
           "spoiler": true,
-          "groupLabel": "Full Moon · Evening"
+          "groupLabel": "Dark Hour · Full Moon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -113,16 +140,23 @@
       "steps": [
         {
           "label": "Hang out with the rival athlete — Star reaches rank 2 (best answers: 2 > 2)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Carry a Star Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 2 → 2. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Visit the monk at Club Escapade — Tower reaches rank 5 (best answers: 1 > 2)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Carry a Tower Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → 2. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Death reaches rank 5 (story; Reload skips rank 4)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -136,7 +170,8 @@
         },
         {
           "label": "Accept Request #58 and complete the straw-millionaire trade chain: Wrapped Bandage → Student Handbook → Irresistible Catnip → Cat Ear Headband; return it to Elizabeth before August 31",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Request #58: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection."
         },
         {
           "label": "Soul Spinach Sprout is now stocked at Rafflesia (Port Island Station)",
@@ -144,16 +179,26 @@
         },
         {
           "label": "Accept Request #54, then check Naganaki Shrine's Monetary Offering (shrine visit 1 of 3; this does not consume the daytime slot)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Request #54: accept it with Elizabeth. Acceptance keeps it in progress; it does not report the request.\n\nRequest #54: this is a preparation step. Continue the remaining guide actions and the final reporting task."
         },
         {
           "label": "Hang out with Nozomi — Moon reaches rank 6 (best answer: 3)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Carry a Moon Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 3. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Visit the businessman at Paulownia Mall — Devil reaches rank 7",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -168,7 +213,8 @@
         },
         {
           "label": "Check Naganaki Shrine's Monetary Offering again (Request #54, shrine visit 2 of 3)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Request #54: this is a preparation step. Continue the remaining guide actions and the final reporting task."
         },
         {
           "label": "Watch Junpei's Link Episode",
@@ -181,6 +227,12 @@
           "label": "Free time — walk Koromaru (with Kenji)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -195,6 +247,9 @@
             "academics": 3
           }
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -209,6 +264,9 @@
             "academics": 3
           }
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -223,6 +281,9 @@
             "academics": 3
           }
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -237,6 +298,9 @@
             "academics": 3
           }
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -255,6 +319,10 @@
           "label": "Watch Takaya's Link Episode",
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -274,6 +342,10 @@
           "label": "Walk Koromaru (with Aigis)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -283,8 +355,11 @@
       "steps": [
         {
           "label": "Summer festival — choose who you wish to attend with",
-          "slot": "day"
+          "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -311,6 +386,11 @@
             "academics": 2
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -333,6 +413,11 @@
           "label": "Visit the businessman at Paulownia Mall — Devil reaches rank 8",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -354,6 +439,10 @@
             "charm": 2
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -363,11 +452,13 @@
       "steps": [
         {
           "label": "Check Naganaki Shrine's Monetary Offering a third time, then return the found 500-yen bill to Elizabeth to complete Request #54 (shrine visit 3 of 3)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Request #54: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection."
         },
         {
           "label": "Hang out with Nozomi — Moon reaches rank 7 (best answers: 3 > A)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Carry a Moon Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 3 → Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Watch Takaya's Link Episode",
@@ -380,6 +471,12 @@
             "academics": 2
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -396,8 +493,13 @@
         },
         {
           "label": "Visit the monk at Club Escapade — Tower reaches rank 6 (best answers: 2 > 2)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Carry a Tower Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 2 → 2. Any means any response; a slash between numbers means either listed option."
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -416,6 +518,10 @@
           "label": "Walk Koromaru (with Bunkichi)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -438,6 +544,11 @@
           "label": "Walk Koromaru (with Akihiko)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -459,6 +570,10 @@
             "academics": 2
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -477,6 +592,10 @@
           "label": "Visit the businessman at Paulownia Mall — Devil reaches rank 9",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -498,6 +617,10 @@
             "academics": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -516,6 +639,10 @@
           "label": "Walk Koromaru (with Junpei)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -532,8 +659,13 @@
         },
         {
           "label": "Visit the monk at Club Escapade — Tower reaches rank 7 (best answer: 2)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Carry a Tower Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 2. Any means any response; a slash between numbers means either listed option."
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -552,6 +684,10 @@
           "label": "Walk Koromaru (with Fuuka)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -574,6 +710,11 @@
           "label": "Walk Koromaru (with Mitsuru)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -595,6 +736,10 @@
             "academics": 2
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     }
   ]

@@ -189,9 +189,9 @@ private fun submergedSchemeArgb(seed: Int): Map<String, Int> {
         fun c(shift: Int): Int = (((seed shr shift) and 255) * (1 - white) + 255 * white).roundToInt()
         return INK_BLACK or (c(16) shl 16) or (c(8) shl 8) or c(0)
     }
-    val deep = shade(seed, 0.10)
-    val panel = shade(seed, 0.22)
-    val raised = shade(seed, 0.36)
+    val deep = shade(seed, 0.18)
+    val panel = shade(seed, 0.32)
+    val raised = shade(seed, 0.46)
     val light = tint(0.78)
     val secondary = Hct.from(Hct.fromInt(seed).hue - 70.0, 48.0, 85.0).toInt()
     // Start from a complete scheme so newly consumed Material roles stay defined.

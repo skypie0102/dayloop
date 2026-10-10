@@ -382,3 +382,21 @@ item pickup, or reward preparation must not complete a request. Only DONE counts
 unchecking reverses the derived state. Otherwise the player explicitly selects
 Accepted, Ready to report, or Reported, with each stage reversible and stored per
 profile. P5R continues to use its existing Mementos contract.
+
+
+### Optional request source stages
+
+A `requests.json` entry may reference `acceptanceEvent`, ordered
+`preparationEvents`, and alternative `readyEvents` alongside `completionEvent`.
+Every reference resolves through `events` to exactly one task in the named route
+and appears in that request's `routeDates`. Each event ID belongs to one request;
+separate semantic IDs may share a compound source task. A ready event may reuse
+its own preparation ID. Progress evidence must precede its hand-in and cannot
+reuse the reporting checkpoint.
+
+Only Done marks count as source evidence. An acceptance mark puts the request
+in progress. After acceptance, any authored ready proof makes it ready to report;
+partial preparation alone does not. An exact complete hand-in awards Reported
+independently. Explicit player confirmations are preserved, profile-scoped and
+reversible. Dates, route links, Skip and Later never award a source stage. Missing
+fields preserve the legacy manual-only behavior.

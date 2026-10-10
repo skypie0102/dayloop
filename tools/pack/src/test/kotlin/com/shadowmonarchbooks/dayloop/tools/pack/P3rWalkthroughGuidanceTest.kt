@@ -63,16 +63,17 @@ class P3rWalkthroughGuidanceTest {
     }
 
     @Test
-    fun `dungeon headings preserve evening slots and December second stays free`() {
+    fun `morning and dungeon headings preserve real time slots and December second stays free`() {
         val days = loadP3r().walkthroughs.filter { it.routeId == Routes.DEFAULT }
             .flatMap { it.file.days }
         days.forEach { day ->
             day.steps.filter { it.groupLabel != null }.forEach { step ->
-                assertEquals("evening", step.slot, "${day.date}: dungeon heading cannot create another time slot")
+                val expected = if (step.groupLabel!!.endsWith("Morning")) "day" else "evening"
+                assertEquals(expected, step.slot, "${day.date}: heading cannot create another time slot")
             }
         }
         val decemberSecond = days.single { it.date == "2009-12-02" }
-        assertTrue(decemberSecond.steps.all { it.groupLabel == null })
+        assertTrue(decemberSecond.steps.none { it.groupLabel?.startsWith("Dark Hour") == true })
         assertTrue(decemberSecond.steps.any { it.slot == "evening" && it.label.contains("Game Parade") })
     }
 

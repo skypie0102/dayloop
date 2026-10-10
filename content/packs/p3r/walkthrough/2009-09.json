@@ -11,7 +11,9 @@
           "slot": "day",
           "statGains": {
             "charm": 2
-          }
+          },
+          "groupLabel": "Class · Morning",
+          "tip": "Answer: Resistance."
         },
         {
           "label": "Take the supplementary lesson at the school Nurse's Office",
@@ -19,7 +21,8 @@
         },
         {
           "label": "Hang out with Chihiro — Justice reaches rank 9 (romance: 1 > A > A > 1 > 1 > A / platonic: 1 > A > A > 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Justice Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top):\nRomance: 1 → Any → Any → 1 → 1 → Any\nFriendship: 1 → Any → Any → 1.\n\nAny means any response. Follow the branch for your chosen relationship."
         },
         {
           "label": "Visit the businessman at Paulownia Mall — Devil reaches rank 10 (MAX)",
@@ -27,8 +30,16 @@
         },
         {
           "label": "After Devil reaches MAX, bring the Social Link max-rank item to Elizabeth to complete Request #55 (proof of a bond)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Request #55: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -43,6 +54,9 @@
             "charm": 2
           }
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -56,7 +70,8 @@
         },
         {
           "label": "Hang out with Chihiro — Justice reaches rank 10 (MAX)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Justice Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
         },
         {
           "label": "Join Junpei's reading hangout — Combat Characteristic unlocked",
@@ -65,6 +80,11 @@
             "courage": 2
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -86,19 +106,26 @@
         },
         {
           "label": "Optional: buy the Platinum Brooch at Club Escapade and gift it to Elizabeth for a Master Incense",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Optional: purchase any fortune from the Fortune Teller at Club Escapade",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Tartarus — bring Koromaru, Ken, and Shinjiro to watch their Persona summoning cutscenes",
           "slot": "evening",
           "spoiler": true,
           "tip": "Climb to the 118F border. Gatekeepers: 99F, 105F, 112F.\n\nTonight is the last actionable rescue night for the people on 101F, 109F and 114F. Rescue all three before leaving; tomorrow is a mandatory full-moon operation.\n\nAlso bring Koromaru, Ken and Shinjiro for the summoning scenes specified in today's task. The scenes and the rescues are separate objectives: check both before marking the whole task done.\n\nLeave carrying Priestess, Lovers, Strength, Temperance and Tower Personas for the route through October 1.",
-          "groupLabel": "Tartarus · Evening"
+          "groupLabel": "Dark Hour · Tartarus"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -110,8 +137,11 @@
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
           "spoiler": true,
-          "groupLabel": "Full Moon · Evening"
+          "groupLabel": "Dark Hour · Full Moon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -135,6 +165,12 @@
           "label": "Join Ken's coffee hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -144,12 +180,17 @@
       "steps": [
         {
           "label": "Hang out with Yukari — Lovers reaches rank 2 (best answers: 1 > 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Lovers Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Join Shinjiro's gardening hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -171,6 +212,10 @@
             "academics": 2
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -180,7 +225,8 @@
       "steps": [
         {
           "label": "Hang out with Yuko — Strength reaches rank 9 (romance: A > 2 > A > 1 > 1 / platonic: A > 2 > A > 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Strength Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top):\nRomance: Any → 2 → Any → 1 → 1\nFriendship: Any → 2 → Any → 1.\n\nAny means any response. Follow the branch for your chosen relationship."
         },
         {
           "label": "Join Aigis's reading hangout",
@@ -189,6 +235,10 @@
             "charm": 2
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -205,24 +255,37 @@
           "slot": "day",
           "statGains": {
             "charm": 2
-          }
+          },
+          "groupLabel": "Class · Morning",
+          "tip": "Answer: To reveal a secret."
         },
         {
           "label": "Hang out with Yukari — Lovers reaches rank 3 (best answer: A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Lovers Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Accept Request #68, get the Fruit Knife from Shinjiro at the dorm, and report it to Elizabeth before October 2",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Request #68: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection."
         },
         {
           "label": "After completing #68, accept Request #69, get the Machine Oil from Aigis at the dorm, and report it to Elizabeth before October 2",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Request #69: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection."
         },
         {
           "label": "Join Shinjiro's gardening hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -235,16 +298,24 @@
           "slot": "day",
           "statGains": {
             "charm": 2
-          }
+          },
+          "groupLabel": "Class · Morning",
+          "tip": "Answer: The Hermetica."
         },
         {
           "label": "Hang out with the exchange student — Temperance reaches rank 6 (best answers: 2 > A > 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Temperance Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 2 → Any → 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Join Yukari's cooking hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -257,7 +328,8 @@
           "slot": "day",
           "statGains": {
             "academics": 2
-          }
+          },
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Buy 6 Lukewarm Taiyaki from the School Store (Main Lobby)",
@@ -265,7 +337,8 @@
         },
         {
           "label": "Hang out with Yuko — Strength reaches rank 10 (MAX)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Strength Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
         },
         {
           "label": "Join Shinjiro's cooking hangout",
@@ -275,6 +348,13 @@
           "label": "Death reaches rank 6 (story)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -302,6 +382,13 @@
           "label": "Join Ken's coffee hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -314,20 +401,29 @@
           "slot": "day",
           "statGains": {
             "charm": 2
-          }
+          },
+          "groupLabel": "Class · Morning",
+          "tip": "Answer: Their soulmate."
         },
         {
           "label": "Hang out with Fuuka — Priestess reaches rank 8 (romance: A > A / platonic: 3 > A > A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Priestess Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top):\nRomance: Any → Any\nFriendship: 3 → Any → Any.\n\nAny means any response. Follow the branch for your chosen relationship."
         },
         {
           "label": "Check the dorm fridge for Mega Protein and a note from Akihiko",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Join Shinjiro's gardening hangout — Combat Characteristic unlocked",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -337,12 +433,17 @@
       "steps": [
         {
           "label": "Join the art club — Fortune reaches rank 2 (best answers: A > A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Fortune Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any → Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Join Fuuka's gardening hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -352,12 +453,17 @@
       "steps": [
         {
           "label": "Hang out with the exchange student — Temperance reaches rank 7 (best answer: 2)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Temperance Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 2. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Walk Koromaru (with Shinjiro)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -367,12 +473,18 @@
       "steps": [
         {
           "label": "Join the art club — Fortune reaches rank 3 (best answers: 1 > A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Fortune Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Visit the monk at Club Escapade — Tower reaches rank 8 (best answers: 1 > 1/3 > A > 2)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Tower Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → 1/3 → Any → 2. Any means any response; a slash between numbers means either listed option."
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -385,6 +497,9 @@
           "label": "Watch Takaya's Link Episode after school",
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -392,14 +507,16 @@
       "weekday": "sat",
       "dayKind": "story",
       "notes": "Typhoon and sickness — no free time.",
-      "steps": []
+      "steps": [],
+      "displayOrder": []
     },
     {
       "date": "2009-09-20",
       "weekday": "sun",
       "dayKind": "story",
       "notes": "Typhoon and sickness — no free time.",
-      "steps": []
+      "steps": [],
+      "displayOrder": []
     },
     {
       "date": "2009-09-21",
@@ -421,6 +538,11 @@
           "label": "Join Mitsuru's tea-time hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -436,6 +558,10 @@
           "label": "Watch Ken's Link Episode",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -454,6 +580,10 @@
           "label": "Walk Koromaru (with Shinjiro)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -467,7 +597,8 @@
           "slot": "day",
           "statGains": {
             "academics": 2
-          }
+          },
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Talk to Mitsuru and take the Extension Form back — hold onto it, don't return it to Shinjiro yet (Shinjiro Link Episode 3.5)",
@@ -475,12 +606,20 @@
         },
         {
           "label": "Join the art club — Fortune reaches rank 4 (best answers: A > 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Fortune Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any → 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Visit the monk at Club Escapade — Tower reaches rank 9 (best answers: A > A > A)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Carry a Tower Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any → Any → Any. Any means any response; a slash between numbers means either listed option."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -490,12 +629,17 @@
       "steps": [
         {
           "label": "Hang out with the exchange student — Temperance reaches rank 8 (best answer: 2)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Temperance Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 2. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Join Yukari's cooking hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -508,7 +652,9 @@
           "slot": "day",
           "statGains": {
             "charm": 2
-          }
+          },
+          "groupLabel": "Class · Morning",
+          "tip": "Answer: Tetractys."
         },
         {
           "label": "Spend time with Fuuka (Priestess)",
@@ -522,6 +668,12 @@
           "label": "Join Shinjiro's cooking hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -549,6 +701,13 @@
           "label": "Walk Koromaru (with Akihiko)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -561,11 +720,13 @@
           "slot": "day",
           "statGains": {
             "academics": 2
-          }
+          },
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Hang out with Fuuka — Priestess reaches rank 9 (romance: A > A > 1 > A / platonic: A > 1 > 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Priestess Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top):\nRomance: Any → Any → 1 → Any\nFriendship: Any → 1 → 1.\n\nAny means any response. Follow the branch for your chosen relationship."
         },
         {
           "label": "New notes are available from the Suspicious Man at Club Escapade",
@@ -575,6 +736,12 @@
           "label": "Join Mitsuru's tea-time hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -584,12 +751,17 @@
       "steps": [
         {
           "label": "Join the art club — Fortune reaches rank 5 (best answer: A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Fortune Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Join Shinjiro's cooking hangout — Combat Characteristic enhanced",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -599,7 +771,8 @@
       "steps": [
         {
           "label": "Hang out with Hidetoshi — Emperor reaches rank 8 (best answers: A > 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry an Emperor Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any → 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Join Aigis's reading hangout — Combat Characteristic unlocked",
@@ -608,6 +781,10 @@
             "charm": 2
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     }
   ]

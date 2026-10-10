@@ -90,7 +90,8 @@ class SubmergedDailyTest {
             nextDeadline(deadlines, date, p.calendar)?.let { (deadline, remaining) -> DeadlineBanner(deadline, remaining) }
             Spacer(Modifier.height(14.dp))
             TasksList(day.steps, { null }, { _, _ -> }, p.pack.stats.associate { it.id to it.label }, emptyMap(),
-                slotLabels = p.pack.slots.associate { it.id to it.label })
+                slotLabels = p.pack.slots.associate { it.id to it.label },
+                inlineTips = p.pack.walkthroughPresentation.inlineTips, displayOrder = day.displayOrder)
             Spacer(Modifier.height(14.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 SkinTextActionButton("Back", {})

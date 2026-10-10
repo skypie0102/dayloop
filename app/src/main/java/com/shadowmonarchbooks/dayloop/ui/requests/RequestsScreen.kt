@@ -1,12 +1,14 @@
 package com.shadowmonarchbooks.dayloop.ui.requests
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -32,20 +34,8 @@ import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedFilters
 import com.shadowmonarchbooks.dayloop.ui.skin.submergedBackdrop
 
-internal fun requestStage(request: RequestDefinition, manual: String?, completedEvents: Set<String>): String? =
-    if (request.completionEvent != null && request.completionEvent in completedEvents) RequestStages.REPORTED else manual
-
-internal fun requestMatches(request: RequestDefinition, stage: String?, filter: String): Boolean {
-    return when (filter) {
-        "In progress" -> stage == RequestStages.ACCEPTED || stage == RequestStages.READY
-        "Reported" -> stage == RequestStages.REPORTED
-        "Timed" -> request.deadline != null
-        else -> true
-    }
-}
-
-/** Explicit player confirmations, scoped to a profile. Route links are context, not evidence. */
-@OptIn(ExperimentalFoundationApi::class, ExperimentalLayoutApi::class)
+/** Source stages and explicit player confirmations, scoped to a profile. Dates are context only. */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
     val state by vm.state.collectAsState()
@@ -58,20 +48,23 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
     val completedEvents = remember(catalog.events, state.days, state.marks, state.activeRouteId) {
         completedAchievementEvents(catalog.events, state.days, state.marks, state.activeRouteId)
     }
-    val stages = catalog.requests.associate { it.id to requestStage(it, state.requestStages[it.id], completedEvents) }
+    val stages = remember(catalog.requests, state.requestStages, completedEvents) {
+        catalog.requests.associate { it.id to requestStage(it, state.requestStages[it.id], completedEvents) }
+    }
+    val eventsById = remember(catalog.events) { catalog.events.associateBy { it.id } }
     val reported = stages.values.count { it == RequestStages.REPORTED }
-    val rows = catalog.requests.filter { requestMatches(it, stages[it.id], filter) }
+    val rows = remember(catalog.requests, stages, filter) { catalog.requests.filter { requestMatches(it, stages[it.id], filter) } }
     val highlightedId = highlighted?.takeIf { id -> rows.any { it.id == id } } ?: rows.firstOrNull()?.id
     val density = LocalDensity.current
     BoxWithConstraints(Modifier.fillMaxSize()) {
         val stackedStatus = maxWidth < 440.dp || density.fontScale > 1.2f
-        val numberWidth = 32.dp * density.fontScale.coerceAtLeast(1f)
+        val numberWidth = 38.dp * density.fontScale.coerceAtLeast(1f)
         LazyColumn(
             modifier = Modifier.testTag("request-list").fillMaxSize().submergedBackdrop().padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(0.dp),
             contentPadding = PaddingValues(vertical = 12.dp),
         ) {
-            stickyHeader {
+            item(key = "request-summary") {
                 Surface(color = colors.primaryContainer) {
                     Row(Modifier.fillMaxWidth().padding(vertical = 8.dp, horizontal = 8.dp),
                         verticalAlignment = Alignment.CenterVertically,
@@ -89,7 +82,7 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
                         Text("No.", style = MaterialTheme.typography.labelSmall, color = colors.secondary, modifier = Modifier.width(numberWidth))
                         Text(if (stackedStatus) "Request / status" else "Request", style = MaterialTheme.typography.labelSmall,
                             color = colors.secondary, modifier = Modifier.weight(1f))
-                        if (!stackedStatus) Text("Status", style = MaterialTheme.typography.labelSmall, color = colors.secondary, modifier = Modifier.width(88.dp))
+                        if (!stackedStatus) Text("Status", style = MaterialTheme.typography.labelSmall, color = colors.secondary, modifier = Modifier.width(104.dp))
                     }
                 }
             }
@@ -97,16 +90,20 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
             items(rows, key = { it.id }) { request ->
                 val stage = stages[request.id]
                 val automatic = request.completionEvent != null && request.completionEvent in completedEvents
+                val manualStage = state.requestStages[request.id]
+                val guideStage = requestStage(request, null, completedEvents)
+                val guideCheckpoint = when (guideStage) {
+                    RequestStages.READY -> request.readyEvents.firstOrNull { it in completedEvents }
+                    RequestStages.ACCEPTED -> request.acceptanceEvent
+                    RequestStages.REPORTED -> request.completionEvent
+                    else -> null
+                }?.let(eventsById::get)
                 val open = expanded == request.id
                 val active = highlightedId == request.id
-                val status = when (stage) {
-                    RequestStages.ACCEPTED -> "Accepted"
-                    RequestStages.READY -> "Ready to report"
-                    RequestStages.REPORTED -> "Reported"
-                    else -> "Not started"
-                }
+                val status = requestStageLabel(stage)
+                val nextEvent = nextRequestEvent(request, stage, completedEvents)?.let(eventsById::get)
                 val rowInk = if (active) colors.onPrimary else colors.secondary
-                Column(Modifier.fillMaxWidth().background(colors.surface.copy(alpha = 0.85f))) {
+                Column(Modifier.fillMaxWidth().testTag("request-${request.id}").background(colors.surface.copy(alpha = 0.70f))) {
                     Row(Modifier.fillMaxWidth()
                         .background(if (active) colors.primary else androidx.compose.ui.graphics.Color.Transparent)
                         .clickable(role = Role.Button,
@@ -134,11 +131,9 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
                             modifier = Modifier.width(numberWidth))
                         Column(Modifier.weight(1f).padding(end = 8.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
                             Text(request.title, color = rowInk, style = MaterialTheme.typography.bodyMedium)
-                            if (stackedStatus) Text(status, style = MaterialTheme.typography.labelSmall,
-                                color = if (active || stage != null) rowInk else colors.onSurfaceVariant)
+                            if (stackedStatus) SubmergedRequestStatus(status, active, stage != null)
                         }
-                        if (!stackedStatus) Text(status, color = rowInk, style = MaterialTheme.typography.labelSmall,
-                            modifier = Modifier.width(88.dp))
+                        if (!stackedStatus) SubmergedRequestStatus(status, active, stage != null, Modifier.width(104.dp))
                     }
                         if (open) Column(Modifier.fillMaxWidth().background(colors.surface).padding(14.dp),
                             verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -158,14 +153,33 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
                                     modifier = Modifier.testTag("request-solution-${request.id}"))
                             }
                             Text(if (automatic) "Reported by the walkthrough. To reverse this, uncheck the linked hand-in task."
-                                else "Check ${catalog.issuer} for availability and prerequisites. Select the current stage; tap it again to clear.",
+                                else "Check ${catalog.issuer} for availability. Done guide tasks track acceptance and prepared items; only a hand-in reports the request. You can also confirm the in-game stage below.",
                                 style = MaterialTheme.typography.bodyMedium)
                             if (!automatic) FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                                 listOf(RequestStages.ACCEPTED to "Accepted", RequestStages.READY to "Ready to report",
                                     RequestStages.REPORTED to "Reported").forEach { (value, label) ->
-                                    SubmergedActionButton(label, onClick = { vm.setRequestStage(request.id, if (stage == value) null else value) },
-                                        primary = stage == value, modifier = Modifier.semantics { selected = stage == value })
+                                    SubmergedActionButton(label, onClick = { vm.setRequestStage(request.id, if (manualStage == value) null else value) },
+                                        primary = manualStage == value, modifier = Modifier.semantics { selected = manualStage == value })
                                 }
+                            }
+                            guideCheckpoint?.let { event ->
+                                if (!automatic) Text("Guide stage: ${requestStageLabel(guideStage)}. Uncheck this source task to reverse it.",
+                                    style = MaterialTheme.typography.bodyMedium)
+                                SubmergedActionButton("Open guide checkpoint", onClick = { onOpenDay(event.date) },
+                                    primary = false, modifier = Modifier.testTag("request-checkpoint-${request.id}"))
+                            }
+                            nextEvent?.let { event ->
+                                Text("Next guide action", style = MaterialTheme.typography.labelLarge, color = colors.secondary)
+                                Text(event.labelContains, style = MaterialTheme.typography.bodyMedium,
+                                    modifier = Modifier.testTag("request-next-${request.id}"))
+                                SubmergedActionButton("Open ${formatDate(event.date, pack.calendar)}",
+                                    onClick = { onOpenDay(event.date) }, primary = false,
+                                    modifier = Modifier.testTag("request-next-date-${request.id}"))
+                            }
+                            if (stage != RequestStages.REPORTED && request.preparationEvents.isNotEmpty()) {
+                                val prepared = request.preparationEvents.count { it in completedEvents }
+                                Text("$prepared / ${request.preparationEvents.size} guide preparation tasks checked",
+                                    style = MaterialTheme.typography.labelMedium, color = colors.secondary)
                             }
                             if (request.routeDates.isNotEmpty()) {
                                 Text("Walkthrough mentions", style = MaterialTheme.typography.labelLarge)
@@ -180,4 +194,17 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
             }
         }
     }
+}
+
+/** Reload's compact cyan labels become dark ink on the white selected band. */
+@Composable
+private fun SubmergedRequestStatus(label: String, selected: Boolean, inProgress: Boolean, modifier: Modifier = Modifier) {
+    val colors = MaterialTheme.colorScheme
+    val reported = label == "Reported"
+    val background = when { selected -> colors.onPrimary; !reported && inProgress -> colors.secondary; else -> Color.Transparent }
+    val ink = when { selected -> colors.primary; !reported && inProgress -> colors.surface; else -> colors.onSurfaceVariant }
+    Text(label, style = MaterialTheme.typography.labelSmall, color = ink,
+        modifier = modifier.background(background, RoundedCornerShape(3.dp))
+            .then(if (reported && !selected) Modifier.border(1.dp, colors.onSurfaceVariant.copy(alpha = 0.6f), RoundedCornerShape(3.dp)) else Modifier)
+            .padding(horizontal = 6.dp, vertical = 3.dp))
 }

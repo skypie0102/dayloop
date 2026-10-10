@@ -22,6 +22,12 @@
           "label": "Join Ken's DVD hangout — Combat Characteristic enhanced",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -37,6 +43,10 @@
           "label": "Walk Koromaru (with Yuko)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -46,12 +56,17 @@
       "steps": [
         {
           "label": "Hang out with the rival athlete — Star reaches rank 8 (best answers: 1 > A)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Carry a Star Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Read the Believer's Blog Note on the dorm's shared computer",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -61,12 +76,17 @@
       "steps": [
         {
           "label": "Accept Mitsuru's phone invitation (romance answer: 2 / platonic answer: 3)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Reply order (options counted from the top): romance answer: 2 / platonic answer: 3. Any means any response; a slash means either listed option. Use the branch that matches your romance or friendship choice."
         },
         {
           "label": "Watch Akihiko's Link Episode",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -82,6 +102,10 @@
           "label": "Join Yukari's DVD hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -92,7 +116,8 @@
       "steps": [
         {
           "label": "Accept Kazushi's phone invitation (best answer: 3)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Reply order (options counted from the top): 3. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Check Elizabeth's late-game request list; Request #98 can be completed once its fusion prerequisite is met, while #99/#100/#101 are handled during the remaining Tartarus cleanup",
@@ -102,6 +127,11 @@
           "label": "Join Aigis's reading hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -117,6 +147,10 @@
           "label": "Walk Koromaru (with Aigis)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -126,16 +160,24 @@
       "steps": [
         {
           "label": "Answer the class question",
-          "slot": "day"
+          "slot": "day",
+          "groupLabel": "Class · Morning",
+          "tip": "Answer: The underworld."
         },
         {
           "label": "Talk to Aigis — Aeon reaches rank 1",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "For later meetings, carry a Aeon Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Join Yukari's cooking hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -145,16 +187,22 @@
       "steps": [
         {
           "label": "Talk to Mitsuru — Empress reaches rank 10 (MAX)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry an Empress Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
         },
         {
           "label": "Chill a Taiyaki in the dorm kitchen fridge",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Walk Koromaru (with Chihiro)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -164,16 +212,22 @@
       "steps": [
         {
           "label": "Hang out with the rival athlete — Star reaches rank 9 (best answers: 1 > 2 > A > 1)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Carry a Star Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → 2 → Any → 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Check the dorm fridge for a Chilled Taiyaki and a note from Mitsuru",
-          "slot": "day"
+          "slot": "evening"
         },
         {
           "label": "Walk Koromaru (with Hayase)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -184,12 +238,17 @@
       "steps": [
         {
           "label": "Accept Keisuke's phone invitation (best answer: 3)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Reply order (options counted from the top): 3. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Join Mitsuru's tea-time hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -199,16 +258,23 @@
       "steps": [
         {
           "label": "Stay awake in class",
-          "slot": "day"
+          "slot": "day",
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Hang out with Kazushi — Chariot reaches rank 10 (MAX)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Chariot Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
         },
         {
           "label": "Join Fuuka's gardening hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -218,13 +284,18 @@
       "steps": [
         {
           "label": "Talk to Aigis — Aeon reaches rank 2 (best answer: 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Aeon Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Talk to the suspicious-looking man at Club Escapade and agree to meet their Messiah — Takaya's Link Episode",
           "slot": "evening",
           "spoiler": true
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -234,12 +305,17 @@
       "steps": [
         {
           "label": "Join the art club — Fortune reaches rank 9 (best answers: 1 > A > A > A > A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Fortune Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → Any → Any → Any → Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Join Fuuka's reading hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -250,42 +326,53 @@
       "steps": [
         {
           "label": "Stay awake in class",
-          "slot": "day"
+          "slot": "day",
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Talk to Aigis — Aeon reaches rank 3 (best answers: A > 2)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Aeon Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any → 2. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Buy any fortune from the Fortune Teller at Club Escapade",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Before or after the climb, complete Request #98 by reporting a Masakado with Charge once the request is available",
           "slot": "afternoon",
-          "tip": "Check that Request #98 is available, then show Elizabeth a Masakado that actually knows Charge. Merely creating Masakado without the requested skill is not enough. If you prepare it during tonight's climb, return to Elizabeth afterward; complete the report before marking this task done."
+          "tip": "Check that Request #98 is available, then show Elizabeth a Masakado that actually knows Charge. Merely creating Masakado without the requested skill is not enough. If you prepare it during tonight's climb, return to Elizabeth afterward; complete the report before marking this task done.\n\nRequest #98: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection."
         },
         {
           "label": "Tartarus — rescue the two missing persons on 232F and 250F before the January 30 cutoff",
           "slot": "evening",
           "spoiler": true,
           "tip": "Climb to the 256F border. Gatekeepers: 230F, 236F, 241F, 246F, 247F, 253F, 254F, 255F.\n\nThe final two missing people appear today on 232F and 250F. Rescue both during this visit; January 30 is their last actionable rescue date.\n\nContinue with today's separate Judgment and 255F Monad Passage tasks. Border progress, rescues and the request report are distinct objectives. If you split the climb over later free evenings, retain every unfinished objective and finish the rescues by January 30.",
-          "groupLabel": "Tartarus · Evening"
+          "groupLabel": "Dark Hour · Tartarus"
         },
         {
           "label": "Continue through Adamah: Judgment reaches ranks 2–10 at 227F, 230F, 236F, 241F, 246F, 247F, 253F, 254F, and 255F respectively",
           "slot": "evening",
           "spoiler": true,
           "tip": "Judgment progression follows the floors you actually reach: ranks 2–10 correspond to 227F, 230F, 236F, 241F, 246F, 247F, 253F, 254F and 255F, in that order. January 15 is this route's planned climb, not a date that grants all those ranks automatically. If you stop early, leave this combined task unfinished until you have reached the final milestone.",
-          "groupLabel": "Tartarus · Evening"
+          "groupLabel": "Dark Hour · Tartarus"
         },
         {
           "label": "Clear the final Monad Passage on 255F, defeat the Shadow of the Void, and report it to Elizabeth to complete Request #99",
           "slot": "evening",
           "spoiler": true,
-          "tip": "Complete the final Monad Passage on 255F and defeat the Shadow of the Void, then report back to Elizabeth for Request #99. Reaching 255F or entering the passage is only preparation. The later Request #101 challenge is a separate objective with its own acceptance and solo-entry requirements.",
-          "groupLabel": "Tartarus · Evening"
+          "tip": "Complete the final Monad Passage on 255F and defeat the Shadow of the Void, then report back to Elizabeth for Request #99. Reaching 255F or entering the passage is only preparation. The later Request #101 challenge is a separate objective with its own acceptance and solo-entry requirements.\n\nRequest #99: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection.",
+          "groupLabel": "Dark Hour · Tartarus"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        3,
+        2,
+        4,
+        5,
+        6
       ]
     },
     {
@@ -295,12 +382,17 @@
       "steps": [
         {
           "label": "Talk to Aigis — Aeon reaches rank 4 (best answers: 1 > A > 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Aeon Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → Any → 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Walk Koromaru (with Mitsuru)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -310,7 +402,8 @@
       "steps": [
         {
           "label": "Hang out with the rival athlete — Star reaches rank 10 (MAX)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Carry a Star Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
         },
         {
           "label": "Check the Command Room's final dorm recording",
@@ -320,6 +413,11 @@
           "label": "Walk Koromaru (with Yuko)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -329,7 +427,9 @@
       "steps": [
         {
           "label": "Answer the class question",
-          "slot": "day"
+          "slot": "day",
+          "groupLabel": "Class · Morning",
+          "tip": "Answer: Circe."
         },
         {
           "label": "Watch Junpei's Link Episode",
@@ -339,6 +439,11 @@
           "label": "Join Junpei's reading hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -354,6 +459,10 @@
           "label": "Watch Ken's Link Episode",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -363,12 +472,17 @@
       "steps": [
         {
           "label": "Talk to Aigis — Aeon reaches rank 5 (best answer: 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Aeon Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Go to bed",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -385,9 +499,13 @@
           "label": "Tartarus — defeat the Reaper, keep the Bloody Button, return it to Elizabeth to complete Request #100, then accept Request #101 before attempting the ultimate adversary",
           "slot": "evening",
           "spoiler": true,
-          "tip": "Follow the request chain in order: defeat the Reaper, retain the Bloody Button, report Request #100 to Elizabeth, then accept Request #101. Keep this task unfinished if the report or next-request acceptance is still outstanding.\n\nUse the remaining preparation time for the January 30 solo challenge. Completing the Reaper request does not also complete Request #101.",
-          "groupLabel": "Tartarus · Evening"
+          "tip": "Follow the request chain in order: defeat the Reaper, retain the Bloody Button, report Request #100 to Elizabeth, then accept Request #101. Keep this task unfinished if the report or next-request acceptance is still outstanding.\n\nUse the remaining preparation time for the January 30 solo challenge. Completing the Reaper request does not also complete Request #101.\n\nRequest #100: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection.\n\nRequest #101: accept it with Elizabeth. Acceptance keeps it in progress; it does not report the request.",
+          "groupLabel": "Dark Hour · Tartarus"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -397,20 +515,28 @@
       "steps": [
         {
           "label": "Stay awake in class",
-          "slot": "day"
+          "slot": "day",
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Talk to Aigis — Aeon reaches rank 6 (best answer: 2/3)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Aeon Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 2/3. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Chill a Taiyaki in the dorm kitchen fridge",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Join Ken's DVD hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -420,16 +546,22 @@
       "steps": [
         {
           "label": "Talk to Aigis — Aeon reaches rank 7 (best answers: A > A > A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Aeon Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any → Any → Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Check the dorm fridge for a Chilled Taiyaki and a note from Fuuka",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Walk Koromaru (with Chihiro)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -445,6 +577,10 @@
           "label": "Walk Koromaru (with Kenji)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -454,7 +590,8 @@
       "steps": [
         {
           "label": "Stay awake in class",
-          "slot": "day"
+          "slot": "day",
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Watch Koromaru's Link Episode",
@@ -464,6 +601,11 @@
           "label": "Join Koromaru's TV hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -473,12 +615,17 @@
       "steps": [
         {
           "label": "Join the art club — Fortune reaches rank 10 (MAX)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Fortune Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
         },
         {
           "label": "Join Fuuka's gardening hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -488,12 +635,17 @@
       "steps": [
         {
           "label": "Talk to Aigis — Aeon reaches rank 8 (romance: 2 > A > 1 / platonic: 2 > A > 2)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Aeon Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top):\nRomance: 2 → Any → 1\nFriendship: 2 → Any → 2.\n\nAny means any response. Follow the branch for your chosen relationship."
         },
         {
           "label": "Join Akihiko's cooking hangout",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -503,16 +655,23 @@
       "steps": [
         {
           "label": "Stay awake in class",
-          "slot": "day"
+          "slot": "day",
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Talk to Aigis — Aeon reaches rank 9 (romance: 1 > 1 / platonic: 1 > A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Aeon Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top):\nRomance: 1 → 1\nFriendship: 1 → Any.\n\nAny means any response. Follow the branch for your chosen relationship."
         },
         {
           "label": "Play Punch Boxer at Game Parade",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -523,12 +682,17 @@
       "steps": [
         {
           "label": "Talk to Aigis — Aeon reaches rank 10 (MAX)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Aeon Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
         },
         {
           "label": "Walk Koromaru (with the whole team)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -539,7 +703,7 @@
       "steps": [
         {
           "label": "Spend time with your romance Social Link (or Hierophant)",
-          "slot": "day"
+          "slot": "afternoon"
         },
         {
           "label": "Confirm the 232F and 250F missing persons have been rescued before today's cutoff",
@@ -549,9 +713,14 @@
           "label": "Tartarus — with Request #101 accepted, enter the 255F Monad door alone and defeat the ultimate adversary to complete Elizabeth's final request; finish any remaining preparations afterward",
           "slot": "evening",
           "spoiler": true,
-          "tip": "Before the optional boss attempt, confirm that both final missing people on 232F and 250F are safe: tonight is their last actionable rescue night.\n\nFor Request #101, first finish the Reaper/Bloody Button hand-in chain and accept the request. Enter the designated 255F Monad door alone for the ultimate-adversary challenge. The January 15 Shadow of the Void clear is a different fight.\n\nThis task requires defeating the adversary, not merely accepting the request or entering the door. Keep it unfinished if you only prepare tonight; finish any remaining preparations for tomorrow's Promised Day separately.",
-          "groupLabel": "Tartarus · Evening"
+          "tip": "Before the optional boss attempt, confirm that both final missing people on 232F and 250F are safe: tonight is their last actionable rescue night.\n\nFor Request #101, first finish the Reaper/Bloody Button hand-in chain and accept the request. Enter the designated 255F Monad door alone for the ultimate-adversary challenge. The January 15 Shadow of the Void clear is a different fight.\n\nThis task requires defeating the adversary, not merely accepting the request or entering the door. Keep it unfinished if you only prepare tonight; finish any remaining preparations for tomorrow's Promised Day separately.\n\nAfter winning the solo fight, return to Elizabeth and report the request. The fight marks this request Ready to report; confirm Reported in Requests only after the in-game hand-in.",
+          "groupLabel": "Dark Hour · Tartarus"
         }
+      ],
+      "displayOrder": [
+        1,
+        0,
+        2
       ]
     },
     {
@@ -569,8 +738,12 @@
           "slot": "evening",
           "spoiler": true,
           "tip": "Final ascent: 259F, 263F, then 264F.\n\nUse today's final free time for remaining conversations and the recovery described in the day notes before committing to the finale. January's missing-person cutoff was yesterday; tonight is the Promised Day, not a replacement rescue window.\n\nFollow the story through the finale. The next playable calendar dates in this route are March 4 and March 5; February 1 through March 3 is the story skip.",
-          "groupLabel": "Tartarus · Evening"
+          "groupLabel": "Dark Hour · Tartarus"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     }
   ]

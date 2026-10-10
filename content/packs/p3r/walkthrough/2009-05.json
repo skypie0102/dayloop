@@ -17,6 +17,10 @@
             "academics": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -30,11 +34,12 @@
         },
         {
           "label": "Hang out with the old couple — Hierophant reaches rank 2 (best answers: 1 > 1 > A > A > A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Hierophant Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → 1 → Any → Any → Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Buy all ¥1,200 software at MangaStar Net Café (Iwatodai Strip Mall 3F)",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Run Lessons in Etiquette on the dorm's shared computer",
@@ -43,6 +48,12 @@
             "charm": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -56,7 +67,8 @@
         },
         {
           "label": "Play the MMORPG at your desk — Hermit reaches rank 2 (best answers: 1 > 2)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Carry a Hermit Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → 2. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Run Virtual Diet on the dorm's shared computer",
@@ -65,6 +77,11 @@
             "charm": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -75,7 +92,8 @@
       "steps": [
         {
           "label": "Play the MMORPG at your desk — Hermit reaches rank 3 (best answers: 1 > 1)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Carry a Hermit Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Run Language Made Easy on the dorm's shared computer",
@@ -84,6 +102,10 @@
             "academics": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -102,7 +124,8 @@
         },
         {
           "label": "Hang out with the old couple — Hierophant reaches rank 3 (best answers: 1 > 2 > A > A > A > A)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Carry a Hierophant Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → 2 → Any → Any → Any → Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Run Animal Othello on the dorm's shared computer",
@@ -111,6 +134,12 @@
             "courage": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -123,7 +152,9 @@
           "slot": "day",
           "statGains": {
             "charm": 2
-          }
+          },
+          "groupLabel": "Class · Morning",
+          "tip": "Answer: A pantograph."
         },
         {
           "label": "Hand over the Weird Takoyaki and Mad Bull at the shrine, then promise to play with her (Hanged-Man flag)",
@@ -131,7 +162,8 @@
         },
         {
           "label": "Hang out with Hidetoshi — Emperor reaches rank 2 (best answer: 2)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry an Emperor Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 2. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Play You're the Answer at Game Parade",
@@ -140,6 +172,12 @@
             "academics": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -150,16 +188,22 @@
       "steps": [
         {
           "label": "Ask Chihiro to hang out — Justice reaches rank 1",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "For later meetings, carry a Justice Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Buy the Iwatodai Forum Note (¥500) from the Suspicious Man at Club Escapade",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Read the Iwatodai Forum Note on the dorm's shared computer (unlocks new drinks at the Iwatodai Station vending machines)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -173,7 +217,8 @@
         },
         {
           "label": "Hang out with Kenji — Magician reaches rank 4 (best answers: A > 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Magician Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any → 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Vending machines restocked — buy SP drinks",
@@ -186,6 +231,12 @@
             "courage": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -197,13 +248,17 @@
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
           "spoiler": true,
-          "groupLabel": "Full Moon · Evening"
+          "groupLabel": "Dark Hour · Full Moon"
         },
         {
           "label": "Fool reaches rank 3 (story)",
           "slot": "evening",
-          "groupLabel": "Full Moon · Evening"
+          "groupLabel": "Dark Hour · Full Moon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -217,33 +272,48 @@
         },
         {
           "label": "Hang out with the old couple — Hierophant reaches rank 4 (best answers: A > A > 2)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Carry a Hierophant Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any → Any → 2. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Visit the Velvet Room — Elizabeth's requests unlock today; hand in Request #2 using Old Document 01 from Thebel 22F for ¥10,000",
-          "slot": "day"
+          "slot": "evening",
+          "tip": "Request #2: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection."
         },
         {
           "label": "Complete Request #1 with the Muscle Drink, then Request #9: bring 12 unique vending-machine drinks from Dorm 2F, Dorm 3F, Port Island Station, and Iwatodai Strip Mall 3F (Iwatodai Station duplicates Dorm 2F); accept Request #11",
-          "slot": "day"
+          "slot": "evening",
+          "tip": "Requests #1, #9: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection.\n\nRequest #11: accept it with Elizabeth. Acceptance keeps it in progress; it does not report the request."
         },
         {
           "label": "Evening request prep: accept Request #12, talk to Yukari at the dorm for Pine Resin, and report it to Elizabeth before the 6/6 deadline",
-          "slot": "day"
+          "slot": "evening",
+          "tip": "Request #12: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection."
         },
         {
           "label": "Evening request prep: accept Request #13, talk to Junpei at the dorm for the Handheld Game Console, and report it to Elizabeth before the 6/6 deadline",
-          "slot": "day"
+          "slot": "evening",
+          "tip": "Request #13: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection."
         },
         {
           "label": "Take the Big Eater Challenge at Wilduck Burger — Charm and Courage reach rank 3 (prompts: 2 > 1 > 2)",
-          "slot": "day",
+          "slot": "evening",
           "statGains": {
             "academics": 4,
             "charm": 4,
             "courage": 4
-          }
+          },
+          "tip": "Reply order (options counted from the top): 2 → 1 → 2. Any means any response; a slash between numbers means either listed option.\n\nRequest #11: keep the required item or objective proof for Elizabeth. Preparing it does not count as reporting."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
       ]
     },
     {
@@ -256,11 +326,13 @@
           "slot": "day",
           "statGains": {
             "academics": 2
-          }
+          },
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Visit the girl at the shrine — Hanged-Man reaches rank 1",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "For later meetings, carry a Hanged-Man Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Check the Command Room's newly unlocked dorm recordings",
@@ -273,6 +345,12 @@
             "courage": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -291,6 +369,10 @@
             "courage": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -303,11 +385,14 @@
           "slot": "day",
           "statGains": {
             "charm": 2
-          }
+          },
+          "groupLabel": "Class · Morning",
+          "tip": "Answer: The pendulum."
         },
         {
           "label": "Visit the girl at the shrine — Hanged-Man reaches rank 2 (best answers: 1 > A > A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Hanged-Man Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → Any → Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Play You're the Answer at Game Parade",
@@ -316,6 +401,11 @@
             "academics": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -325,7 +415,8 @@
       "steps": [
         {
           "label": "Hang out with the old couple — Hierophant reaches rank 5 (best answers: 1 > A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Hierophant Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Play High School of Youth at Game Parade",
@@ -334,6 +425,10 @@
             "charm": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -346,7 +441,9 @@
           "slot": "day",
           "statGains": {
             "charm": 2
-          }
+          },
+          "groupLabel": "Class · Morning",
+          "tip": "Answer: May Blues."
         },
         {
           "label": "Talk to Kenji, answer 3 > 3 > 2, and hand over your Odd Morsel (Moon flag)",
@@ -354,7 +451,8 @@
         },
         {
           "label": "Hang out with Nozomi — Moon reaches rank 1",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "For later meetings, carry a Moon Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Study with Mitsuru and Akihiko",
@@ -363,6 +461,12 @@
             "academics": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -375,11 +479,13 @@
           "slot": "day",
           "statGains": {
             "academics": 2
-          }
+          },
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Visit the girl at the shrine — Hanged-Man reaches rank 3 (best answers: A > 3)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Hanged-Man Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any → 3. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Study with Yukari and Junpei",
@@ -388,6 +494,11 @@
             "academics": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -401,7 +512,8 @@
         },
         {
           "label": "Play the MMORPG at your desk — Hermit reaches rank 4 (best answer: 3)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Carry a Hermit Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 3. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Vending machines restocked — buy SP drinks",
@@ -414,6 +526,12 @@
             "academics": 5
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -424,8 +542,12 @@
       "steps": [
         {
           "label": "Exam day — no player-answer question today",
-          "slot": "day"
+          "slot": "day",
+          "groupLabel": "Exams · Morning"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -435,8 +557,13 @@
       "steps": [
         {
           "label": "Exam day — see the Answers tab for today's sheet",
-          "slot": "day"
+          "slot": "day",
+          "groupLabel": "Exams · Morning",
+          "tip": "Exam reply order: May Blues."
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -446,8 +573,13 @@
       "steps": [
         {
           "label": "Exam day — see the Answers tab for today's sheet",
-          "slot": "day"
+          "slot": "day",
+          "groupLabel": "Exams · Morning",
+          "tip": "Exam reply order: A pendulum."
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -457,8 +589,13 @@
       "steps": [
         {
           "label": "Exam day — see the Answers tab for today's sheet",
-          "slot": "day"
+          "slot": "day",
+          "groupLabel": "Exams · Morning",
+          "tip": "Exam reply order: Electricity."
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -468,8 +605,13 @@
       "steps": [
         {
           "label": "Exam day — see the Answers tab for today's sheet",
-          "slot": "day"
+          "slot": "day",
+          "groupLabel": "Exams · Morning",
+          "tip": "Exam reply order: Jomon."
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -479,11 +621,13 @@
       "steps": [
         {
           "label": "Final exam day — no player-answer question; after school is free",
-          "slot": "day"
+          "slot": "day",
+          "groupLabel": "Exams · Morning"
         },
         {
           "label": "Hang out with Chihiro — Justice reaches rank 2 (best answers: 1 > 1/2 > 1 > A > A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Justice Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → 1/2 → 1 → Any → Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Weekend Wilduck Set at Wilduck Burger",
@@ -492,6 +636,11 @@
             "courage": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -506,19 +655,26 @@
         },
         {
           "label": "Free time — accept Kenji or Kazushi's phone invitation (Magician best answer: 2 / Chariot best answer: 1)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Reply order (options counted from the top): Magician best answer: 2 / Chariot best answer: 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Buy the Fortune Teller's 'Rarity Fortune' at Club Escapade",
-          "slot": "day"
+          "slot": "evening"
         },
         {
           "label": "Tartarus — grind ¥75,000 before leaving (Request #14 pays ¥20,000)",
           "slot": "evening",
           "spoiler": true,
           "tip": "Climb to the 43F border. Gatekeepers: 28F, 35F, 36F, 42F.\n\nCollect the Second Old Document for Request #14 and report it to Elizabeth for the route's ¥20,000 reward. Budget around the ¥75,000 target before leaving; do not count the reward as money received until you have reported the request.\n\nLeave carrying Justice and Strength Personas for the Social Link schedule through the next main climb on June 27.",
-          "groupLabel": "Tartarus · Evening"
+          "groupLabel": "Dark Hour · Tartarus"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -538,7 +694,8 @@
           "slot": "day",
           "statGains": {
             "academics": 2
-          }
+          },
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Talk to Mitsuru for the exam reward",
@@ -553,7 +710,8 @@
         },
         {
           "label": "Hang out with Hidetoshi — Emperor reaches rank 3 (best answer: A)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry an Emperor Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "The rooftop garden unlocks — collect the remaining Twilight Fragments in the city and plant the Healthy Tomato Sprouts",
@@ -566,6 +724,15 @@
             "charm": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
       ]
     },
     {
@@ -575,11 +742,12 @@
       "steps": [
         {
           "label": "Hang out with Chihiro — Justice reaches rank 3 (best answers: 1 > 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Justice Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): 1 → 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Pay ¥20,000 to the man in a suit at Paulownia Mall (Devil flag #1)",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Play House of the Deceased at Game Parade",
@@ -588,6 +756,11 @@
             "courage": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -597,7 +770,8 @@
       "steps": [
         {
           "label": "Hang out with Yuko — Strength reaches rank 3 (romance: A > 2 > 1 / platonic: A > 2 > 2)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Strength Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top):\nRomance: Any → 2 → 1\nFriendship: Any → 2 → 2.\n\nAny means any response. Follow the branch for your chosen relationship."
         },
         {
           "label": "Vending machines restocked — buy SP drinks",
@@ -611,6 +785,12 @@
           "label": "Read the School X Site Note on the dorm's shared computer (unlocks Lukewarm Taiyaki at the School Store)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -623,11 +803,13 @@
           "slot": "day",
           "statGains": {
             "academics": 2
-          }
+          },
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Hang out with Chihiro — Justice reaches rank 4 (best answers: A > 2)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Justice Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any → 2. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Play High School of Youth at Game Parade",
@@ -636,6 +818,11 @@
             "charm": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -648,7 +835,8 @@
           "slot": "day",
           "statGains": {
             "academics": 2
-          }
+          },
+          "groupLabel": "Class · Morning"
         },
         {
           "label": "Buy a Lukewarm Taiyaki from the School Store (Main Lobby)",
@@ -656,12 +844,19 @@
         },
         {
           "label": "Meet the exchange student — Temperance reaches rank 1",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "For later meetings, carry a Temperance Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Watch Akihiko's Link Episode — jog back with him for +5 Max HP, or refuse for +3 Max SP",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -671,11 +866,12 @@
       "steps": [
         {
           "label": "Hang out with Yuko — Strength reaches rank 4 (best answers: A > 1)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Strength Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned.\n\nReply order (options counted from the top): Any → 1. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Pay the man in a suit another ¥10,000 (Devil flag #2)",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Weekend Wilduck Set at Wilduck Burger",
@@ -684,6 +880,11 @@
             "courage": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -697,11 +898,12 @@
         },
         {
           "label": "Accept Yuko's phone invitation (best answer: 3)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Reply order (options counted from the top): 3. Any means any response; a slash between numbers means either listed option."
         },
         {
           "label": "Chill a Taiyaki in the dorm kitchen fridge (one left over 60 days becomes Mystery Food)",
-          "slot": "day"
+          "slot": "evening"
         },
         {
           "label": "Vending machines restocked — buy SP drinks",
@@ -714,6 +916,13 @@
             "courage": 4
           }
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     }
   ]

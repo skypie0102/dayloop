@@ -481,12 +481,18 @@ object PackLoader {
             if (requests.requests.map { it.number }.distinct().size != requests.requests.size) requestIssue("duplicate request number")
             val events = requests.events.associateBy { it.id }
             if (events.size != requests.events.size) requestIssue("duplicate request event id")
-            requests.events.forEach { event ->
-                val matches = walkthroughs.filter { it.routeId == (event.routeId ?: Routes.DEFAULT) }
+            val sourceKeys = requests.events.associate { event ->
+                val route = event.routeId ?: Routes.DEFAULT
+                val matches = walkthroughs.filter { it.routeId == route }
                     .flatMap { it.file.days }.filter { it.date == event.date }.flatMap { it.steps }
-                    .count { it.label.contains(event.labelContains, ignoreCase = true) }
-                if (event.id.isBlank() || event.labelContains.isBlank() || matches != 1) requestIssue("${event.id}: event must match exactly one reporting task")
-                if (requests.requests.count { it.completionEvent == event.id } != 1) requestIssue("${event.id}: event must belong to exactly one request")
+                    .withIndex().filter { it.value.label.contains(event.labelContains, ignoreCase = true) }
+                event.id to matches.singleOrNull()?.let { Triple(route, event.date, it.index) }
+            }
+            requests.events.forEach { event ->
+                if (event.id.isBlank() || event.labelContains.isBlank() || sourceKeys[event.id] == null) requestIssue("${event.id}: event must match exactly one source task")
+                if (requests.requests.count { event.id in listOfNotNull(it.completionEvent, it.acceptanceEvent) + it.preparationEvents + it.readyEvents } != 1) {
+                    requestIssue("${event.id}: event must belong to exactly one request")
+                }
             }
             val dates = walkthroughs.flatMap { it.file.days }.map { it.date }.toSet()
             requests.requests.forEach { request ->
@@ -495,6 +501,24 @@ object PackLoader {
                 request.completionEvent?.let { event ->
                     if (event !in events) requestIssue("${request.id}: missing completion event")
                     if (events[event]?.date !in request.routeDates) requestIssue("${request.id}: reporting task needs a route link")
+                }
+                val progressEvents = listOfNotNull(request.acceptanceEvent) + request.preparationEvents + request.readyEvents
+                progressEvents.forEach { event ->
+                    if (event !in events) requestIssue("${request.id}: missing progress event $event")
+                    if (events[event]?.date !in request.routeDates) requestIssue("${request.id}: progress task needs a route link")
+                    val report = request.completionEvent?.let(events::get)
+                    val preparation = events[event]
+                    if (event == request.completionEvent || (sourceKeys[event] != null &&
+                            sourceKeys[event] == sourceKeys[request.completionEvent])) {
+                        requestIssue("${request.id}: acceptance/preparation must be separate from its reporting task")
+                    }
+                    if (report != null && preparation != null && preparation.date > report.date) {
+                        requestIssue("${request.id}: progress task cannot follow its reporting task")
+                    }
+                }
+                if (request.preparationEvents.distinct().size != request.preparationEvents.size ||
+                    request.readyEvents.distinct().size != request.readyEvents.size) {
+                    requestIssue("${request.id}: duplicate progress reference")
                 }
                 if (request.routeDates.any { it !in dates }) requestIssue("${request.id}: route date is not authored")
                 request.deadline?.let { date ->
