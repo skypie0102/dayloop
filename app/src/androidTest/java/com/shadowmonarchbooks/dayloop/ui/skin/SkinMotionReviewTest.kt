@@ -59,4 +59,24 @@ class SkinMotionReviewTest {
         compose.runOnIdle { assertEquals(1, commits); assertEquals(1, finishes) }
         compose.onNodeWithTag("day-advance").assertDoesNotExist()
     }
+
+    @Test fun disablingMotionDuringTheResultsHoldDoesNotCommitTheClockTwice() {
+        scale(1)
+        compose.mainClock.autoAdvance = false
+        val removed = mutableStateOf(false)
+        val fx = mutableStateOf<AdvanceFx?>(AdvanceFx("moon", emptyList()))
+        var commits = 0
+        var finishes = 0
+        compose.setContent {
+            DayloopTheme {
+                CompositionLocalProvider(LocalAnimationsDisabled provides removed.value) {
+                    DayAdvanceOverlay(fx.value, onCovered = { commits++ }, onFinished = { finishes++; fx.value = null })
+                }
+            }
+        }
+        compose.mainClock.advanceTimeBy(500)
+        compose.runOnIdle { assertEquals(1, commits); removed.value = true }
+        compose.mainClock.advanceTimeBy(32)
+        compose.runOnIdle { assertEquals(1, commits); assertEquals(1, finishes) }
+    }
 }

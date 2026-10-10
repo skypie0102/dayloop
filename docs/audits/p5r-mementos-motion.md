@@ -38,7 +38,8 @@ keys; no new persistence table or migration is needed.
 | An Idol and a Unicorn | January 28: white-coat woman and Anji Fuwa |
 
 The May 28 task's tip now includes the seated man. Its label and index remain
-unchanged. The job-linked gates use the guide's complete sequence of shifts;
+unchanged. There are now 573 tasks with inline guidance (193 dialogue events).
+The job-linked gates use the guide's complete sequence of shifts;
 this tracker does not infer an alternative off-route investigation.
 
 ## All 33 route checkpoints
