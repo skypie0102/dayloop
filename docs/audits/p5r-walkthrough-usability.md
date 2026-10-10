@@ -80,7 +80,9 @@ Required CI covers app/core/tool tests, debug and candidate builds, Android-test
 compilation, and all three packlint targets. Focused Android review exercises
 visible dialogue/crafting instructions, 200% text and Done toggle/reversal at the
 original saved index, and a request appended after Night in storage but displayed
-before it. Screenshots and an installable candidate APK are workflow artifacts.
+before it. A real-activity flow also checks Today, saved Room marks after activity
+recreation, Calendar-to-Day navigation, and reversal on the original task key.
+Screenshots and an installable candidate APK are workflow artifacts.
 CI results and screenshot inspection are pending at this revision.
 
 The next acceptance step is using the candidate during a real play session.

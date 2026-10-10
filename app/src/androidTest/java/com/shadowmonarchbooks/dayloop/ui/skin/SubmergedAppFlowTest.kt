@@ -389,6 +389,35 @@ class SubmergedAppFlowTest {
         capture("p3r-app-calendar-large-text-returned")
     }
 
+    @Test fun p5rSourceReadingOrderAndGuidanceStaySavedAcrossTodayAndDay() {
+        launch("2016-05-07", "p5r")
+        compose.onNodeWithTag("task-guidance-3").performScrollTo().assertIsDisplayed()
+        compose.onNodeWithText("TIPS").assertDoesNotExist()
+        // The third displayed task was appended at stored index 3, after Night.
+        compose.onAllNodesWithText("Done")[2].performScrollTo().performClick()
+        markIs(3, StepMark.DONE, "2016-05-07")
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().none { it.stepIndex == 2 } })
+        capture("p5r-app-today-request")
+        scenario!!.recreate()
+        compose.waitUntil(20_000) {
+            compose.onAllNodesWithText("End day", ignoreCase = true).fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.onAllNodesWithText("Done")[2].performScrollTo().assertIsSelected()
+        tab("Calendar").performClick()
+        compose.onNode(hasText("7") and hasClickAction()).performScrollTo().performClick()
+        compose.onNodeWithTag("task-guidance-3").performScrollTo().assertIsDisplayed()
+        compose.onAllNodesWithText("Done")[2].performScrollTo().assertIsSelected()
+        capture("p5r-app-day-request")
+        compose.onAllNodesWithText("Done")[2].performClick()
+        compose.waitUntil(10_000) {
+            runBlocking { dependencies.repo().marksFor(profileId).first().none { it.date == "2016-05-07" && it.stepIndex == 3 } }
+        }
+        assertEquals("2016-05-07", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
+        compose.onNodeWithContentDescription("Back").performClick()
+        tab("Today").performClick()
+        compose.onAllNodesWithText("Done")[2].performScrollTo().assertIsNotSelected()
+    }
+
     @Test fun p5rSameBuildControlCapture() {
         launch("2016-04-15", "p5r")
         capture("p5r-app-control")

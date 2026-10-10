@@ -37,7 +37,7 @@ jobs:
       - name: Exercise inline guidance, enlarged text and saved task indexes
         uses: reactivecircus/android-emulator-runner@v2
         env:
-          P3R_UI_TEST_CLASSES: com.shadowmonarchbooks.dayloop.ui.skin.P5rWalkthroughTest
+          P3R_UI_TEST_CLASSES: com.shadowmonarchbooks.dayloop.ui.skin.P5rWalkthroughTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedAppFlowTest#p5rSourceReadingOrderAndGuidanceStaySavedAcrossTodayAndDay
         with:
           api-level: 34
           arch: x86_64
