@@ -8,29 +8,42 @@
       "steps": [
         {
           "label": "Buy the Broken Laptop and a Black Kogatana at the second-hand shop",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy all the new books at the Central Street bookstore",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Rent 'Mouse M.D.'",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy Black Rocks at the Kichijoji crystal healing store",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Ohya (no rank-up today)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "This visit builds affinity; it does not increase the rank today."
         },
         {
           "label": "Receive the request 'Fighting for Truth in Journalism'",
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -44,7 +57,8 @@
         },
         {
           "label": "Borrow 'Cry of Cthulhu' from the school library",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Grab a Yakisoba Pan; Autumn Bread is new at the school store",
@@ -52,7 +66,8 @@
         },
         {
           "label": "Buy the PC Tool Set in Akihabara and every game at the retro shop",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Win the Jack Frost Doll at the Akihabara arcade (1/8)",
@@ -60,14 +75,16 @@
         },
         {
           "label": "Hang out with Futaba in front of LeBlanc (bring a Hermit Persona) — Hermit reaches rank 2",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Outside Café LeBlanc. Required before starting: Kindness rank 4. Carry a Hermit Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Approve the idea\n• offer to work together\n• express confidence it will help."
         },
         {
           "label": "Solve the LeBlanc crossword: 'Typhoon'",
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Fix the broken laptop at your desk",
@@ -80,6 +97,17 @@
           "label": "Tanaka's Shady Commodities unlocks on the laptop",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
       ]
     },
     {
@@ -100,8 +128,14 @@
         },
         {
           "label": "Hang out with Akechi — Justice reaches rank 6",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: Kichijoji. Carry a Justice Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Comment on how long it has been\n• acknowledge his hardships\n• downplay the activity\n• say you feel the same. Question 5 allows any response. Agree with him\n• accept the blame lightly.\n\nKeep a Justice Persona for this rank event. Later ranks 7 and 8 also contain specific rivalry/challenge choices used by the optional Royal scenes."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -120,28 +154,42 @@
           "statGains": {
             "knowledge": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Futaba — Hermit reaches rank 3",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Outside Café LeBlanc. Carry a Hermit Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Say you were about to find her\n• say you are glad to see her\n• promise to do your best together."
         },
         {
           "label": "Give the Phantom Wafer to the Kichijoji alley man — Strength Up Ofuda x2 (7/16)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Chihaya — Fortune reaches rank 6 (required answer for a later story event)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: Shinjuku. Carry a Fortune Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Tell her you see her simply as Chihaya\n• urge honesty with herself. The first response is required for the later romance event."
         },
         {
           "label": "Buy items from the Kanda priest",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
       ]
     },
     {
@@ -161,6 +209,11 @@
           "label": "Meet the Twins on Central Street (6/13)",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -177,7 +230,8 @@
         },
         {
           "label": "Buy SP-recovery drinks from the vending machines",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Ask Chihaya for a money reading",
@@ -187,7 +241,8 @@
           "label": "Explore Mementos — 4 requests; fight the 'Winners Don't Use Cheats' boss (auto-retreats, redo it later)",
           "groupLabel": "Infiltration",
           "spoiler": true,
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "The cheating target cannot be beaten during this attempt. Let the encounter force your retreat, then follow the September 19 Shinya/Futaba investigation. Complete the three other pending requests during this visit."
         },
         {
           "label": "Raise Jose's Money bonus to 170%",
@@ -219,6 +274,17 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        7,
+        8,
+        4,
+        5
       ]
     },
     {
@@ -231,6 +297,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -243,6 +312,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -255,6 +327,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -267,6 +342,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -279,6 +357,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -295,8 +376,13 @@
           "statGains": {
             "kindness": 5
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -314,6 +400,10 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -333,6 +423,10 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -346,6 +440,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -358,6 +455,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -382,6 +482,11 @@
           "spoiler": true,
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -402,6 +507,10 @@
           },
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -415,14 +524,16 @@
         },
         {
           "label": "Buy SP-recovery drinks from the vending machines",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Prove your support to the arcade King in Akihabara — have Futaba hack the Gun About site, then report back — Tower reaches rank 1",
           "statGains": {
             "kindness": 3
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Dialogue choices — follow the listed responses in order:\nTell Shinya to contact you when it is game time. No Tower Persona is needed for the first rank.\n\nTalk to the King at Akihabara’s arcade, ask Futaba at LeBlanc to help with the Gun About site, then return to the King. This unlocks Shinya and the method needed for the cheating request’s later rematch."
         },
         {
           "label": "Kindness reaches rank 5",
@@ -433,7 +544,8 @@
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Spend up to 50,000 yen at Shady Commodities; buy the Black Robe",
@@ -441,7 +553,8 @@
         },
         {
           "label": "Give the Thief Mask to the Kichijoji alley man — 2 Magic Up Ofuda (8/16)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Watch 'Showtime Redemption' in Yongen-Jaya (Craft of Cinema bonus active)",
@@ -451,6 +564,16 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
       ]
     },
     {
@@ -460,15 +583,21 @@
       "steps": [
         {
           "label": "Hang out with Maruki — Councilor reaches rank 6",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: School practice building. Carry a Councilor Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Offer curry too\n• agree you can do it\n• suggest giving up\n• ask what is happening."
         },
         {
           "label": "Hang out with Sojiro — Hierophant reaches rank 4",
           "statGains": {
             "kindness": 3
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: Café LeBlanc. Carry a Hierophant Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Ask for more details\n• choose to call Sojiro\n• acknowledge his instructions."
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -485,15 +614,22 @@
         },
         {
           "label": "Hang out with Maruki — Councilor reaches rank 7",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: School practice building. Carry a Councilor Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\nEvery response in this rank event awards the same positive affinity."
         },
         {
           "label": "Hang out with Hifumi — Star reaches rank 8",
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: Kanda Church. Required before starting: Knowledge rank 5. Carry a Star Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Say you are glad her mother's heart changed\n• support her decision."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -507,7 +643,8 @@
         },
         {
           "label": "Accept Hifumi's invitation (7 of 10)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Dialogue choices — follow the listed responses in order:\n• Tell Hifumi to take her time\n• suggest stripping as a joke\n• say the result is good\n• say Chihaya knows everything."
         },
         {
           "label": "Reach 100,000 yen spent at Shady Commodities — buy Black Kogatana and Black Robe toward Chaos rank; stock 10 of each Black item",
@@ -529,8 +666,17 @@
           "statGains": {
             "charm": 5
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: Crossroads, Shinjuku. Carry a Devil Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\nQuestion 4 allows any response. Tell Ohya to be careful."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -541,7 +687,8 @@
         {
           "label": "Read 'Billiards Magician' during class",
           "activityRef": "p5r.activity.book.billiards-magician",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Grab a Yakisoba Pan or Autumn Bread at the school store",
@@ -549,12 +696,20 @@
         },
         {
           "label": "Hang out with Maruki — Councilor reaches rank 8",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: School practice building. Carry a Councilor Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Ask what he means\n• react with interest\n• thank him for the food\n• mention your agreement. Questions 5 and 6 allow any response. Describe your friend positively."
         },
         {
           "label": "Hang out with Ohya — Devil reaches rank 9 (romance choice available)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: Crossroads, Shinjuku. Carry a Devil Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Ask whether she is giving up\n• say you cannot leave her. For romance, say you took it seriously\n• confess love to Ichiko\n• say you wanted to hear her voice."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -568,7 +723,8 @@
           "statGains": {
             "guts": 5
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Answer the class question",
@@ -582,7 +738,8 @@
           "statGains": {
             "kindness": 3
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Akihabara arcade. Carry a Tower Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Reject the comparison\n• call the employee rude\n• ask whether he admires them\n• agree that you do too\n• promise to work hard."
         },
         {
           "label": "Save first, then order the Sincere Omelette at the maid cafe — have Clara fix a mistake, reload if she is flawless",
@@ -592,6 +749,12 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -609,11 +772,13 @@
           "statGains": {
             "charm": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Makoto — Priestess reaches rank 6",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Shujin Academy. Required before starting: Charm rank 5. Carry a Priestess Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Say love has many forms\n• suggest telling him you are on a date."
         },
         {
           "label": "Meet the Twins on Central Street (7/13)",
@@ -623,6 +788,13 @@
           "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -635,15 +807,21 @@
           "statGains": {
             "kindness": 3
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Akihabara arcade. Carry a Tower Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Encourage his spirit\n• agree."
         },
         {
           "label": "Hang out with Sojiro — Hierophant reaches rank 5",
           "statGains": {
             "kindness": 3
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: Café LeBlanc. Carry a Hierophant Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Praise the food as addictive\n• comment on her unusual behavior\n• say it paid off\n• mention a balanced diet."
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -657,8 +835,13 @@
         },
         {
           "label": "Hang out with Chihaya — Fortune reaches rank 7",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: Shinjuku. Carry a Fortune Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Say you disagree\n• ask if she will be all right."
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -669,7 +852,8 @@
         {
           "label": "Read 'Master Swordsman' on the metro",
           "activityRef": "p5r.activity.book.master-swordsman",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Answer the class question",
@@ -680,30 +864,44 @@
         },
         {
           "label": "Buy SP-recovery drinks from the vending machines",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Futaba — Hermit reaches rank 4",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Outside Café LeBlanc. Carry a Hermit Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Offer to do it together\n• call it cute\n• offer help anytime."
         },
         {
           "label": "Solve the LeBlanc crossword: 'Ranking'",
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Use the Mega Fertilizer on the plant",
           "statGains": {
             "kindness": 5
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         },
         {
           "label": "Hang out with Hifumi — Star reaches rank 9 (romance choice available)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: Kanda Church. Carry a Star Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Urge her to give it everything\n• praise the queenly decision. For romance, say you want to stay beside her\n• explicitly propose dating. Question 5 allows any response."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
       ]
     },
     {
@@ -720,7 +918,8 @@
         },
         {
           "label": "Hang out with Futaba — Hermit reaches rank 5",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Outside Café LeBlanc. Carry a Hermit Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Agree with her\n• identify him as the protagonist\n• praise her success."
         },
         {
           "label": "Answer the TV game show: 'Divulging someone's crimes'",
@@ -738,6 +937,13 @@
           "spoiler": true,
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -751,7 +957,8 @@
           "statGains": {
             "guts": 7
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Grab a Yakisoba Pan or Autumn Bread at the school store",
@@ -759,7 +966,8 @@
         },
         {
           "label": "Hang out with Yusuke — Emperor reaches rank 7",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Shibuya Underground Walkway. Carry a Emperor Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Ask what he means\n• say the truth is inside him\n• say enjoying sushi is no crime."
         },
         {
           "label": "Ask Chihaya for an affinity reading for Ohya",
@@ -767,8 +975,16 @@
         },
         {
           "label": "Hang out with Ohya — Devil reaches rank 10",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: Crossroads, Shinjuku. Carry a Devil Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\nAsk whether it counts as entertainment. Questions 2 and 4 allow any response."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     }
   ]

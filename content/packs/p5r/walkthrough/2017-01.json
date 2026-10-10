@@ -11,6 +11,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -30,6 +33,10 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -42,6 +49,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -54,6 +64,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -66,6 +79,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -78,6 +94,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -90,6 +109,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -102,6 +124,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -121,6 +146,10 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -133,6 +162,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -147,6 +179,9 @@
           },
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -171,6 +206,11 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -198,12 +238,21 @@
         },
         {
           "label": "Give the Special Chimaki to the Kichijoji alley man — Strength Belt (15/16)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Meet Lavenza on Central Street (13/13) — Enduring Soul skill card",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -233,7 +282,8 @@
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Save first, then have Kawakami wash the Sooty Scale Armor — reload until you get the Dragon Scale Scarf",
@@ -247,6 +297,14 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -260,11 +318,13 @@
           "statGains": {
             "proficiency": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy items from the Kanda priest",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Futaba — her awakening",
@@ -283,6 +343,14 @@
           "label": "Bring a non-Futaba party member to the jazz club to learn Ali Dance; alternatively invite Futaba for Support Plus 3 instead",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -302,6 +370,10 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -319,8 +391,13 @@
           "statGains": {
             "proficiency": 3
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Have Sumire and Haru take their final darts turns. Encourage Sumire to trust her instincts and Haru to enjoy the game. Save first and retry if the planned rank-3 finishes fail."
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -342,7 +419,8 @@
         },
         {
           "label": "Buy a Black Kogatana at the Yongen-Jaya second-hand shop",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Watch 'Bite Club' in Shinjuku (Craft of Cinema bonus active)",
@@ -352,6 +430,12 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -362,7 +446,8 @@
         {
           "label": "Read 'Batting Science' on the metro",
           "activityRef": "p5r.activity.book.batting-science",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Carry a Faith Persona",
@@ -370,14 +455,16 @@
         },
         {
           "label": "Hang out with Sumire — Faith reaches rank 6",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Faith Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\nTell Sumire she has to face it."
         },
         {
           "label": "Solve the LeBlanc crossword: 'Dionysus'",
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Have Kawakami craft 4 Treasure Traps (need at least 2)",
@@ -393,6 +480,14 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -403,7 +498,8 @@
         {
           "label": "Read 'Factorization Guide' during class",
           "activityRef": "p5r.activity.book.factorization-guide",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Grab a Yakisoba Pan at the school store",
@@ -411,7 +507,8 @@
         },
         {
           "label": "Buy the Special Chimaki at the Kichijoji Chinese bun shop",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Explore Mementos — 2 requests; set Treasure Traps for any missing Treasure Demons; reach the Cognitive Control Room",
@@ -445,6 +542,16 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        7,
+        4,
+        5
       ]
     },
     {
@@ -461,7 +568,8 @@
         },
         {
           "label": "Hang out with Sumire — Faith reaches rank 7",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Faith Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Check if she is all right\n• reject the negative claim. Question 6 allows any response. Say you enjoy a challenge."
         },
         {
           "label": "Beat 'Train of Life' (5/7) with 'the technique' — reload until you win",
@@ -471,6 +579,11 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -480,11 +593,13 @@
       "steps": [
         {
           "label": "Buy the Supernova Burger at the Central Street Big Bang Burger",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Give the Supernova Burger to the Kichijoji alley man — Old Man's Elixir (16/16)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Sunday drink in the Underground Walkway",
@@ -492,15 +607,18 @@
           "statGains": {
             "guts": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy items from the Kanda priest",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Sumire — Faith reaches rank 8",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Faith Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\nWalk toward Sumire. Questions 3, 6 and 9 allow any response. Choose online."
         },
         {
           "label": "TV Shopping Program: Talisman and Sweet Delight sets",
@@ -514,6 +632,16 @@
           "label": "Bring a non-Futaba party member to the jazz club to learn Arms Master; alternatively invite Futaba for Support Rate Up instead",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
       ]
     },
     {
@@ -527,22 +655,26 @@
         },
         {
           "label": "Claim any outstanding badges for the five completed retro games at the Akihabara Retro Game Shop: Forneus Badge, Gambla Badge, Featherman Badge, Punch Badge, and Train Badge",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Sumire — Faith reaches rank 9 (romance choice available)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Faith Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Questions 1 and 2 allow any response. Affirm your feelings. Question 4 allows any response. Encourage her to continue\n• reciprocate her love for the romance route. Questions 8 and 9 allow any response. Tell her to get used to it."
         },
         {
           "label": "Solve the LeBlanc crossword: 'Lachesis'",
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Buy the Flower Basket at the Shinjuku flower shop",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Take the Big Bang Challenge (3 of 3) — the challenge is cleared",
@@ -554,6 +686,14 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -570,7 +710,8 @@
         },
         {
           "label": "Hang out with Haru in Tsukishima — Giant Spatula (room decoration 19/20)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Select a fun outing, then Tsukishima. Give Haru the Flower Basket and receive the Giant Spatula."
         },
         {
           "label": "Save first, then beat 'Power Intuition' with 'the technique' — reload until you win",
@@ -580,6 +721,11 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -590,11 +736,13 @@
         {
           "label": "Read every remaining book during class, finishing with 'Chinese Sweets' — the book list and all city locations are complete",
           "activityRef": "p5r.activity.book.chinese-sweets",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Use the train seat or classroom reading opportunity; this does not spend free time."
         },
         {
           "label": "Hang out with Sumire — Faith reaches rank 10",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Carry a Faith Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\nQuestions 5 and 8 allow any response."
         },
         {
           "label": "Beat 'Power Intuition' with 'the technique' — reload until you win",
@@ -604,6 +752,11 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -642,8 +795,15 @@
           "statGains": {
             "guts": 3
           },
-          "slot": "afternoon"
+          "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -673,7 +833,8 @@
         },
         {
           "label": "Buy the Special Chimaki at the Kichijoji Chinese bun shop",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Watch 'Finding Beemo' on Central Street (Craft of Cinema bonus active)",
@@ -688,7 +849,8 @@
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Beat 'Golfer Sarutahiko' with 'the technique' — reload until you win",
@@ -698,6 +860,16 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
       ]
     },
     {
@@ -716,7 +888,8 @@
         },
         {
           "label": "Claim the PI Badge for completing Power Intuition at the Akihabara Retro Game Shop",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Ask Chihaya for a money reading and a celestial reading",
@@ -744,7 +917,7 @@
           "statGains": {
             "proficiency": 3
           },
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Complete request: Fake-Man Show",
@@ -760,6 +933,18 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        8,
+        9,
+        5,
+        6,
+        7
       ]
     },
     {
@@ -773,19 +958,23 @@
           "statGains": {
             "kindness": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy items from the Kanda priest",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Motorcycle Figure at the Akihabara Otaku Goods Store",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Makoto in Chinatown — Shumai Cushion (room decoration 20/20)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Select a fun outing, then Chinatown. Give Makoto the Motorcycle Figure; this awards the final Shumai Cushion decoration."
         },
         {
           "label": "TV Shopping Program: Energetic and Delicious Revival sets",
@@ -799,6 +988,15 @@
           "label": "Bring a non-Futaba party member to the jazz club to learn Spell Master; Futaba has no further Jazz Jin skill after Support Rate Up",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
       ]
     },
     {
@@ -818,6 +1016,10 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -827,7 +1029,8 @@
       "steps": [
         {
           "label": "Claim the Golfer Badge for completing Golfer Sarutahiko at the Akihabara Retro Game Shop",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Talk to Star Lilina by the Machine Parts Shop for her new CD",
@@ -837,6 +1040,11 @@
           "label": "After-school/evening cleanup — optional Thieves Den grind, self-laundry, 30 home runs, or training at the Protein Lovers Gym",
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     }
   ]

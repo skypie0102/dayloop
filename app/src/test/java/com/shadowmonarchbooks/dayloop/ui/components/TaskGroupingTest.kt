@@ -7,6 +7,39 @@ import kotlin.test.assertEquals
 class TaskGroupingTest {
 
     @Test
+    fun `explicit reading order keeps errands after infiltration instead of merging them ahead`() {
+        val groups = groupTasksBySlot(
+            listOf(
+                Step("Prepare", slot = "afternoon"),
+                Step("Visit dungeon", slot = "afternoon", groupLabel = "Infiltration"),
+                Step("Return to town", slot = "afternoon"),
+            ),
+            displayOrder = listOf(0, 1, 2),
+        )
+        assertEquals(listOf(null, "Infiltration", null), groups.map { it.groupLabel })
+        assertEquals(listOf(0, 1, 2), groups.flatMap { it.tasks }.map { it.index })
+    }
+
+    @Test
+    fun `appended completion tasks display before night while keeping their saved indexes`() {
+        val steps = listOf(
+            Step("Enter dungeon", slot = "afternoon", groupLabel = "Infiltration"),
+            Step("Read at night", slot = "evening"),
+            Step("Complete request", slot = "afternoon", groupLabel = "Infiltration"),
+        )
+        val groups = groupTasksBySlot(steps, displayOrder = listOf(0, 2, 1))
+        assertEquals(listOf(0, 2), groups.first().tasks.map { it.index })
+        assertEquals(1, groups.last().tasks.single().index)
+        assertEquals("Complete request", groups.first().tasks.last().value.label)
+    }
+
+    @Test
+    fun `invalid presentation metadata falls back without dropping a saved task`() {
+        val steps = listOf(Step("One"), Step("Two"))
+        assertEquals(listOf(0, 1), groupTasksBySlot(steps, listOf(1, 1)).flatMap { it.tasks }.map { it.index })
+    }
+
+    @Test
     fun `tasks group by authored time slot without changing progress indexes`() {
         val groups = groupTasksBySlot(
             listOf(

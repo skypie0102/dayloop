@@ -65,6 +65,7 @@ class PackLoaderTest {
                     "sat",
                     "story",
                     steps = listOf(Step("Arrive in town", tip = "Take the evening train.")),
+                    displayOrder = listOf(0),
                 ),
             ),
         )
@@ -74,6 +75,21 @@ class PackLoaderTest {
         assertEquals(1, parsed.days.size)
         assertEquals("Arrive in town", parsed.days.first().steps.first().label)
         assertEquals("Take the evening train.", parsed.days.first().steps.first().tip)
+        assertEquals(listOf(0), parsed.days.first().displayOrder)
+    }
+
+    @Test
+    fun `legacy packs and walkthroughs retain their old presentation defaults`() {
+        assertEquals(false, PackLoader.decodePack(packJson)?.walkthroughPresentation?.inlineTips)
+        val wt = PackLoader.decodeWalkthrough("""{"month":"2016-04","days":[{"date":"2016-04-09","weekday":"sat","steps":[{"label":"Arrive"}]}]}""")
+        assertNotNull(wt)
+        assertEquals(emptyList(), wt.days.single().displayOrder)
+    }
+
+    @Test
+    fun `pack can opt into inline guidance without a game-specific capability`() {
+        val text = packJson.replace("\"packId\":", "\"walkthroughPresentation\": {\"inlineTips\": true}, \"packId\":")
+        assertEquals(true, PackLoader.decodePack(text)?.walkthroughPresentation?.inlineTips)
     }
 
     @Test

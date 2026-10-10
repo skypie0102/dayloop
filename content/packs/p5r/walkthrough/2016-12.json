@@ -13,26 +13,37 @@
         },
         {
           "label": "Hang out with Haru — Empress reaches rank 4",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: School rooftop. Carry a Empress Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Say it must be amazing. Questions 2 and 3 allow any response. Suggest asking him\n• admit uncertainty\n• suggest another coffee together."
         },
         {
           "label": "Buy SP-recovery drinks from the vending machines",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Use the Mega Fertilizer on the plant",
           "statGains": {
             "kindness": 5
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         },
         {
           "label": "Hang out with Iwai — Hanged Man reaches rank 10",
           "statGains": {
             "proficiency": 3
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Where: Airsoft shop. Carry a Hanged Man Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Say the decision is Iwai's\n• ask what happens if he is right."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -42,23 +53,33 @@
       "steps": [
         {
           "label": "Hang out with Haru — Empress reaches rank 5",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: School rooftop. Carry a Empress Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Say someone is telling the truth\n• insist another solution exists\n• say it does not matter now\n• suggest pinching herself."
         },
         {
           "label": "Solve the LeBlanc crossword: 'Influenza'",
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Buy the Blaring Alarm Clock at the Akihabara electronics store",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Call Kawakami, then give her the alarm clock — Night Pennant (room decoration 10/20)",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Give Kawakami the Blaring Alarm Clock bought at Akihabara’s electronics shop. The resulting room decoration is the Night Pennant."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -71,12 +92,17 @@
           "statGains": {
             "kindness": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: Akihabara arcade. Carry a Tower Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Credit your teacher\n• point out his new friends."
         },
         {
           "label": "Meet the Twins on Central Street (12/13) — Heat Riser skill card",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -86,15 +112,18 @@
       "steps": [
         {
           "label": "Buy items from the Kanda priest",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Uji Matcha Flan at the Underground Mall supermarket",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Yusuke in Ikebukuro — Star Stickers (room decoration 11/20)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Select a fun outing, then Ikebukuro. Give Yusuke the Uji Matcha Flan for the planned Star Stickers visit."
         },
         {
           "label": "Buy the Sunday drink in the Underground Walkway",
@@ -102,7 +131,8 @@
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Grab Chunky Katsu at the Kichijoji fried food shop",
@@ -112,6 +142,14 @@
           "label": "Bring a non-Futaba party member to the Kichijoji jazz club to learn Heat Riser (skip Haru — she learns it at level 75); alternatively invite Futaba for Support Plus 1 instead",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     {
@@ -121,11 +159,13 @@
       "steps": [
         {
           "label": "Hang out with Haru — Empress reaches rank 6",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: School rooftop. Carry a Empress Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Question 1 allows any response. Express surprise\n• say that would be bad\n• encourage Haru\n• offer to listen anytime."
         },
         {
           "label": "Buy SP-recovery drinks from the vending machines",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Save your game, then fish at Ichigaya — use the free small boilies and don't miss a cast; buy 7 Medium Boilies",
@@ -134,6 +174,11 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -143,20 +188,29 @@
       "steps": [
         {
           "label": "Hang out with Haru — Empress reaches rank 7",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: School rooftop. Carry a Empress Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\nAsk what Haru wants to do. Questions 3 and 4 allow any response. Promise your support."
         },
         {
           "label": "Buy 'Essence of Fishing' at the Shinjuku bookstore",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy the Star Mirror at the Shinjuku general store",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Chihaya — give her the Star Mirror",
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -166,18 +220,21 @@
       "steps": [
         {
           "label": "Buy the Heart Ring at the Underground Mall jewelry store",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Futaba in Asakusa — I <3 Tokyo Shirt (room decoration 12/20)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Select a fun outing, then Asakusa/Oshiage and Nakamise Street. Give Futaba the Heart Ring to follow the Tokyo Shirt decoration route."
         },
         {
           "label": "Solve the LeBlanc crossword: 'Illuminate'",
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Watch 'Clean Hard' on Central Street (Craft of Cinema bonus active)",
@@ -187,6 +244,12 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -234,21 +297,37 @@
         },
         {
           "label": "Call Kawakami for the special massage",
-          "slot": "afternoon"
+          "slot": "evening",
+          "tip": "After a Metaverse visit, request the Temperance rank-10 special massage from the LeBlanc telephone before spending your restored night activity."
         },
         {
           "label": "Buy the Glass Vase at the Underground Mall sundries shop",
-          "slot": "afternoon"
+          "slot": "evening",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Chihaya at Skytree — Skytree Lamp (room decoration 13/20); give her the Glass Vase",
-          "slot": "afternoon"
+          "slot": "evening"
         },
         {
           "label": "Before sleeping, choose 'I want to keep our promise' for optional Akechi/Royal content",
           "spoiler": true,
-          "slot": "afternoon"
+          "slot": "evening",
+          "tip": "At the bedtime thought about Akechi, choose to keep your promise. This is a separate optional Royal scene condition from the Justice rank 7 rivalry and rank 8 challenge."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
       ]
     },
     {
@@ -266,8 +345,12 @@
         {
           "label": "Read 'Essence of Fishing'",
           "activityRef": "p5r.activity.book.essence-of-fishing",
-          "slot": "afternoon"
+          "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -282,7 +365,8 @@
         },
         {
           "label": "Hang out with Haru — Empress reaches rank 8",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: School rooftop. Carry a Empress Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\nAsk about the soil. Questions 2 and 3 allow any response. Say nurturing is natural for her."
         },
         {
           "label": "Order the Sincere Omelette at the maid cafe (mistakes are fine now)",
@@ -291,6 +375,11 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -304,15 +393,18 @@
           "statGains": {
             "charm": 2
           },
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Buy items from the Kanda priest",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Give the Angel Tart to the Kichijoji alley man — Fervent Bat (14/16)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Ask Chihaya for a money reading and a celestial reading",
@@ -326,7 +418,8 @@
         },
         {
           "label": "Call Kawakami for the special massage",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "After a Metaverse visit, request the Temperance rank-10 special massage from the LeBlanc telephone before spending your restored night activity."
         },
         {
           "label": "TV Shopping Program: Super Detox and Fancy Magatama sets",
@@ -364,6 +457,20 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        8,
+        9,
+        10,
+        11,
+        5,
+        6,
+        7
       ]
     },
     {
@@ -373,23 +480,33 @@
       "steps": [
         {
           "label": "Buy SP-recovery drinks from the vending machines",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Haru — Empress reaches rank 9 (romance choice available)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: School rooftop. Carry a Empress Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Question 2 allows any response. Accept her thanks\n• choose the response reciprocating Haru's love\n• say you wanted to hear her voice."
         },
         {
           "label": "Solve the LeBlanc crossword: 'Approval'",
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Hang out with Mishima — Moon reaches rank 9",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Dialogue choices — follow the listed responses in order:\n• Praise his courage\n• mention the sparkle in his eyes."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -399,11 +516,13 @@
       "steps": [
         {
           "label": "Buy the Hi-Tech Rod at the Underground Mall sports shop",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Ryuji in Nakano — Featherman Dolls (room decoration 14/20)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Select a fun outing with Ryuji, then Nakano. This awards the Featherman Dolls."
         },
         {
           "label": "Save, then fish at Ichigaya — prioritize medium boilies and Third Eye the glowing fish for Prize Tags; buy 1 Suspicious Boilie plus 6 total",
@@ -412,6 +531,11 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2
       ]
     },
     {
@@ -421,7 +545,8 @@
       "steps": [
         {
           "label": "Hang out with Kasumi in Shinagawa — Sea Slug Doll (room decoration 15/20)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Select a fun outing with Kasumi, then Shinagawa. This awards the Sea Slug Doll."
         },
         {
           "label": "Save first, then beat 'Punch Ouch' with 'the technique' — reload until you win",
@@ -431,6 +556,10 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -447,11 +576,13 @@
         },
         {
           "label": "Buy the Designer Perfume at the Underground Mall cosmetics shop",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Makoto in Suidobashi — Gi-Nyant Doll (room decoration 16/20)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Select a fun outing with Makoto, then Suidobashi. This awards the Gi-Nyant Doll."
         },
         {
           "label": "Win the Black Frost Doll at the Akihabara arcade (6/8)",
@@ -459,8 +590,16 @@
         },
         {
           "label": "Hang out with Mishima — Moon reaches rank 10",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Dialogue choices — follow the listed responses in order:\nPraise his courage."
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     {
@@ -470,7 +609,8 @@
       "steps": [
         {
           "label": "Hang out with Haru — Empress reaches rank 10",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Where: School rooftop. Carry a Empress Persona before starting to receive the matching-Arcana affinity bonus.\n\nDialogue choices — follow the listed responses in order:\n• Say you are glad\n• express confidence in her success\n• question whether you are only a teammate."
         },
         {
           "label": "Save, then fish at Ichigaya — lead with the Suspicious Boilie, Third Eye the gold glow, and catch the Ichigaya Guardian (reload on a miss); buy 1 Suspicious Boilie plus 6 total again",
@@ -479,6 +619,10 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -488,18 +632,21 @@
       "steps": [
         {
           "label": "Buy the Watercolor Postcard at the Kichijoji stationery store",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Yusuke at Meiji Shrine — Hamaya (room decoration 17/20)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Select a fun outing, then Meiji Shrine. Give Yusuke the Watercolor Postcard and receive the Hamaya."
         },
         {
           "label": "Use the Mega Fertilizer on the plant",
           "statGains": {
             "kindness": 5
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Plant care does not spend time. Have the listed nutrient in your inventory."
         },
         {
           "label": "Order the Sincere Omelette at the maid cafe",
@@ -508,6 +655,12 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -528,6 +681,10 @@
           },
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1
       ]
     },
     {
@@ -552,7 +709,8 @@
           "statGains": {
             "knowledge": 2
           },
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "The crossword does not spend time. Continue with tonight’s activity afterward."
         },
         {
           "label": "Watch 'Merry Christmess' in Yongen-Jaya (Craft of Cinema bonus active)",
@@ -562,6 +720,12 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -573,6 +737,9 @@
           "label": "Exams day 1",
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -584,6 +751,9 @@
           "label": "Exams day 2",
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -597,11 +767,13 @@
         },
         {
           "label": "Buy the Castella at the Underground Mall supermarket",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Free errand: no time passes. Finish it before the main activity."
         },
         {
           "label": "Hang out with Yusuke in Ueno — Nude Statue (room decoration 18/20)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Select a fun outing, then Ueno. Give Yusuke Castella; the visit awards the Nude Statue."
         },
         {
           "label": "Visit the maid cafe — order the special menu after 20 stamps and receive the Photo of Clara",
@@ -610,6 +782,12 @@
           },
           "slot": "evening"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -639,6 +817,12 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -669,6 +853,12 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0,
+        1,
+        2,
+        3
       ]
     },
     {
@@ -681,6 +871,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -693,6 +886,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -705,6 +901,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -717,6 +916,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -729,6 +931,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -741,6 +946,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     },
     {
@@ -753,6 +961,9 @@
           "spoiler": true,
           "slot": "afternoon"
         }
+      ],
+      "displayOrder": [
+        0
       ]
     }
   ]

@@ -29,8 +29,10 @@ class P5RMementosRequestsAuditTest {
 
         assertEquals(33, catalog.requests.size)
         assertEquals(33, catalog.requests.map { it.id }.distinct().size)
-        assertEquals(33, catalog.events.size)
-        assertEquals(catalog.events.map { it.id }.toSet(), catalog.requests.map { it.completionEvent }.toSet())
+        assertEquals(81, catalog.events.size)
+        assertEquals(33, catalog.requests.map { it.completionEvent }.distinct().size)
+        assertTrue(catalog.requests.all { it.receivedEvent != null })
+        assertEquals(15, catalog.requests.sumOf { it.unlockEvents.size })
         assertTrue(catalog.requests.all { it.expectedBy >= it.receivedOn })
 
         val routeDays = loaded.walkthroughs.flatMap { it.file.days }.associateBy { it.date }
@@ -58,5 +60,30 @@ class P5RMementosRequestsAuditTest {
         assertEquals("2016-11-11", completionDates.getValue("The Money-Grubbing Uncle"))
         assertEquals(2, completionDates.count { it.value == "2017-01-20" })
         assertEquals(2, completionDates.count { it.value == "2017-01-28" })
+    }
+
+    @Test
+    fun `source job and investigation sequences gate the eight identified targets`() {
+        val loaded = p5rPath()?.let(PackLoader::load) ?: return
+        val catalog = requireNotNull(loaded.mementosRequests)
+        val events = catalog.events.associateBy { it.id }
+        fun gates(title: String) = catalog.requests.single { it.title == title }.unlockEvents.map { events.getValue(it) }
+        assertEquals(listOf("2016-05-28"), gates("If Cats Disappeared from the City").map { it.date })
+        assertEquals(listOf("2016-06-18"), gates("One Who Bullies Bullies").map { it.date })
+        assertEquals(listOf("2016-07-31", "2016-08-07", "2016-08-12"), gates("We Aren't Just Your Slaves").map { it.date })
+        assertEquals(listOf("2016-08-07", "2016-08-08"), gates("Who's Been Assaulting People?").map { it.date })
+        assertEquals(listOf("2016-07-19", "2016-08-05", "2016-08-10"), gates("Calling for Justice for Cats").map { it.date })
+        val cheating = gates("Winners Don't Use Cheats")
+        assertEquals(listOf("2016-09-06", "2016-09-19"), cheating.map { it.date })
+        assertTrue("auto-retreats" in cheating.first().labelContains)
+        assertTrue("Tower reaches rank 1" in cheating.last().labelContains)
+        assertEquals(listOf("2017-01-27", "2017-01-27"), gates("Fake-Man Show").map { it.date })
+        assertTrue("Anji Fuwa" in gates("An Idol and a Unicorn").single().labelContains)
+        catalog.requests.forEach { request ->
+            val receipt = events.getValue(requireNotNull(request.receivedEvent))
+            assertEquals(request.receivedOn, receipt.date)
+            assertTrue(receipt.labelContains.startsWith("Receive") || receipt.labelContains.startsWith("Speak with Chihaya") ||
+                request.title == "Beware the Clingy Ex-boyfriend")
+        }
     }
 }

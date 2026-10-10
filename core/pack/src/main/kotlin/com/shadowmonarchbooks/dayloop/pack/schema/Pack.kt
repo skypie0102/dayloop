@@ -38,6 +38,14 @@ data class Pack(
      * change — the pack supplies everything.
      */
     val theme: PackTheme? = null,
+    /** Optional walkthrough reading treatment; legacy packs retain their checklist presentation. */
+    val walkthroughPresentation: WalkthroughPresentation = WalkthroughPresentation(),
+)
+
+@Serializable
+data class WalkthroughPresentation(
+    /** Render contextual task guidance below the task instead of opening a Tips dialog. */
+    val inlineTips: Boolean = false,
 )
 
 @Serializable

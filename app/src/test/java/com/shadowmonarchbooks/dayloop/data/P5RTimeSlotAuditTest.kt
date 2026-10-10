@@ -40,7 +40,8 @@ class P5RTimeSlotAuditTest {
 
             // Infiltration is rendered as its own section, outside the Day/Night columns.
             // Companion completion tasks are appended so existing progress keys stay stable.
-            val dayAndNightSlots = day.steps
+            val readingSteps = day.displayOrder.map { day.steps[it] }
+            val dayAndNightSlots = readingSteps
                 .filterNot { it.groupLabel == "Infiltration" }
                 .map { it.slot }
             val firstNight = dayAndNightSlots.indexOf("evening")
@@ -54,8 +55,8 @@ class P5RTimeSlotAuditTest {
         }
 
         assertEquals(1_231, steps.size)
-        assertEquals(874, steps.count { it.slot == "afternoon" })
-        assertEquals(357, steps.count { it.slot == "evening" })
+        assertEquals(836, steps.count { it.slot == "afternoon" })
+        assertEquals(395, steps.count { it.slot == "evening" })
     }
 
     @Test

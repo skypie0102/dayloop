@@ -1,17 +1,14 @@
 package com.shadowmonarchbooks.dayloop.ui.skin
 
 import android.content.Context
-import android.provider.Settings
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
-import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.shape.GenericShape
@@ -463,10 +460,10 @@ fun skinTypography(base: androidx.compose.material3.Typography, type: SkinType):
 // ---- Motion (docs/ROADMAP-v3.md Phase 12; day-advance sequences land in 16) ----
 
 /** Durations/easings are engine constants; skins choose the grammar, not the ms. */
-private const val DURATION = 240
+private const val DURATION = 220
 private val SlashEnter = CubicBezierEasing(0.2f, 0f, 0f, 1f)
 
-/** NavHost transition set; [SkinMotion.EngineDefault] mirrors NavHost's own default. */
+/** Short theme-appropriate navigation; visual transforms never resize the content. */
 data class SkinMotion(
     val enter: EnterTransition,
     val exit: ExitTransition,
@@ -474,12 +471,12 @@ data class SkinMotion(
     val popExit: ExitTransition,
 ) {
     companion object {
-        /** Navigation's built-in default: a plain 700 ms cross-fade. */
+        /** Neutral short fade for packs without a motion token. */
         val EngineDefault = SkinMotion(
-            enter = fadeIn(tween(700)),
-            exit = fadeOut(tween(700)),
-            popEnter = fadeIn(tween(700)),
-            popExit = fadeOut(tween(700)),
+            enter = fadeIn(tween(180)),
+            exit = fadeOut(tween(180)),
+            popEnter = fadeIn(tween(180)),
+            popExit = fadeOut(tween(180)),
         )
 
         /** Snapping (no animation) — the remove-animations collapse. */
@@ -506,37 +503,26 @@ fun SkinSpec.navMotion(animationsDisabled: Boolean): SkinMotion {
             popExit = fadeOut(tween(180)),
         )
         "slash" -> SkinMotion(
-            enter = expandHorizontally(expandFrom = Alignment.Start, animationSpec = tween(DURATION, easing = SlashEnter)) +
+            enter = slideInHorizontally(initialOffsetX = { it / 8 }, animationSpec = tween(DURATION, easing = SlashEnter)) +
                 fadeIn(tween(DURATION, easing = LinearEasing)),
-            exit = slideOutHorizontally(targetOffsetX = { it / 3 }, animationSpec = tween(DURATION)) +
+            exit = slideOutHorizontally(targetOffsetX = { it / 8 }, animationSpec = tween(DURATION)) +
                 fadeOut(tween(DURATION)),
-            popEnter = slideInHorizontally(initialOffsetX = { -it / 3 }, animationSpec = tween(DURATION)) +
+            popEnter = slideInHorizontally(initialOffsetX = { -it / 8 }, animationSpec = tween(DURATION)) +
                 fadeIn(tween(DURATION)),
-            popExit = shrinkHorizontally(shrinkTowards = Alignment.End, animationSpec = tween(DURATION)) +
+            popExit = slideOutHorizontally(targetOffsetX = { it / 8 }, animationSpec = tween(DURATION, easing = SlashEnter)) +
                 fadeOut(tween(DURATION)),
         )
         "flip" -> SkinMotion(
-            enter = slideInHorizontally(initialOffsetX = { it }, animationSpec = tween(DURATION)) +
-                scaleIn(initialScale = 0.94f, animationSpec = tween(DURATION)) +
+            enter = slideInHorizontally(initialOffsetX = { it / 6 }, animationSpec = tween(DURATION)) +
+                scaleIn(initialScale = 0.98f, animationSpec = tween(DURATION)) +
                 fadeIn(tween(DURATION)),
             exit = slideOutHorizontally(targetOffsetX = { -it / 6 }, animationSpec = tween(DURATION)) +
                 fadeOut(tween(DURATION)),
             popEnter = slideInHorizontally(initialOffsetX = { -it / 6 }, animationSpec = tween(DURATION)) +
                 fadeIn(tween(DURATION)),
-            popExit = slideOutHorizontally(targetOffsetX = { it }, animationSpec = tween(DURATION)),
+            popExit = slideOutHorizontally(targetOffsetX = { it / 6 }, animationSpec = tween(DURATION)),
         )
         else -> SkinMotion.EngineDefault
-    }
-}
-
-/** True when the system has animations removed (duration or transition scale 0). */
-@Composable
-fun rememberAnimationsDisabled(): Boolean {
-    val context = LocalContext.current
-    return remember {
-        val resolver = context.contentResolver
-        Settings.Global.getFloat(resolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) == 0f ||
-            Settings.Global.getFloat(resolver, Settings.Global.TRANSITION_ANIMATION_SCALE, 1f) == 0f
     }
 }
 

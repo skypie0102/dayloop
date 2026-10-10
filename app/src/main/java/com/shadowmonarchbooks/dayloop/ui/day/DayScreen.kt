@@ -94,18 +94,19 @@ fun DayScreen(
         day.steps.indices.all { state.markAt(date, it) == StepMark.DONE }
     val showDatedAchievements = datedAchievementRows(pack, state, date).isNotEmpty()
     val submerged = LocalSkin.current.hasSubmergedChrome()
+    val boundedTaskViewport = submerged || pack.pack.walkthroughPresentation.inlineTips
     var controlsHeight by remember { mutableIntStateOf(0) }
     val bottomInset = with(LocalDensity.current) { controlsHeight.toDp() }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        key(if (submerged) date else Unit) {
+        key(if (boundedTaskViewport) date else Unit) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(14.dp),
                 modifier = Modifier
                     .fillMaxSize()
-                    .then(if (submerged) Modifier.padding(bottom = bottomInset) else Modifier)
+                    .then(if (boundedTaskViewport) Modifier.padding(bottom = bottomInset) else Modifier)
                     .verticalScroll(rememberScrollState())
-                    .padding(start = 16.dp, top = if (submerged) 12.dp else 16.dp, end = 16.dp, bottom = if (submerged) 14.dp else 94.dp),
+                    .padding(start = 16.dp, top = if (submerged) 12.dp else 16.dp, end = 16.dp, bottom = if (boundedTaskViewport) 14.dp else 94.dp),
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     if (submerged) {
@@ -211,6 +212,8 @@ fun DayScreen(
                     activityLabels = pack.activities.mapValues { it.value.label },
                     slotLabels = pack.pack.slotLabels(),
                     onOpenActivity = onOpenActivity,
+                    inlineTips = pack.pack.walkthroughPresentation.inlineTips,
+                    displayOrder = day.displayOrder,
                 )
 
                 if (showDatedAchievements) {
@@ -249,6 +252,7 @@ fun DayScreen(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .fillMaxWidth()
+                    .onSizeChanged { controlsHeight = it.height }
                     .padding(horizontal = 12.dp, vertical = 8.dp),
             ) {
                 Row(

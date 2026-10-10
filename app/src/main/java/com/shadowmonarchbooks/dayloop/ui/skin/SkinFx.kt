@@ -54,6 +54,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -228,8 +229,20 @@ fun DayAdvanceOverlay(
     var covered by remember { mutableStateOf(false) }
     val progress = remember { Animatable(0f) }
 
-    LaunchedEffect(fx) {
-        if (fx == null) return@LaunchedEffect
+    val animationsDisabled = rememberAnimationsDisabled()
+    LaunchedEffect(fx, animationsDisabled) {
+        if (fx == null) {
+            covered = false
+            return@LaunchedEffect
+        }
+        if (animationsDisabled) {
+            if (!covered) {
+                covered = true
+                onCovered()
+            }
+            onFinished()
+            return@LaunchedEffect
+        }
         covered = false
         progress.snapTo(0f)
         progress.animateTo(1f, tween(SkinFxTiming.ADVANCE_COVER_MS, easing = LinearEasing))
@@ -241,12 +254,13 @@ fun DayAdvanceOverlay(
     }
 
     if (fx == null) return
-    val p = progress.value
+    val progressValue = { progress.value }
     val submerged = LocalSkin.current.hasSubmergedChrome()
     Box(
         modifier = modifier
             .fillMaxSize()
-            .then(if (submerged) Modifier.semantics {
+            .testTag("day-advance")
+            .semantics {
                 onClick(label = "Continue to next day") {
                     if (!covered) {
                         covered = true
@@ -255,7 +269,7 @@ fun DayAdvanceOverlay(
                     onFinished()
                     true
                 }
-            } else Modifier)
+            }
             .pointerInput(fx) {
                 detectTapGestures {
                     // Skippable (accessibility): jump straight to the commit.
@@ -269,22 +283,22 @@ fun DayAdvanceOverlay(
         contentAlignment = Alignment.Center,
     ) {
         if (submerged) {
-            SubmergedDayComplete(fx, p)
+            SubmergedDayComplete(fx, progressValue)
         } else when (fx.motif) {
-            "masks" -> MasksAdvancePanel(fx, p, background)
-            "moon" -> MoonAdvancePanel(p)
-            "crown" -> CrownAdvancePanel(p)
+            "masks" -> MasksAdvancePanel(fx, progressValue, background)
+            "moon" -> MoonAdvancePanel(progressValue)
+            "crown" -> CrownAdvancePanel(progressValue)
         }
     }
 }
 
 /** Slash family: a black results panel swept in by a white slash, checklist ticking. */
 @Composable
-private fun MasksAdvancePanel(fx: AdvanceFx, progress: Float, background: ImageBitmap?) {
+private fun MasksAdvancePanel(fx: AdvanceFx, progress: () -> Float, background: ImageBitmap?) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .alpha(progress)
+            .graphicsLayer { alpha = progress() }
             .background(Color.Black),
     ) {
         background?.let {
@@ -309,7 +323,7 @@ private fun MasksAdvancePanel(fx: AdvanceFx, progress: Float, background: ImageB
         }
         Canvas(Modifier.matchParentSize()) {
             // Keep the transition slash above the supplied background art.
-            val x = size.width * (progress * 1.6f - 0.3f)
+            val x = size.width * (progress() * 1.6f - 0.3f)
             drawLine(
                 color = Color.White.copy(alpha = 0.9f),
                 start = Offset(x - size.width * 0.12f, 0f),
@@ -333,12 +347,10 @@ private fun MasksAdvancePanel(fx: AdvanceFx, progress: Float, background: ImageB
             val shown = fx.steps.take(4)
             shown.forEachIndexed { i, (label, done) ->
                 // Results-style tick: each done row ticks in, staggered.
-                val tick = (progress * shown.size - i).coerceIn(0f, 1f)
-                if (tick > 0f) {
-                    Row(
+                Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        modifier = Modifier.alpha(tick),
+                        modifier = Modifier.graphicsLayer { alpha = (progress() * shown.size - i).coerceIn(0f, 1f) },
                     ) {
                         if (done) {
                             Icon(
@@ -355,7 +367,6 @@ private fun MasksAdvancePanel(fx: AdvanceFx, progress: Float, background: ImageB
                             maxLines = 1,
                         )
                     }
-                }
             }
             if (fx.steps.size > shown.size) {
                 Text(
@@ -370,12 +381,12 @@ private fun MasksAdvancePanel(fx: AdvanceFx, progress: Float, background: ImageB
 
 /** Moon family: a calm cross-fade of the moon phase filling to full. */
 @Composable
-private fun MoonAdvancePanel(progress: Float) {
+private fun MoonAdvancePanel(progress: () -> Float) {
     val moon = MaterialTheme.colorScheme.inverseOnSurface
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .alpha(progress)
+            .graphicsLayer { alpha = progress() }
             .background(MaterialTheme.colorScheme.inverseSurface),
         contentAlignment = Alignment.Center,
     ) {
@@ -390,8 +401,8 @@ private fun MoonAdvancePanel(progress: Float) {
             // …cross-fades into the full disc as the day advances.
             drawCircle(
                 color = moon,
-                radius = r * (0.55f + 0.45f * progress),
-                alpha = progress,
+                radius = r * (0.55f + 0.45f * progress()),
+                alpha = progress(),
             )
         }
     }
@@ -399,10 +410,9 @@ private fun MoonAdvancePanel(progress: Float) {
 
 /** Crown family: a parchment page turns onto the screen, then turns away. */
 @Composable
-private fun CrownAdvancePanel(progress: Float) {
+private fun CrownAdvancePanel(progress: () -> Float) {
     val skin = LocalSkin.current
     // Cover: 90°→0° (the page swings flat); reveal: 0°→90° (it turns away).
-    val angle = 90f * (1f - progress)
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
@@ -414,6 +424,7 @@ private fun CrownAdvancePanel(progress: Float) {
                 .fillMaxSize()
                 .padding(10.dp)
                 .graphicsLayer {
+                    val angle = 90f * (1f - progress())
                     rotationY = angle
                     cameraDistance = 12f * density
                     alpha = if (angle >= 90f) 0f else 1f
@@ -453,7 +464,7 @@ fun PerfectDaySplash(
     }
     var show by remember { mutableStateOf(false) }
     val skinFx = LocalSkinFx.current
-    val reduceMotion = LocalSkin.current.hasSubmergedChrome() && rememberAnimationsDisabled()
+    val reduceMotion = rememberAnimationsDisabled()
     LaunchedEffect(key, allDone, suppressed) {
         if (shouldShowPerfectDay(allDone, suppressed)) {
             show = true
@@ -466,13 +477,13 @@ fun PerfectDaySplash(
     }
     AnimatedVisibility(
         visible = show && !suppressed,
-        enter = if (reduceMotion) fadeIn(tween(SkinFxTiming.SPLASH_IN_MS)) else slideInHorizontally(
-            initialOffsetX = { it * 2 },
+        enter = if (reduceMotion) androidx.compose.animation.EnterTransition.None else slideInHorizontally(
+            initialOffsetX = { it / 8 },
             animationSpec = tween(SkinFxTiming.SPLASH_IN_MS),
         ) + fadeIn(tween(SkinFxTiming.SPLASH_IN_MS)) +
-            scaleIn(initialScale = 0.86f, animationSpec = tween(SkinFxTiming.SPLASH_IN_MS)),
-        exit = if (reduceMotion) fadeOut(tween(SkinFxTiming.SPLASH_OUT_MS)) else slideOutHorizontally(
-            targetOffsetX = { -it },
+            scaleIn(initialScale = 0.97f, animationSpec = tween(SkinFxTiming.SPLASH_IN_MS)),
+        exit = if (reduceMotion) androidx.compose.animation.ExitTransition.None else slideOutHorizontally(
+            targetOffsetX = { -it / 8 },
             animationSpec = tween(SkinFxTiming.SPLASH_OUT_MS),
         ) + fadeOut(tween(SkinFxTiming.SPLASH_OUT_MS)),
         modifier = modifier,

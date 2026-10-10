@@ -457,6 +457,37 @@ class PackLintTest {
     }
 
     @Test
+    fun `presentation order rejects duplicate missing negative and out-of-range progress indexes`() {
+        listOf(listOf(0, 0), listOf(0), listOf(-1, 0), listOf(0, 2)).forEach { order ->
+            val dir = tempDir()
+            val wt = Fixture.validWalkthroughApril().copy(
+                days = Fixture.validWalkthroughApril().days.map {
+                    if (it.date == "2016-04-10") it.copy(
+                        steps = listOf(Step("First"), Step("Second")), displayOrder = order,
+                    ) else it
+                },
+            )
+            Fixture.writePack(dir, walkthroughs = listOf(wt))
+            val errors = PackLint.runOn(dir).errorsIn("walkthrough")
+            assertTrue(errors.any { "displayOrder must contain every step index exactly once" in it.message }, errors.toString())
+        }
+    }
+
+    @Test
+    fun `valid presentation permutation leaves stored task indexes untouched`() {
+        val dir = tempDir()
+        val wt = Fixture.validWalkthroughApril().copy(
+            days = Fixture.validWalkthroughApril().days.map {
+                if (it.date == "2016-04-10") it.copy(
+                    steps = listOf(Step("First"), Step("Second")), displayOrder = listOf(1, 0),
+                ) else it
+            },
+        )
+        Fixture.writePack(dir, walkthroughs = listOf(wt))
+        assertEquals(emptyList(), PackLint.runOn(dir).filter { it.severity == LintIssue.Severity.ERROR })
+    }
+
+    @Test
     fun `unknown activity reference fails`() {
         val dir = tempDir()
         val wt = Fixture.validWalkthroughApril().copy(

@@ -4,10 +4,10 @@ Phase 9 deliverable (docs/ROADMAP-v2.md): *"served accordingly" is checkable, no
 vibes. Every field in the pack schema is either rendered somewhere, reachable in
 ≤3 taps, or documented as intentionally unserved with a reason.*
 
-The P5R implementation of this matrix is frozen at the v0.15.0 milestone. Its
-exact content and behavior contract is recorded in
-[`docs/packs/p5r-baseline.md`](packs/p5r-baseline.md); later P3R and Metaphor
-audits must not change that baseline incidentally.
+The P5R content and behavior contract is recorded in
+[`docs/packs/p5r-baseline.md`](packs/p5r-baseline.md). The October 10 usability
+request explicitly updates its reading treatment; P3R and Metaphor audits must
+not change that contract incidentally.
 
 ## How to read the matrix
 
@@ -32,6 +32,7 @@ Screens: **Today**, **Day** (day detail), **Calendar** (month grid), **Bonds**
 | `title` | Top bar, Onboarding cards, Settings game list, Widget, launcher shortcut label | Served |
 | `contentVersion` | Settings (save-stamp + "content was updated" notice) | Served |
 | `pickerOrder` | Onboarding and Settings game-picker carousel order | Served |
+| `walkthroughPresentation.inlineTips` | Today/Day task guidance renders below the task when enabled; omitted/false retains Tips controls | Served |
 | `timeModel` | Engine: calendar construction + Clock stepping | Intentionally not served (engine dimension; no user-facing distinction) |
 | `calendar.startDate` / `endDate` | Clock bounds (End-Day enablement); Onboarding range | Served |
 | `calendar.nonPlayableDates` | `Clock.next/previous` skips them; packlint validates | Intentionally not served (clock behavior, no per-date marker) |
@@ -92,10 +93,13 @@ contract JVM-side.
 | `day.weekday` | packlint validates against the real calendar / cycle; UI derives weekday via `GameCalendar` | Intentionally not served (validated, not rendered) |
 | `day.dayKind` | Day-kind chip (Today/Day); month-grid cell colors | Served |
 | `day.notes` | Day page + Today notes line | Served |
+| `day.displayOrder` | Today/Day reading order, adjacent section grouping and display numbers; packlint requires a complete permutation. Saved progress retains stored indexes | Served |
 | `day.steps[].label` | Step rows (Today/Day/search snippets) | Served |
 | `steps[].slot` | Slot pill per step row, pack-supplied label | Served |
 | `steps[].activityRef` | Activity label on the step row (tap → Activity detail); packlint ref check | Served |
 | `steps[].statGains` | Step-row gain line ("Knowledge +3") | Served |
+| `steps[].tip` | Full-width inline guidance when the pack opts in; otherwise the task's Tips dialog | Served |
+| `steps[].groupLabel` | Authored section heading within the time slot | Served |
 | `steps[].spoiler` | Legacy authoring metadata; daily step text always renders directly | Intentionally presentation-neutral |
 
 Walkthrough dates are route facts: Day always renders the active `routes[].label`
@@ -168,6 +172,10 @@ duplicate already-correct route effects.
 | `request.completionEvent` | Automatic completion lookup | Served (state derived from the exact DONE walkthrough task) |
 | `events[].id` | Request-to-event cross-reference; packlint | Intentionally not served (stable identity) |
 | `events[].date` / `labelContains` / `routeId` | Exact semantic walkthrough-task resolution | Served (automatic completion behavior) |
+| `request.receivedEvent` | Receipt-task Done mark gates receipt; old catalogs without this field retain date-based availability | Served |
+| `request.unlockEvents` | All investigation/preparation tasks must be Done before the target is available; pending row opens the next unmet task | Served |
+| `request.guidance` | Source-based preparation notes beneath the request status | Served |
+
 
 ## Keeping this honest
 

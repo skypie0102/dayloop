@@ -1,5 +1,10 @@
 # dayloop
 
+Current P5R priority: source-ordered inline walkthrough guidance plus request
+receipt/preparation tracking and lighter themed motion. See the
+[Mementos and motion review](docs/audits/p5r-mementos-motion.md). P3R content
+expansion remains paused pending P5R usability testing.
+
 **Unofficial Android companion/checklist app for calendar-based ATLUS-style JRPGs** — launching with Persona 5 Royal, Persona 3 Reload, and Metaphor: ReFantazio. The engine stays pack-generic; further ATLUS titles can drop in later.
 
 > *This is a fan-made tool. It is not affiliated with or endorsed by ATLUS/SEGA. Guide-derived art is bundled for this private, non-commercial build only and is stripped before any public release (docs/PLAN.md §9).*
@@ -16,7 +21,7 @@ Checklists, bond/confidant roadmaps, palace/deadline tracking, exam windows — 
 ## Design pillars
 
 - **Engine + data packs.** The app is a generic calendar-engine; every game is a swappable JSON pack (`/content/packs/<slug>/`). No Kotlin/UI code knows what a "Palace", "Confidant", or "Royal Virtue" is — those words live in pack data.
-- **Anti-deviation UX.** Every item supports Done / Skip / Later — never a red failure state. Going off-guide just changes future suggestions.
+- **Anti-deviation UX.** Every item supports Done / Skip / Later — never a red failure state. Skipped or deferred tasks stay explicit; the fixed source route does not automatically replan.
 - **Spoiler-safe by default.** Deadlines visible, story commentary hidden behind taps.
 - **Offline-first.** Content ships bundled; progress saves locally (Room); no account required.
 - **Portable progress.** Settings → Backup & restore exports every game's profiles to one file. Import restores separate copies. See [backup instructions](docs/progress-backups.md).
@@ -28,10 +33,11 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 
 ## Roadmap
 
-**Top priority: [Persona 3 Reload — full skin redesign and walkthrough completion](docs/packs/p3r-roadmap.md).**
-Replace the current P3R appearance with a Reload-aligned UI/UX, then complete the
-pack's guidance and tracking. This is the active delivery roadmap; the phase table
-below records earlier milestones. P5R remains the protected reference pack.
+**Top priority: [Persona 5 Royal — walkthrough usability](docs/audits/p5r-walkthrough-usability.md).**
+The October 10 request reopens P5R first: present the source route in reading
+order, show instructions beside their tasks, and retain saved progress.
+[P3R redesign and walkthrough completion](docs/packs/p3r-roadmap.md) resumes after
+this focused fix. The phase table below records earlier milestones.
 
 | Phase | Deliverable | Status |
 |---|---|---|
@@ -59,7 +65,14 @@ See [docs/PLAN.md](docs/PLAN.md) for the architecture plan and [docs/ROADMAP-v3.
 
 ## Status
 
-✅ **P5R milestone complete — current stable release v0.15.0** ([Releases](https://github.com/shdwmnrchbks/dayloop/releases)). Persona 5 Royal is now the frozen reference pack for the next audit phase. Work moves to **Persona 3 Reload**; P3R and Metaphor changes must remain pack-isolated and may not alter the P5R bundle or its established behavior without an explicit P5R change request. See the [P5R stable baseline](docs/packs/p5r-baseline.md).
+**P5R walkthrough usability fixes are in review.** The v0.15.0 milestone remains
+the historical content baseline; it did not establish that the walkthrough was
+easy to follow. Pack version 16 retains explicit reading order for all 301 dates,
+corrects 38 Day/Night placements, and expands inline guidance to 572 tasks,
+including dialogue instructions for 193 events. Original task indexes and
+completion anchors remain stable. See the [usability review](docs/audits/p5r-walkthrough-usability.md)
+and [P5R stability contract](docs/packs/p5r-baseline.md). Latest builds remain on
+[Releases](https://github.com/skypie0102/dayloop/releases).
 
 Phase 0–4 delivered the pack schema + `packlint` + `packgen`, the **complete P5R pack** — every calendar day 2016-04-09 → 2017-02-03 authored and packlint-validated (301 walkthrough days, all 23 confidant arcs with full rank ladders, 23 deadlines covering palaces 1–8 + exam windows + missable gates, 73 activities) — the read-only app rendering all three packs from bundled assets, and the **progress layer**: per-pack profiles in Room, persisted Done/Skip/Later checkboxes, the End-Day in-game clock (with reroll/reset), a carried-over queue for deferred steps, and orphaned-mark review when pack content changes (docs/PLAN.md §3.6).
 
@@ -134,7 +147,10 @@ The current Moonlight appearance is being replaced with a Reload-aligned design.
 The plan builds on the existing route audit and separately tracks richer daily
 guidance, Elizabeth requests/rescues, progress reliability, and release acceptance.
 
-**Pack audit focus: Persona 3 Reload.** Reuse P5R's proven schema and UX patterns where they fit, but implement and validate P3R against its own route, mechanics, vocabulary, dates, artwork, and theme. Shared-engine changes must keep the frozen P5R regression suite green and must not rewrite `content/packs/p5r/` as a side effect.
+**Pack audit focus: P5R walkthrough usability first, then Persona 3 Reload.**
+When P3R work resumes, validate it against its own route, mechanics, vocabulary,
+dates, artwork, and theme. Shared-engine changes must keep the P5R regression
+suite green and must not rewrite `content/packs/p5r/` as a side effect.
 
 After P3R, continue the same isolated audit process for **Metaphor: ReFantazio**. Phase 18 remains the final cross-pack release-hardening pass: screenshot/parity tests, pack asset budgets, the public-release `strip-art` pipeline, and performance gates.
 

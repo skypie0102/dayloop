@@ -17,10 +17,7 @@ import kotlin.test.assertTrue
  *  1. the [SkinFxTiming] table is pinned — every Phase 16 moment duration
  *     stays under the ceiling, and
  *  2. every literal `tween(<ms>)` in the app's UI sources is scanned, so a
- *     future transition can't quietly grow past the ceiling (the one
- *     allowlisted literal is the engine default nav fade, which mirrors
- *     navigation-compose's own built-in 700 ms cross-fade and predates this
- *     phase).
+ *     future transition can't quietly grow past the ceiling.
  *
  * The splash's linger delay is deliberately not a tween — the card never
  * blocks input, so only its entrance/exit fall under the ceiling.
@@ -69,15 +66,12 @@ class SkinFxTimingTest {
         val root = repoRoot() ?: return
         val ceiling = SkinFxTiming.MAX_TRANSITION_MS
         val literal = Regex("""tween\(\s*(\d+)""")
-        // The engine default nav fade mirrors navigation-compose's built-in
-        // 700 ms cross-fade; it predates Phase 16 and is not a moment effect.
-        val engineDefaultFadeMs = 700
         val violations = mutableListOf<String>()
         for (file in uiSources(root)) {
             val rel = file.relativeTo(root)
             literal.findAll(file.readText()).forEach { match ->
                 val ms = match.groupValues[1].toInt()
-                if (ms > ceiling && ms != engineDefaultFadeMs) {
+                if (ms > ceiling) {
                     violations += "$rel: ${match.value} exceeds the ${ceiling} ms transition ceiling"
                 }
             }
@@ -86,7 +80,7 @@ class SkinFxTimingTest {
     }
 
     @Test
-    fun `the allowlisted engine default fade is the only long tween`() {
+    fun `no surface retains a long default transition`() {
         val root = repoRoot() ?: return
         val literal = Regex("""tween\(\s*(\d+)""")
         val overCeiling = uiSources(root).flatMap { file ->
@@ -95,8 +89,8 @@ class SkinFxTimingTest {
                 .map { "${file.relativeTo(root)}: ${it.groupValues[1]}ms" }
         }.toList()
         assertTrue(
-            overCeiling.isNotEmpty() && overCeiling.all { it.endsWith("700ms") },
-            "only the engine default nav fade may exceed the ceiling; found: $overCeiling",
+            overCeiling.isEmpty(),
+            "all navigation and moment transitions stay within the ceiling; found: $overCeiling",
         )
     }
 }

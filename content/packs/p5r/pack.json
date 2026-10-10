@@ -1,7 +1,7 @@
 {
   "packId": "p5r",
   "title": "Persona 5 Royal",
-  "contentVersion": 14,
+  "contentVersion": 16,
   "pickerOrder": 0,
   "timeModel": "weekdayGrid",
   "calendar": {
@@ -9,15 +9,36 @@
     "endDate": "2017-02-03"
   },
   "slots": [
-    { "id": "afternoon", "label": "Day" },
-    { "id": "evening", "label": "Night" }
+    {
+      "id": "afternoon",
+      "label": "Day"
+    },
+    {
+      "id": "evening",
+      "label": "Night"
+    }
   ],
   "stats": [
-    { "id": "knowledge", "label": "Knowledge" },
-    { "id": "guts", "label": "Guts" },
-    { "id": "proficiency", "label": "Proficiency" },
-    { "id": "kindness", "label": "Kindness" },
-    { "id": "charm", "label": "Charm" }
+    {
+      "id": "knowledge",
+      "label": "Knowledge"
+    },
+    {
+      "id": "guts",
+      "label": "Guts"
+    },
+    {
+      "id": "proficiency",
+      "label": "Proficiency"
+    },
+    {
+      "id": "kindness",
+      "label": "Kindness"
+    },
+    {
+      "id": "charm",
+      "label": "Charm"
+    }
   ],
   "routes": [
     {
@@ -69,13 +90,16 @@
     "art": {
       "card": "art/card.jpg",
       "icon": "art/icon.png",
-    "answers-companion": "art/answers-companion.png",
-    "launcherBadge": "art/launcher-badge.png",
-    "today-day": "art/today-day.png",
-    "today-night": "art/today-night.png",
-    "mementos-background": "art/mementos-background.png",
-    "deadline-banner": "art/Deadline-banner.png",
-    "day-complete": "art/Day-Complete.png"
+      "answers-companion": "art/answers-companion.png",
+      "launcherBadge": "art/launcher-badge.png",
+      "today-day": "art/today-day.png",
+      "today-night": "art/today-night.png",
+      "mementos-background": "art/mementos-background.png",
+      "deadline-banner": "art/Deadline-banner.png",
+      "day-complete": "art/Day-Complete.png"
     }
+  },
+  "walkthroughPresentation": {
+    "inlineTips": true
   }
 }

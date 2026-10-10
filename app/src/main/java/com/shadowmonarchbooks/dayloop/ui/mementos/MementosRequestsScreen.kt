@@ -1,12 +1,9 @@
 package com.shadowmonarchbooks.dayloop.ui.mementos
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,6 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.data.formatDate
@@ -38,27 +39,8 @@ import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
 
 internal val slashMementosRequestPanelColor = Color.Black.copy(alpha = 0.75f)
 
-internal data class MementosRequestCounts(
-    val completed: Int,
-    val available: Int,
-    val upcoming: Int,
-)
-
-internal fun mementosRequestCounts(
-    requests: List<MementosRequestDefinition>,
-    completedEvents: Set<String>,
-    currentDate: String,
-): MementosRequestCounts {
-    val completed = requests.count { it.completionEvent in completedEvents }
-    val available = requests.count {
-        it.completionEvent !in completedEvents && currentDate >= it.receivedOn
-    }
-    return MementosRequestCounts(completed, available, requests.size - completed - available)
-}
-
 /** P5R request tracker. Only the exact completion task attached to a request can finish it. */
 @Composable
-@OptIn(ExperimentalFoundationApi::class)
 fun MementosRequestsScreen(
     vm: DayloopViewModel,
     onOpenDay: (String) -> Unit,
@@ -88,11 +70,7 @@ fun MementosRequestsScreen(
     val rows = remember(requests, completedEvents, currentDate) {
         requests.sortedWith(
             compareBy<MementosRequestDefinition> {
-                when {
-                    it.completionEvent in completedEvents -> 1
-                    currentDate >= it.receivedOn -> 0
-                    else -> 2
-                }
+                mementosRequestProgress(it, completedEvents, currentDate).status.ordinal
             }.thenBy(MementosRequestDefinition::expectedBy),
         )
     }
@@ -110,17 +88,25 @@ fun MementosRequestsScreen(
         }
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(10.dp),
-            modifier = Modifier.fillMaxSize().padding(16.dp),
+            modifier = Modifier.fillMaxSize().padding(16.dp).testTag("mementos-request-list"),
         ) {
-            stickyHeader(key = "request-summary") {
+            item(key = "request-summary") {
                 RequestSummary(counts, requests.size)
+            }
+            item(key = "request-tracking-rule") {
+                Surface(color = slashMementosRequestPanelColor, contentColor = Color.White) {
+                    Text(
+                        text = "Mark receipt and preparation tasks Done to unlock a target. Only its individual clear task completes it.",
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(12.dp),
+                    )
+                }
             }
             items(rows, key = MementosRequestDefinition::id) { request ->
                 RequestRow(
                     pack = pack,
                     request = request,
-                    currentDate = currentDate,
-                    completed = request.completionEvent in completedEvents,
+                    progress = mementosRequestProgress(request, completedEvents, currentDate),
                     onOpenDay = onOpenDay,
                 )
             }
@@ -146,7 +132,7 @@ private fun RequestSummary(counts: MementosRequestCounts, total: Int) {
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
             )
             Text(
-                text = "${counts.available} available · ${counts.upcoming} upcoming",
+                text = "${counts.available} ready · ${counts.pending} pending · ${counts.upcoming} upcoming",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
             )
@@ -158,19 +144,16 @@ private fun RequestSummary(counts: MementosRequestCounts, total: Int) {
 private fun RequestRow(
     pack: LoadedPack,
     request: MementosRequestDefinition,
-    currentDate: String,
-    completed: Boolean,
+    progress: MementosRequestProgress,
     onOpenDay: (String) -> Unit,
 ) {
-    val available = currentDate >= request.receivedOn
+    val completed = progress.status == MementosRequestStatus.COMPLETED
+    val nextAnchor = pack.mementosRequestEvents.firstOrNull { it.id == progress.nextEvent }
+    val openDate = nextAnchor?.date ?: if (progress.status == MementosRequestStatus.UPCOMING) request.receivedOn else request.expectedBy
     val skin = LocalSkin.current
     val slashPanel = skin.hasSkin && skin.motion == "slash"
-    val status = when {
-        completed -> "COMPLETED"
-        available -> "AVAILABLE"
-        else -> "UPCOMING"
-    }
     Surface(
+        onClick = { onOpenDay(openDate) },
         shape = skin.shapes.card,
         color = when {
             slashPanel -> slashMementosRequestPanelColor
@@ -180,43 +163,43 @@ private fun RequestRow(
         contentColor = if (slashPanel) Color.White else MaterialTheme.colorScheme.onSurface,
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onOpenDay(if (available) request.expectedBy else request.receivedOn) },
+            .testTag(request.id)
+            .semantics { role = Role.Button },
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(5.dp),
             modifier = (if (slashPanel) Modifier else Modifier.skinDecor("panel"))
                 .padding(horizontal = 14.dp, vertical = 12.dp),
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Text(
-                    text = request.title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier.weight(1f),
-                )
-                SkinTag(
-                    text = status,
-                    container = if (completed) MaterialTheme.colorScheme.secondary
-                    else MaterialTheme.colorScheme.primary,
-                    content = if (completed) MaterialTheme.colorScheme.onSecondary
-                    else MaterialTheme.colorScheme.onPrimary,
-                )
-            }
+            Text(
+                text = request.title,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold,
+            )
+            // Keep status below the title so both remain readable at enlarged text sizes.
+            SkinTag(
+                text = progress.status.label,
+                container = if (completed) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.primary,
+                content = if (completed) MaterialTheme.colorScheme.onSecondary else MaterialTheme.colorScheme.onPrimary,
+            )
             Text(
                 text = if (completed) {
-                    "Completed ${formatDate(request.expectedBy, pack.calendar)}"
-                } else if (available) {
-                    "Complete on ${formatDate(request.expectedBy, pack.calendar)}"
+                    "Guide clear confirmed · ${formatDate(request.expectedBy, pack.calendar)}"
                 } else {
-                    "Received ${formatDate(request.receivedOn, pack.calendar)}"
+                    "Guide clear · ${formatDate(request.expectedBy, pack.calendar)}"
                 },
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.secondary,
             )
+            nextAnchor?.let {
+                Text(
+                    text = "Next · ${formatDate(it.date, pack.calendar)}: ${it.labelContains}",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
+            if (progress.status == MementosRequestStatus.PREPARATION) {
+                request.guidance?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+            }
             request.target?.let { MetadataLine("Target", it) }
             request.location?.let { MetadataLine("Location", it) }
             request.reward?.let { MetadataLine("Reward", it) }
@@ -229,6 +212,5 @@ private fun MetadataLine(label: String, value: String) {
     Text(
         text = "$label: $value",
         style = MaterialTheme.typography.bodySmall,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
 }

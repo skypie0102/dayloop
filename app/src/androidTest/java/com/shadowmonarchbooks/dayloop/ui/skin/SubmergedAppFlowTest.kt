@@ -40,13 +40,14 @@ class SubmergedAppFlowTest {
     private var expectedFontScale = 1f
 
     private fun setFontScale(scale: Float) {
-        // Read to EOF: closing the command descriptor immediately races the next test.
-        ParcelFileDescriptor.AutoCloseInputStream(
-            instrumentation.uiAutomation.executeShellCommand("settings put system font_scale $scale"),
-        ).use { it.readBytes() }
-        compose.waitUntil(10_000) {
-            Settings.System.getFloat(context.contentResolver, Settings.System.FONT_SCALE, -1f) == scale
-        }
+        fun shell(command: String) = ParcelFileDescriptor.AutoCloseInputStream(
+            instrumentation.uiAutomation.executeShellCommand(command),
+        ).use { it.readBytes().toString(Charsets.UTF_8).trim() }
+        // Use the active user's provider value: a cached Settings.System read can
+        // remain stale while the preceding activity is being recreated/closed.
+        shell("settings --user current put system font_scale $scale")
+        assertEquals(scale, shell("settings --user current get system font_scale").toFloatOrNull())
+        // launch() independently verifies the actual receiving window's fontScale.
     }
 
     /** Seed a separate test profile before launching; subsequent actions use the real UI. */
@@ -387,6 +388,121 @@ class SubmergedAppFlowTest {
         compose.onNodeWithTag("p3r-date-2009-06-06").performScrollTo().performClick()
         compose.onNodeWithContentDescription("Back").performClick()
         capture("p3r-app-calendar-large-text-returned")
+    }
+
+    @Test fun p5rSourceReadingOrderAndGuidanceStaySavedAcrossTodayAndDay() {
+        launch("2016-05-07", "p5r")
+        compose.onNodeWithTag("task-guidance-3").performScrollTo().assertIsDisplayed()
+        compose.onNodeWithText("TIPS").assertDoesNotExist()
+        // The third displayed task was appended at stored index 3, after Night.
+        compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().performClick()
+        markIs(3, StepMark.DONE, "2016-05-07")
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().none { it.stepIndex == 2 } })
+        val todayGuidance = compose.onNodeWithTag("task-guidance-3").performScrollTo().fetchSemanticsNode().boundsInRoot
+        val endDayTop = compose.onNodeWithText("End day", ignoreCase = true).fetchSemanticsNode().boundsInRoot.top
+        assertTrue("guidance must scroll above the pinned day controls", todayGuidance.bottom <= endDayTop)
+        capture("p5r-app-today-request")
+        scenario!!.recreate()
+        compose.waitUntil(20_000) {
+            compose.onAllNodesWithText("End day", ignoreCase = true).fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().assertIsSelected()
+        compose.onNodeWithContentDescription("Calendar").performClick()
+        capture("p5r-app-calendar-entry")
+        compose.onNodeWithTag("calendar-date-2016-05-07").performScrollTo().performClick()
+        capture("p5r-app-day-entry")
+        compose.onRoot().printToLog("P5rReview-Day")
+        // Wait until navigation has composed the destination's task list.
+        compose.waitUntil(20_000) {
+            compose.onAllNodesWithTag("task-guidance-3").fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.onNodeWithTag("task-guidance-3").performScrollTo().assertIsDisplayed()
+        compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().assertIsSelected()
+        val dayGuidance = compose.onNodeWithTag("task-guidance-3").performScrollTo().fetchSemanticsNode().boundsInRoot
+        val browseTop = compose.onNodeWithContentDescription("Next authored day").fetchSemanticsNode().boundsInRoot.top
+        assertTrue("guidance must scroll above the pinned browse controls", dayGuidance.bottom <= browseTop)
+        capture("p5r-app-day-request")
+        compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().performClick()
+        compose.waitUntil(10_000) {
+            runBlocking { dependencies.repo().marksFor(profileId).first().none { it.date == "2016-05-07" && it.stepIndex == 3 } }
+        }
+        val nextDay = dependencies.store().state.value.selected!!.day("standard", "2016-05-08")!!
+        val firstLabel = nextDay.steps[nextDay.displayOrder.first()].label
+        compose.onNodeWithContentDescription("Next authored day").performClick()
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithText(firstLabel).fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.onNodeWithTag("task-label-0").assertIsDisplayed()
+        capture("p5r-app-next-day-browse")
+        assertEquals("2016-05-07", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithContentDescription("Today").performClick()
+        compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().assertIsNotSelected()
+        compose.onNodeWithText("End day", ignoreCase = true).performClick()
+        compose.waitUntil(15_000) {
+            runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate == "2016-05-08" }
+        }
+        compose.waitUntil(15_000) {
+            compose.onAllNodesWithText(firstLabel).fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.onNodeWithTag("task-label-0").assertIsDisplayed()
+        capture("p5r-app-next-day-start")
+    }
+
+    @Test fun p5rMementosReceiptInvestigationAndClearRemainReversible() {
+        launch("2016-05-26", "p5r", 2f)
+        val title = "If Cats Disappeared from the City"
+        val id = "p5r.request.if-cats-disappeared-from-the-city"
+        val pack = dependencies.store().state.value.selected!!
+        fun openTracker() {
+            compose.onNodeWithContentDescription("Mementos Requests").performClick()
+            compose.onNodeWithTag("mementos-request-list").performScrollToNode(hasText(title))
+        }
+        fun status(text: String) {
+            compose.onNodeWithTag("mementos-request-list").performScrollToNode(hasText(title))
+            compose.onNodeWithTag(id).assertTextContains(text)
+        }
+        fun mark(date: String, index: Int) {
+            val day = pack.day("standard", date)!!
+            compose.waitUntil(15_000) { compose.onAllNodesWithTag("task-label-$index").fetchSemanticsNodes().isNotEmpty() }
+            val position = day.displayOrder.indexOf(index)
+            compose.onAllNodesWithContentDescription("Done")[position].performScrollTo().performClick()
+        }
+        openTracker()
+        status("TO RECEIVE")
+        capture("p5r-mementos-receipt-large-text")
+        compose.onNodeWithTag(id).performClick()
+        mark("2016-05-26", 1)
+        markIs(1, StepMark.DONE, "2016-05-26")
+        compose.onNodeWithContentDescription("Back").performClick()
+        status("PREPARATION")
+        compose.onNodeWithTag(id).performClick()
+        compose.onNodeWithText("Listen to the woman and girl near Sojiro's house").assertExists()
+        compose.onNodeWithTag("task-guidance-1").performScrollTo().assertTextContains("man on the bench", substring = true)
+        mark("2016-05-28", 1)
+        markIs(1, StepMark.DONE, "2016-05-28")
+        compose.onNodeWithContentDescription("Back").performClick()
+        status("AVAILABLE")
+        capture("p5r-mementos-available-large-text")
+        compose.onNodeWithTag(id).performClick()
+        val clearIndex = pack.day("standard", "2016-06-02")!!.steps.indexOfFirst { it.label == "Complete request: $title" }
+        assertTrue(clearIndex >= 0)
+        mark("2016-06-02", clearIndex)
+        markIs(clearIndex, StepMark.DONE, "2016-06-02")
+        compose.onNodeWithContentDescription("Back").performClick()
+        status("COMPLETED")
+        scenario!!.recreate()
+        compose.waitUntil(20_000) { compose.onAllNodesWithTag("mementos-request-list").fetchSemanticsNodes().isNotEmpty() }
+        status("COMPLETED")
+        capture("p5r-mementos-completed-large-text")
+        compose.onNodeWithTag(id).performClick()
+        mark("2016-06-02", clearIndex)
+        compose.waitUntil(10_000) {
+            runBlocking { dependencies.repo().marksFor(profileId).first().none { it.date == "2016-06-02" && it.stepIndex == clearIndex } }
+        }
+        compose.onNodeWithContentDescription("Back").performClick()
+        status("AVAILABLE")
+        assertEquals("2016-05-26", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
     }
 
     @Test fun p5rSameBuildControlCapture() {

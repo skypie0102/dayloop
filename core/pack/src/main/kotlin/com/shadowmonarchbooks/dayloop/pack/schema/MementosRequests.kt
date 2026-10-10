@@ -22,4 +22,9 @@ data class MementosRequestDefinition(
     val reward: String? = null,
     /** Exactly one semantic event representing actual request completion. */
     val completionEvent: String,
+    /** Confirmed receipt; absent in older catalogs that use date-based availability. */
+    val receivedEvent: String? = null,
+    /** Source-authored investigations or preparation that make the target actionable. */
+    val unlockEvents: List<String> = emptyList(),
+    val guidance: String? = null,
 )

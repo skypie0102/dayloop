@@ -1,13 +1,15 @@
-# Persona 5 Royal stable baseline — v0.15.0
+# Persona 5 Royal stability contract
 
-Persona 5 Royal is complete enough to serve as Dayloop's frozen reference pack
-while focused work moves to Persona 3 Reload and then Metaphor: ReFantazio.
-This is a stability boundary, not a claim that no P5R correction can ever be
-made. P5R changes now require an explicit request and focused review.
+The v0.15.0 milestone established the reference content and saved-progress
+boundary. The explicit October 10, 2026 request reopens P5R walkthrough usability
+before further P3R work. Pack version 16 updates the reading treatment described
+below; it does not reopen the other packs. See the
+[focused review](../audits/p5r-walkthrough-usability.md) and
+[Mementos and motion review](../audits/p5r-mementos-motion.md).
 
-## Shipped content contract
+## Content contract
 
-| Area | v0.15.0 baseline |
+| Area | Current content contract |
 |---|---:|
 | Calendar | 2016-04-09 through 2017-02-03 |
 | Walkthrough | 301 days, 1,231 stable-index tasks |
@@ -16,29 +18,40 @@ made. P5R changes now require an explicit request and focused review.
 | Deadlines | 24 |
 | Answers | 68 sheets: 12 exam days and 56 class questions |
 | Achievements | 53 definitions; route-observable completions are task-derived |
-| Mementos Requests | 33 definitions and 33 exact completion-task anchors |
+| Mementos Requests | 33 definitions, 33 clear anchors, 33 receipt anchors, 15 preparation anchors |
 | Declared media | 101 items: 53 achievement icons, 23 character backgrounds, 24 tarot variants, and 1 month opener |
-| Pack version | `p5r @ contentVersion 14` |
+| Pack version | `p5r @ contentVersion 16` (v0.15.0 shipped version 14) |
+| Visible task guidance | 573 tasks, including dialogue directions for 193 events |
 
 All route-selected dates remain distinct from universal availability facts.
-Existing task order and IDs are save data: additions are appended or migrated,
-never inserted in a way that silently reassigns a saved mark.
+Stored task indexes and IDs are save data: additions are appended or migrated,
+never inserted in a way that silently reassigns a saved mark. A day's optional
+`displayOrder` permutes those indexes for reading without modifying the stored
+`steps` array. Version 15 corrects one misleading April 12 tutorial label at its
+existing index; it preserves all dates, task counts, and completion anchors.
 
 ## User-visible behavior contract
 
 - The app uses the fixed dark P5R Phantom presentation regardless of system
   light/dark mode, with the completed Today, Calendar, Confidant, deadline,
   splash, command, widget, launcher, and cold-start treatments.
-- Today and Day render tasks in separate Day, Night, and Infiltration sections.
-- Tips are compact inline controls placed immediately after task text. Authored
-  tips retain useful spoiler-inclusive walkthrough detail.
+- Today and Day render tasks in chronological Day, Night, and Infiltration
+  sections. Only adjacent matching sections merge, so errands after a dungeon
+  visit cannot move ahead of it. Display numbers follow reading order;
+  Done/Skip/Later still address the original saved index.
+- P5R opts into `walkthroughPresentation.inlineTips`: task instructions render
+  at full width beneath their task, without opening a dialog. Dialogue,
+  prerequisites, preparation and branch-critical directions remain readable
+  while checking off the day. Packs that omit this option retain their existing
+  Tips controls.
 - Daily task wording is specific; for example, the April 26 objective is
   `Heist: Steal Kamoshida's Heart`.
 - Exam and class-question answers remain visible on the relevant daily view.
   P5R's former Answers bottom tab is replaced by Mementos Requests.
 - Confidant ranks, achievements, and Mementos Requests derive completion from
   their relevant checked route tasks. Multi-step setup does not complete a
-  request; only its exact completion anchor does.
+  request; only its exact completion anchor does. Receipt and investigation or
+  job-shift anchors gate availability. Skipped prerequisites remain pending.
 - Confidant detail pages layer an Arcana tarot backdrop at the top-right;
   Faith changes from its rank 0–5 card to its rank 6–10 card at rank 6.
 - Achievement progress keeps only its two counter lines pinned while its longer
@@ -46,7 +59,7 @@ never inserted in a way that silently reassigns a saved mark.
 - Achievement entries use plain translucent 75%-black panels, without panel
   decoration, so their artwork and text remain legible over the P5R presentation.
 - Mementos Requests uses pack-authored background artwork with plain translucent
-  50%-black request panels so the artwork remains visible behind each entry.
+  75%-black request panels so the artwork remains visible behind each entry.
 - Today's date uses a heavier single-line treatment, and authored answer sheets
   show the Shūjin Academy companion artwork at matching height on their left.
 - Calendar navigation retains the month the user browsed when a Day page is

@@ -117,10 +117,10 @@ internal fun SubmergedPerfectDaySplash(allDone: Boolean, key: Any?, suppressed: 
         }
     }
     AnimatedVisibility(show && !suppressed,
-        enter = if (reduceMotion) fadeIn(tween(SkinFxTiming.SPLASH_IN_MS)) else
-            fadeIn(tween(SkinFxTiming.SPLASH_IN_MS)) + slideInHorizontally(tween(SkinFxTiming.SPLASH_IN_MS)) { it / 3 },
-        exit = if (reduceMotion) fadeOut(tween(SkinFxTiming.SPLASH_OUT_MS)) else
-            fadeOut(tween(SkinFxTiming.SPLASH_OUT_MS)) + slideOutHorizontally(tween(SkinFxTiming.SPLASH_OUT_MS)) { -it / 3 },
+        enter = if (reduceMotion) androidx.compose.animation.EnterTransition.None else
+            fadeIn(tween(SkinFxTiming.SPLASH_IN_MS)) + slideInHorizontally(tween(SkinFxTiming.SPLASH_IN_MS)) { it / 8 },
+        exit = if (reduceMotion) androidx.compose.animation.ExitTransition.None else
+            fadeOut(tween(SkinFxTiming.SPLASH_OUT_MS)) + slideOutHorizontally(tween(SkinFxTiming.SPLASH_OUT_MS)) { -it / 8 },
         modifier = modifier,
     ) {
         val selected = art
