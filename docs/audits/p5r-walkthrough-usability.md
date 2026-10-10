@@ -35,6 +35,8 @@ source's musical-note counts.
   bold, and P5R mark controls expose their selected state to accessibility.
   Today and Day reserve the measured bottom controls outside the scrolling
   viewport, and opening another date resets reading to the first task.
+  The calendar cell owns the click target around its TODAY badge so the badge
+  cannot intercept opening the current day's walkthrough.
 - 572 tasks have visible guidance, including dialogue directions for 193 events.
   Preparation, Arcana/stat gates, crafting targets, retry conditions, optional
   gifts, deliberately low-affinity decoration choices and ending/romance branches

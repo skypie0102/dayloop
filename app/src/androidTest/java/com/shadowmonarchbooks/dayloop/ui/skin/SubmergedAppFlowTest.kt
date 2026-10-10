@@ -407,7 +407,10 @@ class SubmergedAppFlowTest {
         }
         compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().assertIsSelected()
         compose.onNodeWithContentDescription("Calendar").performClick()
-        compose.onNode(hasText("7") and hasClickAction()).performScrollTo().performClick()
+        capture("p5r-app-calendar-entry")
+        compose.onNodeWithTag("calendar-date-2016-05-07").performScrollTo().performClick()
+        capture("p5r-app-day-entry")
+        compose.onRoot().printToLog("P5rReview-Day")
         // Day has its own ViewModel; wait for its asynchronous pack/profile load.
         compose.waitUntil(20_000) {
             compose.onAllNodesWithTag("task-guidance-3").fetchSemanticsNodes().isNotEmpty()

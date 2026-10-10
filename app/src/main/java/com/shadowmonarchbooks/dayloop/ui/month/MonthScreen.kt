@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.ui.platform.testTag
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -390,7 +391,13 @@ private fun DayCell(
         else -> MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f)
     }
 
-    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+    // The current-day notice overlays the numeric Surface. Keep the click target
+    // on their common parent so the notice cannot swallow calendar navigation.
+    Box(
+        modifier = modifier.testTag("calendar-date-$iso")
+            .then(if (day != null) Modifier.clickable { onOpenDay(iso) } else Modifier),
+        contentAlignment = Alignment.Center,
+    ) {
         Surface(
             shape = when {
                 slash -> RectangleShape
@@ -410,11 +417,7 @@ private fun DayCell(
                 crown && day != null -> BorderStroke(0.8.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f))
                 else -> null
             },
-            modifier = Modifier
-                .fillMaxSize()
-                .then(
-                    if (day != null) Modifier.clickable { onOpenDay(iso) } else Modifier,
-                ),
+            modifier = Modifier.fillMaxSize(),
         ) {
             Box(contentAlignment = Alignment.Center) {
                 Text(
