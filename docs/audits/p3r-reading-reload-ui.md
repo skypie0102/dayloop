@@ -22,7 +22,8 @@ reindexing stored tasks. 46 headings are corrected below. 306 tasks display thei
 guidance inline at full width under the instruction/commands. All 53 class/exam
 sheets are connected, numbered reply sequences explain Any/alternatives and
 relationship branches, and point-based Social Links remind the player to carry
-a matching Arcana. Fixed-progression Sun/Devil links have no matching-Persona rule.
+a matching Arcana for later point-scoring meetings. Rank-one introductions and
+fixed-progression Sun/Devil links do not impose that points-bonus requirement.
 Class and exam headings distinguish morning; dungeon headings name the Dark Hour.
 
 The guide retains its numbered options and existing route labels. This pass does
@@ -58,6 +59,8 @@ Elizabeth victory makes #101 ready, with reporting confirmed afterward.
 The existing native mobile layout is retained: oversized italic title, layered
 ultramarine planes, cyan captions, white active bands with pink edges and dark
 selected status tags. Request status wraps on narrow/large-text layouts. The
+selected whole-word footer tab pans into view at large text sizes; measured label
+widths are cached, and this focus adjustment does not add a motion loop. The
 user-requested 40dp square Done/Skip controls remain side by side to the right;
 guidance spans below them. The 64dp header, Sunday-first calendar, audited moon
 art and nine user-provided Perfect Day images retain their existing behavior.

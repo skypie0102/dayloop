@@ -189,7 +189,7 @@
         {
           "label": "Ask Chihiro to hang out — Justice reaches rank 1",
           "slot": "afternoon",
-          "tip": "Carry a Justice Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
+          "tip": "For later meetings, carry a Justice Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Buy the Iwatodai Forum Note (¥500) from the Suspicious Man at Club Escapade",
@@ -332,7 +332,7 @@
         {
           "label": "Visit the girl at the shrine — Hanged-Man reaches rank 1",
           "slot": "afternoon",
-          "tip": "Carry a Hanged-Man Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
+          "tip": "For later meetings, carry a Hanged-Man Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Check the Command Room's newly unlocked dorm recordings",
@@ -452,7 +452,7 @@
         {
           "label": "Hang out with Nozomi — Moon reaches rank 1",
           "slot": "afternoon",
-          "tip": "Carry a Moon Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
+          "tip": "For later meetings, carry a Moon Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Study with Mitsuru and Akihiko",
@@ -845,7 +845,7 @@
         {
           "label": "Meet the exchange student — Temperance reaches rank 1",
           "slot": "afternoon",
-          "tip": "Carry a Temperance Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
+          "tip": "For later meetings, carry a Temperance Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Watch Akihiko's Link Episode — jog back with him for +5 Max HP, or refuse for +3 Max SP",

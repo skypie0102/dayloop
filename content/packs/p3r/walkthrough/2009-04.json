@@ -253,7 +253,7 @@
         {
           "label": "Join the track team at the Practice Field — Chariot reaches rank 1",
           "slot": "afternoon",
-          "tip": "Carry a Chariot Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
+          "tip": "For later meetings, carry a Chariot Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Greet Yuko and ask to walk home with her (Strength flag)",
@@ -315,7 +315,7 @@
         {
           "label": "Hang out with Yuko — Strength reaches rank 1",
           "slot": "afternoon",
-          "tip": "Carry a Strength Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
+          "tip": "For later meetings, carry a Strength Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Play House of the Deceased at Game Parade",
@@ -375,7 +375,7 @@
         {
           "label": "Visit Bookworms — Hierophant reaches rank 1",
           "slot": "day",
-          "tip": "Carry a Hierophant Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
+          "tip": "For later meetings, carry a Hierophant Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Buy SP drinks from the restocked vending machines",
@@ -412,7 +412,7 @@
         {
           "label": "Sign your papers at the Faculty Office (1F Faculty Office Hallway) — Emperor reaches rank 1",
           "slot": "afternoon",
-          "tip": "Carry an Emperor Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
+          "tip": "For later meetings, carry an Emperor Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Play High School of Youth at Game Parade",
@@ -464,7 +464,7 @@
         {
           "label": "Play the MMORPG at your desk — Hermit reaches rank 1",
           "slot": "day",
-          "tip": "Carry a Hermit Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
+          "tip": "For later meetings, carry a Hermit Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "The dorm's shared computer unlocks today",

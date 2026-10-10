@@ -39,7 +39,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.snapshotFlow
+import kotlinx.coroutines.flow.first
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -260,18 +263,40 @@ internal fun SubmergedBottomBar(
     onSelect: (String) -> Unit,
 ) {
     val colors = MaterialTheme.colorScheme
-    val style = MaterialTheme.typography.labelSmall.withSkinFont(LocalSkin.current.type.display)
+    val style = MaterialTheme.typography.labelSmall.withSkinFont(LocalSkin.current.type.display).copy(fontStyle = FontStyle.Italic)
     val measurer = rememberTextMeasurer()
     val density = LocalDensity.current
-    val widths = items.map { item ->
-        with(density) { measurer.measure(AnnotatedString(item.label), style).size.width.toDp() }
-            .plus(12.dp).coerceAtLeast(56.dp)
+    val scroll = rememberScrollState()
+    val widths = remember(items, style, density) {
+        items.map { item ->
+            with(density) { measurer.measure(AnnotatedString(item.label), style).size.width.toDp() }
+                .plus(12.dp).coerceAtLeast(56.dp)
+        }
     }
     BoxWithConstraints(Modifier.fillMaxWidth().background(colors.background).navigationBarsPadding()) {
         val spare = (maxWidth - widths.fold(0.dp) { sum, width -> sum + width }).coerceAtLeast(0.dp)
+        // Keep the selected whole word visible when the command row exceeds the viewport.
+        LaunchedEffect(selectedRoute, widths, maxWidth) {
+            val selectedIndex = items.indexOfFirst { it.route == selectedRoute }
+            if (selectedIndex >= 0) {
+                val tabWidths = widths.map { with(density) { (it + spare / items.size).toPx() } }
+                val viewport = with(density) { maxWidth.toPx() }
+                val left = tabWidths.take(selectedIndex).sum()
+                val right = left + tabWidths[selectedIndex]
+                // Use the measured scroll range (including rounded tab widths).
+                snapshotFlow { scroll.maxValue }.first { it != Int.MAX_VALUE }
+                val target = when {
+                    selectedIndex == items.lastIndex -> scroll.maxValue
+                    left < scroll.value -> left.toInt()
+                    right > scroll.value + viewport -> kotlin.math.ceil((right - viewport).toDouble()).toInt()
+                    else -> scroll.value
+                }
+                scroll.scrollTo(target.coerceIn(0, scroll.maxValue))
+            }
+        }
         Row(
             verticalAlignment = Alignment.Top,
-            modifier = Modifier.horizontalScroll(rememberScrollState()).selectableGroup(),
+            modifier = Modifier.horizontalScroll(scroll).selectableGroup(),
         ) {
             items.forEachIndexed { index, item ->
                 val selected = item.route == selectedRoute

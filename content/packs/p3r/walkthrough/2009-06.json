@@ -120,7 +120,7 @@
         {
           "label": "Talk to the bartender at Club Escapade — Tower reaches rank 1 (drink orders: 4 > 2 > 2 > 4)",
           "slot": "evening",
-          "tip": "Carry a Tower Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
+          "tip": "For later meetings, carry a Tower Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         }
       ],
       "displayOrder": [
@@ -541,7 +541,7 @@
         {
           "label": "Meet the art club — Fortune reaches rank 1",
           "slot": "afternoon",
-          "tip": "Carry a Fortune Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
+          "tip": "For later meetings, carry a Fortune Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Visit the monk at Club Escapade — Tower reaches rank 3 (best answer: 2)",
@@ -637,7 +637,7 @@
         {
           "label": "Meet Fuuka — Priestess reaches rank 1",
           "slot": "afternoon",
-          "tip": "Carry a Priestess Persona before starting this Social Link meeting. A matching Arcana improves the relationship points earned."
+          "tip": "For later meetings, carry a Priestess Persona to improve relationship points. The rank-one introduction does not need that points bonus."
         },
         {
           "label": "Check the Command Room's new dorm recording",

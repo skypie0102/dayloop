@@ -38,6 +38,9 @@ class P3rReadingPresentationTest {
         }
     }
     @Test fun `relationship branches explain choices and fixed rank links need no matching Persona`() {
+        val introduction = days.getValue("2009-04-23").steps[1].tip!!
+        assertTrue("For later meetings" in introduction)
+        assertTrue("rank-one introduction does not need" in introduction)
         val strength = days.getValue("2009-05-27").steps[0].tip!!
         assertTrue("Romance: Any → 2 → 1" in strength)
         assertTrue("Friendship: Any → 2 → 2" in strength)

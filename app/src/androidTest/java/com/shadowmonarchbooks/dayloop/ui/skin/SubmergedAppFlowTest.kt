@@ -46,6 +46,9 @@ class SubmergedAppFlowTest {
         // Use the active user's provider value: a cached Settings.System read can
         // remain stale while the preceding activity is being recreated/closed.
         shell("settings --user current put system font_scale $scale")
+        compose.waitUntil(10_000) {
+            shell("settings --user current get system font_scale").toFloatOrNull() == scale
+        }
         assertEquals(scale, shell("settings --user current get system font_scale").toFloatOrNull())
         // launch() independently verifies the actual receiving window's fontScale.
     }
@@ -213,6 +216,8 @@ class SubmergedAppFlowTest {
         }
         scenario!!.recreate()
         tab("Requests").assertIsSelected()
+        // The summary now scrolls with the list; explicitly reveal it after saved-scroll restoration.
+        compose.onNodeWithTag("request-list").performScrollToIndex(0)
         compose.waitUntil(10_000) { compose.onAllNodesWithText("1 / 101 reported").fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText("1 / 101 reported").performScrollTo().assertIsDisplayed()
         capture("p3r-app-requests")
@@ -339,6 +344,10 @@ class SubmergedAppFlowTest {
         markIs(1, StepMark.DONE, "2009-07-01")
         tab("Requests").performClick()
         compose.onNodeWithText("0 / 101 reported").performScrollTo().assertIsDisplayed()
+        val rootBounds = compose.onRoot().getUnclippedBoundsInRoot()
+        val selectedTabBounds = tab("Requests").getUnclippedBoundsInRoot()
+        assertTrue("selected whole-word tab must remain in the viewport at 200% text",
+            selectedTabBounds.left >= rootBounds.left && selectedTabBounds.right <= rootBounds.right)
         openRequest("I want to eat some chilled Taiyaki")
         compose.onNodeWithText("Guide stage: Ready to report. Uncheck this source task to reverse it.")
             .performScrollTo().assertIsDisplayed()
