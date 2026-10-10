@@ -408,6 +408,10 @@ class SubmergedAppFlowTest {
         compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().assertIsSelected()
         compose.onNodeWithContentDescription("Calendar").performClick()
         compose.onNode(hasText("7") and hasClickAction()).performScrollTo().performClick()
+        // Day has its own ViewModel; wait for its asynchronous pack/profile load.
+        compose.waitUntil(20_000) {
+            compose.onAllNodesWithTag("task-guidance-3").fetchSemanticsNodes().isNotEmpty()
+        }
         compose.onNodeWithTag("task-guidance-3").performScrollTo().assertIsDisplayed()
         compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().assertIsSelected()
         val dayGuidance = compose.onNodeWithTag("task-guidance-3").performScrollTo().fetchSemanticsNode().boundsInRoot
