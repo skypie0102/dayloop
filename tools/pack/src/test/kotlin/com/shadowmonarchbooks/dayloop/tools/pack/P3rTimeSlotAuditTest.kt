@@ -74,7 +74,7 @@ class P3rTimeSlotAuditTest {
     @Test
     fun `P3R final exam Saturday keeps free time after the exam`() {
         assertSlot("2009-10", "2009-10-17", "Final exam day", "day")
-        assertSlot("2009-10", "2009-10-17", "Faculty Office", "afternoon")
+        assertSlot("2009-10", "2009-10-17", "Faculty Office", "evening")
         assertSlot("2009-10", "2009-10-17", "Hierophant reaches rank 6", "afternoon")
         assertSlot("2009-10", "2009-10-17", "Junpei's gardening", "evening")
     }

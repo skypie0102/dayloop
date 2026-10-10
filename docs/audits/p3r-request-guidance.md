@@ -1,5 +1,9 @@
 # P3R request guidance — September 19, 2026
 
+Current continuation: [October 10 reading and source-stage audit](p3r-reading-reload-ui.md)
+(content version 15; 32 reporting, 19 acceptance and 27 preparation references).
+The counts below document the earlier pass.
+
 Continuation of P3R-2/P3R-3 from `0cfaa45` on the migrated repository.
 
 Current coverage: **101/101 solutions**, content version **14**. Request #101

@@ -205,7 +205,7 @@ class SubmergedAppFlowTest {
         compose.waitUntil(10_000) {
             runBlocking { dependencies.repo().requestStages(profileId).first()["p3r.request.001"] == "ready" }
         }
-        compose.onNodeWithText("0 / 101 reported").assertIsDisplayed()
+        compose.onNodeWithText("0 / 101 reported").performScrollTo().assertIsDisplayed()
         capture("p3r-app-request-ready")
         compose.onAllNodesWithText("Reported").onLast().performScrollTo().performClick()
         compose.waitUntil(10_000) {
@@ -214,7 +214,7 @@ class SubmergedAppFlowTest {
         scenario!!.recreate()
         tab("Requests").assertIsSelected()
         compose.waitUntil(10_000) { compose.onAllNodesWithText("1 / 101 reported").fetchSemanticsNodes().isNotEmpty() }
-        compose.onNodeWithText("1 / 101 reported").assertIsDisplayed()
+        compose.onNodeWithText("1 / 101 reported").performScrollTo().assertIsDisplayed()
         capture("p3r-app-requests")
         // Clearing a confirmation reverses the count; it never checks a route task.
         compose.onAllNodesWithText("Reported").filter(hasClickAction()).onLast().performScrollTo().performClick()
@@ -316,14 +316,51 @@ class SubmergedAppFlowTest {
         markIs(index, StepMark.DONE, event.date)
         Log.i("P3rReview", "Hand-in: opening Requests")
         tab("Requests").performClick()
-        compose.onNodeWithText("1 / 101 reported").assertIsDisplayed()
+        compose.onNodeWithText("1 / 101 reported").performScrollTo().assertIsDisplayed()
         openRequest("Retrieve the First Old Document")
         compose.onNodeWithText("Reported by the walkthrough. To reverse this, uncheck the linked hand-in task.").performScrollTo().assertIsDisplayed()
         capture("p3r-app-request-automatic")
         tab("Today").performClick()
         compose.onAllNodesWithText("Done")[index].performScrollTo().performClick()
         tab("Requests").performClick()
-        compose.onNodeWithText("0 / 101 reported").assertIsDisplayed()
+        compose.onNodeWithText("0 / 101 reported").performScrollTo().assertIsDisplayed()
+    }
+
+    @Test fun sourceReadinessLinksReverseAtTwoHundredPercentTextWithoutAdvancingClock() {
+        launch("2009-07-09", scale = 2f)
+        compose.onAllNodesWithText("Done")[1].performScrollTo().performClick()
+        markIs(1, StepMark.DONE, "2009-07-09")
+        // A previously collected item is objective proof, independently of acceptance.
+        runBlocking { dependencies.repo().setMark(profileId,
+            com.shadowmonarchbooks.dayloop.progress.StepKey("2009-07-01", 1), StepMark.DONE) }
+        markIs(1, StepMark.DONE, "2009-07-01")
+        tab("Requests").performClick()
+        compose.onNodeWithText("0 / 101 reported").performScrollTo().assertIsDisplayed()
+        openRequest("I want to eat some chilled Taiyaki")
+        compose.onNodeWithText("Guide stage: Ready to report. Uncheck this source task to reverse it.")
+            .performScrollTo().assertIsDisplayed()
+        capture("p3r-source-ready-large-text")
+        compose.onNodeWithTag("request-checkpoint-p3r.request.038").performScrollTo().performClick()
+        val pack = dependencies.store().state.value.selected!!
+        compose.onNodeWithContentDescription(formatDate("2009-07-01", pack.calendar)).assertIsDisplayed()
+        compose.onAllNodesWithText("Done")[1].performScrollTo().performClick()
+        compose.waitUntil(10_000) { runBlocking {
+            dependencies.repo().marksFor(profileId).first().none { it.date == "2009-07-01" && it.stepIndex == 1 }
+        } }
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithText("Guide stage: In progress. Uncheck this source task to reverse it.")
+            .performScrollTo().assertIsDisplayed()
+        assertTrue(runBlocking { dependencies.repo().requestStages(profileId).first().isEmpty() })
+        assertEquals("2009-07-09", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
+        capture("p3r-source-readiness-reversed-large-text")
+        tab("Today").performClick()
+        compose.onAllNodesWithText("Done")[2].performScrollTo().performClick()
+        markIs(2, StepMark.DONE, "2009-07-09")
+        tab("Requests").performClick()
+        compose.onNodeWithText("1 / 101 reported").performScrollTo().assertIsDisplayed()
+        scenario!!.recreate()
+        compose.onNodeWithText("1 / 101 reported").performScrollTo().assertIsDisplayed()
+        assertEquals("2009-07-09", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
     }
 
     @Test fun operationAndExamScreens() {

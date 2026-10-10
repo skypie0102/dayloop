@@ -495,6 +495,12 @@ data class SkinMotion(
  */
 fun SkinSpec.navMotion(animationsDisabled: Boolean): SkinMotion {
     if (animationsDisabled) return SkinMotion.Snap
+    if (hasSubmergedChrome()) return SkinMotion(
+        enter = fadeIn(tween(220)) + scaleIn(initialScale = 0.995f, animationSpec = tween(220)),
+        exit = fadeOut(tween(160)),
+        popEnter = fadeIn(tween(220)) + scaleIn(initialScale = 0.995f, animationSpec = tween(220)),
+        popExit = fadeOut(tween(160)),
+    )
     return when (motion) {
         "fade" -> SkinMotion(
             enter = fadeIn(tween(180)),

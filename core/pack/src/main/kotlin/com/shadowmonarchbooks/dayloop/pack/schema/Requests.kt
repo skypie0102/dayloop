@@ -21,6 +21,12 @@ data class RequestDefinition(
     val completionEvent: String? = null,
     /** Optional authored instructions. Descriptive only; never completion evidence. */
     val solution: String? = null,
+    /** Exact acceptance instruction, independent of reporting. */
+    val acceptanceEvent: String? = null,
+    /** Ordered guide preparation steps. Checking these never reports a request. */
+    val preparationEvents: List<String> = emptyList(),
+    /** Any one of these proves the objective/item is ready, after acceptance. */
+    val readyEvents: List<String> = emptyList(),
 )
 
 /** Mutually exclusive manual states; preparing an item never reports it automatically. */

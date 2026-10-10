@@ -1,5 +1,9 @@
 # Elizabeth's Requests — first tracker delivery
 
+Current continuation: [October 10 reading and source-stage audit](../audits/p3r-reading-reload-ui.md)
+(content version 15; 32 reporting, 19 acceptance and 27 preparation references).
+The counts below document the earlier pass.
+
 The user explicitly prioritized this destination on September 6, 2026 (UTC), replacing
 P3R's Answers bottom tab. The bottom label is Requests to fit mobile navigation;
 the page title is also Requests (user correction, September 8, 2026). The answer catalog remains registered,

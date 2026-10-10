@@ -1,11 +1,28 @@
 # Persona 3 Reload — UI and walkthrough roadmap
 
 Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version 3.
-Priority: **resume after P5R walkthrough usability**, per the October 10, 2026 request.
-Status: **paused for the focused P5R fix**; P3R-1 daily screen and Android flow
-validation remain open. See the [P5R usability review](../audits/p5r-walkthrough-usability.md).
+Priority: **active P3R reading and Reload UI optimization**, per the October 10, 2026 request.
+Status: content version **15** implements the focused reading, request-stage and UI pass.
+Android validation and screenshot review are tracked in the
+[October review](../audits/p3r-reading-reload-ui.md). Broader reward/prerequisite,
+boss-strategy and release-hardening audits remain separately scoped.
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
+
+## October 10 continuation: reading, source stages and Reload UI
+
+Preserves all 301 dates and 819 saved task keys while correcting 46 time headings,
+adding inline guidance to 306 tasks and connecting every class/exam answer sheet.
+Requests now have 32 exact reporting anchors, 19 acceptance anchors, 27 preparation
+references and objective-proof anchors for eight requests. Purchases awaiting
+delivery, partial feedings and boss attempts never report a request. The #101
+battle proves readiness; reporting remains an explicit confirmation.
+
+The submerged chrome uses brighter layered blue planes, white selection bands,
+pink edges and compact cyan status labels, with cached drawing and short motion.
+40dp Done/Skip squares, the 64dp title bar, whole-word scrolling navigation and
+user-provided Perfect Day artwork retain their existing contracts. Full Android
+flows and large-text review cover the actual application, plus P5R regressions.
 
 ## September 22 continuation: all request solutions authored
 

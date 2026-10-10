@@ -1,9 +1,11 @@
 # dayloop
 
-Current P5R priority: source-ordered inline walkthrough guidance plus request
-receipt/preparation tracking and lighter themed motion. See the
-[Mementos and motion review](docs/audits/p5r-mementos-motion.md). P3R content
-expansion remains paused pending P5R usability testing.
+Current P3R pass: source-ordered inline walkthrough guidance, distinct request
+acceptance/preparation/reporting, and a Reload-style blue UI with lightweight
+selection and navigation motion. See the
+[P3R reading and UI review](docs/audits/p3r-reading-reload-ui.md). The
+[P5R Mementos and motion improvements](docs/audits/p5r-mementos-motion.md)
+remain in place.
 
 **Unofficial Android companion/checklist app for calendar-based ATLUS-style JRPGs** — launching with Persona 5 Royal, Persona 3 Reload, and Metaphor: ReFantazio. The engine stays pack-generic; further ATLUS titles can drop in later.
 
@@ -33,11 +35,11 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 
 ## Roadmap
 
-**Top priority: [Persona 5 Royal — walkthrough usability](docs/audits/p5r-walkthrough-usability.md).**
-The October 10 request reopens P5R first: present the source route in reading
-order, show instructions beside their tasks, and retain saved progress.
-[P3R redesign and walkthrough completion](docs/packs/p3r-roadmap.md) resumes after
-this focused fix. The phase table below records earlier milestones.
+**Current priority: [Persona 3 Reload — reading and Reload UI](docs/audits/p3r-reading-reload-ui.md).**
+The October 10 pass follows the completed P5R usability/Mementos fixes with
+source-ordered guidance, explicit request stages and lightweight themed motion.
+The [P3R roadmap](docs/packs/p3r-roadmap.md) tracks the broader remaining audits.
+The phase table below records earlier milestones.
 
 | Phase | Deliverable | Status |
 |---|---|---|

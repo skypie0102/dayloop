@@ -20,6 +20,12 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.RectangleShape
@@ -36,7 +42,7 @@ import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.pack.schema.Step
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 
-/** A reading column with Done/Skip anchored to its right, matching the P5R task flow. */
+/** Source guidance reads at full width while mark commands stay beside the instruction. */
 @Composable
 internal fun SubmergedTaskCard(
     index: Int,
@@ -46,94 +52,66 @@ internal fun SubmergedTaskCard(
     statLabels: Map<String, String>,
     activityLabel: String?,
     onOpenActivity: (() -> Unit)?,
+    displayNumber: Int = index + 1,
+    inlineTips: Boolean = false,
     onTip: () -> Unit,
 ) {
     val colors = MaterialTheme.colorScheme
     val feedback = rememberMarkFeedback()
-    Surface(
-        color = colors.surface,
-        shape = RectangleShape,
-        modifier = Modifier.fillMaxWidth().drawBehind {
-            drawLine(colors.outlineVariant, Offset(0f, size.height), Offset(size.width, size.height), 1.dp.toPx())
-        },
-    ) {
-        Row(Modifier.padding(12.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Row(Modifier.weight(1f), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text(
-                    (index + 1).toString().padStart(2, '0'),
-                    style = MaterialTheme.typography.labelLarge,
-                    color = colors.primary,
-                    modifier = Modifier.padding(top = 4.dp),
-                )
+    Surface(color = colors.surface.copy(alpha = 0.82f), shape = RectangleShape,
+        modifier = Modifier.fillMaxWidth().semantics {
+            stateDescription = when (mark) { StepMark.DONE -> "Done"; StepMark.SKIP -> "Skipped"; else -> "Not marked" }
+        }.drawWithCache {
+            onDrawBehind { drawLine(colors.outlineVariant, Offset(0f, size.height), Offset(size.width, size.height), 1.dp.toPx()) }
+        }) {
+        Column(Modifier.padding(horizontal = 12.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.Top) {
+                Text(displayNumber.toString().padStart(2, '0'), style = MaterialTheme.typography.labelLarge,
+                    fontStyle = FontStyle.Italic, color = colors.secondary, modifier = Modifier.padding(top = 3.dp))
                 Column(Modifier.weight(1f)) {
                     val taskText = buildAnnotatedString {
                         append(step.label)
-                        if (step.tip != null) { append(" "); appendInlineContent("tips", "Tips") }
+                        if (step.tip != null && !inlineTips) { append(" "); appendInlineContent("tips", "Tips") }
                     }
-                    Text(
-                        taskText,
-                        inlineContent = if (step.tip == null) emptyMap() else mapOf(
+                    Text(taskText,
+                        inlineContent = if (step.tip == null || inlineTips) emptyMap() else mapOf(
                             "tips" to InlineTextContent(Placeholder(2.8.em, 1.1.em, PlaceholderVerticalAlign.TextCenter)) {
                                 Text("Tips", color = colors.primary, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
-                            },
-                        ),
-                        modifier = if (step.tip == null) Modifier else Modifier.heightIn(min = 48.dp)
-                            .clickable(role = Role.Button, onClickLabel = "Open task tips", onClick = onTip),
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = colors.onSurface,
-                        // The selected Done command already communicates completion. Avoid
-                        // line-through glyph decoration here: on API 35's software renderer,
-                        // applying it to a long wrapped task can crash RenderThread while the
-                        // row is being re-laid out after a mark change.
-                        textDecoration = null,
-                    )
-                    if (step.statGains.isNotEmpty()) {
-                        Text(
-                            step.statGains.entries.joinToString(" · ") { (id, value) -> "${statLabels[id] ?: id} +$value" },
-                            style = MaterialTheme.typography.labelMedium,
-                            color = colors.secondary,
-                            modifier = Modifier.padding(top = 6.dp),
-                        )
-                    }
-                    if (activityLabel != null && onOpenActivity != null) {
-                        Text(
-                            activityLabel,
-                            color = colors.primary,
-                            modifier = Modifier.heightIn(min = 48.dp)
-                                .clickable(role = Role.Button, onClick = onOpenActivity)
-                                .padding(vertical = 12.dp),
-                        )
+                            }),
+                        modifier = Modifier.testTag("task-label-$index").then(
+                            if (step.tip != null && !inlineTips) Modifier.heightIn(min = 48.dp)
+                                .clickable(role = Role.Button, onClickLabel = "Open task tips", onClick = onTip) else Modifier),
+                        style = MaterialTheme.typography.bodyLarge, color = colors.onSurface)
+                    if (step.statGains.isNotEmpty()) Text(
+                        step.statGains.entries.joinToString(" · ") { (id, value) -> "${statLabels[id] ?: id} +$value" },
+                        style = MaterialTheme.typography.labelMedium, color = colors.secondary,
+                        modifier = Modifier.padding(top = 6.dp))
+                }
+                Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+                    listOf(StepMark.DONE to "Done", StepMark.SKIP to "Skip").forEach { (value, label) ->
+                        val active = mark == value
+                        Box(contentAlignment = Alignment.Center,
+                            modifier = Modifier.selectable(selected = active, role = Role.Button,
+                                onClick = { feedback(); onToggle(value) })
+                                .semantics { text = AnnotatedString(label); contentDescription = label }
+                                .size(PersonaTaskMarkSize).submergedCommandSelection(active)) {
+                            Icon(if (value == StepMark.DONE) Icons.Filled.Check else Icons.Filled.Close,
+                                contentDescription = null, modifier = Modifier.size(18.dp),
+                                tint = if (active) colors.onPrimary else colors.secondary)
+                        }
                     }
                 }
             }
-            Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
-                listOf(StepMark.DONE to "Done", StepMark.SKIP to "Skip").forEach { (value, label) ->
-                    val active = mark == value
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier
-                            .selectable(selected = active, role = Role.Button, onClick = { feedback(); onToggle(value) })
-                            .semantics { text = AnnotatedString(label) }
-                            .size(PersonaTaskMarkSize)
-                            .drawBehind {
-                                if (active) {
-                                    val inset = 5.dp.toPx()
-                                    val strip = Path().apply {
-                                        moveTo(inset, inset); lineTo(size.width, inset)
-                                        lineTo(size.width - inset, size.height - inset)
-                                        lineTo(0f, size.height - inset); close()
-                                    }
-                                    drawPath(strip, colors.primary)
-                                    drawLine(colors.tertiary, Offset(inset, inset), Offset(size.width, inset), 2.dp.toPx())
-                                }
-                            },
-                    ) {
-                        Icon(if (value == StepMark.DONE) Icons.Filled.Check else Icons.Filled.Close,
-                            contentDescription = null, modifier = Modifier.size(18.dp),
-                            tint = if (active) colors.onPrimary else colors.secondary)
-                    }
+            if (inlineTips) step.tip?.let { guidance ->
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp),
+                    modifier = Modifier.fillMaxWidth().testTag("task-guidance-$index")) {
+                    Text("Guide", style = MaterialTheme.typography.labelMedium, fontStyle = FontStyle.Italic,
+                        color = colors.secondary)
+                    Text(guidance, style = MaterialTheme.typography.bodyMedium, color = colors.onSurface)
                 }
             }
+            if (activityLabel != null && onOpenActivity != null) Text(activityLabel, color = colors.secondary,
+                modifier = Modifier.heightIn(min = 48.dp).clickable(role = Role.Button, onClick = onOpenActivity).padding(vertical = 10.dp))
         }
     }
 }
@@ -184,25 +162,29 @@ internal fun SubmergedDeadline(label: String, daysLeft: Long, kindLabel: String?
 
 /** Shared P3R selection treatment for commands, including task marks and report stages. */
 @Composable
-private fun Modifier.submergedCommandSelection(active: Boolean): Modifier {
+internal fun Modifier.submergedCommandSelection(active: Boolean): Modifier {
     val colors = MaterialTheme.colorScheme
-    return drawBehind {
-        if (active) {
-            val inset = 6.dp.toPx()
-            val slant = 10.dp.toPx()
-            val strip = Path().apply {
-                moveTo(slant, inset); lineTo(size.width, inset)
-                lineTo(size.width - slant, size.height - inset)
-                lineTo(0f, size.height - inset); close()
+    val disabled = rememberAnimationsDisabled()
+    val reveal = animateFloatAsState(if (active) 1f else 0f,
+        animationSpec = tween(if (disabled) 0 else 160), label = "Reload command cursor")
+    return drawWithCache {
+        val inset = 5.dp.toPx()
+        val slant = minOf(10.dp.toPx(), size.width * 0.12f)
+        val strip = Path().apply {
+            moveTo(slant, inset); lineTo(size.width, inset)
+            lineTo(size.width - slant, size.height - inset); lineTo(0f, size.height - inset); close()
+        }
+        val cursor = Path().apply {
+            moveTo(3.dp.toPx(), size.height / 2 - 4.dp.toPx())
+            lineTo(8.dp.toPx(), size.height / 2)
+            lineTo(3.dp.toPx(), size.height / 2 + 4.dp.toPx()); close()
+        }
+        onDrawBehind {
+            if (active) {
+                drawPath(strip, colors.primary)
+                drawLine(colors.tertiary, Offset(slant, inset), Offset(size.width, inset), 2.dp.toPx())
+                drawPath(cursor, colors.onPrimary.copy(alpha = reveal.value))
             }
-            drawPath(strip, colors.primary)
-            drawLine(colors.tertiary, Offset(slant, inset), Offset(size.width, inset), 2.dp.toPx())
-            val cursor = Path().apply {
-                moveTo(9.dp.toPx(), size.height / 2 - 4.dp.toPx())
-                lineTo(14.dp.toPx(), size.height / 2)
-                lineTo(9.dp.toPx(), size.height / 2 + 4.dp.toPx()); close()
-            }
-            drawPath(cursor, colors.onPrimary)
         }
     }
 }

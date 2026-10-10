@@ -16,7 +16,11 @@ class P3rRequestsTest {
         val loaded = PackLoader.load(dir)
         assertTrue(loaded.parseIssues.isEmpty(), loaded.parseIssues.joinToString())
         val catalog = assertNotNull(loaded.requests)
-        assertEquals(24, catalog.events.size)
+        assertEquals(81, catalog.events.size)
+        assertEquals(32, catalog.requests.count { it.completionEvent != null })
+        assertEquals(19, catalog.requests.count { it.acceptanceEvent != null })
+        assertEquals(27, catalog.requests.sumOf { it.preparationEvents.size })
+        assertEquals(8, catalog.requests.count { it.readyEvents.isNotEmpty() })
         val requests = catalog.requests
         assertEquals((1..101).toList(), requests.map { it.number })
         assertEquals(14, requests.count { it.deadline != null })

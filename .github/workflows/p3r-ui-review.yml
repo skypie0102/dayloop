@@ -22,7 +22,7 @@ jobs:
       matrix:
         include:
           - review: full
-            classes: com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDailyTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedAppFlowTest
+            classes: com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDailyTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedAppFlowTest,com.shadowmonarchbooks.dayloop.ui.skin.P3rWalkthroughTest,com.shadowmonarchbooks.dayloop.ui.skin.P5rWalkthroughTest,com.shadowmonarchbooks.dayloop.ui.skin.SkinMotionReviewTest
           - review: hand-in-isolated
             classes: com.shadowmonarchbooks.dayloop.ui.skin.SubmergedAppFlowTest#exactHandInUpdatesRequestsAndUncheckingReversesIt
     steps:
@@ -34,8 +34,21 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Build review APKs before starting the emulator
         run: |
-          ./gradlew :app:assembleDebug :app:assembleDebugAndroidTest --max-workers=2 -Pkotlin.compiler.execution.strategy=in-process
+          ./gradlew :app:assembleDebug :app:assembleDebugAndroidTest :app:assembleCandidate --max-workers=2 -Pkotlin.compiler.execution.strategy=in-process
           ./gradlew --stop
+      - name: Prepare candidate APK
+        if: matrix.review == 'full'
+        run: |
+          mkdir -p build/review-apk
+          cp app/build/outputs/apk/candidate/app-candidate.apk build/review-apk/dayloop-v0.16.0-rc3.apk
+      - name: Upload candidate APK
+        if: matrix.review == 'full'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dayloop-v0.16.0-rc3
+          path: build/review-apk/dayloop-v0.16.0-rc3.apk
+          retention-days: 14
+          if-no-files-found: error
       - name: Enable emulator acceleration
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules

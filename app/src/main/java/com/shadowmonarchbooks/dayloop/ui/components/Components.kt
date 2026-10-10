@@ -490,7 +490,8 @@ fun StepRow(
         )
     }
     if (skin.hasSubmergedChrome()) {
-        SubmergedTaskCard(index, step, mark, onToggleMark, statLabels, activityLabel, onOpenActivity) { showTip = true }
+        SubmergedTaskCard(index, step, mark, onToggleMark, statLabels, activityLabel, onOpenActivity,
+            displayNumber = displayNumber, inlineTips = inlineTips) { showTip = true }
         return
     }
     Column(
