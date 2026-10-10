@@ -33,6 +33,8 @@ source's musical-note counts.
   width beneath the task and controls, including at enlarged font sizes. The
   existing artwork panels become 75%-black for this treatment, task titles are
   bold, and P5R mark controls expose their selected state to accessibility.
+  Today and Day reserve the measured bottom controls outside the scrolling
+  viewport, and opening another date resets reading to the first task.
 - 572 tasks have visible guidance, including dialogue directions for 193 events.
   Preparation, Arcana/stat gates, crafting targets, retry conditions, optional
   gifts, deliberately low-affinity decoration choices and ending/romance branches
@@ -82,7 +84,8 @@ compilation, and all three packlint targets. Focused Android review exercises
 visible dialogue/crafting instructions, 200% text and Done toggle/reversal at the
 original saved index, and a request appended after Night in storage but displayed
 before it. A real-activity flow also checks Today, saved Room marks after activity
-recreation, Calendar-to-Day navigation, and reversal on the original task key.
+recreation, Calendar-to-Day navigation, instructions above the pinned controls,
+and reversal on the original task key.
 Screenshots and an installable candidate APK are workflow artifacts.
 The full build/JVM/three-packlint run passed for implementation revision
 `33014bf`: [CI result](https://github.com/skypie0102/dayloop/actions/runs/38025835873).

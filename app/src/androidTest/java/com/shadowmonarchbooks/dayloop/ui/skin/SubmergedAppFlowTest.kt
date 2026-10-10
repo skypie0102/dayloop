@@ -397,24 +397,30 @@ class SubmergedAppFlowTest {
         compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().performClick()
         markIs(3, StepMark.DONE, "2016-05-07")
         assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().none { it.stepIndex == 2 } })
+        val todayGuidance = compose.onNodeWithTag("task-guidance-3").performScrollTo().fetchSemanticsNode().boundsInRoot
+        val endDayTop = compose.onNodeWithText("End day", ignoreCase = true).fetchSemanticsNode().boundsInRoot.top
+        assertTrue("guidance must scroll above the pinned day controls", todayGuidance.bottom <= endDayTop)
         capture("p5r-app-today-request")
         scenario!!.recreate()
         compose.waitUntil(20_000) {
             compose.onAllNodesWithText("End day", ignoreCase = true).fetchSemanticsNodes().isNotEmpty()
         }
         compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().assertIsSelected()
-        tab("Calendar").performClick()
+        compose.onNodeWithContentDescription("Calendar").performClick()
         compose.onNode(hasText("7") and hasClickAction()).performScrollTo().performClick()
         compose.onNodeWithTag("task-guidance-3").performScrollTo().assertIsDisplayed()
         compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().assertIsSelected()
+        val dayGuidance = compose.onNodeWithTag("task-guidance-3").performScrollTo().fetchSemanticsNode().boundsInRoot
+        val browseTop = compose.onNodeWithContentDescription("Next authored day").fetchSemanticsNode().boundsInRoot.top
+        assertTrue("guidance must scroll above the pinned browse controls", dayGuidance.bottom <= browseTop)
         capture("p5r-app-day-request")
-        compose.onAllNodesWithContentDescription("Done")[2].performClick()
+        compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().performClick()
         compose.waitUntil(10_000) {
             runBlocking { dependencies.repo().marksFor(profileId).first().none { it.date == "2016-05-07" && it.stepIndex == 3 } }
         }
         assertEquals("2016-05-07", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
         compose.onNodeWithContentDescription("Back").performClick()
-        tab("Today").performClick()
+        compose.onNodeWithContentDescription("Today").performClick()
         compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().assertIsNotSelected()
     }
 

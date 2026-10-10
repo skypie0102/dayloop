@@ -135,14 +135,15 @@ fun TodayScreen(
     val animationsDisabled = rememberAnimationsDisabled()
     val scrollState = rememberScrollState()
     val submerged = skin.hasSubmergedChrome()
+    val boundedTaskViewport = submerged || pack.pack.walkthroughPresentation.inlineTips
     val density = LocalDensity.current
     var dayControlsHeightPx by remember { mutableIntStateOf(0) }
-    // Reserve the measured control rail, including enlarged labels, only for this skin.
-    val contentBottom = if (submerged && dayControlsHeightPx > 0) {
+    // Inline walkthroughs must scroll above the control rail, including enlarged labels.
+    val contentBottom = if (boundedTaskViewport && dayControlsHeightPx > 0) {
         with(density) { dayControlsHeightPx.toDp() }
     } else 100.dp
-    LaunchedEffect(date, submerged) {
-        if (submerged) scrollState.scrollTo(0)
+    LaunchedEffect(date, boundedTaskViewport) {
+        if (boundedTaskViewport) scrollState.scrollTo(0)
     }
     var dateBottomPx by remember(date) { mutableIntStateOf(Int.MAX_VALUE) }
     val datePinned by remember(scrollState, dateBottomPx) {
@@ -228,9 +229,9 @@ fun TodayScreen(
                 .fillMaxSize()
                 // Shrink the scrolling viewport itself: focused controls must never
                 // scroll underneath the pinned rail, including accessibility scrolls.
-                .then(if (submerged) Modifier.padding(bottom = contentBottom) else Modifier)
+                .then(if (boundedTaskViewport) Modifier.padding(bottom = contentBottom) else Modifier)
                 .verticalScroll(scrollState)
-                .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = if (submerged) 14.dp else 100.dp),
+                .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = if (boundedTaskViewport) 14.dp else 100.dp),
         ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -474,7 +475,7 @@ fun TodayScreen(
                 dayActions(Modifier)
             }
         } else {
-            dayActions(Modifier.align(Alignment.BottomCenter))
+            dayActions(Modifier.align(Alignment.BottomCenter).onSizeChanged { dayControlsHeightPx = it.height })
         }
 
         // Day-advance sequence (docs/ROADMAP-v3.md Phase 16): the per-skin
