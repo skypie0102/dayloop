@@ -418,10 +418,27 @@ class SubmergedAppFlowTest {
         compose.waitUntil(10_000) {
             runBlocking { dependencies.repo().marksFor(profileId).first().none { it.date == "2016-05-07" && it.stepIndex == 3 } }
         }
+        val nextDay = dependencies.store().state.value.selected!!.day("standard", "2016-05-08")!!
+        val firstLabel = nextDay.steps[nextDay.displayOrder.first()].label
+        compose.onNodeWithContentDescription("Next authored day").performClick()
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithText(firstLabel).fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.onNodeWithTag("task-label-0").assertIsDisplayed()
+        capture("p5r-app-next-day-browse")
         assertEquals("2016-05-07", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
         compose.onNodeWithContentDescription("Back").performClick()
         compose.onNodeWithContentDescription("Today").performClick()
         compose.onAllNodesWithContentDescription("Done")[2].performScrollTo().assertIsNotSelected()
+        compose.onNodeWithText("End day", ignoreCase = true).performClick()
+        compose.waitUntil(15_000) {
+            runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate == "2016-05-08" }
+        }
+        compose.waitUntil(15_000) {
+            compose.onAllNodesWithText(firstLabel).fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.onNodeWithTag("task-label-0").assertIsDisplayed()
+        capture("p5r-app-next-day-start")
     }
 
     @Test fun p5rSameBuildControlCapture() {
