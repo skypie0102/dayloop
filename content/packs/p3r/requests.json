@@ -17,7 +17,10 @@
       ],
       "readyEvents": [
         "p3r.request.preparation.001.2009-04-25"
-      ]
+      ],
+      "challengeLevel": 1,
+      "availableFrom": "2009-05-10",
+      "reward": "Soul Drop x5"
     },
     {
       "id": "p3r.request.002",
@@ -34,43 +37,69 @@
       ],
       "readyEvents": [
         "p3r.request.preparation.002.2009-04-23"
-      ]
+      ],
+      "challengeLevel": 2,
+      "availableFrom": "2009-05-10",
+      "reward": "¥10,000"
     },
     {
       "id": "p3r.request.003",
       "number": 3,
       "title": "Shadow Hunting Milestone",
-      "solution": "Defeat a total of 100 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in."
+      "solution": "Defeat a total of 100 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in.",
+      "challengeLevel": 1,
+      "availableFrom": "2009-05-10",
+      "reward": "Cure Water x3"
     },
     {
       "id": "p3r.request.004",
       "number": 4,
       "title": "Treasure Hunting Milestone",
-      "solution": "Open a total of 50 treasure chests while exploring Tartarus. Check the request with Elizabeth and report once the target is met. Mark Reported after the in-game hand-in."
+      "solution": "Open a total of 50 treasure chests while exploring Tartarus. Check the request with Elizabeth and report once the target is met. Mark Reported after the in-game hand-in.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-05-10",
+      "reward": "Snuff Soul x2"
     },
     {
       "id": "p3r.request.005",
       "number": 5,
       "title": "Create a Persona that’s Level 13 or Above",
-      "solution": "Create or level a Persona to at least level 13. Keep it in your carried Personas and report to Elizabeth. Check the Persona’s level, not only the protagonist’s level."
+      "solution": "Create or level a Persona to at least level 13. Keep it in your carried Personas and report to Elizabeth. Check the Persona’s level, not only the protagonist’s level.",
+      "challengeLevel": 1,
+      "availableFrom": "2009-05-10",
+      "reward": "Bufula Gem x3"
     },
     {
       "id": "p3r.request.006",
       "number": 6,
       "title": "Create a Persona with Kouha",
-      "solution": "Obtain Archangel through fusion or Shuffle Time and retain Kouha in its skill list. Carry it when you report to Elizabeth; a Compendium entry alone is not the requested Persona in your possession."
+      "solution": "Obtain Archangel through fusion or Shuffle Time and retain Kouha in its skill list. Carry it when you report to Elizabeth; a Compendium entry alone is not the requested Persona in your possession.",
+      "challengeLevel": 1,
+      "prerequisiteRequests": [
+        "p3r.request.005"
+      ],
+      "reward": "Fierce Sutra x2"
     },
     {
       "id": "p3r.request.007",
       "number": 7,
       "title": "Bring me a Juzumaru",
-      "solution": "Defeat the gatekeeper on Tartarus 36F in Arqa, then use three Twilight Fragments to open the locked chest containing Juzumaru. Keep the sword and show it to Elizabeth before selling it. Reaching the floor or defeating its boss alone does not complete the request."
+      "solution": "Defeat the gatekeeper on Tartarus 36F in Arqa, then use three Twilight Fragments to open the locked chest containing Juzumaru. Keep the sword and show it to Elizabeth before selling it. Reaching the floor or defeating its boss alone does not complete the request.",
+      "challengeLevel": 3,
+      "prerequisiteRequests": [
+        "p3r.request.002"
+      ],
+      "reward": "Makouha"
     },
     {
       "id": "p3r.request.008",
       "number": 8,
       "title": "Experiment with Fortune Telling",
-      "solution": "Before a Tartarus visit, buy the ¥3,000 Rarity Fortune from the fortune teller in Club Escapade at Paulownia Mall. Explore Tartarus that same night, then report the experiment to Elizabeth."
+      "solution": "Before a Tartarus visit, buy the ¥3,000 Rarity Fortune from the fortune teller in Club Escapade at Paulownia Mall. Explore Tartarus that same night, then report the experiment to Elizabeth.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-05-10",
+      "reward": "Speed Incense I x3",
+      "availabilityNotes": "Reach Tartarus 12F and check the fortune teller in Club Escapade before the experiment."
     },
     {
       "id": "p3r.request.009",
@@ -80,7 +109,12 @@
         "2009-05-10"
       ],
       "solution": "After Request #1, collect 12 different vending-machine drinks. Use Dorm 2F, Dorm 3F, Port Island Station and Iwatodai Strip Mall 3F. The Iwatodai Station selection duplicates Dorm 2F, so extra copies do not replace missing varieties. Bring the complete set to Elizabeth.",
-      "completionEvent": "p3r.request.reported.009"
+      "completionEvent": "p3r.request.reported.009",
+      "challengeLevel": 1,
+      "prerequisiteRequests": [
+        "p3r.request.001"
+      ],
+      "reward": "Media"
     },
     {
       "id": "p3r.request.010",
@@ -98,7 +132,12 @@
       ],
       "readyEvents": [
         "p3r.request.preparation.010.2009-06-04"
-      ]
+      ],
+      "challengeLevel": 2,
+      "prerequisiteRequests": [
+        "p3r.request.001"
+      ],
+      "reward": "Male Uniforms (W)"
     },
     {
       "id": "p3r.request.011",
@@ -114,7 +153,12 @@
       ],
       "readyEvents": [
         "p3r.request.preparation.011.2009-05-10"
-      ]
+      ],
+      "challengeLevel": 2,
+      "prerequisiteRequests": [
+        "p3r.request.009"
+      ],
+      "reward": "Twilight Fragment x3"
     },
     {
       "id": "p3r.request.012",
@@ -125,7 +169,10 @@
         "2009-05-10"
       ],
       "completionEvent": "p3r.request.reported.012",
-      "solution": "Accept the request before asking Yukari at the dorm for Pine Resin. Bring the resin back to Elizabeth by June 6. The route handles collection and reporting on May 10; do not stop after receiving the item."
+      "solution": "Accept the request before asking Yukari at the dorm for Pine Resin. Bring the resin back to Elizabeth by June 6. The route handles collection and reporting on May 10; do not stop after receiving the item.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-05-10",
+      "reward": "Toy Bow"
     },
     {
       "id": "p3r.request.013",
@@ -136,7 +183,12 @@
         "2009-05-10"
       ],
       "completionEvent": "p3r.request.reported.013",
-      "solution": "Finish Request #12, then accept this request and ask Junpei at the dorm for the Handheld Game Console. Return it to Elizabeth by June 6. The route completes the chain on May 10."
+      "solution": "Finish Request #12, then accept this request and ask Junpei at the dorm for the Handheld Game Console. Return it to Elizabeth by June 6. The route completes the chain on May 10.",
+      "challengeLevel": 2,
+      "prerequisiteRequests": [
+        "p3r.request.012"
+      ],
+      "reward": "Pixel Vest"
     },
     {
       "id": "p3r.request.014",
@@ -145,37 +197,65 @@
       "routeDates": [
         "2009-05-24"
       ],
-      "solution": "Collect Old Document 02 at the 43F border during the May 24 climb, then hand it to Elizabeth for ¥20,000. Keep the document until the hand-in; the reward only counts toward your budget after reporting."
+      "solution": "Collect Old Document 02 at the 43F border during the May 24 climb, then hand it to Elizabeth for ¥20,000. Keep the document until the hand-in; the reward only counts toward your budget after reporting.",
+      "challengeLevel": 2,
+      "prerequisiteRequests": [
+        "p3r.request.002"
+      ],
+      "reward": "¥20,000"
     },
     {
       "id": "p3r.request.015",
       "number": 15,
       "title": "Shadow hunting Milestone 2",
-      "solution": "Defeat a total of 200 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in."
+      "solution": "Defeat a total of 200 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in.",
+      "challengeLevel": 2,
+      "prerequisiteRequests": [
+        "p3r.request.003"
+      ],
+      "reward": "Umugi Water x3"
     },
     {
       "id": "p3r.request.016",
       "number": 16,
       "title": "Treasure Hunting Milestone 2",
-      "solution": "Open a total of 100 treasure chests while exploring Tartarus. Check the request with Elizabeth and report once the target is met. Mark Reported after the in-game hand-in."
+      "solution": "Open a total of 100 treasure chests while exploring Tartarus. Check the request with Elizabeth and report once the target is met. Mark Reported after the in-game hand-in.",
+      "challengeLevel": 3,
+      "prerequisiteRequests": [
+        "p3r.request.004"
+      ],
+      "reward": "Chewing Soul x2"
     },
     {
       "id": "p3r.request.017",
       "number": 17,
       "title": "Fusion Series 1: Emperor, Oberon",
-      "solution": "Create Oberon and keep Mazio in its skill list, learning it through leveling if needed. Show Elizabeth the carried Oberon with Mazio; another Persona with the skill does not meet this request."
+      "solution": "Create Oberon and keep Mazio in its skill list, learning it through leveling if needed. Show Elizabeth the carried Oberon with Mazio; another Persona with the skill does not meet this request.",
+      "challengeLevel": 3,
+      "prerequisiteRequests": [
+        "p3r.request.005"
+      ],
+      "reward": "Female Uniforms (W)"
     },
     {
       "id": "p3r.request.018",
       "number": 18,
       "title": "I’d like to be gifted a bouquet of flowers",
-      "solution": "Buy a Rose Bouquet for ¥2,000 from the flower shop at Port Island Station. Keep it in your inventory and bring it to Elizabeth."
+      "solution": "Buy a Rose Bouquet for ¥2,000 from the flower shop at Port Island Station. Keep it in your inventory and bring it to Elizabeth.",
+      "challengeLevel": 1,
+      "availableFrom": "2009-06-13",
+      "reward": "Female Winter Garb"
     },
     {
       "id": "p3r.request.019",
       "number": 19,
       "title": "I want Jack Frost dolls",
-      "solution": "Check the crane machine by the Paulownia Mall arcade when its displayed prize is Jack Frost. Play until you have three Jack Frost dolls, then bring all three to Elizabeth. Each attempt costs ¥200 and may fail, so budget for retries."
+      "solution": "Check the crane machine by the Paulownia Mall arcade when its displayed prize is Jack Frost. Play until you have three Jack Frost dolls, then bring all three to Elizabeth. Each attempt costs ¥200 and may fail, so budget for retries.",
+      "challengeLevel": 3,
+      "prerequisiteRequests": [
+        "p3r.request.018"
+      ],
+      "reward": "Twilight Fragment x3"
     },
     {
       "id": "p3r.request.020",
@@ -190,43 +270,77 @@
       ],
       "readyEvents": [
         "p3r.request.preparation.020.2009-06-15"
-      ]
+      ],
+      "challengeLevel": 1,
+      "availableFrom": "2009-06-13",
+      "reward": "Steel Pipe"
     },
     {
       "id": "p3r.request.021",
       "number": 21,
       "title": "Retrieve the third old document",
-      "solution": "Collect Old Document 03 from the chest at Tartarus 69F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
+      "solution": "Collect Old Document 03 from the chest at Tartarus 69F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-06-13",
+      "prerequisiteRequests": [
+        "p3r.request.014"
+      ],
+      "reward": "¥30,000"
     },
     {
       "id": "p3r.request.022",
       "number": 22,
       "title": "Shadow Hunting Milestone 3",
-      "solution": "Defeat a total of 300 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in."
+      "solution": "Defeat a total of 300 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in.",
+      "challengeLevel": 2,
+      "prerequisiteRequests": [
+        "p3r.request.015"
+      ],
+      "reward": "Bead x3"
     },
     {
       "id": "p3r.request.023",
       "number": 23,
       "title": "Persona Fusion Milestone",
-      "solution": "Perform a total of 20 Persona fusions in the Velvet Room. Work toward this while creating Personas for the route, then report the milestone to Elizabeth."
+      "solution": "Perform a total of 20 Persona fusions in the Velvet Room. Work toward this while creating Personas for the route, then report the milestone to Elizabeth.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-06-13",
+      "reward": "Twilight Fragment x5"
     },
     {
       "id": "p3r.request.024",
       "number": 24,
       "title": "Create a Persona that’s level 23 or above",
-      "solution": "Create or level a Persona to at least level 23. Keep it in your carried Personas and report to Elizabeth. Check the Persona’s level, not only the protagonist’s level."
+      "solution": "Create or level a Persona to at least level 23. Keep it in your carried Personas and report to Elizabeth. Check the Persona’s level, not only the protagonist’s level.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-06-13",
+      "prerequisiteRequests": [
+        "p3r.request.005"
+      ],
+      "reward": "Sugar Key (Unlocks King Frost fusion)"
     },
     {
       "id": "p3r.request.025",
       "number": 25,
       "title": "Fusion Series 2: Chariot, Mithras",
-      "solution": "Use the Velvet Room fusion search to create Mithras, then raise it to level 26 or higher. Check the Persona’s own level and carry it when reporting to Elizabeth."
+      "solution": "Use the Velvet Room fusion search to create Mithras, then raise it to level 26 or higher. Check the Persona’s own level and carry it when reporting to Elizabeth.",
+      "challengeLevel": 3,
+      "prerequisiteRequests": [
+        "p3r.request.017"
+      ],
+      "reward": "Male Winter Garb"
     },
     {
       "id": "p3r.request.026",
       "number": 26,
       "title": "Bring me an Onimaru Kunitsuma",
-      "solution": "Search the treasure chests on Tartarus 54F in Arqa for Onimaru Kunitsuma. Keep the weapon and show it to Elizabeth before selling it."
+      "solution": "Search the treasure chests on Tartarus 54F in Arqa for Onimaru Kunitsuma. Keep the weapon and show it to Elizabeth before selling it.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-06-13",
+      "prerequisiteRequests": [
+        "p3r.request.007"
+      ],
+      "reward": "Crit Rate Boost"
     },
     {
       "id": "p3r.request.027",
@@ -237,7 +351,10 @@
         "2009-06-14"
       ],
       "solution": "Accept the request, ask Mitsuru at the dorm for the Fencing Epee, then hand it to Elizabeth. Finish by July 5. The route does this on June 14 and follows it with Request #28.",
-      "completionEvent": "p3r.request.reported.027"
+      "completionEvent": "p3r.request.reported.027",
+      "challengeLevel": 2,
+      "availableFrom": "2009-06-13",
+      "reward": "Gallant Sneakers"
     },
     {
       "id": "p3r.request.028",
@@ -248,7 +365,12 @@
         "2009-06-14"
       ],
       "solution": "Report Request #27 first, then accept this request. Ask Akihiko at the dorm for Amateur Protein and bring it back to Elizabeth by July 5. The route completes both requests on June 14.",
-      "completionEvent": "p3r.request.reported.028"
+      "completionEvent": "p3r.request.reported.028",
+      "challengeLevel": 2,
+      "prerequisiteRequests": [
+        "p3r.request.027"
+      ],
+      "reward": "Spiked Bat"
     },
     {
       "id": "p3r.request.029",
@@ -265,55 +387,100 @@
       "acceptanceEvent": "p3r.request.accepted.029",
       "preparationEvents": [
         "p3r.request.preparation.029.2009-06-27"
-      ]
+      ],
+      "challengeLevel": 2,
+      "availableFrom": "2009-06-13",
+      "reward": "Power Incense I x5"
     },
     {
       "id": "p3r.request.030",
       "number": 30,
       "title": "Retrieve the Fourth Old Document",
-      "solution": "Collect Old Document 04 from the chest at Tartarus 92F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
+      "solution": "Collect Old Document 04 from the chest at Tartarus 92F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-07-09",
+      "prerequisiteRequests": [
+        "p3r.request.021"
+      ],
+      "reward": "¥40,000"
     },
     {
       "id": "p3r.request.031",
       "number": 31,
       "title": "Shadow Hunting Milestone 4",
-      "solution": "Defeat a total of 450 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in."
+      "solution": "Defeat a total of 450 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in.",
+      "challengeLevel": 3,
+      "prerequisiteRequests": [
+        "p3r.request.022"
+      ],
+      "reward": "Kamimusubi Water x2"
     },
     {
       "id": "p3r.request.032",
       "number": 32,
       "title": "Treasure Hunting Milestone 3",
-      "solution": "Open a total of 150 treasure chests while exploring Tartarus. Check the request with Elizabeth and report once the target is met. Mark Reported after the in-game hand-in."
+      "solution": "Open a total of 150 treasure chests while exploring Tartarus. Check the request with Elizabeth and report once the target is met. Mark Reported after the in-game hand-in.",
+      "challengeLevel": 3,
+      "prerequisiteRequests": [
+        "p3r.request.016"
+      ],
+      "reward": "Snuff Soul x6"
     },
     {
       "id": "p3r.request.033",
       "number": 33,
       "title": "Persona Fusion Milestone 2",
-      "solution": "Perform a total of 35 Persona fusions in the Velvet Room. Work toward this while creating Personas for the route, then report the milestone to Elizabeth."
+      "solution": "Perform a total of 35 Persona fusions in the Velvet Room. Work toward this while creating Personas for the route, then report the milestone to Elizabeth.",
+      "challengeLevel": 3,
+      "prerequisiteRequests": [
+        "p3r.request.023"
+      ],
+      "reward": "Twilight Fragment x5"
     },
     {
       "id": "p3r.request.034",
       "number": 34,
       "title": "Create a Persona with Torrent Shot",
-      "solution": "Create Eligor and retain Torrent Shot. One fusion pairing is Mokoi with Leanan Sidhe; check the result preview before confirming. Carry the Persona with Torrent Shot when you report to Elizabeth."
+      "solution": "Create Eligor and retain Torrent Shot. One fusion pairing is Mokoi with Leanan Sidhe; check the result preview before confirming. Carry the Persona with Torrent Shot when you report to Elizabeth.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-07-09",
+      "prerequisiteRequests": [
+        "p3r.request.006",
+        "p3r.request.024"
+      ],
+      "reward": "Attack Mirror x3"
     },
     {
       "id": "p3r.request.035",
       "number": 35,
       "title": "Fusion Series 3: Hermit, Mothman",
-      "solution": "Create Mothman with Agilao inherited from a parent that knows it. Lamia with Agilao plus Dakini is one pairing to preview. Select Agilao during skill inheritance, then carry the resulting Mothman when reporting."
+      "solution": "Create Mothman with Agilao inherited from a parent that knows it. Lamia with Agilao plus Dakini is one pairing to preview. Select Agilao during skill inheritance, then carry the resulting Mothman when reporting.",
+      "challengeLevel": 3,
+      "prerequisiteRequests": [
+        "p3r.request.025"
+      ],
+      "reward": "Maid Outfit (Mitsuru)"
     },
     {
       "id": "p3r.request.036",
       "number": 36,
       "title": "Defeat a Rare Shadow 1",
-      "solution": "Hunt a rare Shadow in Yabbashah and collect its Rustic Coin. A Rarity Fortune before the trip can help with encounters. Keep one coin for Elizabeth and report after collecting it."
+      "solution": "Hunt a rare Shadow in Yabbashah and collect its Rustic Coin. A Rarity Fortune before the trip can help with encounters. Keep one coin for Elizabeth and report after collecting it.",
+      "challengeLevel": 4,
+      "availableFrom": "2009-07-09",
+      "prerequisiteRequests": [
+        "p3r.request.008"
+      ],
+      "reward": "Onyx x7"
     },
     {
       "id": "p3r.request.037",
       "number": 37,
       "title": "Traverse the Monad Passage",
-      "solution": "Clear the enemies inside the Monad Passage on Tartarus 91F in Yabbashah, then report to Elizabeth. Entering the passage or clearing a different Monad Door does not finish this objective."
+      "solution": "Clear the enemies inside the Monad Passage on Tartarus 91F in Yabbashah, then report to Elizabeth. Entering the passage or clearing a different Monad Door does not finish this objective.",
+      "challengeLevel": 3,
+      "reward": "Black Sword",
+      "availabilityNotes": "Clear the Monad Door on 80F to receive this request. Its objective is the fixed Monad Passage on 91F."
     },
     {
       "id": "p3r.request.038",
@@ -336,7 +503,13 @@
       ],
       "readyEvents": [
         "p3r.request.preparation.038.2009-07-01"
-      ]
+      ],
+      "challengeLevel": 3,
+      "availableFrom": "2009-07-09",
+      "prerequisiteRequests": [
+        "p3r.request.010"
+      ],
+      "reward": "Nihil Cloth"
     },
     {
       "id": "p3r.request.039",
@@ -347,7 +520,13 @@
       ],
       "completionEvent": "p3r.request.reported.039",
       "solution": "Accept the request before entering Gekkoukan High's PA Room. Obtain the Gekkoukan Boogie CD there, then bring it back to Elizabeth. The route completes this on July 9.",
-      "acceptanceEvent": "p3r.request.accepted.039"
+      "acceptanceEvent": "p3r.request.accepted.039",
+      "challengeLevel": 1,
+      "availableFrom": "2009-07-09",
+      "prerequisiteRequests": [
+        "p3r.request.020"
+      ],
+      "reward": "Female Uniforms (S)"
     },
     {
       "id": "p3r.request.040",
@@ -363,7 +542,15 @@
       "acceptanceEvent": "p3r.request.accepted.040",
       "preparationEvents": [
         "p3r.request.preparation.040.2009-07-12"
-      ]
+      ],
+      "challengeLevel": 2,
+      "availableFrom": "2009-07-09",
+      "reward": "Twilight Fragment x3",
+      "itemWindow": {
+        "from": "2009-07-12",
+        "through": "2009-07-12",
+        "note": "The guide uses the July 12 TV shopping offer. Ordering the shoes does not prove delivery; keep the delivered pair for Elizabeth."
+      }
     },
     {
       "id": "p3r.request.041",
@@ -373,7 +560,12 @@
         "2009-07-18"
       ],
       "solution": "After reporting Request #40, accept this request. Bring Tanaka's Signature, obtained from starting the Devil Social Link, to Elizabeth. The route hands it over on July 18; the autograph must already be in your inventory.",
-      "completionEvent": "p3r.request.reported.041"
+      "completionEvent": "p3r.request.reported.041",
+      "challengeLevel": 3,
+      "prerequisiteRequests": [
+        "p3r.request.040"
+      ],
+      "reward": "Nihil Blade"
     },
     {
       "id": "p3r.request.042",
@@ -392,7 +584,10 @@
         "p3r.request.preparation.042.2009-07-09",
         "p3r.request.preparation.042.2009-07-10",
         "p3r.request.preparation.042.2009-07-11"
-      ]
+      ],
+      "challengeLevel": 3,
+      "availableFrom": "2009-07-09",
+      "reward": "Male Summer Garb"
     },
     {
       "id": "p3r.request.043",
@@ -404,7 +599,10 @@
       ],
       "completionEvent": "p3r.request.reported.043",
       "solution": "Accept the request, then speak to Fuuka at the dorm for the Poinsettia. Return it to Elizabeth by August 4. The route obtains and reports it on July 9; keep the item until the hand-in.",
-      "acceptanceEvent": "p3r.request.accepted.043"
+      "acceptanceEvent": "p3r.request.accepted.043",
+      "challengeLevel": 2,
+      "availableFrom": "2009-07-09",
+      "reward": "Jack's Gloves"
     },
     {
       "id": "p3r.request.044",
@@ -423,49 +621,94 @@
       "readyEvents": [
         "p3r.request.ready.044.2009-07-20",
         "p3r.request.ready.044.2009-07-21"
-      ]
+      ],
+      "challengeLevel": 2,
+      "availableFrom": "2009-07-09",
+      "reward": "Amethyst x5",
+      "itemWindow": {
+        "from": "2009-07-20",
+        "through": "2009-07-21",
+        "note": "Collect a beach souvenir during the Yakushima trip and keep it for Elizabeth. The route collects one on July 20 or July 21."
+      }
     },
     {
       "id": "p3r.request.045",
       "number": 45,
       "title": "Retrieve the Fifth Old Document",
-      "solution": "Collect Old Document 05 from the chest at Tartarus 118F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
+      "solution": "Collect Old Document 05 from the chest at Tartarus 118F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-08-08",
+      "prerequisiteRequests": [
+        "p3r.request.030"
+      ],
+      "reward": "¥50,000"
     },
     {
       "id": "p3r.request.046",
       "number": 46,
       "title": "Shadow Hunting Milestone 5",
-      "solution": "Defeat a total of 600 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in."
+      "solution": "Defeat a total of 600 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in.",
+      "challengeLevel": 3,
+      "prerequisiteRequests": [
+        "p3r.request.031"
+      ],
+      "reward": "Bead Chain x2"
     },
     {
       "id": "p3r.request.047",
       "number": 47,
       "title": "Treasure Hunting Milestone 4",
-      "solution": "Open a total of 200 treasure chests while exploring Tartarus. Check the request with Elizabeth and report once the target is met. Mark Reported after the in-game hand-in."
+      "solution": "Open a total of 200 treasure chests while exploring Tartarus. Check the request with Elizabeth and report once the target is met. Mark Reported after the in-game hand-in.",
+      "challengeLevel": 4,
+      "prerequisiteRequests": [
+        "p3r.request.032"
+      ],
+      "reward": "Precious Egg x2"
     },
     {
       "id": "p3r.request.048",
       "number": 48,
       "title": "Persona Fusion Milestone 3",
-      "solution": "Perform a total of 50 Persona fusions in the Velvet Room. Work toward this while creating Personas for the route, then report the milestone to Elizabeth."
+      "solution": "Perform a total of 50 Persona fusions in the Velvet Room. Work toward this while creating Personas for the route, then report the milestone to Elizabeth.",
+      "challengeLevel": 4,
+      "availableFrom": "2009-06-13",
+      "prerequisiteRequests": [
+        "p3r.request.033"
+      ],
+      "reward": "Twilight Fragment x5"
     },
     {
       "id": "p3r.request.049",
       "number": 49,
       "title": "Create a Persona that’s level 38 or above",
-      "solution": "Create or level a Persona to at least level 38. Keep it in your carried Personas and report to Elizabeth. Check the Persona’s level, not only the protagonist’s level."
+      "solution": "Create or level a Persona to at least level 38. Keep it in your carried Personas and report to Elizabeth. Check the Persona’s level, not only the protagonist’s level.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-08-08",
+      "prerequisiteRequests": [
+        "p3r.request.024"
+      ],
+      "reward": "Marionette (Unlocks Nebiros fusion)"
     },
     {
       "id": "p3r.request.050",
       "number": 50,
       "title": "Perform King and I",
-      "solution": "Register King Frost and Black Frost in the Compendium to unlock King and I. Charge the protagonist’s Theurgy gauge, use King and I in battle, then report to Elizabeth. Unlocking the move is preparation for performing it."
+      "solution": "Register King Frost and Black Frost in the Compendium to unlock King and I. Charge the protagonist’s Theurgy gauge, use King and I in battle, then report to Elizabeth. Unlocking the move is preparation for performing it.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-08-08",
+      "prerequisiteRequests": [
+        "p3r.request.024"
+      ],
+      "reward": "Guard Incense II x3"
     },
     {
       "id": "p3r.request.051",
       "number": 51,
       "title": "Bring me an Outenta Mitsuyo",
-      "solution": "Visit Mayoido Antiques at Paulownia Mall and select the Outenta Mitsuyo weapon recipe. Gather the materials listed by the shop, craft the weapon, and show it to Elizabeth before selling it."
+      "solution": "Visit Mayoido Antiques at Paulownia Mall and select the Outenta Mitsuyo weapon recipe. Gather the materials listed by the shop, craft the weapon, and show it to Elizabeth before selling it.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-08-08",
+      "reward": "Multi-Target Boost"
     },
     {
       "id": "p3r.request.052",
@@ -474,7 +717,13 @@
       "routeDates": [
         "2009-06-17"
       ],
-      "solution": "Save the Iron-Athlete Meal from the route's June 17 cooking hangout with Akihiko. Once this request is available and accepted, bring the saved meal to Elizabeth. The early cooking date is preparation, not the request's unlock date or a report."
+      "solution": "Save the Iron-Athlete Meal from the route's June 17 cooking hangout with Akihiko. Once this request is available and accepted, bring the saved meal to Elizabeth. The early cooking date is preparation, not the request's unlock date or a report.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-08-08",
+      "prerequisiteRequests": [
+        "p3r.request.038"
+      ],
+      "reward": "Legendary Cleaver"
     },
     {
       "id": "p3r.request.053",
@@ -483,7 +732,14 @@
       "routeDates": [
         "2009-06-16"
       ],
-      "solution": "Buy a Buff Potato Sprout at Rafflesia in Port Island Station and grow it in the dorm rooftop garden. Harvest and save a Tarukaja Potato for Elizabeth. This route plants on June 4 and harvests on June 16 as advance preparation; report once the request is available."
+      "solution": "Buy a Buff Potato Sprout at Rafflesia in Port Island Station and grow it in the dorm rooftop garden. Harvest and save a Tarukaja Potato for Elizabeth. This route plants on June 4 and harvests on June 16 as advance preparation; report once the request is available.",
+      "challengeLevel": 2,
+      "prerequisiteRequests": [
+        "p3r.request.052",
+        "p3r.request.078"
+      ],
+      "reward": "Ergotite Shard",
+      "availabilityNotes": "Report #52 and finish the Iwatodai Station outing (#78). The route plants and saves the potato earlier as preparation."
     },
     {
       "id": "p3r.request.054",
@@ -500,7 +756,13 @@
       "preparationEvents": [
         "p3r.request.preparation.054.2009-08-08",
         "p3r.request.preparation.054.2009-08-09"
-      ]
+      ],
+      "challengeLevel": 3,
+      "availableFrom": "2009-08-08",
+      "prerequisiteRequests": [
+        "p3r.request.042"
+      ],
+      "reward": "Lime Swimwear (Fuuka)"
     },
     {
       "id": "p3r.request.055",
@@ -510,19 +772,35 @@
         "2009-09-01"
       ],
       "completionEvent": "p3r.request.reported.055",
-      "solution": "Max a Social Link and retain its max-rank item. This route uses the item obtained when Devil reaches MAX on September 1. Show it to Elizabeth to report the request; a lower Social Link rank is not enough."
+      "solution": "Max a Social Link and retain its max-rank item. This route uses the item obtained when Devil reaches MAX on September 1. Show it to Elizabeth to report the request; a lower Social Link rank is not enough.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-08-08",
+      "reward": "Space Badge"
     },
     {
       "id": "p3r.request.056",
       "number": 56,
       "title": "Look for the drink with my name",
-      "solution": "Accept the request, then visit Que Sera Sera in Station Outskirts and ask for the drink named after Elizabeth. If entry is refused, raise Charm and return. Bring the drink back to Elizabeth."
+      "solution": "Accept the request, then visit Que Sera Sera in Station Outskirts and ask for the drink named after Elizabeth. If entry is refused, raise Charm and return. Bring the drink back to Elizabeth.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-08-08",
+      "prerequisiteRequests": [
+        "p3r.request.011"
+      ],
+      "reward": "AS Generic Material",
+      "availabilityNotes": "Que Sera Sera in Station Outskirts requires Charm rank 5. Accept this request before asking for the named drink."
     },
     {
       "id": "p3r.request.057",
       "number": 57,
       "title": "I’d Like to Try Aojiru",
-      "solution": "Ask about Aojiru at Aohige Pharmacy in Paulownia Mall. Trade two Topaz and one Turquoise for a Vintage Yagen at Mayoido Antiques, then exchange the Yagen at the pharmacy for True Aohige Aojiru. Bring that drink to Elizabeth."
+      "solution": "Ask about Aojiru at Aohige Pharmacy in Paulownia Mall. Trade two Topaz and one Turquoise for a Vintage Yagen at Mayoido Antiques, then exchange the Yagen at the pharmacy for True Aohige Aojiru. Bring that drink to Elizabeth.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-08-08",
+      "prerequisiteRequests": [
+        "p3r.request.010"
+      ],
+      "reward": "Twilight Fragment x8"
     },
     {
       "id": "p3r.request.058",
@@ -533,61 +811,118 @@
         "2009-08-08"
       ],
       "solution": "Accept the request and take Elizabeth's Wrapped Bandage. Trade it at Port Island Station Outskirts for the Student Handbook; trade the handbook at Port Island Station for Irresistible Catnip; trade the catnip to the cat-loving boy at Iwatodai Strip Mall for the Cat Ear Headband. Return the headband to Elizabeth by August 31. The route completes the chain on August 8.",
-      "completionEvent": "p3r.request.reported.058"
+      "completionEvent": "p3r.request.reported.058",
+      "challengeLevel": 2,
+      "availableFrom": "2009-08-08",
+      "reward": "Turquoise x20"
     },
     {
       "id": "p3r.request.059",
       "number": 59,
       "title": "Retrieve the Sixth Old Document",
-      "solution": "Collect Old Document 06 from the chest at Tartarus 144F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
+      "solution": "Collect Old Document 06 from the chest at Tartarus 144F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-09-10",
+      "prerequisiteRequests": [
+        "p3r.request.045"
+      ],
+      "reward": "¥70,000"
     },
     {
       "id": "p3r.request.060",
       "number": 60,
       "title": "Shadow Hunting Milestone 6",
-      "solution": "Defeat a total of 800 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in."
+      "solution": "Defeat a total of 800 Shadows in Tartarus. Check the request with Elizabeth during return visits and report when the target is met. Mark Reported after the in-game hand-in.",
+      "challengeLevel": 4,
+      "prerequisiteRequests": [
+        "p3r.request.046"
+      ],
+      "reward": "Soma"
     },
     {
       "id": "p3r.request.061",
       "number": 61,
       "title": "Create a Persona that’s level 46 or above",
-      "solution": "Create or level a Persona to at least level 46. Keep it in your carried Personas and report to Elizabeth. Check the Persona’s level, not only the protagonist’s level."
+      "solution": "Create or level a Persona to at least level 46. Keep it in your carried Personas and report to Elizabeth. Check the Persona’s level, not only the protagonist’s level.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-09-10",
+      "prerequisiteRequests": [
+        "p3r.request.049"
+      ],
+      "reward": "Atrophying Sutra x2"
     },
     {
       "id": "p3r.request.062",
       "number": 62,
       "title": "Fusion Series 4: Lovers, Titania",
-      "solution": "Create Titania with Matarukaja, inheriting the skill during fusion or teaching it with a skill card. Check for Matarukaja, not the single-target Tarukaja, and carry Titania when reporting to Elizabeth."
+      "solution": "Create Titania with Matarukaja, inheriting the skill during fusion or teaching it with a skill card. Check for Matarukaja, not the single-target Tarukaja, and carry Titania when reporting to Elizabeth.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-09-10",
+      "prerequisiteRequests": [
+        "p3r.request.035"
+      ],
+      "reward": "Male Uniform (S)"
     },
     {
       "id": "p3r.request.063",
       "number": 63,
       "title": "Fusion Series 5: Magician, Rangda",
-      "solution": "Create Rangda with the Velvet Room fusion search. Magician Social Link experience can help raise its level after fusion; otherwise level it in battle until it reaches at least 54. Carry that Rangda when reporting to Elizabeth."
+      "solution": "Create Rangda with the Velvet Room fusion search. Magician Social Link experience can help raise its level after fusion; otherwise level it in battle until it reaches at least 54. Carry that Rangda when reporting to Elizabeth.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-09-10",
+      "prerequisiteRequests": [
+        "p3r.request.050"
+      ],
+      "reward": "Female Summer Garb"
     },
     {
       "id": "p3r.request.064",
       "number": 64,
       "title": "Defeat a Rare Shadow 2",
-      "solution": "Defeat a rare Shadow in Tziah and keep its Sumptuous Coin for Elizabeth. A Rarity Fortune before entering Tartarus can help you find rare Shadows. Report with the coin after the battle."
+      "solution": "Defeat a rare Shadow in Tziah and keep its Sumptuous Coin for Elizabeth. A Rarity Fortune before entering Tartarus can help you find rare Shadows. Report with the coin after the battle.",
+      "challengeLevel": 4,
+      "availableFrom": "2009-09-10",
+      "prerequisiteRequests": [
+        "p3r.request.036"
+      ],
+      "reward": "Topaz x7"
     },
     {
       "id": "p3r.request.065",
       "number": 65,
       "title": "Bring me an Ote-gine",
-      "solution": "After clearing the boss on Tartarus 143F, check that floor’s special treasure chests for Ote-gine. Keep the weapon and show it to Elizabeth."
+      "solution": "After clearing the boss on Tartarus 143F, check that floor’s special treasure chests for Ote-gine. Keep the weapon and show it to Elizabeth.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-09-10",
+      "prerequisiteRequests": [
+        "p3r.request.026"
+      ],
+      "reward": "Quality Nihil Ore"
     },
     {
       "id": "p3r.request.066",
       "number": 66,
       "title": "Bring me a Giant, Creepy Doll",
-      "solution": "Accept the request and visit the school laboratory while school is accessible. Collect the teaching doll and bring it to Elizabeth. Complete the pickup on a school visit instead of leaving it for the final day."
+      "solution": "Accept the request and visit the school laboratory while school is accessible. Collect the teaching doll and bring it to Elizabeth. Complete the pickup on a school visit instead of leaving it for the final day.",
+      "challengeLevel": 1,
+      "availableFrom": "2009-09-10",
+      "prerequisiteRequests": [
+        "p3r.request.039"
+      ],
+      "reward": "Quality Nihil Blade"
     },
     {
       "id": "p3r.request.067",
       "number": 67,
       "title": "Find me a Beautiful Tile",
-      "solution": "After accepting the request, visit Mahjong Parlor Red Hawk in Station Outskirts. Entry requires maximum Courage. Complete the interaction there, keep the peacock tile, and bring it to Elizabeth."
+      "solution": "After accepting the request, visit Mahjong Parlor Red Hawk in Station Outskirts. Check your Courage if entry is refused; this route has already maxed it before this visit. Complete the interaction there, keep the peacock tile, and bring it to Elizabeth.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-09-10",
+      "prerequisiteRequests": [
+        "p3r.request.054"
+      ],
+      "reward": "Scrub Brush",
+      "availabilityNotes": "Take the Scrub Brush reward after reporting; it is needed for the later restroom request (#92)."
     },
     {
       "id": "p3r.request.068",
@@ -598,7 +933,10 @@
         "2009-09-10"
       ],
       "completionEvent": "p3r.request.reported.068",
-      "solution": "Accept the request before speaking to Shinjiro at the dorm for the Fruit Knife. Return it to Elizabeth by October 2. The route reports it on September 10, then starts Request #69."
+      "solution": "Accept the request before speaking to Shinjiro at the dorm for the Fruit Knife. Return it to Elizabeth by October 2. The route reports it on September 10, then starts Request #69.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-09-10",
+      "reward": "Bus Stop Sign"
     },
     {
       "id": "p3r.request.069",
@@ -609,31 +947,61 @@
         "2009-09-10"
       ],
       "completionEvent": "p3r.request.reported.069",
-      "solution": "Finish Request #68 before accepting this request. Ask Aigis at the dorm for Machine Oil, then return it to Elizabeth by October 2. The route completes the chain on September 10."
+      "solution": "Finish Request #68 before accepting this request. Ask Aigis at the dorm for Machine Oil, then return it to Elizabeth by October 2. The route completes the chain on September 10.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-09-10",
+      "prerequisiteRequests": [
+        "p3r.request.068"
+      ],
+      "reward": "Rocket Punch"
     },
     {
       "id": "p3r.request.070",
       "number": 70,
       "title": "Retrieve the Seventh Old Document",
-      "solution": "Collect Old Document 07 from the chest at Tartarus 172F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
+      "solution": "Collect Old Document 07 from the chest at Tartarus 172F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-10-06",
+      "prerequisiteRequests": [
+        "p3r.request.059"
+      ],
+      "reward": "¥90,000"
     },
     {
       "id": "p3r.request.071",
       "number": 71,
       "title": "Fusion Series 6: Strength, Siegfried",
-      "solution": "Create Siegfried, then teach it Endure using the skill card rewarded by Request #73. Keep the skill and carry Siegfried when reporting to Elizabeth."
+      "solution": "Create Siegfried, then teach it Endure using the skill card rewarded by Request #73. Keep the skill and carry Siegfried when reporting to Elizabeth.",
+      "challengeLevel": 4,
+      "availableFrom": "2009-09-10",
+      "prerequisiteRequests": [
+        "p3r.request.062"
+      ],
+      "reward": "Sky Sundress (Aigis)"
     },
     {
       "id": "p3r.request.072",
       "number": 72,
       "title": "Fusion Series 7: Hierophant, Daisoujou",
-      "solution": "Create Daisoujou with Regenerate 3 inherited from Suzaku. Use fusion search to preview a Daisoujou result, select Regenerate 3 for inheritance, and carry the finished Persona to Elizabeth."
+      "solution": "Create Daisoujou with Regenerate 3 inherited from Suzaku. Use fusion search to preview a Daisoujou result, select Regenerate 3 for inheritance, and carry the finished Persona to Elizabeth.",
+      "challengeLevel": 4,
+      "availableFrom": "2009-09-10",
+      "prerequisiteRequests": [
+        "p3r.request.063"
+      ],
+      "reward": "Blue Shorts (Protagonist)"
     },
     {
       "id": "p3r.request.073",
       "number": 73,
       "title": "Bring me a Mikazuki Munechika",
-      "solution": "Craft Mikazuki Munechika at Mayoido Antiques using a Quality Nihil Blade, three Emeralds and two Silver Quartz. Show Elizabeth the finished weapon. The Endure card reward can then help with Request #71."
+      "solution": "Craft Mikazuki Munechika at Mayoido Antiques using a Quality Nihil Blade, three Emeralds and two Silver Quartz. Show Elizabeth the finished weapon. The Endure card reward can then help with Request #71.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-10-06",
+      "prerequisiteRequests": [
+        "p3r.request.051"
+      ],
+      "reward": "Endure"
     },
     {
       "id": "p3r.request.074",
@@ -644,7 +1012,14 @@
       ],
       "solution": "Accept the request before inspecting the Inari at Naganaki Shrine. Collect Inari Sushi and return it to Elizabeth. The route handles this on October 6; visiting the shrine without the accepted request is not the instructed pickup.",
       "completionEvent": "p3r.request.reported.074",
-      "acceptanceEvent": "p3r.request.accepted.074"
+      "acceptanceEvent": "p3r.request.accepted.074",
+      "challengeLevel": 3,
+      "availableFrom": "2009-10-06",
+      "prerequisiteRequests": [
+        "p3r.request.053"
+      ],
+      "reward": "Ergotite Chunk",
+      "availabilityNotes": "Accept the request before checking the Inari. If your Academics is below the route’s level and the interaction is refused, improve it and return."
     },
     {
       "id": "p3r.request.075",
@@ -671,7 +1046,13 @@
         "p3r.request.preparation.075.2009-10-10",
         "p3r.request.preparation.075.2009-10-17",
         "p3r.request.preparation.075.2009-10-19"
-      ]
+      ],
+      "challengeLevel": 3,
+      "availableFrom": "2009-10-06",
+      "prerequisiteRequests": [
+        "p3r.request.066"
+      ],
+      "reward": "Twilight Fragment x7"
     },
     {
       "id": "p3r.request.076",
@@ -684,31 +1065,59 @@
       ],
       "completionEvent": "p3r.request.reported.076",
       "solution": "Accept the request on the October 6 route visit. Speak to Ikutsuki for the Glasses Wipe on October 7 and return it to Elizabeth. Report by November 1; obtaining the wipe is only the pickup stage.",
-      "acceptanceEvent": "p3r.request.accepted.076"
+      "acceptanceEvent": "p3r.request.accepted.076",
+      "challengeLevel": 2,
+      "availableFrom": "2009-10-06",
+      "reward": "Garnet x5"
     },
     {
       "id": "p3r.request.077",
       "number": 77,
       "title": "I’d Like to Walk Around Paulownia Mall",
-      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to Paulownia Mall before marking the request Reported. Accepting the invitation alone does not complete the visit."
+      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to Paulownia Mall before marking the request Reported. Accepting the invitation alone does not complete the visit.",
+      "challengeLevel": 1,
+      "requiredChallengePoints": 25,
+      "reward": "Small Cheongsam (Unlocks Hua Po fusion)",
+      "availabilityNotes": "Elizabeth offers outings according to the combined challenge levels of reported requests; the number of completed requests alone is not the requirement. Check her invitation. This outing is a daytime visit."
     },
     {
       "id": "p3r.request.078",
       "number": 78,
       "title": "I’d Like to Visit Iwatodai Station",
-      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to Iwatodai Station before marking the request Reported. Accepting the invitation alone does not complete the visit."
+      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to Iwatodai Station before marking the request Reported. Accepting the invitation alone does not complete the visit.",
+      "challengeLevel": 1,
+      "prerequisiteRequests": [
+        "p3r.request.077"
+      ],
+      "requiredChallengePoints": 60,
+      "reward": "Book of the Ancients (Unlocks Thoth fusion)",
+      "availabilityNotes": "Elizabeth offers outings according to the combined challenge levels of reported requests; the number of completed requests alone is not the requirement. Wait at least three days after the preceding outing, then check her invitation. This outing is a daytime visit."
     },
     {
       "id": "p3r.request.079",
       "number": 79,
       "title": "I’d Like to Visit Naganaki Shrine",
-      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to Naganaki Shrine before marking the request Reported. Accepting the invitation alone does not complete the visit."
+      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to Naganaki Shrine before marking the request Reported. Accepting the invitation alone does not complete the visit.",
+      "challengeLevel": 1,
+      "prerequisiteRequests": [
+        "p3r.request.078"
+      ],
+      "requiredChallengePoints": 100,
+      "reward": "Vitality Sash",
+      "availabilityNotes": "Elizabeth offers outings according to the combined challenge levels of reported requests; the number of completed requests alone is not the requirement. Wait at least three days after the preceding outing, then check her invitation. This outing is a daytime visit."
     },
     {
       "id": "p3r.request.080",
       "number": 80,
       "title": "I’d Like to Visit Gekkoukan High",
-      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to Gekkoukan High before marking the request Reported. Accepting the invitation alone does not complete the visit."
+      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to Gekkoukan High before marking the request Reported. Accepting the invitation alone does not complete the visit.",
+      "challengeLevel": 1,
+      "prerequisiteRequests": [
+        "p3r.request.079"
+      ],
+      "requiredChallengePoints": 150,
+      "reward": "Sorcerer's Mark",
+      "availabilityNotes": "Elizabeth offers outings according to the combined challenge levels of reported requests; the number of completed requests alone is not the requirement. Wait at least three days after the preceding outing, then check her invitation. This outing needs an after-school visit."
     },
     {
       "id": "p3r.request.081",
@@ -717,67 +1126,134 @@
       "routeDates": [
         "2009-11-06"
       ],
-      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to your dorm room before marking the request Reported. Accepting the invitation alone does not complete the visit."
+      "solution": "When Elizabeth offers this outing, speak to her at the Velvet Room entrance during the day and choose to go out with her. Complete the visit to your dorm room before marking the request Reported. Accepting the invitation alone does not complete the visit.",
+      "challengeLevel": 1,
+      "prerequisiteRequests": [
+        "p3r.request.080"
+      ],
+      "requiredChallengePoints": 185,
+      "reward": "Tyrant's Horn (Unlocks Lucifer fusion)",
+      "availabilityNotes": "Elizabeth offers outings according to the combined challenge levels of reported requests; the number of completed requests alone is not the requirement. Wait at least three days after the preceding outing, then check her invitation. This outing is a daytime visit."
     },
     {
       "id": "p3r.request.082",
       "number": 82,
       "title": "Retrieve the Last Old Document",
-      "solution": "Collect Old Document 08 from the chest at Tartarus 198F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
+      "solution": "Collect Old Document 08 from the chest at Tartarus 198F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-11-06",
+      "prerequisiteRequests": [
+        "p3r.request.070"
+      ],
+      "reward": "¥120,000"
     },
     {
       "id": "p3r.request.083",
       "number": 83,
       "title": "Bring the Progress Report",
-      "solution": "Collect Progress Report from the chest at Tartarus 226F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported."
+      "solution": "Collect Progress Report from the chest at Tartarus 226F and bring it to Elizabeth. Reaching the floor is preparation; collect the document and report the request before marking it Reported.",
+      "challengeLevel": 2,
+      "availableFrom": "2009-12-04",
+      "prerequisiteRequests": [
+        "p3r.request.082"
+      ],
+      "reward": "¥150,000"
     },
     {
       "id": "p3r.request.084",
       "number": 84,
       "title": "Create a Persona with Tempest Slash",
-      "solution": "Obtain Chernobog through fusion and keep its Tempest Slash skill. Carry it when reporting to Elizabeth."
+      "solution": "Obtain Chernobog through fusion and keep its Tempest Slash skill. Carry it when reporting to Elizabeth.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-11-06",
+      "prerequisiteRequests": [
+        "p3r.request.061"
+      ],
+      "reward": "Empowering Sutra x3"
     },
     {
       "id": "p3r.request.085",
       "number": 85,
       "title": "Create a Persona with Auto-Marakukaja",
-      "solution": "Create Hecatoncheires and level it to 53 to learn Auto-Maraku. Keep that skill and carry the Persona to Elizabeth. The automatic defense buff is the requested skill; ordinary Marakukaja is different."
+      "solution": "Create Hecatoncheires and level it to 53 to learn Auto-Maraku. Keep that skill and carry the Persona to Elizabeth. The automatic defense buff is the requested skill; ordinary Marakukaja is different.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-12-04",
+      "prerequisiteRequests": [
+        "p3r.request.084"
+      ],
+      "reward": "Debilitator Sutra x3"
     },
     {
       "id": "p3r.request.086",
       "number": 86,
       "title": "Fusion Series 8: Death, Alice",
-      "solution": "Use Special Fusion with Pixie, Lilim, Narcissus and Titania to create Alice. Keep Alice in your carried Personas and report to Elizabeth."
+      "solution": "Use Special Fusion with Pixie, Lilim, Narcissus and Titania to create Alice. Keep Alice in your carried Personas and report to Elizabeth.",
+      "challengeLevel": 4,
+      "availableFrom": "2009-11-06",
+      "prerequisiteRequests": [
+        "p3r.request.071"
+      ],
+      "reward": "Maid Outfit (Aigis)"
     },
     {
       "id": "p3r.request.087",
       "number": 87,
       "title": "Fusion Series 9: Fool, Loki",
-      "solution": "Create Loki, then raise it to at least level 75. Keep that Loki in your carried Personas and report to Elizabeth."
+      "solution": "Create Loki, then raise it to at least level 75. Keep that Loki in your carried Personas and report to Elizabeth.",
+      "challengeLevel": 4,
+      "availableFrom": "2009-11-06",
+      "prerequisiteRequests": [
+        "p3r.request.072"
+      ],
+      "reward": "Masakados"
     },
     {
       "id": "p3r.request.088",
       "number": 88,
       "title": "Defeat a Greedy Shadow",
-      "solution": "Catch and defeat a Greedy Shadow in Harabah, then keep its Gold Medal. Bring one Gold Medal to Elizabeth; a rare Shadow’s coin is a different request item."
+      "solution": "Catch and defeat a Greedy Shadow in Harabah, then keep its Gold Medal. Bring one Gold Medal to Elizabeth; a rare Shadow’s coin is a different request item.",
+      "challengeLevel": 4,
+      "availableFrom": "2009-11-06",
+      "prerequisiteRequests": [
+        "p3r.request.064"
+      ],
+      "reward": "Life Aid"
     },
     {
       "id": "p3r.request.089",
       "number": 89,
       "title": "Bring me a Rai Kunimitsu",
-      "solution": "Clear the boss on Tartarus 184F and open the locked treasure chest containing Rai Kunimitsu. Keep the weapon and show it to Elizabeth."
+      "solution": "Clear the boss on Tartarus 184F and open the locked treasure chest containing Rai Kunimitsu. Keep the weapon and show it to Elizabeth.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-11-06",
+      "prerequisiteRequests": [
+        "p3r.request.065"
+      ],
+      "reward": "Prime Nihil Ore"
     },
     {
       "id": "p3r.request.090",
       "number": 90,
       "title": "Bring me a Dojigiri Yasutsuna",
-      "solution": "Open the locked treasure chests on Tartarus 212F in Harabah to obtain Dojigiri Yasutsuna. Keep the weapon and show it to Elizabeth."
+      "solution": "Open the locked treasure chests on Tartarus 212F in Harabah to obtain Dojigiri Yasutsuna. Keep the weapon and show it to Elizabeth.",
+      "challengeLevel": 3,
+      "availableFrom": "2009-12-04",
+      "prerequisiteRequests": [
+        "p3r.request.089"
+      ],
+      "reward": "AS Refined Material"
     },
     {
       "id": "p3r.request.091",
       "number": 91,
       "title": "Bring me a Tonbo-kiri",
-      "solution": "Craft Tonbo-kiri at Mayoido Antiques using one Prime Nihil Blade, five Diamonds and two Gold Quartz. Check the base material carefully: the recipe needs the Prime version. Keep the finished spear and show it to Elizabeth before selling it."
+      "solution": "Craft Tonbo-kiri at Mayoido Antiques using one Prime Nihil Blade, five Diamonds and two Gold Quartz. Check the base material carefully: the recipe needs the Prime version. Keep the finished spear and show it to Elizabeth before selling it.",
+      "challengeLevel": 4,
+      "availableFrom": "2010-01-01",
+      "prerequisiteRequests": [
+        "p3r.request.073"
+      ],
+      "reward": "Nihil Black Model x2"
     },
     {
       "id": "p3r.request.092",
@@ -788,7 +1264,13 @@
       ],
       "completionEvent": "p3r.request.reported.092",
       "solution": "Accept the request, enter the Port Island Station restroom, and choose to scrub harder until it is clean. Return to Elizabeth to report the work. The route completes this on November 6.",
-      "acceptanceEvent": "p3r.request.accepted.092"
+      "acceptanceEvent": "p3r.request.accepted.092",
+      "challengeLevel": 2,
+      "availableFrom": "2009-11-06",
+      "prerequisiteRequests": [
+        "p3r.request.067"
+      ],
+      "reward": "Maid Outfit (Yukari)"
     },
     {
       "id": "p3r.request.093",
@@ -799,7 +1281,14 @@
       ],
       "completionEvent": "p3r.request.reported.093",
       "solution": "Accept the request, visit Gekkoukan High's rooftop, and water the flowers. Return to Elizabeth to report the work. The route completes this on November 6.",
-      "acceptanceEvent": "p3r.request.accepted.093"
+      "acceptanceEvent": "p3r.request.accepted.093",
+      "challengeLevel": 2,
+      "availableFrom": "2009-11-06",
+      "prerequisiteRequests": [
+        "p3r.request.075",
+        "p3r.request.080"
+      ],
+      "reward": "Maid Outfit (Fuuka)"
     },
     {
       "id": "p3r.request.094",
@@ -811,7 +1300,10 @@
       ],
       "completionEvent": "p3r.request.reported.094",
       "solution": "Accept the request and talk to Koromaru for Gourmet Dog Food. Bring it to Elizabeth by November 30. The route reports on November 6, then accepts Request #95; do not confuse accepting the next request with completing it.",
-      "acceptanceEvent": "p3r.request.accepted.094"
+      "acceptanceEvent": "p3r.request.accepted.094",
+      "challengeLevel": 2,
+      "availableFrom": "2009-11-06",
+      "reward": "Bone"
     },
     {
       "id": "p3r.request.095",
@@ -823,7 +1315,12 @@
       ],
       "completionEvent": "p3r.request.reported.095",
       "solution": "After reporting Request #94, accept this request and ask Ken for the Featherman R action figure. Bring it to Elizabeth by November 30. The route completes the hand-in on November 6.",
-      "acceptanceEvent": "p3r.request.accepted.095"
+      "acceptanceEvent": "p3r.request.accepted.095",
+      "challengeLevel": 2,
+      "prerequisiteRequests": [
+        "p3r.request.094"
+      ],
+      "reward": "Sacrificial Idol"
     },
     {
       "id": "p3r.request.096",
@@ -840,7 +1337,15 @@
       "preparationEvents": [
         "p3r.request.preparation.096.2009-11-06",
         "p3r.request.preparation.096.2009-11-17"
-      ]
+      ],
+      "challengeLevel": 3,
+      "availableFrom": "2009-11-06",
+      "reward": "Winter Uniform",
+      "itemWindow": {
+        "from": "2009-11-17",
+        "through": "2009-11-19",
+        "note": "Buy every Kyoto vending-machine drink during the school trip. Keep the set for the later Oden Juice trade; the drinks cannot be replaced by buying Oden Juice early."
+      }
     },
     {
       "id": "p3r.request.097",
@@ -852,7 +1357,11 @@
       ],
       "completionEvent": "p3r.request.reported.097",
       "solution": "Accept the request before speaking to the Eccentric Man on Iwatodai Strip Mall 2F. Show a Thank-You Letter from a rescued Tartarus victim to receive the Christmas Present. Return the present to Elizabeth by December 25. The route completes this on December 4; a rescue or the letter alone is not the hand-in.",
-      "acceptanceEvent": "p3r.request.accepted.097"
+      "acceptanceEvent": "p3r.request.accepted.097",
+      "challengeLevel": 3,
+      "availableFrom": "2009-12-04",
+      "reward": "Ruby x3",
+      "availabilityNotes": "Rescue a missing person and collect the Letter of Thanks from the police station before the Christmas Present trade."
     },
     {
       "id": "p3r.request.098",
@@ -863,7 +1372,12 @@
         "2010-01-15"
       ],
       "completionEvent": "p3r.request.reported.098",
-      "solution": "Once the request is available, prepare a Masakado that knows Charge and report it to Elizabeth. Check the skill before confirming your fusion. The route plans the report around the January 15 climb; fusing Masakado without Charge does not meet the request."
+      "solution": "Once the request is available, prepare a Masakado that knows Charge and report it to Elizabeth. Check the skill before confirming your fusion. The route plans the report around the January 15 climb; fusing Masakado without Charge does not meet the request.",
+      "challengeLevel": 5,
+      "prerequisiteRequests": [
+        "p3r.request.086"
+      ],
+      "reward": "Nihil White Model x2"
     },
     {
       "id": "p3r.request.099",
@@ -873,7 +1387,14 @@
         "2010-01-15"
       ],
       "completionEvent": "p3r.request.reported.099",
-      "solution": "Clear the final Monad Passage on 255F and defeat the Shadow of the Void, then return to Elizabeth to report. The route completes this during the January 15 climb. This is separate from the later solo ultimate-adversary challenge for Request #101.\n\nBattle plan: enter with charged Theurgy gauges. The boss restores 300 HP each turn and uses Diarahan at half health. Save your burst for after that full heal, then build damage and spend your strongest single-target attacks and Theurgies to finish. Guard after Charge to withstand Akasha Arts, or after Concentrate to withstand Megidolaon; restore the party before resuming damage."
+      "solution": "Clear the final Monad Passage on 255F and defeat the Shadow of the Void, then return to Elizabeth to report. The route completes this during the January 15 climb. This is separate from the later solo ultimate-adversary challenge for Request #101.\n\nBattle plan: enter with charged Theurgy gauges. The boss restores 300 HP each turn and uses Diarahan at half health. Save your burst for after that full heal, then build damage and spend your strongest single-target attacks and Theurgies to finish. Guard after Charge to withstand Akasha Arts, or after Concentrate to withstand Megidolaon; restore the party before resuming damage.",
+      "challengeLevel": 5,
+      "availableFrom": "2010-01-01",
+      "prerequisiteRequests": [
+        "p3r.request.037"
+      ],
+      "reward": "Dead Moon's Husk",
+      "availabilityNotes": "Report #37 and defeat the gatekeeper on 255F to enter that floor’s Monad Passage. Obtain the drop, then report to Elizabeth."
     },
     {
       "id": "p3r.request.100",
@@ -883,7 +1404,13 @@
         "2010-01-21"
       ],
       "completionEvent": "p3r.request.reported.100",
-      "solution": "Defeat the Reaper, keep the Bloody Button, and return it to Elizabeth. The route reports this on January 21 and then accepts Request #101. The new acceptance is preparation for a separate fight; it does not report Request #101."
+      "solution": "Defeat the Reaper, keep the Bloody Button, and return it to Elizabeth. The route reports this on January 21 and then accepts Request #101. The new acceptance is preparation for a separate fight; it does not report Request #101.",
+      "challengeLevel": 5,
+      "availableFrom": "2010-01-01",
+      "prerequisiteRequests": [
+        "p3r.request.083"
+      ],
+      "reward": "Divine Pillar"
     },
     {
       "id": "p3r.request.101",
@@ -897,7 +1424,15 @@
       "acceptanceEvent": "p3r.request.accepted.101",
       "readyEvents": [
         "p3r.request.ready.101.2010-01-30"
-      ]
+      ],
+      "challengeLevel": 5,
+      "prerequisiteRequests": [
+        "p3r.request.081",
+        "p3r.request.099",
+        "p3r.request.100"
+      ],
+      "reward": "Omnipotent Orb",
+      "availabilityNotes": "Finish the room outing (#81) and report both #99 and #100. Accept #101 before attempting the solo battle; victory and reporting are separate."
     }
   ],
   "events": [
@@ -1386,6 +1921,372 @@
       "date": "2009-05-27",
       "labelContains": "Read the School X Site Note on the dorm's shared computer (unlocks Lukewarm Taiyaki at the School Store)",
       "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.050",
+      "date": "2009-06-27",
+      "labelContains": "Tartarus — obtain a Black Quartz for Request #29 from a Formidable Shadow or rescue reward",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.056",
+      "date": "2009-06-27",
+      "labelContains": "Tartarus — obtain a Black Quartz for Request #29 from a Formidable Shadow or rescue reward",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.064",
+      "date": "2009-06-27",
+      "labelContains": "Tartarus — obtain a Black Quartz for Request #29 from a Formidable Shadow or rescue reward",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.079",
+      "date": "2009-08-03",
+      "labelContains": "Tartarus — clearing the 91F Monad Passage rewards the Temperance Tarot (the schedule never spends it on Arcana Bursts)",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.084",
+      "date": "2009-08-03",
+      "labelContains": "Tartarus — clearing the 91F Monad Passage rewards the Temperance Tarot (the schedule never spends it on Arcana Bursts)",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.101",
+      "date": "2009-09-04",
+      "labelContains": "Tartarus — bring Koromaru, Ken, and Shinjiro to watch their Persona summoning cutscenes",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.109",
+      "date": "2009-09-04",
+      "labelContains": "Tartarus — bring Koromaru, Ken, and Shinjiro to watch their Persona summoning cutscenes",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.114",
+      "date": "2009-09-04",
+      "labelContains": "Tartarus — bring Koromaru, Ken, and Shinjiro to watch their Persona summoning cutscenes",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.120",
+      "date": "2009-10-01",
+      "labelContains": "Tartarus — Tziah introduces the scripted Dark Zone tutorial; it does not count for The Horror of the Shade, which requires a later random Dark Zone",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.135",
+      "date": "2009-10-01",
+      "labelContains": "Tartarus — Tziah introduces the scripted Dark Zone tutorial; it does not count for The Horror of the Shade, which requires a later random Dark Zone",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.140",
+      "date": "2009-10-01",
+      "labelContains": "Tartarus — Tziah introduces the scripted Dark Zone tutorial; it does not count for The Horror of the Shade, which requires a later random Dark Zone",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.146",
+      "date": "2009-11-02",
+      "labelContains": "Tartarus",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.159",
+      "date": "2009-11-02",
+      "labelContains": "Tartarus",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.165",
+      "date": "2009-11-02",
+      "labelContains": "Tartarus",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.177",
+      "date": "2009-11-29",
+      "labelContains": "Tartarus",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.196",
+      "date": "2009-11-29",
+      "labelContains": "Tartarus",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.209",
+      "date": "2009-12-30",
+      "labelContains": "Tartarus — rescue the missing persons on 209F and 221F before the December 30 cutoff, then finish the planned Harabah progression",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.221",
+      "date": "2009-12-30",
+      "labelContains": "Tartarus — rescue the missing persons on 209F and 221F before the December 30 cutoff, then finish the planned Harabah progression",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.232",
+      "date": "2010-01-15",
+      "labelContains": "Tartarus — rescue the two missing persons on 232F and 250F before the January 30 cutoff",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.rescue.saved.250",
+      "date": "2010-01-15",
+      "labelContains": "Tartarus — rescue the two missing persons on 232F and 250F before the January 30 cutoff",
+      "routeId": "standard"
+    }
+  ],
+  "missingPersons": [
+    {
+      "id": "p3r.rescue.050",
+      "name": "Ayako Yoshimoto",
+      "floor": 50,
+      "availableFrom": "2009-06-18",
+      "deadline": "2009-07-06",
+      "reward": "Recarm skill card",
+      "routeDates": [
+        "2009-06-27"
+      ],
+      "rescueEvent": "p3r.rescue.saved.050"
+    },
+    {
+      "id": "p3r.rescue.056",
+      "name": "Kenjiro Tsutsumi",
+      "floor": 56,
+      "availableFrom": "2009-06-26",
+      "deadline": "2009-07-06",
+      "reward": "¥40,000",
+      "routeDates": [
+        "2009-06-27"
+      ],
+      "rescueEvent": "p3r.rescue.saved.056"
+    },
+    {
+      "id": "p3r.rescue.064",
+      "name": "Yoshimi Miyama",
+      "floor": 64,
+      "availableFrom": "2009-06-26",
+      "deadline": "2009-07-06",
+      "reward": "Black Quartz x2",
+      "routeDates": [
+        "2009-06-27"
+      ],
+      "rescueEvent": "p3r.rescue.saved.064"
+    },
+    {
+      "id": "p3r.rescue.079",
+      "name": "Yasuko Murabayashi",
+      "floor": 79,
+      "availableFrom": "2009-08-03",
+      "deadline": "2009-08-05",
+      "reward": "Emerald x4",
+      "routeDates": [
+        "2009-08-03"
+      ],
+      "rescueEvent": "p3r.rescue.saved.079"
+    },
+    {
+      "id": "p3r.rescue.084",
+      "name": "Shuichi Niimura",
+      "floor": 84,
+      "availableFrom": "2009-08-03",
+      "deadline": "2009-08-05",
+      "reward": "Shift Boost skill card",
+      "routeDates": [
+        "2009-08-03"
+      ],
+      "rescueEvent": "p3r.rescue.saved.084"
+    },
+    {
+      "id": "p3r.rescue.101",
+      "name": "Satsuki Onozuka",
+      "floor": 101,
+      "availableFrom": "2009-08-19",
+      "deadline": "2009-09-04",
+      "reward": "Divine Grace skill card",
+      "routeDates": [
+        "2009-09-04"
+      ],
+      "rescueEvent": "p3r.rescue.saved.101"
+    },
+    {
+      "id": "p3r.rescue.109",
+      "name": "Hirotaka Tanigami",
+      "floor": 109,
+      "availableFrom": "2009-08-29",
+      "deadline": "2009-09-04",
+      "reward": "Malachite x20",
+      "routeDates": [
+        "2009-09-04"
+      ],
+      "rescueEvent": "p3r.rescue.saved.109"
+    },
+    {
+      "id": "p3r.rescue.114",
+      "name": "Reiko Makita",
+      "floor": 114,
+      "availableFrom": "2009-09-03",
+      "deadline": "2009-09-04",
+      "reward": "Mediarama skill card",
+      "routeDates": [
+        "2009-09-04"
+      ],
+      "rescueEvent": "p3r.rescue.saved.114"
+    },
+    {
+      "id": "p3r.rescue.120",
+      "name": "Bunkichi Kitamura",
+      "floor": 120,
+      "availableFrom": "2009-09-12",
+      "deadline": "2009-10-03",
+      "reward": "Homunculus x4",
+      "routeDates": [
+        "2009-10-01"
+      ],
+      "rescueEvent": "p3r.rescue.saved.120",
+      "bondId": "p3r.bond.hierophant",
+      "consequence": "Rescue Bunkichi before the cutoff to keep the Hierophant Social Link available."
+    },
+    {
+      "id": "p3r.rescue.135",
+      "name": "Aki Kurobe",
+      "floor": 135,
+      "availableFrom": "2009-09-22",
+      "deadline": "2009-10-03",
+      "reward": "Magic Talisman",
+      "routeDates": [
+        "2009-10-01"
+      ],
+      "rescueEvent": "p3r.rescue.saved.135"
+    },
+    {
+      "id": "p3r.rescue.140",
+      "name": "Yasunobu Shimozono",
+      "floor": 140,
+      "availableFrom": "2009-09-22",
+      "deadline": "2009-10-03",
+      "reward": "¥100,000",
+      "routeDates": [
+        "2009-10-01"
+      ],
+      "rescueEvent": "p3r.rescue.saved.140"
+    },
+    {
+      "id": "p3r.rescue.146",
+      "name": "Maiko Oohashi",
+      "floor": 146,
+      "availableFrom": "2009-10-21",
+      "deadline": "2009-11-02",
+      "reward": "Felt Doll",
+      "routeDates": [
+        "2009-11-02"
+      ],
+      "rescueEvent": "p3r.rescue.saved.146",
+      "bondId": "p3r.bond.hanged-man",
+      "consequence": "Rescue Maiko before the cutoff to keep the Hanged-Man Social Link available."
+    },
+    {
+      "id": "p3r.rescue.159",
+      "name": "Ryohei Nakatsugawa",
+      "floor": 159,
+      "availableFrom": "2009-10-21",
+      "deadline": "2009-11-02",
+      "reward": "Berserker's Seal",
+      "routeDates": [
+        "2009-11-02"
+      ],
+      "rescueEvent": "p3r.rescue.saved.159"
+    },
+    {
+      "id": "p3r.rescue.165",
+      "name": "Takeko Hiraoka",
+      "floor": 165,
+      "availableFrom": "2009-10-30",
+      "deadline": "2009-11-02",
+      "reward": "Avaricious Ring",
+      "routeDates": [
+        "2009-11-02"
+      ],
+      "rescueEvent": "p3r.rescue.saved.165"
+    },
+    {
+      "id": "p3r.rescue.177",
+      "name": "Tomoyuki Itami",
+      "floor": 177,
+      "availableFrom": "2009-11-28",
+      "deadline": "2009-12-01",
+      "reward": "Omega Drive",
+      "routeDates": [
+        "2009-11-29"
+      ],
+      "rescueEvent": "p3r.rescue.saved.177"
+    },
+    {
+      "id": "p3r.rescue.196",
+      "name": "Katsue Sugi",
+      "floor": 196,
+      "availableFrom": "2009-11-28",
+      "deadline": "2009-12-01",
+      "reward": "Diamond x3",
+      "routeDates": [
+        "2009-11-29"
+      ],
+      "rescueEvent": "p3r.rescue.saved.196"
+    },
+    {
+      "id": "p3r.rescue.209",
+      "name": "Yumiko Sasamaki",
+      "floor": 209,
+      "availableFrom": "2009-12-22",
+      "deadline": "2009-12-30",
+      "reward": "Scintillating Coin x2",
+      "routeDates": [
+        "2009-12-30"
+      ],
+      "rescueEvent": "p3r.rescue.saved.209"
+    },
+    {
+      "id": "p3r.rescue.221",
+      "name": "Nobuko Fukuchi",
+      "floor": 221,
+      "availableFrom": "2009-12-22",
+      "deadline": "2009-12-30",
+      "reward": "Ruby x3",
+      "routeDates": [
+        "2009-12-30"
+      ],
+      "rescueEvent": "p3r.rescue.saved.221"
+    },
+    {
+      "id": "p3r.rescue.232",
+      "name": "Fumika Teramoto",
+      "floor": 232,
+      "availableFrom": "2010-01-15",
+      "deadline": "2010-01-30",
+      "reward": "Soma",
+      "routeDates": [
+        "2010-01-15"
+      ],
+      "rescueEvent": "p3r.rescue.saved.232"
+    },
+    {
+      "id": "p3r.rescue.250",
+      "name": "Mitsutoshi Okimoto",
+      "floor": 250,
+      "availableFrom": "2010-01-15",
+      "deadline": "2010-01-30",
+      "reward": "Salvation skill card",
+      "routeDates": [
+        "2010-01-15"
+      ],
+      "rescueEvent": "p3r.rescue.saved.250"
     }
   ]
 }

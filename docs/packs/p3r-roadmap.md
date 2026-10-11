@@ -2,12 +2,26 @@
 
 Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version 3.
 Priority: **active P3R reading and Reload UI optimization**, per the October 10, 2026 request.
-Status: content version **15** implements the focused reading, request-stage and UI pass.
-Android validation and screenshot review are tracked in the
-[October review](../audits/p3r-reading-reload-ui.md). Broader reward/prerequisite,
-boss-strategy and release-hardening audits remain separately scoped.
+Status: content version **16** adds request metadata and individual rescue/reward tracking after the merged reading/UI pass.
+Android validation and screenshot review for this continuation are tracked in the
+[request/rescue audit](../audits/p3r-requests-rescues.md), following the merged
+[reading/UI review](../audits/p3r-reading-reload-ui.md). Linked Episodes, broader
+boss strategies, achievements and release hardening remain separately scoped.
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
+
+## October 11 continuation: request metadata and individual rescues
+
+All 101 requests have rewards and source availability conditions, with linked
+prerequisites and three distinct item-opportunity windows. Twenty individual
+missing-person records connect to the eight existing rescue visits; Rescued and
+Reward claimed remain separate, reversible and profile-scoped. Outing challenge
+points describe recorded reports without automatically offering or accepting an
+outing. Existing task identities and P5R/Metaphor content remain intact.
+See the [source, behavior and validation audit](../audits/p3r-requests-rescues.md).
+Linked Episode chains, broader boss tactics, achievements and final UI/performance
+release hardening remain open. The phase checklists below retain the original
+milestone scope; dated continuation records identify the delivered parts.
 
 ## October 10 continuation: reading, source stages and Reload UI
 

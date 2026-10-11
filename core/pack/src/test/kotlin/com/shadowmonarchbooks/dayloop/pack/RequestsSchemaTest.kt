@@ -14,6 +14,10 @@ class RequestsSchemaTest {
         assertNull(request.acceptanceEvent)
         assertEquals(emptyList(), request.preparationEvents)
         assertEquals(emptyList(), request.readyEvents)
+        assertNull(request.reward)
+        assertNull(request.availableFrom)
+        assertEquals(emptyList(), request.prerequisiteRequests)
+        assertEquals(emptyList(), catalog.missingPersons)
         val enriched = catalog.copy(requests = listOf(request.copy(solution = "Collect the item.\n\nReturn to the issuer.", acceptanceEvent = "test.accept", preparationEvents = listOf("test.collect"), readyEvents = listOf("test.collect", "test.alternative"))))
         val decoded = PackLoader.json.decodeFromString(RequestsFile.serializer(),
             PackLoader.json.encodeToString(RequestsFile.serializer(), enriched))

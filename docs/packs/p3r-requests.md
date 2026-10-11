@@ -1,8 +1,8 @@
 # Elizabeth's Requests — first tracker delivery
 
-Current continuation: [October 10 reading and source-stage audit](../audits/p3r-reading-reload-ui.md)
-(content version 15; 32 reporting, 19 acceptance and 27 preparation references).
-The counts below document the earlier pass.
+Current continuation: [October 11 request metadata and individual rescue audit](../audits/p3r-requests-rescues.md)
+(content version 16; all 101 rewards/availability conditions and 20 individual
+rescue records). The counts below document earlier passes.
 
 The user explicitly prioritized this destination on September 6, 2026 (UTC), replacing
 P3R's Answers bottom tab. The bottom label is Requests to fit mobile navigation;

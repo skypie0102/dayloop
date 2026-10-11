@@ -206,12 +206,12 @@ class ProgressRepository internal constructor(
 
     fun requestStages(profileId: Long): Flow<Map<String, String>> = settings.data.map { prefs ->
         decodeAchievementChoices(prefs[requestStageKey(profileId)].orEmpty())
-            .filterValues { it in com.shadowmonarchbooks.dayloop.pack.schema.RequestStages.ALL }
+            .filterValues { it in com.shadowmonarchbooks.dayloop.pack.schema.RequestTrackingStages.ALL }
     }
 
     suspend fun setRequestStage(profileId: Long, requestId: String, stage: String?): Unit = mutate {
         require(requestId.isNotBlank() && '=' !in requestId)
-        require(stage == null || stage in com.shadowmonarchbooks.dayloop.pack.schema.RequestStages.ALL)
+        require(stage == null || stage in com.shadowmonarchbooks.dayloop.pack.schema.RequestTrackingStages.ALL)
         settings.edit { prefs ->
             val key = requestStageKey(profileId)
             val entries = prefs[key].orEmpty().filterNot { it.substringBeforeLast('=') == requestId }.toMutableSet()

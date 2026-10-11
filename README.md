@@ -1,9 +1,10 @@
 # dayloop
 
-Current P3R pass: source-ordered inline walkthrough guidance, distinct request
-acceptance/preparation/reporting, and a Reload-style blue UI with lightweight
-selection and navigation motion. See the
-[P3R reading and UI review](docs/audits/p3r-reading-reload-ui.md). The
+Current P3R pass: request rewards, availability and prerequisite links, plus
+individual rescue and police-reward tracking for all 20 missing people. It builds
+on the source-ordered walkthrough and lightweight Reload UI. See the
+[P3R requests and rescue audit](docs/audits/p3r-requests-rescues.md) and
+[reading/UI review](docs/audits/p3r-reading-reload-ui.md). The
 [P5R Mementos and motion improvements](docs/audits/p5r-mementos-motion.md)
 remain in place.
 
@@ -35,9 +36,9 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 
 ## Roadmap
 
-**Current priority: [Persona 3 Reload — reading and Reload UI](docs/audits/p3r-reading-reload-ui.md).**
-The October 10 pass follows the completed P5R usability/Mementos fixes with
-source-ordered guidance, explicit request stages and lightweight themed motion.
+**Current priority: [Persona 3 Reload — requests and individual rescues](docs/audits/p3r-requests-rescues.md).**
+The October 11 pass follows the merged reading/UI work with request metadata,
+prerequisite navigation and separate rescue/reward tracking.
 The [P3R roadmap](docs/packs/p3r-roadmap.md) tracks the broader remaining audits.
 The phase table below records earlier milestones.
 
