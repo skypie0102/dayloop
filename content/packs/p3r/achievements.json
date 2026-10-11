@@ -515,7 +515,7 @@
         "prompt": "A completed rescue visit proves this. If you rescued someone outside the planned visit, confirm the achievement yourself; police reward collection is separate."
       },
       "iconMediaRef": "p3r.media.achievement.extracurricular-excellence",
-      "guidance": "Find a missing person in Tartarus and escort them back. Complete all named rescues before marking a combined rescue visit Done. Claiming their police rewards is a later action.",
+      "guidance": "Find a missing person in Tartarus and escort them back. Complete all named rescues before marking a combined rescue visit Done. Claiming their police rewards is a later action. Confirm a rescue outside the listed visits yourself.",
       "routeDates": []
     },
     {
@@ -925,7 +925,7 @@
         "prompt": "Any recorded nighttime Seafood Full Course visit qualifies. Confirm yourself if you used another valid secret menu."
       },
       "iconMediaRef": "p3r.media.achievement.gourmand",
-      "guidance": "Order a secret-menu meal at night in Iwatodai Strip Mall. This route’s nighttime Seafood Full Course visits qualify; verify the order rather than merely entering Wakatsu Kitchen.",
+      "guidance": "Order a secret-menu meal at night in Iwatodai Strip Mall. This route’s nighttime Seafood Full Course visits qualify; verify the order rather than merely entering Wakatsu Kitchen. Confirm another valid secret menu yourself.",
       "routeDates": []
     },
     {

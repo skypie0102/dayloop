@@ -131,7 +131,9 @@ Optional generic `guidance` and `routeDates` fields keep platform text, instruct
 and route opportunities separate. An optional event `displayLabel` names a readable
 checkpoint without changing its selector. The Reload detail uses cyan display
 headings and static pink accents, full-width wrapped text, and a next missing
-checkpoint. Review-all reveals the remaining start/MAX actions; any-task rules
+checkpoint. Authored earning instructions replace the older tracking prompt in
+the detail, avoiding repeated advice before the source buttons. Packs without
+these instructions retain their existing prompt. Review-all reveals the remaining start/MAX actions; any-task rules
 explain alternatives and show a recorded qualifying task when one exists.
 
 Opening a date is read-only browsing: it cannot move the active clock, mark a

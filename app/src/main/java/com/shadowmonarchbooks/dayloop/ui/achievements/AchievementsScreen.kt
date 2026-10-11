@@ -325,7 +325,7 @@ private fun RuleAchievementRow(
                     color = if (earned) MaterialTheme.colorScheme.onSecondaryContainer
                     else MaterialTheme.colorScheme.secondary,
                 )
-                achievement.tracking.prompt?.let { prompt ->
+                achievement.tracking.prompt?.takeIf { achievement.guidance == null }?.let { prompt ->
                     Spacer(Modifier.height(2.dp))
                     Text(
                         text = prompt,
@@ -434,7 +434,9 @@ private fun SubmergedAchievementRow(
                     Text(it, style = MaterialTheme.typography.bodyMedium, color = colors.onSurface,
                         modifier = Modifier.fillMaxWidth().testTag("achievement-guidance-${achievement.id}"))
                 }
-                achievement.tracking.prompt?.let { Text(it, style = MaterialTheme.typography.bodyMedium, color = colors.onSurfaceVariant) }
+                achievement.tracking.prompt?.takeIf { achievement.guidance == null }?.let {
+                    Text(it, style = MaterialTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
+                }
                 when {
                     achievement.tracking.type == AchievementTrackingTypes.CHECKLIST -> AchievementChecklistControls(
                         achievement, row.checkedItems, currentDate, progress.available && !row.manualEarned, onChecklistItemChange)

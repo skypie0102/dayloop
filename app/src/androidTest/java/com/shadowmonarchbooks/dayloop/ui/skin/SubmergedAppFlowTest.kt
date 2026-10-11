@@ -400,11 +400,13 @@ class SubmergedAppFlowTest {
         list.performScrollToNode(hasTestTag("achievement-$id"))
         compose.onNodeWithTag("achievement-$id").performClick()
         val proof = "achievement-proof-$id"
+        compose.onNodeWithText(pack.achievements.single { it.id == id }.tracking.prompt!!).assertDoesNotExist()
         list.performScrollToNode(hasTestTag(proof))
         compose.onNodeWithTag(proof).assertTextEquals("1 / 22 checkpoints recorded")
-        capture("p3r-app-achievement-proof-large-text")
         val source = "achievement-checkpoint-p3r.event.social-start-fool"
         list.performScrollToNode(hasTestTag(source))
+        compose.onNodeWithTag(source).assertIsDisplayed()
+        capture("p3r-app-achievement-proof-large-text")
         compose.onNodeWithTag(source).performClick()
         compose.onNodeWithTag("task-label-1").assertTextContains("Fool reaches rank 1", substring = true)
         assertEquals("2010-01-08", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
