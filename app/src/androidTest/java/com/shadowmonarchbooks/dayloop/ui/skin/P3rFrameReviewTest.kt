@@ -9,6 +9,7 @@ import android.os.HandlerThread
 import android.os.ParcelFileDescriptor
 import android.os.SystemClock
 import android.provider.MediaStore
+import android.util.Log
 import android.view.FrameMetrics
 import android.view.Window
 import android.view.accessibility.AccessibilityNodeInfo
@@ -45,10 +46,18 @@ class P3rFrameReviewTest {
 
     private fun text(value: CharSequence?): String = value?.toString()?.replace('\n', ' ')?.trim().orEmpty()
 
-    private fun nodes(label: String): List<AccessibilityNodeInfo> = automation.rootInActiveWindow
-        ?.findAccessibilityNodeInfosByText(label).orEmpty().filter {
-            text(it.text).equals(label, true) || text(it.contentDescription).equals(label, true)
+    private fun accessibleNodes(): List<AccessibilityNodeInfo> = buildList {
+        fun visit(node: AccessibilityNodeInfo) {
+            add(node)
+            for (index in 0 until node.childCount) node.getChild(index)?.let(::visit)
         }
+        automation.rootInActiveWindow?.let(::visit)
+    }
+
+    private fun nodes(label: String): List<AccessibilityNodeInfo> = accessibleNodes().filter {
+        // Compose exposes virtual children but does not implement the provider's text-search API.
+        it.isVisibleToUser && (text(it.text).equals(label, true) || text(it.contentDescription).equals(label, true))
+    }
 
     private fun clickable(label: String): AccessibilityNodeInfo? = nodes(label).firstNotNullOfOrNull { child ->
         var node: AccessibilityNodeInfo? = child
@@ -59,7 +68,10 @@ class P3rFrameReviewTest {
     private fun await(label: String, condition: () -> Boolean) {
         val end = SystemClock.uptimeMillis() + 15_000
         while (!condition() && SystemClock.uptimeMillis() < end) SystemClock.sleep(50)
-        assertTrue(label, condition())
+        val ready = condition()
+        if (!ready) Log.e("P3rFrameReview", "Waiting for $label; visible nodes: " +
+            accessibleNodes().filter { it.isVisibleToUser }.joinToString { "${text(it.text)} | ${text(it.contentDescription)}" })
+        assertTrue(label, ready)
     }
 
     private fun click(label: String) {
