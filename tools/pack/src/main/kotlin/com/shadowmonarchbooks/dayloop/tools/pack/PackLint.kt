@@ -282,6 +282,15 @@ object PackLint {
                     if (step.tip?.isBlank() == true) {
                         issues += err(loc, "day '${day.date}' step $i tip must not be blank")
                     }
+                    val sectionTitles = mutableSetOf<String>()
+                    step.guidanceSections.forEachIndexed { sectionIndex, section ->
+                        if (section.title.isBlank() || section.body.isBlank()) {
+                            issues += err(loc, "day '${day.date}' step $i guidance section $sectionIndex needs a non-blank title and body")
+                        }
+                        if (!sectionTitles.add(section.title.trim().lowercase(java.util.Locale.ROOT))) {
+                            issues += err(loc, "day '${day.date}' step $i has duplicate guidance section title '${section.title}'")
+                        }
+                    }
                     if (step.slot != null && step.slot !in slotIds) {
                         issues += err(loc, "day '${day.date}' step $i references unknown slot '${step.slot}'")
                     }

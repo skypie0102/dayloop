@@ -41,4 +41,14 @@ data class Step(
     val tip: String? = null,
     /** Optional presentation section such as Infiltration; time-slot semantics stay in [slot]. */
     val groupLabel: String? = null,
+    /** Authored reading sections; these never create tasks or change saved progress keys. */
+    val guidanceSections: List<GuidanceSection> = emptyList(),
+) {
+    val hasGuidance: Boolean get() = tip != null || guidanceSections.isNotEmpty()
+}
+
+@Serializable
+data class GuidanceSection(
+    val title: String,
+    val body: String,
 )

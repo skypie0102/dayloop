@@ -482,10 +482,10 @@ fun StepRow(
         2 -> 3.dp to 11.dp
         else -> 10.dp to 4.dp
     }
-    var showTip by remember(step.tip) { mutableStateOf(false) }
+    var showTip by remember(step.tip, step.guidanceSections) { mutableStateOf(false) }
     if (showTip) {
         StepTipDialog(
-            tip = step.tip.orEmpty(),
+            step = step,
             onDismiss = { showTip = false },
         )
     }
@@ -523,7 +523,7 @@ fun StepRow(
                 val tipInlineId = "task-tip"
                 val taskText = buildAnnotatedString {
                     append(step.label)
-                    if (step.tip != null && !inlineTips) {
+                    if (step.hasGuidance && !inlineTips) {
                         append(" ")
                         appendInlineContent(tipInlineId, "Tips")
                     }
@@ -539,7 +539,7 @@ fun StepRow(
                         StepMark.LATER -> MaterialTheme.colorScheme.tertiary
                         else -> MaterialTheme.colorScheme.onSurface
                     },
-                    inlineContent = if (step.tip == null || inlineTips) {
+                    inlineContent = if (!step.hasGuidance || inlineTips) {
                         emptyMap()
                     } else {
                         mapOf(
@@ -624,21 +624,14 @@ fun StepRow(
             MarkActions(selected = mark, onToggle = onToggleMark)
         }
         if (inlineTips) {
-            step.tip?.let { guidance ->
-                Text(
-                    text = guidance,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.fillMaxWidth().testTag("task-guidance-$index"),
-                )
-            }
+            TaskGuidance(step, index)
         }
     }
 }
 
 /** Optional task guidance, kept out of the checklist until the player asks for it. */
 @Composable
-private fun StepTipDialog(tip: String, onDismiss: () -> Unit) {
+private fun StepTipDialog(step: Step, onDismiss: () -> Unit) {
     val skin = LocalSkin.current
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -658,7 +651,9 @@ private fun StepTipDialog(tip: String, onDismiss: () -> Unit) {
             )
         },
         text = {
-            Text(text = tip, style = MaterialTheme.typography.bodyLarge)
+            Column(Modifier.verticalScroll(rememberScrollState())) {
+                TaskGuidance(step)
+            }
         },
         confirmButton = {
             SkinTextActionButton(text = "Close", onClick = onDismiss)

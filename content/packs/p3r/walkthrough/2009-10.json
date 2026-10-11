@@ -28,8 +28,30 @@
           "label": "Tartarus — Tziah introduces the scripted Dark Zone tutorial; it does not count for The Horror of the Shade, which requires a later random Dark Zone",
           "slot": "evening",
           "spoiler": true,
-          "tip": "Climb to the 144F border. Gatekeepers: 125F, 126F, 132F, 136F.\n\nRescue Bunkichi and the other two missing people on 120F, 135F and 140F. Their last actionable rescue date is October 3; Bunkichi's rescue also protects the Hierophant route.\n\nThe scripted Dark Zone tutorial does not satisfy The Horror of the Shade. Keep that achievement unconfirmed until you experience a later random Dark Zone. Check that you have actually used everyone's Theurgy for The Strength of Our Hearts.\n\nLeave carrying Priestess, Hierophant, Lovers, Star and Moon Personas for the route through November 2.\n\nRescue targets:\nBunkichi Kitamura — 120F\nAki Kurobe — 135F\nYasunobu Shimozono — 140F\n\nCollect rescue rewards separately at the police station after returning. Mark this visit Done only after completing every rescue above.",
-          "groupLabel": "Dark Hour · Tartarus"
+          "tip": "Climb to the 144F border. Gatekeepers: 125F, 126F, 132F, 136F, 143F.\n\nRescue Bunkichi and the other two missing people on 120F, 135F and 140F. Their last actionable rescue date is October 3; Bunkichi's rescue also protects the Hierophant route.\n\nThe scripted Dark Zone tutorial does not satisfy The Horror of the Shade. Keep that achievement unconfirmed until you experience a later random Dark Zone. Check that you have actually used everyone's Theurgy for The Strength of Our Hearts.\n\nLeave carrying Priestess, Hierophant, Lovers, Star and Moon Personas for the route through November 2.\n\nRescue targets:\nBunkichi Kitamura — 120F\nAki Kurobe — 135F\nYasunobu Shimozono — 140F\n\nCollect rescue rewards separately at the police station after returning. Mark this visit Done only after completing every rescue above.",
+          "groupLabel": "Dark Hour · Tartarus",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Tziah I",
+              "body": "Bring Strike, Electricity, Wind, Fire and Ice coverage, along with physical skills for 143F. Restore HP before the consecutive 125F/126F battles. Keep the rescues and later random Dark Zone achievement separate from boss clears."
+            },
+            {
+              "title": "125F / 126F · Consecutive guards",
+              "body": "Use Strike on Rampaging Sands and Electricity on Heartless Relic at 125F; Confusion can disrupt the Sands. At 126F, use Wind on Raging Turret. It blocks Slash; guard its charged Heat Wave after the buff sequence."
+            },
+            {
+              "title": "132F · Terminal Table",
+              "body": "No elemental weakness. Avoid Strike, which is blocked, and Light, which is drained. Use other damage, maintain attack-down effects and heal. Rage is an optional way to prevent its usual spell pattern."
+            },
+            {
+              "title": "136F · Jotun and Hands",
+              "body": "Use Ice on Jotun of Authority, Electricity on Purging Right Hand and Fire on Subservient Left Hand. Avoid group physical attacks: Jotun drains Slash, the right hand drains Strike and the left drains Pierce."
+            },
+            {
+              "title": "143F · Isolated Castle",
+              "body": "This gatekeeper blocks every attack element. Use physical skills, critical hits and Theurgy rather than elemental spells. Heal after HP-cost attacks; reach the 144F border only after clearing it."
+            }
+          ]
         }
       ],
       "displayOrder": [
@@ -101,7 +123,21 @@
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
           "spoiler": true,
-          "groupLabel": "Dark Hour · Full Moon"
+          "groupLabel": "Dark Hour · Full Moon",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Fortune and Strength",
+              "body": "Ken and Shinjiro are unavailable. Bring strong magic, party healing, Strike/Electricity coverage and charged Theurgies. Keep current HP above 300 wherever your maximum allows it: Fortune's damage roulette can deal a fixed 300 to everyone. If that is not possible, secure a survival effect or more HP before relying on this plan."
+            },
+            {
+              "title": "Fight · Strength first",
+              "body": "Fortune cannot be targeted while Strength protects it. Use magic or Theurgy on Strength; it repels Strike and resists Slash/Pierce. Heal between attacks so the roulette cannot catch the protagonist at low HP."
+            },
+            {
+              "title": "Fight · Fortune exposed",
+              "body": "In Reload the roulette runs automatically; there is no player timing trick. After Strength falls, use Strike or Electricity to down Fortune and All-Out Attack. Avoid Fire, Ice, Wind and Light because Fortune drains them."
+            }
+          ]
         }
       ],
       "displayOrder": [

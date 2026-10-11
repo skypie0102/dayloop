@@ -64,8 +64,34 @@
           "label": "Tartarus — clearing the 91F Monad Passage rewards the Temperance Tarot (the schedule never spends it on Arcana Bursts)",
           "slot": "evening",
           "spoiler": true,
-          "tip": "Climb to the 92F border. Gatekeepers: 77F, 82F, 90F.\n\nRescue the missing people on 79F and 84F before leaving. Their last actionable rescue date is August 5.\n\nComplete the fixed 91F Monad Passage for the Temperance Tarot. A different Monad encounter does not satisfy that specific objective. The route does not rely on Temperance's bonus for its social-stat totals.\n\nLeave carrying Priestess, Strength, Justice, Tower, Star and Moon Personas for the route through September 4.\n\nRescue targets:\nYasuko Murabayashi — 79F\nShuichi Niimura — 84F\n\nCollect rescue rewards separately at the police station after returning. Mark this visit Done only after completing every rescue above.",
-          "groupLabel": "Dark Hour · Tartarus"
+          "tip": "Climb to the 92F border. Gatekeepers: 77F, 82F, 90F, 91F.\n\nRescue the missing people on 79F and 84F before leaving. Their last actionable rescue date is August 5.\n\nComplete the fixed 91F Monad Passage for the Temperance Tarot. A different Monad encounter does not satisfy that specific objective. The route does not rely on Temperance's bonus for its social-stat totals.\n\nLeave carrying Priestess, Strength, Justice, Tower, Star and Moon Personas for the route through September 4.\n\nRescue targets:\nYasuko Murabayashi — 79F\nShuichi Niimura — 84F\n\nCollect rescue rewards separately at the police station after returning. Mark this visit Done only after completing every rescue above.",
+          "groupLabel": "Dark Hour · Tartarus",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Yabbashah I",
+              "body": "Bring Ice, Fire, Electricity, Wind and Pierce coverage, plus ailment cures. Keep charged Theurgies for enemies without weaknesses. The 91F gatekeeper and the fixed 91F Monad Passage are separate fights."
+            },
+            {
+              "title": "77F · Ochlocratic Sands",
+              "body": "Use Ice to down all three Sands and finish with an All-Out Attack. Fire is reflected; Electricity and Wind are blocked."
+            },
+            {
+              "title": "82F · Decapitator and Overseers",
+              "body": "Use Electricity/Wind on Heat Overseer and Fire/Ice on Sky Overseer. Target separately: each Overseer drains the other's weaknesses. Use physical damage on Arcanist Decapitator; it blocks Ice and Wind."
+            },
+            {
+              "title": "90F · Convict and Tome",
+              "body": "Use Fire on Tome of Atrophy; avoid Electricity against it. Poison can damage Deviant Convict. Guard when its Charge and attack buffs signal the incoming Herculean Strike."
+            },
+            {
+              "title": "91F · Partners",
+              "body": "Use Pierce on Dependent Partner. Controlling Partner has no elemental weakness and blocks Slash/Strike, so use Pierce or elemental damage. Clear this gatekeeper before treating the upper-border objective as finished."
+            },
+            {
+              "title": "91F · Fixed Monad Passage",
+              "body": "The first encounter is Cowardly Maya; guard its concentrated magic if you cannot interrupt it. The next group mixes physical-resistant Rampage Drive with magic-resistant Magical Magus: use the opposite damage type on each. Shouting Tiara is weak to Strike. Heal between fights; these are not the Partners gatekeeper."
+            }
+          ]
         }
       ],
       "displayOrder": [
@@ -126,7 +152,21 @@
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
           "spoiler": true,
-          "groupLabel": "Dark Hour · Full Moon"
+          "groupLabel": "Dark Hour · Full Moon",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Chariot and Justice",
+              "body": "Bring party healing, revival items and protection from Light instant-kill attacks. Charge Theurgies before committing. Plan to finish two separate HP bars in one party round."
+            },
+            {
+              "title": "Fight · Tank form",
+              "body": "The combined Tank-Form Shadow resists ordinary physical and elemental damage. Buff, debuff, heal and use Theurgy to make progress until it separates."
+            },
+            {
+              "title": "Fight · Separate Shadows",
+              "body": "Use magic on Chariot, which resists physical attacks; use physical attacks on Justice, which resists magic. Balance damage so both fall before either gets another turn: a surviving partner can revive the other. Save burst damage for that finish."
+            }
+          ]
         }
       ],
       "displayOrder": [

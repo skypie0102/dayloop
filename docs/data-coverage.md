@@ -99,6 +99,7 @@ contract JVM-side.
 | `steps[].activityRef` | Activity label on the step row (tap → Activity detail); packlint ref check | Served |
 | `steps[].statGains` | Step-row gain line ("Knowledge +3") | Served |
 | `steps[].tip` | Full-width inline guidance when the pack opts in; otherwise the task's Tips dialog | Served |
+| `steps[].guidanceSections[].title` / `body` | Ordered full-width reading sections in Today/Day and scrollable Tips dialog; accessible headings and wrapped body text | Served |
 | `steps[].groupLabel` | Authored section heading within the time slot | Served |
 | `steps[].spoiler` | Legacy authoring metadata; daily step text always renders directly | Intentionally presentation-neutral |
 

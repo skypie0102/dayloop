@@ -14,6 +14,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Capabilities
 import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
 import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
+import com.shadowmonarchbooks.dayloop.pack.schema.GuidanceSection
 import com.shadowmonarchbooks.dayloop.pack.schema.Labels
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaFile
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
@@ -454,6 +455,25 @@ class PackLintTest {
         Fixture.writePack(dir, walkthroughs = listOf(wt))
         val errors = PackLint.runOn(dir).errorsIn("walkthrough")
         assertTrue(errors.any { "tip must not be blank" in it.message }, errors.toString())
+    }
+
+    @Test
+    fun `guidance rejects unreadable and ambiguous sections`() {
+        val dir = tempDir()
+        val wt = Fixture.validWalkthroughApril().copy(
+            days = Fixture.validWalkthroughApril().days.map {
+                if (it.date == "2016-04-10") it.copy(steps = listOf(Step("Fight", guidanceSections = listOf(
+                    GuidanceSection("Prepare", "Recover first."),
+                    GuidanceSection(" prepare ", "Different instructions."),
+                    GuidanceSection(" ", "Missing title."),
+                    GuidanceSection("Fight", " "),
+                )))) else it
+            },
+        )
+        Fixture.writePack(dir, walkthroughs = listOf(wt))
+        val errors = PackLint.runOn(dir).errorsIn("walkthrough")
+        assertTrue(errors.any { "duplicate guidance section title" in it.message }, errors.toString())
+        assertEquals(2, errors.count { "needs a non-blank title and body" in it.message }, errors.toString())
     }
 
     @Test

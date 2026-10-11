@@ -351,7 +351,33 @@
           "slot": "evening",
           "spoiler": true,
           "tip": "Climb to the 256F border. Gatekeepers: 230F, 236F, 241F, 246F, 247F, 253F, 254F, 255F.\n\nThe final two missing people appear today on 232F and 250F. Rescue both during this visit; January 30 is their last actionable rescue date.\n\nContinue with today's separate Judgment and 255F Monad Passage tasks. Border progress, rescues and the request report are distinct objectives. If you split the climb over later free evenings, retain every unfinished objective and finish the rescues by January 30.\n\nRescue targets:\nFumika Teramoto — 232F\nMitsutoshi Okimoto — 250F\n\nCollect rescue rewards separately at the police station after returning. Mark this visit Done only after completing every rescue above.",
-          "groupLabel": "Dark Hour · Tartarus"
+          "groupLabel": "Dark Hour · Tartarus",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Adamah",
+              "body": "Bring single-target physical attacks and Fire, Ice, Wind and Light/Dark coverage. Carry SP recovery and ailment cures; the late consecutive fights punish arriving depleted. The Judgment milestones, rescues and final Monad task above/below remain separate objectives."
+            },
+            {
+              "title": "230F · Obsessive Sand",
+              "body": "No elemental weakness; all attack elements are resisted. Use physical damage, buffs and defense debuffs. Poison is an optional source of damage if it lands."
+            },
+            {
+              "title": "236F · Castle and Soldiers",
+              "body": "Use Fire on Foot Soldiers and Pierce on Mage Soldiers, targeting separately to avoid reflected attacks. Comeback Castle reflects Slash and can summon replacements: reduce its HP while controlling the supporting enemies."
+            },
+            {
+              "title": "241F · Overseers of Creation",
+              "body": "Both reflect Light/Dark and have no elemental weakness. Use physical, other elemental damage or Theurgy with attack-down and defense-up support."
+            },
+            {
+              "title": "246F / 247F · Consecutive guards",
+              "body": "Use Ice on Appropriating Noble and Strike on Invasive Serpents. The Noble drains SP; cure Poison and keep recovery items. At 247F, High Judge of Hell blocks Strike/Ice/Wind and resists Slash/Pierce: Fire, Electricity and Theurgy are useful damage choices."
+            },
+            {
+              "title": "253F / 254F / 255F · Final guards",
+              "body": "Use Wind on Cultist of Death. Hedonistic Sinners reflect Slash/Pierce, block Fire and drain Electricity: use Strike, Ice or Wind. Genocidal Mercenary reflects Strike/Electricity/Dark and drains Ice: use Pierce, Fire or Wind. Keep Confusion cures ready and heal through the consecutive sequence."
+            }
+          ]
         },
         {
           "label": "Continue through Adamah: Judgment reaches ranks 2–10 at 227F, 230F, 236F, 241F, 246F, 247F, 253F, 254F, and 255F respectively",
@@ -365,7 +391,17 @@
           "slot": "evening",
           "spoiler": true,
           "tip": "Complete the final Monad Passage on 255F and defeat the Shadow of the Void, then report back to Elizabeth for Request #99. Reaching 255F or entering the passage is only preparation. The later Request #101 challenge is a separate objective with its own acceptance and solo-entry requirements.\n\nRequest #99: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection.",
-          "groupLabel": "Dark Hour · Tartarus"
+          "groupLabel": "Dark Hour · Tartarus",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Final Monad Passage",
+              "body": "Heal and restore SP before the passage. Keep burst damage and a charged Theurgy for Shadow of the Void. This party battle for Request #99 is separate from the later solo ultimate-adversary request."
+            },
+            {
+              "title": "Fight · Shadow of the Void",
+              "body": "It regenerates 300 HP each turn and can fully heal with Diarahan around half health. Keep consistent damage, then hold enough burst to finish after that heal. Guard after Charge before Akasha Arts and after Concentrate before Megidolaon. Report the victory separately as the task above instructs."
+            }
+          ]
         }
       ],
       "displayOrder": [
@@ -506,7 +542,21 @@
           "slot": "evening",
           "spoiler": true,
           "tip": "Follow the request chain in order: defeat the Reaper, retain the Bloody Button, report Request #100 to Elizabeth, then accept Request #101. Keep this task unfinished if the report or next-request acceptance is still outstanding.\n\nUse the remaining preparation time for the January 30 solo challenge. Completing the Reaper request does not also complete Request #101.\n\nRequest #100: finish the complete hand-in described above before marking Done. This is the reporting checkpoint, not just acceptance or item collection.\n\nRequest #101: accept it with Elizabeth. Acceptance keeps it in progress; it does not report the request.",
-          "groupLabel": "Dark Hour · Tartarus"
+          "groupLabel": "Dark Hour · Tartarus",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Reaper",
+              "body": "Save first and restore the party. On an ordinary Tartarus floor, wait until Fuuka warns about the Reaper, then approach it prepared. Bring strong healing, revival items, debuffs and protection against instant kills; there is no elemental weakness to exploit."
+            },
+            {
+              "title": "Fight · Reaper",
+              "body": "Keep its attack lowered and party defense raised, heal before spending HP on physical skills, and use your strongest safe attacks/Theurgies. Its multiple actions can punish exposed weaknesses. If survival is unreliable, return after improving your party rather than treating an attempt as victory."
+            },
+            {
+              "title": "Optional · Armageddon",
+              "body": "If Helel and Satan are both registered and Armageddon is unlocked, fill the protagonist's Theurgy gauge before engaging. Armageddon can defeat the Reaper; its HP/SP cost requires immediate recovery afterward. A prepared ordinary-party strategy is also valid. Keep the Bloody Button for the separate Elizabeth hand-in."
+            }
+          ]
         }
       ],
       "displayOrder": [
@@ -721,7 +771,13 @@
           "slot": "evening",
           "spoiler": true,
           "tip": "Before the optional boss attempt, confirm that both final missing people on 232F and 250F are safe: tonight is their last actionable rescue night.\n\nFor Request #101, first finish the Reaper/Bloody Button hand-in chain and accept the request. Enter the designated 255F Monad door alone for the ultimate-adversary challenge. The January 15 Shadow of the Void clear is a different fight.\n\nThis task requires defeating the adversary, not merely accepting the request or entering the door. Keep it unfinished if you only prepare tonight; finish any remaining preparations for tomorrow's Promised Day separately.\n\nAfter winning the solo fight, return to Elizabeth and report the request. The fight marks this request Ready to report; confirm Reported in Requests only after the in-game hand-in.",
-          "groupLabel": "Dark Hour · Tartarus"
+          "groupLabel": "Dark Hour · Tartarus",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Solo challenge",
+              "body": "Open Request #101 in Requests for the full verified equipment, battle rules and phase strategy before entering alone. Check its prerequisites and recover first. Reading that strategy or entering the door does not prove victory; the report remains a separate confirmation."
+            }
+          ]
         }
       ],
       "displayOrder": [
@@ -745,7 +801,29 @@
           "slot": "evening",
           "spoiler": true,
           "tip": "Final ascent: 259F, 263F, then 264F.\n\nUse today's final free time for remaining conversations and the recovery described in the day notes before committing to the finale. January's missing-person cutoff was yesterday; tonight is the Promised Day, not a replacement rescue window.\n\nFollow the story through the finale. The next playable calendar dates in this route are March 4 and March 5; February 1 through March 3 is the story skip.",
-          "groupLabel": "Dark Hour · Tartarus"
+          "groupLabel": "Dark Hour · Tartarus",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Promised Day",
+              "body": "Save and recover before the ascent. Bring party healing, SP recovery, revival and Fear/Charm cures, plus protection from Light/Dark instant kills. Keep varied physical and elemental options; the finale has multiple phases that one early Armageddon cannot skip."
+            },
+            {
+              "title": "259F · Jin",
+              "body": "Jin repels Fire/Dark and exploits exposed party weaknesses. Use other damage while maintaining buffs/debuffs. His late Potent Stim Injection restores him and powers up his attacks; recover and guard when needed while his own HP loss helps end that phase."
+            },
+            {
+              "title": "263F · Takaya",
+              "body": "Avoid reflected Light and drained Dark. Keep SP recovery and Fear cures available. After his late party-wide drain/Fear attack, cure Fear before Ghastly Wail and restore healing capacity. Save some charged Theurgy damage for this phase."
+            },
+            {
+              "title": "264F · Nyx Avatar",
+              "body": "Nyx has 14 Arcana forms with changing resistances. Recheck after every Arcana Shift; do not repeat an attack into Null, Repel or Drain. Physical damage suits magic-resistant forms; magic suits physical-resistant forms. Cure Fear/Charm promptly and preserve recovery items for Death."
+            },
+            {
+              "title": "Final form · Death",
+              "body": "Heal the party immediately after Apocalypse takes almost all current HP. Keep healing and ailment cures ready for Night Queen, then use safe burst damage and saved Theurgies. A charged Armageddon is an optional finish in Death, not a way to skip every earlier form. Continue the story and use Great Seal when prompted."
+            }
+          ]
         }
       ],
       "displayOrder": [

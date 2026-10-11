@@ -679,8 +679,30 @@
           "label": "Tartarus — rescue the missing persons on 209F and 221F before the December 30 cutoff, then finish the planned Harabah progression",
           "slot": "evening",
           "spoiler": true,
-          "tip": "Climb to the 226F border. Gatekeepers: 203F, 212F, 218F.\n\nTonight is the last actionable rescue night for the people on 209F and 221F. Rescue both before leaving; they first appeared on December 22.\n\nKeep a Star Persona for the route's remaining Star visits through January 10. Tomorrow's Ryoji decision determines the ending route: follow the explicit good-ending instruction on December 31 to retain the January schedule.\n\nRescue targets:\nYumiko Sasamaki — 209F\nNobuko Fukuchi — 221F\n\nCollect rescue rewards separately at the police station after returning. Mark this visit Done only after completing every rescue above.",
-          "groupLabel": "Dark Hour · Tartarus"
+          "tip": "Climb to the 226F border. Gatekeepers: 203F, 212F, 218F, 225F.\n\nTonight is the last actionable rescue night for the people on 209F and 221F. Rescue both before leaving; they first appeared on December 22.\n\nKeep a Star Persona for the route's remaining Star visits through January 10. Tomorrow's Ryoji decision determines the ending route: follow the explicit good-ending instruction on December 31 to retain the January schedule.\n\nRescue targets:\nYumiko Sasamaki — 209F\nNobuko Fukuchi — 221F\n\nCollect rescue rewards separately at the police station after returning. Mark this visit Done only after completing every rescue above.",
+          "groupLabel": "Dark Hour · Tartarus",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Harabah II",
+              "body": "Bring Fire, Electricity, Ice and Wind attacks with single-target options. Carry Rage and healing cures. Clear the 225F gatekeeper as well as the earlier fights before counting the 226F border reached."
+            },
+            {
+              "title": "203F · Lion and Cupid",
+              "body": "Use Fire on Icebreaker Lion and Electricity on Luckless Cupid. Target separately: Cupid drains Fire. The Lion blocks Strike/Ice; Cupid reflects Light."
+            },
+            {
+              "title": "212F · Three Siblings",
+              "body": "Use Ice on Blazing Middle Sibling and Wind on Voltaic Youngest Sibling. Target each separately: Deadly Eldest Sibling drains Ice/Wind, while the younger siblings reflect their own Fire/Electricity. Use physical, Fire or Electricity damage on the Eldest."
+            },
+            {
+              "title": "218F · Scornful Dice",
+              "body": "All ordinary physical types heal it. Use magic or Theurgy, and cure Rage from Provoke/Infuriate so allies do not attack into that drain. Restore HP before its Megidolaon."
+            },
+            {
+              "title": "225F · Minotaur Nulla",
+              "body": "No elemental weakness. Avoid Strike, which is reflected, and Electricity, which is blocked. Use Slash, Pierce or other suitable magic with buffs, healing and charged Theurgies."
+            }
+          ]
         }
       ],
       "displayOrder": [
