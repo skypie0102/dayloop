@@ -74,7 +74,9 @@ still decode as an empty list. `hasGuidance` considers both sections and the
 legacy `tip`, including section-only tasks. Titles and bodies render in authored
 order below existing tips, at full reading width, in both Today and Day.
 Packs that keep inline tips disabled can read the same sections through a
-scrollable Tips dialog. Packlint rejects blank titles/bodies and duplicate titles.
+scrollable Tips dialog. Packlint rejects blank titles/bodies and duplicate titles. Legacy tip-only packs
+retain the original plain Text surface and text semantics, including P5R
+Mementos guidance.
 
 P3R headings use its resolved display font, italic type, cyan label color and a
 small static pink strip. Headings expose accessibility heading semantics; body

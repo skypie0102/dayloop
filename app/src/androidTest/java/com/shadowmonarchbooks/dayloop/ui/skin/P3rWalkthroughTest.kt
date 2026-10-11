@@ -76,7 +76,7 @@ class P3rWalkthroughTest {
         compose.waitForIdle()
     }
 
-    private fun capture(name: String) {
+    private fun capture(name: String, dialog: Boolean = false) {
         val values = ContentValues().apply {
             put(MediaStore.Images.Media.DISPLAY_NAME, "$name.png")
             put(MediaStore.Images.Media.MIME_TYPE, "image/png")
@@ -86,7 +86,8 @@ class P3rWalkthroughTest {
         val resolver = context.contentResolver
         val uri = requireNotNull(resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values))
         requireNotNull(resolver.openOutputStream(uri)).use {
-            check(compose.onRoot().captureToImage().asAndroidBitmap().compress(Bitmap.CompressFormat.PNG, 100, it))
+            val target = if (dialog) compose.onNode(isDialog()) else compose.onRoot()
+            check(target.captureToImage().asAndroidBitmap().compress(Bitmap.CompressFormat.PNG, 100, it))
         }
         values.clear()
         values.put(MediaStore.Images.Media.IS_PENDING, 0)
@@ -151,7 +152,7 @@ class P3rWalkthroughTest {
         compose.onNodeWithTag("task-label-0").performScrollTo().performClick()
         compose.onNodeWithText("Prepare · Priestess").assertIsDisplayed()
         compose.onNodeWithText("Summoned Tiaras").performScrollTo().assertIsDisplayed()
-        capture("p3r-combat-tips-dialog")
+        capture("p3r-combat-tips-dialog", dialog = true)
         compose.onNodeWithText("Close").performClick()
         compose.onNodeWithText("Prepare · Priestess").assertDoesNotExist()
         assertEquals(null, markedIndex)

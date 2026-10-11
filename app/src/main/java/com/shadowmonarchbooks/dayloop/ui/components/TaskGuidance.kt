@@ -30,6 +30,15 @@ internal fun TaskGuidance(step: Step, index: Int? = null) {
     val submerged = skin.hasSubmergedChrome()
     val colors = MaterialTheme.colorScheme
     val bodyStyle = if (submerged) MaterialTheme.typography.bodyMedium else MaterialTheme.typography.bodyLarge
+    // Preserve the original plain-text surface (including its semantics/tag) for legacy packs.
+    if (!submerged && step.guidanceSections.isEmpty()) {
+        step.tip?.let { tip ->
+            Text(tip, style = bodyStyle, color = colors.onSurface,
+                modifier = Modifier.fillMaxWidth().then(
+                    if (index != null) Modifier.testTag("task-guidance-$index") else Modifier))
+        }
+        return
+    }
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier.fillMaxWidth().then(
