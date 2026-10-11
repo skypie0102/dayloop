@@ -14,6 +14,10 @@ import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.test.platform.app.InstrumentationRegistry
@@ -166,5 +170,37 @@ class SubmergedDailyTest {
         assertTrue("Back occupies the right utility slot", back.left >= title.right)
         compose.onNodeWithContentDescription("Back").performClick()
         assertTrue(wentBack)
+    }
+
+    @Test fun selectedTabStaysWholeWhenFontScaleAndViewportChange() {
+        var textScale by mutableStateOf(1f)
+        var width by mutableStateOf(340.dp)
+        var selected by mutableStateOf("requests")
+        val tabs = listOf("today" to "Today", "calendar" to "Calendar", "achievements" to "Achievements",
+            "bonds" to "Social Links", "requests" to "Requests").map { (route, label) ->
+            SkinNavItem(route, label, Icons.Filled.Star)
+        }
+        show {
+            val density = LocalDensity.current
+            CompositionLocalProvider(LocalDensity provides Density(density.density, textScale)) {
+                Box(Modifier.width(width)) { SubmergedBottomBar(tabs, selected) { selected = it } }
+            }
+        }
+        fun selectedFits(): Boolean {
+            val tab = compose.onNode(hasText("Requests") and
+                SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Tab)).getUnclippedBoundsInRoot()
+            val bar = compose.onNodeWithTag("p3r-bottom-navigation").getUnclippedBoundsInRoot()
+            return tab.left >= bar.left - 1.dp && tab.right <= bar.right + 1.dp
+        }
+        compose.waitUntil(10_000) { selectedFits() }
+        compose.runOnIdle { textScale = 2f }
+        compose.waitUntil(10_000) { selectedFits() }
+        compose.runOnIdle { width = 280.dp }
+        compose.waitUntil(10_000) { selectedFits() }
+        capture("p3r-navigation-double-text-narrow")
+        // Panning is still available: range observation must not force the row back.
+        compose.onNodeWithTag("p3r-tab-row").performTouchInput { swipeRight() }
+        compose.onNode(hasText("Today") and SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Tab))
+            .assertIsDisplayed().performClick().assertIsSelected()
     }
 }

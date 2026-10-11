@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.platform.testTag
@@ -29,8 +29,8 @@ internal fun SubmergedDayComplete(fx: AdvanceFx, progress: () -> Float) {
     val colors = MaterialTheme.colorScheme
     Column(
         Modifier.fillMaxSize().graphicsLayer { alpha = progress() }
-            .background(Brush.verticalGradient(listOf(colors.primaryContainer, colors.surface, colors.background)))
-            .drawBehind {
+            .drawWithCache {
+                val wash = Brush.verticalGradient(listOf(colors.primaryContainer, colors.surface, colors.background))
                 val plane = Path().apply {
                     moveTo(0f, size.height * 0.22f)
                     lineTo(size.width, size.height * 0.10f)
@@ -38,7 +38,11 @@ internal fun SubmergedDayComplete(fx: AdvanceFx, progress: () -> Float) {
                     lineTo(0f, size.height * 0.42f)
                     close()
                 }
-                drawPath(plane, colors.secondary.copy(alpha = 0.12f))
+                val planeColor = colors.secondary.copy(alpha = 0.12f)
+                onDrawBehind {
+                    drawRect(wash)
+                    drawPath(plane, planeColor)
+                }
             }.testTag("submerged-day-complete")
             .semantics { liveRegion = LiveRegionMode.Polite }
             .verticalScroll(rememberScrollState()).padding(horizontal = 24.dp, vertical = 48.dp),

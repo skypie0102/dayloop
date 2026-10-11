@@ -42,7 +42,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshotFlow
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.collectLatest
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -273,7 +273,8 @@ internal fun SubmergedBottomBar(
                 .plus(12.dp).coerceAtLeast(56.dp)
         }
     }
-    BoxWithConstraints(Modifier.fillMaxWidth().background(colors.background).navigationBarsPadding()) {
+    BoxWithConstraints(Modifier.fillMaxWidth().background(colors.background).navigationBarsPadding()
+        .testTag("p3r-bottom-navigation")) {
         val spare = (maxWidth - widths.fold(0.dp) { sum, width -> sum + width }).coerceAtLeast(0.dp)
         // Keep the selected whole word visible when the command row exceeds the viewport.
         LaunchedEffect(selectedRoute, widths, maxWidth) {
@@ -284,19 +285,21 @@ internal fun SubmergedBottomBar(
                 val left = tabWidths.take(selectedIndex).sum()
                 val right = left + tabWidths[selectedIndex]
                 // Use the measured scroll range (including rounded tab widths).
-                snapshotFlow { scroll.maxValue }.first { it != Int.MAX_VALUE }
-                val target = when {
-                    selectedIndex == items.lastIndex -> scroll.maxValue
-                    left < scroll.value -> left.toInt()
-                    right > scroll.value + viewport -> kotlin.math.ceil((right - viewport).toDouble()).toInt()
-                    else -> scroll.value
+                snapshotFlow { scroll.maxValue }.collectLatest { range ->
+                    if (range == Int.MAX_VALUE) return@collectLatest
+                    val target = when {
+                        selectedIndex == items.lastIndex -> range
+                        left < scroll.value -> left.toInt()
+                        right > scroll.value + viewport -> kotlin.math.ceil((right - viewport).toDouble()).toInt()
+                        else -> scroll.value
+                    }
+                    scroll.scrollTo(target.coerceIn(0, range))
                 }
-                scroll.scrollTo(target.coerceIn(0, scroll.maxValue))
             }
         }
         Row(
             verticalAlignment = Alignment.Top,
-            modifier = Modifier.horizontalScroll(scroll).selectableGroup(),
+            modifier = Modifier.horizontalScroll(scroll).selectableGroup().testTag("p3r-tab-row"),
         ) {
             items.forEachIndexed { index, item ->
                 val selected = item.route == selectedRoute

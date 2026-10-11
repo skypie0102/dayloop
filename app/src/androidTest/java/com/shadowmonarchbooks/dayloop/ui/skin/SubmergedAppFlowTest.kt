@@ -54,6 +54,13 @@ class SubmergedAppFlowTest {
         // launch() independently verifies the actual receiving window's fontScale.
     }
 
+    private fun setMotionScale(scale: Int) {
+        listOf("animator_duration_scale", "transition_animation_scale").forEach { key ->
+            ParcelFileDescriptor.AutoCloseInputStream(instrumentation.uiAutomation.executeShellCommand(
+                "settings put global $key $scale")).use { it.readBytes() }
+        }
+    }
+
     /** Seed a separate test profile before launching; subsequent actions use the real UI. */
     private fun launch(date: String, slug: String = "p3r", scale: Float = 1f) {
         expectedFontScale = scale
@@ -87,6 +94,7 @@ class SubmergedAppFlowTest {
 
     @After fun close() {
         try {
+            setMotionScale(0)
             // Apply the reset while a receiving window still exists. Closing first
             // can leave process resources at the prior scale for the next test.
             setFontScale(1f)
@@ -749,6 +757,54 @@ class SubmergedAppFlowTest {
         compose.onNodeWithTag("p3r-date-2009-06-06").performScrollTo().performClick()
         compose.onNodeWithContentDescription("Back").performClick()
         capture("p3r-app-calendar-large-text-returned")
+    }
+
+    @Test fun tabSwitchesRestoreRequestDetailAndBackReturnsToTodayAtDoubleText() {
+        launch("2009-05-18", scale = 2f)
+        tab("Requests").performScrollTo().performClick()
+        openRequest("Bring me pine resin")
+        val solution = "request-solution-p3r.request.012"
+        compose.onNodeWithTag("request-list").performScrollToNode(hasTestTag(solution))
+        compose.onNodeWithTag(solution).assertIsDisplayed()
+        val before = compose.onNodeWithTag(solution).getUnclippedBoundsInRoot()
+        repeat(3) {
+            tab("Calendar").performScrollTo().performClick()
+            tab("Achievements").performScrollTo().performClick()
+            tab("Requests").performScrollTo().performClick()
+            compose.onNodeWithTag(solution).assertIsDisplayed()
+        }
+        val after = compose.onNodeWithTag(solution).getUnclippedBoundsInRoot()
+        assertEquals("Returning must retain the reading position", before.top.value, after.top.value, 1f)
+        val tabBounds = tab("Requests").getUnclippedBoundsInRoot()
+        val barBounds = compose.onNodeWithTag("p3r-bottom-navigation").getUnclippedBoundsInRoot()
+        assertTrue("The selected complete tab fits", tabBounds.left >= barBounds.left && tabBounds.right <= barBounds.right)
+        capture("p3r-app-tabs-restored-request-double-text")
+        scenario!!.onActivity { it.onBackPressedDispatcher.onBackPressed() }
+        compose.onNodeWithText("End day", ignoreCase = true).assertIsDisplayed()
+        dateIs("2009-05-18")
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
+    }
+
+    @Test fun animatedDayAdvanceKeepsCelebrationSeparateAndSkipsToOnlyOneNextDay() {
+        setMotionScale(1)
+        launch("2009-05-18")
+        compose.onNodeWithText("Check all", ignoreCase = true).performClick()
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithTag("submerged-perfect-day").fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.mainClock.autoAdvance = false
+        compose.onNodeWithText("End day", ignoreCase = true).performClick()
+        compose.mainClock.advanceTimeBy(SkinFxTiming.ADVANCE_COVER_MS.toLong() + 32)
+        compose.onNodeWithTag("submerged-day-complete").assertExists()
+        compose.onNodeWithTag("submerged-perfect-day").assertDoesNotExist()
+        capture("p3r-app-motion-day-complete")
+        compose.onNodeWithTag("day-advance").performClick()
+        compose.mainClock.advanceTimeBy(3_000)
+        compose.mainClock.autoAdvance = true
+        dateIs("2009-05-19")
+        compose.onNodeWithTag("submerged-day-complete").assertDoesNotExist()
+        compose.onNodeWithTag("submerged-perfect-day").assertDoesNotExist()
+        capture("p3r-app-motion-next-day")
     }
 
     @Test fun p5rSourceReadingOrderAndGuidanceStaySavedAcrossTodayAndDay() {
