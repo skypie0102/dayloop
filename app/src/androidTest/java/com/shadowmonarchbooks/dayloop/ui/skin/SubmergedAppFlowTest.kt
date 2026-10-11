@@ -85,8 +85,21 @@ class SubmergedAppFlowTest {
     }
 
     @After fun close() {
-        scenario?.close()
-        setFontScale(1f)
+        try {
+            // Apply the reset while a receiving window still exists. Closing first
+            // can leave process resources at the prior scale for the next test.
+            setFontScale(1f)
+            scenario?.let { active ->
+                compose.waitUntil(10_000) {
+                    var restored = false
+                    active.onActivity { restored = it.resources.configuration.fontScale == 1f }
+                    restored
+                }
+            }
+        } finally {
+            scenario?.close()
+            scenario = null
+        }
     }
 
     private fun capture(name: String) {
@@ -213,7 +226,8 @@ class SubmergedAppFlowTest {
         compose.onNodeWithContentDescription("Back").performClick()
         episodeChainCountIs(0)
         openEpisodeStep("p3r.episode.junpei.2")
-        compose.onNodeWithTag("episode-status-p3r.episode.junpei.2").assertTextEquals("Recorded · earlier step unconfirmed")
+        compose.onNodeWithTag("episode-status-p3r.episode.junpei.2", useUnmergedTree = true)
+            .assertTextEquals("Recorded · earlier step unconfirmed")
         capture("p3r-episode-reversed-chain")
         assertEquals("2009-05-12", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
     }
@@ -238,7 +252,7 @@ class SubmergedAppFlowTest {
         compose.onNodeWithTag("episode-solution-p3r.episode.shinjiro.form").performScrollTo().assertIsDisplayed()
         capture("p3r-episode-form-guidance-large-text")
         compose.onNodeWithTag("episode-prerequisite-p3r.episode.shinjiro.3").performScrollTo().performClick()
-        compose.onNodeWithTag("episode-status-p3r.episode.shinjiro.3").assertTextEquals("Completed")
+        compose.onNodeWithTag("episode-status-p3r.episode.shinjiro.3", useUnmergedTree = true).assertTextEquals("Completed")
         capture("p3r-episode-prerequisite-large-text")
         openEpisodeStep("p3r.episode.shinjiro.form")
         compose.onNodeWithTag("episode-detail").performScrollToNode(hasTestTag("episode-guide-p3r.episode.shinjiro.form"))

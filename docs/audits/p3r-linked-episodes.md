@@ -116,7 +116,30 @@ regression and new episode/optional-branch tests pin this behavior.
 Local JSON, exact-source/window, unchanged-key/gain/slot/order and whitespace
 checks passed. Local Gradle cannot download 8.10.2 (`Network is unreachable`),
 so build, JVM/all-pack lint and real API 34 Android/large-text review use CI.
-Final run, screenshot and APK evidence will be recorded before merging.
+
+- [CI build and JVM validation](https://github.com/skypie0102/dayloop/actions/runs/38131106941)
+  passed debug/candidate assembly, core pack/progress tests, tool pack tests,
+  app unit tests and Android test compilation. P3R and P5R packlint each report
+  zero errors/warnings; Metaphor retains its existing unfinished-day warning.
+- The [PR #6 acceptance checks](https://github.com/skypie0102/dayloop/pull/6/checks)
+  contain the **36-test full Android suite** and separate request hand-in
+  regression on API 34 AOSP x86_64 with software GLES. The full suite includes
+  exact episode-task navigation without moving the clock, activity recreation,
+  reversing earlier proof while keeping later marks, and the form checkpoint
+  and prerequisite navigation at **200% font scale**.
+- Captures include `p3r-episode-catalog`, `p3r-episode-route-guidance`,
+  `p3r-episode-reversed-chain`, and three form/window/prerequisite large-text
+  views. The catalog and full 200% form instructions were visually inspected:
+  text wraps vertically, source guidance remains readable, and the Reload
+  typography, blue background and white/pink/cyan selection hierarchy remain.
+- Android checks inspect the status text in the unmerged semantics tree while
+  keeping each clickable row's merged accessibility announcement. Font-scale
+  cleanup applies and verifies the reset while the receiving window still
+  exists, before closing it.
+- The Android workflow attaches screenshots/XML results and the installable
+  **dayloop-v0.16.0-rc5.apk** candidate (`.candidate` package, version code 37).
+  Its artifact checksum is verified when downloaded. Workflow artifacts have
+  a 14-day retention; the current acceptance results are linked from PR #6.
 
 Broader boss preparation, the achievement audit and remaining UI/motion release
 hardening remain open after this episode pass.
