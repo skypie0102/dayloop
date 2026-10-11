@@ -2,12 +2,26 @@
 
 Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version 3.
 Priority: **active P3R reading and Reload UI optimization**, per the October 10, 2026 request.
-Status: content version **15** implements the focused reading, request-stage and UI pass.
-Android validation and screenshot review are tracked in the
-[October review](../audits/p3r-reading-reload-ui.md). Broader reward/prerequisite,
-boss-strategy and release-hardening audits remain separately scoped.
+Status: content version **16** adds request metadata and individual rescue/reward tracking after the merged reading/UI pass.
+Android validation and screenshot review for this continuation are tracked in the
+[request/rescue audit](../audits/p3r-requests-rescues.md), following the merged
+[reading/UI review](../audits/p3r-reading-reload-ui.md). Linked Episodes, broader
+boss strategies, achievements and release hardening remain separately scoped.
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
+
+## October 11 continuation: request metadata and individual rescues
+
+All 101 requests have rewards and source availability conditions, with linked
+prerequisites and three distinct item-opportunity windows. Twenty individual
+missing-person records connect to the eight existing rescue visits; Rescued and
+Reward claimed remain separate, reversible and profile-scoped. Outing challenge
+points describe recorded reports without automatically offering or accepting an
+outing. Existing task identities and P5R/Metaphor content remain intact.
+See the [source, behavior and validation audit](../audits/p3r-requests-rescues.md).
+Linked Episode chains, broader boss tactics, achievements and final UI/performance
+release hardening remain open. The phase checklists below retain the original
+milestone scope; dated continuation records identify the delivered parts.
 
 ## October 10 continuation: reading, source stages and Reload UI
 
@@ -367,32 +381,26 @@ packlint success alone is not the exit criterion.
 
 ### P3R-3 — Add Elizabeth requests and rescue tracking
 
-User-prioritized delivery in [PR #71](https://github.com/shdwmnrchbks/dayloop/pull/71):
-Requests replaces the Answers bottom tab; 101 numbered entries, 14 audited cutoffs,
-40 context-linked requests, 24 exact automatic reporting anchors, and explicit
-profile-scoped stages are implemented.
-[Scope and source record](p3r-requests.md). Full solution/reward/prerequisite audits,
-individual rescues and safe automatic reporting anchors remain unchecked below.
+The October 11 delivery completes the request/rescue tracker slice: all 101
+solutions, reward and availability metadata; 14 reporting cutoffs and three item
+opportunities; 32 exact reporting anchors; explicit accepted/ready/reported states;
+and 20 individual rescues with independent reward confirmations. Source conflicts
+and the remaining manual outcomes are documented in the
+[request/rescue audit](../audits/p3r-requests-rescues.md).
 
-
-- [ ] Enumerate the full Reload request catalog against sources, including
-  untimed requests; reconcile catalog IDs, names, rewards, prerequisites,
-  availability, true deadlines, and this route's planned completion dates.
-- [ ] Model acceptance, required acquisition/progress, and Elizabeth hand-in
-  distinctly. An item pickup or preparatory task must not complete a request
-  whose actual finish requires reporting back.
-- [ ] Add individual missing-person records with availability, floor, last
-  actionable rescue date, and any Social Link consequence. Record rescued and
-  reward-claimed separately if both are surfaced.
-- [ ] Use generic optional capabilities/schema for these systems; preserve P5R's
-  existing Mementos contract and rendering. Validate every completion anchor.
-- [ ] Build a P3R **Requests** destination, with Elizabeth and Missing Persons
-  sections, detail-to-task links, useful filters, and compact progress counts.
-- [ ] Proposed navigation: Today, Calendar, Social Links, Requests, Achievements.
-  Once daily answer access and search are verified, move the answer catalog to a
-  secondary entry so this does not add another crowded bottom tab.
-- [ ] Surface acceptance/item windows before they close, rather than displaying
-  only the final deadline; keep optional and mandatory objectives distinguishable.
+- [x] Enumerate the full Journey catalog, with stable IDs, rewards, source
+  prerequisites/availability and the route's reporting/context links.
+- [x] Keep acceptance, acquisition/progress and Elizabeth hand-in distinct.
+- [x] Add individual missing-person availability, floors, actionable cutoffs and
+  Social Link consequences; distinguish rescued from reward claimed.
+- [x] Use optional generic schema; preserve P5R's Mementos behavior and validate
+  the exact source anchors.
+- [x] Serve Elizabeth and Missing persons within Requests, with guide links,
+  useful filters, counts and retained section state.
+- [x] Keep Today, Calendar, Social Links, Requests and Achievements navigation;
+  serve class/exam answers directly within their daily instructions.
+- [x] Show source availability and item-opportunity windows separately from
+  reporting deadlines; never accept or complete an objective from date passage.
 
 **Exit:** every catalog item has either an exact completion rule or explicit
 player confirmation, with no false completion from preparation or date passage.

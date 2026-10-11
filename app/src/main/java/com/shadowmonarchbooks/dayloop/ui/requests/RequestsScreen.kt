@@ -13,9 +13,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.platform.LocalDensity
@@ -41,10 +43,29 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
     val state by vm.state.collectAsState()
     val pack = state.selected
     val catalog = pack?.requests ?: run { EmptyState("This pack has no request catalog."); return }
+    var section by rememberSaveable(pack.slug) { mutableStateOf(catalog.issuer) }
+    val sections = rememberSaveableStateHolder()
+    sections.SaveableStateProvider(section) {
+        if (section == "Missing persons" && catalog.missingPersons.isNotEmpty()) {
+            MissingPersonsScreen(vm, onOpenDay) { section = it }
+        } else {
+            ElizabethRequestsScreen(vm, onOpenDay) { section = it }
+        }
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun ElizabethRequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit, onSection: (String) -> Unit) {
+    val state by vm.state.collectAsState()
+    val pack = state.selected ?: return
+    val catalog = pack.requests ?: return
     val colors = MaterialTheme.colorScheme
     var filter by rememberSaveable(pack.slug) { mutableStateOf("All") }
     var expanded by rememberSaveable(pack.slug) { mutableStateOf<String?>(null) }
     var highlighted by rememberSaveable(pack.slug) { mutableStateOf<String?>(null) }
+    var jumpTo by remember { mutableStateOf<String?>(null) }
+    val listState = rememberLazyListState()
     val completedEvents = remember(catalog.events, state.days, state.marks, state.activeRouteId) {
         completedAchievementEvents(catalog.events, state.days, state.marks, state.activeRouteId)
     }
@@ -53,17 +74,31 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
     }
     val eventsById = remember(catalog.events) { catalog.events.associateBy { it.id } }
     val reported = stages.values.count { it == RequestStages.REPORTED }
+    val challengePoints = remember(catalog.requests, stages) { requestChallengePoints(catalog.requests, stages) }
+    val requestsById = remember(catalog.requests) { catalog.requests.associateBy { it.id } }
     val rows = remember(catalog.requests, stages, filter) { catalog.requests.filter { requestMatches(it, stages[it.id], filter) } }
     val highlightedId = highlighted?.takeIf { id -> rows.any { it.id == id } } ?: rows.firstOrNull()?.id
+    LaunchedEffect(jumpTo, rows) {
+        val target = jumpTo ?: return@LaunchedEffect
+        val index = rows.indexOfFirst { it.id == target }
+        if (index >= 0) {
+            listState.scrollToItem(index + 2 + if (catalog.missingPersons.isNotEmpty()) 1 else 0)
+            jumpTo = null
+        }
+    }
     val density = LocalDensity.current
     BoxWithConstraints(Modifier.fillMaxSize()) {
         val stackedStatus = maxWidth < 440.dp || density.fontScale > 1.2f
         val numberWidth = 38.dp * density.fontScale.coerceAtLeast(1f)
         LazyColumn(
+            state = listState,
             modifier = Modifier.testTag("request-list").fillMaxSize().submergedBackdrop().padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(0.dp),
             contentPadding = PaddingValues(vertical = 12.dp),
         ) {
+            if (catalog.missingPersons.isNotEmpty()) item(key = "request-sections") {
+                RequestSections(catalog.issuer, catalog.issuer, onSection)
+            }
             item(key = "request-summary") {
                 Surface(color = colors.primaryContainer) {
                     Row(Modifier.fillMaxWidth().padding(vertical = 8.dp, horizontal = 8.dp),
@@ -139,6 +174,39 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
                             verticalArrangement = Arrangement.spacedBy(10.dp)) {
                             Text("Request details", style = MaterialTheme.typography.titleMedium,
                                 fontStyle = FontStyle.Italic, color = colors.secondary)
+                            request.reward?.let { reward ->
+                                Text("Reward: $reward", style = MaterialTheme.typography.bodyMedium,
+                                    modifier = Modifier.testTag("request-reward-${request.id}"))
+                            }
+                            request.availableFrom?.let { date ->
+                                Text("Available from ${formatDate(date, pack.calendar)}", style = MaterialTheme.typography.labelLarge,
+                                    color = colors.secondary)
+                            }
+                            if (request.prerequisiteRequests.isNotEmpty()) {
+                                Text("Report these requests first", style = MaterialTheme.typography.labelLarge, color = colors.secondary)
+                                FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                    request.prerequisiteRequests.forEach { id ->
+                                        requestsById[id]?.let { prerequisite ->
+                                            val complete = stages[id] == RequestStages.REPORTED
+                                            SubmergedActionButton("#${prerequisite.number} · ${if (complete) "Reported" else "Check progress"}",
+                                                onClick = { filter = "All"; highlighted = id; expanded = id; jumpTo = id },
+                                                primary = false, modifier = Modifier.testTag("request-prerequisite-$id"))
+                                        }
+                                    }
+                                }
+                            }
+                            request.requiredChallengePoints?.let { required ->
+                                Text("$challengePoints / $required challenge points recorded", style = MaterialTheme.typography.bodyMedium,
+                                    modifier = Modifier.testTag("request-challenge-${request.id}"))
+                            }
+                            request.availabilityNotes?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
+                            request.itemWindow?.let { window ->
+                                Text("Item opportunity: ${formatDate(window.from, pack.calendar)}" +
+                                    if (window.through != window.from) " – ${formatDate(window.through, pack.calendar)}" else "",
+                                    style = MaterialTheme.typography.labelLarge, color = colors.secondary)
+                                Text(window.note, style = MaterialTheme.typography.bodyMedium,
+                                    modifier = Modifier.testTag("request-item-window-${request.id}"))
+                            }
                             request.deadline?.let { deadline ->
                                 val passed = state.currentDate.orEmpty() > deadline && stage != RequestStages.REPORTED
                                 val deadlineLabel = formatDate(deadline, pack.calendar)
@@ -198,13 +266,19 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
 
 /** Reload's compact cyan labels become dark ink on the white selected band. */
 @Composable
-private fun SubmergedRequestStatus(label: String, selected: Boolean, inProgress: Boolean, modifier: Modifier = Modifier) {
+internal fun SubmergedRequestStatus(label: String, selected: Boolean, inProgress: Boolean, modifier: Modifier = Modifier) {
     val colors = MaterialTheme.colorScheme
-    val reported = label == "Reported"
+    val reported = label == "Reported" || label == "Reward claimed"
     val background = when { selected -> colors.onPrimary; !reported && inProgress -> colors.secondary; else -> Color.Transparent }
     val ink = when { selected -> colors.primary; !reported && inProgress -> colors.surface; else -> colors.onSurfaceVariant }
     Text(label, style = MaterialTheme.typography.labelSmall, color = ink,
         modifier = modifier.background(background, RoundedCornerShape(3.dp))
             .then(if (reported && !selected) Modifier.border(1.dp, colors.onSurfaceVariant.copy(alpha = 0.6f), RoundedCornerShape(3.dp)) else Modifier)
             .padding(horizontal = 6.dp, vertical = 3.dp))
+}
+
+@Composable
+internal fun RequestSections(issuer: String, selected: String, onSelect: (String) -> Unit) {
+    SubmergedFilters(listOf(issuer, "Missing persons"), selected, onSelect)
+    Spacer(Modifier.height(8.dp))
 }

@@ -20,6 +20,14 @@ class ProgressBackupTest {
         assertEquals(original, decoded)
     }
 
+    @Test fun `the existing backup format preserves individual rescue and reward confirmations`() {
+        val original = backupFixture()
+        val profile = original.profiles.single().copy(requestStages = mapOf(
+            "p3r.request.001" to "reported", "p3r.rescue.050" to "rescued", "p3r.rescue.056" to "reward-claimed"))
+        val enriched = original.copy(profiles = listOf(profile))
+        assertEquals(enriched, ProgressBackupCodec.decode(ProgressBackupCodec.encode(enriched)))
+    }
+
     @Test fun `wrong files versions missing data and unsupported values fail before import`() {
         val original = ProgressBackupCodec.encode(backupFixture())
         for (text in listOf("{}", original.dropLast(12), original.replace("dayloop-progress", "other-app"),

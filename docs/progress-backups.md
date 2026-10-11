@@ -15,6 +15,7 @@ Importing again adds another copy; it does not merge progress or replace saves.
 | Tasks | Done, Skip and saved Later marks, including marks awaiting orphan review |
 | Achievements | Manual confirmations, counters, checklist selections and shared choices |
 | Requests | Accepted, ready and reported stages |
+| Missing people | Individual rescued and police-reward-claimed confirmations |
 | Derived progress | Social Link ranks, automatic achievements and request completions are recalculated from the restored task marks |
 
 Bundled game content and artwork are supplied by the installed app. The backup

@@ -40,13 +40,13 @@ jobs:
         if: matrix.review == 'full'
         run: |
           mkdir -p build/review-apk
-          cp app/build/outputs/apk/candidate/app-candidate.apk build/review-apk/dayloop-v0.16.0-rc3.apk
+          cp app/build/outputs/apk/candidate/app-candidate.apk build/review-apk/dayloop-v0.16.0-rc4.apk
       - name: Upload candidate APK
         if: matrix.review == 'full'
         uses: actions/upload-artifact@v4
         with:
-          name: dayloop-v0.16.0-rc3
-          path: build/review-apk/dayloop-v0.16.0-rc3.apk
+          name: dayloop-v0.16.0-rc4
+          path: build/review-apk/dayloop-v0.16.0-rc4.apk
           retention-days: 14
           if-no-files-found: error
       - name: Enable emulator acceleration

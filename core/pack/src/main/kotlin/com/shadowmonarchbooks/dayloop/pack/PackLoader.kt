@@ -490,14 +490,34 @@ object PackLoader {
             }
             requests.events.forEach { event ->
                 if (event.id.isBlank() || event.labelContains.isBlank() || sourceKeys[event.id] == null) requestIssue("${event.id}: event must match exactly one source task")
-                if (requests.requests.count { event.id in listOfNotNull(it.completionEvent, it.acceptanceEvent) + it.preparationEvents + it.readyEvents } != 1) {
-                    requestIssue("${event.id}: event must belong to exactly one request")
+                val owners = requests.requests.count { event.id in listOfNotNull(it.completionEvent, it.acceptanceEvent) + it.preparationEvents + it.readyEvents } +
+                    requests.missingPersons.count { it.rescueEvent == event.id }
+                if (owners != 1) {
+                    requestIssue("${event.id}: event must belong to exactly one request or missing person")
                 }
             }
             val dates = walkthroughs.flatMap { it.file.days }.map { it.date }.toSet()
+            val requestIds = requests.requests.map { it.id }.toSet()
+            fun validDate(date: String) = runCatching { java.time.LocalDate.parse(date) }.isSuccess
             requests.requests.forEach { request ->
                 if (request.id.isBlank() || '=' in request.id || request.title.isBlank() || request.number <= 0) requestIssue("invalid request identity")
                 if (request.solution?.isBlank() == true) requestIssue("${request.id}: solution must not be blank")
+                if (request.reward?.isBlank() == true || request.availabilityNotes?.isBlank() == true) requestIssue("${request.id}: metadata must not be blank")
+                request.availableFrom?.let { date ->
+                    if (!validDate(date)) requestIssue("${request.id}: invalid availability date")
+                    if (request.deadline != null && date > request.deadline) requestIssue("${request.id}: availability follows deadline")
+                }
+                if (request.prerequisiteRequests.distinct().size != request.prerequisiteRequests.size ||
+                    request.prerequisiteRequests.any { it !in requestIds || it == request.id }) {
+                    requestIssue("${request.id}: invalid prerequisite request")
+                }
+                if (request.challengeLevel != null && request.challengeLevel !in 1..5) requestIssue("${request.id}: invalid challenge level")
+                if (request.requiredChallengePoints != null && request.requiredChallengePoints <= 0) requestIssue("${request.id}: invalid challenge point requirement")
+                request.itemWindow?.let { window ->
+                    if (!validDate(window.from) || !validDate(window.through) || window.from > window.through || window.note.isBlank()) {
+                        requestIssue("${request.id}: invalid item window")
+                    }
+                }
                 request.completionEvent?.let { event ->
                     if (event !in events) requestIssue("${request.id}: missing completion event")
                     if (events[event]?.date !in request.routeDates) requestIssue("${request.id}: reporting task needs a route link")
@@ -524,6 +544,35 @@ object PackLoader {
                 request.deadline?.let { date ->
                     if (runCatching { java.time.LocalDate.parse(date) }.isFailure) requestIssue("${request.id}: invalid deadline")
                 }
+            }
+            fun hasPrerequisiteCycle(id: String, path: Set<String>): Boolean =
+                id in path || requests.requests.firstOrNull { it.id == id }?.prerequisiteRequests.orEmpty()
+                    .any { hasPrerequisiteCycle(it, path + id) }
+            if (requestIds.any { hasPrerequisiteCycle(it, emptySet()) }) requestIssue("cyclic request prerequisites")
+
+            val people = requests.missingPersons
+            if (people.map { it.id }.distinct().size != people.size || people.any { it.id in requestIds }) requestIssue("duplicate missing-person id")
+            if (people.map { it.floor }.distinct().size != people.size) requestIssue("duplicate missing-person floor")
+            people.forEach { person ->
+                if (person.id.isBlank() || '=' in person.id || person.name.isBlank() || person.floor <= 0 || person.reward.isBlank()) requestIssue("invalid missing-person record")
+                if (!validDate(person.availableFrom) || !validDate(person.deadline) || person.availableFrom > person.deadline) requestIssue("${person.id}: invalid rescue window")
+                if (person.routeDates.any { it !in dates }) requestIssue("${person.id}: rescue route date is not authored")
+                person.rescueEvent?.let { eventId ->
+                    val event = events[eventId]
+                    if (event == null) requestIssue("${person.id}: missing rescue event")
+                    else {
+                        if (event.date !in person.routeDates || event.date < person.availableFrom || event.date > person.deadline) requestIssue("${person.id}: rescue event must be linked within its window")
+                        val key = sourceKeys[eventId]
+                        val step = key?.let { (route, date, index) ->
+                            walkthroughs.filter { it.routeId == route }.flatMap { it.file.days }
+                                .singleOrNull { it.date == date }?.steps?.getOrNull(index)
+                        }
+                        val text = step?.let { it.label + "\n" + it.tip.orEmpty() }.orEmpty()
+                        if (!text.contains("rescue", ignoreCase = true) || !Regex("(?<!\\d)${person.floor}F\\b").containsMatchIn(text)) requestIssue("${person.id}: source task must explicitly cover this rescue floor")
+                    }
+                }
+                if (person.bondId != null && bonds?.bonds?.none { it.id == person.bondId } != false) requestIssue("${person.id}: unknown rescue bond")
+                if (person.consequence?.isBlank() == true) requestIssue("${person.id}: rescue consequence must not be blank")
             }
         }
 

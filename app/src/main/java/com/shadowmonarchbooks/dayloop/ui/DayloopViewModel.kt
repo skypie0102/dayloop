@@ -279,8 +279,16 @@ class DayloopViewModel @Inject constructor(
     // ---- Achievements ----
 
     fun setRequestStage(requestId: String, stage: String?) = withActiveProfile { id ->
+        require(stage == null || stage in com.shadowmonarchbooks.dayloop.pack.schema.RequestStages.ALL)
         if (state.value.selected?.requests?.requests?.any { it.id == requestId } == true) {
             repo.setRequestStage(id, requestId, stage)
+        }
+    }
+
+    fun setRescueStage(personId: String, stage: String?) = withActiveProfile { id ->
+        require(stage == null || stage in com.shadowmonarchbooks.dayloop.pack.schema.RescueStages.ALL)
+        if (state.value.selected?.requests?.missingPersons?.any { it.id == personId } == true) {
+            repo.setRequestStage(id, personId, stage)
         }
     }
 

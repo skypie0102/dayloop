@@ -1,6 +1,6 @@
 package com.shadowmonarchbooks.dayloop.data.progress
 
-import com.shadowmonarchbooks.dayloop.pack.schema.RequestStages
+import com.shadowmonarchbooks.dayloop.pack.schema.RequestTrackingStages
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
@@ -123,7 +123,7 @@ object ProgressBackupCodec {
                 p.achievementChecklist.values.flatten() + p.achievementChoices.keys + p.achievementChoices.values + p.requestStages.keys
             checkBackup(ids.all { it.isNotBlank() && '=' !in it }, "Invalid tracker identifier in backup.")
             checkBackup(p.achievementCounts.values.all { it > 0 }, "Invalid achievement counter in backup.")
-            checkBackup(p.requestStages.values.all { it in RequestStages.ALL }, "Unsupported request stage in backup.")
+            checkBackup(p.requestStages.values.all { it in RequestTrackingStages.ALL }, "Unsupported request stage in backup.")
         }
     }
 

@@ -199,16 +199,25 @@ schema and behavior remain independent.
 
 | Field | Serving path | Status |
 |---|---|---|
-| `title` / `issuer` | Page title and confirmation guidance | Served |
+| `title` / `issuer` | Plain Requests title; issuer section and confirmation guidance | P3R deliberately uses Requests instead of the longer catalog title |
 | `requests[].id` | Stable list and profile-state identity | Intentionally not displayed |
-| `number` / `title` | Request list, details and search | Served |
+| `number` / `title` | Request list and details | Served; P3R has no search field |
 | `deadline` | Reporting cutoff and Timed filter | Served |
 | `routeDates` | Context links to authored days | Served; not completion evidence |
 | `completionEvent` / `events` | Exact DONE reporting task; reversal on uncheck | Served |
 | `solution` | Expanded details, before progress controls | Served when authored; optional |
+| `acceptanceEvent` / `preparationEvents` / `readyEvents` | Exact guide stages and next-action links | Served; never substitutes for reporting |
+| `reward` / `availableFrom` / `availabilityNotes` | Expanded request metadata | Served; availability does not accept |
+| `prerequisiteRequests` | Reported status and direct request-to-request links | Served |
+| `itemWindow` | Distinct offer/collection dates and Timed filter | Served; no inferred failure/completion |
+| `challengeLevel` / `requiredChallengePoints` | Recorded weighted points for outings | Served; no inferred invitation |
+| `missingPersons` | Separate section, filters, floors, windows, rewards and Social Link consequences | Served |
+| `missingPersons[].rescueEvent` | Exact complete rescue visit and reversible Rescued stage | Served; never claims a reward |
+| Missing-person manual stages | Rescued / Reward claimed controls, profile persistence and backup | Served |
 
-The initial Journey catalog has 101 requests, 14 audited cutoffs, 40 requests with
-numbered walkthrough context and 24 exact automatic reporting anchors. Other
-requests retain explicit confirmation. The September 22 continuation completes all 101
-authored solutions, including the ultimate-adversary preparation and phase plan.
-Complete reward coverage and remaining prerequisites still require audit. See [request guidance](audits/p3r-request-guidance.md).
+The current Journey catalog has 101 solutions and reward/availability entries,
+14 reporting cutoffs, three item opportunities, 32 reporting anchors, 19 acceptance
+anchors and 27 preparation references. Twenty individual human rescues connect to
+eight complete guide visits. Unsupported outcomes retain explicit confirmation.
+See the [request/rescue audit](audits/p3r-requests-rescues.md) for source conflicts,
+weighted outing requirements, save compatibility and validation.
