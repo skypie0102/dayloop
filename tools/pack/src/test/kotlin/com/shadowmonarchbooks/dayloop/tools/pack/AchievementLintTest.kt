@@ -11,6 +11,21 @@ import kotlin.test.assertTrue
 
 class AchievementLintTest {
 
+    @Test fun `achievement reading fields reject blank text duplicate reminders and nonexistent days`() {
+        val dir = tempDir()
+        Fixture.writePack(dir)
+        dir.resolve("achievements.json").writeText("""{
+          "achievements":[{"id":"t1.bad","title":"Bad","guidance":" ",
+            "routeDates":["2016-04-30","2016-04-30"]}],
+          "events":[{"id":"t1.source","date":"2016-04-10","labelContains":"Flip the sign","displayLabel":" "}]
+        }""")
+        val messages = PackLint.runOn(dir).filter { it.severity == LintIssue.Severity.ERROR }.map { it.message }
+        assertTrue(messages.any { "guidance must not be blank" in it })
+        assertTrue(messages.any { "duplicate routeDates" in it })
+        assertTrue(messages.any { "has no walkthrough day" in it })
+        assertTrue(messages.any { "displayLabel must not be blank" in it })
+    }
+
     private fun tempDir() = Files.createTempDirectory("achievement-lint-test")
 
     @Test

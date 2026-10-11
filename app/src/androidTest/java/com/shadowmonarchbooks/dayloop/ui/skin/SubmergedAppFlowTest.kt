@@ -18,6 +18,7 @@ import com.shadowmonarchbooks.dayloop.MainActivity
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.progress.ProfileEntity
 import com.shadowmonarchbooks.dayloop.progress.StepMark
+import com.shadowmonarchbooks.dayloop.progress.StepKey
 import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -385,6 +386,97 @@ class SubmergedAppFlowTest {
         capture("p3r-app-request-deadline")
         tab("Today").performClick()
         compose.onNodeWithText("End day", ignoreCase = true).assertIsDisplayed()
+    }
+
+    @Test fun achievementProofNavigationRecordsOnlyItsSourceAndRemainsReversible() {
+        launch("2010-01-08", scale = 1.5f)
+        val pack = dependencies.store().state.value.selected!!
+        val aeon = pack.achievementEvents.single { it.id == "p3r.event.social-all-unlocked" }
+        val aeonIndex = pack.day("standard", aeon.date)!!.steps.indexOfFirst { it.label.contains(aeon.labelContains, true) }
+        runBlocking { dependencies.repo().setMark(profileId, StepKey(aeon.date, aeonIndex), StepMark.DONE) }
+        tab("Achievements").performClick()
+        val id = "p3r.achievement.people-person"
+        val list = compose.onNodeWithTag("achievement-list")
+        list.performScrollToNode(hasTestTag("achievement-$id"))
+        compose.onNodeWithTag("achievement-$id").performClick()
+        val proof = "achievement-proof-$id"
+        compose.onNodeWithText(pack.achievements.single { it.id == id }.tracking.prompt!!).assertDoesNotExist()
+        list.performScrollToNode(hasTestTag(proof))
+        compose.onNodeWithTag(proof).assertTextEquals("1 / 22 checkpoints recorded")
+        val source = "achievement-checkpoint-p3r.event.social-start-fool"
+        list.performScrollToNode(hasTestTag(source))
+        compose.onNodeWithTag(source).assertIsDisplayed()
+        capture("p3r-app-achievement-proof-large-text")
+        compose.onNodeWithTag(source).performClick()
+        compose.onNodeWithTag("task-label-1").assertTextContains("Fool reaches rank 1", substring = true)
+        assertEquals("2010-01-08", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
+        assertEquals(1, runBlocking { dependencies.repo().marksFor(profileId).first().size })
+        compose.onAllNodesWithContentDescription("Done")[1].performScrollTo().performClick()
+        markIs(1, StepMark.DONE, "2009-04-18")
+        capture("p3r-app-achievement-proof-source-day")
+        compose.onNodeWithContentDescription("Back").performClick()
+        list.performScrollToNode(hasTestTag(proof))
+        compose.onNodeWithTag(proof).assertTextEquals("2 / 22 checkpoints recorded")
+        list.performScrollToNode(hasText("Review all checkpoints"))
+        compose.onNodeWithText("Review all checkpoints").performClick()
+        list.performScrollToNode(hasTestTag(source))
+        compose.onNodeWithTag(source).performClick()
+        compose.onAllNodesWithContentDescription("Done")[1].performScrollTo().assertIsSelected().performClick()
+        compose.waitUntil(10_000) { runBlocking { dependencies.repo().marksFor(profileId).first().none { it.date == "2009-04-18" } } }
+        compose.onNodeWithContentDescription("Back").performClick()
+        list.performScrollToNode(hasTestTag(proof))
+        compose.onNodeWithTag(proof).assertTextEquals("1 / 22 checkpoints recorded")
+        capture("p3r-app-achievement-proof-reversal")
+        assertTrue(runBlocking { dependencies.repo().earnedAchievements(profileId).first().isEmpty() })
+    }
+
+    @Test fun completedWagesStayEditableAndExplicitConfirmationCanBeCleared() {
+        launch("2009-12-29", scale = 1.5f)
+        val id = "p3r.achievement.grindset-mindset"
+        runBlocking {
+            dependencies.repo().setAchievementCount(profileId, id, 50_001)
+            dependencies.repo().setAchievementEarned(profileId, id, true)
+        }
+        tab("Achievements").performClick()
+        val list = compose.onNodeWithTag("achievement-list")
+        list.performScrollToNode(hasTestTag("achievement-$id"))
+        compose.onNodeWithTag("achievement-$id").performClick()
+        list.performScrollToNode(hasText("Clear confirmation"))
+        compose.onNodeWithText("Clear confirmation").performClick()
+        compose.waitUntil(10_000) { runBlocking { id !in dependencies.repo().earnedAchievements(profileId).first() } }
+        list.performScrollToNode(hasSetTextAction())
+        compose.onNode(hasSetTextAction()).assertIsEnabled().performTextReplacement("50000")
+        compose.waitUntil(10_000) { runBlocking { dependencies.repo().achievementProgress(profileId).first().counts[id] == 50_000 } }
+        // Returning to the detail after the sort change must retain the correction.
+        list.performScrollToNode(hasTestTag("achievement-$id"))
+        compose.onNodeWithTag("achievement-$id").assertTextContains("¥50000 / ¥50001 tracked", substring = true)
+        list.performScrollToNode(hasSetTextAction())
+        compose.onNode(hasSetTextAction()).assertIsEnabled()
+        // Dismiss the numeric keyboard before reviewing the actual detail layout.
+        instrumentation.uiAutomation.executeShellCommand("input keyevent 111").close()
+        capture("p3r-app-achievement-wages-corrected")
+        assertEquals("2009-12-29", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
+    }
+
+    @Test fun theurgyChecklistAndShinjiroDeadlineWrapAtDoubleText() {
+        launch("2009-10-01", scale = 2f)
+        val id = "p3r.achievement.strength-of-hearts"
+        val achievement = dependencies.store().state.value.selected!!.achievements.single { it.id == id }
+        runBlocking {
+            achievement.tracking.items.filter { it.id != "shinjiro" }.forEach {
+                dependencies.repo().setAchievementChecklistItem(profileId, id, it.id, true)
+            }
+        }
+        tab("Achievements").performClick()
+        val list = compose.onNodeWithTag("achievement-list")
+        list.performScrollToNode(hasTestTag("achievement-$id"))
+        compose.onNodeWithTag("achievement-$id").assertTextContains("8 / 9 tracked", substring = true).performClick()
+        list.performScrollToNode(hasText("Shinjiro · by 2009-10-03"))
+        compose.onNodeWithText("Shinjiro · by 2009-10-03").assertIsDisplayed()
+        capture("p3r-app-achievement-theurgy-deadline-double-text")
+        assertTrue(runBlocking { dependencies.repo().earnedAchievements(profileId).first().isEmpty() })
+        assertEquals(8, runBlocking { dependencies.repo().achievementProgress(profileId).first().checkedItems.getValue(id).size })
     }
 
     @Test fun achievementDetailsRequireExplicitConfirmationAtLargeText() {

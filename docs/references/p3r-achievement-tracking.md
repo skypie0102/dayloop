@@ -4,7 +4,8 @@ Research snapshot: 2026-09-01
 
 > Historical research snapshot. The achievement schema and tracker have since
 > been implemented, and later audits corrected several route/mechanic details.
-> Consult the [current audit ledger](../audits/p3r-data-audit.md), bundled data,
+> Consult the [current achievement proof audit](../audits/p3r-achievement-proof.md),
+> [data audit](../audits/p3r-data-audit.md), bundled data,
 > and [P3R roadmap](../packs/p3r-roadmap.md) before using the dates or implementation
 > proposals below. For example, the audited Top of the Class checkpoint is May 25;
 > this older table's July checkpoint must not overwrite it.

@@ -23,6 +23,8 @@ class P3rAchievementCatalogTest {
         assertEquals(catalog.achievements.size, catalog.achievements.map { it.id }.toSet().size)
         assertEquals(catalog.events.size, catalog.events.map { it.id }.toSet().size)
         assertEquals(48, catalog.achievements.count { !it.description.isNullOrBlank() })
+        assertEquals(48, catalog.achievements.count { !it.guidance.isNullOrBlank() })
+        assertEquals(156, catalog.events.size)
 
         val eventIds = catalog.events.map { it.id }.toSet()
         val referencedEvents = catalog.achievements.flatMap { achievement ->
@@ -114,16 +116,21 @@ class P3rAchievementCatalogTest {
         val legacy = achievement(catalog.achievements, "p3r.achievement.legacy-of-friendships")
         assertEquals("Unlocked all Social Links.", people.description)
         assertEquals("Maxed out all Social Links.", legacy.description)
-        assertEquals(AchievementTrackingTypes.EVENT, people.tracking.type)
-        assertEquals("p3r.event.social-all-unlocked", people.tracking.event)
-        assertEquals(AchievementTrackingTypes.EVENT, legacy.tracking.type)
-        assertEquals("p3r.event.social-all-max", legacy.tracking.event)
+        assertEquals(AchievementTrackingTypes.ALL_EVENTS, people.tracking.type)
+        assertEquals(22, people.tracking.events.size)
+        assertTrue("p3r.event.social-all-unlocked" in people.tracking.events)
+        assertEquals(AchievementTrackingTypes.ALL_EVENTS, legacy.tracking.type)
+        assertEquals(22, legacy.tracking.events.size)
+        assertTrue("p3r.event.social-all-max" in legacy.tracking.events)
+        assertTrue("p3r.event.social-max-judgment" in legacy.tracking.events)
 
         val reaper = achievement(catalog.achievements, "p3r.achievement.reaper-reaped")
         assertEquals("Defeated the Reaper.", reaper.description)
         assertEquals("2009-06-13", reaper.availableFrom)
         assertEquals("2010-01-31", reaper.expectedBy)
-        assertEquals("2010-01-21", reaper.tracking.date)
+        assertEquals(AchievementTrackingTypes.EVENT, reaper.tracking.type)
+        assertEquals("p3r.event.reaper-defeated", reaper.tracking.event)
+        assertEquals(null, reaper.tracking.date)
 
         val darkZone = achievement(catalog.achievements, "p3r.achievement.horror-of-shade")
         assertEquals("Encountered a Dark Zone in Tartarus.", darkZone.description)
@@ -134,6 +141,12 @@ class P3rAchievementCatalogTest {
         assertEquals("Harvested a crop that you grew with a teammate.", veggies.description)
         assertEquals(AchievementTrackingTypes.CONFIRMATION, veggies.tracking.type)
         assertEquals("p3r.event.teammate-gardening", veggies.tracking.event)
+        assertEquals("2009-06-16", veggies.availableFrom)
+
+        val messiah = achievement(catalog.achievements, "p3r.achievement.path-to-salvation")
+        assertEquals(null, messiah.availableFrom)
+        assertEquals(null, messiah.tracking.date)
+        assertEquals("p3r.event.social-max-judgment", messiah.tracking.event)
 
         val grindset = achievement(catalog.achievements, "p3r.achievement.grindset-mindset")
         assertEquals("Earned over 50,000 yen total from part-time jobs.", grindset.description)

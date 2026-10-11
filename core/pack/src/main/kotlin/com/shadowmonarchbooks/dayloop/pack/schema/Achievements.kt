@@ -23,6 +23,10 @@ data class AchievementDefinition(
     /** Optional MediaItem id; achievement data never requires an image. */
     val iconMediaRef: String? = null,
     val tracking: AchievementTrackingRule = AchievementTrackingRule(),
+    /** Independently authored instructions, separate from platform unlock text. */
+    val guidance: String? = null,
+    /** Walkthrough reminders/opportunities; visiting a date never proves completion. */
+    val routeDates: List<String> = emptyList(),
 )
 
 /** One user-confirmable item in a pack-authored checklist or choice. */
@@ -66,6 +70,8 @@ data class AchievementEventAnchor(
     val date: String,
     val labelContains: String,
     val routeId: String? = null,
+    /** Optional readable checkpoint name; the selector remains the stable source task. */
+    val displayLabel: String? = null,
 )
 
 object AchievementTrackingTypes {

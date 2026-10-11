@@ -7,10 +7,13 @@
       "availableFrom": "2009-04-09",
       "expectedBy": "2009-04-09",
       "tracking": {
-        "type": "storyDate",
-        "date": "2009-04-09"
+        "type": "event",
+        "event": "p3r.event.story-awakened-power",
+        "prompt": "Mark the story task Done after finishing the encounter."
       },
-      "iconMediaRef": "p3r.media.achievement.awakened-power"
+      "iconMediaRef": "p3r.media.achievement.awakened-power",
+      "guidance": "Finish the April 9 rooftop story encounter and obtain Orpheus. Read the battle prompts before marking the full-moon task Done.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.sees-the-day",
@@ -19,10 +22,13 @@
       "availableFrom": "2009-04-18",
       "expectedBy": "2009-04-18",
       "tracking": {
-        "type": "storyDate",
-        "date": "2009-04-18"
+        "type": "event",
+        "event": "p3r.event.social-start-fool",
+        "prompt": "Mark the April 18 Fool story introduction Done after joining S.E.E.S."
       },
-      "iconMediaRef": "p3r.media.achievement.sees-the-day"
+      "iconMediaRef": "p3r.media.achievement.sees-the-day",
+      "guidance": "Finish the April 18 joining scene. Its Fool rank-1 task records joining S.E.E.S.; passing the date or answering the class question does not record that scene.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.back-on-track",
@@ -31,10 +37,13 @@
       "availableFrom": "2009-05-09",
       "expectedBy": "2009-05-09",
       "tracking": {
-        "type": "storyDate",
-        "date": "2009-05-09"
+        "type": "event",
+        "event": "p3r.event.story-back-on-track",
+        "prompt": "Mark the story task Done after finishing the encounter."
       },
-      "iconMediaRef": "p3r.media.achievement.back-on-track"
+      "iconMediaRef": "p3r.media.achievement.back-on-track",
+      "guidance": "Defeat Priestess during the May 9 monorail operation. Open the date below for countdown and summoned-Tiara guidance.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.empowered-protector",
@@ -43,10 +52,13 @@
       "availableFrom": "2009-06-08",
       "expectedBy": "2009-06-08",
       "tracking": {
-        "type": "storyDate",
-        "date": "2009-06-08"
+        "type": "event",
+        "event": "p3r.event.story-empowered-protector",
+        "prompt": "Mark the story task Done after finishing the encounter."
       },
-      "iconMediaRef": "p3r.media.achievement.empowered-protector"
+      "iconMediaRef": "p3r.media.achievement.empowered-protector",
+      "guidance": "Defeat both Emperor and Empress on June 8. Follow the operation’s affinity-switch guidance; Theurgy unlocks later on June 13.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.never-toy",
@@ -55,10 +67,13 @@
       "availableFrom": "2009-07-07",
       "expectedBy": "2009-07-07",
       "tracking": {
-        "type": "storyDate",
-        "date": "2009-07-07"
+        "type": "event",
+        "event": "p3r.event.story-never-toy",
+        "prompt": "Mark the story task Done after finishing the encounter."
       },
-      "iconMediaRef": "p3r.media.achievement.never-toy"
+      "iconMediaRef": "p3r.media.achievement.never-toy",
+      "guidance": "Finish both the Hierophant and Lovers fights on July 7. The walkthrough includes the hotel barrier sequence and Charm recovery.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.armor-disarmed",
@@ -67,10 +82,13 @@
       "availableFrom": "2009-08-06",
       "expectedBy": "2009-08-06",
       "tracking": {
-        "type": "storyDate",
-        "date": "2009-08-06"
+        "type": "event",
+        "event": "p3r.event.story-armor-disarmed",
+        "prompt": "Mark the story task Done after finishing the encounter."
       },
-      "iconMediaRef": "p3r.media.achievement.armor-disarmed"
+      "iconMediaRef": "p3r.media.achievement.armor-disarmed",
+      "guidance": "Finish the Chariot and Justice operation on August 6. Read the combined-form and revival instructions before marking the operation complete.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.dodging-lightning",
@@ -79,10 +97,13 @@
       "availableFrom": "2009-09-05",
       "expectedBy": "2009-09-05",
       "tracking": {
-        "type": "storyDate",
-        "date": "2009-09-05"
+        "type": "event",
+        "event": "p3r.event.story-dodging-lightning",
+        "prompt": "Mark the story task Done after finishing the encounter."
       },
-      "iconMediaRef": "p3r.media.achievement.dodging-lightning"
+      "iconMediaRef": "p3r.media.achievement.dodging-lightning",
+      "guidance": "Defeat Hermit on September 5. Use the operation’s charging and resistance advice; an attempted fight is not a victory.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.twist-of-fate",
@@ -91,10 +112,13 @@
       "availableFrom": "2009-10-04",
       "expectedBy": "2009-10-04",
       "tracking": {
-        "type": "storyDate",
-        "date": "2009-10-04"
+        "type": "event",
+        "event": "p3r.event.story-twist-of-fate",
+        "prompt": "Mark the story task Done after finishing the encounter."
       },
-      "iconMediaRef": "p3r.media.achievement.twist-of-fate"
+      "iconMediaRef": "p3r.media.achievement.twist-of-fate",
+      "guidance": "Defeat Strength and Fortune on October 4. Reload’s roulette is automatic; follow the fight instructions and finish both enemies.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.sense-of-finality",
@@ -103,10 +127,13 @@
       "availableFrom": "2009-11-03",
       "expectedBy": "2009-11-03",
       "tracking": {
-        "type": "storyDate",
-        "date": "2009-11-03"
+        "type": "event",
+        "event": "p3r.event.story-sense-of-finality",
+        "prompt": "Mark the story task Done after finishing the encounter."
       },
-      "iconMediaRef": "p3r.media.achievement.sense-of-finality"
+      "iconMediaRef": "p3r.media.achievement.sense-of-finality",
+      "guidance": "Defeat Hanged Man on November 3 after the Strega encounter. Read the statues and summoned-enemy phases in that operation’s guidance.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.great-seal",
@@ -133,7 +160,12 @@
           }
         ]
       },
-      "iconMediaRef": "p3r.media.achievement.great-seal"
+      "iconMediaRef": "p3r.media.achievement.great-seal",
+      "guidance": "Spare Ryoji on December 31 and finish the January 31 finale, using Great Seal when prompted. Record the ending choice, then confirm after sealing Nyx.",
+      "routeDates": [
+        "2009-12-31",
+        "2010-01-31"
+      ]
     },
     {
       "id": "p3r.achievement.shadows-into-light",
@@ -160,7 +192,12 @@
           }
         ]
       },
-      "iconMediaRef": "p3r.media.achievement.shadows-into-light"
+      "iconMediaRef": "p3r.media.achievement.shadows-into-light",
+      "guidance": "Spare Ryoji on December 31, complete the finale, and watch the March 5 ending. The saved choice is shared with The Great Seal; confirm this achievement after the ending itself.",
+      "routeDates": [
+        "2009-12-31",
+        "2010-03-05"
+      ]
     },
     {
       "id": "p3r.achievement.fools-journey",
@@ -171,7 +208,13 @@
         "type": "manual",
         "target": 10
       },
-      "iconMediaRef": "p3r.media.achievement.fools-journey"
+      "iconMediaRef": "p3r.media.achievement.fools-journey",
+      "guidance": "Record Major Arcana cards actually taken during Shuffle Time until the total reaches 10. A Tartarus visit alone does not record a card.",
+      "routeDates": [
+        "2009-04-23",
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.distinguished-visitor",
@@ -183,7 +226,9 @@
         "type": "event",
         "event": "p3r.event.elizabeth-room"
       },
-      "iconMediaRef": "p3r.media.achievement.distinguished-visitor"
+      "iconMediaRef": "p3r.media.achievement.distinguished-visitor",
+      "guidance": "Finish Elizabeth’s outing/request chain and actually invite her to your room. This route records the room visit on November 6; merely accepting Request #81 does not finish it.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.top-of-class",
@@ -196,7 +241,12 @@
         "date": "2009-05-25",
         "prompt": "Confirm when the May exam results show that you placed at the top of the class."
       },
-      "iconMediaRef": "p3r.media.achievement.top-of-class"
+      "iconMediaRef": "p3r.media.achievement.top-of-class",
+      "guidance": "Check the May 25 exam results and confirm if you placed at the top. Correct exam answers and the planned Academics level are preparation; the result must be checked.",
+      "routeDates": [
+        "2009-05-18",
+        "2009-05-25"
+      ]
     },
     {
       "id": "p3r.achievement.legacy-of-friendships",
@@ -206,10 +256,36 @@
       "expectedBy": "2010-01-29",
       "missable": true,
       "tracking": {
-        "type": "event",
-        "event": "p3r.event.social-all-max"
+        "type": "allEvents",
+        "events": [
+          "p3r.event.social-max-fool",
+          "p3r.event.social-max-magician",
+          "p3r.event.social-max-chariot",
+          "p3r.event.social-max-strength",
+          "p3r.event.social-max-hierophant",
+          "p3r.event.social-max-emperor",
+          "p3r.event.social-max-hermit",
+          "p3r.event.social-max-justice",
+          "p3r.event.social-max-hanged-man",
+          "p3r.event.social-max-moon",
+          "p3r.event.social-max-temperance",
+          "p3r.event.social-max-devil",
+          "p3r.event.social-max-tower",
+          "p3r.event.social-max-fortune",
+          "p3r.event.social-max-priestess",
+          "p3r.event.social-max-death",
+          "p3r.event.social-max-lovers",
+          "p3r.event.social-max-star",
+          "p3r.event.social-max-judgment",
+          "p3r.event.social-max-empress",
+          "p3r.event.social-all-max",
+          "p3r.event.social-max-sun"
+        ],
+        "prompt": "Record the MAX milestone for all 22 Social Links, including the floor-driven Judgment task. Aeon MAX alone is not enough."
       },
-      "iconMediaRef": "p3r.media.achievement.legacy-of-friendships"
+      "iconMediaRef": "p3r.media.achievement.legacy-of-friendships",
+      "guidance": "Max all 22 Social Links. Keep Bunkichi and Maiko rescued, complete the December 31 good-ending choice, and finish Judgment through 255F. This route’s final planned MAX is Aeon on January 29.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.people-person",
@@ -219,10 +295,36 @@
       "expectedBy": "2010-01-08",
       "missable": true,
       "tracking": {
-        "type": "event",
-        "event": "p3r.event.social-all-unlocked"
+        "type": "allEvents",
+        "events": [
+          "p3r.event.social-start-fool",
+          "p3r.event.social-start-magician",
+          "p3r.event.social-start-chariot",
+          "p3r.event.social-start-strength",
+          "p3r.event.social-start-hierophant",
+          "p3r.event.social-start-emperor",
+          "p3r.event.social-start-hermit",
+          "p3r.event.social-start-justice",
+          "p3r.event.social-start-hanged-man",
+          "p3r.event.social-start-moon",
+          "p3r.event.social-start-temperance",
+          "p3r.event.social-start-devil",
+          "p3r.event.social-start-tower",
+          "p3r.event.social-start-fortune",
+          "p3r.event.social-start-priestess",
+          "p3r.event.social-start-death",
+          "p3r.event.social-start-lovers",
+          "p3r.event.social-start-star",
+          "p3r.event.social-start-judgment",
+          "p3r.event.social-start-empress",
+          "p3r.event.social-all-unlocked",
+          "p3r.event.social-start-sun"
+        ],
+        "prompt": "Record every Social Link introduction. The final Aeon introduction completes this only when all 22 starts are recorded."
       },
-      "iconMediaRef": "p3r.media.achievement.people-person"
+      "iconMediaRef": "p3r.media.achievement.people-person",
+      "guidance": "Start all 22 Social Links, including the automatic story links. Aeon on January 8 is this route’s last introduction; review missing starts below instead of treating that one meeting as proof of every link.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.special-someone",
@@ -234,7 +336,16 @@
         "type": "confirmation",
         "prompt": "Confirm after choosing a romance branch in any eligible Social Link."
       },
-      "iconMediaRef": "p3r.media.achievement.special-someone"
+      "iconMediaRef": "p3r.media.achievement.special-someone",
+      "guidance": "Choose a romance branch in an eligible Social Link and confirm once the relationship begins. Follow the romance answers in the relevant task; a platonic branch or rank-up alone does not prove romance.",
+      "routeDates": [
+        "2009-09-01",
+        "2009-09-09",
+        "2009-09-28",
+        "2009-11-11",
+        "2009-12-22",
+        "2010-01-27"
+      ]
     },
     {
       "id": "p3r.achievement.unbreakable-link",
@@ -243,10 +354,36 @@
       "availableFrom": "2009-09-01",
       "expectedBy": "2009-09-01",
       "tracking": {
-        "type": "event",
-        "event": "p3r.event.social-max-devil"
+        "type": "anyEvent",
+        "events": [
+          "p3r.event.social-max-fool",
+          "p3r.event.social-max-magician",
+          "p3r.event.social-max-chariot",
+          "p3r.event.social-max-strength",
+          "p3r.event.social-max-hierophant",
+          "p3r.event.social-max-emperor",
+          "p3r.event.social-max-hermit",
+          "p3r.event.social-max-justice",
+          "p3r.event.social-max-hanged-man",
+          "p3r.event.social-max-moon",
+          "p3r.event.social-max-temperance",
+          "p3r.event.social-max-devil",
+          "p3r.event.social-max-tower",
+          "p3r.event.social-max-fortune",
+          "p3r.event.social-max-priestess",
+          "p3r.event.social-max-death",
+          "p3r.event.social-max-lovers",
+          "p3r.event.social-max-star",
+          "p3r.event.social-max-judgment",
+          "p3r.event.social-max-empress",
+          "p3r.event.social-all-max",
+          "p3r.event.social-max-sun"
+        ],
+        "prompt": "Any recorded Social Link MAX milestone qualifies; Devil is this route’s first planned MAX."
       },
-      "iconMediaRef": "p3r.media.achievement.unbreakable-link"
+      "iconMediaRef": "p3r.media.achievement.unbreakable-link",
+      "guidance": "Reach rank 10 in any Social Link. This route’s first planned MAX is Devil on September 1, but another completed MAX milestone also qualifies.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.newfound-strength",
@@ -258,7 +395,11 @@
         "type": "storyDate",
         "date": "2009-12-30"
       },
-      "iconMediaRef": "p3r.media.achievement.newfound-strength"
+      "iconMediaRef": "p3r.media.achievement.newfound-strength",
+      "guidance": "Watch the story progression through December 30. The route treats all required ultimate-Persona awakenings as complete after ending that day; optional Combat Characteristics and Theurgy uses are separate.",
+      "routeDates": [
+        "2009-12-30"
+      ]
     },
     {
       "id": "p3r.achievement.power-of-choice",
@@ -269,7 +410,13 @@
         "type": "manual",
         "target": 10
       },
-      "iconMediaRef": "p3r.media.achievement.power-of-choice"
+      "iconMediaRef": "p3r.media.achievement.power-of-choice",
+      "guidance": "Count Personas actually acquired from Shuffle Time until the total reaches 10. Taking a Persona already in your stock does not count as a new acquisition.",
+      "routeDates": [
+        "2009-04-23",
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.no-i-in-team",
@@ -280,7 +427,13 @@
         "type": "confirmation",
         "prompt": "Confirm after performing a Shift in battle."
       },
-      "iconMediaRef": "p3r.media.achievement.no-i-in-team"
+      "iconMediaRef": "p3r.media.achievement.no-i-in-team",
+      "guidance": "Perform a Shift in battle after earning an extra turn. Confirm after passing the turn; opening the tutorial or reading combat guidance is not the action.",
+      "routeDates": [
+        "2009-04-23",
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.strength-of-hearts",
@@ -330,9 +483,16 @@
             "label": "Shinjiro",
             "dueBy": "2009-10-03"
           }
-        ]
+        ],
+        "prompt": "Check each teammate after using at least one of their Theurgies, including Fuuka’s support Theurgy. Use Shinjiro’s before October 4; this route’s final planned opportunity is October 1."
       },
-      "iconMediaRef": "p3r.media.achievement.strength-of-hearts"
+      "iconMediaRef": "p3r.media.achievement.strength-of-hearts",
+      "guidance": "Use at least one Theurgy from each of the nine listed teammates, including Fuuka’s support Theurgy. You do not need every variant. Include Shinjiro before October 4; use the October 1 Tartarus visit for any missing uses.",
+      "routeDates": [
+        "2009-06-13",
+        "2009-09-04",
+        "2009-10-01"
+      ]
     },
     {
       "id": "p3r.achievement.extracurricular-excellence",
@@ -341,11 +501,22 @@
       "availableFrom": "2009-06-18",
       "expectedBy": "2009-06-27",
       "tracking": {
-        "type": "confirmation",
-        "date": "2009-06-27",
-        "prompt": "Confirm after rescuing at least one missing person from Tartarus."
+        "type": "anyEvent",
+        "events": [
+          "p3r.event.rescue-2009-06-27",
+          "p3r.event.rescue-2009-08-03",
+          "p3r.event.rescue-2009-09-04",
+          "p3r.event.rescue-2009-10-01",
+          "p3r.event.rescue-2009-11-02",
+          "p3r.event.rescue-2009-11-29",
+          "p3r.event.rescue-2009-12-30",
+          "p3r.event.rescue-2010-01-15"
+        ],
+        "prompt": "A completed rescue visit proves this. If you rescued someone outside the planned visit, confirm the achievement yourself; police reward collection is separate."
       },
-      "iconMediaRef": "p3r.media.achievement.extracurricular-excellence"
+      "iconMediaRef": "p3r.media.achievement.extracurricular-excellence",
+      "guidance": "Find a missing person in Tartarus and escort them back. Complete all named rescues before marking a combined rescue visit Done. Claiming their police rewards is a later action. Confirm a rescue outside the listed visits yourself.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.load-of-numbers",
@@ -356,7 +527,12 @@
         "type": "confirmation",
         "prompt": "Confirm after dealing over 999 damage in one non-All-Out attack."
       },
-      "iconMediaRef": "p3r.media.achievement.load-of-numbers"
+      "iconMediaRef": "p3r.media.achievement.load-of-numbers",
+      "guidance": "Deal at least 1,000 damage in one attack that is not an All-Out Attack. Confirm after seeing the damage result; having a powerful Theurgy available is not proof of that hit.",
+      "routeDates": [
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.shrouded-assassin",
@@ -367,7 +543,13 @@
         "type": "manual",
         "target": 50
       },
-      "iconMediaRef": "p3r.media.achievement.shrouded-assassin"
+      "iconMediaRef": "p3r.media.achievement.shrouded-assassin",
+      "guidance": "Start battles with a Chance Encounter by striking a Shadow from behind. Record successful advantages until the total reaches 50; ordinary encounters do not add to this count.",
+      "routeDates": [
+        "2009-04-23",
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.thrill-of-hunt",
@@ -378,7 +560,13 @@
         "type": "confirmation",
         "prompt": "Confirm after defeating a rare golden enemy in Tartarus."
       },
-      "iconMediaRef": "p3r.media.achievement.thrill-of-hunt"
+      "iconMediaRef": "p3r.media.achievement.thrill-of-hunt",
+      "guidance": "Catch and defeat a rare golden Shadow in Tartarus. A Rarity Fortune may help you find one, but spotting it or buying the fortune does not prove a kill.",
+      "routeDates": [
+        "2009-04-23",
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.dream-work",
@@ -389,7 +577,13 @@
         "type": "manual",
         "target": 50
       },
-      "iconMediaRef": "p3r.media.achievement.dream-work"
+      "iconMediaRef": "p3r.media.achievement.dream-work",
+      "guidance": "Perform 50 All-Out Attacks. Record attacks you actually execute after downing the enemy group, rather than counting battles or individual knockdowns.",
+      "routeDates": [
+        "2009-04-23",
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.glimpse-of-depths",
@@ -400,7 +594,13 @@
         "type": "manual",
         "target": 10
       },
-      "iconMediaRef": "p3r.media.achievement.glimpse-of-depths"
+      "iconMediaRef": "p3r.media.achievement.glimpse-of-depths",
+      "guidance": "Enter and conquer 10 Monad Doors, completing the fights and taking the rewards. Keep the count separate from scheduled gatekeeper floors and fixed Monad Passage progression.",
+      "routeDates": [
+        "2009-08-03",
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.briefcase-burglar",
@@ -411,7 +611,13 @@
         "type": "manual",
         "target": 50
       },
-      "iconMediaRef": "p3r.media.achievement.briefcase-burglar"
+      "iconMediaRef": "p3r.media.achievement.briefcase-burglar",
+      "guidance": "Open 50 treasure chests. Add to the counter only when you open a chest; exploring a floor or finding a locked chest does not count.",
+      "routeDates": [
+        "2009-04-23",
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.shattered-plumes",
@@ -422,7 +628,13 @@
         "type": "manual",
         "target": 50
       },
-      "iconMediaRef": "p3r.media.achievement.shattered-plumes"
+      "iconMediaRef": "p3r.media.achievement.shattered-plumes",
+      "guidance": "Spend 50 Twilight Fragments in total. Record fragments consumed by locked chests or healing; collecting town fragments contributes to Eagle Eye instead.",
+      "routeDates": [
+        "2009-04-23",
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.horror-of-shade",
@@ -433,7 +645,12 @@
         "type": "confirmation",
         "prompt": "Confirm after encountering a random Dark Zone after the Tziah tutorial; the scripted tutorial Dark Zone does not count."
       },
-      "iconMediaRef": "p3r.media.achievement.horror-of-shade"
+      "iconMediaRef": "p3r.media.achievement.horror-of-shade",
+      "guidance": "Encounter a random Dark Zone after the scripted Tziah introduction. The tutorial on the October 1 visit does not unlock this achievement, so confirm only after a later random encounter.",
+      "routeDates": [
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.reaper-reaped",
@@ -442,11 +659,16 @@
       "availableFrom": "2009-06-13",
       "expectedBy": "2010-01-31",
       "tracking": {
-        "type": "confirmation",
-        "date": "2010-01-21",
-        "prompt": "Confirm after defeating the Reaper; the route starts dedicated preparation here."
+        "type": "event",
+        "event": "p3r.event.reaper-defeated",
+        "prompt": "The January 21 task includes the actual victory. Preparation or reading the January 31 advice does not count. You can confirm an earlier victory yourself."
       },
-      "iconMediaRef": "p3r.media.achievement.reaper-reaped"
+      "iconMediaRef": "p3r.media.achievement.reaper-reaped",
+      "guidance": "Actually defeat the Reaper. The January 21 task includes the victory and Request #100 hand-in; January 31’s Armageddon note is advice. Confirm a victory outside the scheduled task yourself.",
+      "routeDates": [
+        "2010-01-21",
+        "2010-01-31"
+      ]
     },
     {
       "id": "p3r.achievement.first-of-many",
@@ -457,7 +679,13 @@
         "type": "confirmation",
         "prompt": "Confirm after performing a Dyad Fusion."
       },
-      "iconMediaRef": "p3r.media.achievement.first-of-many"
+      "iconMediaRef": "p3r.media.achievement.first-of-many",
+      "guidance": "Use Dyad Fusion in the Velvet Room to fuse two Personas. Confirm after the fusion completes, rather than after viewing a recipe.",
+      "routeDates": [
+        "2009-04-23",
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.fusion-artisan",
@@ -468,7 +696,13 @@
         "type": "confirmation",
         "prompt": "Confirm after performing a fusion using three or more Personas."
       },
-      "iconMediaRef": "p3r.media.achievement.fusion-artisan"
+      "iconMediaRef": "p3r.media.achievement.fusion-artisan",
+      "guidance": "Complete a Special Fusion using three or more Personas. Unlocking a fusion recipe or registering ingredients is preparation; confirm the completed fusion.",
+      "routeDates": [
+        "2009-04-23",
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.birthday-present",
@@ -479,20 +713,31 @@
         "type": "confirmation",
         "prompt": "Confirm after receiving an item from a Persona Conception."
       },
-      "iconMediaRef": "p3r.media.achievement.birthday-present"
+      "iconMediaRef": "p3r.media.achievement.birthday-present",
+      "guidance": "Level a Persona with a heart/conception item until it gives you the item. Confirm when you receive it, not when the heart icon first appears.",
+      "routeDates": [
+        "2009-04-23",
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.path-to-salvation",
       "title": "Path to Salvation",
       "description": "Fused Messiah.",
-      "availableFrom": "2010-01-31",
       "expectedBy": "2010-01-31",
       "tracking": {
         "type": "confirmation",
-        "date": "2010-01-31",
-        "prompt": "Confirm after fusing Messiah; the route notes the Orpheus + Thanatos opportunity on The Promised Day."
+        "event": "p3r.event.social-max-judgment",
+        "prompt": "Judgment MAX unlocks the fusion; confirm after actually fusing Messiah. January 31 is a route reminder, not the first possible fusion date."
       },
-      "iconMediaRef": "p3r.media.achievement.path-to-salvation"
+      "iconMediaRef": "p3r.media.achievement.path-to-salvation",
+      "guidance": "Reach Judgment MAX by clearing the Adamah milestones through 255F, then fuse Orpheus and Thanatos into Messiah when the fusion’s level requirements are met. The January 31 note is a cleanup reminder; confirmation remains available without waiting for that date.",
+      "routeDates": [
+        "2010-01-15",
+        "2010-01-21",
+        "2010-01-31"
+      ]
     },
     {
       "id": "p3r.achievement.tempting-fate",
@@ -503,19 +748,30 @@
         "type": "confirmation",
         "prompt": "Confirm after a skill changes during fusion."
       },
-      "iconMediaRef": "p3r.media.achievement.tempting-fate"
+      "iconMediaRef": "p3r.media.achievement.tempting-fate",
+      "guidance": "Accept a skill change when offered during fusion. Confirm after the change occurs; a normal fusion or learning a skill by leveling does not qualify.",
+      "routeDates": [
+        "2009-04-23",
+        "2009-10-01",
+        "2010-01-30"
+      ]
     },
     {
       "id": "p3r.achievement.eat-your-veggies",
       "title": "Eat Your Veggies, Peas!",
       "description": "Harvested a crop that you grew with a teammate.",
-      "availableFrom": "2009-07-18",
+      "availableFrom": "2009-06-16",
       "tracking": {
         "type": "confirmation",
         "event": "p3r.event.teammate-gardening",
-        "prompt": "The route tracks your first teammate gardening hangout; confirm after you later harvest a crop grown with a teammate."
+        "prompt": "The July 18 Junpei gardening visit is preparation. Confirm after harvesting a crop that a teammate helped grow; planting or spending the evening together is not the harvest."
       },
-      "iconMediaRef": "p3r.media.achievement.eat-your-veggies"
+      "iconMediaRef": "p3r.media.achievement.eat-your-veggies",
+      "guidance": "Grow a crop with a teammate at the dorm and later harvest that crop. The route’s July 18 Junpei gardening hangout prepares this, but the harvest needs its own confirmation.",
+      "routeDates": [
+        "2009-07-18",
+        "2009-10-03"
+      ]
     },
     {
       "id": "p3r.achievement.grindset-mindset",
@@ -529,7 +785,11 @@
         "unit": "¥",
         "prompt": "Enter your cumulative earnings from part-time jobs; the route expects this to cross the threshold by the December 29 Be Blue V shift."
       },
-      "iconMediaRef": "p3r.media.achievement.grindset-mindset"
+      "iconMediaRef": "p3r.media.achievement.grindset-mindset",
+      "guidance": "Record cumulative wages from part-time jobs until earnings exceed ¥50,000. This route expects the goal by the December 29 Be Blue V shift. Current money, purchases and battle income are not wages; you can edit the total to correct it.",
+      "routeDates": [
+        "2009-12-29"
+      ]
     },
     {
       "id": "p3r.achievement.specialist",
@@ -538,10 +798,17 @@
       "availableFrom": "2009-06-19",
       "expectedBy": "2009-06-19",
       "tracking": {
-        "type": "event",
-        "event": "p3r.event.stat-max-courage"
+        "type": "anyEvent",
+        "events": [
+          "p3r.event.stat-max-courage",
+          "p3r.event.stat-max-charm",
+          "p3r.event.stat-max-academics"
+        ],
+        "prompt": "Any one recorded rank-6 Social Stat milestone qualifies."
       },
-      "iconMediaRef": "p3r.media.achievement.specialist"
+      "iconMediaRef": "p3r.media.achievement.specialist",
+      "guidance": "Reach rank 6 in Courage, Charm or Academics. The route first plans Courage MAX on June 19; any recorded rank-6 milestone qualifies.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.peak-performance",
@@ -557,7 +824,9 @@
           "p3r.event.stat-max-academics"
         ]
       },
-      "iconMediaRef": "p3r.media.achievement.peak-performance"
+      "iconMediaRef": "p3r.media.achievement.peak-performance",
+      "guidance": "Reach rank 6 in all three Social Stats. Record Courage, Charm and Academics MAX separately; the last planned milestone is Academics on October 29.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.dorm-life",
@@ -566,10 +835,75 @@
       "availableFrom": "2009-06-16",
       "expectedBy": "2009-06-16",
       "tracking": {
-        "type": "event",
-        "event": "p3r.event.dorm-hangout"
+        "type": "anyEvent",
+        "events": [
+          "p3r.event.dorm-hangout",
+          "p3r.event.dorm-hangout-2009-06-17",
+          "p3r.event.dorm-hangout-2009-06-20",
+          "p3r.event.dorm-hangout-2009-06-22",
+          "p3r.event.dorm-hangout-2009-06-23",
+          "p3r.event.dorm-hangout-2009-06-24",
+          "p3r.event.dorm-hangout-2009-06-25",
+          "p3r.event.dorm-hangout-2009-06-30",
+          "p3r.event.dorm-hangout-2009-07-01",
+          "p3r.event.dorm-hangout-2009-07-05",
+          "p3r.event.dorm-hangout-2009-07-26",
+          "p3r.event.dorm-hangout-2009-07-30",
+          "p3r.event.dorm-hangout-2009-08-01",
+          "p3r.event.dorm-hangout-2009-08-17",
+          "p3r.event.dorm-hangout-2009-08-19",
+          "p3r.event.dorm-hangout-2009-08-20",
+          "p3r.event.dorm-hangout-2009-08-24",
+          "p3r.event.dorm-hangout-2009-08-31",
+          "p3r.event.dorm-hangout-2009-09-02",
+          "p3r.event.dorm-hangout-2009-09-03",
+          "p3r.event.dorm-hangout-2009-09-06",
+          "p3r.event.dorm-hangout-2009-09-07",
+          "p3r.event.dorm-hangout-2009-09-09",
+          "p3r.event.dorm-hangout-2009-09-10",
+          "p3r.event.dorm-hangout-2009-09-11",
+          "p3r.event.dorm-hangout-2009-09-12",
+          "p3r.event.dorm-hangout-2009-09-13",
+          "p3r.event.dorm-hangout-2009-09-14",
+          "p3r.event.dorm-hangout-2009-09-15",
+          "p3r.event.dorm-hangout-2009-09-21",
+          "p3r.event.dorm-hangout-2009-09-25",
+          "p3r.event.dorm-hangout-2009-09-26",
+          "p3r.event.dorm-hangout-2009-09-28",
+          "p3r.event.dorm-hangout-2009-09-29",
+          "p3r.event.dorm-hangout-2009-09-30",
+          "p3r.event.dorm-hangout-2009-10-02",
+          "p3r.event.dorm-hangout-2009-10-03",
+          "p3r.event.dorm-hangout-2009-10-17",
+          "p3r.event.dorm-hangout-2009-10-18",
+          "p3r.event.dorm-hangout-2009-10-20",
+          "p3r.event.dorm-hangout-2009-10-24",
+          "p3r.event.dorm-hangout-2009-10-25",
+          "p3r.event.dorm-hangout-2009-10-27",
+          "p3r.event.dorm-hangout-2009-10-30",
+          "p3r.event.dorm-hangout-2009-11-13",
+          "p3r.event.dorm-hangout-2009-11-14",
+          "p3r.event.dorm-hangout-2009-11-15",
+          "p3r.event.dorm-hangout-2009-11-21",
+          "p3r.event.dorm-hangout-2009-11-30",
+          "p3r.event.dorm-hangout-2010-01-01",
+          "p3r.event.dorm-hangout-2010-01-05",
+          "p3r.event.dorm-hangout-2010-01-06",
+          "p3r.event.dorm-hangout-2010-01-08",
+          "p3r.event.dorm-hangout-2010-01-11",
+          "p3r.event.dorm-hangout-2010-01-12",
+          "p3r.event.dorm-hangout-2010-01-14",
+          "p3r.event.dorm-hangout-2010-01-18",
+          "p3r.event.dorm-hangout-2010-01-22",
+          "p3r.event.dorm-hangout-2010-01-25",
+          "p3r.event.dorm-hangout-2010-01-26",
+          "p3r.event.dorm-hangout-2010-01-27"
+        ],
+        "prompt": "Any completed dorm hangout listed here qualifies. Social Link meetings and Linked Episodes are different activities."
       },
-      "iconMediaRef": "p3r.media.achievement.dorm-life"
+      "iconMediaRef": "p3r.media.achievement.dorm-life",
+      "guidance": "Spend an evening in a listed dorm hangout with a teammate. Reading, cooking, gardening and the other explicit hangouts qualify; ordinary Social Link visits and Linked Episodes are tracked separately.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.gourmand",
@@ -578,10 +912,21 @@
       "availableFrom": "2009-06-28",
       "expectedBy": "2009-06-28",
       "tracking": {
-        "type": "event",
-        "event": "p3r.event.gourmand"
+        "type": "anyEvent",
+        "events": [
+          "p3r.event.gourmand",
+          "p3r.event.secret-menu-2009-07-02",
+          "p3r.event.secret-menu-2009-07-03",
+          "p3r.event.secret-menu-2009-07-12",
+          "p3r.event.secret-menu-2009-07-23",
+          "p3r.event.secret-menu-2009-07-27",
+          "p3r.event.secret-menu-2009-08-02"
+        ],
+        "prompt": "Any recorded nighttime Seafood Full Course visit qualifies. Confirm yourself if you used another valid secret menu."
       },
-      "iconMediaRef": "p3r.media.achievement.gourmand"
+      "iconMediaRef": "p3r.media.achievement.gourmand",
+      "guidance": "Order a secret-menu meal at night in Iwatodai Strip Mall. This route’s nighttime Seafood Full Course visits qualify; verify the order rather than merely entering Wakatsu Kitchen. Confirm another valid secret menu yourself.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.benevolent-purr-tector",
@@ -598,7 +943,9 @@
           "p3r.event.cat-4"
         ]
       },
-      "iconMediaRef": "p3r.media.achievement.benevolent-purr-tector"
+      "iconMediaRef": "p3r.media.achievement.benevolent-purr-tector",
+      "guidance": "Finish all four scheduled cat feedings for Request #42, ending July 13. Buying Super Cat Food or completing only some feedings does not nurse the cat fully.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.in-high-demand",
@@ -617,7 +964,9 @@
           "p3r.event.invitation-5"
         ]
       },
-      "iconMediaRef": "p3r.media.achievement.in-high-demand"
+      "iconMediaRef": "p3r.media.achievement.in-high-demand",
+      "guidance": "Accept five actual phone invitations to hang out. Follow the five recorded invitation tasks; ordinary Social Link visits do not substitute for an invitation.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.beyond-darkness",
@@ -629,7 +978,9 @@
         "type": "event",
         "event": "p3r.event.beyond-darkness"
       },
-      "iconMediaRef": "p3r.media.achievement.beyond-darkness"
+      "iconMediaRef": "p3r.media.achievement.beyond-darkness",
+      "guidance": "Finish the fixed 91F Monad Passage and collect its tarot reward. The route plans this on August 3; entering a random Monad Door or reaching 91F alone is not the reward.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.thick-and-thin",
@@ -638,10 +989,23 @@
       "availableFrom": "2009-07-01",
       "expectedBy": "2009-07-01",
       "tracking": {
-        "type": "event",
-        "event": "p3r.event.combat-characteristic"
+        "type": "anyEvent",
+        "events": [
+          "p3r.event.combat-characteristic",
+          "p3r.event.characteristic-2009-08-01",
+          "p3r.event.characteristic-2009-08-19",
+          "p3r.event.characteristic-2009-08-20",
+          "p3r.event.characteristic-2009-08-31",
+          "p3r.event.characteristic-2009-09-03",
+          "p3r.event.characteristic-2009-09-14",
+          "p3r.event.characteristic-2009-09-30",
+          "p3r.event.characteristic-2009-10-18"
+        ],
+        "prompt": "Any teammate’s recorded unlock qualifies. Ordinary hangouts that have not yet unlocked the Characteristic do not prove it."
       },
-      "iconMediaRef": "p3r.media.achievement.thick-and-thin"
+      "iconMediaRef": "p3r.media.achievement.thick-and-thin",
+      "guidance": "Complete enough dorm hangouts to unlock a teammate’s Combat Characteristic. Any listed unlock milestone qualifies; an earlier ordinary hangout does not prove the unlock.",
+      "routeDates": []
     },
     {
       "id": "p3r.achievement.eagle-eye",
@@ -657,129 +1021,1085 @@
           "p3r.event.fragments-remaining"
         ]
       },
-      "iconMediaRef": "p3r.media.achievement.eagle-eye"
+      "iconMediaRef": "p3r.media.achievement.eagle-eye",
+      "guidance": "Collect every fixed Twilight Fragment in town, including the dorm and later-accessible remaining locations. Complete all three collection tasks; finding random fragments in Tartarus is separate.",
+      "routeDates": []
     }
   ],
   "events": [
     {
       "id": "p3r.event.fragments-city",
       "date": "2009-04-23",
-      "labelContains": "Collect the Twilight Fragments hidden around the city"
+      "labelContains": "Collect the Twilight Fragments hidden around the city",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.fragments-dorm",
       "date": "2009-04-23",
-      "labelContains": "Collect the Twilight Fragments hidden inside the dorm"
+      "labelContains": "Collect the Twilight Fragments hidden inside the dorm",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.fragments-remaining",
       "date": "2009-05-25",
-      "labelContains": "collect the remaining Twilight Fragments"
+      "labelContains": "collect the remaining Twilight Fragments",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.invitation-1",
       "date": "2009-05-24",
-      "labelContains": "phone invitation"
+      "labelContains": "phone invitation",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.invitation-2",
       "date": "2009-05-31",
-      "labelContains": "Accept Yuko's phone invitation"
+      "labelContains": "Accept Yuko's phone invitation",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.invitation-3",
       "date": "2009-06-14",
-      "labelContains": "Accept Kazushi's phone invitation"
+      "labelContains": "Accept Kazushi's phone invitation",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.dorm-hangout",
       "date": "2009-06-16",
-      "labelContains": "join Junpei's reading hangout"
+      "labelContains": "join Junpei's reading hangout",
+      "displayLabel": "Junpei · dorm hangout",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.stat-max-courage",
       "date": "2009-06-19",
-      "labelContains": "Courage reaches rank 6"
+      "labelContains": "Courage reaches rank 6",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.invitation-4",
       "date": "2009-06-21",
-      "labelContains": "Accept Chihiro's phone invitation"
+      "labelContains": "Accept Chihiro's phone invitation",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.gourmand",
       "date": "2009-06-28",
-      "labelContains": "Seafood Full Course"
+      "labelContains": "Seafood Full Course",
+      "displayLabel": "Wakatsu · Seafood Full Course at night",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.combat-characteristic",
       "date": "2009-07-01",
-      "labelContains": "Combat Characteristic unlocked"
+      "labelContains": "Combat Characteristic unlocked",
+      "displayLabel": "Akihiko · Combat Characteristic unlocked",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.cat-1",
       "date": "2009-07-09",
-      "labelContains": "feed the weak cat"
+      "labelContains": "feed the weak cat",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.cat-2",
       "date": "2009-07-10",
-      "labelContains": "Feed the weak cat again"
+      "labelContains": "Feed the weak cat again",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.cat-3",
       "date": "2009-07-11",
-      "labelContains": "Feed the weak cat a third time"
+      "labelContains": "Feed the weak cat a third time",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.cat-4",
       "date": "2009-07-13",
-      "labelContains": "Feed the weak cat a final time"
+      "labelContains": "Feed the weak cat a final time",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.teammate-gardening",
       "date": "2009-07-18",
-      "labelContains": "join Junpei's gardening hangout"
+      "labelContains": "join Junpei's gardening hangout",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.stat-max-charm",
       "date": "2009-07-24",
-      "labelContains": "Charm reaches rank 6"
+      "labelContains": "Charm reaches rank 6",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.beyond-darkness",
       "date": "2009-08-03",
-      "labelContains": "91F Monad Passage"
+      "labelContains": "91F Monad Passage",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.social-max-devil",
       "date": "2009-09-01",
-      "labelContains": "Devil reaches rank 10"
+      "labelContains": "Devil reaches rank 10",
+      "displayLabel": "Devil · President Tanaka · MAX",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.invitation-5",
       "date": "2009-10-25",
-      "labelContains": "Accept Yukari's phone invitation"
+      "labelContains": "Accept Yukari's phone invitation",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.stat-max-academics",
       "date": "2009-10-29",
-      "labelContains": "Academics reaches rank 6"
+      "labelContains": "Academics reaches rank 6",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.elizabeth-room",
       "date": "2009-11-06",
-      "labelContains": "Invite Elizabeth to your room"
+      "labelContains": "Invite Elizabeth to your room",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.social-all-unlocked",
       "date": "2010-01-08",
-      "labelContains": "Aeon reaches rank 1"
+      "labelContains": "Aeon reaches rank 1",
+      "displayLabel": "Aeon · Aigis · start",
+      "routeId": "standard"
     },
     {
       "id": "p3r.event.social-all-max",
       "date": "2010-01-29",
-      "labelContains": "Aeon reaches rank 10 (MAX)"
+      "labelContains": "Aeon reaches rank 10 (MAX)",
+      "displayLabel": "Aeon · Aigis · MAX",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.event.social-start-fool",
+      "date": "2009-04-18",
+      "labelContains": "Fool reaches rank 1 (story)",
+      "routeId": "standard",
+      "displayLabel": "Fool · S.E.E.S. · start"
+    },
+    {
+      "id": "p3r.event.social-max-fool",
+      "date": "2009-12-31",
+      "labelContains": "Fool reaches rank 10 (MAX; story)",
+      "routeId": "standard",
+      "displayLabel": "Fool · S.E.E.S. · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-magician",
+      "date": "2009-04-22",
+      "labelContains": "Magician starts automatically with Kenji Tomochika — rank 1",
+      "routeId": "standard",
+      "displayLabel": "Magician · Kenji Tomochika · start"
+    },
+    {
+      "id": "p3r.event.social-max-magician",
+      "date": "2009-10-23",
+      "labelContains": "Hang out with Kenji — Magician reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Magician · Kenji Tomochika · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-chariot",
+      "date": "2009-04-23",
+      "labelContains": "Join the track team at the Practice Field — Chariot reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Chariot · Kazushi Miyamoto · start"
+    },
+    {
+      "id": "p3r.event.social-max-chariot",
+      "date": "2010-01-12",
+      "labelContains": "Hang out with Kazushi — Chariot reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Chariot · Kazushi Miyamoto · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-strength",
+      "date": "2009-04-24",
+      "labelContains": "Hang out with Yuko — Strength reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Strength · Yuko Nishiwaki · start"
+    },
+    {
+      "id": "p3r.event.social-max-strength",
+      "date": "2009-09-12",
+      "labelContains": "Hang out with Yuko — Strength reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Strength · Yuko Nishiwaki · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-hierophant",
+      "date": "2009-04-26",
+      "labelContains": "Visit Bookworms — Hierophant reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Hierophant · Bunkichi & Mitsuko Kitamura · start"
+    },
+    {
+      "id": "p3r.event.social-max-hierophant",
+      "date": "2009-12-23",
+      "labelContains": "Hang out with the old couple — Hierophant reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Hierophant · Bunkichi & Mitsuko Kitamura · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-emperor",
+      "date": "2009-04-27",
+      "labelContains": "Sign your papers at the Faculty Office (1F Faculty Office Hallway) — Emperor reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Emperor · Hidetoshi Odagiri · start"
+    },
+    {
+      "id": "p3r.event.social-max-emperor",
+      "date": "2009-10-30",
+      "labelContains": "Hang out with Hidetoshi — Emperor reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Emperor · Hidetoshi Odagiri · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-hermit",
+      "date": "2009-04-29",
+      "labelContains": "Play the MMORPG at your desk — Hermit reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Hermit · Maya · start"
+    },
+    {
+      "id": "p3r.event.social-max-hermit",
+      "date": "2009-10-12",
+      "labelContains": "Play the MMORPG at your desk — Hermit reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Hermit · Maya · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-justice",
+      "date": "2009-05-07",
+      "labelContains": "Ask Chihiro to hang out — Justice reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Justice · Chihiro Fushimi · start"
+    },
+    {
+      "id": "p3r.event.social-max-justice",
+      "date": "2009-09-03",
+      "labelContains": "Hang out with Chihiro — Justice reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Justice · Chihiro Fushimi · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-hanged-man",
+      "date": "2009-05-11",
+      "labelContains": "Visit the girl at the shrine — Hanged-Man reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Hanged-Man · Maiko Oohashi · start"
+    },
+    {
+      "id": "p3r.event.social-max-hanged-man",
+      "date": "2009-12-12",
+      "labelContains": "Visit the girl at the shrine — Hanged-Man reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Hanged-Man · Maiko Oohashi · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-moon",
+      "date": "2009-05-15",
+      "labelContains": "Hang out with Nozomi — Moon reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Moon · Nozomi Suemitsu · start"
+    },
+    {
+      "id": "p3r.event.social-max-moon",
+      "date": "2009-12-26",
+      "labelContains": "Hang out with Nozomi — Moon reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Moon · Nozomi Suemitsu · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-temperance",
+      "date": "2009-05-29",
+      "labelContains": "Meet the exchange student — Temperance reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Temperance · Bebe · start"
+    },
+    {
+      "id": "p3r.event.social-max-temperance",
+      "date": "2009-12-02",
+      "labelContains": "Hang out with the exchange student — Temperance reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Temperance · Bebe · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-devil",
+      "date": "2009-06-02",
+      "labelContains": "Meet the businessman at Paulownia Mall — Devil reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Devil · President Tanaka · start"
+    },
+    {
+      "id": "p3r.event.social-start-tower",
+      "date": "2009-06-04",
+      "labelContains": "Talk to the bartender at Club Escapade — Tower reaches rank 1 (drink orders: 4 > 2 > 2 > 4)",
+      "routeId": "standard",
+      "displayLabel": "Tower · Mutatsu · start"
+    },
+    {
+      "id": "p3r.event.social-max-tower",
+      "date": "2009-10-23",
+      "labelContains": "Visit the monk at Club Escapade — Tower reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Tower · Mutatsu · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-fortune",
+      "date": "2009-06-18",
+      "labelContains": "Meet the art club — Fortune reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Fortune · Keisuke Hiraga · start"
+    },
+    {
+      "id": "p3r.event.social-max-fortune",
+      "date": "2010-01-26",
+      "labelContains": "Join the art club — Fortune reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Fortune · Keisuke Hiraga · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-priestess",
+      "date": "2009-06-22",
+      "labelContains": "Meet Fuuka — Priestess reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Priestess · Fuuka Yamagishi · start"
+    },
+    {
+      "id": "p3r.event.social-max-priestess",
+      "date": "2009-10-03",
+      "labelContains": "Hang out with Fuuka — Priestess reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Priestess · Fuuka Yamagishi · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-death",
+      "date": "2009-06-12",
+      "labelContains": "Death reaches rank 1 (story)",
+      "routeId": "standard",
+      "displayLabel": "Death · Pharos · start"
+    },
+    {
+      "id": "p3r.event.social-max-death",
+      "date": "2009-11-04",
+      "labelContains": "Death reaches rank 10 (MAX; story — Reload skips rank 9)",
+      "routeId": "standard",
+      "displayLabel": "Death · Pharos · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-lovers",
+      "date": "2009-07-25",
+      "labelContains": "Hang out with Yukari — Lovers reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Lovers · Yukari Takeba · start"
+    },
+    {
+      "id": "p3r.event.social-max-lovers",
+      "date": "2009-11-12",
+      "labelContains": "Hang out with Yukari — Lovers reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Lovers · Yukari Takeba · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-star",
+      "date": "2009-08-05",
+      "labelContains": "Meet the rival athlete — Star reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Star · Mamoru Hayase · start"
+    },
+    {
+      "id": "p3r.event.social-max-star",
+      "date": "2010-01-17",
+      "labelContains": "Hang out with the rival athlete — Star reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Star · Mamoru Hayase · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-judgment",
+      "date": "2009-12-31",
+      "labelContains": "Judgment reaches rank 1 (story)",
+      "routeId": "standard",
+      "displayLabel": "Judgment · Nyx Annihilation Team · start"
+    },
+    {
+      "id": "p3r.event.social-max-judgment",
+      "date": "2010-01-15",
+      "labelContains": "Continue through Adamah: Judgment reaches ranks 2–10",
+      "routeId": "standard",
+      "displayLabel": "Judgment · Nyx Annihilation Team · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-empress",
+      "date": "2009-11-21",
+      "labelContains": "Talk to Mitsuru at the Faculty Office — Empress reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Empress · Mitsuru Kirijo · start"
+    },
+    {
+      "id": "p3r.event.social-max-empress",
+      "date": "2010-01-09",
+      "labelContains": "Talk to Mitsuru — Empress reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Empress · Mitsuru Kirijo · MAX"
+    },
+    {
+      "id": "p3r.event.social-start-sun",
+      "date": "2009-09-06",
+      "labelContains": "Talk to the thin young man at Naganaki Shrine, then retrieve his Red Fountain Pen from Koromaru — Sun reaches rank 1",
+      "routeId": "standard",
+      "displayLabel": "Sun · Akinari Kamiki · start"
+    },
+    {
+      "id": "p3r.event.social-max-sun",
+      "date": "2009-12-27",
+      "labelContains": "Visit the dying young man at the shrine — Sun reaches rank 10 (MAX)",
+      "routeId": "standard",
+      "displayLabel": "Sun · Akinari Kamiki · MAX"
+    },
+    {
+      "id": "p3r.event.story-awakened-power",
+      "date": "2009-04-09",
+      "labelContains": "Full moon — the night is a mandatory story event, no free time",
+      "routeId": "standard",
+      "displayLabel": "Awakening · complete the story encounter"
+    },
+    {
+      "id": "p3r.event.story-back-on-track",
+      "date": "2009-05-09",
+      "labelContains": "Full moon — the night is a mandatory Shadow operation, no free time",
+      "routeId": "standard",
+      "displayLabel": "Priestess · complete the story encounter"
+    },
+    {
+      "id": "p3r.event.story-empowered-protector",
+      "date": "2009-06-08",
+      "labelContains": "Full moon — the night is a mandatory Shadow operation, no free time",
+      "routeId": "standard",
+      "displayLabel": "Emperor / Empress · complete the story encounter"
+    },
+    {
+      "id": "p3r.event.story-never-toy",
+      "date": "2009-07-07",
+      "labelContains": "Full moon — the night is a mandatory Shadow operation, no free time",
+      "routeId": "standard",
+      "displayLabel": "Hierophant / Lovers · complete the story encounter"
+    },
+    {
+      "id": "p3r.event.story-armor-disarmed",
+      "date": "2009-08-06",
+      "labelContains": "Full moon — the night is a mandatory Shadow operation, no free time",
+      "routeId": "standard",
+      "displayLabel": "Chariot / Justice · complete the story encounter"
+    },
+    {
+      "id": "p3r.event.story-dodging-lightning",
+      "date": "2009-09-05",
+      "labelContains": "Full moon — the night is a mandatory Shadow operation, no free time",
+      "routeId": "standard",
+      "displayLabel": "Hermit · complete the story encounter"
+    },
+    {
+      "id": "p3r.event.story-twist-of-fate",
+      "date": "2009-10-04",
+      "labelContains": "Full moon — the night is a mandatory Shadow operation, no free time",
+      "routeId": "standard",
+      "displayLabel": "Fortune / Strength · complete the story encounter"
+    },
+    {
+      "id": "p3r.event.story-sense-of-finality",
+      "date": "2009-11-03",
+      "labelContains": "Full moon — the night is a mandatory Shadow operation, no free time",
+      "routeId": "standard",
+      "displayLabel": "Hanged Man · complete the story encounter"
+    },
+    {
+      "id": "p3r.event.rescue-2009-06-27",
+      "date": "2009-06-27",
+      "labelContains": "Tartarus — obtain a Black Quartz for Request #29 from a Formidable Shadow or rescue reward",
+      "routeId": "standard",
+      "displayLabel": "Tartarus · complete the listed rescues"
+    },
+    {
+      "id": "p3r.event.rescue-2009-08-03",
+      "date": "2009-08-03",
+      "labelContains": "Tartarus — clearing the 91F Monad Passage rewards the Temperance Tarot (the schedule never spends it on Arcana Bursts)",
+      "routeId": "standard",
+      "displayLabel": "Tartarus · complete the listed rescues"
+    },
+    {
+      "id": "p3r.event.rescue-2009-09-04",
+      "date": "2009-09-04",
+      "labelContains": "Tartarus — bring Koromaru, Ken, and Shinjiro to watch their Persona summoning cutscenes",
+      "routeId": "standard",
+      "displayLabel": "Tartarus · complete the listed rescues"
+    },
+    {
+      "id": "p3r.event.rescue-2009-10-01",
+      "date": "2009-10-01",
+      "labelContains": "Tartarus — Tziah introduces the scripted Dark Zone tutorial; it does not count for The Horror of the Shade, which requires a later random Dark Zone",
+      "routeId": "standard",
+      "displayLabel": "Tartarus · complete the listed rescues"
+    },
+    {
+      "id": "p3r.event.rescue-2009-11-02",
+      "date": "2009-11-02",
+      "labelContains": "Tartarus",
+      "routeId": "standard",
+      "displayLabel": "Tartarus · complete the listed rescues"
+    },
+    {
+      "id": "p3r.event.rescue-2009-11-29",
+      "date": "2009-11-29",
+      "labelContains": "Tartarus",
+      "routeId": "standard",
+      "displayLabel": "Tartarus · complete the listed rescues"
+    },
+    {
+      "id": "p3r.event.rescue-2009-12-30",
+      "date": "2009-12-30",
+      "labelContains": "Tartarus — rescue the missing persons on 209F and 221F before the December 30 cutoff, then finish the planned Harabah progression",
+      "routeId": "standard",
+      "displayLabel": "Tartarus · complete the listed rescues"
+    },
+    {
+      "id": "p3r.event.rescue-2010-01-15",
+      "date": "2010-01-15",
+      "labelContains": "Tartarus — rescue the two missing persons on 232F and 250F before the January 30 cutoff",
+      "routeId": "standard",
+      "displayLabel": "Tartarus · complete the listed rescues"
+    },
+    {
+      "id": "p3r.event.reaper-defeated",
+      "date": "2010-01-21",
+      "labelContains": "Tartarus — defeat the Reaper",
+      "routeId": "standard",
+      "displayLabel": "Reaper · victory and Request #100 hand-in"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-06-17",
+      "date": "2009-06-17",
+      "labelContains": "Join Akihiko's cooking hangout (save the Iron-Athlete Meal for Request #52)",
+      "routeId": "standard",
+      "displayLabel": "Akihiko · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-06-20",
+      "date": "2009-06-20",
+      "labelContains": "Join Akihiko's DVD hangout",
+      "routeId": "standard",
+      "displayLabel": "Akihiko · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-06-22",
+      "date": "2009-06-22",
+      "labelContains": "Join Junpei's reading hangout",
+      "routeId": "standard",
+      "displayLabel": "Junpei · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-06-23",
+      "date": "2009-06-23",
+      "labelContains": "Join Yukari's DVD hangout",
+      "routeId": "standard",
+      "displayLabel": "Yukari · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-06-24",
+      "date": "2009-06-24",
+      "labelContains": "Join Akihiko's cooking hangout",
+      "routeId": "standard",
+      "displayLabel": "Akihiko · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-06-25",
+      "date": "2009-06-25",
+      "labelContains": "Join Fuuka's reading hangout",
+      "routeId": "standard",
+      "displayLabel": "Fuuka · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-06-30",
+      "date": "2009-06-30",
+      "labelContains": "Join Yukari's DVD hangout",
+      "routeId": "standard",
+      "displayLabel": "Yukari · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-07-01",
+      "date": "2009-07-01",
+      "labelContains": "Join Akihiko's cooking hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Akihiko · dorm hangout"
+    },
+    {
+      "id": "p3r.event.secret-menu-2009-07-02",
+      "date": "2009-07-02",
+      "labelContains": "Eat the Seafood Full Course at Wakatsu Kitchen",
+      "routeId": "standard",
+      "displayLabel": "Wakatsu · Seafood Full Course at night"
+    },
+    {
+      "id": "p3r.event.secret-menu-2009-07-03",
+      "date": "2009-07-03",
+      "labelContains": "Eat the Seafood Full Course at Wakatsu Kitchen",
+      "routeId": "standard",
+      "displayLabel": "Wakatsu · Seafood Full Course at night"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-07-05",
+      "date": "2009-07-05",
+      "labelContains": "Join Mitsuru's reading hangout",
+      "routeId": "standard",
+      "displayLabel": "Mitsuru · dorm hangout"
+    },
+    {
+      "id": "p3r.event.secret-menu-2009-07-12",
+      "date": "2009-07-12",
+      "labelContains": "Eat the Seafood Full Course at Wakatsu Kitchen",
+      "routeId": "standard",
+      "displayLabel": "Wakatsu · Seafood Full Course at night"
+    },
+    {
+      "id": "p3r.event.secret-menu-2009-07-23",
+      "date": "2009-07-23",
+      "labelContains": "Eat the Seafood Full Course at Wakatsu Kitchen",
+      "routeId": "standard",
+      "displayLabel": "Wakatsu · Seafood Full Course at night"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-07-26",
+      "date": "2009-07-26",
+      "labelContains": "Join Mitsuru's reading hangout",
+      "routeId": "standard",
+      "displayLabel": "Mitsuru · dorm hangout"
+    },
+    {
+      "id": "p3r.event.secret-menu-2009-07-27",
+      "date": "2009-07-27",
+      "labelContains": "Eat the Seafood Full Course at Wakatsu Kitchen",
+      "routeId": "standard",
+      "displayLabel": "Wakatsu · Seafood Full Course at night"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-07-30",
+      "date": "2009-07-30",
+      "labelContains": "Join Fuuka's reading hangout",
+      "routeId": "standard",
+      "displayLabel": "Fuuka · dorm hangout"
+    },
+    {
+      "id": "p3r.event.characteristic-2009-08-01",
+      "date": "2009-08-01",
+      "labelContains": "Join Mitsuru's reading hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Mitsuru · Combat Characteristic unlocked"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-08-01",
+      "date": "2009-08-01",
+      "labelContains": "Join Mitsuru's reading hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Mitsuru · dorm hangout"
+    },
+    {
+      "id": "p3r.event.secret-menu-2009-08-02",
+      "date": "2009-08-02",
+      "labelContains": "Eat the Seafood Full Course at Wakatsu Kitchen",
+      "routeId": "standard",
+      "displayLabel": "Wakatsu · Seafood Full Course at night"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-08-17",
+      "date": "2009-08-17",
+      "labelContains": "Join Koromaru's TV hangout",
+      "routeId": "standard",
+      "displayLabel": "Koromaru · dorm hangout"
+    },
+    {
+      "id": "p3r.event.characteristic-2009-08-19",
+      "date": "2009-08-19",
+      "labelContains": "Join Yukari's DVD hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Yukari · Combat Characteristic unlocked"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-08-19",
+      "date": "2009-08-19",
+      "labelContains": "Join Yukari's DVD hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Yukari · dorm hangout"
+    },
+    {
+      "id": "p3r.event.characteristic-2009-08-20",
+      "date": "2009-08-20",
+      "labelContains": "Join Fuuka's reading hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Fuuka · Combat Characteristic unlocked"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-08-20",
+      "date": "2009-08-20",
+      "labelContains": "Join Fuuka's reading hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Fuuka · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-08-24",
+      "date": "2009-08-24",
+      "labelContains": "Join Koromaru's TV hangout",
+      "routeId": "standard",
+      "displayLabel": "Koromaru · dorm hangout"
+    },
+    {
+      "id": "p3r.event.characteristic-2009-08-31",
+      "date": "2009-08-31",
+      "labelContains": "Join Koromaru's TV hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Koromaru · Combat Characteristic unlocked"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-08-31",
+      "date": "2009-08-31",
+      "labelContains": "Join Koromaru's TV hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Koromaru · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-02",
+      "date": "2009-09-02",
+      "labelContains": "Join Aigis's reading hangout",
+      "routeId": "standard",
+      "displayLabel": "Aigis · dorm hangout"
+    },
+    {
+      "id": "p3r.event.characteristic-2009-09-03",
+      "date": "2009-09-03",
+      "labelContains": "Join Junpei's reading hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Junpei · Combat Characteristic unlocked"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-03",
+      "date": "2009-09-03",
+      "labelContains": "Join Junpei's reading hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Junpei · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-06",
+      "date": "2009-09-06",
+      "labelContains": "Join Ken's coffee hangout",
+      "routeId": "standard",
+      "displayLabel": "Ken · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-07",
+      "date": "2009-09-07",
+      "labelContains": "Join Shinjiro's gardening hangout",
+      "routeId": "standard",
+      "displayLabel": "Shinjiro · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-09",
+      "date": "2009-09-09",
+      "labelContains": "Join Aigis's reading hangout",
+      "routeId": "standard",
+      "displayLabel": "Aigis · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-10",
+      "date": "2009-09-10",
+      "labelContains": "Join Shinjiro's gardening hangout",
+      "routeId": "standard",
+      "displayLabel": "Shinjiro · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-11",
+      "date": "2009-09-11",
+      "labelContains": "Join Yukari's cooking hangout",
+      "routeId": "standard",
+      "displayLabel": "Yukari · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-12",
+      "date": "2009-09-12",
+      "labelContains": "Join Shinjiro's cooking hangout",
+      "routeId": "standard",
+      "displayLabel": "Shinjiro · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-13",
+      "date": "2009-09-13",
+      "labelContains": "Join Ken's coffee hangout",
+      "routeId": "standard",
+      "displayLabel": "Ken · dorm hangout"
+    },
+    {
+      "id": "p3r.event.characteristic-2009-09-14",
+      "date": "2009-09-14",
+      "labelContains": "Join Shinjiro's gardening hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Shinjiro · Combat Characteristic unlocked"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-14",
+      "date": "2009-09-14",
+      "labelContains": "Join Shinjiro's gardening hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Shinjiro · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-15",
+      "date": "2009-09-15",
+      "labelContains": "Join Fuuka's gardening hangout",
+      "routeId": "standard",
+      "displayLabel": "Fuuka · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-21",
+      "date": "2009-09-21",
+      "labelContains": "Join Mitsuru's tea-time hangout",
+      "routeId": "standard",
+      "displayLabel": "Mitsuru · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-25",
+      "date": "2009-09-25",
+      "labelContains": "Join Yukari's cooking hangout",
+      "routeId": "standard",
+      "displayLabel": "Yukari · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-26",
+      "date": "2009-09-26",
+      "labelContains": "Join Shinjiro's cooking hangout",
+      "routeId": "standard",
+      "displayLabel": "Shinjiro · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-28",
+      "date": "2009-09-28",
+      "labelContains": "Join Mitsuru's tea-time hangout",
+      "routeId": "standard",
+      "displayLabel": "Mitsuru · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-29",
+      "date": "2009-09-29",
+      "labelContains": "Join Shinjiro's cooking hangout — Combat Characteristic enhanced",
+      "routeId": "standard",
+      "displayLabel": "Shinjiro · dorm hangout"
+    },
+    {
+      "id": "p3r.event.characteristic-2009-09-30",
+      "date": "2009-09-30",
+      "labelContains": "Join Aigis's reading hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Aigis · Combat Characteristic unlocked"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-09-30",
+      "date": "2009-09-30",
+      "labelContains": "Join Aigis's reading hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Aigis · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-10-02",
+      "date": "2009-10-02",
+      "labelContains": "Join Yukari's cooking hangout — Combat Characteristic enhanced",
+      "routeId": "standard",
+      "displayLabel": "Yukari · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-10-03",
+      "date": "2009-10-03",
+      "labelContains": "Join Junpei's gardening hangout",
+      "routeId": "standard",
+      "displayLabel": "Junpei · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-10-17",
+      "date": "2009-10-17",
+      "labelContains": "Join Junpei's gardening hangout — Combat Characteristic enhanced",
+      "routeId": "standard",
+      "displayLabel": "Junpei · dorm hangout"
+    },
+    {
+      "id": "p3r.event.characteristic-2009-10-18",
+      "date": "2009-10-18",
+      "labelContains": "Join Ken's coffee hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Ken · Combat Characteristic unlocked"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-10-18",
+      "date": "2009-10-18",
+      "labelContains": "Join Ken's coffee hangout — Combat Characteristic unlocked",
+      "routeId": "standard",
+      "displayLabel": "Ken · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-10-20",
+      "date": "2009-10-20",
+      "labelContains": "Join Aigis's gardening hangout",
+      "routeId": "standard",
+      "displayLabel": "Aigis · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-10-24",
+      "date": "2009-10-24",
+      "labelContains": "Join Akihiko's DVD hangout",
+      "routeId": "standard",
+      "displayLabel": "Akihiko · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-10-25",
+      "date": "2009-10-25",
+      "labelContains": "Join Aigis's gardening hangout",
+      "routeId": "standard",
+      "displayLabel": "Aigis · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-10-27",
+      "date": "2009-10-27",
+      "labelContains": "Join Fuuka's gardening hangout",
+      "routeId": "standard",
+      "displayLabel": "Fuuka · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-10-30",
+      "date": "2009-10-30",
+      "labelContains": "Join Ken's DVD hangout",
+      "routeId": "standard",
+      "displayLabel": "Ken · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-11-13",
+      "date": "2009-11-13",
+      "labelContains": "Join Ken's DVD hangout",
+      "routeId": "standard",
+      "displayLabel": "Ken · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-11-14",
+      "date": "2009-11-14",
+      "labelContains": "Join Akihiko's DVD hangout — Combat Characteristic enhanced",
+      "routeId": "standard",
+      "displayLabel": "Akihiko · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-11-15",
+      "date": "2009-11-15",
+      "labelContains": "Join Aigis's gardening hangout — Combat Characteristic enhanced",
+      "routeId": "standard",
+      "displayLabel": "Aigis · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-11-21",
+      "date": "2009-11-21",
+      "labelContains": "Join Fuuka's gardening hangout — Combat Characteristic enhanced",
+      "routeId": "standard",
+      "displayLabel": "Fuuka · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2009-11-30",
+      "date": "2009-11-30",
+      "labelContains": "Join Mitsuru's tea-time hangout — Combat Characteristic enhanced",
+      "routeId": "standard",
+      "displayLabel": "Mitsuru · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2010-01-01",
+      "date": "2010-01-01",
+      "labelContains": "Join Ken's DVD hangout — Combat Characteristic enhanced",
+      "routeId": "standard",
+      "displayLabel": "Ken · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2010-01-05",
+      "date": "2010-01-05",
+      "labelContains": "Join Yukari's DVD hangout",
+      "routeId": "standard",
+      "displayLabel": "Yukari · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2010-01-06",
+      "date": "2010-01-06",
+      "labelContains": "Join Aigis's reading hangout",
+      "routeId": "standard",
+      "displayLabel": "Aigis · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2010-01-08",
+      "date": "2010-01-08",
+      "labelContains": "Join Yukari's cooking hangout",
+      "routeId": "standard",
+      "displayLabel": "Yukari · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2010-01-11",
+      "date": "2010-01-11",
+      "labelContains": "Join Mitsuru's tea-time hangout",
+      "routeId": "standard",
+      "displayLabel": "Mitsuru · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2010-01-12",
+      "date": "2010-01-12",
+      "labelContains": "Join Fuuka's gardening hangout",
+      "routeId": "standard",
+      "displayLabel": "Fuuka · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2010-01-14",
+      "date": "2010-01-14",
+      "labelContains": "Join Fuuka's reading hangout",
+      "routeId": "standard",
+      "displayLabel": "Fuuka · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2010-01-18",
+      "date": "2010-01-18",
+      "labelContains": "Join Junpei's reading hangout",
+      "routeId": "standard",
+      "displayLabel": "Junpei · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2010-01-22",
+      "date": "2010-01-22",
+      "labelContains": "Join Ken's DVD hangout",
+      "routeId": "standard",
+      "displayLabel": "Ken · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2010-01-25",
+      "date": "2010-01-25",
+      "labelContains": "Join Koromaru's TV hangout",
+      "routeId": "standard",
+      "displayLabel": "Koromaru · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2010-01-26",
+      "date": "2010-01-26",
+      "labelContains": "Join Fuuka's gardening hangout",
+      "routeId": "standard",
+      "displayLabel": "Fuuka · dorm hangout"
+    },
+    {
+      "id": "p3r.event.dorm-hangout-2010-01-27",
+      "date": "2010-01-27",
+      "labelContains": "Join Akihiko's cooking hangout",
+      "routeId": "standard",
+      "displayLabel": "Akihiko · dorm hangout"
     }
   ]
 }

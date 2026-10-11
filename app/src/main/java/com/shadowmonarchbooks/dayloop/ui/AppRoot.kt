@@ -266,7 +266,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                     )
                 }
                 composable("achievements") {
-                    AchievementsScreen(vm = vm)
+                    AchievementsScreen(vm = vm, onOpenDay = { date -> nav.navigate("day/$date") })
                 }
                 composable("bonds") {
                     BondsScreen(

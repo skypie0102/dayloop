@@ -1,13 +1,13 @@
 # dayloop
 
-Current P3R pass: inline boss preparation and tactics, all 43 scheduled
-Tartarus gatekeeper floors, and clear Reload-styled reading sections.
-See the [combat guidance audit](docs/audits/p3r-combat-guidance.md). The merged
+Current P3R pass: all 48 achievement rules audited, complete Social Link proof,
+readable earning instructions and next-checkpoint navigation in the Reload theme.
+See the [achievement audit](docs/audits/p3r-achievement-proof.md). The merged
+[combat guidance](docs/audits/p3r-combat-guidance.md),
 [Linked Episode chains](docs/audits/p3r-linked-episodes.md),
-[P3R requests and rescue tracking](docs/audits/p3r-requests-rescues.md),
+[requests/rescues](docs/audits/p3r-requests-rescues.md),
 [reading/UI review](docs/audits/p3r-reading-reload-ui.md) and
-[P5R Mementos and motion improvements](docs/audits/p5r-mementos-motion.md)
-remain in place.
+[P5R Mementos/motion improvements](docs/audits/p5r-mementos-motion.md) remain in place.
 
 **Unofficial Android companion/checklist app for calendar-based ATLUS-style JRPGs** — launching with Persona 5 Royal, Persona 3 Reload, and Metaphor: ReFantazio. The engine stays pack-generic; further ATLUS titles can drop in later.
 
@@ -37,10 +37,11 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 
 ## Roadmap
 
-**Current priority: [Persona 3 Reload — combat guidance](docs/audits/p3r-combat-guidance.md).**
-The October 12 continuation adds 82 preparation/fight sections, corrects three
-missing gatekeeper floors and refines full-width reading in the Reload theme.
-The [P3R roadmap](docs/packs/p3r-roadmap.md) tracks the broader remaining audits.
+**Current priority: [Persona 3 Reload — achievement proof and reading](docs/audits/p3r-achievement-proof.md).**
+The October 12 continuation reviews all 48 achievements, replaces unsafe shortcut
+awards, adds direct source-checkpoint navigation and keeps completed counters editable.
+The [P3R roadmap](docs/packs/p3r-roadmap.md) tracks the remaining optional encounter,
+UI/motion and performance acceptance work.
 The phase table below records earlier milestones.
 
 | Phase | Deliverable | Status |

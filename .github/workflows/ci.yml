@@ -24,6 +24,9 @@ jobs:
       - name: Build and test
         run: ./gradlew assembleDebug assembleCandidate :core:pack:test :core:progress:test :tools:pack:test :app:testDebugUnitTest :app:compileDebugAndroidTestKotlin
 
+      - name: Verify candidate signing identity
+        run: bash tools/android/verify-candidate-signing.sh app/build/outputs/apk/candidate/app-candidate.apk
+
       - name: Validate content packs (packlint)
         run: |
           ./gradlew packlint

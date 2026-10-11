@@ -2,14 +2,27 @@
 
 Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version 3.
 Priority: **active P3R reading and Reload UI optimization**, per the October 10, 2026 request.
-Status: content version **18** adds boss preparation and tactics after the Linked Episode chains.
+Status: content version **19** audits all 48 base-game achievements and adds source-proof navigation after the combat and Linked Episode passes.
 Android validation and screenshot review for this continuation are tracked in the
 [combat guidance audit](../audits/p3r-combat-guidance.md), following the merged
 [Linked Episode audit](../audits/p3r-linked-episodes.md),
 [request/rescue audit](../audits/p3r-requests-rescues.md) and
-[reading/UI review](../audits/p3r-reading-reload-ui.md). Achievements, broader optional encounters and release hardening remain separately scoped.
+[reading/UI review](../audits/p3r-reading-reload-ui.md). Broader optional encounters, final UI/motion review and release hardening remain separately scoped.
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
+
+## October 12 continuation: achievement proof and reading
+
+All 48 Journey achievements now have instructions and reviewed completion rules.
+People Person and A Legacy of Friendships require all 22 independent starts/MAX
+milestones, including Judgment's complete floor task. Nine former story-date
+rules now require exact Done tasks. Safe alternative MAX/stat/dorm/menu/rescue
+proofs count, while Theurgy uses, harvest/fusion results, counters and endings
+retain explicit player evidence. The catalog has 156 unique source anchors.
+Expanded Reload details show the next missing source and read-only date navigation;
+completed wage totals remain editable. All 819 saved tasks and manual progress
+identities are preserved. See the [achievement audit](../audits/p3r-achievement-proof.md).
+Broader optional encounters and final UI/motion/performance acceptance remain open.
 
 ## October 12 continuation: combat guidance and reading sections
 
@@ -278,7 +291,7 @@ No APK visual review or new full gameplay audit was performed for this roadmap.
 | Day structure | Every task has Day, After School, or Evening slot | Zero `tip` fields and zero `groupLabel` fields in P3R; add useful detail and separate Tartarus presentation |
 | Social Links | 22 links; ordinary ladders and automatic rank skips audited | Verify answers, prerequisites, branch guidance, and task-to-rank tracking end to end |
 | Deadlines and answers | 37 deadlines, including 14 timed Elizabeth requests; 53 answer sheets | Complete catalog coverage, clear actionable cutoffs, and contextual navigation |
-| Achievements | 48 base-game entries, 24 semantic event anchors | Review each completion rule against actual evidence; expand safe automatic tracking |
+| Achievements | 48 base-game entries, 156 semantic event anchors | All rules audited; next-proof navigation and manual outcome guidance implemented; see the achievement audit |
 | Tracking mix | 10 story-date, 9 event, 3 all-events, 14 confirmation, 8 manual, 2 choice, 1 checklist, 1 counter | Date passage, opportunity, and actual completion must remain distinguishable |
 | Elizabeth / rescues | Request chains and rescue batches appear in route prose and deadlines | No dedicated Elizabeth catalog/tracker; no individual rescue catalog/tracker |
 | Activities | No reusable activity catalog | Add only if browsing prerequisites/alternatives provides value beyond inline route instructions |
@@ -437,10 +450,10 @@ Timed requests and individual rescue obligations are reachable from Today.
 
 ### P3R-4 — Harden progress and achievement behavior
 
-- [ ] Review all 48 achievements individually. Use DONE-backed events for
+- [x] Review all 48 achievements individually. Use DONE-backed events for
   deterministic actions and aggregated conditions only when every requirement is
   represented. Keep combat, random outcomes, counters, and branch results honest.
-- [ ] Revisit the ten current story-date rules: completing a dated task, ending
+- [x] Revisit the ten original story-date rules (nine now exact tasks; one verified mandatory boundary): completing a dated task, ending
   that story day, and merely browsing that date must have explicit semantics.
   Prefer exact completion evidence where available; changes must be P3R-scoped.
 - [ ] Explain partial progress and remaining requirements for Social Links,
