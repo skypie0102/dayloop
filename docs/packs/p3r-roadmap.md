@@ -23,6 +23,10 @@ Native acceptance adds repeated tab/Back checks at 200%, live font/viewport
 resizing and animated day advance without overlapping Perfect Day. A paired
 frame probe measures warmed baseline/current APKs on one AVD with real Window
 callbacks; it does not stand in for physical-device release or cold-start profiling.
+Both paired attempts lost the review device during baseline warm-up and produced
+no usable comparison. The probe remains a manual review tool; P3R-6 measured
+performance acceptance stays open. The native review passed 46 tests with 79
+captures, plus the isolated hand-in test.
 Candidate rc8 keeps content 19 and the rc7 update certificate. See the
 [protocol, isolation and remaining scope](../audits/p3r-motion-performance.md).
 

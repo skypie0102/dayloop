@@ -1,11 +1,5 @@
 name: P3R frame review
 on:
-  pull_request:
-    paths:
-      - 'app/**'
-      - 'core/**'
-      - 'tools/android/**'
-      - '.github/workflows/p3r-frame-review.yml'
   workflow_dispatch:
     inputs:
       baseline_sha:
@@ -16,12 +10,11 @@ permissions:
   contents: read
 jobs:
   frames:
-    if: github.event_name == 'workflow_dispatch' || contains(github.head_ref, 'p3r')
     runs-on: ubuntu-latest
     timeout-minutes: 25
     env:
-      P3R_BASELINE_SHA: ${{ github.event.pull_request.base.sha || inputs.baseline_sha }}
-      P3R_REVIEW_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      P3R_BASELINE_SHA: ${{ inputs.baseline_sha }}
+      P3R_REVIEW_SHA: ${{ github.sha }}
     steps:
       - uses: actions/checkout@v4
         with:

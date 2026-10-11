@@ -1,6 +1,6 @@
 # P3R navigation, motion and frame review
 
-October 12, 2026 continuation of P3R-5 and measured P3R-6 acceptance. Candidate
+October 12, 2026 continuation of P3R-5 and preparation for P3R-6 frame review. Candidate
 `0.16.0-rc8` (40), with P3R content 19 unchanged.
 
 ## Changes and scope
@@ -49,12 +49,21 @@ The full native review includes these cases and all existing P3R/P5R,
 achievement, profile, reversal and motion checks. The isolated request hand-in
 flow remains a separate gate. Build/JVM/all-pack lint and candidate signing
 checks remain required before merge. The [visual review workflow](https://github.com/skypie0102/dayloop/actions/workflows/p3r-ui-review.yml)
-retains the APK, XML and captures. Final check results are recorded in the PR.
+retains the APK, XML and captures. The [native run on the reviewed branch](https://github.com/skypie0102/dayloop/actions/runs/38185162230)
+passed **46 full-suite tests**, with **79 captures**, and the separate **one-test
+hand-in** check; no failures, errors or skipped tests were reported. The enlarged
+Requests tab and restored solution, and the dated animated result were inspected.
+The earlier shipping-code run passed the same counts. Final check results are
+recorded in the PR.
+
+All 304 tracked content files match the PR base byte for byte. Their aggregate
+SHA-256 is `669d21f1090407669240f60b6ea7cbf1e2bbf1f231a1b0238e36a2703e2286ba`.
 
 ## Frame measurement protocol
 
 The [frame review workflow](https://github.com/skypie0102/dayloop/actions/workflows/p3r-frame-review.yml)
-builds the PR base and current debug APKs, plus one current instrumentation
+is manually dispatched with an explicit baseline commit. It builds that baseline
+and the chosen branch's debug APKs, plus one current instrumentation
 probe. It installs and tests both APKs sequentially on the same API 34 AOSP
 Pixel 2 AVD with software GLES and motion scale 1. Source hashes and actual
 installed version names are included in each JSON report.
@@ -81,9 +90,24 @@ has no meaningful percentile; it is reported as absent, not zero milliseconds.
 No portable speed threshold or percentage-improvement claim is assumed.
 
 Raw `baseline.json`, `optimized.json`, instrumentation output, logcat and the
-comparison table are retained together. The PR records the observed values and
-limitations once the paired run completes. Physical-device release profiling,
+comparison table are retained together when both probes finish. Physical-device release profiling,
 cold-start analysis and the wider per-surface accessibility audit remain open.
+
+## Observed frame-review limit
+
+The [paired review attempt](https://github.com/skypie0102/dayloop/actions/runs/38185162232)
+and its one retry both lost the emulator connection during the baseline warm-up:
+instrumentation exited 255 and the emulator's TCP port refused connections.
+Neither attempt produced a complete baseline/current report. No speedup, jank,
+idle-frame or memory result can be inferred from those interrupted runs.
+
+The probe first used a provider text search that Compose's virtual-node provider
+does not implement; it now traverses the accessible children directly. That
+instrumentation fix compiled successfully, and the normal native review passed
+again. The paired probe is kept as a **manual review**, rather than an automatic
+PR gate, until it completes in a suitable environment. **P3R-6 measured performance
+acceptance remains open.** The shipping navigation/cache changes are supported
+by the build, content, signing and native functional gates above.
 
 ## Implementation references
 
@@ -91,3 +115,4 @@ cold-start analysis and the wider per-surface accessibility audit remain open.
 - [Compose drawing cache and layer transforms](https://developer.android.com/develop/ui/compose/graphics/draw/modifiers)
 - [Window frame callback and dropped-report semantics](https://developer.android.com/reference/android/view/Window.OnFrameMetricsAvailableListener)
 - [FrameMetrics platform implementation](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/core/java/android/view/FrameMetrics.java)
+- [Compose virtual accessibility-node provider](https://android.googlesource.com/platform/frameworks/support/+/refs/heads/androidx-main/compose/ui/ui/src/androidMain/kotlin/androidx/compose/ui/platform/AndroidComposeViewAccessibilityDelegateCompat.android.kt)
