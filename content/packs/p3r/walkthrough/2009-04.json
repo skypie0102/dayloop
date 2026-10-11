@@ -37,7 +37,13 @@
           "label": "Full moon — the night is a mandatory story event, no free time",
           "slot": "evening",
           "spoiler": true,
-          "groupLabel": "Dark Hour · Full Moon"
+          "groupLabel": "Dark Hour · Full Moon",
+          "guidanceSections": [
+            {
+              "title": "Fight · Awakening",
+              "body": "This is a scripted introduction, not a free exploration night. Follow the battle prompts and finish the rooftop encounter before marking the story task Done. The later full-moon operations need their own preparation."
+            }
+          ]
         }
       ],
       "displayOrder": [
@@ -272,7 +278,25 @@
           "slot": "evening",
           "spoiler": true,
           "tip": "Before climbing, finish today's vending-machine purchases and keep the SP items for the run.\n\nThebel objectives: reach the 22F border, open the purple chest for Old Document 01, and keep an Odd Morsel from a common chest for Nozomi's later Moon introduction. Do not consume that Morsel.\n\nGatekeepers: use Fire on 5F; on 11F use Wind against Barbaric Beast Wheel and Fire against the Magic Hands; use Electricity on 17F. Bring access to these elements before starting the fights.\n\nLeave with at least ¥36,000 for the route's upcoming expenses. Keep Old Document 01 for Request #2 on May 10. Finish the separate Hermit/Hanged-Man preparation task before leaving.\n\nRequest #2: keep the required item or objective proof for Elizabeth. Preparing it does not count as reporting.",
-          "groupLabel": "Dark Hour · Tartarus"
+          "groupLabel": "Dark Hour · Tartarus",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Thebel",
+              "body": "Keep Fire, Wind and Electricity available across the party and your Personas. Bring healing and revival items; save and restore HP before a gatekeeper. Physical skills spend HP, so leave enough health to survive the next enemy turn."
+            },
+            {
+              "title": "5F · Ruthless Ice Ravens",
+              "body": "Use single-target Fire to knock down both Ravens, Shift when useful, then All-Out Attack. They use Ice and can Freeze allies; equip Ice resistance on the protagonist if available."
+            },
+            {
+              "title": "11F · Wheel and Hands",
+              "body": "Use Wind on Barbaric Beast Wheel and Fire on each Magic Hand. Target separately to build a Shift chain and knock down the whole group. Fire is resisted by the Wheel."
+            },
+            {
+              "title": "17F · Swift Axle",
+              "body": "Use Electricity to knock it down; apply attack or defense debuffs when available. It uses Wind, so have Junpei guard against those attacks. Heal between physical attacks rather than spending the party's HP recklessly."
+            }
+          ]
         },
         {
           "label": "Leave Tartarus carrying Hermit and Hanged-Man Personas (fusion options: Nekomata + Omoikane, Orpheus + Omoikane)",

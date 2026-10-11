@@ -222,7 +222,21 @@
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
           "spoiler": true,
-          "groupLabel": "Dark Hour · Full Moon"
+          "groupLabel": "Dark Hour · Full Moon",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Emperor and Empress",
+              "body": "Carry Fire, Ice, Electricity and Wind on the protagonist, together with physical attack options. The forced party is the protagonist, Junpei and Akihiko. Theurgy unlocks June 13, after this operation."
+            },
+            {
+              "title": "Fight · Emperor and Empress",
+              "body": "Use Fuuka's analysis. Emperor starts weak to Electricity, while Empress starts weak to Pierce. Knock down each with the appropriate damage, Shift, and use an All-Out Attack once both are down."
+            },
+            {
+              "title": "After Paradigm Shift",
+              "body": "Their weaknesses change after Paradigm Shift. Check the new affinity before attacking: Emperor switches among the four attack elements; Empress among physical types. Repeating the initial attack can waste turns against immunity."
+            }
+          ]
         }
       ],
       "displayOrder": [
@@ -777,7 +791,25 @@
           "slot": "evening",
           "spoiler": true,
           "tip": "Climb to the 69F border. Gatekeepers: 47F, 54F, 60F.\n\nRescue all three missing people on 50F, 56F and 64F during this visit. July 6 is their last actionable rescue date; reaching the upper border alone does not rescue them.\n\nObtain a Black Quartz for Request #29 from a Formidable Shadow or the relevant rescue reward. Keep it for tomorrow's Club Escapade purchase and Elizabeth hand-in; finding the Quartz alone does not finish the request.\n\nLeave carrying Magician, Priestess, Hermit, Hanged-Man and Moon Personas for the route through August 3.\n\nRequest #29: this is a preparation step. Continue the remaining guide actions and the final reporting task.\n\nRescue targets:\nAyako Yoshimoto — 50F\nKenjiro Tsutsumi — 56F\nYoshimi Miyama — 64F\n\nCollect rescue rewards separately at the police station after returning. Mark this visit Done only after completing every rescue above.",
-          "groupLabel": "Dark Hour · Tartarus"
+          "groupLabel": "Dark Hour · Tartarus",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Arqa II",
+              "body": "Bring Electricity, Dark damage, Wind and physical skills. Theurgy is now available; charge gauges in ordinary battles before tough fights. Keep SP and recovery items available for the separate rescue objectives."
+            },
+            {
+              "title": "47F · Tower and Cupids",
+              "body": "Use Electricity on the two Enslaved Cupids and Dark damage on Servant Tower. Do not cast group Electricity while the Tower is up: it repels that element. Rage on the Tower is an optional way to disrupt its spells."
+            },
+            {
+              "title": "54F · Lady and Gigas",
+              "body": "Use Wind on the Profligate Gigas and physical damage on Lascivious Lady, who blocks elemental damage. Strike deals extra damage without an elemental knockdown. Charming a Gigas can turn its attacks against the Lady, but ailments can fail."
+            },
+            {
+              "title": "60F · Fleetfooted Cavalry",
+              "body": "It has no elemental weakness and drains Wind. Lower its defense and use physical damage or charged Theurgies. Maintain healing and attack-down effects instead of repeatedly testing elements."
+            }
+          ]
         }
       ],
       "displayOrder": [

@@ -118,7 +118,25 @@
           "slot": "evening",
           "spoiler": true,
           "tip": "Climb to the 118F border. Gatekeepers: 99F, 105F, 112F.\n\nTonight is the last actionable rescue night for the people on 101F, 109F and 114F. Rescue all three before leaving; tomorrow is a mandatory full-moon operation.\n\nAlso bring Koromaru, Ken and Shinjiro for the summoning scenes specified in today's task. The scenes and the rescues are separate objectives: check both before marking the whole task done.\n\nLeave carrying Priestess, Lovers, Strength, Temperance and Tower Personas for the route through October 1.\n\nRescue targets:\nSatsuki Onozuka — 101F\nHirotaka Tanigami — 109F\nReiko Makita — 114F\n\nCollect rescue rewards separately at the police station after returning. Mark this visit Done only after completing every rescue above.",
-          "groupLabel": "Dark Hour · Tartarus"
+          "groupLabel": "Dark Hour · Tartarus",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Yabbashah II",
+              "body": "Bring Electricity, Dark, Fire and Pierce attacks, plus Fear and Shock cures. Follow the party-scene and rescue instructions above as separate goals; no battle win confirms a rescue by itself."
+            },
+            {
+              "title": "99F · Magus and Fingers",
+              "body": "Use Electricity on Venomous Magus and Dark damage on Five Fingers of Blight. Keep Poison cures ready and restore lowered attack when useful."
+            },
+            {
+              "title": "105F · Maria and Crown",
+              "body": "Use Pierce on Bloody Maria and Fire on Executioner's Crown. Cure Fear immediately after Evil Smile: Ghastly Wail can instantly kill fearful allies. Avoid Wind against the Crown because it drains it."
+            },
+            {
+              "title": "112F · Imposing Skyscraper",
+              "body": "No elemental weakness; it drains Electricity and resists Pierce/Wind. Use other damage or Theurgy. Cure Shock promptly and maintain defense against its physical attacks."
+            }
+          ]
         }
       ],
       "displayOrder": [
@@ -138,7 +156,17 @@
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
           "spoiler": true,
-          "groupLabel": "Dark Hour · Full Moon"
+          "groupLabel": "Dark Hour · Full Moon",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Hermit",
+              "body": "Junpei is unavailable. Prefer allies who are not weak to Electricity and give the protagonist Electricity resistance. Bring party healing and Shock cures; Akihiko is a useful damage/support option."
+            },
+            {
+              "title": "Fight · Hermit",
+              "body": "Hermit has no elemental weakness and blocks Electricity, Wind and Dark. Use physical, Fire or Ice damage while maintaining healing and debuffs. Watch Initiate Charging and Accelerated Charging: burst damage can interrupt charging; if it continues or completes, guard before the charged attack."
+            }
+          ]
         }
       ],
       "displayOrder": [

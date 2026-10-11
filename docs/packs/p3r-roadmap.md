@@ -2,13 +2,28 @@
 
 Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version 3.
 Priority: **active P3R reading and Reload UI optimization**, per the October 10, 2026 request.
-Status: content version **17** adds six Linked Episode chains and their exact source/checkpoint navigation after request/rescue tracking.
+Status: content version **18** adds boss preparation and tactics after the Linked Episode chains.
 Android validation and screenshot review for this continuation are tracked in the
-[Linked Episode audit](../audits/p3r-linked-episodes.md), following the merged
+[combat guidance audit](../audits/p3r-combat-guidance.md), following the merged
+[Linked Episode audit](../audits/p3r-linked-episodes.md),
 [request/rescue audit](../audits/p3r-requests-rescues.md) and
-[reading/UI review](../audits/p3r-reading-reload-ui.md). Broader boss strategies, achievements and release hardening remain separately scoped.
+[reading/UI review](../audits/p3r-reading-reload-ui.md). Achievements, broader optional encounters and release hardening remain separately scoped.
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
+
+## October 12 continuation: combat guidance and reading sections
+
+Seven Shadow operations and ten major Tartarus climbs now have preparation,
+affinities and phase instructions. All 43 gatekeeper floors are covered,
+including the previously omitted 91F Partners, 143F Castle and 225F Minotaur.
+Reaper, Shadow of the Void and the finale have dedicated advice; #101 links to
+its existing strategy, and November 22 has a Chidori story note. The 82 sections
+use the existing Reload display font and static pink/cyan headings at full
+width, with the same content available in the legacy Tips dialog. No new motion
+or progress controls are introduced. All 819 saved task identities remain intact.
+See the [source and validation audit](../audits/p3r-combat-guidance.md).
+Achievement auditing, broader optional encounters and final UI/motion and
+performance acceptance remain open.
 
 ## October 11 continuation: Linked Episode chains
 

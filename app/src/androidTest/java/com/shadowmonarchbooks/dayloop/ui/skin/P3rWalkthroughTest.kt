@@ -41,7 +41,7 @@ class P3rWalkthroughTest {
 
     private fun asset(path: String) = context.assets.open(path).bufferedReader().use { it.readText() }
 
-    private fun show(date: String, scale: Float = 1f) {
+    private fun show(date: String, scale: Float = 1f, inlineTips: Boolean? = null) {
         val pack = LoadedPack("p3r", requireNotNull(PackLoader.decodePack(asset("p3r/pack.json"))))
         val day = requireNotNull(PackLoader.decodeWalkthrough(asset("p3r/walkthrough/${date.take(7)}.json"))).days.single { it.date == date }
         compose.setContent {
@@ -64,7 +64,7 @@ class P3rWalkthroughTest {
                             statLabels = pack.pack.stats.associate { it.id to it.label },
                             activityLabels = emptyMap(),
                             slotLabels = pack.pack.slots.associate { it.id to it.label },
-                            inlineTips = pack.pack.walkthroughPresentation.inlineTips,
+                            inlineTips = inlineTips ?: pack.pack.walkthroughPresentation.inlineTips,
                             displayOrder = day.displayOrder,
                             artworkBackdrop = true,
                         )
@@ -76,7 +76,7 @@ class P3rWalkthroughTest {
         compose.waitForIdle()
     }
 
-    private fun capture(name: String) {
+    private fun capture(name: String, dialog: Boolean = false) {
         val values = ContentValues().apply {
             put(MediaStore.Images.Media.DISPLAY_NAME, "$name.png")
             put(MediaStore.Images.Media.MIME_TYPE, "image/png")
@@ -86,7 +86,8 @@ class P3rWalkthroughTest {
         val resolver = context.contentResolver
         val uri = requireNotNull(resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values))
         requireNotNull(resolver.openOutputStream(uri)).use {
-            check(compose.onRoot().captureToImage().asAndroidBitmap().compress(Bitmap.CompressFormat.PNG, 100, it))
+            val target = if (dialog) compose.onNode(isDialog()) else compose.onRoot()
+            check(target.captureToImage().asAndroidBitmap().compress(Bitmap.CompressFormat.PNG, 100, it))
         }
         values.clear()
         values.put(MediaStore.Images.Media.IS_PENDING, 0)
@@ -122,5 +123,38 @@ class P3rWalkthroughTest {
         assertEquals(StepMark.DONE, markedValue)
         compose.onNodeWithTag("task-guidance-2").performScrollTo().assertIsDisplayed()
         capture("p3r-inline-final-tartarus")
+    }
+
+    @Test fun operationSectionsReadAtTwoHundredPercentWithoutMarkingTheTask() {
+        show("2009-05-09", 2f)
+        compose.onNodeWithText("Prepare · Priestess").performScrollTo().assertIsDisplayed()
+        compose.onNodeWithText("Summoned Tiaras").performScrollTo().assertIsDisplayed()
+        assertEquals(null, markedIndex)
+        val label = compose.onNodeWithTag("task-label-0").performScrollTo().fetchSemanticsNode().boundsInRoot
+        val body = compose.onNodeWithTag("task-guidance-0-section-1-body").performScrollTo().fetchSemanticsNode().boundsInRoot
+        assertTrue("battle advice uses the full reading width", body.width > label.width)
+        capture("p3r-combat-priestess-large-text")
+        compose.onAllNodesWithContentDescription("Done")[0].performScrollTo()
+            .assertWidthIsEqualTo(40.dp).assertHeightIsEqualTo(40.dp).performClick()
+        assertEquals(0, markedIndex)
+        assertEquals(StepMark.DONE, markedValue)
+    }
+
+    @Test fun correctedGatekeeperAndItsPhysicalAdviceAreVisibleInline() {
+        show("2009-10-01")
+        compose.onNodeWithText("143F · Isolated Castle").performScrollTo().assertIsDisplayed()
+        compose.onNodeWithTag("task-guidance-3-section-4-body").assertTextContains("Use physical skills", substring = true)
+        capture("p3r-combat-isolated-castle")
+    }
+
+    @Test fun sectionsWithoutATipRemainAccessibleThroughTheLegacyDialog() {
+        show("2009-05-09", inlineTips = false)
+        compose.onNodeWithTag("task-label-0").performScrollTo().performClick()
+        compose.onNodeWithText("Prepare · Priestess").assertIsDisplayed()
+        compose.onNodeWithText("Summoned Tiaras").performScrollTo().assertIsDisplayed()
+        capture("p3r-combat-tips-dialog", dialog = true)
+        compose.onNodeWithText("Close").performClick()
+        compose.onNodeWithText("Prepare · Priestess").assertDoesNotExist()
+        assertEquals(null, markedIndex)
     }
 }

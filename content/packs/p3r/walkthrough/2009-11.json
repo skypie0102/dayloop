@@ -45,7 +45,29 @@
           "slot": "evening",
           "spoiler": true,
           "tip": "Climb to the 172F border. Gatekeepers: 151F, 155F, 161F, 170F, 171F.\n\nTonight is the last actionable rescue night for Maiko and the other two people on 146F, 159F and 165F. Rescue all three before leaving; Maiko's rescue also protects the Hanged-Man route. Tomorrow's operation is not another free rescue evening.\n\nLeave carrying Hierophant, Lovers and Chariot Personas for the route through November 29. Fool rank 6 has its own story task today; it does not stand in for the rescue objective.\n\nRescue targets:\nMaiko Oohashi — 146F\nRyohei Nakatsugawa — 159F\nTakeko Hiraoka — 165F\n\nCollect rescue rewards separately at the police station after returning. Mark this visit Done only after completing every rescue above.",
-          "groupLabel": "Dark Hour · Tartarus"
+          "groupLabel": "Dark Hour · Tartarus",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Tziah II",
+              "body": "Bring Strike, Dark, Wind, Ice and Light damage. Keep recovery and ailment cures for the consecutive 170F/171F sequence. Party scenes and rescues still require their own actions."
+            },
+            {
+              "title": "151F · Pagoda and Tomes",
+              "body": "Use Strike on Pagoda of Disaster and Dark damage on Tome of Persecution. The Pagoda drains Electricity/Wind; the Tomes drain Ice. Confusion can interrupt the Tomes."
+            },
+            {
+              "title": "155F · Dancing Beast Wheel",
+              "body": "It blocks Ice and has no elemental weakness. Use physical damage or Theurgy; Distress is an optional way to help score criticals and a knockdown."
+            },
+            {
+              "title": "161F · Demented Knights",
+              "body": "Use Wind on both Knights. Pierce and Fire are blocked. Guard or protect Electricity-weak allies such as Yukari while keeping the party healthy."
+            },
+            {
+              "title": "170F / 171F · Consecutive guards",
+              "body": "At 170F, use Ice on Serpents of Absurdity and Light damage on Cruel Greatsword; avoid Fire on the Serpents and Slash on the Greatsword. At 171F, Invigorated Gigas has no weakness: use buffs, defense debuffs and charged physical/Theurgy damage."
+            }
+          ]
         },
         {
           "label": "Fool reaches rank 6 (story)",
@@ -69,7 +91,25 @@
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
           "spoiler": true,
-          "groupLabel": "Dark Hour · Full Moon"
+          "groupLabel": "Dark Hour · Full Moon",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Moonlight Bridge",
+              "body": "Bring party healing, Fear cures, revival items and protection from Light/Dark instant kills. There are two battles tonight; reserve SP and some burst damage for Hanged Man."
+            },
+            {
+              "title": "Fight · Jin and Takaya",
+              "body": "Focus one target at a time; Jin is a useful first target to remove his support and grenades. Jin repels Fire/Dark. Takaya repels Light and drains Dark. Use physical damage or other elements, and cure Fear before Ghastly Wail."
+            },
+            {
+              "title": "Fight · Hanged Man",
+              "body": "Destroy all supporting Statues to make Hanged Man targetable. Analyze each Statue and use its current weakness with Shift; their affinities vary between waves. Repeat when new Statues appear."
+            },
+            {
+              "title": "Final push · Hanged Man",
+              "body": "Use Slash, Pierce or non-Fire elemental damage on the exposed boss; avoid Dark, which it reflects, and resisted Strike. Keep healing through Grim Transcendence and remove summoned threats promptly. Use saved Theurgies to finish the later phase."
+            }
+          ]
         }
       ],
       "displayOrder": [
@@ -573,7 +613,8 @@
         0,
         1,
         2
-      ]
+      ],
+      "notes": "Late story · Chidori\n\nTonight's mandatory story battle follows the scheduled evening activity. Restore HP/SP and bring healing, revival and ailment cures. Chidori drains Fire and has no elemental weakness; use physical attacks or other damage while maintaining healing and attack-down effects. Continue through the story afterward. The earlier White Flower handoff and optional January revival are separate checkpoints; this battle does not confirm either one."
     },
     {
       "date": "2009-11-23",
@@ -713,7 +754,29 @@
           "slot": "evening",
           "spoiler": true,
           "tip": "Climb to the 198F border. Gatekeepers: 179F, 184F, 188F, 193F.\n\nRescue both missing people on 177F and 196F during this visit. Their last actionable rescue date is December 1.\n\nLeave carrying Hierophant, Chariot, Hanged-Man and Star Personas for the route through December 30. Today's optional TV Shopping equipment is preparation for the secret boss, not a requirement to rescue this batch.\n\nRescue targets:\nTomoyuki Itami — 177F\nKatsue Sugi — 196F\n\nCollect rescue rewards separately at the police station after returning. Mark this visit Done only after completing every rescue above.",
-          "groupLabel": "Dark Hour · Tartarus"
+          "groupLabel": "Dark Hour · Tartarus",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Harabah I",
+              "body": "Bring Dark, Fire, Slash and Pierce attacks; keep party healing, debuffs and charged Theurgies. Conserve recovery supplies for both rescue detours and the upper gatekeepers."
+            },
+            {
+              "title": "179F · Cultist of the Storm",
+              "body": "Use Dark damage to knock it down. Strike is blocked and Fire resisted, so choose a different attacker when following a Shift."
+            },
+            {
+              "title": "184F · Judge and Greatsword",
+              "body": "Use Fire on Executive Greatsword; it drains Electricity and reflects Light. Merciless Judge blocks Slash, Strike and Ice: use Pierce or other suitable damage. Keep Ice defense and healing ready."
+            },
+            {
+              "title": "188F · Panzer and Surveillants",
+              "body": "Use Slash on the Resentful Surveillants, then finish Chaos Panzer with physical or Ice/Electricity damage. The Panzer blocks Fire/Wind and reflects Light."
+            },
+            {
+              "title": "193F · Necromachinery",
+              "body": "No elemental weakness. Avoid Slash and Electricity, which are blocked, and reflected Light. Watch Concentrate before Megidolaon: restore HP, keep defense buffs active and guard before the burst."
+            }
+          ]
         }
       ],
       "displayOrder": [

@@ -1,8 +1,9 @@
 # dayloop
 
-Current P3R pass: all 30 Linked Episodes, required form and optional flower
-checkpoints, with exact source-task tracking and a separate episode section.
-See the [Linked Episode audit](docs/audits/p3r-linked-episodes.md). The merged
+Current P3R pass: inline boss preparation and tactics, all 43 scheduled
+Tartarus gatekeeper floors, and clear Reload-styled reading sections.
+See the [combat guidance audit](docs/audits/p3r-combat-guidance.md). The merged
+[Linked Episode chains](docs/audits/p3r-linked-episodes.md),
 [P3R requests and rescue tracking](docs/audits/p3r-requests-rescues.md),
 [reading/UI review](docs/audits/p3r-reading-reload-ui.md) and
 [P5R Mementos and motion improvements](docs/audits/p5r-mementos-motion.md)
@@ -36,9 +37,9 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 
 ## Roadmap
 
-**Current priority: [Persona 3 Reload — Linked Episodes](docs/audits/p3r-linked-episodes.md).**
-The October 11 continuation adds all six character chains, missable windows,
-form/flower checkpoints and next-episode/source navigation.
+**Current priority: [Persona 3 Reload — combat guidance](docs/audits/p3r-combat-guidance.md).**
+The October 12 continuation adds 82 preparation/fight sections, corrects three
+missing gatekeeper floors and refines full-width reading in the Reload theme.
 The [P3R roadmap](docs/packs/p3r-roadmap.md) tracks the broader remaining audits.
 The phase table below records earlier milestones.
 

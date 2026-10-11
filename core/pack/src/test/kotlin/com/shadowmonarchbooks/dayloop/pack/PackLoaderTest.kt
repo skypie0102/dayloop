@@ -3,6 +3,7 @@ package com.shadowmonarchbooks.dayloop.pack
 import com.shadowmonarchbooks.dayloop.pack.schema.Capabilities
 import com.shadowmonarchbooks.dayloop.pack.schema.CalendarRange
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
+import com.shadowmonarchbooks.dayloop.pack.schema.GuidanceSection
 import com.shadowmonarchbooks.dayloop.pack.schema.Labels
 import com.shadowmonarchbooks.dayloop.pack.schema.Pack
 import com.shadowmonarchbooks.dayloop.pack.schema.PackTheme
@@ -64,7 +65,8 @@ class PackLoaderTest {
                     "2016-04-09",
                     "sat",
                     "story",
-                    steps = listOf(Step("Arrive in town", tip = "Take the evening train.")),
+                    steps = listOf(Step("Arrive in town", tip = "Take the evening train.",
+                        guidanceSections = listOf(GuidanceSection("Prepare", "Bring a ticket.")))),
                     displayOrder = listOf(0),
                 ),
             ),
@@ -75,6 +77,7 @@ class PackLoaderTest {
         assertEquals(1, parsed.days.size)
         assertEquals("Arrive in town", parsed.days.first().steps.first().label)
         assertEquals("Take the evening train.", parsed.days.first().steps.first().tip)
+        assertEquals(listOf(GuidanceSection("Prepare", "Bring a ticket.")), parsed.days.first().steps.first().guidanceSections)
         assertEquals(listOf(0), parsed.days.first().displayOrder)
     }
 
@@ -84,6 +87,17 @@ class PackLoaderTest {
         val wt = PackLoader.decodeWalkthrough("""{"month":"2016-04","days":[{"date":"2016-04-09","weekday":"sat","steps":[{"label":"Arrive"}]}]}""")
         assertNotNull(wt)
         assertEquals(emptyList(), wt.days.single().displayOrder)
+        assertEquals(emptyList(), wt.days.single().steps.single().guidanceSections)
+        assertEquals(false, wt.days.single().steps.single().hasGuidance)
+    }
+
+    @Test
+    fun `structured guidance is available without a legacy tip`() {
+        val step = Step("Fight", guidanceSections = listOf(GuidanceSection("Prepare", "Recover first.")))
+        val decoded = PackLoader.json.decodeFromString(Step.serializer(), PackLoader.json.encodeToString(Step.serializer(), step))
+        assertNull(decoded.tip)
+        assertTrue(decoded.hasGuidance)
+        assertEquals(step, decoded)
     }
 
     @Test

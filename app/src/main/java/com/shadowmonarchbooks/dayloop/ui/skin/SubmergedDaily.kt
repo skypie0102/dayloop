@@ -40,6 +40,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.pack.schema.Step
+import com.shadowmonarchbooks.dayloop.ui.components.TaskGuidance
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 
 /** Source guidance reads at full width while mark commands stay beside the instruction. */
@@ -71,15 +72,15 @@ internal fun SubmergedTaskCard(
                 Column(Modifier.weight(1f)) {
                     val taskText = buildAnnotatedString {
                         append(step.label)
-                        if (step.tip != null && !inlineTips) { append(" "); appendInlineContent("tips", "Tips") }
+                        if (step.hasGuidance && !inlineTips) { append(" "); appendInlineContent("tips", "Tips") }
                     }
                     Text(taskText,
-                        inlineContent = if (step.tip == null || inlineTips) emptyMap() else mapOf(
+                        inlineContent = if (!step.hasGuidance || inlineTips) emptyMap() else mapOf(
                             "tips" to InlineTextContent(Placeholder(2.8.em, 1.1.em, PlaceholderVerticalAlign.TextCenter)) {
                                 Text("Tips", color = colors.primary, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
                             }),
                         modifier = Modifier.testTag("task-label-$index").then(
-                            if (step.tip != null && !inlineTips) Modifier.heightIn(min = 48.dp)
+                            if (step.hasGuidance && !inlineTips) Modifier.heightIn(min = 48.dp)
                                 .clickable(role = Role.Button, onClickLabel = "Open task tips", onClick = onTip) else Modifier),
                         style = MaterialTheme.typography.bodyLarge, color = colors.onSurface)
                     if (step.statGains.isNotEmpty()) Text(
@@ -102,14 +103,7 @@ internal fun SubmergedTaskCard(
                     }
                 }
             }
-            if (inlineTips) step.tip?.let { guidance ->
-                Column(verticalArrangement = Arrangement.spacedBy(4.dp),
-                    modifier = Modifier.fillMaxWidth().testTag("task-guidance-$index")) {
-                    Text("Guide", style = MaterialTheme.typography.labelMedium, fontStyle = FontStyle.Italic,
-                        color = colors.secondary)
-                    Text(guidance, style = MaterialTheme.typography.bodyMedium, color = colors.onSurface)
-                }
-            }
+            if (inlineTips) TaskGuidance(step, index)
             if (activityLabel != null && onOpenActivity != null) Text(activityLabel, color = colors.secondary,
                 modifier = Modifier.heightIn(min = 48.dp).clickable(role = Role.Button, onClick = onOpenActivity).padding(vertical = 10.dp))
         }

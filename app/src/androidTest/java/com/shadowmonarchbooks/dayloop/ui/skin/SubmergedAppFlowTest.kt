@@ -624,6 +624,26 @@ class SubmergedAppFlowTest {
         capture("p3r-app-social-links-audit")
     }
 
+    @Test fun combatGuidanceIsSharedByTodayAndDayAtLargeTextWithoutAdvancingProgress() {
+        launch("2009-05-09", scale = 2f)
+        compose.onNodeWithText("Prepare · Priestess").performScrollTo().assertIsDisplayed()
+        compose.onNodeWithText("Summoned Tiaras").performScrollTo().assertIsDisplayed()
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
+        assertEquals("2009-05-09", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
+        capture("p3r-app-combat-today-large-text")
+        compose.onAllNodesWithContentDescription("Done")[0].performScrollTo()
+            .assertWidthIsEqualTo(androidx.compose.ui.unit.Dp(40f))
+            .assertHeightIsEqualTo(androidx.compose.ui.unit.Dp(40f)).performClick()
+        markIs(0, StepMark.DONE, "2009-05-09")
+        tab("Calendar").performClick()
+        compose.onNodeWithTag("p3r-date-2009-05-09").performClick()
+        compose.onNodeWithText("Fight · Priestess").performScrollTo().assertIsDisplayed()
+        capture("p3r-app-combat-day-large-text")
+        compose.onAllNodesWithContentDescription("Done")[0].performScrollTo().assertIsSelected().performClick()
+        compose.waitUntil(10_000) { runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() } }
+        assertEquals("2009-05-09", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
+    }
+
     @Test fun calendarAndNavigationAtLargeText() {
         launch("2009-05-18", scale = 1.5f)
         tab("Calendar").performClick()

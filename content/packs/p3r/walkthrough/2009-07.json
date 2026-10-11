@@ -165,7 +165,25 @@
           "label": "Full moon — the night is a mandatory Shadow operation, no free time",
           "slot": "evening",
           "spoiler": true,
-          "groupLabel": "Dark Hour · Full Moon"
+          "groupLabel": "Dark Hour · Full Moon",
+          "guidanceSections": [
+            {
+              "title": "Prepare · Hotel operation",
+              "body": "Yukari is required. Bring Fear/Charm cures, healing and revival items, and damage that works without an elemental weakness. Plan for two separate fights; keep enough SP for Lovers."
+            },
+            {
+              "title": "Fight · Hierophant",
+              "body": "No elemental weakness; Light and Dark are blocked. Use physical damage, attack/defense debuffs and Theurgy when ready. Cure Fear from Doomsday Doctrine so allies keep taking useful turns."
+            },
+            {
+              "title": "Reach Lovers",
+              "body": "After Hierophant, examine the chamber mirror and follow the story prompts. Rejoin the party, then find and break the mirror showing no reflection on each of 2F and 3F; the rooms vary. Return to the unsealed chamber for Lovers. Winning Hierophant alone does not finish tonight's operation."
+            },
+            {
+              "title": "Fight · Lovers",
+              "body": "Cure Charm immediately: Heartbreaker deals much more damage to charmed allies. Lovers blocks Fire and resists Pierce/Electricity. Use Slash, Strike, Ice or Wind, and keep Yukari or another available ally healing."
+            }
+          ]
         },
         {
           "label": "Fool reaches rank 4 (story)",
