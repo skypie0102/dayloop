@@ -38,8 +38,10 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 ## Roadmap
 
 **Current priority: [Persona 3 Reload — achievement proof and reading](docs/audits/p3r-achievement-proof.md).**
-The October 12 continuation reviews all 48 achievements, replaces unsafe shortcut
+The October 12 achievement pass reviews all 48 achievements, replaces unsafe shortcut
 awards, adds direct source-checkpoint navigation and keeps completed counters editable.
+The [current navigation/motion pass](docs/audits/p3r-motion-performance.md) preserves
+tab reading state, handles enlarged-label scrolling and adds a paired native frame review.
 The [P3R roadmap](docs/packs/p3r-roadmap.md) tracks the remaining optional encounter,
 UI/motion and performance acceptance work.
 The phase table below records earlier milestones.

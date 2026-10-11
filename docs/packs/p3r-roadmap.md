@@ -3,13 +3,28 @@
 Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version 3.
 Priority: **active P3R reading and Reload UI optimization**, per the October 10, 2026 request.
 Status: content version **19** audits all 48 base-game achievements and adds source-proof navigation after the combat and Linked Episode passes.
-Android validation and screenshot review for this continuation are tracked in the
-[combat guidance audit](../audits/p3r-combat-guidance.md), following the merged
+Android validation, navigation state and comparative frame review for this continuation are tracked in the
+[motion/performance audit](../audits/p3r-motion-performance.md), following the merged
+[achievement proof](../audits/p3r-achievement-proof.md),
+[combat guidance audit](../audits/p3r-combat-guidance.md),
 [Linked Episode audit](../audits/p3r-linked-episodes.md),
 [request/rescue audit](../audits/p3r-requests-rescues.md) and
 [reading/UI review](../audits/p3r-reading-reload-ui.md). Broader optional encounters, final UI/motion review and release hardening remain separately scoped.
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
+
+## October 12 continuation: navigation, motion and frame review
+
+Reload tab switches now save and restore reading state around the Today root.
+The complete selected tab follows actual scroll-range changes after font/window
+resizing, while the row remains manually pannable. The day-complete plane caches
+its drawing geometry and keeps the existing optional motion and celebration art.
+Native acceptance adds repeated tab/Back checks at 200%, live font/viewport
+resizing and animated day advance without overlapping Perfect Day. A paired
+frame probe measures warmed baseline/current APKs on one AVD with real Window
+callbacks; it does not stand in for physical-device release or cold-start profiling.
+Candidate rc8 keeps content 19 and the rc7 update certificate. See the
+[protocol, isolation and remaining scope](../audits/p3r-motion-performance.md).
 
 ## October 12 continuation: achievement proof and reading
 

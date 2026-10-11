@@ -56,6 +56,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.SkinBottomBar
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinNavItem
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTopBar
 import com.shadowmonarchbooks.dayloop.ui.skin.navMotion
+import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
 import com.shadowmonarchbooks.dayloop.ui.skin.skinBackdrop
 import com.shadowmonarchbooks.dayloop.ui.today.TodayScreen
@@ -127,6 +128,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
     val backStackEntry by nav.currentBackStackEntryAsState()
     val route = backStackEntry?.destination?.route
     val pack = state.selected
+    val preserveTabState = LocalSkin.current.hasSubmergedChrome()
     val tabs = remember(pack) { topLevelTabs(pack) }
     var todayDatePinned by remember(pack?.slug) { mutableStateOf(false) }
     var calendarMonth by rememberSaveable(pack?.slug) { mutableStateOf<String?>(null) }
@@ -171,7 +173,14 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                         selectedRoute = route,
                         onSelect = { destination ->
                             if (shouldNavigate(route, destination)) {
-                                nav.navigate(destination) { launchSingleTop = true }
+                                nav.navigate(destination) {
+                                    launchSingleTop = true
+                                    if (preserveTabState) {
+                                        // Today is the root after both cold start and pack selection.
+                                        popUpTo("today") { saveState = true }
+                                        restoreState = true
+                                    }
+                                }
                             }
                         },
                     )
@@ -218,7 +227,13 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                         vm = vm,
                         onStart = {
                             nav.navigate("today") {
-                                popUpTo("onboarding") { inclusive = true }
+                                if (preserveTabState) {
+                                    // A chosen game starts a fresh root, including picks from Settings.
+                                    popUpTo(nav.graph.id)
+                                    launchSingleTop = true
+                                } else {
+                                    popUpTo("onboarding") { inclusive = true }
+                                }
                             }
                         },
                         onCancel = if (state.selectedSlug != null) {
