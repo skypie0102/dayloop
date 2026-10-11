@@ -103,7 +103,34 @@ individual rescue confirmations without changing the backup format or task marks
 Local JSON, semantic-anchor, unchanged-key/digest and whitespace checks passed.
 Local Gradle cannot download 8.10.2 (`Network is unreachable`); required build,
 JVM, all-pack lint and real Android checks run through GitHub Actions.
-Android evidence and final CI results will be recorded before merging.
+
+Final application and content validation covers commit
+`1e76b2dbae563a417c61b95cf035aae5a317d871`:
+
+- [CI build and JVM checks](https://github.com/skypie0102/dayloop/actions/runs/38113968186)
+  passed: debug/candidate assemblies, Android test compilation and the
+  core-pack, progress, tools-pack and app unit suites. P3R and P5R packlint each
+  report zero errors and zero warnings; Metaphor retains its one existing
+  unfinished-day coverage warning.
+- [API 34 Android review](https://github.com/skypie0102/dayloop/actions/runs/38113968153)
+  passed **34 tests, zero failures/errors/skips**, plus the isolated hand-in
+  rerun. The suite exercises request/report reversal, individual rescue/reward
+  state, profile isolation/reset, section restoration, prerequisite navigation,
+  200% text and the existing P5R/skin flows. Real Room/DataStore export-import
+  tests also include both rescue stages, restart and independent profile reset.
+- [Review evidence](https://github.com/skypie0102/dayloop/actions/runs/38113968153/artifacts/11693530128)
+  includes the XML report and 59 captures. Rescue status and consequence
+  controls at 200% text and request prerequisite/window details were inspected.
+- [Test APK v0.16.0-rc4](https://github.com/skypie0102/dayloop/actions/runs/38113968153/artifacts/11693500073)
+  is 47,672,264 bytes. Its bundled P3R content version 16, 101 requests and 20
+  people match the reviewed source files. APK SHA-256:
+  `7891fd3ee33144d8e1a21a7d6281d5c8eed2f37ffe9742ca4226aa3b803b0aff`.
+
+The first full run exposed two older assertions that read an uncomposed,
+off-screen LazyColumn summary after section/list-state retention. Those checks
+now scroll to the summary before asserting the unchanged reported total; both
+pass in the full and isolated reruns. No tracking expectations were relaxed.
+The evidence-recording commit after this tested head changes documentation only.
 
 This pass does not close Linked Episode tracking, broader boss-strategy work,
 the achievement audit or remaining visual/performance release hardening.
