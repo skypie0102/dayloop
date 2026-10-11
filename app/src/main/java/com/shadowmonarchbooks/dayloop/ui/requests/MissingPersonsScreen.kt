@@ -59,7 +59,7 @@ internal fun MissingPersonsScreen(vm: DayloopViewModel, onOpenDay: (String) -> U
         val stackedStatus = maxWidth < 440.dp || fontScale > 1.2f
         LazyColumn(Modifier.testTag("rescue-list").fillMaxSize().submergedBackdrop().padding(horizontal = 16.dp),
             contentPadding = PaddingValues(vertical = 12.dp)) {
-            item(key = "rescue-sections") { RequestSections("Missing persons", onSection) }
+            item(key = "rescue-sections") { RequestSections(catalog.issuer, "Missing persons", onSection) }
             item(key = "rescue-summary") {
                 Surface(color = colors.primaryContainer) {
                     Column(Modifier.fillMaxWidth().padding(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {

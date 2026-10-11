@@ -146,6 +146,16 @@ class SubmergedAppFlowTest {
         compose.onNodeWithText(title).performClick()
     }
 
+    private fun requestCountIs(count: Int) {
+        // Expanded details and section state now retain their scroll position.
+        // Reveal the summary before querying a LazyColumn item that may be uncomposed.
+        compose.onNodeWithTag("request-list").performScrollToIndex(0)
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithText("$count / 101 reported").fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.onNodeWithText("$count / 101 reported").performScrollTo().assertIsDisplayed()
+    }
+
     @Test fun schoolDayNavigationAndSavedDayFlow() {
         launch("2009-04-21")
         dateIs("2009-04-21")
@@ -208,7 +218,7 @@ class SubmergedAppFlowTest {
         compose.waitUntil(10_000) {
             runBlocking { dependencies.repo().requestStages(profileId).first()["p3r.request.001"] == "ready" }
         }
-        compose.onNodeWithText("0 / 101 reported").performScrollTo().assertIsDisplayed()
+        requestCountIs(0)
         capture("p3r-app-request-ready")
         compose.onAllNodesWithText("Reported").onLast().performScrollTo().performClick()
         compose.waitUntil(10_000) {
@@ -219,7 +229,7 @@ class SubmergedAppFlowTest {
         // The summary now scrolls with the list; explicitly reveal it after saved-scroll restoration.
         compose.onNodeWithTag("request-list").performScrollToIndex(0)
         compose.waitUntil(10_000) { compose.onAllNodesWithText("1 / 101 reported").fetchSemanticsNodes().isNotEmpty() }
-        compose.onNodeWithText("1 / 101 reported").performScrollTo().assertIsDisplayed()
+        requestCountIs(1)
         capture("p3r-app-requests")
         // Clearing a confirmation reverses the count; it never checks a route task.
         compose.onAllNodesWithText("Reported").filter(hasClickAction()).onLast().performScrollTo().performClick()
@@ -326,7 +336,7 @@ class SubmergedAppFlowTest {
         markIs(index, StepMark.DONE, event.date)
         Log.i("P3rReview", "Hand-in: opening Requests")
         tab("Requests").performClick()
-        compose.onNodeWithText("1 / 101 reported").performScrollTo().assertIsDisplayed()
+        requestCountIs(1)
         openRequest("Retrieve the First Old Document")
         compose.onNodeWithText("Reported by the walkthrough. To reverse this, uncheck the linked hand-in task.").performScrollTo().assertIsDisplayed()
         compose.onNodeWithText("0 / 1 guide preparation tasks checked").assertDoesNotExist()
@@ -335,7 +345,7 @@ class SubmergedAppFlowTest {
         compose.onNodeWithTag("request-checkpoint-p3r.request.002").performClick()
         compose.onAllNodesWithText("Done")[index].performScrollTo().performClick()
         compose.onNodeWithContentDescription("Back").performClick()
-        compose.onNodeWithText("0 / 101 reported").performScrollTo().assertIsDisplayed()
+        requestCountIs(0)
         assertEquals("2009-05-10", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
     }
 
@@ -348,7 +358,7 @@ class SubmergedAppFlowTest {
             com.shadowmonarchbooks.dayloop.progress.StepKey("2009-07-01", 1), StepMark.DONE) }
         markIs(1, StepMark.DONE, "2009-07-01")
         tab("Requests").performScrollTo().performClick()
-        compose.onNodeWithText("0 / 101 reported").performScrollTo().assertIsDisplayed()
+        requestCountIs(0)
         val rootBounds = compose.onRoot().getUnclippedBoundsInRoot()
         val selectedTabBounds = tab("Requests").getUnclippedBoundsInRoot()
         assertTrue("selected whole-word tab must remain in the viewport at 200% text",
@@ -374,9 +384,9 @@ class SubmergedAppFlowTest {
         compose.onAllNodesWithText("Done")[2].performScrollTo().performClick()
         markIs(2, StepMark.DONE, "2009-07-09")
         tab("Requests").performScrollTo().performClick()
-        compose.onNodeWithText("1 / 101 reported").performScrollTo().assertIsDisplayed()
+        requestCountIs(1)
         scenario!!.recreate()
-        compose.onNodeWithText("1 / 101 reported").performScrollTo().assertIsDisplayed()
+        requestCountIs(1)
         assertEquals("2009-07-09", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
     }
 
@@ -447,6 +457,7 @@ class SubmergedAppFlowTest {
         compose.onNodeWithTag("request-list").performScrollToIndex(0)
         compose.onNodeWithText("Missing persons").performScrollTo().performClick()
         // Switching catalog sections retains the filter, expanded person and scroll state.
+        compose.onNodeWithTag("rescue-list").performScrollToNode(hasText("120F · Bunkichi Kitamura"))
         compose.onNodeWithText("Rescue Bunkichi before the cutoff to keep the Hierophant Social Link available.")
             .performScrollTo().assertIsDisplayed()
     }

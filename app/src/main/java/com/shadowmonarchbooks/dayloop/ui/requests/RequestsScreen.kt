@@ -43,7 +43,7 @@ fun RequestsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit) {
     val state by vm.state.collectAsState()
     val pack = state.selected
     val catalog = pack?.requests ?: run { EmptyState("This pack has no request catalog."); return }
-    var section by rememberSaveable(pack.slug) { mutableStateOf("Elizabeth") }
+    var section by rememberSaveable(pack.slug) { mutableStateOf(catalog.issuer) }
     val sections = rememberSaveableStateHolder()
     sections.SaveableStateProvider(section) {
         if (section == "Missing persons" && catalog.missingPersons.isNotEmpty()) {
@@ -97,7 +97,7 @@ private fun ElizabethRequestsScreen(vm: DayloopViewModel, onOpenDay: (String) ->
             contentPadding = PaddingValues(vertical = 12.dp),
         ) {
             if (catalog.missingPersons.isNotEmpty()) item(key = "request-sections") {
-                RequestSections("Elizabeth", onSection)
+                RequestSections(catalog.issuer, catalog.issuer, onSection)
             }
             item(key = "request-summary") {
                 Surface(color = colors.primaryContainer) {
@@ -278,7 +278,7 @@ internal fun SubmergedRequestStatus(label: String, selected: Boolean, inProgress
 }
 
 @Composable
-internal fun RequestSections(selected: String, onSelect: (String) -> Unit) {
-    SubmergedFilters(listOf("Elizabeth", "Missing persons"), selected, onSelect)
+internal fun RequestSections(issuer: String, selected: String, onSelect: (String) -> Unit) {
+    SubmergedFilters(listOf(issuer, "Missing persons"), selected, onSelect)
     Spacer(Modifier.height(8.dp))
 }
