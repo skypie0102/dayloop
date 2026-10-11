@@ -6,6 +6,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.ActivitiesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.AnswersFile
 import com.shadowmonarchbooks.dayloop.pack.schema.BondsFile
 import com.shadowmonarchbooks.dayloop.pack.schema.DeadlinesFile
+import com.shadowmonarchbooks.dayloop.pack.schema.EpisodesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaFile
 import com.shadowmonarchbooks.dayloop.pack.schema.RequestsFile
 import com.shadowmonarchbooks.dayloop.pack.schema.MementosRequestsFile
@@ -55,6 +56,7 @@ class PackLoadResult(
     val mementosRequests: MementosRequestsFile?,
     val parseIssues: List<LintIssue>,
     val requests: RequestsFile? = null,
+    val episodes: EpisodesFile? = null,
 )
 
 /**
@@ -80,6 +82,9 @@ object PackLoader {
 
     fun decodeBonds(jsonText: String): BondsFile? =
         runCatching { json.decodeFromString(BondsFile.serializer(), jsonText) }.getOrNull()
+
+    fun decodeEpisodes(jsonText: String): EpisodesFile? =
+        runCatching { json.decodeFromString(EpisodesFile.serializer(), jsonText) }.getOrNull()
 
     fun decodeActivities(jsonText: String): ActivitiesFile? =
         runCatching { json.decodeFromString(ActivitiesFile.serializer(), jsonText) }.getOrNull()
@@ -191,6 +196,11 @@ object PackLoader {
             "mementos-requests.json",
             MementosRequestsFile.serializer(),
         )
+
+        val episodesFile = packDir.resolve("episodes.json")
+        val episodesJson = decode(episodesFile, "episodes.json")
+        issues += episodesJson.second
+        val episodes = parse(episodesJson.first, episodesFile, "episodes.json", EpisodesFile.serializer())
 
         val walkthroughs = mutableListOf<LoadedWalkthrough>()
         fun parseWalkthrough(file: Path, routeId: String, monthKey: String, location: String) {
@@ -576,6 +586,8 @@ object PackLoader {
             }
         }
 
+        if (pack != null) issues += validateEpisodes(pack, episodes, walkthroughs)
+
         return PackLoadResult(
             pack,
             bonds,
@@ -588,6 +600,7 @@ object PackLoader {
             mementosRequests,
             issues,
             requests,
+            episodes,
         )
     }
 }

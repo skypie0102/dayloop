@@ -2,13 +2,27 @@
 
 Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version 3.
 Priority: **active P3R reading and Reload UI optimization**, per the October 10, 2026 request.
-Status: content version **16** adds request metadata and individual rescue/reward tracking after the merged reading/UI pass.
+Status: content version **17** adds six Linked Episode chains and their exact source/checkpoint navigation after request/rescue tracking.
 Android validation and screenshot review for this continuation are tracked in the
-[request/rescue audit](../audits/p3r-requests-rescues.md), following the merged
-[reading/UI review](../audits/p3r-reading-reload-ui.md). Linked Episodes, broader
-boss strategies, achievements and release hardening remain separately scoped.
+[Linked Episode audit](../audits/p3r-linked-episodes.md), following the merged
+[request/rescue audit](../audits/p3r-requests-rescues.md) and
+[reading/UI review](../audits/p3r-reading-reload-ui.md). Broader boss strategies, achievements and release hardening remain separately scoped.
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
+
+## October 11 continuation: Linked Episode chains
+
+All 30 numbered episodes across six characters now have source windows,
+locations, rewards, prerequisites and exact DONE task anchors. Shinjiro's required
+Extension Form conversation and Junpei's optional flower/revival branch remain
+separate actions. Four Takaya story tasks are tracked as related interactions,
+without increasing the episode total. Social Links now has a retained episode
+section and character detail pages with next-checkpoint and source/prerequisite
+navigation. Later recorded tasks with missing earlier proof remain unverified;
+no dates or ordinary dorm hangouts award episodes. All 819 saved task identities
+remain intact. See the [source and validation audit](../audits/p3r-linked-episodes.md).
+Boss preparation, achievement auditing and remaining UI/motion acceptance remain
+open; this continuation does not declare the whole P3R milestone complete.
 
 ## October 11 continuation: request metadata and individual rescues
 
@@ -365,7 +379,7 @@ not satisfy this milestone. This is the first implementation slice after P3R-0.
   while preserving the real time slot; do not invent an extra spendable slot.
 - [ ] Verify Social Link dialogue and matching-Arcana/stat prerequisites,
   friendship/romance branches, school availability, and automatic rank behavior.
-- [ ] Audit Linked Episode chains separately from Social Links: participants,
+- [x] Audit Linked Episode chains separately from Social Links: participants,
   windows, prerequisites, missable continuations, and rewards/unlocks.
 - [ ] Expand Tartarus instructions with floor/border objectives, gatekeeper and
   boss preparation, rescues, Monad distinctions, and required collection/hand-ins.
@@ -440,7 +454,7 @@ and no user action produces an unsupported completion claim or cross-profile lea
   applying the new palette to the old screens is insufficient.
 - [ ] Preserve browsed calendar month and list position when returning from a
   detail/day page. Keep upcoming operations and truly missable obligations clear.
-- [ ] Give Social Links useful current/next-rank detail and a separate way to
+- [x] Give Social Links useful current/next-rank detail and a separate way to
   inspect Linked Episodes, without treating episodes as numbered Social Links.
 - [ ] Curate character/Arcana, blue-water, and moon/operation art with correct
   cropping and readable fallback states; register assets and source attribution.

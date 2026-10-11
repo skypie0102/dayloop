@@ -221,7 +221,8 @@
           "slot": "day",
           "statGains": {
             "charm": 2
-          }
+          },
+          "tip": "Episode 2 · Junpei Iori\n\nFind Junpei at Iwatodai Strip Mall for his summer episode. This continues Episode 1; his ordinary dorm activities are separate.\n\nReward: Charm +2.\n\nWindow: 8/9–8/28. Daytime. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Free time — walk Koromaru (with Kenji)",
@@ -317,7 +318,8 @@
         },
         {
           "label": "Watch Takaya's Link Episode",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Story event 1 · Takaya Sakaki\n\nWatch Takaya's August story scene. This is a related story event rather than one of the six five-episode character chains.\n\nThis event is scheduled for 8/14. Daytime · story event.\n\nMark Done after completing this specific checkpoint."
         }
       ],
       "displayOrder": [
@@ -462,7 +464,8 @@
         },
         {
           "label": "Watch Takaya's Link Episode",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Story event 2 · Takaya Sakaki\n\nWatch Takaya's second August story scene. Record it from this exact task, not the calendar date or a dorm hangout.\n\nThis event is scheduled for 8/20. Evening · story event.\n\nMark Done after completing this specific checkpoint."
         },
         {
           "label": "Join Fuuka's reading hangout — Combat Characteristic unlocked",

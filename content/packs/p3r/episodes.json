@@ -1,0 +1,833 @@
+{
+  "title": "Linked Episodes",
+  "chains": [
+    {
+      "id": "p3r.episode.junpei",
+      "character": "Junpei Iori",
+      "reward": "Baseball Glove · Surt fusion",
+      "steps": [
+        {
+          "id": "p3r.episode.junpei.1",
+          "title": "Episode 1",
+          "required": true,
+          "availableFrom": "2009-05-12",
+          "availableUntil": "2009-07-03",
+          "timeOfDay": "Daytime / after school",
+          "location": "Gekkoukan High School · Classroom 2F",
+          "solution": "Speak to Junpei in the classroom and spend the afternoon with him. Finish this first episode before his summer continuation.",
+          "completionEvent": "p3r.episode.event.junpei.1",
+          "number": 1,
+          "reward": "Hermes Strength +3"
+        },
+        {
+          "id": "p3r.episode.junpei.2",
+          "title": "Episode 2",
+          "required": true,
+          "availableFrom": "2009-08-09",
+          "availableUntil": "2009-08-28",
+          "timeOfDay": "Daytime",
+          "location": "Iwatodai Strip Mall",
+          "solution": "Find Junpei at Iwatodai Strip Mall for his summer episode. This continues Episode 1; his ordinary dorm activities are separate.",
+          "completionEvent": "p3r.episode.event.junpei.2",
+          "number": 2,
+          "reward": "Charm +2",
+          "prerequisiteSteps": [
+            "p3r.episode.junpei.1"
+          ]
+        },
+        {
+          "id": "p3r.episode.junpei.3",
+          "title": "Episode 3",
+          "required": true,
+          "availableFrom": "2009-11-07",
+          "availableUntil": "2009-11-13",
+          "timeOfDay": "After school",
+          "location": "Gekkoukan High School · Classroom 2F",
+          "solution": "Meet Junpei in the classroom and encourage him to visit Chidori. The optional flower handoff can follow this episode; buying a flower alone does not complete that handoff.",
+          "completionEvent": "p3r.episode.event.junpei.3",
+          "number": 3,
+          "reward": "Academics +2",
+          "prerequisiteSteps": [
+            "p3r.episode.junpei.2"
+          ]
+        },
+        {
+          "id": "p3r.episode.junpei.flowers",
+          "title": "Optional · give the White Flower",
+          "required": false,
+          "availableFrom": "2009-11-08",
+          "availableUntil": "2009-11-20",
+          "timeOfDay": "Evening · no time spent",
+          "location": "Iwatodai Dorm 1F",
+          "solution": "After encouraging Junpei in Episode 3, buy a White Flower for ¥250 at Rafflesia in Port Island Station, then give it to Junpei at the dorm. Buying it is preparation; handing it over enables the January 21 revival event. This branch is optional for Surt's fusion and spends no evening slot.",
+          "completionEvent": "p3r.episode.event.junpei.flowers",
+          "prerequisiteSteps": [
+            "p3r.episode.junpei.3"
+          ]
+        },
+        {
+          "id": "p3r.episode.junpei.4",
+          "title": "Episode 4",
+          "required": true,
+          "availableFrom": "2009-12-19",
+          "availableUntil": "2009-12-26",
+          "timeOfDay": "After school / daytime",
+          "location": "Gekkoukan High School · Classroom 2F",
+          "solution": "Meet Junpei in the classroom for the fourth episode. His November flower branch is optional and is not required to continue this five-episode chain.",
+          "completionEvent": "p3r.episode.event.junpei.4",
+          "number": 4,
+          "reward": "Courage +2",
+          "prerequisiteSteps": [
+            "p3r.episode.junpei.3"
+          ]
+        },
+        {
+          "id": "p3r.episode.junpei.5",
+          "title": "Episode 5",
+          "required": true,
+          "availableFrom": "2010-01-15",
+          "availableUntil": "2010-01-29",
+          "timeOfDay": "After school",
+          "location": "Gekkoukan High School · Classroom 2F",
+          "solution": "Finish Junpei's final classroom episode and receive his Baseball Glove. The five episodes unlock Surt's fusion; the separate January 21 flower outcome is not a sixth episode.",
+          "completionEvent": "p3r.episode.event.junpei.5",
+          "number": 5,
+          "reward": "Baseball Glove · Surt fusion",
+          "prerequisiteSteps": [
+            "p3r.episode.junpei.4"
+          ]
+        },
+        {
+          "id": "p3r.episode.junpei.revival",
+          "title": "Optional · January 21 revival",
+          "required": false,
+          "availableFrom": "2010-01-21",
+          "availableUntil": "2010-01-21",
+          "timeOfDay": "After school · uses the afternoon",
+          "location": "Story event",
+          "solution": "Watch the January 21 revival event only if you gave Junpei the White Flower after Episode 3. The earlier flower handoff does not mark this later event viewed. Without the branch prerequisite, leave this event unconfirmed; the five main Junpei episodes can still be completed.",
+          "completionEvent": "p3r.episode.event.junpei.revival",
+          "prerequisiteSteps": [
+            "p3r.episode.junpei.flowers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p3r.episode.akihiko",
+      "character": "Akihiko Sanada",
+      "reward": "Hand Wraps · Horus fusion",
+      "steps": [
+        {
+          "id": "p3r.episode.akihiko.1",
+          "title": "Episode 1",
+          "required": true,
+          "availableFrom": "2009-05-29",
+          "availableUntil": "2009-07-10",
+          "timeOfDay": "Evening",
+          "location": "Iwatodai Station",
+          "solution": "Meet Akihiko at Iwatodai Station. Agree to jog back for +5 maximum HP, or decline for +3 maximum SP. Either response completes the episode; the tracker does not assume which stat reward you chose.",
+          "completionEvent": "p3r.episode.event.akihiko.1",
+          "number": 1,
+          "reward": "Maximum HP +5 or maximum SP +3"
+        },
+        {
+          "id": "p3r.episode.akihiko.2",
+          "title": "Episode 2",
+          "required": true,
+          "availableFrom": "2009-07-24",
+          "availableUntil": "2009-08-31",
+          "timeOfDay": "Evening",
+          "location": "Iwatodai Station",
+          "solution": "Meet Akihiko at Iwatodai Station for the second evening episode. Complete the outing before recording its charm gain and the three souvenirs.",
+          "completionEvent": "p3r.episode.event.akihiko.2",
+          "number": 2,
+          "reward": "Charm +2 · Luxe Tropical Fruit · Imperial Sweets Set · Fresh Juice",
+          "prerequisiteSteps": [
+            "p3r.episode.akihiko.1"
+          ]
+        },
+        {
+          "id": "p3r.episode.akihiko.3",
+          "title": "Episode 3",
+          "required": true,
+          "availableFrom": "2009-10-09",
+          "availableUntil": "2009-11-02",
+          "timeOfDay": "Evening",
+          "location": "Iwatodai Station",
+          "solution": "Continue Akihiko's story at Iwatodai Station in the evening. The DVD and cooking activities at the dorm do not substitute for this third episode.",
+          "completionEvent": "p3r.episode.event.akihiko.3",
+          "number": 3,
+          "reward": "Charm +2",
+          "prerequisiteSteps": [
+            "p3r.episode.akihiko.2"
+          ]
+        },
+        {
+          "id": "p3r.episode.akihiko.4",
+          "title": "Episode 4",
+          "required": true,
+          "availableFrom": "2009-12-12",
+          "availableUntil": "2009-12-26",
+          "timeOfDay": "Evening",
+          "location": "Iwatodai Station",
+          "solution": "Meet Akihiko at Iwatodai Station and finish the fourth episode before its December cutoff.",
+          "completionEvent": "p3r.episode.event.akihiko.4",
+          "number": 4,
+          "reward": "Maximum SP +3",
+          "prerequisiteSteps": [
+            "p3r.episode.akihiko.3"
+          ]
+        },
+        {
+          "id": "p3r.episode.akihiko.5",
+          "title": "Episode 5",
+          "required": true,
+          "availableFrom": "2010-01-04",
+          "availableUntil": "2010-01-29",
+          "timeOfDay": "Evening",
+          "location": "Iwatodai Station",
+          "solution": "Finish Akihiko's final evening episode and receive his Hand Wraps. Completing his chain unlocks Horus's fusion.",
+          "completionEvent": "p3r.episode.event.akihiko.5",
+          "number": 5,
+          "reward": "Hand Wraps · Horus fusion",
+          "prerequisiteSteps": [
+            "p3r.episode.akihiko.4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p3r.episode.koromaru",
+      "character": "Koromaru",
+      "reward": "Koromaru's Collar · Byakko fusion",
+      "steps": [
+        {
+          "id": "p3r.episode.koromaru.1",
+          "title": "Episode 1",
+          "required": true,
+          "availableFrom": "2009-08-22",
+          "availableUntil": "2010-01-30",
+          "timeOfDay": "Daytime / after school",
+          "location": "Outside Iwatodai Dorm",
+          "solution": "Speak to Koromaru outside the dorm during the day for his first story episode. An evening dog walk is a different activity and does not count.",
+          "completionEvent": "p3r.episode.event.koromaru.1",
+          "number": 1,
+          "reward": "Charm +2"
+        },
+        {
+          "id": "p3r.episode.koromaru.2",
+          "title": "Episode 2",
+          "required": true,
+          "availableFrom": "2009-09-04",
+          "availableUntil": "2010-01-30",
+          "timeOfDay": "Daytime / after school",
+          "location": "Outside Iwatodai Dorm",
+          "solution": "Find Koromaru outside the dorm during the day and finish the second episode after the first.",
+          "completionEvent": "p3r.episode.event.koromaru.2",
+          "number": 2,
+          "reward": "Courage +2",
+          "prerequisiteSteps": [
+            "p3r.episode.koromaru.1"
+          ]
+        },
+        {
+          "id": "p3r.episode.koromaru.3",
+          "title": "Episode 3",
+          "required": true,
+          "availableFrom": "2009-09-15",
+          "availableUntil": "2010-01-30",
+          "timeOfDay": "Daytime / after school",
+          "location": "Outside Iwatodai Dorm",
+          "solution": "Continue Koromaru's third daytime episode outside the dorm. This raises his Persona's Agility; it is not the evening walk or DVD hangout.",
+          "completionEvent": "p3r.episode.event.koromaru.3",
+          "number": 3,
+          "reward": "Cerberus Agility +3",
+          "prerequisiteSteps": [
+            "p3r.episode.koromaru.2"
+          ]
+        },
+        {
+          "id": "p3r.episode.koromaru.4",
+          "title": "Episode 4",
+          "required": true,
+          "availableFrom": "2009-09-16",
+          "availableUntil": "2010-01-30",
+          "timeOfDay": "Daytime",
+          "location": "Outside Iwatodai Dorm",
+          "solution": "Complete Koromaru's fourth daytime episode outside the dorm. January 5 is this route's fourth episode, even though the fifth episode's availability also begins today.",
+          "completionEvent": "p3r.episode.event.koromaru.4",
+          "number": 4,
+          "reward": "Courage +2",
+          "prerequisiteSteps": [
+            "p3r.episode.koromaru.3"
+          ]
+        },
+        {
+          "id": "p3r.episode.koromaru.5",
+          "title": "Episode 5",
+          "required": true,
+          "availableFrom": "2010-01-05",
+          "availableUntil": "2010-01-30",
+          "timeOfDay": "Daytime / after school",
+          "location": "Outside Iwatodai Dorm",
+          "solution": "Finish Koromaru's fifth daytime episode and receive his collar. The route performs it on January 25; completing the five-episode chain unlocks Byakko's fusion.",
+          "completionEvent": "p3r.episode.event.koromaru.5",
+          "number": 5,
+          "reward": "Koromaru's Collar · Byakko fusion",
+          "prerequisiteSteps": [
+            "p3r.episode.koromaru.4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p3r.episode.ken",
+      "character": "Ken Amada",
+      "reward": "Silver Key · Michael fusion",
+      "steps": [
+        {
+          "id": "p3r.episode.ken.1",
+          "title": "Episode 1",
+          "required": true,
+          "availableFrom": "2009-09-08",
+          "availableUntil": "2009-09-30",
+          "timeOfDay": "Evening",
+          "location": "Iwatodai Dorm 2F · Ken's room",
+          "solution": "Visit Ken's room for his first evening episode. Both of his September episodes must be finished by September 30 to preserve the later continuation.",
+          "completionEvent": "p3r.episode.event.ken.1",
+          "number": 1,
+          "reward": "Academics +2"
+        },
+        {
+          "id": "p3r.episode.ken.2",
+          "title": "Episode 2",
+          "required": true,
+          "availableFrom": "2009-09-15",
+          "availableUntil": "2009-09-30",
+          "timeOfDay": "Evening",
+          "location": "Iwatodai Dorm 2F · Ken's room",
+          "solution": "Return to Ken's room and finish the second evening episode before September ends. Coffee and DVD hangouts do not replace it.",
+          "completionEvent": "p3r.episode.event.ken.2",
+          "number": 2,
+          "reward": "Courage +2",
+          "prerequisiteSteps": [
+            "p3r.episode.ken.1"
+          ]
+        },
+        {
+          "id": "p3r.episode.ken.3",
+          "title": "Episode 3",
+          "required": true,
+          "availableFrom": "2009-11-10",
+          "availableUntil": "2009-12-02",
+          "timeOfDay": "Evening",
+          "location": "Outside Iwatodai Dorm",
+          "solution": "Meet Ken outside the dorm in the evening for the third episode, after completing his two September episodes.",
+          "completionEvent": "p3r.episode.event.ken.3",
+          "number": 3,
+          "reward": "Charm +2",
+          "prerequisiteSteps": [
+            "p3r.episode.ken.2"
+          ]
+        },
+        {
+          "id": "p3r.episode.ken.4",
+          "title": "Episode 4",
+          "required": true,
+          "availableFrom": "2009-12-22",
+          "availableUntil": "2009-12-30",
+          "timeOfDay": "Evening",
+          "location": "Iwatodai Dorm 4F",
+          "solution": "Find Ken on the dorm's fourth floor and finish the fourth episode before December 30.",
+          "completionEvent": "p3r.episode.event.ken.4",
+          "number": 4,
+          "reward": "Maximum SP +3",
+          "prerequisiteSteps": [
+            "p3r.episode.ken.3"
+          ]
+        },
+        {
+          "id": "p3r.episode.ken.5",
+          "title": "Episode 5",
+          "required": true,
+          "availableFrom": "2010-01-19",
+          "availableUntil": "2010-01-27",
+          "timeOfDay": "Evening",
+          "location": "Iwatodai Dorm 4F",
+          "solution": "Complete Ken's final evening episode on the dorm's fourth floor and receive the Silver Key. His completed chain unlocks Michael's fusion.",
+          "completionEvent": "p3r.episode.event.ken.5",
+          "number": 5,
+          "reward": "Silver Key · Michael fusion",
+          "prerequisiteSteps": [
+            "p3r.episode.ken.4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p3r.episode.shinjiro",
+      "character": "Shinjiro Aragaki",
+      "reward": "Incomplete Form · Hell Biker fusion",
+      "steps": [
+        {
+          "id": "p3r.episode.shinjiro.1",
+          "title": "Episode 1",
+          "required": true,
+          "availableFrom": "2009-09-04",
+          "availableUntil": "2009-10-02",
+          "timeOfDay": "Daytime / after school",
+          "location": "Faculty Office Hallway 1F → Port Island Station Outskirts",
+          "solution": "Speak to Mitsuru in the school's faculty hallway to obtain the Reinstatement Form, then meet Shinjiro at Port Island Station Outskirts and watch the episode. Mark the combined route task Done only after the episode, not just the form pickup.",
+          "completionEvent": "p3r.episode.event.shinjiro.1",
+          "number": 1,
+          "reward": "Courage +2"
+        },
+        {
+          "id": "p3r.episode.shinjiro.2",
+          "title": "Episode 2",
+          "required": true,
+          "availableFrom": "2009-09-11",
+          "availableUntil": "2009-10-02",
+          "timeOfDay": "Daytime",
+          "location": "Port Island Station Outskirts",
+          "solution": "Meet Shinjiro at Port Island Station Outskirts and finish his second episode. Complete the September chain before October 2.",
+          "completionEvent": "p3r.episode.event.shinjiro.2",
+          "number": 2,
+          "reward": "Charm +2",
+          "prerequisiteSteps": [
+            "p3r.episode.shinjiro.1"
+          ]
+        },
+        {
+          "id": "p3r.episode.shinjiro.3",
+          "title": "Episode 3",
+          "required": true,
+          "availableFrom": "2009-09-13",
+          "availableUntil": "2009-10-02",
+          "timeOfDay": "Daytime",
+          "location": "Port Island Station Outskirts",
+          "solution": "Continue Shinjiro's third episode at Port Island Station Outskirts. Afterwards, the Extension Form checkpoint with Mitsuru must be completed before Episode 4.",
+          "completionEvent": "p3r.episode.event.shinjiro.3",
+          "number": 3,
+          "reward": "Academics +2",
+          "prerequisiteSteps": [
+            "p3r.episode.shinjiro.2"
+          ]
+        },
+        {
+          "id": "p3r.episode.shinjiro.form",
+          "title": "Extension Form checkpoint",
+          "required": true,
+          "availableFrom": "2009-09-14",
+          "availableUntil": "2009-10-02",
+          "timeOfDay": "After school · no time spent",
+          "location": "Gekkoukan High School · Faculty Office Hallway 1F",
+          "solution": "Speak to Mitsuru after Episode 3. Choose 'Wait a minute.' when she is about to keep the Extension Form, take it back, and hold it until the next Shinjiro episode. This conversation spends no daytime slot; completing Episode 3 alone does not complete this checkpoint.",
+          "completionEvent": "p3r.episode.event.shinjiro.form",
+          "prerequisiteSteps": [
+            "p3r.episode.shinjiro.3"
+          ]
+        },
+        {
+          "id": "p3r.episode.shinjiro.4",
+          "title": "Episode 4",
+          "required": true,
+          "availableFrom": "2009-09-14",
+          "availableUntil": "2009-10-02",
+          "timeOfDay": "Daytime",
+          "location": "Port Island Station Outskirts",
+          "solution": "After taking the Extension Form back from Mitsuru, meet Shinjiro and give it to him during the fourth episode. Keeping the form after the Mitsuru conversation is required; do not treat handing it back to Mitsuru as equivalent.",
+          "completionEvent": "p3r.episode.event.shinjiro.4",
+          "number": 4,
+          "reward": "Courage +2",
+          "prerequisiteSteps": [
+            "p3r.episode.shinjiro.3",
+            "p3r.episode.shinjiro.form"
+          ]
+        },
+        {
+          "id": "p3r.episode.shinjiro.5",
+          "title": "Episode 5",
+          "required": true,
+          "availableFrom": "2009-10-05",
+          "availableUntil": "2009-10-31",
+          "timeOfDay": "Evening / room visit",
+          "location": "Iwatodai Dorm 2F · Shinjiro's room",
+          "solution": "After finishing the four September episodes and the Extension Form checkpoint, enter Shinjiro's room and open his desk drawer. Receive the Incomplete Form to unlock Hell Biker's fusion. The additional skill card depends on Shinjiro's level and is not a fixed reward.",
+          "completionEvent": "p3r.episode.event.shinjiro.5",
+          "number": 5,
+          "reward": "Incomplete Form · Hell Biker fusion",
+          "prerequisiteSteps": [
+            "p3r.episode.shinjiro.4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p3r.episode.ryoji",
+      "character": "Ryoji Mochizuki",
+      "reward": "Music Box · Saturnus fusion",
+      "steps": [
+        {
+          "id": "p3r.episode.ryoji.1",
+          "title": "Episode 1",
+          "required": true,
+          "availableFrom": "2009-11-09",
+          "availableUntil": "2009-11-09",
+          "timeOfDay": "Story event",
+          "location": "Gekkoukan High School",
+          "solution": "Watch the forced introduction to Ryoji. Record the walkthrough task after viewing it; reaching November 9 alone does not mark the episode complete.",
+          "completionEvent": "p3r.episode.event.ryoji.1",
+          "number": 1,
+          "reward": "Equipped Persona · all stats +1"
+        },
+        {
+          "id": "p3r.episode.ryoji.2",
+          "title": "Episode 2",
+          "required": true,
+          "availableFrom": "2009-11-12",
+          "availableUntil": "2009-11-16",
+          "timeOfDay": "After school",
+          "location": "Gekkoukan High School · Classroom 2F",
+          "solution": "Accept Ryoji's school outing on November 12, 14 or 16. This route chooses November 14; the intervening dates are not additional opportunities.",
+          "completionEvent": "p3r.episode.event.ryoji.2",
+          "number": 2,
+          "reward": "Equipped Persona · all stats +1",
+          "prerequisiteSteps": [
+            "p3r.episode.ryoji.1"
+          ],
+          "availableDates": [
+            "2009-11-12",
+            "2009-11-14",
+            "2009-11-16"
+          ]
+        },
+        {
+          "id": "p3r.episode.ryoji.3",
+          "title": "Episode 3",
+          "required": true,
+          "availableFrom": "2009-11-18",
+          "availableUntil": "2009-11-18",
+          "timeOfDay": "School trip / daytime",
+          "location": "Kyoto",
+          "solution": "Accept Ryoji's invitation during the Kyoto school trip on November 18 and finish the outing. This is a single-date opportunity, not a general Kyoto-trip window.",
+          "completionEvent": "p3r.episode.event.ryoji.3",
+          "number": 3,
+          "reward": "Equipped Persona · all stats +1",
+          "prerequisiteSteps": [
+            "p3r.episode.ryoji.2"
+          ]
+        },
+        {
+          "id": "p3r.episode.ryoji.4",
+          "title": "Episode 4",
+          "required": true,
+          "availableFrom": "2009-12-01",
+          "availableUntil": "2009-12-01",
+          "timeOfDay": "After school",
+          "location": "Gekkoukan High School · Music Room",
+          "solution": "Meet Ryoji in the school Music Room and finish his December 1 episode. It has no later replacement date in the authored chain.",
+          "completionEvent": "p3r.episode.event.ryoji.4",
+          "number": 4,
+          "reward": "Equipped Persona · all stats +1",
+          "prerequisiteSteps": [
+            "p3r.episode.ryoji.3"
+          ]
+        },
+        {
+          "id": "p3r.episode.ryoji.5",
+          "title": "Episode 5",
+          "required": true,
+          "availableFrom": "2009-12-31",
+          "availableUntil": "2009-12-31",
+          "timeOfDay": "Evening / story decision",
+          "location": "Iwatodai Dorm",
+          "solution": "Choose to spare Ryoji and insist on letting him live to keep the good-ending route. Record this task only after making that choice. The completed episode chain awards the Music Box and Saturnus fusion; the separate Fool MAX task does not prove this choice by itself.",
+          "completionEvent": "p3r.episode.event.ryoji.5",
+          "number": 5,
+          "reward": "Music Box · Saturnus fusion",
+          "prerequisiteSteps": [
+            "p3r.episode.ryoji.4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p3r.episode.takaya",
+      "character": "Takaya Sakaki",
+      "relatedStory": true,
+      "notes": "Related story interactions are kept separate from the 30 numbered Linked Episodes. The January meeting affects later dialogue, not Persona fusion. Forced scenes still require their exact walkthrough task to be recorded.",
+      "steps": [
+        {
+          "id": "p3r.episode.takaya.1",
+          "title": "Story event 1",
+          "required": true,
+          "availableFrom": "2009-08-14",
+          "availableUntil": "2009-08-14",
+          "timeOfDay": "Daytime · story event",
+          "location": "Story event",
+          "solution": "Watch Takaya's August story scene. This is a related story event rather than one of the six five-episode character chains.",
+          "completionEvent": "p3r.episode.event.takaya.1"
+        },
+        {
+          "id": "p3r.episode.takaya.2",
+          "title": "Story event 2",
+          "required": true,
+          "availableFrom": "2009-08-20",
+          "availableUntil": "2009-08-20",
+          "timeOfDay": "Evening · story event",
+          "location": "Story event",
+          "solution": "Watch Takaya's second August story scene. Record it from this exact task, not the calendar date or a dorm hangout.",
+          "completionEvent": "p3r.episode.event.takaya.2"
+        },
+        {
+          "id": "p3r.episode.takaya.3",
+          "title": "Story event 3",
+          "required": true,
+          "availableFrom": "2009-09-18",
+          "availableUntil": "2009-09-18",
+          "timeOfDay": "After school · story event",
+          "location": "Story event",
+          "solution": "Watch Takaya's September story scene before the typhoon period. It is not a Social Link rank or a Persona-fusion chain.",
+          "completionEvent": "p3r.episode.event.takaya.3"
+        },
+        {
+          "id": "p3r.episode.takaya.4",
+          "title": "Story event 4",
+          "required": true,
+          "availableFrom": "2010-01-13",
+          "availableUntil": "2010-01-29",
+          "timeOfDay": "Evening",
+          "location": "Club Escapade",
+          "solution": "Speak to the suspicious-looking man at Club Escapade and agree to meet their Messiah. This optional January interaction changes later confrontation dialogue; it does not unlock a fusion or another Social Link.",
+          "completionEvent": "p3r.episode.event.takaya.4"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "p3r.episode.event.junpei.1",
+      "date": "2009-05-12",
+      "labelContains": "Watch Junpei's Link Episode after school",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.junpei.2",
+      "date": "2009-08-09",
+      "labelContains": "Watch Junpei's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.junpei.3",
+      "date": "2009-11-07",
+      "labelContains": "Watch Junpei's Link Episode — encourage him to see Chidori",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.junpei.flowers",
+      "date": "2009-11-08",
+      "labelContains": "Watch Junpei's Link Episode — hand over the White Flower",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.junpei.4",
+      "date": "2009-12-19",
+      "labelContains": "Watch Junpei's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.junpei.5",
+      "date": "2010-01-18",
+      "labelContains": "Watch Junpei's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.junpei.revival",
+      "date": "2010-01-21",
+      "labelContains": "Revival Event (after school)",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.akihiko.1",
+      "date": "2009-05-29",
+      "labelContains": "Watch Akihiko's Link Episode — jog back with him for +5 Max HP, or refuse for +3 Max SP",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.akihiko.2",
+      "date": "2009-07-24",
+      "labelContains": "Watch Akihiko's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.akihiko.3",
+      "date": "2009-10-19",
+      "labelContains": "Watch Akihiko's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.akihiko.4",
+      "date": "2009-12-19",
+      "labelContains": "Watch Akihiko's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.akihiko.5",
+      "date": "2010-01-04",
+      "labelContains": "Watch Akihiko's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.koromaru.1",
+      "date": "2009-09-08",
+      "labelContains": "Watch Koromaru's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.koromaru.2",
+      "date": "2009-09-22",
+      "labelContains": "Watch Koromaru's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.koromaru.3",
+      "date": "2009-10-06",
+      "labelContains": "Watch Koromaru's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.koromaru.4",
+      "date": "2010-01-05",
+      "labelContains": "Watch Koromaru's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.koromaru.5",
+      "date": "2010-01-25",
+      "labelContains": "Watch Koromaru's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.ken.1",
+      "date": "2009-09-08",
+      "labelContains": "Watch Ken's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.ken.2",
+      "date": "2009-09-22",
+      "labelContains": "Watch Ken's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.ken.3",
+      "date": "2009-11-10",
+      "labelContains": "Watch Ken's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.ken.4",
+      "date": "2009-12-25",
+      "labelContains": "Watch Ken's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.ken.5",
+      "date": "2010-01-19",
+      "labelContains": "Watch Ken's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.shinjiro.1",
+      "date": "2009-09-04",
+      "labelContains": "Talk to Mitsuru to receive the Reinstatement Form, then watch Shinjiro's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.shinjiro.2",
+      "date": "2009-09-13",
+      "labelContains": "Watch Shinjiro's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.shinjiro.3",
+      "date": "2009-09-21",
+      "labelContains": "Watch Shinjiro's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.shinjiro.form",
+      "date": "2009-09-24",
+      "labelContains": "Talk to Mitsuru and take the Extension Form back — hold onto it, don't return it to Shinjiro yet (Shinjiro Link Episode 3.5)",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.shinjiro.4",
+      "date": "2009-09-27",
+      "labelContains": "Watch Shinjiro's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.shinjiro.5",
+      "date": "2009-10-05",
+      "labelContains": "Enter Shinjiro's room and open the desk drawer — Shinjiro Link Episode 5",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.ryoji.1",
+      "date": "2009-11-09",
+      "labelContains": "Watch Ryoji's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.ryoji.2",
+      "date": "2009-11-14",
+      "labelContains": "Watch Ryoji's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.ryoji.3",
+      "date": "2009-11-18",
+      "labelContains": "Accept Ryoji's invitation — watch his Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.ryoji.4",
+      "date": "2009-12-01",
+      "labelContains": "Watch Ryoji's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.ryoji.5",
+      "date": "2009-12-31",
+      "labelContains": "Watch Ryoji's Link Episode, choose 'Spare Ryoji and stay as is,' and insist on sparing him to stay on the good-ending route",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.takaya.1",
+      "date": "2009-08-14",
+      "labelContains": "Watch Takaya's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.takaya.2",
+      "date": "2009-08-20",
+      "labelContains": "Watch Takaya's Link Episode",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.takaya.3",
+      "date": "2009-09-18",
+      "labelContains": "Watch Takaya's Link Episode after school",
+      "routeId": "standard"
+    },
+    {
+      "id": "p3r.episode.event.takaya.4",
+      "date": "2010-01-13",
+      "labelContains": "Talk to the suspicious-looking man at Club Escapade and agree to meet their Messiah — Takaya's Link Episode",
+      "routeId": "standard"
+    }
+  ]
+}

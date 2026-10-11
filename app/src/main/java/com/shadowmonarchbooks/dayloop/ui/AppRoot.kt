@@ -41,6 +41,7 @@ import com.shadowmonarchbooks.dayloop.ui.activities.ActivityDetailScreen
 import com.shadowmonarchbooks.dayloop.ui.answers.AnswersScreen
 import com.shadowmonarchbooks.dayloop.ui.bonds.BondDetailScreen
 import com.shadowmonarchbooks.dayloop.ui.bonds.BondsScreen
+import com.shadowmonarchbooks.dayloop.ui.episodes.EpisodeDetailScreen
 import com.shadowmonarchbooks.dayloop.ui.day.DayScreen
 import com.shadowmonarchbooks.dayloop.ui.deadlines.DeadlinesScreen
 import com.shadowmonarchbooks.dayloop.ui.media.MediaScreen
@@ -100,6 +101,7 @@ private fun bannerTitle(
     return when (route?.substringBefore('/')) {
         "day" -> "Day"
         "bond" -> pack?.pack?.labels?.bond ?: "Bond"
+        "episode" -> pack?.episodes?.title ?: "Episodes"
         "activity", "activities" -> "Activities"
         "search" -> "Search"
         "settings" -> "Settings"
@@ -272,6 +274,20 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                         days = state.days,
                         marks = state.marks,
                         onOpenBond = { id -> nav.navigate("bond/$id") },
+                        currentDate = state.currentDate,
+                        routeId = state.activeRouteId,
+                        onOpenEpisode = { id -> nav.navigate("episode/$id") },
+                    )
+                }
+                composable("episode/{chainId}") { entry ->
+                    EpisodeDetailScreen(
+                        chainId = entry.arguments?.getString("chainId").orEmpty(),
+                        pack = pack,
+                        days = state.days,
+                        marks = state.marks,
+                        currentDate = state.currentDate,
+                        routeId = state.activeRouteId,
+                        onOpenDay = { date -> nav.navigate("day/$date") },
                     )
                 }
                 composable("bond/{bondId}") { entry ->

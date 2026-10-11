@@ -123,6 +123,8 @@ data class Capabilities(
     /** Pack ships a task-linked Mementos request catalog. */
     val mementosRequests: Boolean = false,
     val requests: Boolean = false,
+    /** Pack ships a task-backed episode catalog, independently of relationship ranks. */
+    val episodes: Boolean = false,
 )
 
 @Serializable

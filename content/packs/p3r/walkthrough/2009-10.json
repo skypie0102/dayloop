@@ -116,7 +116,8 @@
       "steps": [
         {
           "label": "Enter Shinjiro's room and open the desk drawer — Shinjiro Link Episode 5",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Episode 5 · Shinjiro Aragaki\n\nAfter finishing the four September episodes and the Extension Form checkpoint, enter Shinjiro's room and open his desk drawer. Receive the Incomplete Form to unlock Hell Biker's fusion. The additional skill card depends on Shinjiro's level and is not a fixed reward.\n\nReward: Incomplete Form · Hell Biker fusion.\n\nWindow: 10/5–10/31. Evening / room visit. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Walk Koromaru (with Aigis)",
@@ -153,7 +154,8 @@
         },
         {
           "label": "Watch Koromaru's Link Episode",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Episode 3 · Koromaru\n\nContinue Koromaru's third daytime episode outside the dorm. This raises his Persona's Agility; it is not the evening walk or DVD hangout.\n\nReward: Cerberus Agility +3.\n\nWindow: 9/15–1/30. Daytime / after school. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "New software and notes are available",
@@ -568,7 +570,8 @@
           "slot": "evening",
           "statGains": {
             "charm": 2
-          }
+          },
+          "tip": "Episode 3 · Akihiko Sanada\n\nContinue Akihiko's story at Iwatodai Station in the evening. The DVD and cooking activities at the dorm do not substitute for this third episode.\n\nReward: Charm +2.\n\nWindow: 10/9–11/2. Evening. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         }
       ],
       "displayOrder": [
