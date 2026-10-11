@@ -39,6 +39,7 @@ jobs:
       - name: Prepare candidate APK
         if: matrix.review == 'full'
         run: |
+          bash tools/android/verify-candidate-signing.sh app/build/outputs/apk/candidate/app-candidate.apk
           mkdir -p build/review-apk
           cp app/build/outputs/apk/candidate/app-candidate.apk build/review-apk/dayloop-v0.16.0-rc7.apk
       - name: Upload candidate APK

@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'app/build.gradle.kts'
+      - 'tools/android/candidate-test-key.p12'
+      - 'tools/android/verify-candidate-signing.sh'
       - '.github/workflows/release-candidate.yml'
       - '.github/release-requests/v0.16.0-rc1.md'
       - 'docs/LOCAL_BUILD.md'
@@ -95,7 +97,7 @@ jobs:
         run: |
           set -euo pipefail
           APK_PATH='app/build/outputs/apk/candidate/app-candidate.apk'
-          "${ANDROID_SDK_ROOT}/build-tools/${DAYLOOP_ANDROID_BUILD_TOOLS}/apksigner" verify --verbose "$APK_PATH"
+          bash tools/android/verify-candidate-signing.sh "$APK_PATH"
           mkdir -p release-out
           cp "$APK_PATH" "release-out/${APK_NAME}"
           (cd release-out && sha256sum "${APK_NAME}" > "${APK_NAME}.sha256")

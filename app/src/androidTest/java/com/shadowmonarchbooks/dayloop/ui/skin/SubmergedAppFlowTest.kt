@@ -406,7 +406,7 @@ class SubmergedAppFlowTest {
         val source = "achievement-checkpoint-p3r.event.social-start-fool"
         list.performScrollToNode(hasTestTag(source))
         compose.onNodeWithTag(source).performClick()
-        compose.onNodeWithTag("task-label-1").assertTextContains("Fool reaches rank 1")
+        compose.onNodeWithTag("task-label-1").assertTextContains("Fool reaches rank 1", substring = true)
         assertEquals("2010-01-08", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
         assertEquals(1, runBlocking { dependencies.repo().marksFor(profileId).first().size })
         compose.onAllNodesWithContentDescription("Done")[1].performScrollTo().performClick()
@@ -447,7 +447,7 @@ class SubmergedAppFlowTest {
         compose.waitUntil(10_000) { runBlocking { dependencies.repo().achievementProgress(profileId).first().counts[id] == 50_000 } }
         // Returning to the detail after the sort change must retain the correction.
         list.performScrollToNode(hasTestTag("achievement-$id"))
-        compose.onNodeWithTag("achievement-$id").assertTextContains("¥50000 / ¥50001 tracked")
+        compose.onNodeWithTag("achievement-$id").assertTextContains("¥50000 / ¥50001 tracked", substring = true)
         list.performScrollToNode(hasSetTextAction())
         compose.onNode(hasSetTextAction()).assertIsEnabled()
         // Dismiss the numeric keyboard before reviewing the actual detail layout.
@@ -469,7 +469,7 @@ class SubmergedAppFlowTest {
         tab("Achievements").performClick()
         val list = compose.onNodeWithTag("achievement-list")
         list.performScrollToNode(hasTestTag("achievement-$id"))
-        compose.onNodeWithTag("achievement-$id").assertTextContains("8 / 9 tracked").performClick()
+        compose.onNodeWithTag("achievement-$id").assertTextContains("8 / 9 tracked", substring = true).performClick()
         list.performScrollToNode(hasText("Shinjiro · by 2009-10-03"))
         compose.onNodeWithText("Shinjiro · by 2009-10-03").assertIsDisplayed()
         capture("p3r-app-achievement-theurgy-deadline-double-text")

@@ -33,6 +33,15 @@ android {
     }
 
     signingConfigs {
+        // Intentionally public test-channel identity, retained across CI jobs.
+        // Never use this key for the production application id or release builds.
+        create("candidateTest") {
+            storeFile = rootProject.file("tools/android/candidate-test-key.p12")
+            storeType = "PKCS12"
+            storePassword = "android"
+            keyAlias = "dayloop-candidate"
+            keyPassword = "android"
+        }
         if (keystorePropertiesFile.exists()) {
             create("release") {
                 storeFile = rootProject.file(keystoreProperties.getProperty("storeFile"))
@@ -54,11 +63,11 @@ android {
         }
 
         // Installable test channel for prereleases. It intentionally uses the
-        // standard Android debug key and a separate application id so testers
+        // stable public test key and a separate application id so testers
         // can keep the production-signed app installed at the same time.
         create("candidate") {
             initWith(getByName("release"))
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("candidateTest")
             applicationIdSuffix = ".candidate"
             isDebuggable = true
         }

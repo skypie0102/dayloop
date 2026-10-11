@@ -23,6 +23,23 @@ does not change the active game/profile, sound preference or device settings.
 Files exported by the candidate build can also be imported by the stable app
 when it supports this backup version and includes the relevant game calendars.
 
+## Moving from an older candidate to rc7
+
+Candidates through rc6 used different signing keys on each CI runner. Starting
+with rc7, the candidate channel uses one stable public test key. An older
+candidate cannot be updated in place to this new identity.
+
+1. In the installed candidate, export all progress to a JSON file outside the
+   app's storage, such as Downloads, and keep the file.
+2. Uninstall the older candidate, then install rc7.
+3. Import the saved JSON file and choose **Import profiles**.
+4. Under **Profiles**, select the restored profile for each game.
+
+Uninstalling clears local app data, so export before that step. Import adds
+profile copies with an “imported” suffix; it does not automatically select them.
+Future candidates retain the [same test signing identity](../tools/android/candidate-signing.md)
+and can update rc7 in place.
+
 An unavailable game, incompatible clock, unsupported format version, damaged
 document or invalid tracker state prevents the import. The error appears in
 Settings; existing saves remain intact. Older route identifiers and orphaned

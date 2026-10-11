@@ -164,6 +164,12 @@ P5R/Metaphor pack data is untouched. New guidance/navigation is opt-in through t
 optional catalog fields. The shared counter correction and clear-confirmation fix
 also preserve reversibility for their existing achievement controls.
 
+The rc7 candidate uses a pinned public test signing identity across CI runners.
+Older candidates had different runner-generated keys, so their progress must be
+exported before a one-time uninstall/install/import transition; see
+[Progress backups](../progress-backups.md). Future candidates retain this test
+identity. Production signing is unchanged.
+
 ## Validation and acceptance
 
 Local JSON/reference/reminder checks, preservation comparisons and `git diff --check`
