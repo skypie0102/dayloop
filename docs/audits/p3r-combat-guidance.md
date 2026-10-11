@@ -103,7 +103,7 @@ Local JSON parsing, structural/save comparisons and `git diff --check` pass.
 The local Gradle wrapper cannot download 8.10.2 (`Network is unreachable`);
 builds, JVM tests and all-pack lint therefore run on GitHub CI.
 
-The [combat pull request and checks](https://github.com/skypie0102/dayloop/pulls?q=p3r+combat)
+The [combat pull request and checks](https://github.com/skypie0102/dayloop/pull/7)
 are the durable validation record. The
 [Android review workflow](https://github.com/skypie0102/dayloop/actions/workflows/p3r-ui-review.yml)
 uploads the candidate APK, native screenshots and test XML for that change.
