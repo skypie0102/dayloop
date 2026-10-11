@@ -8,7 +8,8 @@
       "steps": [
         {
           "label": "Watch Ryoji's Link Episode",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Episode 4 · Ryoji Mochizuki\n\nMeet Ryoji in the school Music Room and finish his December 1 episode. It has no later replacement date in the authored chain.\n\nReward: Equipped Persona · all stats +1.\n\nThis event is scheduled for 12/1. After school.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Work part-time at Chagall Café",
@@ -397,11 +398,13 @@
         },
         {
           "label": "Watch Junpei's Link Episode",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Episode 4 · Junpei Iori\n\nMeet Junpei in the classroom for the fourth episode. His November flower branch is optional and is not required to continue this five-episode chain.\n\nReward: Courage +2.\n\nWindow: 12/19–12/26. After school / daytime. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Watch Akihiko's Link Episode",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Episode 4 · Akihiko Sanada\n\nMeet Akihiko at Iwatodai Station and finish the fourth episode before its December cutoff.\n\nReward: Maximum SP +3.\n\nWindow: 12/12–12/26. Evening. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         }
       ],
       "displayOrder": [
@@ -559,7 +562,8 @@
         },
         {
           "label": "Watch Ken's Link Episode",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Episode 4 · Ken Amada\n\nFind Ken on the dorm's fourth floor and finish the fourth episode before December 30.\n\nReward: Maximum SP +3.\n\nWindow: 12/22–12/30. Evening. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         }
       ],
       "displayOrder": [
@@ -698,7 +702,8 @@
         {
           "label": "Watch Ryoji's Link Episode, choose 'Spare Ryoji and stay as is,' and insist on sparing him to stay on the good-ending route",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Episode 5 · Ryoji Mochizuki\n\nChoose to spare Ryoji and insist on letting him live to keep the good-ending route. Record this task only after making that choice. The completed episode chain awards the Music Box and Saturnus fusion; the separate Fool MAX task does not prove this choice by itself.\n\nReward: Music Box · Saturnus fusion.\n\nThis event is scheduled for 12/31. Evening / story decision.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Fool reaches rank 10 (MAX; story)",

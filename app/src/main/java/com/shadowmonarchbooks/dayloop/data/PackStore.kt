@@ -11,6 +11,7 @@ import com.shadowmonarchbooks.dayloop.pack.schema.Activity
 import com.shadowmonarchbooks.dayloop.pack.schema.AnswerSheet
 import com.shadowmonarchbooks.dayloop.pack.schema.Bond
 import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
+import com.shadowmonarchbooks.dayloop.pack.schema.EpisodesFile
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
@@ -76,6 +77,7 @@ data class LoadedPack(
     val requests: com.shadowmonarchbooks.dayloop.pack.schema.RequestsFile? = null,
     val mementosRequests: List<MementosRequestDefinition> = emptyList(),
     val mementosRequestEvents: List<AchievementEventAnchor> = emptyList(),
+    val episodes: EpisodesFile? = null,
 ) {
     /** The pack's game calendar (cycle/weekday lookups, deadline day math). */
     val calendar: GameCalendar? by lazy { GameCalendar.of(pack.calendar) }
@@ -277,6 +279,7 @@ class PackStore @Inject constructor(
                     requests = if ("requests.json" in files) PackLoader.decodeRequests(readAsset(assets, "$slug/requests.json")) else null,
                     mementosRequests = mementosRequestsFile?.requests.orEmpty(),
                     mementosRequestEvents = mementosRequestsFile?.events.orEmpty(),
+                    episodes = if ("episodes.json" in files) PackLoader.decodeEpisodes(readAsset(assets, "$slug/episodes.json")) else null,
                 )
             } catch (_: Exception) {
                 // A broken pack must never take the app down; lint guards content quality.

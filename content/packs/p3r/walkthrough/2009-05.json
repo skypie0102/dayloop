@@ -360,7 +360,8 @@
       "steps": [
         {
           "label": "Watch Junpei's Link Episode after school",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Episode 1 · Junpei Iori\n\nSpeak to Junpei in the classroom and spend the afternoon with him. Finish this first episode before his summer continuation.\n\nReward: Hermes Strength +3.\n\nWindow: 5/12–7/3. Daytime / after school. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Play House of the Deceased at Game Parade",
@@ -849,7 +850,8 @@
         },
         {
           "label": "Watch Akihiko's Link Episode — jog back with him for +5 Max HP, or refuse for +3 Max SP",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Episode 1 · Akihiko Sanada\n\nMeet Akihiko at Iwatodai Station. Agree to jog back for +5 maximum HP, or decline for +3 maximum SP. Either response completes the episode; the tracker does not assume which stat reward you chose.\n\nReward: Maximum HP +5 or maximum SP +3.\n\nWindow: 5/29–7/10. Evening. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         }
       ],
       "displayOrder": [

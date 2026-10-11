@@ -30,6 +30,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
@@ -39,6 +44,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.testTag
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.data.describeCondition
 import com.shadowmonarchbooks.dayloop.data.formatDate
@@ -46,6 +52,7 @@ import com.shadowmonarchbooks.dayloop.data.statLabels
 import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
+import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.progress.StepKey
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
@@ -55,10 +62,44 @@ import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
+import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedFilters
+import com.shadowmonarchbooks.dayloop.ui.episodes.EpisodesScreen
 
 /** Bond list — labels come from the pack ("Confidant", "Social Link", "Follower"). */
 @Composable
 fun BondsScreen(
+    pack: LoadedPack?,
+    days: Map<String, Day> = emptyMap(),
+    marks: Map<StepKey, StepMark> = emptyMap(),
+    currentDate: String? = null,
+    routeId: String = Routes.DEFAULT,
+    onOpenEpisode: (String) -> Unit = {},
+    onOpenBond: (String) -> Unit,
+) {
+    val catalog = pack?.episodes
+    if (pack == null || catalog == null || catalog.chains.isEmpty()) {
+        BondListScreen(pack, days, marks, onOpenBond)
+        return
+    }
+    val bondTitle = pack.pack.labels.bond + "s"
+    val episodeTitle = catalog.title
+    var section by rememberSaveable(pack.slug) { mutableStateOf(bondTitle) }
+    val sections = rememberSaveableStateHolder()
+    Column(Modifier.fillMaxSize()) {
+        Box(Modifier.testTag("bond-sections").padding(horizontal = 16.dp, vertical = 8.dp)) {
+            SubmergedFilters(listOf(bondTitle, episodeTitle), section) { section = it }
+        }
+        Box(Modifier.weight(1f)) {
+            sections.SaveableStateProvider(section) {
+                if (section == episodeTitle) EpisodesScreen(pack, days, marks, currentDate, routeId, onOpenEpisode)
+                else BondListScreen(pack, days, marks, onOpenBond)
+            }
+        }
+    }
+}
+
+@Composable
+private fun BondListScreen(
     pack: LoadedPack?,
     days: Map<String, Day> = emptyMap(),
     marks: Map<StepKey, StepMark> = emptyMap(),

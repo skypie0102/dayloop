@@ -137,7 +137,8 @@ class SubmergedAppFlowTest {
     }
 
     private fun tab(label: String) = compose.onNode(
-        hasText(label) and SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Tab),
+        hasText(label) and SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Tab) and
+            hasAnyAncestor(hasTestTag("bond-sections")).not(),
     )
 
     private fun openRequest(title: String) {
@@ -154,6 +155,100 @@ class SubmergedAppFlowTest {
             compose.onAllNodesWithText("$count / 101 reported").fetchSemanticsNodes().isNotEmpty()
         }
         compose.onNodeWithText("$count / 101 reported").performScrollTo().assertIsDisplayed()
+    }
+
+    private fun openEpisodeChain(id: String) {
+        compose.onNodeWithTag("episode-list").performScrollToNode(hasTestTag("episode-chain-$id"))
+        compose.onNodeWithTag("episode-chain-$id").performClick()
+    }
+
+    private fun openEpisodeStep(id: String) {
+        compose.onNodeWithTag("episode-detail").performScrollToNode(hasTestTag("episode-step-$id"))
+        compose.onNodeWithTag("episode-step-$id").performClick()
+    }
+
+    private fun episodeChainCountIs(count: Int) {
+        compose.onNodeWithTag("episode-detail").performScrollToIndex(0)
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithText("$count / 5 episodes complete").fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.onNodeWithTag("episode-chain-summary").assertTextEquals("$count / 5 episodes complete")
+    }
+
+    @Test fun linkedEpisodeSourceNavigationRetainsTheClockAndReversesChainProof() {
+        launch("2009-05-12")
+        compose.onAllNodesWithText("Done")[0].performScrollTo().performClick()
+        markIs(0, StepMark.DONE, "2009-05-12")
+        tab("Social Links").performScrollTo().performClick()
+        compose.onNodeWithText("Linked Episodes").performClick()
+        compose.onNodeWithTag("episode-summary").assertTextEquals("1 / 30 episodes complete")
+        capture("p3r-episode-catalog")
+        openEpisodeChain("p3r.episode.junpei")
+        episodeChainCountIs(1)
+        openEpisodeStep("p3r.episode.junpei.2")
+        compose.onNodeWithTag("episode-detail").performScrollToNode(hasTestTag("episode-guide-p3r.episode.junpei.2"))
+        compose.onNodeWithTag("episode-guide-p3r.episode.junpei.2").performClick()
+        val pack = dependencies.store().state.value.selected!!
+        val source = pack.episodes!!.events.single { it.id == "p3r.episode.event.junpei.2" }
+        val index = pack.day("standard", source.date)!!.steps.indexOfFirst { it.label == source.labelContains }
+        compose.onNodeWithText(source.labelContains).performScrollTo().assertIsDisplayed()
+        assertEquals("2009-05-12", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
+        capture("p3r-episode-route-guidance")
+        compose.onAllNodesWithText("Done")[index].performScrollTo().performClick()
+        markIs(index, StepMark.DONE, source.date)
+        compose.onNodeWithContentDescription("Back").performClick()
+        episodeChainCountIs(2)
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithTag("episode-list").performScrollToIndex(0)
+        compose.onNodeWithTag("episode-summary").assertTextEquals("2 / 30 episodes complete")
+        scenario!!.recreate()
+        compose.waitUntil(15_000) { compose.onAllNodesWithTag("episode-summary").fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithTag("episode-summary").assertTextEquals("2 / 30 episodes complete")
+        openEpisodeChain("p3r.episode.junpei")
+        openEpisodeStep("p3r.episode.junpei.1")
+        compose.onNodeWithTag("episode-detail").performScrollToNode(hasTestTag("episode-guide-p3r.episode.junpei.1"))
+        compose.onNodeWithTag("episode-guide-p3r.episode.junpei.1").performClick()
+        compose.onAllNodesWithText("Done")[0].performScrollTo().performClick()
+        compose.waitUntil(10_000) { runBlocking { dependencies.repo().marksFor(profileId).first().none { it.date == "2009-05-12" && it.stepIndex == 0 } } }
+        compose.onNodeWithContentDescription("Back").performClick()
+        episodeChainCountIs(0)
+        openEpisodeStep("p3r.episode.junpei.2")
+        compose.onNodeWithTag("episode-status-p3r.episode.junpei.2").assertTextEquals("Recorded · earlier step unconfirmed")
+        capture("p3r-episode-reversed-chain")
+        assertEquals("2009-05-12", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
+    }
+
+    @Test fun linkedEpisodeFormPrerequisiteAndGuidanceAreReachableAtTwoHundredPercentText() {
+        launch("2009-09-24", scale = 2f)
+        val pack = dependencies.store().state.value.selected!!
+        runBlocking {
+            for (number in 1..3) {
+                val event = pack.episodes!!.events.single { it.id == "p3r.episode.event.shinjiro.$number" }
+                val index = pack.day("standard", event.date)!!.steps.indexOfFirst { it.label == event.labelContains }
+                dependencies.repo().setMark(profileId, com.shadowmonarchbooks.dayloop.progress.StepKey(event.date, index), StepMark.DONE)
+            }
+        }
+        tab("Social Links").performScrollTo().performClick()
+        compose.onNodeWithText("Linked Episodes").performClick()
+        openEpisodeChain("p3r.episode.shinjiro")
+        episodeChainCountIs(3)
+        openEpisodeStep("p3r.episode.shinjiro.form")
+        compose.onNodeWithTag("episode-window-p3r.episode.shinjiro.form").performScrollTo().assertIsDisplayed()
+        capture("p3r-episode-form-window-large-text")
+        compose.onNodeWithTag("episode-solution-p3r.episode.shinjiro.form").performScrollTo().assertIsDisplayed()
+        capture("p3r-episode-form-guidance-large-text")
+        compose.onNodeWithTag("episode-prerequisite-p3r.episode.shinjiro.3").performScrollTo().performClick()
+        compose.onNodeWithTag("episode-status-p3r.episode.shinjiro.3").assertTextEquals("Completed")
+        capture("p3r-episode-prerequisite-large-text")
+        openEpisodeStep("p3r.episode.shinjiro.form")
+        compose.onNodeWithTag("episode-detail").performScrollToNode(hasTestTag("episode-guide-p3r.episode.shinjiro.form"))
+        compose.onNodeWithTag("episode-guide-p3r.episode.shinjiro.form").performClick()
+        compose.onAllNodesWithText("Done")[1].performScrollTo().performClick()
+        markIs(1, StepMark.DONE, "2009-09-24")
+        compose.onNodeWithContentDescription("Back").performClick()
+        episodeChainCountIs(3)
+        compose.onNodeWithText("Next checkpoint · Episode 4").performScrollTo().assertIsDisplayed()
+        assertEquals("2009-09-24", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
     }
 
     @Test fun schoolDayNavigationAndSavedDayFlow() {

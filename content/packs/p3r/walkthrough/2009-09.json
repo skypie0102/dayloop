@@ -102,7 +102,8 @@
           "slot": "afternoon",
           "statGains": {
             "courage": 2
-          }
+          },
+          "tip": "Episode 1 · Shinjiro Aragaki\n\nSpeak to Mitsuru in the school's faculty hallway to obtain the Reinstatement Form, then meet Shinjiro at Port Island Station Outskirts and watch the episode. Mark the combined route task Done only after the episode, not just the form pickup.\n\nReward: Courage +2.\n\nWindow: 9/4–10/2. Daytime / after school. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Optional: buy the Platinum Brooch at Club Escapade and gift it to Elizabeth for a Master Incense",
@@ -203,14 +204,16 @@
           "slot": "afternoon",
           "statGains": {
             "courage": 2
-          }
+          },
+          "tip": "Episode 1 · Koromaru\n\nSpeak to Koromaru outside the dorm during the day for his first story episode. An evening dog walk is a different activity and does not count.\n\nReward: Charm +2.\n\nWindow: 8/22–1/30. Daytime / after school. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Watch Ken's Link Episode",
           "slot": "evening",
           "statGains": {
             "academics": 2
-          }
+          },
+          "tip": "Episode 1 · Ken Amada\n\nVisit Ken's room for his first evening episode. Both of his September episodes must be finished by September 30 to preserve the later continuation.\n\nReward: Academics +2.\n\nWindow: 9/8–9/30. Evening. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         }
       ],
       "displayOrder": [
@@ -368,7 +371,8 @@
         },
         {
           "label": "Watch Shinjiro's Link Episode",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Episode 2 · Shinjiro Aragaki\n\nMeet Shinjiro at Port Island Station Outskirts and finish his second episode. Complete the September chain before October 2.\n\nReward: Charm +2.\n\nWindow: 9/11–10/2. Daytime. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Check the Command Room's new dorm recording",
@@ -495,7 +499,8 @@
       "steps": [
         {
           "label": "Watch Takaya's Link Episode after school",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Story event 3 · Takaya Sakaki\n\nWatch Takaya's September story scene before the typhoon period. It is not a Social Link rank or a Persona-fusion chain.\n\nThis event is scheduled for 9/18. After school · story event.\n\nMark Done after completing this specific checkpoint."
         }
       ],
       "displayOrder": [
@@ -528,7 +533,8 @@
           "slot": "day",
           "statGains": {
             "academics": 2
-          }
+          },
+          "tip": "Episode 3 · Shinjiro Aragaki\n\nContinue Shinjiro's third episode at Port Island Station Outskirts. Afterwards, the Extension Form checkpoint with Mitsuru must be completed before Episode 4.\n\nReward: Academics +2.\n\nWindow: 9/13–10/2. Daytime. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Check the Command Room's new dorm recording",
@@ -552,11 +558,13 @@
       "steps": [
         {
           "label": "Watch Koromaru's Link Episode",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Episode 2 · Koromaru\n\nFind Koromaru outside the dorm during the day and finish the second episode after the first.\n\nReward: Courage +2.\n\nWindow: 9/4–1/30. Daytime / after school. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Watch Ken's Link Episode",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Episode 2 · Ken Amada\n\nReturn to Ken's room and finish the second evening episode before September ends. Coffee and DVD hangouts do not replace it.\n\nReward: Courage +2.\n\nWindow: 9/15–9/30. Evening. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         }
       ],
       "displayOrder": [
@@ -602,7 +610,8 @@
         },
         {
           "label": "Talk to Mitsuru and take the Extension Form back — hold onto it, don't return it to Shinjiro yet (Shinjiro Link Episode 3.5)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Extension Form checkpoint · Shinjiro Aragaki\n\nSpeak to Mitsuru after Episode 3. Choose 'Wait a minute.' when she is about to keep the Extension Form, take it back, and hold it until the next Shinjiro episode. This conversation spends no daytime slot; completing Episode 3 alone does not complete this checkpoint.\n\nWindow: 9/14–10/2. After school · no time spent. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this specific checkpoint."
         },
         {
           "label": "Join the art club — Fortune reaches rank 4 (best answers: A > 1)",
@@ -687,7 +696,8 @@
         },
         {
           "label": "Watch Shinjiro's Link Episode",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Episode 4 · Shinjiro Aragaki\n\nAfter taking the Extension Form back from Mitsuru, meet Shinjiro and give it to him during the fourth episode. Keeping the form after the Mitsuru conversation is required; do not treat handing it back to Mitsuru as equivalent.\n\nReward: Courage +2.\n\nWindow: 9/14–10/2. Daytime. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Check the Command Room's new dorm recording",

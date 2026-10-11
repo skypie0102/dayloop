@@ -81,7 +81,8 @@
         },
         {
           "label": "Watch Akihiko's Link Episode",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Episode 5 · Akihiko Sanada\n\nFinish Akihiko's final evening episode and receive his Hand Wraps. Completing his chain unlocks Horus's fusion.\n\nReward: Hand Wraps · Horus fusion.\n\nWindow: 1/4–1/29. Evening. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         }
       ],
       "displayOrder": [
@@ -96,7 +97,8 @@
       "steps": [
         {
           "label": "Watch Koromaru's Link Episode",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Episode 4 · Koromaru\n\nComplete Koromaru's fourth daytime episode outside the dorm. January 5 is this route's fourth episode, even though the fifth episode's availability also begins today.\n\nReward: Courage +2.\n\nWindow: 9/16–1/30. Daytime. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Join Yukari's DVD hangout",
@@ -290,7 +292,8 @@
         {
           "label": "Talk to the suspicious-looking man at Club Escapade and agree to meet their Messiah — Takaya's Link Episode",
           "slot": "evening",
-          "spoiler": true
+          "spoiler": true,
+          "tip": "Story event 4 · Takaya Sakaki\n\nSpeak to the suspicious-looking man at Club Escapade and agree to meet their Messiah. This optional January interaction changes later confrontation dialogue; it does not unlock a fusion or another Social Link.\n\nWindow: 1/13–1/29. Evening. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this specific checkpoint."
         }
       ],
       "displayOrder": [
@@ -433,7 +436,8 @@
         },
         {
           "label": "Watch Junpei's Link Episode",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Episode 5 · Junpei Iori\n\nFinish Junpei's final classroom episode and receive his Baseball Glove. The five episodes unlock Surt's fusion; the separate January 21 flower outcome is not a sixth episode.\n\nReward: Baseball Glove · Surt fusion.\n\nWindow: 1/15–1/29. After school. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Join Junpei's reading hangout",
@@ -457,7 +461,8 @@
         },
         {
           "label": "Watch Ken's Link Episode",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Episode 5 · Ken Amada\n\nComplete Ken's final evening episode on the dorm's fourth floor and receive the Silver Key. His completed chain unlocks Michael's fusion.\n\nReward: Silver Key · Michael fusion.\n\nWindow: 1/19–1/27. Evening. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         }
       ],
       "displayOrder": [
@@ -493,7 +498,8 @@
       "steps": [
         {
           "label": "Revival Event (after school)",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Optional · January 21 revival · Junpei Iori\n\nWatch the January 21 revival event only if you gave Junpei the White Flower after Episode 3. The earlier flower handoff does not mark this later event viewed. Without the branch prerequisite, leave this event unconfirmed; the five main Junpei episodes can still be completed.\n\nThis event is scheduled for 1/21. After school · uses the afternoon.\n\nMark Done after completing this specific checkpoint."
         },
         {
           "label": "Tartarus — defeat the Reaper, keep the Bloody Button, return it to Elizabeth to complete Request #100, then accept Request #101 before attempting the ultimate adversary",
@@ -595,7 +601,8 @@
         },
         {
           "label": "Watch Koromaru's Link Episode",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Episode 5 · Koromaru\n\nFinish Koromaru's fifth daytime episode and receive his collar. The route performs it on January 25; completing the five-episode chain unlocks Byakko's fusion.\n\nReward: Koromaru's Collar · Byakko fusion.\n\nWindow: 1/5–1/30. Daytime / after school. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Join Koromaru's TV hangout",

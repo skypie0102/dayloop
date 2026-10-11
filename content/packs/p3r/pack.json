@@ -1,7 +1,7 @@
 {
   "packId": "p3r",
   "title": "Persona 3 Reload",
-  "contentVersion": 16,
+  "contentVersion": 17,
   "pickerOrder": 1,
   "timeModel": "weekdayGrid",
   "calendar": {
@@ -80,7 +80,8 @@
     "exams": true,
     "weather": false,
     "answers": true,
-    "requests": true
+    "requests": true,
+    "episodes": true
   },
   "labels": {
     "bond": "Social Link",

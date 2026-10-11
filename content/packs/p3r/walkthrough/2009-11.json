@@ -190,7 +190,8 @@
         },
         {
           "label": "Watch Junpei's Link Episode — encourage him to see Chidori",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Episode 3 · Junpei Iori\n\nMeet Junpei in the classroom and encourage him to visit Chidori. The optional flower handoff can follow this episode; buying a flower alone does not complete that handoff.\n\nReward: Academics +2.\n\nWindow: 11/7–11/13. After school. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Walk Koromaru (with Hayase)",
@@ -214,7 +215,8 @@
         },
         {
           "label": "Buy the White Flower at Rafflesia (Port Island Station)",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Buy the White Flower at Rafflesia for ¥250 after Junpei's third Linked Episode. Keep it for the separate handoff to Junpei at the dorm. The purchase alone does not enable or complete the January 21 revival event."
         },
         {
           "label": "Visit the dying young man at the shrine — Sun reaches rank 5",
@@ -222,7 +224,8 @@
         },
         {
           "label": "Watch Junpei's Link Episode — hand over the White Flower",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Optional · give the White Flower · Junpei Iori\n\nAfter encouraging Junpei in Episode 3, buy a White Flower for ¥250 at Rafflesia in Port Island Station, then give it to Junpei at the dorm. Buying it is preparation; handing it over enables the January 21 revival event. This branch is optional for Surt's fusion and spends no evening slot.\n\nWindow: 11/8–11/20. Evening · no time spent. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this specific checkpoint."
         },
         {
           "label": "Walk Koromaru (with Yuko)",
@@ -252,7 +255,8 @@
         },
         {
           "label": "Watch Ryoji's Link Episode",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Episode 1 · Ryoji Mochizuki\n\nWatch the forced introduction to Ryoji. Record the walkthrough task after viewing it; reaching November 9 alone does not mark the episode complete.\n\nReward: Equipped Persona · all stats +1.\n\nThis event is scheduled for 11/9. Story event.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Work part-time at Chagall Café",
@@ -277,7 +281,8 @@
         },
         {
           "label": "Watch Ken's Link Episode",
-          "slot": "evening"
+          "slot": "evening",
+          "tip": "Episode 3 · Ken Amada\n\nMeet Ken outside the dorm in the evening for the third episode, after completing his two September episodes.\n\nReward: Charm +2.\n\nWindow: 11/10–12/2. Evening. Check the map for today's episode icon; the window does not mean the character appears every day.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         }
       ],
       "displayOrder": [
@@ -372,7 +377,8 @@
         },
         {
           "label": "Watch Ryoji's Link Episode",
-          "slot": "afternoon"
+          "slot": "afternoon",
+          "tip": "Episode 2 · Ryoji Mochizuki\n\nAccept Ryoji's school outing on November 12, 14 or 16. This route chooses November 14; the intervening dates are not additional opportunities.\n\nReward: Equipped Persona · all stats +1.\n\nWindow: 11/12–11/16. After school. Check the map for today's episode icon; the window does not mean the character appears every day.\nExact opportunities: 11/12, 11/14, 11/16.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         },
         {
           "label": "Join Akihiko's DVD hangout — Combat Characteristic enhanced",
@@ -476,7 +482,8 @@
         },
         {
           "label": "Accept Ryoji's invitation — watch his Link Episode",
-          "slot": "day"
+          "slot": "day",
+          "tip": "Episode 3 · Ryoji Mochizuki\n\nAccept Ryoji's invitation during the Kyoto school trip on November 18 and finish the outing. This is a single-date opportunity, not a general Kyoto-trip window.\n\nReward: Equipped Persona · all stats +1.\n\nThis event is scheduled for 11/18. School trip / daytime.\n\nMark Done after completing this action. Ordinary dorm hangouts and dog walks do not count as this episode."
         }
       ],
       "displayOrder": [

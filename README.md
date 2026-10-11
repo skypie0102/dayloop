@@ -1,10 +1,10 @@
 # dayloop
 
-Current P3R pass: request rewards, availability and prerequisite links, plus
-individual rescue and police-reward tracking for all 20 missing people. It builds
-on the source-ordered walkthrough and lightweight Reload UI. See the
-[P3R requests and rescue audit](docs/audits/p3r-requests-rescues.md) and
-[reading/UI review](docs/audits/p3r-reading-reload-ui.md). The
+Current P3R pass: all 30 Linked Episodes, required form and optional flower
+checkpoints, with exact source-task tracking and a separate episode section.
+See the [Linked Episode audit](docs/audits/p3r-linked-episodes.md). The merged
+[P3R requests and rescue tracking](docs/audits/p3r-requests-rescues.md),
+[reading/UI review](docs/audits/p3r-reading-reload-ui.md) and
 [P5R Mementos and motion improvements](docs/audits/p5r-mementos-motion.md)
 remain in place.
 
@@ -36,9 +36,9 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 
 ## Roadmap
 
-**Current priority: [Persona 3 Reload — requests and individual rescues](docs/audits/p3r-requests-rescues.md).**
-The October 11 pass follows the merged reading/UI work with request metadata,
-prerequisite navigation and separate rescue/reward tracking.
+**Current priority: [Persona 3 Reload — Linked Episodes](docs/audits/p3r-linked-episodes.md).**
+The October 11 continuation adds all six character chains, missable windows,
+form/flower checkpoints and next-episode/source navigation.
 The [P3R roadmap](docs/packs/p3r-roadmap.md) tracks the broader remaining audits.
 The phase table below records earlier milestones.
 

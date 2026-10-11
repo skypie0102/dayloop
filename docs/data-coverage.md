@@ -221,3 +221,35 @@ anchors and 27 preparation references. Twenty individual human rescues connect t
 eight complete guide visits. Unsupported outcomes retain explicit confirmation.
 See the [request/rescue audit](audits/p3r-requests-rescues.md) for source conflicts,
 weighted outing requirements, save compatibility and validation.
+
+
+## episodes.json (`EpisodesFile`, `EpisodeChain`, `EpisodeStep`)
+
+The optional `capabilities.episodes` flag matches the bundled catalog. Episode
+state derives from exact task marks independently of relationship ranks.
+
+| Field | Serving path | Status |
+|---|---|---|
+| Catalog `title` | Social Links section and episode detail banner | Served |
+| Catalog `chains` | Character list and retained detail navigation | Served |
+| Catalog `events` (`id`, `date`, `labelContains`, `routeId`) | Exact DONE proof, full route-task text and source-date navigation; route-scoped resolution | Served; event ids are intentionally not displayed |
+| Chain `id` | Stable navigation/list identity | Intentionally not displayed |
+| Chain `character` | List and detail heading | Served |
+| Chain `steps` | Ordered expandable route ladder and next checkpoint | Served |
+| Chain `relatedStory` | Separate labels and exclusion from numbered episode totals | Served |
+| Chain `reward` / `notes` | Chain reward/conditions and related-story context | Served |
+| Step `id` | Stable row and prerequisite identity | Intentionally not displayed |
+| Step `title` | Step selection and prerequisite buttons | Served |
+| Step `number` | Numbered-episode totals; excludes form/branch checkpoints | Served as membership/count behavior; separate number column intentionally omitted |
+| Step `required` | Next checkpoint, main-chain verification and optional-branch explanation | Served |
+| Step `availableFrom` / `availableUntil` | Detail window, cutoff/status and Open windows filter | Served; no inferred failure or completion |
+| Step `availableDates` | Exact opportunity list and date filtering | Served |
+| Step `timeOfDay` / `location` / `solution` | Full details and inline source Tips | Served |
+| Step `reward` | Expanded step guidance | Served |
+| Step `completionEvent` | Exact source proof and navigation, reversed by unchecking | Served |
+| Step `prerequisiteSteps` | Verified chain, missing-proof status and direct earlier-step links | Served |
+
+Current Journey coverage is 30 numbered episodes, one required form checkpoint,
+two optional flower/outcome checkpoints and four related story tasks. No new
+mutable counter or backup field is added. See the
+[Linked Episode audit](audits/p3r-linked-episodes.md).
