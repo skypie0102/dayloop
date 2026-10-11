@@ -46,9 +46,12 @@ cd C:\Users\airenz1202\Desktop\dayloop
 ```
 
 The `candidate` build type is for hands-on prerelease testing. It uses the
-standard Android debug signing key and application-id suffix `.candidate`, so
+stable [public test signing key](../tools/android/candidate-signing.md) and
+application-id suffix `.candidate`, so
 it can coexist with a production-signed Dayloop install. Candidate profiles,
 progress, widgets and settings are therefore isolated from the stable app.
+Candidates through rc6 require a one-time [export/reinstall/restore](progress-backups.md#moving-from-an-older-candidate-to-rc7)
+to move to rc7; subsequent candidates retain the same update identity.
 Production `release` signing uses the gitignored `keystore.properties` setup
 when those credentials are present. For private CI and local verification where
 that file is absent, it falls back to Android's debug key so the stable APK is

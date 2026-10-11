@@ -11,9 +11,14 @@ if [ "${#candidate_signers[@]}" -eq 0 ]; then
   exit 1
 fi
 candidate_report=$("${candidate_signers[-1]}" verify --print-certs "${1:?Pass the candidate APK path}")
-candidate_actual_sha=$(awk -F ': ' '$1 == "Signer #1 certificate SHA-256 digest" {print $2}' <<< "$candidate_report")
+candidate_actual_sha=$(awk '
+  /^Signer (#[0-9]+|\([^)]*\)) certificate SHA-256 digest: / {
+    sub(/^.*certificate SHA-256 digest: /, "")
+    print tolower($0)
+  }
+' <<< "$candidate_report" | sort -u)
 if [ "$candidate_actual_sha" != "$candidate_expected_sha" ]; then
-  echo 'Candidate APK does not use the pinned public test certificate.' >&2
+  echo "Candidate APK does not use the pinned public test certificate (reported: ${candidate_actual_sha:-none})." >&2
   exit 1
 fi
 echo "Verified candidate APK signature and test certificate: $candidate_actual_sha"
