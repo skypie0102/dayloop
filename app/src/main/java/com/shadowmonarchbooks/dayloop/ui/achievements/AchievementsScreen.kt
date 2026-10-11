@@ -56,6 +56,7 @@ import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.data.LoadedPack
 import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.pack.schema.AchievementDefinition
+import com.shadowmonarchbooks.dayloop.pack.schema.Day
 import com.shadowmonarchbooks.dayloop.pack.schema.AchievementTrackingTypes
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaItem
 import com.shadowmonarchbooks.dayloop.pack.schema.MediaKinds
@@ -82,7 +83,7 @@ internal fun Modifier.achievementEntryDecor(slashPanel: Boolean): Modifier =
  * media keep the legacy date/month availability tracker.
  */
 @Composable
-fun AchievementsScreen(vm: DayloopViewModel) {
+fun AchievementsScreen(vm: DayloopViewModel, onOpenDay: (String) -> Unit = {}) {
     val state by vm.state.collectAsState()
     val pack = state.selected ?: run {
         EmptyState("No pack selected.")
@@ -90,7 +91,7 @@ fun AchievementsScreen(vm: DayloopViewModel) {
     }
 
     if (pack.achievements.isNotEmpty()) {
-        RuleBasedAchievements(pack, vm, state.currentDate ?: pack.pack.calendar.startDate)
+        RuleBasedAchievements(pack, vm, state.currentDate ?: pack.pack.calendar.startDate, onOpenDay)
         return
     }
 
@@ -111,6 +112,7 @@ private fun RuleBasedAchievements(
     pack: LoadedPack,
     vm: DayloopViewModel,
     currentDate: String,
+    onOpenDay: (String) -> Unit,
 ) {
     val state by vm.state.collectAsState()
     val completedEvents = remember(pack.achievementEvents, state.days, state.marks, state.activeRouteId) {
@@ -206,6 +208,10 @@ private fun RuleBasedAchievements(
                 onChoiceChange = { itemId ->
                     vm.setAchievementChoice(choiceKey, itemId)
                 },
+                completedEvents = completedEvents,
+                days = state.days,
+                routeId = state.activeRouteId,
+                onOpenDay = onOpenDay,
             )
         }
     }
@@ -232,6 +238,10 @@ private fun RuleAchievementRow(
     onProgressChange: (Int) -> Unit,
     onChecklistItemChange: (String, Boolean) -> Unit,
     onChoiceChange: (String) -> Unit,
+    completedEvents: Set<String>,
+    days: Map<String, Day>,
+    routeId: String,
+    onOpenDay: (String) -> Unit,
 ) {
     val achievement = row.achievement
     val progress = row.progress
@@ -250,7 +260,8 @@ private fun RuleAchievementRow(
 
     if (submerged) {
         SubmergedAchievementRow(pack, row, currentDate, status, icon, expanded, onExpand,
-            onEarnedChange, onProgressChange, onChecklistItemChange, onChoiceChange)
+            onEarnedChange, onProgressChange, onChecklistItemChange, onChoiceChange,
+            completedEvents, days, routeId, onOpenDay)
         return
     }
 
@@ -322,6 +333,11 @@ private fun RuleAchievementRow(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
+                achievement.guidance?.let { guidance ->
+                    AchievementReadingHeading("How to earn")
+                    Text(guidance, style = MaterialTheme.typography.bodyMedium)
+                }
+                AchievementRouteGuidance(pack, achievement, completedEvents, days, routeId, onOpenDay)
                 when {
                     achievement.tracking.type == AchievementTrackingTypes.CHECKLIST -> {
                         AchievementChecklistControls(
@@ -356,8 +372,8 @@ private fun RuleAchievementRow(
             }
             SkinCheckboxIndicator(
                 checked = earned,
-                enabled = !progress.completed && (row.manualEarned || confirmEnabled),
-                onCheckedChange = if (progress.completed) null else onEarnedChange,
+                enabled = row.manualEarned || (!progress.completed && confirmEnabled),
+                onCheckedChange = if (progress.completed && !row.manualEarned) null else onEarnedChange,
             )
         }
     }
@@ -377,6 +393,10 @@ private fun SubmergedAchievementRow(
     onProgressChange: (Int) -> Unit,
     onChecklistItemChange: (String, Boolean) -> Unit,
     onChoiceChange: (String) -> Unit,
+    completedEvents: Set<String>,
+    days: Map<String, Day>,
+    routeId: String,
+    onOpenDay: (String) -> Unit,
 ) {
     val colors = MaterialTheme.colorScheme
     val achievement = row.achievement
@@ -409,6 +429,11 @@ private fun SubmergedAchievementRow(
         if (expanded) {
             Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 achievement.description?.let { Text(it, style = MaterialTheme.typography.bodyLarge, color = colors.onSurface) }
+                achievement.guidance?.let {
+                    AchievementReadingHeading("How to earn")
+                    Text(it, style = MaterialTheme.typography.bodyMedium, color = colors.onSurface,
+                        modifier = Modifier.fillMaxWidth().testTag("achievement-guidance-${achievement.id}"))
+                }
                 achievement.tracking.prompt?.let { Text(it, style = MaterialTheme.typography.bodyMedium, color = colors.onSurfaceVariant) }
                 when {
                     achievement.tracking.type == AchievementTrackingTypes.CHECKLIST -> AchievementChecklistControls(
@@ -417,11 +442,12 @@ private fun SubmergedAchievementRow(
                         achievement, row.selectedChoice, progress.available && !row.manualEarned, onChoiceChange)
                     !progress.automatic && progress.totalUnits > 1 -> AchievementCounterControls(progress, achievement.tracking.unit, onProgressChange)
                 }
-                if (!progress.completed) {
+                if (row.manualEarned || !progress.completed) {
                     SubmergedActionButton(if (row.manualEarned) "Clear confirmation" else "Confirm earned",
                         onClick = { onEarnedChange(!row.manualEarned) }, primary = !row.manualEarned,
                         enabled = row.manualEarned || confirmEnabled)
                 }
+                AchievementRouteGuidance(pack, achievement, completedEvents, days, routeId, onOpenDay)
             }
         }
     }
@@ -442,7 +468,7 @@ private fun AchievementChecklistControls(
             val deadline = item.dueBy?.takeIf { !checked }?.let { dueBy ->
                 if (currentDate > dueBy) " · deadline passed $dueBy" else " · by $dueBy"
             }.orEmpty()
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 SkinCheckboxIndicator(
                     checked = checked,
                     enabled = enabled,
@@ -451,6 +477,7 @@ private fun AchievementChecklistControls(
                 Text(
                     text = item.label + deadline,
                     style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.weight(1f),
                 )
             }
         }
@@ -497,7 +524,7 @@ private fun AchievementCounterControls(
                 val digits = raw.filter { it.isDigit() }.take(9)
                 onProgressChange((digits.toIntOrNull() ?: 0).coerceAtMost(progress.totalUnits))
             },
-            enabled = progress.available && !progress.completed,
+            enabled = progress.available,
             singleLine = true,
             label = { Text(unit?.let { "Current total ($it)" } ?: "Current total") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
@@ -536,7 +563,7 @@ private fun SubmergedAchievementCounter(progress: AchievementProgress, unit: Str
         OutlinedTextField(
             value = progress.completedUnits.toString(),
             onValueChange = { raw -> onProgressChange((raw.filter { it.isDigit() }.take(9).toIntOrNull() ?: 0).coerceAtMost(progress.totalUnits)) },
-            enabled = progress.available && !progress.completed,
+            enabled = progress.available,
             singleLine = true,
             label = { Text(unit?.let { "Current total ($it)" } ?: "Current total") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),

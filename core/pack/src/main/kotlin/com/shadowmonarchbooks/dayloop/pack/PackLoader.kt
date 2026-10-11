@@ -289,6 +289,7 @@ object PackLoader {
                 }
                 if (event.id.isBlank()) achievementError("achievement event id must not be blank")
                 if (event.labelContains.isBlank()) achievementError("achievement event '${event.id}' needs a non-blank labelContains selector")
+                if (event.displayLabel?.isBlank() == true) achievementError("achievement event '${event.id}' displayLabel must not be blank")
                 if (calendar != null && event.date !in calendar) {
                     achievementError("achievement event '${event.id}' date '${event.date}' is outside the pack calendar")
                 }
@@ -318,14 +319,23 @@ object PackLoader {
                 }
                 if (achievement.id.isBlank()) achievementError("achievement id must not be blank")
                 if (achievement.title.isBlank()) achievementError("achievement '${achievement.id}' needs a non-blank title")
+                if (achievement.guidance?.isBlank() == true) achievementError("achievement '${achievement.id}' guidance must not be blank")
+                if (achievement.routeDates.distinct().size != achievement.routeDates.size) {
+                    achievementError("achievement '${achievement.id}' has duplicate routeDates")
+                }
 
                 val rule = achievement.tracking
                 if (rule.type !in AchievementTrackingTypes.ALL) {
                     achievementError("achievement '${achievement.id}' has unknown tracking type '${rule.type}'")
                 }
-                listOfNotNull(achievement.availableFrom, achievement.expectedBy, rule.date).forEach { date ->
+                (listOfNotNull(achievement.availableFrom, achievement.expectedBy, rule.date) + achievement.routeDates).forEach { date ->
                     if (calendar != null && date !in calendar) {
                         achievementError("achievement '${achievement.id}' date '$date' is outside the pack calendar")
+                    }
+                }
+                achievement.routeDates.forEach { date ->
+                    if (walkthroughs.none { walkthrough -> walkthrough.file.days.any { it.date == date } }) {
+                        achievementError("achievement '${achievement.id}' route date '$date' has no walkthrough day")
                     }
                 }
                 achievement.iconMediaRef?.let { ref ->

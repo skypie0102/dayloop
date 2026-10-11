@@ -28,8 +28,8 @@ android {
         minSdk = 26          // per docs/PLAN.md architecture table
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         targetSdk = 35
-        versionCode = 38
-        versionName = "0.16.0-rc6"
+        versionCode = 39
+        versionName = "0.16.0-rc7"
     }
 
     signingConfigs {

@@ -254,3 +254,18 @@ Current Journey coverage is 30 numbered episodes, one required form checkpoint,
 two optional flower/outcome checkpoints and four related story tasks. No new
 mutable counter or backup field is added. See the
 [Linked Episode audit](audits/p3r-linked-episodes.md).
+
+
+## Achievement instructions and source proof
+
+Optional catalog reading fields retain legacy defaults and are implemented in P3R content 19.
+
+| Field | Serving surface | Status |
+|---|---|---|
+| `achievements[].guidance` | Expanded achievement instructions, separate from platform description and tracking prompt | Served |
+| `achievements[].routeDates` | Read-only route reminder links to Day; never automatic completion evidence | Served |
+| `events[].displayLabel` | Readable next/all source-checkpoint labels, with the original date/selector retained | Served |
+| `tracking.event` / `events` | DONE evidence, partial counts and direct source navigation; ambiguous/other-route matches rejected | Served |
+
+P3R has 48 authored instructions and 156 unique task anchors. The complete proof classification
+and manual-outcome boundaries are in the [achievement audit](audits/p3r-achievement-proof.md).

@@ -191,6 +191,9 @@ normalized to canonical platform wording. Route tracking remains separate from
 actual mechanic availability. Specific corrections include Top of the Class on
 the May 25 results day, Reaper availability from the June progression point, the
 October Dark Zone mechanic boundary, and the Twilight Fragments typo/event anchor.
+The October 12 [achievement proof audit](p3r-achievement-proof.md) replaces the
+single-Aeon shortcuts and nine date-only awards, adds instructions for all 48,
+and separates Messiah/gardening opportunities from their actual outcomes.
 
 ### P3R-AUD-018 — June social-stat/activity representation was incomplete — FIXED BASELINE
 
