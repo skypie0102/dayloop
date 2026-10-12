@@ -18,6 +18,8 @@ fit together at widths of 240dp and above. Below that, horizontal panning retain
 48dp-wide targets and selected-tab positioning instead of squeezing the controls.
 The rc8 saved-tab behavior is retained. Only submerged chrome adopts this layout;
 P5R, Metaphor and engine chrome keep their existing rendering.
+Fractional viewport pixels are distributed across the five buttons so rounding
+cannot add a spurious horizontal overflow.
 
 ## Social Links
 
@@ -52,6 +54,15 @@ The Calendar plane and Social Link selection cursor cache paths by size/theme.
 No new animation, timer, raster asset or dependency is added. These are mobile
 layout/accessibility adaptations of the reviewed Reload hierarchy, not a claim
 of exact game-screen or motion parity.
+
+## Achievement reading viewport
+
+The P3R achievement summary remains pinned above the list, but now owns separate
+layout space instead of overlaying rows as a sticky header. Scrolling and focus
+can reach the full achievement controls below it. The existing 200% Theurgy case
+checks that the viewport starts below the summary, expands the target row and
+reaches Shinjiro's deadline checklist item. Completion/tracking rules are unchanged;
+other chrome keeps its previous header behavior.
 
 ## Validation and remaining acceptance
 

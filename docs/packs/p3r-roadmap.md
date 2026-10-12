@@ -20,6 +20,8 @@ The user's latest direction replaces bottom tab text with equal icon commands.
 at 240dp and above regardless of font scale. The existing title and selection
 treatment remain. Social Link summaries and Calendar headings adapt to narrow
 effective widths; headings, rank expansion and date-grid semantics are explicit.
+The achievement summary now owns space above its list so focused/scrolled controls
+cannot sit beneath the pinned header.
 Native acceptance covers 200% text, matched portrait/rank navigation, retained
 list/month state and the extra-narrow icon fallback. rc9 retains content 19 and
 the rc7/rc8 update certificate. See the [scope and acceptance record](../audits/p3r-icon-navigation-ui.md).

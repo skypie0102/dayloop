@@ -203,18 +203,25 @@ class SubmergedDailyTest {
         compose.waitUntil(10_000) { selectedFits() }
         compose.runOnIdle { width = 280.dp }
         compose.waitUntil(10_000) { selectedFits() }
-        val bar = compose.onNodeWithTag("p3r-bottom-navigation").getUnclippedBoundsInRoot()
-        tabs.forEach { item ->
-            tab(item.label).assertIsDisplayed().assertHasClickAction()
-                .assertWidthIsAtLeast(48.dp).assertHeightIsEqualTo(64.dp)
-            val bounds = tab(item.label).getUnclippedBoundsInRoot()
-            assertTrue("Every icon fits together at 280dp", bounds.left >= bar.left - 1.dp && bounds.right <= bar.right + 1.dp)
-            compose.onNodeWithTag("p3r-tab-icon-${item.route}", useUnmergedTree = true)
-                .assertWidthIsEqualTo(32.dp).assertHeightIsEqualTo(32.dp)
+        fun allIconsFit() {
+            val bar = compose.onNodeWithTag("p3r-bottom-navigation").getUnclippedBoundsInRoot()
+            tabs.forEach { item ->
+                tab(item.label).assertIsDisplayed().assertHasClickAction()
+                    .assertWidthIsAtLeast(48.dp).assertHeightIsEqualTo(64.dp)
+                val bounds = tab(item.label).getUnclippedBoundsInRoot()
+                assertTrue("Every icon fits together without pixel overflow",
+                    bounds.left >= bar.left - 0.01.dp && bounds.right <= bar.right + 0.01.dp)
+                compose.onNodeWithTag("p3r-tab-icon-${item.route}", useUnmergedTree = true)
+                    .assertWidthIsEqualTo(32.dp).assertHeightIsEqualTo(32.dp)
+            }
         }
+        allIconsFit()
         compose.onAllNodes(hasAnyAncestor(hasTestTag("p3r-bottom-navigation")) and
             SemanticsMatcher.keyIsDefined(SemanticsProperties.Text), useUnmergedTree = true).assertCountEquals(0)
         capture("p3r-navigation-double-text-icons")
+        compose.runOnIdle { width = 281.dp }
+        compose.waitUntil(10_000) { selectedFits() }
+        allIconsFit()
         tab("Today").performClick().assertIsSelected()
         // Extremely narrow windows retain 48dp targets and can still pan.
         compose.runOnIdle { width = 200.dp; selected = "requests" }

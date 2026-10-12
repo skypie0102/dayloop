@@ -478,8 +478,13 @@ class SubmergedAppFlowTest {
         }
         tab("Achievements").performClick()
         val list = compose.onNodeWithTag("achievement-list")
+        val pinned = compose.onNodeWithTag("p3r-achievement-summary").getUnclippedBoundsInRoot()
+        val viewport = list.getUnclippedBoundsInRoot()
+        assertTrue("The achievement summary must not cover list controls", viewport.top >= pinned.bottom)
         list.performScrollToNode(hasTestTag("achievement-$id"))
         compose.onNodeWithTag("achievement-$id").assertTextContains("8 / 9 tracked", substring = true).performClick()
+        compose.onNodeWithTag("achievement-$id").assert(
+            SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Expanded"))
         list.performScrollToNode(hasText("Shinjiro · by 2009-10-03"))
         compose.onNodeWithText("Shinjiro · by 2009-10-03").assertIsDisplayed()
         capture("p3r-app-achievement-theurgy-deadline-double-text")
