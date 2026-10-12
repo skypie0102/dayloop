@@ -238,7 +238,10 @@ private fun SubmergedHeaderLettering(label: String, style: TextStyle, fillHeight
         }
     }
     val layout = rememberTextMeasurer().measure(AnnotatedString(label), style, softWrap = false, maxLines = 1)
-    Box(modifier.semantics { text = AnnotatedString(label) }.clipToBounds().drawWithCache {
+    Box(modifier.semantics {
+        text = AnnotatedString(label)
+        if (fillHeight) heading()
+    }.clipToBounds().drawWithCache {
         // Italic overhang is outside the advance width. Reserve it before fitting
         // so the last letter survives even in ACHIEVEMENTS and narrow windows.
         val overhang = if (fillHeight) fontPx * 0.10f else 0f
@@ -255,36 +258,35 @@ private fun SubmergedHeaderLettering(label: String, style: TextStyle, fillHeight
     })
 }
 
-/** Measured command labels keep complete words; narrow windows can pan the tab row. */
+/** Equal icon commands; the current screen owns the visible title, tabs keep accessible names. */
 @Composable
 internal fun SubmergedBottomBar(
     items: List<SkinNavItem>,
     selectedRoute: String?,
     onSelect: (String) -> Unit,
 ) {
+    if (items.isEmpty()) return
     val colors = MaterialTheme.colorScheme
-    val style = MaterialTheme.typography.labelSmall.withSkinFont(LocalSkin.current.type.display).copy(fontStyle = FontStyle.Italic)
-    val measurer = rememberTextMeasurer()
     val density = LocalDensity.current
     val scroll = rememberScrollState()
-    val widths = remember(items, style, density) {
-        items.map { item ->
-            with(density) { measurer.measure(AnnotatedString(item.label), style).size.width.toDp() }
-                .plus(12.dp).coerceAtLeast(56.dp)
-        }
-    }
     BoxWithConstraints(Modifier.fillMaxWidth().background(colors.background).navigationBarsPadding()
         .testTag("p3r-bottom-navigation")) {
-        val spare = (maxWidth - widths.fold(0.dp) { sum, width -> sum + width }).coerceAtLeast(0.dp)
-        // Keep the selected whole word visible when the command row exceeds the viewport.
-        LaunchedEffect(selectedRoute, widths, maxWidth) {
+        val minimumWidthPx = with(density) { 48.dp.roundToPx() }
+        val widthsPx = remember(constraints.maxWidth, minimumWidthPx, items.size) {
+            val fits = constraints.maxWidth >= minimumWidthPx * items.size
+            val base = if (fits) constraints.maxWidth / items.size else minimumWidthPx
+            val remainder = if (fits) constraints.maxWidth % items.size else 0
+            // Share fractional pixels so five rounded widths cannot overflow the viewport.
+            List(items.size) { base + if (it < remainder) 1 else 0 }
+        }
+        // Five icons fit at 240dp and above, regardless of text scale. Extra-narrow
+        // windows can pan instead of shrinking touch targets below 48dp.
+        LaunchedEffect(selectedRoute, widthsPx, maxWidth, density) {
             val selectedIndex = items.indexOfFirst { it.route == selectedRoute }
             if (selectedIndex >= 0) {
-                val tabWidths = widths.map { with(density) { (it + spare / items.size).toPx() } }
                 val viewport = with(density) { maxWidth.toPx() }
-                val left = tabWidths.take(selectedIndex).sum()
-                val right = left + tabWidths[selectedIndex]
-                // Use the measured scroll range (including rounded tab widths).
+                val left = widthsPx.take(selectedIndex).sum().toFloat()
+                val right = left + widthsPx[selectedIndex]
                 snapshotFlow { scroll.maxValue }.collectLatest { range ->
                     if (range == Int.MAX_VALUE) return@collectLatest
                     val target = when {
@@ -298,29 +300,25 @@ internal fun SubmergedBottomBar(
             }
         }
         Row(
-            verticalAlignment = Alignment.Top,
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.horizontalScroll(scroll).selectableGroup().testTag("p3r-tab-row"),
         ) {
             items.forEachIndexed { index, item ->
                 val selected = item.route == selectedRoute
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(5.dp),
+                Box(
+                    contentAlignment = Alignment.Center,
                     modifier = Modifier
-                        .width(widths[index] + spare / items.size)
-                        .heightIn(min = 68.dp)
+                        .width(with(density) { widthsPx[index].toDp() })
+                        .height(64.dp)
                         .selectable(selected = selected, role = Role.Tab,
                             onClick = { if (!selected) onSelect(item.route) })
+                        .semantics { contentDescription = item.label }
                         .submergedCommandSelection(selected)
-                        .padding(horizontal = 6.dp, vertical = 11.dp),
+                        .padding(8.dp),
                 ) {
                     Icon(item.icon, contentDescription = null,
                         tint = if (selected) colors.onPrimary else colors.secondary,
-                        modifier = Modifier.size(20.dp))
-                    Text(item.label, style = style, fontStyle = FontStyle.Italic,
-                        color = if (selected) colors.onPrimary else colors.secondary,
-                        maxLines = 1, softWrap = false,
-                        textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+                        modifier = Modifier.size(32.dp).testTag("p3r-tab-icon-${item.route}"))
                 }
             }
         }

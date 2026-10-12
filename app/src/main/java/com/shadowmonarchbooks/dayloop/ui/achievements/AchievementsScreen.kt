@@ -32,6 +32,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
@@ -178,13 +179,7 @@ private fun RuleBasedAchievements(
         else "$autoCount earned automatically. DONE walkthrough steps and story progress update tracked achievements; cumulative goals keep profile-scoped counters/checklists, while route choices and uncertain results stay explicitly confirmable.",
     )
 
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(10.dp),
-        modifier = (if (submerged) Modifier.submergedBackdrop().testTag("achievement-list") else Modifier).fillMaxSize().padding(16.dp),
-    ) {
-        stickyHeader(key = "summary") {
-            AchievementPinnedSummary(summary)
-        }
+    val entries: LazyListScope.() -> Unit = {
         item(key = "summary-detail") {
             AchievementSummaryDetail(if (submerged) "Select an achievement for details and tracking." else summary.scrollingDetail)
         }
@@ -213,6 +208,29 @@ private fun RuleBasedAchievements(
                 routeId = state.activeRouteId,
                 onOpenDay = onOpenDay,
             )
+        }
+    }
+    if (submerged) {
+        // A fixed summary owns its height rather than covering list hit targets
+        // and accessibility scrolling, especially when text is enlarged.
+        Column(Modifier.fillMaxSize().submergedBackdrop().padding(16.dp)) {
+            Box(Modifier.fillMaxWidth().testTag("p3r-achievement-summary")) {
+                AchievementPinnedSummary(summary)
+            }
+            Spacer(Modifier.height(10.dp))
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+                modifier = Modifier.weight(1f).fillMaxWidth().testTag("achievement-list"),
+                content = entries,
+            )
+        }
+    } else {
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            modifier = Modifier.fillMaxSize().padding(16.dp),
+        ) {
+            stickyHeader(key = "summary") { AchievementPinnedSummary(summary) }
+            entries()
         }
     }
 }

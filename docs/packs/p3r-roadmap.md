@@ -13,6 +13,23 @@ Android validation, navigation state and comparative frame review for this conti
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
 
+## October 12 continuation: icon navigation and Calendar/Social Links
+
+The user's latest direction replaces bottom tab text with equal icon commands.
+32dp icons retain accessible tab names and selection, while all five fit together
+at 240dp and above regardless of font scale. The existing title and selection
+treatment remain. Social Link summaries and Calendar headings adapt to narrow
+effective widths; headings, rank expansion and date-grid semantics are explicit.
+The achievement summary now owns space above its list so focused/scrolled controls
+cannot sit beneath the pinned header.
+Native acceptance covers 200% text, matched portrait/rank navigation, retained
+list/month state and the extra-narrow icon fallback. rc9 retains content 19 and
+the rc7/rc8 update certificate. See the [scope and acceptance record](../audits/p3r-icon-navigation-ui.md).
+Remaining surfaces/artwork, spoken TalkBack and measured performance stay open.
+Validation passed 48 full-suite tests with 84 captures, the isolated hand-in test,
+and build/JVM/all-pack lint/signature checks. The source/data and candidate hashes
+are recorded in the audit.
+
 ## October 12 continuation: navigation, motion and frame review
 
 Reload tab switches now save and restore reading state around the Today root.

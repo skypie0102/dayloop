@@ -16,6 +16,10 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.List
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.*
@@ -172,23 +176,25 @@ class SubmergedDailyTest {
         assertTrue(wentBack)
     }
 
-    @Test fun selectedTabStaysWholeWhenFontScaleAndViewportChange() {
+    @Test fun iconTabsStayNamedAndFitWhenFontScaleAndViewportChange() {
         var textScale by mutableStateOf(1f)
         var width by mutableStateOf(340.dp)
         var selected by mutableStateOf("requests")
-        val tabs = listOf("today" to "Today", "calendar" to "Calendar", "achievements" to "Achievements",
-            "bonds" to "Social Links", "requests" to "Requests").map { (route, label) ->
-            SkinNavItem(route, label, Icons.Filled.Star)
-        }
+        val tabs = listOf(SkinNavItem("today", "Today", Icons.Filled.Home),
+            SkinNavItem("calendar", "Calendar", Icons.Filled.DateRange),
+            SkinNavItem("achievements", "Achievements", Icons.Filled.Star),
+            SkinNavItem("bonds", "Social Links", Icons.Filled.Person),
+            SkinNavItem("requests", "Requests", Icons.Filled.List))
         show {
             val density = LocalDensity.current
             CompositionLocalProvider(LocalDensity provides Density(density.density, textScale)) {
                 Box(Modifier.width(width)) { SubmergedBottomBar(tabs, selected) { selected = it } }
             }
         }
+        fun tab(label: String) = compose.onNode(hasContentDescription(label) and
+            SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Tab))
         fun selectedFits(): Boolean {
-            val tab = compose.onNode(hasText("Requests") and
-                SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Tab)).getUnclippedBoundsInRoot()
+            val tab = tab("Requests").getUnclippedBoundsInRoot()
             val bar = compose.onNodeWithTag("p3r-bottom-navigation").getUnclippedBoundsInRoot()
             return tab.left >= bar.left - 1.dp && tab.right <= bar.right + 1.dp
         }
@@ -197,10 +203,31 @@ class SubmergedDailyTest {
         compose.waitUntil(10_000) { selectedFits() }
         compose.runOnIdle { width = 280.dp }
         compose.waitUntil(10_000) { selectedFits() }
-        capture("p3r-navigation-double-text-narrow")
-        // Panning is still available: range observation must not force the row back.
+        fun allIconsFit() {
+            val bar = compose.onNodeWithTag("p3r-bottom-navigation").getUnclippedBoundsInRoot()
+            tabs.forEach { item ->
+                tab(item.label).assertIsDisplayed().assertHasClickAction()
+                    .assertWidthIsAtLeast(48.dp).assertHeightIsEqualTo(64.dp)
+                val bounds = tab(item.label).getUnclippedBoundsInRoot()
+                assertTrue("Every icon fits together without pixel overflow",
+                    bounds.left >= bar.left - 0.01.dp && bounds.right <= bar.right + 0.01.dp)
+                compose.onNodeWithTag("p3r-tab-icon-${item.route}", useUnmergedTree = true)
+                    .assertWidthIsEqualTo(32.dp).assertHeightIsEqualTo(32.dp)
+            }
+        }
+        allIconsFit()
+        compose.onAllNodes(hasAnyAncestor(hasTestTag("p3r-bottom-navigation")) and
+            SemanticsMatcher.keyIsDefined(SemanticsProperties.Text), useUnmergedTree = true).assertCountEquals(0)
+        capture("p3r-navigation-double-text-icons")
+        compose.runOnIdle { width = 281.dp }
+        compose.waitUntil(10_000) { selectedFits() }
+        allIconsFit()
+        tab("Today").performClick().assertIsSelected()
+        // Extremely narrow windows retain 48dp targets and can still pan.
+        compose.runOnIdle { width = 200.dp; selected = "requests" }
+        compose.waitUntil(10_000) { selectedFits() }
+        capture("p3r-navigation-extra-narrow-icons")
         compose.onNodeWithTag("p3r-tab-row").performTouchInput { swipeRight() }
-        compose.onNode(hasText("Today") and SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Tab))
-            .assertIsDisplayed().performClick().assertIsSelected()
+        tab("Today").assertIsDisplayed().performClick().assertIsSelected()
     }
 }

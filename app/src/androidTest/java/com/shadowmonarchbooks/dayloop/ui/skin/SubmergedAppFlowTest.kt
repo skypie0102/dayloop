@@ -159,7 +159,7 @@ class SubmergedAppFlowTest {
     }
 
     private fun tab(label: String) = compose.onNode(
-        hasText(label) and SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Tab) and
+        hasContentDescription(label) and SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Tab) and
             hasAnyAncestor(hasTestTag("bond-sections")).not(),
     )
 
@@ -478,8 +478,13 @@ class SubmergedAppFlowTest {
         }
         tab("Achievements").performClick()
         val list = compose.onNodeWithTag("achievement-list")
+        val pinned = compose.onNodeWithTag("p3r-achievement-summary").getUnclippedBoundsInRoot()
+        val viewport = list.getUnclippedBoundsInRoot()
+        assertTrue("The achievement summary must not cover list controls", viewport.top >= pinned.bottom)
         list.performScrollToNode(hasTestTag("achievement-$id"))
         compose.onNodeWithTag("achievement-$id").assertTextContains("8 / 9 tracked", substring = true).performClick()
+        compose.onNodeWithTag("achievement-$id").assert(
+            SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Expanded"))
         list.performScrollToNode(hasText("Shinjiro · by 2009-10-03"))
         compose.onNodeWithText("Shinjiro · by 2009-10-03").assertIsDisplayed()
         capture("p3r-app-achievement-theurgy-deadline-double-text")
@@ -570,7 +575,7 @@ class SubmergedAppFlowTest {
         requestCountIs(0)
         val rootBounds = compose.onRoot().getUnclippedBoundsInRoot()
         val selectedTabBounds = tab("Requests").getUnclippedBoundsInRoot()
-        assertTrue("selected whole-word tab must remain in the viewport at 200% text",
+        assertTrue("selected icon tab must remain in the viewport at 200% text",
             selectedTabBounds.left >= rootBounds.left && selectedTabBounds.right <= rootBounds.right)
         openRequest("I want to eat some chilled Taiyaki")
         compose.onNodeWithText("Guide stage: Ready to report. Uncheck this source task to reverse it.")
@@ -744,6 +749,73 @@ class SubmergedAppFlowTest {
         assertEquals("2009-05-09", runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
     }
 
+    @Test fun calendarHeadingAndGridStayUsableAtDoubleTextWithIconTabs() {
+        launch("2009-05-18", scale = 2f)
+        tab("Calendar").performClick().assertIsSelected()
+        listOf("Today", "Calendar", "Achievements", "Social Links", "Requests").forEach { label ->
+            tab(label).assertIsDisplayed().assertHasClickAction()
+        }
+        compose.onNodeWithText("CALENDAR").assert(SemanticsMatcher.keyIsDefined(SemanticsProperties.Heading))
+        repeat(7) { compose.onNodeWithContentDescription("Next month").performClick() }
+        compose.onNodeWithTag("p3r-month-heading").assertContentDescriptionEquals("December 2009")
+            .assert(SemanticsMatcher.keyIsDefined(SemanticsProperties.Heading))
+        compose.onNodeWithContentDescription("Previous month").assertIsDisplayed()
+        compose.onNodeWithContentDescription("Next month").assertIsDisplayed()
+        compose.onNodeWithContentDescription("Sunday").assertIsDisplayed()
+        val grid = compose.onNodeWithTag("p3r-month-grid").fetchSemanticsNode().config[SemanticsProperties.CollectionInfo]
+        assertEquals(5, grid.rowCount)
+        assertEquals(7, grid.columnCount)
+        val position = compose.onNodeWithTag("p3r-date-2009-12-31").fetchSemanticsNode().config[SemanticsProperties.CollectionItemInfo]
+        assertEquals(4, position.rowIndex)
+        assertEquals(4, position.columnIndex)
+        capture("p3r-calendar-december-double-text-icons")
+        compose.onNodeWithTag("p3r-date-2009-12-31").performScrollTo().performClick()
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithTag("p3r-month-heading").assertContentDescriptionEquals("December 2009")
+        assertEquals("2009-05-18", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
+    }
+
+    @Test fun socialLinkRankAndListPositionReturnAtDoubleTextWithMatchedArt() {
+        launch("2009-05-18", scale = 2f)
+        tab("Social Links").performClick()
+        val row = "bond-p3r.bond.empress"
+        compose.onNodeWithTag("bond-list").performScrollToNode(hasTestTag(row))
+        val before = compose.onNodeWithTag(row).getUnclippedBoundsInRoot().top.value
+        compose.onNodeWithTag(row).assert(
+            SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Rank 0 of 10")).performClick()
+        compose.onNodeWithText("Empress").assertIsDisplayed()
+            .assert(SemanticsMatcher.keyIsDefined(SemanticsProperties.Heading))
+        compose.onNodeWithText("Mitsuru Kirijo").assertIsDisplayed()
+        compose.onNodeWithContentDescription("Rank 0 of 10").assertIsDisplayed()
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithTag("bond-portrait-p3r.bond.empress", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.onNodeWithTag("bond-portrait-p3r.bond.empress", useUnmergedTree = true).assertIsDisplayed()
+        capture("p3r-links-empress-double-text")
+        compose.onNodeWithTag("bond-detail").performScrollToNode(hasTestTag("bond-rank-3"))
+        compose.onNodeWithTag("bond-rank-3").performClick().assert(
+            SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Expanded"))
+        val date = dependencies.store().state.value.selected!!.bonds.single { it.id == "p3r.bond.empress" }
+            .ranks.single { it.rank == 3 }.scheduledFor!!
+        compose.onNodeWithText("Open walkthrough").performScrollTo().performClick()
+        val pack = dependencies.store().state.value.selected!!
+        compose.onNodeWithContentDescription(formatDate(date, pack.calendar)).assertIsDisplayed()
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithTag("bond-rank-3").assertIsSelected()
+        compose.onNodeWithTag("bond-guidance-3").assertExists()
+        capture("p3r-links-rank-returned-double-text")
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithTag(row).assertIsDisplayed().assertIsSelected()
+        assertEquals(before, compose.onNodeWithTag(row).getUnclippedBoundsInRoot().top.value, 1f)
+        compose.onNodeWithText("Linked Episodes").performClick()
+        compose.onNode(hasText("Social Links") and hasAnyAncestor(hasTestTag("bond-sections"))).performClick()
+        compose.onNodeWithTag(row).assertIsDisplayed().assertIsSelected()
+        capture("p3r-links-list-returned-double-text")
+        assertEquals("2009-05-18", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
+    }
+
     @Test fun calendarAndNavigationAtLargeText() {
         launch("2009-05-18", scale = 1.5f)
         tab("Calendar").performClick()
@@ -777,7 +849,7 @@ class SubmergedAppFlowTest {
         assertEquals("Returning must retain the reading position", before.top.value, after.top.value, 1f)
         val tabBounds = tab("Requests").getUnclippedBoundsInRoot()
         val barBounds = compose.onNodeWithTag("p3r-bottom-navigation").getUnclippedBoundsInRoot()
-        assertTrue("The selected complete tab fits", tabBounds.left >= barBounds.left && tabBounds.right <= barBounds.right)
+        assertTrue("The selected icon tab fits", tabBounds.left >= barBounds.left && tabBounds.right <= barBounds.right)
         capture("p3r-app-tabs-restored-request-double-text")
         scenario!!.onActivity { it.onBackPressedDispatcher.onBackPressed() }
         compose.onNodeWithText("End day", ignoreCase = true).assertIsDisplayed()
