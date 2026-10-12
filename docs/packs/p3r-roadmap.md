@@ -26,6 +26,9 @@ Native acceptance covers 200% text, matched portrait/rank navigation, retained
 list/month state and the extra-narrow icon fallback. rc9 retains content 19 and
 the rc7/rc8 update certificate. See the [scope and acceptance record](../audits/p3r-icon-navigation-ui.md).
 Remaining surfaces/artwork, spoken TalkBack and measured performance stay open.
+Validation passed 48 full-suite tests with 84 captures, the isolated hand-in test,
+and build/JVM/all-pack lint/signature checks. The source/data and candidate hashes
+are recorded in the audit.
 
 ## October 12 continuation: navigation, motion and frame review
 

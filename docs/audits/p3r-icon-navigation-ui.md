@@ -75,9 +75,19 @@ The existing P3R/P5R, request, achievement, reversal and motion cases remain in 
 Build/JVM, all-pack lint and candidate signature gates remain required. Final
 results and captures are recorded in the implementation PR.
 
+The [full native review and isolated hand-in](https://github.com/skypie0102/dayloop/actions/runs/38231824026)
+passed **48 + 1 tests**, with no failures, errors or skipped tests. The full review
+produced **84 captures**; the isolated flow produced one. Icon navigation, December
+at 200%, matched Empress detail/list return and the reachable Shinjiro deadline
+were inspected. [Build/JVM/all-pack lint/signature checks](https://github.com/skypie0102/dayloop/actions/runs/38231824327)
+also passed on shipping-code commit `6f8fe3a31f35758cf5d3bb38237c9fafd7055c96`.
+Subsequent documentation edits do not change that reviewed app code.
+
 All 304 tracked pack-content files are byte-identical to the rc8 base. Task dates,
 indexes, progress IDs, source anchors and completion rules are unchanged. rc9
 retains the rc7/rc8 candidate certificate for an in-place update.
+The reviewed APK's SHA-256 is
+`74e7a8f79b5d52f27b4e845b3fe39b9ddf174fdc8c95511f523f1b752a36aac7`.
 
 This pass validates native semantics; a spoken TalkBack session, remaining UI
 surfaces/widget, additional artwork coverage and measured device performance
