@@ -15,9 +15,11 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -25,6 +27,11 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.CollectionInfo
+import androidx.compose.ui.semantics.CollectionItemInfo
+import androidx.compose.ui.semantics.collectionInfo
+import androidx.compose.ui.semantics.collectionItemInfo
+import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -53,6 +60,7 @@ internal fun submergedMonthCells(month: String): List<String?> {
 }
 
 /** Oversized month, open date grid and an agenda on one blue plane, from captures 033/034. */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun SubmergedMonthScreen(
     pack: LoadedPack,
@@ -65,13 +73,14 @@ internal fun SubmergedMonthScreen(
     footer: @Composable () -> Unit = {},
 ) {
     val month = months[index]
-    val parsed = YearMonth.parse(month)
+    val parsed = remember(month) { YearMonth.parse(month) }
     val colors = MaterialTheme.colorScheme
     // Deadline and media anchors were reconciled against the same route audit.
-    val events = pack.deadlines.mapNotNull { deadline ->
+    val events = remember(pack.deadlines, month) { pack.deadlines.mapNotNull { deadline ->
         deadlineEnd(deadline)?.takeIf { it.startsWith("$month-") }?.let { it to deadline }
-    }.sortedBy { it.first }
-    val eventDates = events.map { it.first }.toSet()
+    }.sortedBy { it.first } }
+    val eventDates = remember(events) { events.map { it.first }.toSet() }
+    val weeks = remember(month) { submergedMonthCells(month).chunked(7) }
     val moon = pack.media.firstOrNull { it.id == "p3r.media.full-moon" }
     val moonImage = rememberAssetImage(moon?.let(pack::assetOf))
     val moonDates = moon?.dates.orEmpty().toSet()
@@ -93,50 +102,77 @@ internal fun SubmergedMonthScreen(
             .verticalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        Column(Modifier.fillMaxWidth().drawBehind {
+        Column(Modifier.fillMaxWidth().drawWithCache {
             val plane = Path().apply {
                 moveTo(0f, 0f); lineTo(size.width, 0f)
                 cubicTo(size.width, size.height * 0.70f, size.width * 0.64f, size.height, 0f, size.height)
                 close()
             }
-            drawPath(plane, colors.primaryContainer)
+            onDrawBehind { drawPath(plane, colors.primaryContainer) }
         }.padding(bottom = 20.dp)) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth().testTag("p3r-month-heading")
-                    .semantics(mergeDescendants = true) { contentDescription = parsed.format(DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ENGLISH)) },
-            ) {
-                IconButton(onClick = { onMonthChange(months[index - 1]) }, enabled = index > 0) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, "Previous month", tint = if (index > 0) colors.primary else colors.onSurfaceVariant)
+            BoxWithConstraints(Modifier.fillMaxWidth().testTag("p3r-month-heading")
+                .semantics(mergeDescendants = true) {
+                    heading()
+                    contentDescription = parsed.format(DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ENGLISH))
+                }) {
+                val previous: @Composable () -> Unit = {
+                    IconButton(onClick = { onMonthChange(months[index - 1]) }, enabled = index > 0) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Previous month", tint = if (index > 0) colors.primary else colors.onSurfaceVariant)
+                    }
                 }
-                Text(parsed.monthValue.toString(), style = MaterialTheme.typography.displayLarge.copy(fontSize = 88.sp, lineHeight = 94.sp),
-                    fontStyle = FontStyle.Italic, color = colors.primary,
-                    modifier = Modifier.clearAndSetSemantics {})
-                Column(Modifier.weight(1f).padding(start = 10.dp, end = 4.dp)) {
-                    Text(parsed.month.getDisplayName(java.time.format.TextStyle.SHORT, Locale.ENGLISH).uppercase(Locale.ENGLISH),
-                        style = MaterialTheme.typography.displaySmall.copy(fontSize = 24.sp, lineHeight = 26.sp), color = colors.secondary)
-                    Text(parsed.year.toString(), style = MaterialTheme.typography.labelLarge, color = colors.primary)
+                val next: @Composable () -> Unit = {
+                    IconButton(onClick = { onMonthChange(months[index + 1]) }, enabled = index < months.lastIndex) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowForward, "Next month", tint = if (index < months.lastIndex) colors.primary else colors.onSurfaceVariant)
+                    }
                 }
-                IconButton(onClick = { onMonthChange(months[index + 1]) }, enabled = index < months.lastIndex) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowForward, "Next month", tint = if (index < months.lastIndex) colors.primary else colors.onSurfaceVariant)
+                val numeral: @Composable () -> Unit = {
+                    Text(parsed.monthValue.toString(), style = MaterialTheme.typography.displayLarge.copy(fontSize = 88.sp, lineHeight = 94.sp),
+                        fontStyle = FontStyle.Italic, color = colors.primary, modifier = Modifier.clearAndSetSemantics {})
+                }
+                val context: @Composable () -> Unit = {
+                    Column(Modifier.clearAndSetSemantics {}) {
+                        Text(parsed.month.getDisplayName(java.time.format.TextStyle.SHORT, Locale.ENGLISH).uppercase(Locale.ENGLISH),
+                            style = MaterialTheme.typography.displaySmall.copy(fontSize = 24.sp, lineHeight = 26.sp), color = colors.secondary)
+                        Text(parsed.year.toString(), style = MaterialTheme.typography.labelLarge, color = colors.primary)
+                    }
+                }
+                if (maxWidth / LocalDensity.current.fontScale < 280.dp) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        FlowRow(Modifier.weight(1f), horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                            numeral()
+                            context()
+                        }
+                        Column { previous(); next() }
+                    }
+                } else {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        previous()
+                        numeral()
+                        Box(Modifier.weight(1f).padding(start = 10.dp, end = 4.dp)) { context() }
+                        next()
+                    }
                 }
             }
             // The entire grid swipes between months, as in P5R. Never put a
             // horizontal scroller here: it consumes the month-change gesture.
             BoxWithConstraints(Modifier.fillMaxWidth()) {
                 val shortWeekdays = maxWidth / LocalDensity.current.fontScale < 320.dp
-                Column(Modifier.fillMaxWidth().testTag("p3r-month-grid")) {
+                Column(Modifier.fillMaxWidth().testTag("p3r-month-grid")
+                    .semantics { collectionInfo = CollectionInfo(weeks.size, 7) }) {
                     Row(Modifier.fillMaxWidth().padding(bottom = 8.dp)) {
                         listOf("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT").forEachIndexed { day, label ->
                             Text(if (shortWeekdays) label.take(1) else label, style = MaterialTheme.typography.labelSmall,
                                 color = when (day) { 0 -> colors.tertiary; 6 -> colors.secondary; else -> colors.primary },
                                 textAlign = TextAlign.Center, maxLines = 1,
-                                modifier = Modifier.weight(1f).clearAndSetSemantics { contentDescription = label })
+                                modifier = Modifier.weight(1f).clearAndSetSemantics {
+                                    contentDescription = listOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")[day]
+                                })
                         }
                     }
-                    submergedMonthCells(month).chunked(7).forEach { week ->
+                    weeks.forEachIndexed { row, week ->
                         Row(Modifier.fillMaxWidth()) {
-                            week.forEach { date ->
+                            week.forEachIndexed { column, date ->
                                 val authored = date?.let(days::get)
                                 val today = date != null && date == clockDate
                                 val due = date != null && date in eventDates
@@ -148,6 +184,7 @@ internal fun SubmergedMonthScreen(
                                             onClickLabel = "Open walkthrough day", onClick = { onOpenDay(date) }) else Modifier)
                                         .semantics {
                                             if (date != null) {
+                                                collectionItemInfo = CollectionItemInfo(row, 1, column, 1)
                                                 contentDescription = formatDate(date, pack.calendar)
                                                 stateDescription = listOfNotNull(
                                                     if (today) "Today" else null,
@@ -192,7 +229,10 @@ internal fun SubmergedMonthScreen(
                 Row(verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(14.dp),
                     modifier = Modifier.fillMaxWidth().background(colors.surface)
-                        .clickable(enabled = days[date] != null, role = Role.Button, onClick = { onOpenDay(date) })
+                        .clickable(enabled = days[date] != null, role = Role.Button,
+                            onClickLabel = "Open walkthrough day", onClick = { onOpenDay(date) })
+                        .semantics { contentDescription = "${formatDate(date, pack.calendar)} · ${event.label}" }
+                        .testTag("p3r-calendar-event-${event.id}")
                         .padding(horizontal = 12.dp, vertical = 12.dp)) {
                     Text(date.takeLast(2), style = MaterialTheme.typography.displaySmall.copy(fontSize = 32.sp, lineHeight = 36.sp),
                         color = colors.secondary)

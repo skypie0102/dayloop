@@ -13,12 +13,15 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
@@ -71,66 +74,76 @@ internal fun SubmergedBondsScreen(
         }
     }
     val highlightedId = highlighted?.takeIf { id -> rows.any { it.id == id } } ?: rows.firstOrNull()?.id
-    LazyColumn(
-        modifier = Modifier.fillMaxSize().testTag("bond-list"),
-        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        item {
-            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                    Text("LIST", style = bondDisplayStyle(), color = colors.primary, modifier = Modifier.weight(1f))
-                    Text("$maxed / ${pack.bonds.size} maxed", style = MaterialTheme.typography.labelLarge,
-                        color = colors.secondary)
+    BoxWithConstraints(Modifier.fillMaxSize()) {
+        val stackedLabels = maxWidth / LocalDensity.current.fontScale < 320.dp
+        LazyColumn(
+            modifier = Modifier.fillMaxSize().testTag("bond-list"),
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            item {
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Text("LIST", style = bondDisplayStyle(), color = colors.primary,
+                            modifier = Modifier.semantics { heading() })
+                        Text("$maxed / ${pack.bonds.size} maxed", style = MaterialTheme.typography.labelLarge,
+                            color = colors.secondary)
+                    }
+                    SubmergedFilters(listOf("All", "In progress", "Max"), filter) { filter = it }
                 }
-                SubmergedFilters(listOf("All", "In progress", "Max"), filter) { filter = it }
             }
-        }
-        if (rows.isEmpty()) item {
-            Text(if (filter == "Max") "No maxed links yet." else "No links in progress yet.",
-                color = colors.onBackground, modifier = Modifier.padding(vertical = 16.dp))
-        }
-        items(rows, key = { it.id }) { bond ->
-            val rank = ranks.getValue(bond.id)
-            val next = nextBondRankStep(bond, rank)
-            val active = bond.id == highlightedId
-            val foreground = if (active) colors.onPrimary else colors.secondary
-            Column(
-                Modifier.fillMaxWidth().bondSelection(active)
-                    .clickable(role = Role.Button, onClickLabel = "Open ${bond.label} ranks", onClick = {
-                        highlighted = bond.id
-                        onOpenBond(bond.id)
-                    })
-                    .semantics {
-                        selected = active
-                        stateDescription = if (rank > 0 && next == null) "Max rank" else "Rank $rank"
-                    }.testTag("bond-${bond.id}")
-                    .padding(start = 14.dp, end = 12.dp, top = 8.dp, bottom = 8.dp),
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Text(bond.label, style = bondDisplayStyle(), color = foreground, modifier = Modifier.weight(1f))
-                    Column(horizontalAlignment = Alignment.End) {
-                        Text("RANK", style = MaterialTheme.typography.labelSmall, color = foreground)
-                        Text(if (rank > 0 && next == null) "MAX" else "$rank",
-                            style = bondDisplayStyle().copy(fontSize = 32.sp, lineHeight = 34.sp), color = foreground)
+            if (rows.isEmpty()) item {
+                Text(if (filter == "Max") "No maxed links yet." else "No links in progress yet.",
+                    color = colors.onBackground, modifier = Modifier.padding(vertical = 16.dp))
+            }
+            items(rows, key = { it.id }) { bond ->
+                val rank = ranks.getValue(bond.id)
+                val next = nextBondRankStep(bond, rank)
+                val active = bond.id == highlightedId
+                val foreground = if (active) colors.onPrimary else colors.secondary
+                Column(
+                    Modifier.fillMaxWidth().bondSelection(active)
+                        .clickable(role = Role.Button, onClickLabel = "Open ${bond.label} ranks", onClick = {
+                            highlighted = bond.id
+                            onOpenBond(bond.id)
+                        })
+                        .semantics {
+                            selected = active
+                            stateDescription = if (rank > 0 && next == null) "Max rank" else
+                                "Rank $rank of ${bond.ranks.maxOfOrNull { it.rank } ?: 0}"
+                        }.testTag("bond-${bond.id}")
+                        .padding(start = 14.dp, end = 12.dp, top = 8.dp, bottom = 8.dp),
+                ) {
+                    if (stackedLabels) {
+                        Text(bond.label, style = bondDisplayStyle(), color = foreground)
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                            BondRankBadge(rank, rank > 0 && next == null, foreground)
+                        }
+                    } else {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Text(bond.label, style = bondDisplayStyle(), color = foreground, modifier = Modifier.weight(1f))
+                            BondRankBadge(rank, rank > 0 && next == null, foreground)
+                        }
+                    }
+                    bond.characterLabel?.let { name ->
+                        Text(name, style = MaterialTheme.typography.bodyMedium,
+                            color = colors.surface,
+                            modifier = Modifier.fillMaxWidth().background(if (active) colors.primary else colors.secondary)
+                                .padding(horizontal = 6.dp, vertical = 2.dp))
                     }
                 }
-                bond.characterLabel?.let { name ->
-                    Text(name, style = MaterialTheme.typography.bodyMedium,
-                        color = colors.surface,
-                        modifier = Modifier.fillMaxWidth().background(if (active) colors.primary else colors.secondary)
-                            .padding(horizontal = 6.dp, vertical = 2.dp))
-                }
             }
-        }
-        item {
-            Text("Ranks follow completed walkthrough tasks.", style = MaterialTheme.typography.bodySmall,
-                color = colors.onSurfaceVariant, modifier = Modifier.padding(vertical = 8.dp))
+            item {
+                Text("Ranks follow completed walkthrough tasks.", style = MaterialTheme.typography.bodySmall,
+                    color = colors.onSurfaceVariant, modifier = Modifier.padding(vertical = 8.dp))
+            }
         }
     }
 }
 
 /** A rank-led summary with an expandable route ladder; opening dates never moves the profile clock. */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun SubmergedBondDetail(
     bond: Bond,
@@ -153,25 +166,49 @@ internal fun SubmergedBondDetail(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         item {
-            Column(Modifier.fillMaxWidth().background(colors.primaryContainer).padding(14.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text("RANK", style = MaterialTheme.typography.labelSmall, color = colors.onPrimaryContainer)
-                        Text(if (rank > 0 && next == null) "MAX" else "$rank",
-                            style = bondDisplayStyle().copy(fontSize = 48.sp, lineHeight = 50.sp),
-                            color = colors.onPrimaryContainer)
-                    }
-                    Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            BoxWithConstraints(Modifier.fillMaxWidth().background(colors.primaryContainer)
+                .testTag("bond-summary").padding(14.dp)) {
+                val identity: @Composable () -> Unit = {
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                         Text(bond.label, style = bondDisplayStyle().copy(fontSize = 30.sp, lineHeight = 34.sp),
                             color = colors.onPrimaryContainer, modifier = Modifier.semantics { heading() })
                         bond.characterLabel?.let {
                             Text(it, style = MaterialTheme.typography.bodyLarge, color = colors.onPrimaryContainer)
                         }
                     }
+                }
+                val rankBadge: @Composable () -> Unit = {
+                    Column(Modifier.clearAndSetSemantics {
+                        contentDescription = if (rank > 0 && next == null) "Max rank" else "Rank $rank of $highestRank"
+                    }, horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text("RANK", style = MaterialTheme.typography.labelSmall, color = colors.onPrimaryContainer)
+                        Text(if (rank > 0 && next == null) "MAX" else "$rank",
+                            style = bondDisplayStyle().copy(fontSize = 48.sp, lineHeight = 50.sp),
+                            color = colors.onPrimaryContainer)
+                    }
+                }
+                val portraitArt: @Composable () -> Unit = {
                     bitmap?.let {
-                        Image(it, contentDescription = portrait?.title, contentScale = ContentScale.Fit,
-                            modifier = Modifier.width(56.dp).heightIn(max = 88.dp))
+                        // The adjacent character name already labels this correctly matched art.
+                        Image(it, contentDescription = null, contentScale = ContentScale.Fit,
+                            modifier = Modifier.width(56.dp).heightIn(max = 88.dp)
+                                .testTag("bond-portrait-${bond.id}"))
+                    }
+                }
+                if (maxWidth / LocalDensity.current.fontScale < 280.dp) {
+                    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                        identity()
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically) {
+                            rankBadge()
+                            portraitArt()
+                        }
+                    }
+                } else {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        rankBadge()
+                        Box(Modifier.weight(1f)) { identity() }
+                        portraitArt()
                     }
                 }
             }
@@ -190,7 +227,10 @@ internal fun SubmergedBondDetail(
                 Row(
                     Modifier.fillMaxWidth().bondSelection(active)
                         .clickable(role = Role.Button, onClickLabel = "Show rank ${step.rank}", onClick = { selectedRank = step.rank })
-                        .semantics { selected = active }
+                        .semantics {
+                            selected = active
+                            stateDescription = if (active) "Expanded" else "Collapsed"
+                        }
                         .testTag("bond-rank-${step.rank}").heightIn(min = 56.dp).padding(horizontal = 14.dp, vertical = 10.dp),
                     verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
@@ -218,7 +258,8 @@ internal fun SubmergedBondDetail(
 private fun RankGuidance(step: RankStep, pack: LoadedPack, days: Map<String, Day>, onOpenDay: (String) -> Unit) {
     val colors = MaterialTheme.colorScheme
     val bondLabels = remember(pack.bonds) { pack.bonds.associate { it.id to it.label } }
-    Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+    Column(Modifier.testTag("bond-guidance-${step.rank}").padding(14.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp)) {
         step.location?.let { Text(it, style = MaterialTheme.typography.titleMedium, color = colors.primary) }
         step.gates?.let {
             Text("Requires: ${describeCondition(it, pack.pack.statLabels(), bondLabels)}", color = colors.onSurface)
@@ -242,20 +283,31 @@ private fun bondDisplayStyle(): TextStyle = MaterialTheme.typography.headlineSma
     .withSkinFont(LocalSkin.current.type.display).copy(fontStyle = FontStyle.Italic)
 
 @Composable
+private fun BondRankBadge(rank: Int, maxed: Boolean, ink: androidx.compose.ui.graphics.Color) {
+    Column(Modifier.clearAndSetSemantics {}, horizontalAlignment = Alignment.End) {
+        Text("RANK", style = MaterialTheme.typography.labelSmall, color = ink)
+        Text(if (maxed) "MAX" else "$rank",
+            style = bondDisplayStyle().copy(fontSize = 32.sp, lineHeight = 34.sp), color = ink)
+    }
+}
+
+@Composable
 private fun Modifier.bondSelection(active: Boolean): Modifier {
     val colors = MaterialTheme.colorScheme
-    return background(if (active) colors.primary else colors.surface).drawBehind {
-        if (active) {
-            drawLine(colors.tertiary, Offset.Zero, Offset(0f, size.height), 3.dp.toPx())
-            val cursor = Path().apply {
-                moveTo(3.dp.toPx(), size.height / 2 - 5.dp.toPx())
-                lineTo(8.dp.toPx(), size.height / 2)
-                lineTo(3.dp.toPx(), size.height / 2 + 5.dp.toPx())
-                close()
+    return background(if (active) colors.primary else colors.surface).drawWithCache {
+        val cursor = if (active) Path().apply {
+            moveTo(3.dp.toPx(), size.height / 2 - 5.dp.toPx())
+            lineTo(8.dp.toPx(), size.height / 2)
+            lineTo(3.dp.toPx(), size.height / 2 + 5.dp.toPx())
+            close()
+        } else null
+        onDrawBehind {
+            if (cursor != null) {
+                drawLine(colors.tertiary, Offset.Zero, Offset(0f, size.height), 3.dp.toPx())
+                drawPath(cursor, colors.onPrimary)
+            } else {
+                drawLine(colors.secondary.copy(alpha = 0.3f), Offset(0f, size.height), Offset(size.width, size.height), 1.dp.toPx())
             }
-            drawPath(cursor, colors.onPrimary)
-        } else {
-            drawLine(colors.secondary.copy(alpha = 0.3f), Offset(0f, size.height), Offset(size.width, size.height), 1.dp.toPx())
         }
     }
 }
