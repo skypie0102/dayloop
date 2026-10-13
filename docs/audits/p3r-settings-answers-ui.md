@@ -15,6 +15,11 @@ their own reading semantics instead of merging into the sheet's button. Test
 launches now also wait for the requested date's UI projection before querying
 controls. An existing P5R touch query encountered the same semantics diagnostic
 race in that follow-up. These runs are not accepted as a passing full suite.
+The reading-position revision passed all P3R cases; three P5R cases timed out at
+the newly added readiness check because the slash date header does not expose
+the same full-date description. Readiness now uses P3R's full-date header or the
+requested source instruction for the P5R fixture, respecting each skin's actual
+semantics. Combined acceptance still requires a passing final full run.
 
 ## Settings
 

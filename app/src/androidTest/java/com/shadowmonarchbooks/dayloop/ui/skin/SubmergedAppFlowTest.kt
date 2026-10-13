@@ -93,8 +93,18 @@ class SubmergedAppFlowTest {
         compose.onNodeWithText("End day", ignoreCase = true).assertIsDisplayed()
         // Room/DataStore may publish the selected profile before the richer UI
         // projection reaches it. Wait for that exact date before querying controls.
-        compose.waitUntil(20_000) {
-            compose.onAllNodesWithContentDescription(formatDate(date, pack.calendar)).fetchSemanticsNodes().isNotEmpty()
+        if (slug == "p3r") {
+            compose.waitUntil(20_000) {
+                compose.onAllNodesWithContentDescription(formatDate(date, pack.calendar)).fetchSemanticsNodes().isNotEmpty()
+            }
+        } else {
+            val day = requireNotNull(pack.day(pack.routes.first().id, date))
+            val index = day.displayOrder.first()
+            compose.waitUntil(20_000) {
+                compose.onAllNodes(hasTestTag("task-label-$index") and
+                    hasText(day.steps[index].label, substring = true, ignoreCase = true), useUnmergedTree = true)
+                    .fetchSemanticsNodes().isNotEmpty()
+            }
         }
     }
 
