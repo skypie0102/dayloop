@@ -3,6 +3,13 @@
 Date: October 13, 2026. Base: main `75148f6`, rc9, P3R content 19.
 Scope: pass A of the [remaining polish roadmap](../packs/p3r-polish-roadmap.md).
 Implementation is ready for CI/native review; acceptance is pending.
+Required CI passed on the initial code head `caf3fa8`. The first native review
+completed 51 tests with two failures: a new test expected mixed-case header text
+despite the deliberately uppercase Reload header, and an existing Linked Episode
+touch query hit a snapshot/semantics diagnostic thread race. The title assertion
+now checks the actual named heading; the episode helper waits for a unique settled
+list/item before its touch query. Both Settings/profile cases and the isolated
+hand-in passed. A new full native review is required before acceptance.
 
 ## Settings
 

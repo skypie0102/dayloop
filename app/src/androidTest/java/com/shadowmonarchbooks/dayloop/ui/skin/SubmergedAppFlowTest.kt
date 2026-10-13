@@ -182,8 +182,17 @@ class SubmergedAppFlowTest {
     }
 
     private fun openEpisodeChain(id: String) {
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithTag("episode-list").fetchSemanticsNodes().size == 1
+        }
         compose.onNodeWithTag("episode-list").performScrollToNode(hasTestTag("episode-chain-$id"))
-        compose.onNodeWithTag("episode-chain-$id").performClick()
+        // Wait for the transition/recomposition to settle before the touch query.
+        // Duplicate transitional nodes can make the test framework traverse its
+        // diagnostic tree on the instrumentation thread while the owner lays out.
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithTag("episode-chain-$id").fetchSemanticsNodes().size == 1
+        }
+        compose.onNodeWithTag("episode-chain-$id").assertIsDisplayed().performClick()
     }
 
     private fun openEpisodeStep(id: String) {
@@ -283,7 +292,7 @@ class SubmergedAppFlowTest {
         val pack = dependencies.store().state.value.selected!!
         val source = "answer-sheet-p3r.answers.exam.2009-05-19"
         compose.onNodeWithTag(source).performScrollTo().assertIsDisplayed().performClick()
-        compose.onNodeWithText("Answers").assertIsDisplayed()
+        compose.onNodeWithTag("p3r-toolbar-title").assertTextEquals("ANSWERS").assertIsDisplayed()
         compose.onNodeWithContentDescription("Back").assertIsDisplayed()
         compose.onNodeWithTag("p3r-answer-list").assertIsDisplayed()
         compose.onNodeWithTag(source).assertIsDisplayed()
