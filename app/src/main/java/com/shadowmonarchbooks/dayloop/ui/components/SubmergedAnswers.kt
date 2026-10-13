@@ -62,7 +62,7 @@ internal fun SubmergedAnswerSheet(
                     Text((i + 1).toString().padStart(2, '0'), style = MaterialTheme.typography.labelLarge,
                         color = colors.secondary, modifier = Modifier.padding(top = 2.dp))
                     Text(answer, style = MaterialTheme.typography.bodyLarge, color = colors.onSurface,
-                        modifier = Modifier.weight(1f))
+                        modifier = Modifier.weight(1f).testTag("answer-body-${sheet.id}-$i"))
                 }
             }
         }

@@ -10,6 +10,11 @@ touch query hit a snapshot/semantics diagnostic thread race. The title assertion
 now checks the actual named heading; the episode helper waits for a unique settled
 list/item before its touch query. Both Settings/profile cases and the isolated
 hand-in passed. A new full native review is required before acceptance.
+The follow-up required an answer-row locator because numbered answers retain
+their own reading semantics instead of merging into the sheet's button. Test
+launches now also wait for the requested date's UI projection before querying
+controls. An existing P5R touch query encountered the same semantics diagnostic
+race in that follow-up. These runs are not accepted as a passing full suite.
 
 ## Settings
 
@@ -57,6 +62,11 @@ returns to the same list position. Only the actual P3R bottom tabs are considere
 top-level destinations, so the answer collection has a real Back action even
 when an older date-less destination is restored. Other packs retain their
 existing answer destination and presentation.
+
+Code inspection found that Today unconditionally reset its saved scroll on
+composition re-entry. Reload now saves which date/profile owns that position:
+same-date Back/tab restoration keeps it, while a changed date/profile resets to
+the header. Other skins retain their existing date-driven reset behavior.
 
 ## Validation required
 

@@ -91,6 +91,11 @@ class SubmergedAppFlowTest {
             compose.onAllNodesWithText("End day", ignoreCase = true).fetchSemanticsNodes().isNotEmpty()
         }
         compose.onNodeWithText("End day", ignoreCase = true).assertIsDisplayed()
+        // Room/DataStore may publish the selected profile before the richer UI
+        // projection reaches it. Wait for that exact date before querying controls.
+        compose.waitUntil(20_000) {
+            compose.onAllNodesWithContentDescription(formatDate(date, pack.calendar)).fetchSemanticsNodes().isNotEmpty()
+        }
     }
 
     @After fun close() {
@@ -301,8 +306,10 @@ class SubmergedAppFlowTest {
         capture("p3r-answer-collection-source-double-text")
         val next = "answer-sheet-p3r.answers.exam.2009-07-15"
         compose.onNodeWithTag("p3r-answer-list").performScrollToNode(hasTestTag(next))
-        compose.onNodeWithTag(next).assertTextContains("An error in translation", substring = true)
-            .assertTextContains(formatDate("2009-07-15", pack.calendar), substring = true)
+        compose.onNodeWithTag("answer-body-p3r.answers.exam.2009-07-15-0", useUnmergedTree = true)
+            .assertTextEquals("An error in translation").assertIsDisplayed()
+        compose.onNode(hasText(formatDate("2009-07-15", pack.calendar)) and hasAnyAncestor(hasTestTag(next)),
+            useUnmergedTree = true).assertIsDisplayed()
         capture("p3r-answer-collection-july-double-text")
         compose.onNodeWithTag(next).performClick()
         compose.onNodeWithTag(next).performScrollTo().assertIsDisplayed()

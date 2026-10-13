@@ -32,6 +32,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -142,8 +143,13 @@ fun TodayScreen(
     val contentBottom = if (boundedTaskViewport && dayControlsHeightPx > 0) {
         with(density) { dayControlsHeightPx.toDp() }
     } else 100.dp
-    LaunchedEffect(date, boundedTaskViewport) {
-        if (boundedTaskViewport) scrollState.scrollTo(0)
+    var savedReadingOwner by rememberSaveable(pack.slug) { mutableStateOf<String?>(null) }
+    val readingOwner = "${state.activeProfile?.id}:$date"
+    LaunchedEffect(date, boundedTaskViewport, if (submerged) state.activeProfile?.id else null) {
+        // Reload returns to its saved reading position on Back/tab restoration.
+        // A changed date/profile still starts from the date header.
+        if (boundedTaskViewport && (!submerged || savedReadingOwner != readingOwner)) scrollState.scrollTo(0)
+        if (submerged) savedReadingOwner = readingOwner
     }
     var dateBottomPx by remember(date) { mutableIntStateOf(Int.MAX_VALUE) }
     val datePinned by remember(scrollState, dateBottomPx) {
