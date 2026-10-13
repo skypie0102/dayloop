@@ -11,6 +11,7 @@ import com.shadowmonarchbooks.dayloop.data.progress.InvalidBackupException
 import com.shadowmonarchbooks.dayloop.data.progress.ProgressBackup
 import com.shadowmonarchbooks.dayloop.data.progress.ProgressBackupCodec
 import com.shadowmonarchbooks.dayloop.data.progress.ProgressRepository
+import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.IOException
@@ -50,7 +51,8 @@ class BackupViewModel @Inject constructor(
     val state = mutableState.asStateFlow()
 
     fun exportTo(uri: Uri) = operation("Saving backup…") {
-        val backup = repo.exportBackup(BuildConfig.VERSION_NAME)
+        val backup = repo.exportBackup(BuildConfig.VERSION_NAME,
+            store.state.value.packs.associate { it.slug to Routes.defaultId(it.pack) })
         val json = ProgressBackupCodec.encode(backup)
         val output = context.contentResolver.openOutputStream(uri, "wt") ?: throw IOException("Cannot open destination")
         output.use { it.write(json.toByteArray(Charsets.UTF_8)); it.flush() }

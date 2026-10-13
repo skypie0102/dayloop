@@ -277,6 +277,7 @@ class SubmergedAppFlowTest {
         }
         val created = runBlocking { dependencies.db().profileDao().all().single { it.name == "Created review profile" } }
         assertEquals("2009-04-08", created.clockDate)
+        assertEquals("standard", created.routeId)
         compose.onNodeWithTag("settings-profile-${created.id}").performScrollTo().assertIsNotSelected()
         compose.onNodeWithContentDescription("Delete Created review profile").performScrollTo().performClick()
         capture("p3r-settings-delete-profile", dialog = true)

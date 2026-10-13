@@ -51,6 +51,9 @@ stable-release date from this plan alone.
   award task/achievement progress.
 - [ ] Record native interaction/capture evidence, required CI results, content
   isolation, candidate signature and remaining checks in a focused audit.
+- [ ] Fix the discovered single-route creation/backup failure: new profiles
+  must store their actual default route; exports must use installed defaults for
+  blank legacy routes without rewriting saves or replacing alternate routes.
 
 ## Review rules
 

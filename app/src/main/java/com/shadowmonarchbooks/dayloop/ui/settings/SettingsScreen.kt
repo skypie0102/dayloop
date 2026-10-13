@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.shadowmonarchbooks.dayloop.BuildConfig
 import com.shadowmonarchbooks.dayloop.data.formatDate
+import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.ProfileUi
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
@@ -408,6 +409,7 @@ fun SettingsScreen(
     if (createOpen) {
         CreateProfileDialog(
             defaultName = "Profile ${state.profiles.size + 1}",
+            defaultRouteId = Routes.defaultId(pack.pack),
             routes = pack.routes.takeIf { hasMultipleRoutes },
             onConfirm = { name, routeId ->
                 vm.createProfile(name, routeId)
@@ -421,12 +423,13 @@ fun SettingsScreen(
 @Composable
 private fun CreateProfileDialog(
     defaultName: String,
+    defaultRouteId: String,
     routes: List<com.shadowmonarchbooks.dayloop.pack.schema.RouteDef>?,
     onConfirm: (String, String) -> Unit,
     onDismiss: () -> Unit,
 ) {
     var name by remember { mutableStateOf(defaultName) }
-    var routeId by remember { mutableStateOf(routes?.firstOrNull()?.id ?: "") }
+    var routeId by remember { mutableStateOf(routes?.firstOrNull()?.id ?: defaultRouteId) }
     SettingsDialog(
         onDismiss = onDismiss,
         title = "New profile",

@@ -30,8 +30,19 @@ Create, rename, reset, delete and backup-preview/busy dialogs share an explicitl
 opted-in Reload treatment: blue plane, pink edge, display heading, named pane,
 scrollable body and wrapping commands with their own space. The other skins
 retain the Material AlertDialog path. File pickers and import/export persistence
-are unchanged; backup UI/round-trip/device verification must be recorded
-separately from profile-dialog tests.
+keep their existing persistence behavior apart from the route fix below. Backup
+preview/file-picker/device verification remains separate from profile-dialog and
+repository round-trip tests.
+
+The Settings create dialog previously passed an empty route for a single-route
+pack. The UI fell back to its default route, but backup validation rejected that
+profile and prevented the whole export. New profiles now receive the pack's
+actual default. Export uses installed-pack defaults for blank legacy routes in
+the backup copy only; it never rewrites existing rows or replaces a nonblank
+alternate route. Unknown defaults remain unguessed. A Room/DataStore regression
+case exercises P3R/P5R legacy blanks, a Metaphor alternate, encoding/restoring,
+marks, request stages, counters and unchanged original selection/save rows.
+The native create flow also asserts the persisted route.
 
 ## Class/exam answers
 
