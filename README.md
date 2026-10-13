@@ -37,12 +37,15 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 
 ## Roadmap
 
-**Current priority: [Persona 3 Reload — icon navigation and Calendar/Social Links](docs/audits/p3r-icon-navigation-ui.md).**
+**Current priority: [Persona 3 Reload — remaining polish and release roadmap](docs/packs/p3r-polish-roadmap.md).**
+The October 13 continuation starts with Settings and class/exam answer screens,
+then covers remaining entry points/widget, artwork/accessibility, completion
+coverage, measured device performance and stable-release acceptance.
 The October 12 achievement pass reviews all 48 achievements, replaces unsafe shortcut
 awards, adds direct source-checkpoint navigation and keeps completed counters editable.
 The [navigation/motion pass](docs/audits/p3r-motion-performance.md) preserves
 tab reading state, handles enlarged-label scrolling and adds a manual paired native frame review.
-The latest UI pass removes bottom tab text, enlarges the icons, and adapts Social
+The [merged rc9 UI pass](docs/audits/p3r-icon-navigation-ui.md) removes bottom tab text, enlarges the icons, and adapts Social
 Links/Calendar to enlarged text with clearer native accessibility semantics.
 The P3R achievement list also reserves space below its pinned summary.
 The [P3R roadmap](docs/packs/p3r-roadmap.md) tracks the remaining optional encounter,

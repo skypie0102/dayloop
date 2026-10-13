@@ -1,7 +1,7 @@
 # Persona 3 Reload — UI and walkthrough roadmap
 
 Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version 3.
-Priority: **active P3R reading and Reload UI optimization**, per the October 10, 2026 request.
+Priority: **remaining P3R polish and release acceptance**, per the October 13, 2026 request.
 Status: content version **19** audits all 48 base-game achievements and adds source-proof navigation after the combat and Linked Episode passes.
 Android validation, navigation state and comparative frame review for this continuation are tracked in the
 [motion/performance audit](../audits/p3r-motion-performance.md), following the merged
@@ -12,6 +12,17 @@ Android validation, navigation state and comparative frame review for this conti
 [reading/UI review](../audits/p3r-reading-reload-ui.md). Broader optional encounters, final UI/motion review and release hardening remain separately scoped.
 
 Implementation record: [replacement-skin baseline and review fixtures](p3r-redesign-baseline.md).
+
+## October 13 continuation: remaining polish roadmap
+
+The [remaining polish and release roadmap](p3r-polish-roadmap.md) defines six
+ordered passes with explicit acceptance: Settings/class-exam answers; remaining
+utility screens/widget; artwork and spoken accessibility; optional completion
+obligations; measured device performance; stable-release checks. Pass A starts
+from rc9's merged main with no content or progress-key changes. The
+[Settings/answer audit](../audits/p3r-settings-answers-ui.md) records its scope and
+required validation. The broader
+P3R-5/P3R-6 gates below stay open until their complete evidence is recorded.
 
 ## October 12 continuation: icon navigation and Calendar/Social Links
 

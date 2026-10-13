@@ -11,6 +11,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
+import androidx.compose.ui.unit.dp
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
 import com.shadowmonarchbooks.dayloop.review.ReviewDependencies
@@ -111,7 +112,7 @@ class SubmergedAppFlowTest {
         }
     }
 
-    private fun capture(name: String) {
+    private fun capture(name: String, dialog: Boolean = false) {
         compose.waitForIdle()
         scenario!!.onActivity { activity ->
             assertTrue("Capture must use the requested font scale",
@@ -119,7 +120,8 @@ class SubmergedAppFlowTest {
         }
         // PixelCopy waits for the Compose root's rendered frame. A raw device
         // screenshot can still show Android's starting window or a stale scroll.
-        val bitmap = compose.onRoot().captureToImage().asAndroidBitmap()
+        val target = if (dialog) compose.onNodeWithTag("p3r-settings-dialog") else compose.onRoot()
+        val bitmap = target.captureToImage().asAndroidBitmap()
         val resolver = context.contentResolver
         val values = ContentValues().apply {
             put(MediaStore.Images.Media.DISPLAY_NAME, "$name.png")
@@ -195,6 +197,117 @@ class SubmergedAppFlowTest {
             compose.onAllNodesWithText("$count / 5 episodes complete").fetchSemanticsNodes().isNotEmpty()
         }
         compose.onNodeWithTag("episode-chain-summary").assertTextEquals("$count / 5 episodes complete")
+    }
+
+    @Test fun settingsProfilesAndDialogsStayNamedAtDoubleText() {
+        launch("2009-05-19", scale = 2f)
+        val original = profileId
+        val other = runBlocking {
+            dependencies.repo().setMark(original, StepKey("2009-05-19", 0), StepMark.DONE)
+            dependencies.db().profileDao().insert(ProfileEntity(
+                packId = "p3r", name = "A long saved profile name for enlarged text", routeId = "standard",
+                clockDate = "2009-04-18", contentVersion = 19, createdAt = System.currentTimeMillis()))
+        }
+        compose.onNodeWithContentDescription("Settings").performClick()
+        compose.onNodeWithContentDescription("Settings").assertDoesNotExist()
+        compose.onNodeWithText("Previous day").performScrollTo().assertIsDisplayed()
+        compose.onNodeWithTag("settings-profile-$original").performScrollTo()
+            .assertIsSelected().assert(SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.RadioButton))
+        compose.onNodeWithTag("settings-profile-$other").performScrollTo().assertIsNotSelected()
+        compose.onNodeWithContentDescription("Rename A long saved profile name for enlarged text")
+            .performScrollTo().assertWidthIsAtLeast(48.dp).assertHeightIsAtLeast(48.dp).performClick()
+        compose.onNodeWithTag("p3r-settings-dialog").assertIsDisplayed()
+        compose.onNode(hasSetTextAction()).performClick().performTextReplacement("Second review profile")
+        compose.onNodeWithText("Cancel").assertIsDisplayed().assertHeightIsAtLeast(48.dp)
+        compose.onNodeWithText("Rename", substring = false).assertIsDisplayed().assertHeightIsAtLeast(48.dp)
+        capture("p3r-settings-rename-keyboard-double-text", dialog = true)
+        compose.onNodeWithText("Cancel").performClick()
+        assertEquals("A long saved profile name for enlarged text", runBlocking { dependencies.db().profileDao().byId(other)!!.name })
+        compose.onNodeWithContentDescription("Rename A long saved profile name for enlarged text")
+            .performScrollTo().performClick()
+        compose.onNode(hasSetTextAction()).performTextReplacement("Second review profile")
+        compose.onNodeWithText("Rename", substring = false).performClick()
+        compose.waitUntil(10_000) { runBlocking { dependencies.db().profileDao().byId(other)?.name == "Second review profile" } }
+        compose.onNodeWithTag("settings-profile-$original").performScrollTo().assertIsSelected()
+        compose.onNodeWithTag("settings-profile-$other").performScrollTo().assertIsNotSelected().performClick()
+        compose.waitUntil(10_000) {
+            compose.onAllNodes(hasTestTag("settings-profile-$other") and isSelected()).fetchSemanticsNodes().isNotEmpty()
+        }
+        capture("p3r-settings-profiles-double-text")
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithContentDescription(formatDate("2009-04-18", dependencies.store().state.value.selected!!.calendar)).assertIsDisplayed()
+        compose.onNodeWithContentDescription("Settings").performClick()
+        compose.onNodeWithTag("settings-profile-$original").performScrollTo().performClick()
+        compose.onNodeWithText("Reset profile").performScrollTo().performClick()
+        compose.onNodeWithText("Reset profile?").assertIsDisplayed()
+        compose.onNodeWithText("Reset").assertIsDisplayed()
+        capture("p3r-settings-reset-double-text", dialog = true)
+        compose.onNodeWithText("Cancel").performClick()
+        compose.onNodeWithContentDescription("Delete Second review profile").performScrollTo().performClick()
+        compose.onNodeWithText("Delete Second review profile?").assertIsDisplayed()
+        compose.onNodeWithText("Cancel").performClick()
+        assertEquals("2009-05-19", runBlocking { dependencies.db().profileDao().byId(original)!!.clockDate })
+        assertEquals("2009-04-18", runBlocking { dependencies.db().profileDao().byId(other)!!.clockDate })
+        assertEquals(1, runBlocking { dependencies.repo().marksFor(original).first().size })
+        assertTrue(runBlocking { dependencies.repo().marksFor(other).first().isEmpty() })
+        compose.onNodeWithContentDescription("Back").performClick()
+        dateIs("2009-05-19")
+    }
+
+    @Test fun newProfileAndDeleteUseReloadDialogsWithoutChangingTheOriginalSave() {
+        launch("2009-05-19")
+        compose.onNodeWithContentDescription("Settings").performClick()
+        capture("p3r-settings-normal-text")
+        compose.onNodeWithText("+ New profile").performScrollTo().performClick()
+        compose.onNodeWithText("New profile").assertIsDisplayed()
+        compose.onNode(hasSetTextAction()).performTextReplacement("Created review profile")
+        capture("p3r-settings-new-profile", dialog = true)
+        compose.onNodeWithText("Create").performClick()
+        compose.waitUntil(10_000) {
+            runBlocking { dependencies.db().profileDao().all().any { it.name == "Created review profile" } }
+        }
+        val created = runBlocking { dependencies.db().profileDao().all().single { it.name == "Created review profile" } }
+        assertEquals("2009-04-08", created.clockDate)
+        compose.onNodeWithTag("settings-profile-${created.id}").performScrollTo().assertIsNotSelected()
+        compose.onNodeWithContentDescription("Delete Created review profile").performScrollTo().performClick()
+        capture("p3r-settings-delete-profile", dialog = true)
+        compose.onNodeWithText("Delete").performClick()
+        compose.waitUntil(10_000) { runBlocking { dependencies.db().profileDao().byId(created.id) == null } }
+        compose.onNodeWithTag("settings-profile-$profileId").performScrollTo().assertIsSelected()
+        assertEquals("2009-05-19", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
+    }
+
+    @Test fun answerCollectionOpensAtItsSourceAndRetainsPositionAtDoubleText() {
+        launch("2009-05-19", scale = 2f)
+        val pack = dependencies.store().state.value.selected!!
+        val source = "answer-sheet-p3r.answers.exam.2009-05-19"
+        compose.onNodeWithTag(source).performScrollTo().assertIsDisplayed().performClick()
+        compose.onNodeWithText("Answers").assertIsDisplayed()
+        compose.onNodeWithContentDescription("Back").assertIsDisplayed()
+        compose.onNodeWithTag("p3r-answer-list").assertIsDisplayed()
+        compose.onNodeWithTag(source).assertIsDisplayed()
+            .assert(SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Button))
+        capture("p3r-answer-collection-source-double-text")
+        val next = "answer-sheet-p3r.answers.exam.2009-07-15"
+        compose.onNodeWithTag("p3r-answer-list").performScrollToNode(hasTestTag(next))
+        compose.onNodeWithTag(next).assertTextContains("An error in translation", substring = true)
+            .assertTextContains(formatDate("2009-07-15", pack.calendar), substring = true)
+        capture("p3r-answer-collection-july-double-text")
+        compose.onNodeWithTag(next).performClick()
+        compose.onNodeWithTag(next).performScrollTo().assertIsDisplayed()
+        assertEquals("2009-05-19", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithTag(next).assertIsDisplayed()
+        scenario!!.recreate()
+        compose.onNodeWithTag("p3r-answer-list").assertIsDisplayed()
+        compose.onNodeWithTag(next).assertIsDisplayed()
+        capture("p3r-answer-collection-restored-double-text")
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithTag(source).assertIsDisplayed()
+        assertEquals("2009-05-19", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
+        assertTrue(runBlocking { dependencies.repo().earnedAchievements(profileId).first().isEmpty() })
     }
 
     @Test fun linkedEpisodeSourceNavigationRetainsTheClockAndReversesChainProof() {

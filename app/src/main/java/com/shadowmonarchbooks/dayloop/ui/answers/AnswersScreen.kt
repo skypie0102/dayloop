@@ -17,6 +17,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -31,6 +32,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.answerKindLabel
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.SkinTag
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 
 /**
  * Exam/test answer sheets (docs/PLAN.md Phase 5): every structured answer the
@@ -40,15 +42,21 @@ import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 fun AnswersScreen(
     vm: DayloopViewModel = hiltViewModel(),
     onOpenDay: (String) -> Unit,
+    initialDate: String? = null,
 ) {
     val state by vm.state.collectAsState()
     val pack = state.selected ?: run {
         EmptyState("No pack selected.")
         return
     }
-    val sheets = pack.answersByDate.values.sortedBy { it.date }
+    val sheets = remember(pack.answersByDate) { pack.answersByDate.values.sortedBy { it.date } }
     if (sheets.isEmpty()) {
         EmptyState("No answer sheets in this pack yet — exams and class questions appear here.")
+        return
+    }
+
+    if (LocalSkin.current.hasSubmergedChrome()) {
+        SubmergedAnswersCollection(pack, sheets, initialDate, onOpenDay)
         return
     }
 

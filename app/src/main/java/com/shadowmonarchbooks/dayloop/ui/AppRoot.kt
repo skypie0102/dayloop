@@ -105,6 +105,7 @@ private fun bannerTitle(
         "episode" -> pack?.episodes?.title ?: "Episodes"
         "activity", "activities" -> "Activities"
         "search" -> "Search"
+        "answers" -> "Answers"
         "settings" -> "Settings"
         "media" -> "Media"
         else -> pack?.pack?.title ?: "dayloop"
@@ -130,6 +131,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
     val pack = state.selected
     val preserveTabState = LocalSkin.current.hasSubmergedChrome()
     val tabs = remember(pack) { topLevelTabs(pack) }
+    val topLevelDestination = if (preserveTabState) tabs.any { it.route == route } else route in TopLevelRoutes
     var todayDatePinned by remember(pack?.slug) { mutableStateOf(false) }
     var calendarMonth by rememberSaveable(pack?.slug) { mutableStateOf<String?>(null) }
     LaunchedEffect(route) {
@@ -154,7 +156,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                                 ?.takeIf { route == "today" && todayDatePinned }
                                 ?.let { formatDate(it, pack?.calendar) },
                         ),
-                        canGoBack = route != null && route !in TopLevelRoutes,
+                        canGoBack = route != null && !topLevelDestination,
                         onBack = { nav.popBackStack() },
                         onOpenSearch = { nav.navigate("search") { launchSingleTop = true } },
                         settingsEnabled = shouldNavigate(route, "settings"),
@@ -167,7 +169,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                 }
             },
             bottomBar = {
-                if (route in TopLevelRoutes) {
+                if (topLevelDestination) {
                     SkinBottomBar(
                         items = tabs,
                         selectedRoute = route,
@@ -249,7 +251,8 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                         onOpenSettings = { nav.navigate("settings") { launchSingleTop = true } },
                         onOpenActivity = { ref -> nav.navigate("activity/$ref") },
                         onOpenAnswers = if (pack?.pack?.capabilities?.mementosRequests == true) null else {
-                            { nav.navigate("answers") { launchSingleTop = true } }
+                            { nav.navigate(if (preserveTabState && state.currentDate != null)
+                                "answers/${state.currentDate}" else "answers") { launchSingleTop = true } }
                         },
                         onDatePinnedChange = { todayDatePinned = it },
                     )
@@ -264,7 +267,8 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                             }
                         },
                         onOpenAnswers = if (pack?.pack?.capabilities?.mementosRequests == true) null else {
-                            { nav.navigate("answers") { launchSingleTop = true } }
+                            { nav.navigate(if (preserveTabState) "answers/${entry.arguments?.getString("date")}"
+                                else "answers") { launchSingleTop = true } }
                         },
                         onOpenActivity = { ref -> nav.navigate("activity/$ref") },
                     )
@@ -319,6 +323,10 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
                 }
                 composable("answers") {
                     AnswersScreen(vm = vm, onOpenDay = { date -> nav.navigate("day/$date") })
+                }
+                composable("answers/{date}") { entry ->
+                    AnswersScreen(vm = vm, initialDate = entry.arguments?.getString("date"),
+                        onOpenDay = { date -> nav.navigate("day/$date") })
                 }
                 composable("requests") {
                     com.shadowmonarchbooks.dayloop.ui.requests.RequestsScreen(vm = vm, onOpenDay = { date -> nav.navigate("day/$date") })
