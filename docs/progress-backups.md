@@ -23,6 +23,15 @@ does not change the active game/profile, sound preference or device settings.
 Files exported by the candidate build can also be imported by the stable app
 when it supports this backup version and includes the relevant game calendars.
 
+## Profiles created by older builds
+
+rc10 fixes a creation-dialog bug that left single-route profiles without a saved
+route identifier. These profiles could still be played through the game's default
+route, but could not pass backup validation. New profiles now store the actual
+default route. When exporting an affected legacy profile, the installed game's
+default is used in the backup copy. Existing profiles, marks and selections stay
+as they were; an explicitly saved alternate route is preserved.
+
 ## Moving from an older candidate to rc7
 
 Candidates through rc6 used different signing keys on each CI runner. Starting
@@ -73,6 +82,8 @@ orphan marks, invalid formats/versions/values, bounded document reading, and
 compatibility with all three installed calendars. Robolectric tests use real
 Room and DataStore to check copied profile isolation, rollback after a failed
 preferences write, and recovery before an unpublished ID can be reused.
+They also cover exporting/restoring blank legacy routes with installed defaults,
+preserving alternate routes and leaving the original save rows and selection intact.
 
 Device review should additionally exercise selecting a local/cloud document,
 cancelling the picker/preview, importing into a fresh install, and selecting a

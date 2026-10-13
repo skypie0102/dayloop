@@ -9,7 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.material3.Surface
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.pack.schema.AnswerSheet
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
@@ -23,12 +28,22 @@ internal fun SubmergedAnswerSheet(
     onOpenAnswers: (() -> Unit)?,
     deadlineLabel: String?,
     modifier: Modifier = Modifier,
+    dateLabel: String? = null,
+    onClickLabel: String = "Open answers",
 ) {
     val colors = MaterialTheme.colorScheme
     Surface(shape = RectangleShape, color = colors.surface, modifier = modifier.fillMaxWidth()
+        .testTag("answer-sheet-${sheet.id}")
         .then(if (onOpenAnswers != null) Modifier.clickable(role = Role.Button,
-            onClickLabel = "Open answers", onClick = onOpenAnswers) else Modifier)) {
-        Column(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(12.dp)) {
+            onClickLabel = onClickLabel, onClick = onOpenAnswers) else Modifier)) {
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.drawWithCache {
+            onDrawBehind { drawLine(colors.secondary.copy(alpha = 0.4f), Offset(0f, size.height),
+                Offset(size.width, size.height), 1.dp.toPx()) }
+        }.padding(12.dp)) {
+            dateLabel?.let {
+                Text(it, style = MaterialTheme.typography.titleMedium.withSkinFont(LocalSkin.current.type.display),
+                    color = colors.secondary, modifier = Modifier.semantics { heading() })
+            }
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(answerKindLabel(sheet.kind), color = colors.surface,
                     style = MaterialTheme.typography.titleMedium.withSkinFont(LocalSkin.current.type.display),
@@ -42,11 +57,12 @@ internal fun SubmergedAnswerSheet(
                 Text("Deadline: $it", style = MaterialTheme.typography.labelMedium, color = colors.secondary)
             }
             sheet.answers.forEachIndexed { i, answer ->
-                Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    modifier = Modifier.semantics(mergeDescendants = true) {}) {
                     Text((i + 1).toString().padStart(2, '0'), style = MaterialTheme.typography.labelLarge,
                         color = colors.secondary, modifier = Modifier.padding(top = 2.dp))
                     Text(answer, style = MaterialTheme.typography.bodyLarge, color = colors.onSurface,
-                        modifier = Modifier.weight(1f))
+                        modifier = Modifier.weight(1f).testTag("answer-body-${sheet.id}-$i"))
                 }
             }
         }

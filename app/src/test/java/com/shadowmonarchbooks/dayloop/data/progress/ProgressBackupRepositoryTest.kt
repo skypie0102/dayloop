@@ -107,6 +107,38 @@ class ProgressBackupRepositoryTest {
         assertTrue(repo.marksFor(next).first().isEmpty())
     }
 
+    @Test fun legacyBlankRoutesRoundTripUsingInstalledDefaultsWithoutRewritingSaves() = runBlocking {
+        val legacy = repo.createProfile(seed.copy(routeId = ""), "Legacy")
+        val royal = repo.createProfile(seed.copy(packId = "p5r", routeId = ""), "Royal legacy")
+        val alternate = repo.createProfile(seed.copy(packId = "metaphor", routeId = "casual"), "Alternate")
+        repo.selectProfile("p3r", legacy)
+        repo.setMark(legacy, StepKey("2009-04-08", 0), StepMark.DONE)
+        repo.setMark(legacy, StepKey("2009-04-08", 1), StepMark.LATER)
+        repo.setMark(royal, StepKey("2009-04-09", 2), StepMark.SKIP)
+        repo.setRequestStage(legacy, "p3r.request.001", "reported")
+        repo.setAchievementCount(legacy, "achievement.counter", 17)
+        val original = db.profileDao().byId(legacy)!!
+        assertFailsWith<InvalidBackupException> { ProgressBackupCodec.encode(repo.exportBackup("fixture")) }
+        val archive = repo.exportBackup("fixture", mapOf("p3r" to "standard", "p5r" to "standard", "metaphor" to "complete"))
+        val decoded = ProgressBackupCodec.decode(ProgressBackupCodec.encode(archive))
+        assertEquals("standard", decoded.profiles.single { it.name == "Legacy" }.routeId)
+        assertEquals("standard", decoded.profiles.single { it.name == "Royal legacy" }.routeId)
+        assertEquals("casual", decoded.profiles.single { it.name == "Alternate" }.routeId)
+        assertEquals(original, db.profileDao().byId(legacy))
+        assertEquals("", db.profileDao().byId(royal)!!.routeId)
+        assertEquals("casual", db.profileDao().byId(alternate)!!.routeId)
+        val ids = repo.importBackup(decoded)
+        val restored = ids.single { db.profileDao().byId(it)?.name == "Legacy (imported)" }
+        assertEquals("standard", db.profileDao().byId(restored)!!.routeId)
+        assertEquals(decoded.profiles.single { it.name == "Legacy" }.marks,
+            repo.exportBackup("fixture", mapOf("p3r" to "standard", "p5r" to "standard"))
+                .profiles.single { it.name == "Legacy (imported)" }.marks)
+        assertEquals(mapOf("p3r.request.001" to "reported"), repo.requestStages(restored).first())
+        assertEquals(mapOf("achievement.counter" to 17), repo.achievementProgress(restored).first().counts)
+        assertEquals(legacy, repo.activeProfileId("p3r").first())
+        assertEquals(original, db.profileDao().byId(legacy))
+    }
+
     @Test fun restartRecoveryRunsBeforeAnUncommittedProfileIdCanBeReused() = runBlocking {
         val existing = repo.createProfile(seed, "Existing")
         val unused = existing + 1

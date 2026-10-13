@@ -125,13 +125,15 @@ class ProgressRepository internal constructor(
     fun marksFor(profileId: Long): Flow<List<StepStateEntity>> =
         db.stepStateDao().observeForProfile(profileId)
 
-    suspend fun exportBackup(appVersion: String): ProgressBackup = mutate {
+    /** Empty legacy routes use the installed pack's actual UI fallback in the exported copy only. */
+    suspend fun exportBackup(appVersion: String, defaultRouteIds: Map<String, String> = emptyMap()): ProgressBackup = mutate {
         db.withTransaction {
             val prefs = settings.data.first()
             val marks = db.stepStateDao().all().groupBy { it.profileId }
             ProgressBackup(ProgressBackupCodec.FORMAT, ProgressBackupCodec.VERSION, System.currentTimeMillis(), appVersion,
                 db.profileDao().all().map { p ->
-                    BackupProfile(p.packId, p.name, p.routeId, p.clockDate, p.contentVersion, p.createdAt,
+                    BackupProfile(p.packId, p.name, p.routeId.ifBlank { defaultRouteIds[p.packId] ?: p.routeId },
+                        p.clockDate, p.contentVersion, p.createdAt,
                         marks[p.id].orEmpty().map { BackupMark(it.date, it.stepIndex, it.mark, it.updatedAt) },
                         prefs[achievementKey(p.id)].orEmpty(),
                         decodeAchievementCounts(prefs[achievementProgressKey(p.id)].orEmpty()),

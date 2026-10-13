@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.ui.graphics.RectangleShape
 import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 import androidx.compose.foundation.rememberScrollState
@@ -16,15 +17,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -34,12 +32,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.shadowmonarchbooks.dayloop.BuildConfig
 import com.shadowmonarchbooks.dayloop.data.formatDate
+import com.shadowmonarchbooks.dayloop.pack.schema.Routes
 import com.shadowmonarchbooks.dayloop.ui.DayloopViewModel
 import com.shadowmonarchbooks.dayloop.ui.ProfileUi
 import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
@@ -94,50 +96,24 @@ fun SettingsScreen(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
+            .testTag("settings-content")
             .padding(16.dp),
     ) {
         // ---- Game (ROADMAP-v3 Phase 11: one picker, the onboarding carousel) ----
         SectionTitle("Game")
-        Surface(
-            onClick = onSwitchGame,
-            shape = panelShape,
-            color = panelColor,
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-                modifier = Modifier.padding(10.dp),
-            ) {
-                SkinPackIcon(pack.iconAsset, pack.pack.title, size = 44.dp)
-                Column(Modifier.weight(1f)) {
-                    Text(
-                        text = pack.pack.title,
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.SemiBold,
-                    )
-                    val count = profileCounts[pack.slug] ?: 0
-                    Text(
-                        text = if (count == 1) "Active · 1 saved profile" else
-                            "Active · $count saved profiles",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    Text(
-                        text = if (submerged) "Change game · saves are kept" else "Tap to choose a different game — every game keeps its saves.",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-                Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Choose a game")
-            }
-        }
-
-        // ---- Pack media (ROADMAP-v3 Phase 11): the pack's bundled graphics ----
-        if (pack.media.isNotEmpty()) {
-            SectionTitle(if (submerged) "Artwork" else "Pack media")
+        if (submerged) {
+            val count = profileCounts[pack.slug] ?: 0
+            SubmergedSettingsLink(
+                title = pack.pack.title,
+                summary = if (count == 1) "Active · 1 saved profile" else "Active · $count saved profiles",
+                hint = "Change game · saves are kept",
+                onClickLabel = "Choose a game",
+                onClick = onSwitchGame,
+                leading = { SkinPackIcon(pack.iconAsset, pack.pack.title, size = 44.dp) },
+            )
+        } else {
             Surface(
-                onClick = onOpenMedia,
+                onClick = onSwitchGame,
                 shape = panelShape,
                 color = panelColor,
                 modifier = Modifier.fillMaxWidth(),
@@ -147,12 +123,56 @@ fun SettingsScreen(
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                     modifier = Modifier.padding(10.dp),
                 ) {
-                    Text(
-                        text = if (submerged) "${pack.media.size} images" else "${pack.media.size} bundled graphics from the guide sources",
-                        style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.weight(1f),
-                    )
-                    Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Open pack media")
+                    SkinPackIcon(pack.iconAsset, pack.pack.title, size = 44.dp)
+                    Column(Modifier.weight(1f)) {
+                        Text(
+                            text = pack.pack.title,
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.SemiBold,
+                        )
+                        val count = profileCounts[pack.slug] ?: 0
+                        Text(
+                            text = if (count == 1) "Active · 1 saved profile" else
+                                "Active · $count saved profiles",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                        Text(
+                            text = "Tap to choose a different game — every game keeps its saves.",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Choose a game")
+                }
+            }
+        }
+
+        // ---- Pack media (ROADMAP-v3 Phase 11): the pack's bundled graphics ----
+        if (pack.media.isNotEmpty()) {
+            SectionTitle(if (submerged) "Artwork" else "Pack media")
+            if (submerged) {
+                SubmergedSettingsLink("${pack.media.size} images", null, null,
+                    onClickLabel = "Open artwork", onClick = onOpenMedia)
+            } else {
+                Surface(
+                    onClick = onOpenMedia,
+                    shape = panelShape,
+                    color = panelColor,
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        modifier = Modifier.padding(10.dp),
+                    ) {
+                        Text(
+                            text = "${pack.media.size} bundled graphics from the guide sources",
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.weight(1f),
+                        )
+                        Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Open pack media")
+                    }
                 }
             }
         }
@@ -187,7 +207,7 @@ fun SettingsScreen(
                         enabled = state.hasNextDay(),
                     )
                     SkinOutlinedActionButton(
-                        text = if (submerged) "Back" else "Reroll",
+                        text = if (submerged) "Previous day" else "Reroll",
                         onClick = vm::rerollDay,
                         enabled = state.hasPreviousDay(),
                     )
@@ -247,33 +267,42 @@ fun SettingsScreen(
 
         // ---- Profiles ----
         SectionTitle("Profiles")
-        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Column(verticalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = if (submerged) Modifier.selectableGroup() else Modifier) {
             state.profiles.forEach { profile ->
                 val active = profile.id == state.activeProfile?.id
-                Surface(
-                    shape = if (submerged) RectangleShape else if (slashPanels) skin.shapes.card else MaterialTheme.shapes.small,
-                    color = panelColor,
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = 4.dp, end = 4.dp)) {
-                        SkinChoiceIndicator(selected = active, onClick = { vm.switchProfile(profile.id) })
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(profile.name, style = MaterialTheme.typography.bodyLarge, fontWeight = if (active) FontWeight.SemiBold else null)
-                            val routeSuffix = if (hasMultipleRoutes) " · ${pack.routeLabel(profile.routeId)}" else ""
-                            Text(
-                                text = "Day ${formatDate(profile.clockDate, pack.calendar)}$routeSuffix",
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        }
-                        IconButton(onClick = { renameTarget = profile }) {
-                            Icon(Icons.Filled.Edit, contentDescription = "Rename ${profile.name}")
-                        }
-                        IconButton(
-                            onClick = { deleteTarget = profile },
-                            enabled = state.profiles.size > 1,
-                        ) {
-                            Icon(Icons.Filled.Delete, contentDescription = "Delete ${profile.name}")
+                if (submerged) {
+                    val routeSuffix = if (hasMultipleRoutes) " · ${pack.routeLabel(profile.routeId)}" else ""
+                    SubmergedProfileRow(profile, active, "${formatDate(profile.clockDate, pack.calendar)}$routeSuffix",
+                        canDelete = state.profiles.size > 1,
+                        onSelect = { vm.switchProfile(profile.id) },
+                        onRename = { renameTarget = profile }, onDelete = { deleteTarget = profile })
+                } else {
+                    Surface(
+                        shape = if (slashPanels) skin.shapes.card else MaterialTheme.shapes.small,
+                        color = panelColor,
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = 4.dp, end = 4.dp)) {
+                            SkinChoiceIndicator(selected = active, onClick = { vm.switchProfile(profile.id) })
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(profile.name, style = MaterialTheme.typography.bodyLarge, fontWeight = if (active) FontWeight.SemiBold else null)
+                                val routeSuffix = if (hasMultipleRoutes) " · ${pack.routeLabel(profile.routeId)}" else ""
+                                Text(
+                                    text = "Day ${formatDate(profile.clockDate, pack.calendar)}$routeSuffix",
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                            IconButton(onClick = { renameTarget = profile }) {
+                                Icon(Icons.Filled.Edit, contentDescription = "Rename ${profile.name}")
+                            }
+                            IconButton(
+                                onClick = { deleteTarget = profile },
+                                enabled = state.profiles.size > 1,
+                            ) {
+                                Icon(Icons.Filled.Delete, contentDescription = "Delete ${profile.name}")
+                            }
                         }
                     }
                 }
@@ -380,6 +409,7 @@ fun SettingsScreen(
     if (createOpen) {
         CreateProfileDialog(
             defaultName = "Profile ${state.profiles.size + 1}",
+            defaultRouteId = Routes.defaultId(pack.pack),
             routes = pack.routes.takeIf { hasMultipleRoutes },
             onConfirm = { name, routeId ->
                 vm.createProfile(name, routeId)
@@ -393,23 +423,21 @@ fun SettingsScreen(
 @Composable
 private fun CreateProfileDialog(
     defaultName: String,
+    defaultRouteId: String,
     routes: List<com.shadowmonarchbooks.dayloop.pack.schema.RouteDef>?,
     onConfirm: (String, String) -> Unit,
     onDismiss: () -> Unit,
 ) {
     var name by remember { mutableStateOf(defaultName) }
-    var routeId by remember { mutableStateOf(routes?.firstOrNull()?.id ?: "") }
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text("New profile") },
-        text = {
+    var routeId by remember { mutableStateOf(routes?.firstOrNull()?.id ?: defaultRouteId) }
+    SettingsDialog(
+        onDismiss = onDismiss,
+        title = "New profile",
+        confirmLabel = "Create",
+        onConfirm = { onConfirm(name.trim(), routeId) },
+        content = {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                OutlinedTextField(
-                    value = name,
-                    onValueChange = { name = it },
-                    singleLine = true,
-                    label = { Text("Name") },
-                )
+                SettingsNameField(name, onValueChange = { name = it })
                 if (routes != null && routes.size > 1) {
                     Text("Route", style = MaterialTheme.typography.labelLarge)
                     routes.forEach { route ->
@@ -433,18 +461,13 @@ private fun CreateProfileDialog(
                 }
             }
         },
-        confirmButton = {
-            TextButton(onClick = { onConfirm(name.trim(), routeId) }) { Text("Create") }
-        },
-        dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancel") }
-        },
     )
 }
 
 @Composable
 private fun SectionTitle(text: String, modifier: Modifier = Modifier) {
-    SkinSectionHeader(text = text, modifier = modifier)
+    SkinSectionHeader(text = text, modifier = modifier.then(
+        if (LocalSkin.current.hasSubmergedChrome()) Modifier.semantics(mergeDescendants = true) { heading() } else Modifier))
 }
 
 @Composable
@@ -455,16 +478,10 @@ private fun ConfirmDialog(
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
 ) {
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text(title) },
-        text = { Text(body) },
-        confirmButton = {
-            TextButton(onClick = onConfirm) { Text(confirmLabel) }
-        },
-        dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancel") }
-        },
+    SettingsDialog(
+        title = title, onDismiss = onDismiss,
+        confirmLabel = confirmLabel, onConfirm = onConfirm,
+        content = { Text(body) },
     )
 }
 
@@ -477,22 +494,11 @@ private fun NameDialog(
     onDismiss: () -> Unit,
 ) {
     var name by remember { mutableStateOf(initial) }
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text(title) },
-        text = {
-            OutlinedTextField(
-                value = name,
-                onValueChange = { name = it },
-                singleLine = true,
-                label = { Text("Name") },
-            )
-        },
-        confirmButton = {
-            TextButton(onClick = { onConfirm(name.trim()) }) { Text(confirmLabel) }
-        },
-        dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancel") }
+    SettingsDialog(
+        title = title, onDismiss = onDismiss,
+        confirmLabel = confirmLabel, onConfirm = { onConfirm(name.trim()) },
+        content = {
+            SettingsNameField(name, onValueChange = { name = it })
         },
     )
 }
