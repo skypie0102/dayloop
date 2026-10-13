@@ -2,24 +2,17 @@
 
 Date: October 13, 2026. Base: main `75148f6`, rc9, P3R content 19.
 Scope: pass A of the [remaining polish roadmap](../packs/p3r-polish-roadmap.md).
-Implementation is ready for CI/native review; acceptance is pending.
-Required CI passed on the initial code head `caf3fa8`. The first native review
-completed 51 tests with two failures: a new test expected mixed-case header text
-despite the deliberately uppercase Reload header, and an existing Linked Episode
-touch query hit a snapshot/semantics diagnostic thread race. The title assertion
-now checks the actual named heading; the episode helper waits for a unique settled
-list/item before its touch query. Both Settings/profile cases and the isolated
-hand-in passed. A new full native review is required before acceptance.
-The follow-up required an answer-row locator because numbered answers retain
-their own reading semantics instead of merging into the sheet's button. Test
-launches now also wait for the requested date's UI projection before querying
-controls. An existing P5R touch query encountered the same semantics diagnostic
-race in that follow-up. These runs are not accepted as a passing full suite.
-The reading-position revision passed all P3R cases; three P5R cases timed out at
-the newly added readiness check because the slash date header does not expose
-the same full-date description. Readiness now uses P3R's full-date header or the
-requested source instruction for the P5R fixture, respecting each skin's actual
-semantics. Combined acceptance still requires a passing final full run.
+Core implementation and native acceptance passed at shipping-code head
+`a7273dbad385248cc1072e5ad84d8b3275c426d7`, in [PR #11](https://github.com/skypie0102/dayloop/pull/11).
+The final full suite passed 51 tests with 93 captures; the isolated hand-in passed
+one test. Backup document-provider/preview checks, spoken TalkBack and measured
+device performance remain separate acceptance work.
+
+Earlier reviews caught incorrect fixture assumptions about the uppercase heading,
+separate answer reading nodes and P5R's date-header semantics, plus transient
+touch-query diagnostic races. The accepted tests check the real heading/answer
+nodes, wait for a settled episode target, and await the requested date/source
+instruction before interacting. Earlier failed runs are not counted as acceptance.
 
 ## Settings
 
@@ -73,19 +66,30 @@ composition re-entry. Reload now saves which date/profile owns that position:
 same-date Back/tab restoration keeps it, while a changed date/profile resets to
 the header. Other skins retain their existing date-driven reset behavior.
 
-## Validation required
+## Accepted evidence
 
-- Required CI: debug/candidate build, app/core/progress/tool JVM tests, Android
-  test compilation, all three packlint targets and candidate signing guard.
-- Full native suite and isolated hand-in review, including new real-activity
-  tests for 200% profile names, rename with the keyboard, reset/delete
-  cancellation, profile switching, create/delete and answer source/Back/recreate.
-- Inspect the new Android captures and verify source-date navigation does not
-  move the clock, mark tasks or award an achievement.
-- Compare all 304 tracked content files with the base; no pack data, IDs, schema,
-  Perfect Day bytes or content version changes are intended.
-- Candidate rc10 (42) uses the established candidate test certificate; record
-  exact APK size/hash and shipped P3R JSON comparison after CI builds it.
+| Check | Result / evidence |
+|---|---|
+| Required build and JVM suite | [CI 38336182942](https://github.com/skypie0102/dayloop/actions/runs/38336182942) passed debug/candidate build, app/core/progress/tool tests and Android test compilation, including the new Room/DataStore legacy-route backup regression |
+| All-pack validation and signing | All three packlint targets passed; P5R/P3R have 0 errors/0 warnings, Metaphor retains its existing 1 warning. Candidate signature/certificate guard passed |
+| Full native review | [Run 38336182939](https://github.com/skypie0102/dayloop/actions/runs/38336182939), full job 115096662578: **51 tests, 0 failures/errors/skipped; 93 PNG captures** |
+| Isolated hand-in | Same run, job 115096662702: **1 test, 0 failures/errors/skipped; 1 capture** |
+| Content isolation | All **304** tracked content files byte-identical to main `75148f6`; 819 task identities, all 53 answer sheets, Perfect Day bytes and content version **19** remain intact |
+| Candidate APK | **0.16.0-rc10 (42)**, **47,835,814 bytes**, `.candidate` application ID, verified archive integrity and all **20** shipped P3R JSON assets identical to source |
+
+APK SHA-256: `8d746603543d015285fc4dd9d4efa28f83dd4b432c0a2992c34a9b9136443678`.
+Signer certificate SHA-256:
+`a2ecebfb294ca69b4f09e7cd3da5bf013ade048b940c53eb2c0619060e3bf334`.
+The certificate matches rc7–rc9 and the higher version code permits their in-place
+candidate update; a physical-device upgrade is still part of pass F.
+
+Inspected normal/200% Settings, selected profiles, rename input, reset/new/delete
+dialogs, the source-date answer collection and its restored July position. Native
+actions verify cancel/save/switch behavior, source → day → Back/recreation, return
+to the same Today sheet and unchanged clock/marks/achievement confirmations.
+P5R same-build reading and Mementos receipt/investigation/clear/reversal checks
+also pass. No production code, tests or build inputs change after this reviewed
+head; follow-up commits update documentation only.
 
 ## Remaining acceptance
 

@@ -23,7 +23,7 @@ Journey's completion target verified.
 
 | Pass | Status | Concrete work | Acceptance before marking complete |
 |---|---|---|---|
-| A — Settings and answers | In progress | Reload profile selection, readable utility controls, matching profile/reset/backup dialogs; one class/exam answer treatment for daily pages and the collection | Inspect Android captures at normal and 200% text; name all controls; exercise rename/switch/cancel and answer → day → Back; preserve clock, marks, sheet order and P5R presentation |
+| A — Settings and answers | Core implementation/native review complete; backup-preview device check open | Reload profile selection, readable utility controls, matching profile/reset/backup dialogs; one class/exam answer treatment for daily pages and the collection | Inspect Android captures at normal and 200% text; name all controls; exercise rename/switch/cancel and answer → day → Back; preserve clock, marks, sheet order and P5R presentation |
 | B — Search and remaining entry points | Queued | Search input/results, game picker/loading/error states, media browser and home-screen widget; establish a consistent hierarchy without hiding game/date/result context | Keyboard and Back paths work; narrow layouts retain full labels and useful empty/loading/error states; widget remains legible at supported sizes, launches the correct pack and does not animate or play sounds |
 | C — Artwork and spoken accessibility | Queued | Inventory unmatched Social Link/Arcana art and readable fallbacks; curate correctly attributed assets; inspect traversal across all P3R surfaces with TalkBack | Correct art-to-character mapping, source/hash ledger, aspect ratio and contrast review; real spoken labels, selection, expansion and dialog/focus return checked separately from semantics tests |
 | D — Remaining completion obligations | Queued | Reconcile optional encounters, fusion/equipment/shopping dependencies and missable branches with the original schedule; decide whether an Activities catalog adds value | Explicit source/coverage ledger and route promise; no assumed completion from dates/opportunities; preserve all saved task IDs, or document and test a migration before changing them |
@@ -37,23 +37,33 @@ stable-release date from this plan alone.
 
 ## Pass A checklist
 
-- [ ] Replace cramped P3R profile rows with named full-row choices, a white/pink
+- [x] Replace cramped P3R profile rows with named full-row choices, a white/pink
   selected band and independently reachable rename/delete controls.
-- [ ] Adapt utility rows and profile management to narrow effective width and
+- [x] Adapt utility rows and profile management to narrow effective width and
   enlarged text; expose section headings and named profile choices.
-- [ ] Use Reload dialog typography, blue planes and wrapping commands for
+- [x] Use Reload dialog typography, blue planes and wrapping commands for
   create/rename/reset/delete and backup previews; keep body content scrollable
   with the keyboard visible. Cancellation must not change a save.
-- [ ] Reuse the flat class/exam sheet in the chronological answer collection;
+- [x] Reuse the flat class/exam sheet in the chronological answer collection;
   keep dates, labels, cutoffs and answers fully readable and in source order.
-- [ ] Verify answer collection → source day → Back retains reading position,
+- [x] Verify answer collection → source day → Back retains reading position,
   opens at the originating answer date, and does not move the active clock or
   award task/achievement progress.
-- [ ] Record native interaction/capture evidence, required CI results, content
+- [x] Record native interaction/capture evidence, required CI results, content
   isolation, candidate signature and remaining checks in a focused audit.
-- [ ] Fix the discovered single-route creation/backup failure: new profiles
+- [x] Fix the discovered single-route creation/backup failure: new profiles
   must store their actual default route; exports must use installed defaults for
   blank legacy routes without rewriting saves or replacing alternate routes.
+- [ ] Review a populated backup preview and local/cloud document-provider
+  cancellation on a device. Repository restore/isolation tests have passed;
+  they do not stand in for these UI checks. Keep the round-trip/upgrade gate in F.
+
+Delivered through [PR #11](https://github.com/skypie0102/dayloop/pull/11), rc10 (42),
+content 19. Accepted code `a7273db`: required CI, **51** full native tests/**93**
+captures, plus the isolated hand-in passed. Same-date Today return is retained,
+and new/legacy default-route backups are covered. Full evidence and artifact
+identity are in the [pass A audit](../audits/p3r-settings-answers-ui.md).
+Pass B is the next implementation work; the explicit device check above stays open.
 
 ## Review rules
 

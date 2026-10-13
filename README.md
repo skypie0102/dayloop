@@ -1,8 +1,11 @@
 # dayloop
 
-Current P3R pass: all 48 achievement rules audited, complete Social Link proof,
-readable earning instructions and next-checkpoint navigation in the Reload theme.
-See the [achievement audit](docs/audits/p3r-achievement-proof.md). The merged
+Current P3R pass: adaptive Settings/profile controls and Reload dialogs,
+source-date class/exam answers with retained reading position, and a fix for
+single-route/legacy backup failures. See the
+[Settings/answer audit](docs/audits/p3r-settings-answers-ui.md) and
+[remaining polish roadmap](docs/packs/p3r-polish-roadmap.md). The
+[achievement proof](docs/audits/p3r-achievement-proof.md),
 [combat guidance](docs/audits/p3r-combat-guidance.md),
 [Linked Episode chains](docs/audits/p3r-linked-episodes.md),
 [requests/rescues](docs/audits/p3r-requests-rescues.md),
@@ -38,9 +41,12 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 ## Roadmap
 
 **Current priority: [Persona 3 Reload — remaining polish and release roadmap](docs/packs/p3r-polish-roadmap.md).**
-The October 13 continuation starts with Settings and class/exam answer screens,
+The October 13 continuation delivers the core Settings and class/exam answer pass,
 then covers remaining entry points/widget, artwork/accessibility, completion
-coverage, measured device performance and stable-release acceptance.
+coverage, measured device performance and stable-release acceptance. Required CI,
+51 full native tests with 93 captures and the isolated hand-in passed for rc10.
+Backup-preview/document-provider device checks remain open; next implementation is
+search and the other utility entry points/widget.
 The October 12 achievement pass reviews all 48 achievements, replaces unsafe shortcut
 awards, adds direct source-checkpoint navigation and keeps completed counters editable.
 The [navigation/motion pass](docs/audits/p3r-motion-performance.md) preserves

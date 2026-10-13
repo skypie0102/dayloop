@@ -18,10 +18,14 @@ Implementation record: [replacement-skin baseline and review fixtures](p3r-redes
 The [remaining polish and release roadmap](p3r-polish-roadmap.md) defines six
 ordered passes with explicit acceptance: Settings/class-exam answers; remaining
 utility screens/widget; artwork and spoken accessibility; optional completion
-obligations; measured device performance; stable-release checks. Pass A starts
-from rc9's merged main with no content or progress-key changes. The
+obligations; measured device performance; stable-release checks. Pass A delivers
+adaptive profile controls/Reload dialogs, source-date answer navigation and
+retained Today reading position. A discovered single-route creation bug is fixed;
+legacy blank routes use installed defaults in exported copies without rewriting
+saves. Content remains 19 and progress identities stay unchanged. The
 [Settings/answer audit](../audits/p3r-settings-answers-ui.md) records its scope and
-required validation. The broader
+passing required CI, 51 native tests/93 captures, isolated hand-in and rc10 identity.
+Pass B is next; backup-preview/document-provider/device checks remain open. The broader
 P3R-5/P3R-6 gates below stay open until their complete evidence is recorded.
 
 ## October 12 continuation: icon navigation and Calendar/Social Links
