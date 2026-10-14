@@ -20,6 +20,8 @@ import com.shadowmonarchbooks.dayloop.data.formatDate
 import com.shadowmonarchbooks.dayloop.data.progress.ProfileEntity
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.progress.StepKey
+import com.shadowmonarchbooks.dayloop.widget.WidgetEntryPoint
+import com.shadowmonarchbooks.dayloop.widget.widgetLaunchIntent
 import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -221,6 +223,110 @@ class SubmergedAppFlowTest {
             compose.onAllNodesWithText("$count / 5 episodes complete").fetchSemanticsNodes().isNotEmpty()
         }
         compose.onNodeWithTag("episode-chain-summary").assertTextEquals("$count / 5 episodes complete")
+    }
+
+    @Test fun searchAnswerSourceAndBackRetainQueryAtDoubleTextWithoutAwardingProgress() {
+        launch("2009-05-19", scale = 2f)
+        compose.onNodeWithContentDescription("Search").performClick()
+        compose.onNodeWithText("Find a source day").assertIsDisplayed()
+        compose.onNodeWithTag("p3r-search-input").performTextInput("An error in translation").performImeAction()
+        val hit = "search-answer-2009-07-15"
+        compose.onNodeWithTag("p3r-search-results").performScrollToNode(hasTestTag(hit))
+        compose.onNodeWithTag(hit).assertIsDisplayed()
+            .assert(SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Button))
+        capture("p3r-search-answer-double-text")
+        compose.onNodeWithTag(hit).performClick()
+        compose.onNodeWithTag("answer-sheet-p3r.answers.exam.2009-07-15").performScrollTo().assertIsDisplayed()
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithTag(hit).assertIsDisplayed()
+        compose.onNodeWithTag("p3r-search-input").assertTextContains("An error in translation")
+        scenario!!.recreate()
+        compose.onNodeWithTag(hit).assertIsDisplayed()
+        compose.onNodeWithTag("p3r-search-input").assertTextContains("An error in translation")
+        capture("p3r-search-restored-double-text")
+        compose.onNodeWithContentDescription("Clear search").performClick()
+        compose.onNodeWithText("Find a source day").assertIsDisplayed()
+        compose.onNodeWithTag("p3r-search-input").performTextInput("zz-no-source-match").performImeAction()
+        compose.onNodeWithText("No matches").assertIsDisplayed()
+        capture("p3r-search-no-matches-double-text")
+        compose.onNodeWithContentDescription("Back").performClick()
+        dateIs("2009-05-19")
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
+        assertTrue(runBlocking { dependencies.repo().earnedAchievements(profileId).first().isEmpty() })
+    }
+
+    @Test fun searchIncludesLaterSourceDatesBeyondTheOldSixResultLimit() {
+        launch("2009-05-19")
+        compose.onNodeWithContentDescription("Search").performClick()
+        compose.onNodeWithTag("p3r-search-input").performTextInput("2009").performImeAction()
+        capture("p3r-search-source-days")
+        val hit = "search-day-2009-12-31"
+        compose.onNodeWithTag("p3r-search-results").performScrollToNode(hasTestTag(hit))
+        compose.onNodeWithTag(hit).assertIsDisplayed().performClick()
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithTag(hit).assertIsDisplayed()
+        compose.onNodeWithTag("p3r-search-input").assertTextContains("2009")
+        assertEquals("2009-05-19", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
+    }
+
+    @Test fun reloadPickerCancelAndWidgetPackReentryPreserveTheSavedRun() {
+        launch("2009-05-19", scale = 2f)
+        val originalId = profileId
+        compose.onNodeWithContentDescription("Settings").performClick()
+        compose.onNodeWithText("Change game · saves are kept").performScrollTo().performClick()
+        compose.onNodeWithTag("p3r-game-picker").assertIsDisplayed()
+        compose.onNodeWithTag("p3r-game-list").performScrollToNode(hasTestTag("game-choice-p3r"))
+        compose.onNodeWithTag("game-choice-p3r").assertIsDisplayed()
+            .assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Current game"))
+        capture("p3r-game-picker-double-text")
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithTag("settings-content").assertIsDisplayed()
+        compose.onNodeWithText("Change game · saves are kept").performScrollTo().performClick()
+        compose.onNodeWithTag("p3r-game-list").performScrollToNode(hasTestTag("game-choice-p5r"))
+        compose.onNodeWithTag("game-choice-p5r").performClick()
+        compose.waitUntil(20_000) { dependencies.store().state.value.selectedSlug == "p5r" }
+        compose.waitUntil(20_000) { compose.onAllNodesWithText("End day", ignoreCase = true).fetchSemanticsNodes().isNotEmpty() }
+        instrumentation.runOnMainSync { context.startActivity(widgetLaunchIntent(context, "p3r")) }
+        compose.waitUntil(20_000) { dependencies.store().state.value.selectedSlug == "p3r" }
+        dateIs("2009-05-19")
+        compose.onNodeWithTag("p3r-toolbar-title").assertTextEquals("TODAY")
+        compose.onNodeWithTag("p3r-game-picker").assertDoesNotExist()
+        compose.onNodeWithTag("settings-content").assertDoesNotExist()
+        val snapshot = runBlocking { EntryPointAccessors.fromApplication(context.applicationContext,
+            WidgetEntryPoint::class.java).snapshotter().snapshot() }
+        assertEquals("p3r", snapshot.packSlug)
+        assertEquals("2009-05-19", snapshot.date)
+        assertEquals(0, snapshot.doneCount)
+        capture("p3r-widget-return-today-double-text")
+        instrumentation.runOnMainSync { context.startActivity(widgetLaunchIntent(context, "missing-guide")) }
+        compose.waitForIdle()
+        assertEquals("p3r", dependencies.store().state.value.selectedSlug)
+        assertEquals(originalId, runBlocking { dependencies.repo().activeProfileId("p3r").first() })
+        assertEquals("2009-05-19", runBlocking { dependencies.db().profileDao().byId(originalId)!!.clockDate })
+        assertTrue(runBlocking { dependencies.repo().marksFor(originalId).first().isEmpty() })
+    }
+
+    @Test fun mediaArtworkAndPlacementStayReadableAndRetainPositionAtDoubleText() {
+        launch("2009-05-19", scale = 2f)
+        val pack = dependencies.store().state.value.selected!!
+        compose.onNodeWithContentDescription("Settings").performClick()
+        compose.onNodeWithText("${pack.media.size} images").performScrollTo().performClick()
+        val marker = pack.media.single { it.id == "p3r.media.full-moon" }
+        compose.onNodeWithTag("p3r-media-list").performScrollToNode(hasTestTag("media-${marker.id}"))
+        compose.waitUntil(10_000) { compose.onAllNodesWithTag("media-image-${pack.assetOf(marker)}").fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithText("Full Moon").assertIsDisplayed()
+        capture("p3r-media-full-moon-double-text")
+        val portrait = pack.media.single { it.id == "p3r.media.portrait-protagonist" }
+        compose.onNodeWithTag("p3r-media-list").performScrollToNode(hasTestTag("media-${portrait.id}"))
+        compose.waitUntil(10_000) { compose.onAllNodesWithTag("media-image-${pack.assetOf(portrait)}").fetchSemanticsNodes().isNotEmpty() }
+        scenario!!.recreate()
+        compose.onNodeWithTag("media-${portrait.id}").assertIsDisplayed()
+        compose.waitUntil(10_000) { compose.onAllNodesWithTag("media-image-${pack.assetOf(portrait)}").fetchSemanticsNodes().isNotEmpty() }
+        capture("p3r-media-restored-portrait-double-text")
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithTag("settings-content").assertIsDisplayed()
+        assertEquals("2009-05-19", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
     }
 
     @Test fun settingsProfilesAndDialogsStayNamedAtDoubleText() {

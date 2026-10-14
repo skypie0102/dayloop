@@ -8,6 +8,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
+import androidx.glance.LocalContext
+import androidx.glance.action.clickable
+import androidx.glance.appwidget.action.actionStartActivity
 import androidx.glance.LocalSize
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.GlanceAppWidgetReceiver
@@ -58,6 +61,7 @@ class DayloopWidget : GlanceAppWidget() {
 /** Exact Glance content surface exposed internally for Phase 17d/18 preview capture. */
 @Composable
 internal fun DayloopWidgetContent(snapshot: WidgetSnapshot) {
+    val launch = GlanceModifier.clickable(actionStartActivity(widgetLaunchIntent(LocalContext.current, snapshot.packSlug)))
     val size = LocalSize.current
     val layoutClass = widgetLayoutClass(size.width.value, size.height.value)
     val palette = snapshot.skin.palette
@@ -70,6 +74,7 @@ internal fun DayloopWidgetContent(snapshot: WidgetSnapshot) {
     if (snapshot.isEmpty) {
         Box(
             modifier = GlanceModifier
+                .then(launch)
                 .fillMaxSize()
                 .background(background)
                 .appWidgetBackground()
@@ -77,7 +82,7 @@ internal fun DayloopWidgetContent(snapshot: WidgetSnapshot) {
             contentAlignment = Alignment.CenterStart,
         ) {
             Text(
-                "dayloop",
+                "Open dayloop",
                 style = TextStyle(
                     color = ColorProvider(Color(palette.onSurfaceVariantArgb)),
                     fontSize = 13.sp,
@@ -88,8 +93,10 @@ internal fun DayloopWidgetContent(snapshot: WidgetSnapshot) {
     }
 
     when (snapshot.skin.treatment) {
+        WidgetTreatment.SUBMERGED -> SubmergedWidget(snapshot, launch)
         WidgetTreatment.ENGINE -> Box(
             modifier = GlanceModifier
+                .then(launch)
                 .fillMaxSize()
                 .background(background)
                 .appWidgetBackground()
@@ -100,6 +107,7 @@ internal fun DayloopWidgetContent(snapshot: WidgetSnapshot) {
 
         WidgetTreatment.ANGULAR -> Row(
             modifier = GlanceModifier
+                .then(launch)
                 .fillMaxSize()
                 .background(background)
                 .appWidgetBackground()
@@ -126,6 +134,7 @@ internal fun DayloopWidgetContent(snapshot: WidgetSnapshot) {
 
         WidgetTreatment.GLASS -> Box(
             modifier = GlanceModifier
+                .then(launch)
                 .fillMaxSize()
                 .background(background)
                 .appWidgetBackground()
@@ -145,6 +154,7 @@ internal fun DayloopWidgetContent(snapshot: WidgetSnapshot) {
 
         WidgetTreatment.FRAMED -> Box(
             modifier = GlanceModifier
+                .then(launch)
                 .fillMaxSize()
                 .background(primary)
                 .appWidgetBackground()

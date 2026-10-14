@@ -164,6 +164,7 @@ internal fun SubmergedTopBar(
     onOpenSearch: () -> Unit,
     settingsEnabled: Boolean,
     onOpenSettings: () -> Unit,
+    showUtilities: Boolean = true,
 ) {
     val colors = MaterialTheme.colorScheme
     val titleParts = title.split(" · ", limit = 2)
@@ -208,6 +209,7 @@ internal fun SubmergedTopBar(
             }
         }
         Row {
+            if (showUtilities) {
             IconButton(onClick = onOpenSearch) {
                 Icon(Icons.Filled.Search, "Search", tint = colors.onBackground)
             }
@@ -218,6 +220,11 @@ internal fun SubmergedTopBar(
                     if (settingsBack) "Back" else "Settings",
                     tint = colors.onBackground.copy(alpha = if (settingsBack || settingsEnabled) 1f else 0.38f),
                 )
+            }
+            } else if (canGoBack) {
+                IconButton(onClick = onBack) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = colors.onBackground)
+                }
             }
         }
     }

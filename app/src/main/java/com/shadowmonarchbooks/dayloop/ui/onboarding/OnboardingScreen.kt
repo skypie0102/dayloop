@@ -4,6 +4,7 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -37,6 +38,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -62,6 +64,8 @@ import com.shadowmonarchbooks.dayloop.ui.components.rememberAssetImage
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.packShape
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
+import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
+import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedLoading
 import com.shadowmonarchbooks.dayloop.ui.theme.packColorScheme
 import kotlinx.coroutines.delay
 
@@ -84,18 +88,32 @@ fun OnboardingScreen(
 ) {
     val state by vm.state.collectAsState()
     val animationsDisabled = rememberAnimationsDisabled()
-    val packs = state.packs.sortedBy { it.pack.pickerOrder }
+    val packs = remember(state.packs) { state.packs.sortedBy { it.pack.pickerOrder } }
     val profileCounts by vm.profileCounts.collectAsState()
     val reselecting = state.selectedSlug != null
-    var pendingSelection by remember { mutableStateOf<String?>(null) }
+    var pendingSelection by rememberSaveable { mutableStateOf<String?>(null) }
+    BackHandler(enabled = pendingSelection != null) { /* Commit the chosen game before leaving the loading bridge. */ }
     LaunchedEffect(state.selectedSlug, pendingSelection) {
         if (pendingSelection != null && state.selectedSlug == pendingSelection) {
             // Keep a warm pack switch on screen long enough to read as an
             // intentional transition. Cold packs remain covered while loading.
-            delay(650)
+            if (!hasReloadSelection(packs, pendingSelection) && !animationsDisabled) delay(650)
             pendingSelection = null
             onStart()
         }
+    }
+    if (packs.isEmpty()) {
+        GamePickerUnavailable(onCancel)
+        return
+    }
+    if (LocalSkin.current.hasSubmergedChrome()) {
+        Box(Modifier.fillMaxSize()) {
+            SubmergedGamePicker(packs, state.selectedSlug, profileCounts, onCancel) { slug ->
+                if (pendingSelection == null) { pendingSelection = slug; vm.selectPack(slug) }
+            }
+            pendingSelection?.let { slug -> packs.firstOrNull { it.slug == slug }?.let { PackLoadingOverlay(it) } }
+        }
+        return
     }
     val pagerState = rememberPagerState(
         initialPage = packs.indexOfFirst { it.slug == state.selectedSlug }.coerceAtLeast(0),
@@ -208,6 +226,10 @@ fun OnboardingScreen(
 /** A pack-owned-feeling bridge while the selected guide is initialized. */
 @Composable
 private fun PackLoadingOverlay(pack: LoadedPack) {
+    if (pack.pack.theme?.chrome == "submerged") {
+        SubmergedLoading(pack.pack.title)
+        return
+    }
     val scheme = pack.pack.theme?.let { packColorScheme(it, dark = true) }
     val motif = pack.pack.theme?.motif
     val background = when (motif) {
@@ -487,7 +509,7 @@ private fun GameCard(
     }
 }
 
-private fun metaLine(pack: LoadedPack, savedProfiles: Int): String {
+internal fun metaLine(pack: LoadedPack, savedProfiles: Int): String {
     val base = "${pack.sortedDates(Routes.defaultId(pack.pack)).size} authored days · ${dateRange(pack)}"
     return when (savedProfiles) {
         0 -> base
@@ -496,12 +518,12 @@ private fun metaLine(pack: LoadedPack, savedProfiles: Int): String {
     }
 }
 
-private fun dateRange(pack: LoadedPack): String =
+internal fun dateRange(pack: LoadedPack): String =
     "${formatDate(pack.pack.calendar.startDate, pack.calendar)} → " +
         formatDate(pack.pack.calendar.endDate, pack.calendar)
 
 /** Engine-neutral capability summary; packs without extras get no line at all. */
-private fun featureText(pack: LoadedPack): String? {
+internal fun featureText(pack: LoadedPack): String? {
     val features = buildList {
         if (pack.pack.capabilities.answers) add("exam answers")
         if (pack.pack.routes.size > 1) add("${pack.pack.routes.size} routes")

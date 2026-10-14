@@ -31,6 +31,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
+import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 
 /**
  * The pack's bundled graphics, every declared media.json item grouped by
@@ -44,6 +45,10 @@ fun MediaScreen(
     val state by vm.state.collectAsState()
     val pack = state.selected ?: run {
         EmptyState("No pack selected.")
+        return
+    }
+    if (LocalSkin.current.hasSubmergedChrome()) {
+        SubmergedMedia(pack)
         return
     }
     if (pack.media.isEmpty()) {
@@ -165,7 +170,7 @@ internal fun anchorText(pack: LoadedPack, item: MediaItem): String {
     return if (anchors.isEmpty()) "gallery only" else anchors.joinToString(" · ")
 }
 
-private fun kindLabel(kind: String, count: Int, pack: LoadedPack): String {
+internal fun kindLabel(kind: String, count: Int, pack: LoadedPack): String {
     val noun = when (kind) {
         MediaKinds.ACHIEVEMENT -> "Achievements"
         MediaKinds.MONTH -> "Month art"
