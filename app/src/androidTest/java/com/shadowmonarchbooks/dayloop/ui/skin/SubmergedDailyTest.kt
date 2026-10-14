@@ -212,7 +212,7 @@ class SubmergedDailyTest {
                 assertTrue("Every icon fits together without pixel overflow",
                     bounds.left >= bar.left - 0.01.dp && bounds.right <= bar.right + 0.01.dp)
                 compose.onNodeWithTag("p3r-tab-icon-${item.route}", useUnmergedTree = true)
-                    .assertWidthIsEqualTo(32.dp).assertHeightIsEqualTo(32.dp)
+                    .assertWidthIsEqualTo(23.dp).assertHeightIsEqualTo(23.dp)
             }
         }
         allIconsFit()
@@ -229,5 +229,19 @@ class SubmergedDailyTest {
         capture("p3r-navigation-extra-narrow-icons")
         compose.onNodeWithTag("p3r-tab-row").performTouchInput { swipeRight() }
         tab("Today").assertIsDisplayed().performClick().assertIsSelected()
+    }
+
+    @Test fun p5rBottomIconsKeepTheirOriginalSize() {
+        val tabs = listOf(SkinNavItem("today", "Today", Icons.Filled.Home),
+            SkinNavItem("calendar", "Calendar", Icons.Filled.DateRange),
+            SkinNavItem("achievements", "Achievements", Icons.Filled.Star),
+            SkinNavItem("bonds", "Confidants", Icons.Filled.Person),
+            SkinNavItem("requests", "Mementos", Icons.Filled.List))
+        show(slug = "p5r") { SkinBottomBar(tabs, "today", {}) }
+        tabs.forEach { item ->
+            compose.onNodeWithContentDescription(item.label, useUnmergedTree = true)
+                .assertIsDisplayed().assertWidthIsEqualTo(23.dp).assertHeightIsEqualTo(23.dp)
+        }
+        capture("p5r-navigation-original-icon-size")
     }
 }

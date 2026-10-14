@@ -298,7 +298,7 @@ fun SkinBottomBar(
                         imageVector = item.icon,
                         contentDescription = item.label,
                         tint = content,
-                        modifier = Modifier.size(23.dp),
+                        modifier = Modifier.size(PersonaBottomIconSize),
                     )
                 }
             }

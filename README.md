@@ -1,8 +1,8 @@
 # dayloop
 
-Current P3R pass: Reload Search with all matching source dates and retained
-reading state, game picker/loading/error layouts, fitted artwork previews and
-responsive widgets that reopen their displayed game. See the
+Current P3R pass: bottom icons matching P5R's 23dp size, named collapsible Social
+Link ranks, and an attributed artwork inventory with explicit missing-art coverage.
+See the [current audit](docs/audits/p3r-icons-artwork-accessibility.md),
 [utility-surface audit](docs/audits/p3r-utility-surfaces-ui.md),
 [Settings/answer audit](docs/audits/p3r-settings-answers-ui.md) and
 [remaining polish roadmap](docs/packs/p3r-polish-roadmap.md). The
@@ -45,7 +45,9 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 The October 13–14 continuation delivers core Settings/answers and the remaining
 Search/picker/loading/media/widget surfaces. Required CI, 59 full native tests
 with 114 captures and the isolated hand-in passed for rc11 (43), content 19.
-Next is matched artwork and spoken accessibility, followed by completion
+The next pass has begun with icon-size feedback, the artwork inventory and rank
+accessibility controls. Additional matched artwork and spoken accessibility remain,
+followed by completion
 coverage, measured device performance and stable-release acceptance. Physical
 launcher, backup-preview/document-provider and upgrade checks remain open.
 The October 12 achievement pass reviews all 48 achievements, replaces unsafe shortcut

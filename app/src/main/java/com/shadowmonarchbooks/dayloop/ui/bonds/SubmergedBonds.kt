@@ -22,6 +22,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.collapse
+import androidx.compose.ui.semantics.expand
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
@@ -156,6 +158,7 @@ internal fun SubmergedBondDetail(
     val rank = remember(bond, days, marks) { completedBondRank(bond, days, marks) }
     val next = nextBondRankStep(bond, rank)
     val highestRank = bond.ranks.maxOfOrNull { it.rank } ?: 0
+    // null selects the authored next rank initially; 0 keeps every real rank closed.
     var selectedRank by rememberSaveable(bond.id) { mutableStateOf<Int?>(null) }
     val expandedRank = selectedRank ?: next?.rank ?: highestRank
     val portrait = pack.mediaForBond(bond.id).firstOrNull { it.kind == MediaKinds.PORTRAIT }
@@ -216,7 +219,7 @@ internal fun SubmergedBondDetail(
         item {
             Column(Modifier.padding(vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 SkinSectionHeader("Rank route")
-                Text("Select a rank for details.",
+                Text("Select a rank to show or hide its details.",
                     style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
             }
         }
@@ -226,15 +229,26 @@ internal fun SubmergedBondDetail(
             Column(Modifier.fillMaxWidth().background(colors.surface)) {
                 Row(
                     Modifier.fillMaxWidth().bondSelection(active)
-                        .clickable(role = Role.Button, onClickLabel = "Show rank ${step.rank}", onClick = { selectedRank = step.rank })
+                        .clickable(role = Role.Button,
+                            onClickLabel = if (active) "Hide rank ${step.rank} details" else "Show rank ${step.rank} details",
+                            onClick = { selectedRank = if (active) 0 else step.rank })
                         .semantics {
+                            contentDescription = "${bond.label}, rank ${step.rank}"
                             selected = active
                             stateDescription = if (active) "Expanded" else "Collapsed"
+                            if (active) collapse("Hide rank ${step.rank} details") {
+                                selectedRank = 0
+                                true
+                            } else expand("Show rank ${step.rank} details") {
+                                selectedRank = step.rank
+                                true
+                            }
                         }
                         .testTag("bond-rank-${step.rank}").heightIn(min = 56.dp).padding(horizontal = 14.dp, vertical = 10.dp),
                     verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
-                    Text("${step.rank}", style = bondDisplayStyle(), color = ink)
+                    Text("${step.rank}", style = bondDisplayStyle(), color = ink,
+                        modifier = Modifier.clearAndSetSemantics {})
                     Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
                         Text(step.scheduledFor?.let { formatDate(it, pack.calendar) }
                             ?: step.availableFrom?.let { "From ${formatDate(it, pack.calendar)}" }

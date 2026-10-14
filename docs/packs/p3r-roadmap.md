@@ -28,14 +28,17 @@ passing required CI, 51 native tests/93 captures, isolated hand-in and rc10 iden
 Pass B is delivered through [PR #12](https://github.com/skypie0102/dayloop/pull/12):
 Reload Search, picker/loading/error, Media and responsive widget entry;
 [59 native tests/114 captures and rc11 identity](../audits/p3r-utility-surfaces-ui.md)
-passed. Pass C (matched art and spoken accessibility) is next; physical launcher,
+passed. Pass C has started with an attributed portrait/missing-art inventory,
+named rank expand/collapse controls and the user's 23dp bottom-icon correction.
+See the [current audit](../audits/p3r-icons-artwork-accessibility.md). Additional
+matched assets, spoken accessibility, physical launcher,
 backup-preview/document-provider/device checks remain open. The broader
 P3R-5/P3R-6 gates below stay open until their complete evidence is recorded.
 
 ## October 12 continuation: icon navigation and Calendar/Social Links
 
 The user's latest direction replaces bottom tab text with equal icon commands.
-32dp icons retain accessible tab names and selection, while all five fit together
+rc9's 32dp icons retained accessible tab names and selection, while all five fit together
 at 240dp and above regardless of font scale. The existing title and selection
 treatment remain. Social Link summaries and Calendar headings adapt to narrow
 effective widths; headings, rank expansion and date-grid semantics are explicit.
@@ -45,6 +48,8 @@ Native acceptance covers 200% text, matched portrait/rank navigation, retained
 list/month state and the extra-narrow icon fallback. rc9 retains content 19 and
 the rc7/rc8 update certificate. See the [scope and acceptance record](../audits/p3r-icon-navigation-ui.md).
 Remaining surfaces/artwork, spoken TalkBack and measured performance stay open.
+The October 14 user feedback supersedes the icon size with P5R's 23dp size;
+the command dimensions, names and panning behavior remain.
 Validation passed 48 full-suite tests with 84 captures, the isolated hand-in test,
 and build/JVM/all-pack lint/signature checks. The source/data and candidate hashes
 are recorded in the audit.

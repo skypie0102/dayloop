@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.asAndroidBitmap
 import android.provider.MediaStore
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.unit.dp
@@ -1099,6 +1100,44 @@ class SubmergedAppFlowTest {
         compose.onNode(hasText("Social Links") and hasAnyAncestor(hasTestTag("bond-sections"))).performClick()
         compose.onNodeWithTag(row).assertIsDisplayed().assertIsSelected()
         capture("p3r-links-list-returned-double-text")
+        assertEquals("2009-05-18", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
+    }
+
+    @Test fun unillustratedLinkKeepsItsIdentityAndRankActionsAtDoubleText() {
+        launch("2009-05-18", scale = 2f)
+        tab("Social Links").performClick()
+        val row = "bond-p3r.bond.magician"
+        compose.onNodeWithTag("bond-list").performScrollToNode(hasTestTag(row))
+        compose.onNodeWithTag(row).performClick()
+        compose.onNodeWithText("Kenji Tomochika").assertIsDisplayed()
+        compose.onNodeWithTag("bond-portrait-p3r.bond.magician", useUnmergedTree = true).assertDoesNotExist()
+        capture("p3r-links-magician-name-fallback-double-text")
+
+        val rank = "bond-rank-1"
+        compose.onNodeWithTag("bond-detail").performScrollToNode(hasTestTag(rank))
+        compose.onNodeWithTag(rank).assertContentDescriptionEquals("Magician, rank 1")
+            .assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Expanded"))
+            .performSemanticsAction(SemanticsActions.Collapse) { it() }
+        compose.onNodeWithTag(rank)
+            .assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Collapsed"))
+        compose.onNodeWithTag("bond-guidance-1").assertDoesNotExist()
+        scenario!!.recreate()
+        compose.waitUntil(10_000) { compose.onAllNodesWithTag(rank).fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithTag(rank)
+            .assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Collapsed"))
+            .performSemanticsAction(SemanticsActions.Expand) { it() }
+        compose.onNodeWithTag("bond-guidance-1").assertExists()
+        compose.onNodeWithTag(rank).performClick()
+        compose.onNodeWithTag("bond-guidance-1").assertDoesNotExist()
+        compose.onNodeWithTag(rank).performClick()
+        compose.onNodeWithTag("bond-guidance-1").assertExists()
+        capture("p3r-links-named-rank-expanded-double-text")
+        compose.onNodeWithText("Open walkthrough").performScrollTo().performClick()
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithTag(rank).assertIsSelected()
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithTag(row).assertIsDisplayed().assertIsSelected()
         assertEquals("2009-05-18", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
         assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
     }
