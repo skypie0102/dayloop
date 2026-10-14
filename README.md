@@ -45,8 +45,10 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 The October 13–14 continuation delivers core Settings/answers and the remaining
 Search/picker/loading/media/widget surfaces. Required CI, 59 full native tests
 with 114 captures and the isolated hand-in passed for rc11 (43), content 19.
-The next pass has begun with icon-size feedback, the artwork inventory and rank
-accessibility controls. Additional matched artwork and spoken accessibility remain,
+Pass C delivers icon-size feedback, the artwork inventory and rank accessibility
+controls. Required CI, 61 full native tests/117 captures and the isolated hand-in
+passed for rc12 (44), content 19, in [PR #13](https://github.com/skypie0102/dayloop/pull/13).
+Additional matched artwork and spoken accessibility remain,
 followed by completion
 coverage, measured device performance and stable-release acceptance. Physical
 launcher, backup-preview/document-provider and upgrade checks remain open.

@@ -25,7 +25,7 @@ Journey's completion target verified.
 |---|---|---|---|
 | A — Settings and answers | Core implementation/native review complete; backup-preview device check open | Reload profile selection, readable utility controls, matching profile/reset/backup dialogs; one class/exam answer treatment for daily pages and the collection | Inspect Android captures at normal and 200% text; name all controls; exercise rename/switch/cancel and answer → day → Back; preserve clock, marks, sheet order and P5R presentation |
 | B — Search and remaining entry points | Core implementation/native review complete; physical-launcher/spoken checks open | Search input/results, game picker/loading/error states, media browser and home-screen widget; establish a consistent hierarchy without hiding game/date/result context | Keyboard and Back paths work; narrow layouts retain full labels and useful empty/loading/error states; widget remains legible at supported sizes, launches the correct pack and does not animate or play sounds |
-| C — Artwork and spoken accessibility | Inventory/rank controls implemented; native review pending; new artwork/spoken checks open | Inventory unmatched Social Link/Arcana art and readable fallbacks; curate correctly attributed assets; inspect traversal across all P3R surfaces with TalkBack | Correct art-to-character mapping, source/hash ledger, aspect ratio and contrast review; real spoken labels, selection, expansion and dialog/focus return checked separately from semantics tests |
+| C — Artwork and spoken accessibility | Inventory/rank controls/native review complete; new artwork/spoken checks open | Inventory unmatched Social Link/Arcana art and readable fallbacks; curate correctly attributed assets; inspect traversal across all P3R surfaces with TalkBack | Correct art-to-character mapping, source/hash ledger, aspect ratio and contrast review; real spoken labels, selection, expansion and dialog/focus return checked separately from semantics tests |
 | D — Remaining completion obligations | Queued | Reconcile optional encounters, fusion/equipment/shopping dependencies and missable branches with the original schedule; decide whether an Activities catalog adds value | Explicit source/coverage ledger and route promise; no assumed completion from dates/opportunities; preserve all saved task IDs, or document and test a migration before changing them |
 | E — Device performance and motion | Queued | Profile startup, reading/scrolling, tab changes, day advance and pack/profile switching; check lifecycle/background and reduced-motion behavior | Record device/build/test conditions, measured frame/startup/memory evidence and bottlenecks; optional short transitions, no idle loops; no speedup claim from code inspection or Compose test clocks |
 | F — Stable release acceptance | Queued | Same-certificate candidate upgrade, save/backup restore and offline smoke checks; resolve user feedback; update coverage, release notes and remaining limitations | Required app/core/tool tests and all three packlint targets pass; P5R isolation verified; tested upgrade/save behavior and release artifact identity; publish stable only after blocking gaps are resolved |
@@ -94,7 +94,7 @@ Pass C is underway below; unchecked device/release gates remain open.
   to close and retain its closed state through activity recreation.
 - [x] Apply the user's October 14 icon-size correction: P3R uses P5R's existing
   23dp size; retain icon-only labels, 64dp commands and minimum 48dp widths.
-- [ ] Finish native review of icon parity, the unillustrated Kenji summary,
+- [x] Finish native review of icon parity, the unillustrated Kenji summary,
   rank actions/recreation/source return, and existing matched-art fixtures.
 - [ ] Curate additional correctly identified character/Arcana assets, preserving
   attribution, aspect ratios and the readable identity fallback. Existing guide
@@ -104,6 +104,10 @@ Pass C is underway below; unchecked device/release gates remain open.
 
 Scope and evidence are tracked in the
 [icon/artwork/accessibility audit](../audits/p3r-icons-artwork-accessibility.md).
+Delivered through [PR #13](https://github.com/skypie0102/dayloop/pull/13), rc12 (44),
+content 19. Accepted code `fbd76e4`: required CI, **61** full native tests/**117**
+captures and the isolated hand-in passed. All 304 tracked content files and
+bundled assets are unchanged; rank browsing retains the saved clock/marks.
 The inventory and automated semantics checks do not close the spoken/device gate.
 
 ## Review rules

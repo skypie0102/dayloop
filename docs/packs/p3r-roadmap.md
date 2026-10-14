@@ -28,16 +28,18 @@ passing required CI, 51 native tests/93 captures, isolated hand-in and rc10 iden
 Pass B is delivered through [PR #12](https://github.com/skypie0102/dayloop/pull/12):
 Reload Search, picker/loading/error, Media and responsive widget entry;
 [59 native tests/114 captures and rc11 identity](../audits/p3r-utility-surfaces-ui.md)
-passed. Pass C has started with an attributed portrait/missing-art inventory,
+passed. Pass C delivers an attributed portrait/missing-art inventory,
 named rank expand/collapse controls and the user's 23dp bottom-icon correction.
-See the [current audit](../audits/p3r-icons-artwork-accessibility.md). Additional
+See the [current audit](../audits/p3r-icons-artwork-accessibility.md): required CI,
+61 native tests/117 captures and isolated hand-in passed for rc12 (44) in
+[PR #13](https://github.com/skypie0102/dayloop/pull/13), with content still 19. Additional
 matched assets, spoken accessibility, physical launcher,
 backup-preview/document-provider/device checks remain open. The broader
 P3R-5/P3R-6 gates below stay open until their complete evidence is recorded.
 
 ## October 12 continuation: icon navigation and Calendar/Social Links
 
-The user's latest direction replaces bottom tab text with equal icon commands.
+The user's October 12 direction replaces bottom tab text with equal icon commands.
 rc9's 32dp icons retained accessible tab names and selection, while all five fit together
 at 240dp and above regardless of font scale. The existing title and selection
 treatment remain. Social Link summaries and Calendar headings adapt to narrow
