@@ -5,12 +5,15 @@ accent colors. Roadmap v3 goes further: **when you pick P5R, the app should look
 like Persona 5 Royal's own UI — the graphic language, not just the palette** —
 while staying the same pack-generic engine for P3R, Metaphor, and future drops.
 
-> **Current state: v0.15.0 is the P5R milestone release; Phases 11–17 are
-> complete. The October 10 request makes P5R walkthrough usability the immediate
-> priority before the isolated P3R audit resumes, followed by Metaphor.
-> Phase 18 remains the final cross-pack verification and release-hardening
-> pass.** P5R's stability contract lives in `docs/packs/p5r-baseline.md`;
-> current reading-flow work is recorded in `docs/audits/p5r-walkthrough-usability.md`,
+> **Current priority, October 14: [Metaphor's UI/UX delivery roadmap](packs/metaphor-ui-roadmap.md).**
+> P5R/P3R walkthrough and UI refinements are delivered through candidate rc12;
+> additional P3R character art awaits the user's files and its remaining
+> spoken/device/release gates stay on the backlog. Metaphor now receives its own
+> inspected-reference and phased redesign workstream. The older v0.15.0 milestone
+> and Phases 11–17 below are historical deliveries, not acceptance of the new
+> Metaphor redesign. Phase 18 remains the final cross-pack verification and
+> release-hardening pass. P5R's stability contract lives in `docs/packs/p5r-baseline.md`;
+> delivered reading-flow work is recorded in `docs/audits/p5r-walkthrough-usability.md`,
 > with request unlocks and lightweight motion in `docs/audits/p5r-mementos-motion.md`.
 
 | # | Ask | Phase | Status |

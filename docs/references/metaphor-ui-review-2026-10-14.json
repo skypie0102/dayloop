@@ -1,0 +1,124 @@
+{
+  "reviewDate": "2026-10-14",
+  "baselineMain": "89d1e3235ac3d6f1200db84c4d3119d62ffe2ff5",
+  "appVersion": "0.16.0-rc12",
+  "appVersionCode": 44,
+  "metaphorContentVersion": 3,
+  "method": "Direct visual inspection of four full-resolution English publisher screenshots and one combat thumbnail in a gallery contact sheet. Capture build/date unspecified by publisher; research images are not shipped assets.",
+  "sourcePage": "https://store.steampowered.com/app/2679460/Metaphor_ReFantazio/",
+  "galleryApi": "https://store.steampowered.com/api/appdetails?appids=2679460&l=english",
+  "captures": [
+    {
+      "id": "main-menu",
+      "publisherGalleryId": 13,
+      "sourceUrl": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2679460/ss_6956a6d6ff1745101aa0cd4a8445ff2d19853bfa.1920x1080.jpg",
+      "reviewPath": "build/ui-ref/metaphor/research-2026-10-14/main-menu.jpg",
+      "sha256": "6c40e1193197780e9da3edfae00661163b5dbe2ab8dc49de46084b1a0483c144",
+      "width": 1920,
+      "height": 1080,
+      "reviewMethod": "full-resolution",
+      "observations": [
+        "High-contrast serif display words at varied sizes/angles.",
+        "Black/white lettering, magenta and turquoise paint, portrait layering and fine geometry."
+      ]
+    },
+    {
+      "id": "world-map",
+      "publisherGalleryId": 0,
+      "sourceUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2679460/ss_9809b4bfb257dc3e4f39f3f54fad1768234c03ad.1920x1080.jpg?t=1764776325",
+      "reviewPath": "build/ui-ref/metaphor/research-2026-10-14/steam-full-00.jpg",
+      "sha256": "993d3c96c01d7226aedc8793e4db264d93f5758c4df767fed4bfcbcd2bbba529",
+      "width": 1920,
+      "height": 1080,
+      "reviewMethod": "full-resolution",
+      "observations": [
+        "Illustrated warm paper map with dotted routes and large location markers.",
+        "White selected location strip over dark description panel; magenta mission ribbon."
+      ]
+    },
+    {
+      "id": "field-hud",
+      "publisherGalleryId": 16,
+      "sourceUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2679460/ss_667af3287102fe2785ca1e827bdfc670b4044a59.1920x1080.jpg?t=1764776325",
+      "reviewPath": "build/ui-ref/metaphor/research-2026-10-14/steam-full-16.jpg",
+      "sha256": "ecde73e93e0f583eb2ca6169b878c1932af34ff2f63a5f86e8f32a1f7ba7db5e",
+      "width": 1920,
+      "height": 1080,
+      "reviewMethod": "full-resolution",
+      "observations": [
+        "Oversized day numeral, smaller month and paper weekday/time strips.",
+        "Mission label/countdown separate from its magenta objective strip."
+      ]
+    },
+    {
+      "id": "runner-dialogue",
+      "publisherGalleryId": 18,
+      "sourceUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2679460/ss_62807dd926c98c9f4a2f5a4cc11cb59a391d2c14.1920x1080.jpg?t=1764776325",
+      "reviewPath": "build/ui-ref/metaphor/research-2026-10-14/steam-full-18.jpg",
+      "sha256": "aa20b062d6c12847abf6510eeb3450f56ce768def3aa7d1380cb9ee58f1b089e",
+      "width": 1920,
+      "height": 1080,
+      "reviewMethod": "full-resolution",
+      "observations": [
+        "White name strip above a dark text plane.",
+        "Portrait alongside thin irregular white framing and distinct command hints."
+      ]
+    },
+    {
+      "id": "combat",
+      "publisherGalleryId": 11,
+      "sourceUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2679460/ss_508f318eca41537a561d0c999b881b3e03dbd965.600x338.jpg?t=1764776325",
+      "reviewPath": "build/ui-ref/metaphor/research-2026-10-14/steam-11.jpg",
+      "sha256": "84b4b5f5d443e309e7bddde3221e6db2c02c4adb08952144afb30004258fe3fc",
+      "width": 600,
+      "height": 337,
+      "reviewMethod": "contact-sheet-thumbnail",
+      "observations": [
+        "Angled painted command fragments and separate status strips.",
+        "Only composition sampled; no motion direction/duration or submenu fidelity inferred."
+      ]
+    }
+  ],
+  "remainingReferenceGates": [
+    "English Calendar screen",
+    "English Follower list and rank detail",
+    "English Quest list and detail",
+    "Royal Virtue display",
+    "Archetype tree and requirement detail",
+    "Actual transition footage/timing review"
+  ],
+  "unavailableHistoricalSource": {
+    "url": "https://www.gameuidatabase.com/gameData.php?id=1970",
+    "status": "Page not retrievable in this review; prior local capture set absent; no new visual acceptance claimed."
+  },
+  "codeBaseline": {
+    "authoredDays": 139,
+    "tasks": 396,
+    "followers": 14,
+    "rankEntries": 112,
+    "achievements": 44,
+    "achievementEvents": 18,
+    "deadlines": 24,
+    "activities": 16,
+    "mediaEntries": 47,
+    "trackedMetaphorContentFiles": 67,
+    "taskTips": 0,
+    "taskGroups": 0,
+    "displayOrderDays": 0,
+    "activeTabs": [
+      "Today",
+      "Calendar",
+      "Achievements",
+      "Followers"
+    ],
+    "currentDisplayFont": "Cinzel Bold",
+    "gameCalendarColumns": 5,
+    "storageYear": 2100
+  },
+  "contentHashMethod": "Sort pack-relative regular-file paths lexically; hash UTF-8 path, NUL, raw file bytes, NUL.",
+  "packSha256": {
+    "metaphor": "cfbfb890a07c3bc2ddfcc05066869ca97e3510de370c437db8127d80eafed83e",
+    "p3r": "11bada4e3a041949caf936ed6ae5b530910d4e9141c20269908eb67bc9fb640f",
+    "p5r": "cd4b7ee00ca6fd9244d754d5c27112a795d6f49d61531de3fee2648eb67c8313"
+  }
+}

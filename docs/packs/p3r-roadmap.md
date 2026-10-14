@@ -1,7 +1,9 @@
 # Persona 3 Reload — UI and walkthrough roadmap
 
 Created: 2026-09-06. Inspected baseline: `a9d37b1` (`main`), P3R content version 3.
-Priority: **remaining P3R polish and release acceptance**, per the October 13, 2026 request.
+Priority: **deferred P3R polish/release backlog**. The October 14, 2026 request moves
+the immediate workstream to the [Metaphor UI/UX roadmap](metaphor-ui-roadmap.md);
+the user will supply additional P3R character artwork later.
 Status: content version **19** audits all 48 base-game achievements and adds source-proof navigation after the combat and Linked Episode passes.
 Android validation, navigation state and comparative frame review for this continuation are tracked in the
 [motion/performance audit](../audits/p3r-motion-performance.md), following the merged

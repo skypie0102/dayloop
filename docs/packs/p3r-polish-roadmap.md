@@ -6,6 +6,12 @@ Created October 13, 2026. Starting point: main `75148f6`, candidate
 P3R-6 work. It does not reset the completed gameplay audits or declare The
 Journey's completion target verified.
 
+**October 14 priority change:** the user will supply additional P3R character
+artwork later and requested moving to Metaphor next. The immediate workstream is
+the [Metaphor UI/UX roadmap](metaphor-ui-roadmap.md). This P3R document retains the
+remaining artwork, spoken/device and release gates; no additional artwork search
+or unfinished gate is silently closed by the switch.
+
 ## Already delivered
 
 - Readable inline walkthrough guidance, all 101 Elizabeth request solutions,
@@ -30,7 +36,9 @@ Journey's completion target verified.
 | E — Device performance and motion | Queued | Profile startup, reading/scrolling, tab changes, day advance and pack/profile switching; check lifecycle/background and reduced-motion behavior | Record device/build/test conditions, measured frame/startup/memory evidence and bottlenecks; optional short transitions, no idle loops; no speedup claim from code inspection or Compose test clocks |
 | F — Stable release acceptance | Queued | Same-certificate candidate upgrade, save/backup restore and offline smoke checks; resolve user feedback; update coverage, release notes and remaining limitations | Required app/core/tool tests and all three packlint targets pass; P5R isolation verified; tested upgrade/save behavior and release artifact identity; publish stable only after blocking gaps are resolved |
 
-Core A/B implementation and native review are delivered. Continue C; D may be researched between implementation passes.
+Core A/B implementation and native review are delivered. C's inventory/rank/native
+slice is delivered below; its additional-art and spoken checks are deferred while
+Metaphor is the immediate workstream. D remains queued.
 E and F depend on the final surfaces/content. Ship focused candidates so the
 user can review progress without waiting for the entire list. Do not set a
 stable-release date from this plan alone.
