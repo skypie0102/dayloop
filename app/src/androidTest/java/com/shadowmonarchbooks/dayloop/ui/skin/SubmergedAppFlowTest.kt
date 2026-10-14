@@ -288,7 +288,11 @@ class SubmergedAppFlowTest {
         compose.onNodeWithTag("p3r-game-list").performScrollToNode(hasTestTag("game-choice-p5r"))
         compose.onNodeWithTag("game-choice-p5r").performClick()
         compose.waitUntil(20_000) { dependencies.store().state.value.selectedSlug == "p5r" }
-        compose.waitUntil(20_000) { compose.onAllNodesWithText("End day", ignoreCase = true).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitUntil(20_000) {
+            compose.onAllNodesWithTag("p3r-game-picker").fetchSemanticsNodes().isEmpty() &&
+                compose.onAllNodesWithTag("p3r-toolbar-title").fetchSemanticsNodes().isEmpty() &&
+                compose.onAllNodesWithText("End day", ignoreCase = true).fetchSemanticsNodes().isNotEmpty()
+        }
         instrumentation.runOnMainSync { context.startActivity(widgetLaunchIntent(context, "p3r")) }
         compose.waitUntil(20_000) { dependencies.store().state.value.selectedSlug == "p3r" }
         dateIs("2009-05-19")
@@ -306,6 +310,20 @@ class SubmergedAppFlowTest {
         assertEquals("p3r", dependencies.store().state.value.selectedSlug)
         assertEquals(originalId, runBlocking { dependencies.repo().activeProfileId("p3r").first() })
         assertEquals("2009-05-19", runBlocking { dependencies.db().profileDao().byId(originalId)!!.clockDate })
+        assertTrue(runBlocking { dependencies.repo().marksFor(originalId).first().isEmpty() })
+        scenario!!.close(); scenario = null
+        runBlocking {
+            dependencies.repo().selectPack("p5r")
+            dependencies.store().state.first { it.selectedSlug == "p5r" }
+        }
+        scenario = ActivityScenario.launch(widgetLaunchIntent(context, "p3r"))
+        compose.waitUntil(20_000) { dependencies.store().state.value.selectedSlug == "p3r" }
+        dateIs("2009-05-19")
+        compose.onNodeWithTag("p3r-toolbar-title").assertTextEquals("TODAY")
+        capture("p3r-widget-fresh-activity-double-text")
+        scenario!!.recreate()
+        dateIs("2009-05-19")
+        assertEquals(originalId, runBlocking { dependencies.repo().activeProfileId("p3r").first() })
         assertTrue(runBlocking { dependencies.repo().marksFor(originalId).first().isEmpty() })
     }
 

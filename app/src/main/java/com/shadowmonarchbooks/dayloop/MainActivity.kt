@@ -92,11 +92,15 @@ class MainActivity : ComponentActivity() {
                 uiSelectionReady = uiState.selectionReady,
                 uiSelectedSlug = uiState.selectedSlug,
             )
-            if (contentReady) startupCommitted = true
-            val themePack = if (startupCommitted) uiState.selected else packsState.selected
+            val requestedPack = request?.packSlug?.let { slug -> packsState.packs.firstOrNull { it.slug == slug } }
+            if (contentReady && (requestedPack == null || widgetReady)) startupCommitted = true
+            // A valid widget target owns the loading shell until its own UI projection is ready.
+            // This also prevents another game's saved selection from becoming the first exposed frame.
+            val waitingForWidget = requestedPack != null && !widgetReady
+            val themePack = if (waitingForWidget) requestedPack else if (startupCommitted) uiState.selected else packsState.selected
 
             DayloopTheme(pack = themePack) {
-                if (startupCommitted) {
+                if (startupCommitted && !waitingForWidget) {
                     AppRoot(vm = vm, openTodayRequest = request?.token?.takeIf { widgetReady },
                         onOpenTodayHandled = { widgetRequest = null; intent.action = Intent.ACTION_MAIN })
                 } else {
