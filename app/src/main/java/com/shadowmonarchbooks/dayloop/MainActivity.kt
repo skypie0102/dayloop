@@ -36,6 +36,11 @@ import com.shadowmonarchbooks.dayloop.widget.OpenWidgetAction
 import com.shadowmonarchbooks.dayloop.widget.WidgetPackExtra
 import com.shadowmonarchbooks.dayloop.widget.WidgetOpenRequest
 
+private const val WidgetConsumedExtra = "widget_consumed"
+private const val PendingWidgetState = "pending_widget"
+private const val PendingWidgetPackState = "pending_widget_pack"
+private const val PendingWidgetTokenState = "pending_widget_token"
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @Inject lateinit var packStore: PackStore
@@ -45,13 +50,31 @@ class MainActivity : ComponentActivity() {
     private var widgetRequest by mutableStateOf<WidgetOpenRequest?>(null)
 
     private fun acceptWidgetIntent(intent: Intent?) {
-        if (intent?.action == OpenWidgetAction) widgetRequest = WidgetOpenRequest(intent.getStringExtra(WidgetPackExtra))
+        if (intent?.action == OpenWidgetAction && !intent.getBooleanExtra(WidgetConsumedExtra, false)) {
+            widgetRequest = WidgetOpenRequest(intent.getStringExtra(WidgetPackExtra))
+        }
+    }
+
+    private fun consumeWidgetRequest() {
+        widgetRequest = null
+        // Consume an extra rather than replacing the host's action/data identity.
+        // The flag also survives activity/task restoration without reopening an old widget target.
+        intent.putExtra(WidgetConsumedExtra, true)
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        setIntent(intent)
         acceptWidgetIntent(intent)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val request = widgetRequest
+        outState.putBoolean(PendingWidgetState, request != null)
+        request?.let {
+            outState.putString(PendingWidgetPackState, it.packSlug)
+            outState.putLong(PendingWidgetTokenState, it.token)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +83,10 @@ class MainActivity : ComponentActivity() {
         // app frame is exposed until the active skin is known.
         val splash = installSplashScreen()
         super.onCreate(savedInstanceState)
-        acceptWidgetIntent(intent)
+        if (savedInstanceState?.getBoolean(PendingWidgetState) == true) {
+            widgetRequest = WidgetOpenRequest(savedInstanceState.getString(PendingWidgetPackState),
+                savedInstanceState.getLong(PendingWidgetTokenState))
+        } else acceptWidgetIntent(intent)
         splash.setKeepOnScreenCondition { !packStore.state.value.selectionReady }
 
         enableEdgeToEdge(
@@ -81,7 +107,7 @@ class MainActivity : ComponentActivity() {
                     val slug = request.packSlug
                     if (slug == null) Unit // Empty widget opens the current game or first-run picker.
                     else if (packsState.packs.any { it.slug == slug }) packStore.select(slug)
-                    else { widgetRequest = null; intent.action = Intent.ACTION_MAIN }
+                    else consumeWidgetRequest()
                 }
             }
             val widgetReady = request != null && packsState.selectionReady && uiState.selectionReady &&
@@ -102,7 +128,7 @@ class MainActivity : ComponentActivity() {
             DayloopTheme(pack = themePack) {
                 if (startupCommitted && !waitingForWidget) {
                     AppRoot(vm = vm, openTodayRequest = request?.token?.takeIf { widgetReady },
-                        onOpenTodayHandled = { widgetRequest = null; intent.action = Intent.ACTION_MAIN })
+                        onOpenTodayHandled = ::consumeWidgetRequest)
                 } else {
                     StartupShell(themePack?.pack?.title)
                 }
