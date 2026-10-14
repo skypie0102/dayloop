@@ -1,8 +1,15 @@
 # dayloop
 
-Current P3R pass: bottom icons matching P5R's 23dp size, named collapsible Social
-Link ranks, and an attributed artwork inventory with explicit missing-art coverage.
-See the [current audit](docs/audits/p3r-icons-artwork-accessibility.md),
+Current workstream: **Metaphor: ReFantazio UI/UX**, with an inspected publisher
+reference ledger and a phased [delivery roadmap](docs/packs/metaphor-ui-roadmap.md).
+The design follows its serif/paint/paper composition while carrying forward
+walkthrough clarity, accurate task proof and retained navigation from P5R/P3R.
+The [current visual reference](docs/references/metaphor-ui.md) distinguishes
+observed game UI from proposed mobile treatments and remaining comparisons.
+
+P3R's additional character artwork awaits the user's files; remaining spoken,
+device and stable-release checks stay on its backlog. Delivered work includes
+the [icon/rank/artwork audit](docs/audits/p3r-icons-artwork-accessibility.md),
 [utility-surface audit](docs/audits/p3r-utility-surfaces-ui.md),
 [Settings/answer audit](docs/audits/p3r-settings-answers-ui.md) and
 [remaining polish roadmap](docs/packs/p3r-polish-roadmap.md). The
@@ -41,7 +48,17 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 
 ## Roadmap
 
-**Current priority: [Persona 3 Reload — remaining polish and release roadmap](docs/packs/p3r-polish-roadmap.md).**
+**Current priority: [Metaphor: ReFantazio — UI/UX delivery roadmap](docs/packs/metaphor-ui-roadmap.md).**
+The October 14 request moves the immediate workstream to Metaphor. Research and
+the implementation plan are recorded; the replacement UI is not implemented yet.
+M0 finishes exact submenu/current-app comparisons, followed by M1 identity/shell,
+M2 walkthrough/calendar, M3 Followers/quests, M4 achievements/references, M5
+utilities/art/widget, M6 motion/accessibility/performance and M7 release acceptance.
+The first code slice is the Metaphor header, game-date HUD and compact navigation,
+with explicit skin opt-in and unchanged P5R/P3R behavior.
+
+The [P3R polish roadmap](docs/packs/p3r-polish-roadmap.md) remains the deferred
+backlog, including user-supplied character art and unverified spoken/device gates.
 The October 13–14 continuation delivers core Settings/answers and the remaining
 Search/picker/loading/media/widget surfaces. Required CI, 59 full native tests
 with 114 captures and the isolated hand-in passed for rc11 (43), content 19.

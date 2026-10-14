@@ -3,7 +3,63 @@
 Research notes compiled for the dayloop pack engine. Goal: a pack-declared token set that
 skins the generic engine faithfully to Metaphor: ReFantazio's (ATLUS, 2024) UI design language.
 
-**Method note.** Text sources were fetched and stripped to plain text (no long copyrighted prose
+## October 14, 2026 visual review
+
+The [Metaphor UI roadmap](../packs/metaphor-ui-roadmap.md) is now the immediate
+implementation plan. This update supersedes earlier inferred shape/palette/motion
+recommendations for the replacement UI. The source/hash
+[review ledger](metaphor-ui-review-2026-10-14.json) records four full-resolution
+English publisher screenshots and a combat thumbnail inspected in this session.
+The original game is the visual reference; the mobile treatments below are
+proposals to be checked in native Compose.
+
+| Direct observation | Proposed app use |
+|---|---|
+| English main menu: very large contrasting serif words, variable scale/angle, magenta/turquoise painted fields, layered portrait and fine construction lines | Distinct serif headings/commands and paint-based selection, with a quiet reading area and upright body text |
+| World map: illustrated paper, dotted routes, white selected-name strip, dark description and magenta mission ribbon | Itinerary/reference context and clear selected/source/deadline hierarchy; map-like texture reserved for appropriate surfaces |
+| Field HUD: large day numeral beside month, paper weekday/slot labels and a separate mission countdown/objective | One truthful game-date composition, prominent mission context and authored Afternoon/Night task sections |
+| Runner dialogue: white name strip, dark text plane, thin irregular white strokes, portrait and separate command hints | Wrapping guidance/dialog bodies and reachable commands; decoration does not own the text viewport |
+| Combat thumbnail: angled painted command fragments and separate status strips | Action/selection energy is a reference; no frame timing or full-screen battle interface is inferred |
+
+Exact game font names, color hex values, selection states of uninspected submenus
+and motion durations remain unverified. The bundled **Cinzel Bold** is an app
+stand-in; compare its serif silhouette to the English references before keeping
+or replacing it. A predominantly gold/filigree treatment does not describe the
+inspected main menu. Gold and paper may remain appropriate on other directly
+reviewed surfaces, but palette/geometry must be decided per surface.
+
+The [ATLUS English site](https://metaphor.atlus.com/) and
+[system explanation](https://rpg.jp/system/) ground the journey, Followers,
+Archetype progression and gauntlet-runner activities. The
+[publisher gallery](https://store.steampowered.com/app/2679460/Metaphor_ReFantazio/)
+supplies the inspected English UI. Ise's
+[direct interview](https://www.theverge.com/games/636243/metaphor-refantazio-ui-menu-interview-koji-ise)
+supports matching interface/animation to the situation while retaining clarity;
+the [GDC session description](https://gdcvault.com/play/1035332/From-Persona-to-Metaphor-ReFantazio)
+establishes the separate visual-identity goal. This review did not watch the
+entire GDC talk or establish the shipped animation timings.
+
+The exact English Calendar, Follower/Quest lists and detail, Royal Virtue and
+Archetype screens remain comparison gates. The inspected static Japanese
+system-page images are largely story/character scenes, not those menu captures.
+Earlier Game UI Database captures are absent locally and its page was not
+retrievable; do not promote historical pixel estimates into fresh visual proof.
+
+Calendar scope also needs care: the bundled June–October range declares
+30-day months and a five-day week. It uses 2100 for storage keys and does not
+establish every month of the fictional world's calendar. Display game
+month/day/weekday; keep actual time-of-day, weather and owned progression out
+of the UI until supported by modeled/source-backed state. See the
+[data audit](../audits/metaphor-data-audit.md) for factual coverage.
+
+## Historical research — estimates and unreviewed proposals
+
+The following record preserves the earlier investigation. Its `[inference]`
+items and token recommendations are historical proposals, not an accepted
+replacement-skin specification. Use the visual update above and the roadmap
+for current implementation decisions.
+
+**Historical method note.** Text sources were fetched and stripped to plain text (no long copyrighted prose
 reproduced). 22 official UI captures were pulled from Game UI Database into `build/ui-ref/metaphor/`
 (gitignored). The current agent session cannot visually inspect images, so screenshot-derived
 claims below come from **programmatic pixel analysis** of those captures (dominant-color
@@ -152,13 +208,12 @@ All hex values below are measured estimates from the GUD captures (JPEG-quantize
 - **Field HUD** — minimal plaques on near-black scene-dim; day scenes warm olive-bronze
   (#7E603C-family) accents, night scenes teal-black with copper-red (#8F4A30/#964F38) accents.
   [verified: GUD-pixel] Exact HUD chip silhouettes unconfirmed. [inference]
-- **Travel calendar** — the game's time system: **12 months × 30 days, five-day weeks**
-  (Flamesday, Watersday, Metalsday, Arboursday, Idlesday — Idlesday the rest day, JP 休息日), year
-  **785**; December's 7th week is **Idlesweek** (rest). Time splits into **Afternoon / Night**
-  blocks; travel consumes calendar days; mandatory travels lock activities (wiki encodes
-  availability as ×/◯/△ per block). [verified: WIKI-CAL] The in-game calendar HUD therefore
-  publishes a month/day number + weekday + time-of-day; the in-game screen's grid/header look is
-  unconfirmed this session. [inference]
+- **Travel calendar** — the earlier wiki-based whole-year summary is not a current
+  verified implementation contract. Use the pack's declared five-day cycle and
+  June–October month lengths; independently inspect the actual Calendar screen
+  before choosing its grid/header treatment. The current field-HUD review verifies
+  prominent month/day, weekday and slot labels. Do not expose the storage year or
+  generalize the authored range to every month of the fictional calendar.
 - **World map / travel** — the protagonist establishes **travel routes** and picks paths; the map
   carries **villages, camps, sights**; fast travel links major cities; the **gauntlet runner**
   hosts cooking/reading/cleaning/laundry/companion activities in transit. [verified: WIKI]
