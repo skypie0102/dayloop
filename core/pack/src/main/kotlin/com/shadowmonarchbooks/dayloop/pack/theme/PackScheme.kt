@@ -21,7 +21,7 @@ import kotlin.math.roundToInt
  */
 
 /** Closed-set scheme character tokens (pack.json `theme.style`). */
-val THEME_STYLES: Set<String> = setOf("tonalSpot", "vibrant", "expressive", "content", "ink", "submerged")
+val THEME_STYLES: Set<String> = setOf("tonalSpot", "vibrant", "expressive", "content", "ink", "submerged", "painted")
 
 /** Builds a Material dynamic scheme variant (null = calm default). */
 fun buildScheme(style: String?, seed: Hct, dark: Boolean): DynamicScheme = when (style) {
@@ -222,14 +222,44 @@ private fun submergedSchemeArgb(seed: Int): Map<String, Int> {
     )
 }
 
+/** Ink and paper with paint accents; complete roles keep shared Material surfaces legible. */
+private fun paintedSchemeArgb(seed: Int): Map<String, Int> {
+    val base = buildScheme("content", Hct.fromInt(seed), true)
+    val m = com.materialkolor.dynamiccolor.MaterialDynamicColors()
+    val ink = 0xFF111018.toInt()
+    val paper = 0xFFF4F0E6.toInt()
+    val paint = Hct.from(Hct.fromInt(seed).hue, 70.0, 65.0).toInt()
+    val turquoise = 0xFF5EE6DF.toInt()
+    val panel = 0xFF1D1A24.toInt()
+    val raised = 0xFF322B38.toInt()
+    return SCHEME_ROLES.associate { (name, role) -> name to role(m).getArgb(base) } + mapOf(
+        "primary" to paint, "onPrimary" to ink,
+        "primaryContainer" to raised, "onPrimaryContainer" to paper, "inversePrimary" to paint,
+        "secondary" to turquoise, "onSecondary" to ink,
+        "secondaryContainer" to 0xFF193B3A.toInt(), "onSecondaryContainer" to paper,
+        "tertiary" to paper, "onTertiary" to ink,
+        "tertiaryContainer" to raised, "onTertiaryContainer" to paper,
+        "error" to 0xFFFFB4AB.toInt(), "onError" to ink,
+        "errorContainer" to 0xFF5A1725.toInt(), "onErrorContainer" to paper,
+        "background" to ink, "onBackground" to paper,
+        "surface" to panel, "onSurface" to paper, "surfaceVariant" to raised, "onSurfaceVariant" to paper,
+        "surfaceTint" to paint, "inverseSurface" to paper, "inverseOnSurface" to ink,
+        "outline" to 0xFFBDB5C4.toInt(), "outlineVariant" to raised, "scrim" to ink,
+        "surfaceDim" to ink, "surfaceBright" to raised, "surfaceContainerLowest" to ink,
+        "surfaceContainerLow" to panel, "surfaceContainer" to panel,
+        "surfaceContainerHigh" to raised, "surfaceContainerHighest" to raised,
+    )
+}
+
 /**
  * Materializes a pack's scheme for [dark] mode into role name → ARGB int.
  * Returns null when the theme declares no parseable seed (the engine then
  * renders its own fixed palette — never lint-checked as pack data).
  */
 fun schemeArgb(theme: PackTheme, dark: Boolean): Map<String, Int>? {
-    val seedArgb = theme.seedArgb(if (theme.style == "submerged") true else dark) ?: return null
+    val seedArgb = theme.seedArgb(if (theme.style in setOf("submerged", "painted")) true else dark) ?: return null
     if (theme.style == "submerged") return submergedSchemeArgb(seedArgb)
+    if (theme.style == "painted") return paintedSchemeArgb(seedArgb)
     if (theme.style == "ink") return inkSchemeArgb(seedArgb, dark)
 
     val scheme = buildScheme(theme.style, Hct.fromInt(seedArgb), dark)

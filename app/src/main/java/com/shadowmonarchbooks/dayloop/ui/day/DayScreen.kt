@@ -57,11 +57,14 @@ import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.PerfectDaySplash
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinRouteBadge
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
+import com.shadowmonarchbooks.dayloop.ui.skin.SkinActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
-import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDateHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
+import com.shadowmonarchbooks.dayloop.ui.skin.hasPaintedChrome
+import com.shadowmonarchbooks.dayloop.ui.skin.preservesReadingState
+import com.shadowmonarchbooks.dayloop.ui.skin.PaintedDateHeader
 
 /**
  * Day detail: every task with its checkbox marks, plus prev/next browsing
@@ -94,7 +97,8 @@ fun DayScreen(
         day.steps.indices.all { state.markAt(date, it) == StepMark.DONE }
     val showDatedAchievements = datedAchievementRows(pack, state, date).isNotEmpty()
     val submerged = LocalSkin.current.hasSubmergedChrome()
-    val boundedTaskViewport = submerged || pack.pack.walkthroughPresentation.inlineTips
+    val preserveReading = LocalSkin.current.preservesReadingState()
+    val boundedTaskViewport = preserveReading || pack.pack.walkthroughPresentation.inlineTips
     var controlsHeight by remember { mutableIntStateOf(0) }
     val bottomInset = with(LocalDensity.current) { controlsHeight.toDp() }
 
@@ -109,7 +113,10 @@ fun DayScreen(
                     .padding(start = 16.dp, top = if (submerged) 12.dp else 16.dp, end = 16.dp, bottom = if (boundedTaskViewport) 14.dp else 94.dp),
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    if (submerged) {
+                    if (LocalSkin.current.hasPaintedChrome()) {
+                        PaintedDateHeader(date, formatDate(date, pack.calendar),
+                            pack.calendar?.weekdayOf(date)?.replaceFirstChar { it.uppercase() }, Modifier.weight(1f))
+                    } else if (submerged) {
                         SubmergedDateHeader(date, formatDate(date, pack.calendar),
                             pack.calendar?.weekdayOf(date)?.replaceFirstChar { it.uppercase() }, modifier = Modifier.weight(1f))
                     } else {
@@ -125,7 +132,7 @@ fun DayScreen(
 
                 // Walkthrough dates are route instructions, so the active route is
                 // always visible on the page instead of being implied by a profile.
-                if (submerged) {
+                if (preserveReading) {
                     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                         Text(if (state.currentDate == date) "Current day" else "Browsing walkthrough",
                             style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.secondary)
@@ -139,7 +146,7 @@ fun DayScreen(
                 val media = pack.mediaForDate(date).filterNot { submerged && it.kind == "day" }
                 if (media.isNotEmpty()) MediaStrip(items = media.map { pack.assetOf(it) to it.title })
 
-                if (!submerged && state.currentDate == date) {
+                if (!preserveReading && state.currentDate == date) {
                     Text(
                         text = "Current in-game day",
                         style = MaterialTheme.typography.labelMedium,
@@ -155,7 +162,7 @@ fun DayScreen(
                     )
                 }
 
-                (if (submerged) date else state.currentDate)?.let { current ->
+                (if (preserveReading) date else state.currentDate)?.let { current ->
                     nextDeadline(pack.deadlines, current, pack.calendar)?.let { (deadline, days) ->
                         DeadlineBanner(
                             deadline = deadline,
@@ -176,7 +183,7 @@ fun DayScreen(
                     }
                 }
 
-                if (submerged) {
+                if (preserveReading) {
                     FlowRow(
                         verticalArrangement = Arrangement.spacedBy(4.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -228,7 +235,7 @@ fun DayScreen(
             }
         }
 
-        if (submerged) {
+        if (preserveReading) {
             Column(
                 Modifier.align(Alignment.BottomCenter).fillMaxWidth()
                     .onSizeChanged { controlsHeight = it.height }
@@ -236,10 +243,10 @@ fun DayScreen(
                     .padding(horizontal = 12.dp, vertical = 6.dp),
             ) {
                 FlowRow(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
-                    SubmergedActionButton("Previous", onClick = { prevDate?.let(onOpenDay) },
-                        enabled = prevDate != null, primary = false)
-                    SubmergedActionButton("Next", onClick = { nextDate?.let(onOpenDay) },
-                        enabled = nextDate != null, primary = true)
+                    SkinTextActionButton("Previous", onClick = { prevDate?.let(onOpenDay) },
+                        enabled = prevDate != null)
+                    SkinActionButton("Next", onClick = { nextDate?.let(onOpenDay) },
+                        enabled = nextDate != null)
                 }
                 Text("Browsing keeps your current day", style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(horizontal = 10.dp))

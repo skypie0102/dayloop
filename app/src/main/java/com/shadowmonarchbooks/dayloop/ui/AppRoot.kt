@@ -57,6 +57,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.SkinNavItem
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTopBar
 import com.shadowmonarchbooks.dayloop.ui.skin.navMotion
 import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
+import com.shadowmonarchbooks.dayloop.ui.skin.preservesReadingState
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
 import com.shadowmonarchbooks.dayloop.ui.skin.skinBackdrop
 import com.shadowmonarchbooks.dayloop.ui.today.TodayScreen
@@ -129,7 +130,7 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel(), openTodayRequest: Long? = nu
     val backStackEntry by nav.currentBackStackEntryAsState()
     val route = backStackEntry?.destination?.route
     val pack = state.selected
-    val preserveTabState = LocalSkin.current.hasSubmergedChrome()
+    val preserveTabState = LocalSkin.current.preservesReadingState()
     val tabs = remember(pack) { topLevelTabs(pack) }
     val topLevelDestination = if (preserveTabState) tabs.any { it.route == route } else route in TopLevelRoutes
     var todayDatePinned by remember(pack?.slug) { mutableStateOf(false) }

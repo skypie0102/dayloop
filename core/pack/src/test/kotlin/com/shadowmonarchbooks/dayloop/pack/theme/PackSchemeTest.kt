@@ -19,7 +19,7 @@ class PackSchemeTest {
 
     @Test
     fun `style tokens are the closed set`() {
-        assertEquals(setOf("tonalSpot", "vibrant", "expressive", "content", "ink", "submerged"), THEME_STYLES)
+        assertEquals(setOf("tonalSpot", "vibrant", "expressive", "content", "ink", "submerged", "painted"), THEME_STYLES)
     }
 
     @Test
@@ -70,6 +70,20 @@ class PackSchemeTest {
             for (foreground in listOf("primary", "secondary", "onSurfaceVariant", "onBackground", "error")) {
                 val ratio = Wcag.contrastRatio(roles.getValue(foreground), roles.getValue("primaryContainer"))
                 assertTrue(ratio >= Wcag.AA_NORMAL, "$seed: $foreground on blue frame = $ratio")
+            }
+        }
+    }
+
+    @Test
+    fun `painted maintains contrast for paper ink paint and turquoise across modes`() {
+        for (seed in listOf("#F2466B", "#FFFFFF", "#000000", "#09134E")) {
+            val t = theme(seed, "#123456", "painted")
+            val roles = assertNotNull(schemeArgb(t, true))
+            assertEquals(roles, schemeArgb(t, false))
+            for ((foreground, background) in CONTRAST_PAIRS + listOf(
+                "primary" to "background", "secondary" to "surface", "error" to "surface")) {
+                assertTrue(Wcag.contrastRatio(roles.getValue(foreground), roles.getValue(background)) >= Wcag.AA_NORMAL,
+                    "$seed: $foreground on $background")
             }
         }
     }
