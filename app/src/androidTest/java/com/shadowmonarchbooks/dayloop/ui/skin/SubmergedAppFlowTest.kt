@@ -229,7 +229,8 @@ class SubmergedAppFlowTest {
         launch("2009-05-19", scale = 2f)
         compose.onNodeWithContentDescription("Search").performClick()
         compose.onNodeWithText("Find a source day").assertIsDisplayed()
-        compose.onNodeWithTag("p3r-search-input").performTextInput("An error in translation").performImeAction()
+        compose.onNodeWithTag("p3r-search-input").performTextInput("An error in translation")
+        compose.onNodeWithTag("p3r-search-input").performImeAction()
         val hit = "search-answer-2009-07-15"
         compose.onNodeWithTag("p3r-search-results").performScrollToNode(hasTestTag(hit))
         compose.onNodeWithTag(hit).assertIsDisplayed()
@@ -246,7 +247,8 @@ class SubmergedAppFlowTest {
         capture("p3r-search-restored-double-text")
         compose.onNodeWithContentDescription("Clear search").performClick()
         compose.onNodeWithText("Find a source day").assertIsDisplayed()
-        compose.onNodeWithTag("p3r-search-input").performTextInput("zz-no-source-match").performImeAction()
+        compose.onNodeWithTag("p3r-search-input").performTextInput("zz-no-source-match")
+        compose.onNodeWithTag("p3r-search-input").performImeAction()
         compose.onNodeWithText("No matches").assertIsDisplayed()
         capture("p3r-search-no-matches-double-text")
         compose.onNodeWithContentDescription("Back").performClick()
@@ -258,7 +260,8 @@ class SubmergedAppFlowTest {
     @Test fun searchIncludesLaterSourceDatesBeyondTheOldSixResultLimit() {
         launch("2009-05-19")
         compose.onNodeWithContentDescription("Search").performClick()
-        compose.onNodeWithTag("p3r-search-input").performTextInput("2009").performImeAction()
+        compose.onNodeWithTag("p3r-search-input").performTextInput("2009")
+        compose.onNodeWithTag("p3r-search-input").performImeAction()
         capture("p3r-search-source-days")
         val hit = "search-day-2009-12-31"
         compose.onNodeWithTag("p3r-search-results").performScrollToNode(hasTestTag(hit))
