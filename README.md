@@ -1,8 +1,9 @@
 # dayloop
 
-Current P3R pass: adaptive Settings/profile controls and Reload dialogs,
-source-date class/exam answers with retained reading position, and a fix for
-single-route/legacy backup failures. See the
+Current P3R pass: Reload Search with all matching source dates and retained
+reading state, game picker/loading/error layouts, fitted artwork previews and
+responsive widgets that reopen their displayed game. See the
+[utility-surface audit](docs/audits/p3r-utility-surfaces-ui.md),
 [Settings/answer audit](docs/audits/p3r-settings-answers-ui.md) and
 [remaining polish roadmap](docs/packs/p3r-polish-roadmap.md). The
 [achievement proof](docs/audits/p3r-achievement-proof.md),
@@ -41,12 +42,12 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 ## Roadmap
 
 **Current priority: [Persona 3 Reload — remaining polish and release roadmap](docs/packs/p3r-polish-roadmap.md).**
-The October 13 continuation delivers the core Settings and class/exam answer pass,
-then covers remaining entry points/widget, artwork/accessibility, completion
-coverage, measured device performance and stable-release acceptance. Required CI,
-51 full native tests with 93 captures and the isolated hand-in passed for rc10.
-Backup-preview/document-provider device checks remain open; next implementation is
-search and the other utility entry points/widget.
+The October 13–14 continuation delivers core Settings/answers and the remaining
+Search/picker/loading/media/widget surfaces. Required CI, 59 full native tests
+with 114 captures and the isolated hand-in passed for rc11 (43), content 19.
+Next is matched artwork and spoken accessibility, followed by completion
+coverage, measured device performance and stable-release acceptance. Physical
+launcher, backup-preview/document-provider and upgrade checks remain open.
 The October 12 achievement pass reviews all 48 achievements, replaces unsafe shortcut
 awards, adds direct source-checkpoint navigation and keeps completed counters editable.
 The [navigation/motion pass](docs/audits/p3r-motion-performance.md) preserves
@@ -100,7 +101,7 @@ Phase 5 added:
 - **Exam answers** — structured answer sheets (`answers.json`) for all 12 P5R exam days and 56 class questions, surfaced directly on their day pages.
 - **Mementos requests** — all 33 Royal requests live in a dedicated tracker; each completes only when its exact route completion task is checked.
 - **Search** — top-bar search across steps, bonds, activities, deadlines, and answers for the selected pack/route.
-- **Home-screen widget (Glance)** — in-game date, today's done-count, and the next deadline, always visible; refreshes with app state and re-reads progress on its own.
+- **Home-screen widget (Glance)** — in-game date, today's done-count and upcoming context; refreshes with app state and re-reads progress. Tapping reopens its displayed game. Reload widgets budget visible rows for size/text scale and keep full context in their named target.
 - **Launcher icon** — original adaptive artwork (sun + day-loop arrow), no game assets.
 
 Phase 6:
@@ -132,7 +133,7 @@ Phase 10 (v0.5.0) — [docs/ROADMAP-v2.md](docs/ROADMAP-v2.md):
 - **Widget inherits the accent** — the home-screen widget follows the active pack's dark-scheme primary.
 
 Phase 11 (v0.6.0) — [docs/ROADMAP-v3.md](docs/ROADMAP-v3.md):
-- **One game picker** — Settings redirects to the same carousel used on first run; switching keeps saves.
+- **One game picker** — Settings uses the shared picker flow; Reload has wrapping list choices and other skins retain the carousel. Switching keeps saves.
 - **All 116 guide graphics bundled & served** — P5R 53, P3R 16, Metaphor 47, declared through per-pack `media.json` manifests.
 - **packlint enforces “all art ships and serves”** — orphaned/missing/invalid media and bad anchors fail validation.
 - **Serving surfaces** — Day, Calendar, Bond detail, and the Pack Media gallery resolve media through engine-neutral anchors.

@@ -113,7 +113,7 @@ private fun bannerTitle(
 }
 
 @Composable
-fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
+fun AppRoot(vm: DayloopViewModel = hiltViewModel(), openTodayRequest: Long? = null, onOpenTodayHandled: () -> Unit = {}) {
     val state by vm.state.collectAsState()
 
     // Cold start: wait for the persisted pack selection instead of flashing
@@ -140,6 +140,15 @@ fun AppRoot(vm: DayloopViewModel = hiltViewModel()) {
 
     val startDestination = remember(state.selectionReady) {
         if (state.selectedSlug == null) "onboarding" else "today"
+    }
+    LaunchedEffect(openTodayRequest) {
+        if (openTodayRequest != null) {
+            nav.navigate(if (state.selectedSlug == null) "onboarding" else "today") {
+                popUpTo(nav.graph.id)
+                launchSingleTop = true
+            }
+            onOpenTodayHandled()
+        }
     }
 
     CompositionLocalProvider(LocalSkinFx provides vm.skinFx) {

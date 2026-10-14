@@ -21,6 +21,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -33,6 +34,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.skinDecor
+import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 
 /**
  * In-app search across the selected pack (docs/PLAN.md Phase 5): walkthrough
@@ -53,14 +55,15 @@ fun SearchScreen(
         return
     }
 
-    var query by remember { mutableStateOf("") }
+    var query by rememberSaveable(pack.slug) { mutableStateOf("") }
     val skin = LocalSkin.current
     val slash = skin.hasSkin && skin.motion == "slash"
     // Guarded surface (docs/ROADMAP-v2.md Phase 8): answer hits only exist for
     // packs declaring the capability, so results can never point at one the
     // pack lacks.
     val answersByDate = if (pack.pack.capabilities.answers) pack.answersByDate else emptyMap()
-    val hits = remember(query, state.days, pack.id()) {
+    val submerged = skin.hasSubmergedChrome()
+    val hits = remember(query, state.days, pack, submerged) {
         searchPack(
             query = query,
             days = state.days,
@@ -68,7 +71,14 @@ fun SearchScreen(
             activities = pack.activities,
             deadlines = pack.deadlines,
             answersByDate = answersByDate,
+            perGroupLimit = if (submerged) Int.MAX_VALUE else 6,
         )
+    }
+
+    if (submerged) {
+        SubmergedSearch(pack, state.activeRouteId, query, { query = it }, hits,
+            onOpenDay, onOpenBond, onOpenActivity, onOpenDeadlines)
+        return
     }
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
@@ -143,10 +153,6 @@ fun SearchScreen(
         }
     }
 }
-
-/** Stable cache key for a pack's content identity. */
-private fun com.shadowmonarchbooks.dayloop.data.LoadedPack.id(): String =
-    "${pack.packId}@${pack.contentVersion}"
 
 @Composable
 private fun SectionHeader(text: String) {

@@ -25,7 +25,11 @@ legacy blank routes use installed defaults in exported copies without rewriting
 saves. Content remains 19 and progress identities stay unchanged. The
 [Settings/answer audit](../audits/p3r-settings-answers-ui.md) records its scope and
 passing required CI, 51 native tests/93 captures, isolated hand-in and rc10 identity.
-Pass B is next; backup-preview/document-provider/device checks remain open. The broader
+Pass B is delivered through [PR #12](https://github.com/skypie0102/dayloop/pull/12):
+Reload Search, picker/loading/error, Media and responsive widget entry;
+[59 native tests/114 captures and rc11 identity](../audits/p3r-utility-surfaces-ui.md)
+passed. Pass C (matched art and spoken accessibility) is next; physical launcher,
+backup-preview/document-provider/device checks remain open. The broader
 P3R-5/P3R-6 gates below stay open until their complete evidence is recorded.
 
 ## October 12 continuation: icon navigation and Calendar/Social Links

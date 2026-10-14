@@ -5,8 +5,34 @@ import com.shadowmonarchbooks.dayloop.pack.schema.SkinShapes
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class WidgetSkinTest {
+    @Test
+    fun `Reload chrome is explicit and does not replace the existing moon widget`() {
+        assertEquals(WidgetTreatment.GLASS, widgetTreatment(PackTheme(motif = "moon")))
+        assertEquals(WidgetTreatment.SUBMERGED, widgetTreatment(PackTheme(motif = "moon", chrome = "submerged")))
+        assertEquals(WidgetTreatment.ANGULAR, widgetTreatment(PackTheme(motif = "masks")))
+    }
+
+    @Test
+    fun `scaled widget retains the date and reserves room for visible context`() {
+        val compact = submergedWidgetPlan(180f, 75f, 2f)
+        assertTrue(compact.shortDate)
+        assertFalse(compact.showTitle)
+        assertFalse(compact.showProgress)
+        assertFalse(compact.showDeadline)
+        val normal = submergedWidgetPlan(250f, 110f, 1f)
+        assertTrue(normal.showTitle)
+        assertTrue(normal.showProgress)
+        assertTrue(normal.showDeadline)
+        val expandedLarge = submergedWidgetPlan(320f, 160f, 2f)
+        assertTrue(expandedLarge.showTitle)
+        assertTrue(expandedLarge.showProgress)
+        assertFalse(expandedLarge.showDeadline)
+        assertFalse(expandedLarge.showProfile)
+    }
 
     @Test
     fun `theme-less widget keeps engine treatment and palette`() {

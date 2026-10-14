@@ -22,7 +22,7 @@ jobs:
       matrix:
         include:
           - review: full
-            classes: com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDailyTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedAppFlowTest,com.shadowmonarchbooks.dayloop.ui.skin.P3rWalkthroughTest,com.shadowmonarchbooks.dayloop.ui.skin.P5rWalkthroughTest,com.shadowmonarchbooks.dayloop.ui.skin.SkinMotionReviewTest
+            classes: com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDailyTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedAppFlowTest,com.shadowmonarchbooks.dayloop.ui.skin.P3rWalkthroughTest,com.shadowmonarchbooks.dayloop.ui.skin.P5rWalkthroughTest,com.shadowmonarchbooks.dayloop.ui.skin.SkinMotionReviewTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedUtilityTest
           - review: hand-in-isolated
             classes: com.shadowmonarchbooks.dayloop.ui.skin.SubmergedAppFlowTest#exactHandInUpdatesRequestsAndUncheckingReversesIt
     steps:
@@ -41,13 +41,13 @@ jobs:
         run: |
           bash tools/android/verify-candidate-signing.sh app/build/outputs/apk/candidate/app-candidate.apk
           mkdir -p build/review-apk
-          cp app/build/outputs/apk/candidate/app-candidate.apk build/review-apk/dayloop-v0.16.0-rc10.apk
+          cp app/build/outputs/apk/candidate/app-candidate.apk build/review-apk/dayloop-v0.16.0-rc11.apk
       - name: Upload candidate APK
         if: matrix.review == 'full'
         uses: actions/upload-artifact@v4
         with:
-          name: dayloop-v0.16.0-rc10
-          path: build/review-apk/dayloop-v0.16.0-rc10.apk
+          name: dayloop-v0.16.0-rc11
+          path: build/review-apk/dayloop-v0.16.0-rc11.apk
           retention-days: 14
           if-no-files-found: error
       - name: Enable emulator acceleration

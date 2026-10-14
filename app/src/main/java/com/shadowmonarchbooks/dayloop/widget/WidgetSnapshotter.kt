@@ -15,6 +15,8 @@ import kotlinx.coroutines.flow.first
 
 /** Everything the home-screen widget renders (docs/PLAN.md §6.3). */
 data class WidgetSnapshot(
+    val packSlug: String? = null,
+    val date: String? = null,
     val packTitle: String? = null,
     val profileName: String? = null,
     val routeLabel: String? = null,
@@ -44,23 +46,25 @@ class WidgetSnapshotter @Inject constructor(
     private val repo: ProgressRepository,
 ) {
     suspend fun snapshot(): WidgetSnapshot {
-        val packs = store.state.value
+        val packs = store.state.first { it.selectionReady }
         val slug = packs.selectedSlug ?: return WidgetSnapshot()
         val pack = packs.packs.firstOrNull { it.slug == slug } ?: return WidgetSnapshot()
         val profiles = repo.profilesFor(slug).first()
         val activeId = repo.activeProfileId(slug).first()
         val profile = profiles.firstOrNull { it.id == activeId } ?: profiles.firstOrNull()
-        val routeId = profile?.routeId ?: Routes.defaultId(pack.pack)
+        val routeId = profile?.routeId?.takeIf { it.isNotBlank() } ?: Routes.defaultId(pack.pack)
         val date = profile?.clockDate ?: pack.sortedDates(routeId).firstOrNull()
         val rows = profile?.let { repo.marksFor(it.id).first() }.orEmpty()
         val day = date?.let { pack.day(routeId, it) }
         val total = day?.steps?.size ?: 0
         var done = 0
         for (row in rows) {
-            if (row.date == date && row.mark == StepMark.DONE.name) done++
+            if (row.date == date && row.mark == StepMark.DONE.name && row.stepIndex in 0 until total) done++
         }
         val upcoming = date?.let { nextDeadline(pack.deadlines, it, pack.calendar) }
         return WidgetSnapshot(
+            packSlug = slug,
+            date = date,
             packTitle = pack.pack.title,
             profileName = profile?.name,
             routeLabel = if (pack.routes.size > 1) pack.routeLabel(routeId) else null,
