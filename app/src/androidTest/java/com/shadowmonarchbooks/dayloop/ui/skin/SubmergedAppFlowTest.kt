@@ -1232,9 +1232,11 @@ class SubmergedAppFlowTest {
         val pack = dependencies.store().state.value.selected!!
         fun openTracker() {
             compose.onNodeWithContentDescription("Mementos Requests").performClick()
+            compose.waitUntil(15_000) { compose.onAllNodesWithTag("mementos-request-list").fetchSemanticsNodes().size == 1 }
             compose.onNodeWithTag("mementos-request-list").performScrollToNode(hasText(title))
         }
         fun status(text: String) {
+            compose.waitUntil(15_000) { compose.onAllNodesWithTag("mementos-request-list").fetchSemanticsNodes().size == 1 }
             compose.onNodeWithTag("mementos-request-list").performScrollToNode(hasText(title))
             compose.onNodeWithTag(id).assertTextContains(text)
         }

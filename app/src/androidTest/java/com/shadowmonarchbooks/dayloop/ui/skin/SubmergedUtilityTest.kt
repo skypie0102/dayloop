@@ -155,24 +155,27 @@ class SubmergedUtilityTest {
             val remote = runBlocking { FixtureWidget(snapshot).compose(scaled, size = size) }
             compose.runOnIdle { selected.value = Host(index, scaled, remote, size) }
             compose.onNodeWithTag("widget-host").assertIsDisplayed().assertWidthIsEqualTo(size.width).assertHeightIsEqualTo(size.height)
+            capture("p3r-widget-${dimensions.first}x${dimensions.second}-${if (scale == 2f) "double-text" else "normal"}")
             compose.runOnIdle {
                 val root = requireNotNull(rendered)
                 fun descendants(view: View): List<View> = listOf(view) + if (view is ViewGroup)
                     (0 until view.childCount).flatMap { descendants(view.getChildAt(it)) } else emptyList()
                 val views = descendants(root)
-                assertTrue(views.any { it.contentDescription?.toString() == widgetDescription(snapshot) && it.isClickable })
+                val tree = views.joinToString("\n") { "${it.javaClass.simpleName}: clickable=${it.isClickable}, description=${it.contentDescription}" }
+                assertTrue("Widget must name its complete game context:\n$tree",
+                    views.any { it.contentDescription?.toString() == widgetDescription(snapshot) })
+                assertTrue("Widget must retain its tap action:\n$tree", views.any { it.isClickable })
                 val visible = views.filterIsInstance<TextView>().filter { it.visibility == View.VISIBLE && it.text.isNotBlank() }
                 assertTrue(visible.any { it.text.contains("May 19") })
                 val rootLocation = IntArray(2).also { root.getLocationOnScreen(it) }
                 visible.forEach { text ->
-                    assertEquals("RemoteViews must receive the requested font scale", scale, text.resources.configuration.fontScale)
+                    assertEquals("RemoteViews must receive the requested font scale", scale, text.resources.configuration.fontScale, 0f)
                     val layout = requireNotNull(text.layout)
                     assertTrue("Widget text must not ellipsize: ${text.text}", (0 until layout.lineCount).all { layout.getEllipsisCount(it) == 0 })
                     val location = IntArray(2).also { text.getLocationOnScreen(it) }
                     assertTrue("Widget text must fit its height: ${text.text}", location[1] + text.height <= rootLocation[1] + root.height)
                 }
             }
-            capture("p3r-widget-${dimensions.first}x${dimensions.second}-${if (scale == 2f) "double-text" else "normal"}")
         }
     }
 }

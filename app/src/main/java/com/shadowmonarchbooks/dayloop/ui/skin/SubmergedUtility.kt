@@ -46,7 +46,7 @@ internal fun SubmergedLoading(title: String?, modifier: Modifier = Modifier) {
             Text("NOW LOADING", style = MaterialTheme.typography.headlineLarge.withSkinFont(LocalSkin.current.type.display),
                 color = colors.onBackground)
             title?.let { Text(it, style = MaterialTheme.typography.bodyLarge, color = colors.secondary) }
-            Text("Opening your saved guide…", style = MaterialTheme.typography.bodyMedium)
+            Text("Opening your saved guide…", style = MaterialTheme.typography.bodyMedium, color = colors.onBackground)
         }
     }
 }

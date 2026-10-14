@@ -15,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalFocusManager
@@ -70,7 +71,7 @@ internal fun SubmergedSearch(
             } else null,
             modifier = Modifier.fillMaxWidth().padding(top = 8.dp).testTag("p3r-search-input"))
         LazyColumn(state = list, contentPadding = PaddingValues(top = 12.dp, bottom = 24.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.weight(1f).testTag("p3r-search-results")) {
+            verticalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.weight(1f).clipToBounds().testTag("p3r-search-results")) {
             item(key = "context") {
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text(pack.pack.title, style = MaterialTheme.typography.bodyMedium, color = colors.secondary)

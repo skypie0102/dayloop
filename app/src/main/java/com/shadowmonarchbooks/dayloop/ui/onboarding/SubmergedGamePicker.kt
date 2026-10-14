@@ -76,10 +76,10 @@ internal fun hasReloadSelection(packs: List<LoadedPack>, slug: String?): Boolean
 internal fun GamePickerUnavailable(onCancel: (() -> Unit)?) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        Text("No guides available", style = MaterialTheme.typography.titleLarge,
+        Text("No guides available", style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.semantics { heading() })
         Text("Your game guides could not be opened. Reopen dayloop to try again. Your saved progress is kept.",
-            style = MaterialTheme.typography.bodyLarge)
+            style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onBackground)
         onCancel?.let { SkinOutlinedActionButton("Back", onClick = it) }
     }
 }
