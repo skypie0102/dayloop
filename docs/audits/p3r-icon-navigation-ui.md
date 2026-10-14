@@ -4,6 +4,10 @@ October 12, 2026 continuation of P3R-5. Candidate `0.16.0-rc9` (41), with P3R
 content 19. The user's icon-only navigation request supersedes the historical
 whole-word bottom-tab design.
 
+The October 14 size correction supersedes this candidate's 32dp icons with
+P5R's existing 23dp size. See the [rc12 review](p3r-icons-artwork-accessibility.md).
+The command dimensions, icon-only labels and accessible names remain.
+
 ## Navigation
 
 The submerged bottom bar has no visible tab labels. The current screen title

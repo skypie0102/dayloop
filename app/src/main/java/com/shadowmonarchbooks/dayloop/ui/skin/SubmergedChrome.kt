@@ -325,7 +325,7 @@ internal fun SubmergedBottomBar(
                 ) {
                     Icon(item.icon, contentDescription = null,
                         tint = if (selected) colors.onPrimary else colors.secondary,
-                        modifier = Modifier.size(32.dp).testTag("p3r-tab-icon-${item.route}"))
+                        modifier = Modifier.size(PersonaBottomIconSize).testTag("p3r-tab-icon-${item.route}"))
                 }
             }
         }

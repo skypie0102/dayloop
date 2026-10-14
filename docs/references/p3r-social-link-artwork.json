@@ -1,0 +1,289 @@
+{
+  "reviewedBase": "41d1dc5443f4f43948776027dd327e3d3383be16",
+  "contentVersion": 19,
+  "source": {
+    "title": "Persona 3 Reload 100% Perfect Schedule Guide",
+    "author": "HayateButler",
+    "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3152126765",
+    "section": "Theurgy & personality",
+    "attribution": "docs/sources.md"
+  },
+  "portraits": [
+    {
+      "mediaId": "p3r.media.portrait-protagonist",
+      "character": "Protagonist",
+      "asset": "images/img007_4486B353CD3B0F9F.png",
+      "sha256": "854b7cd89b0e587726afb521582d2e38dbbc5f0c0e682e8bb30179ecf7262d29",
+      "width": 145,
+      "height": 205,
+      "bonds": [],
+      "status": "guide-only"
+    },
+    {
+      "mediaId": "p3r.media.portrait-yukari",
+      "character": "Yukari Takeba",
+      "asset": "images/img008_0C3BB1EB43921145.png",
+      "sha256": "0c2f1ea3762eece614d8649a7dffced1940b488b50df0a9fe1027a5de60afb0e",
+      "width": 145,
+      "height": 205,
+      "bonds": [
+        "p3r.bond.lovers"
+      ],
+      "status": "matched-social-link"
+    },
+    {
+      "mediaId": "p3r.media.portrait-junpei",
+      "character": "Junpei Iori",
+      "asset": "images/img009_B207081737B893E3.png",
+      "sha256": "5e6be577c7bfa2931a8c2991ceaba2701f67ab283e2b0c0fb9d57eee830373ef",
+      "width": 145,
+      "height": 205,
+      "bonds": [],
+      "status": "guide-only"
+    },
+    {
+      "mediaId": "p3r.media.portrait-akihiko",
+      "character": "Akihiko Sanada",
+      "asset": "images/img010_38953D599F21D5D2.png",
+      "sha256": "bfc5a7f6fa62a1b5f0aa938226dec690b53051f07e214a7a65f39b0b3bb1088e",
+      "width": 145,
+      "height": 205,
+      "bonds": [],
+      "status": "guide-only"
+    },
+    {
+      "mediaId": "p3r.media.portrait-mitsuru",
+      "character": "Mitsuru Kirijo",
+      "asset": "images/img011_15C451FF5A0BEF69.png",
+      "sha256": "46df7d5267e25f273195bd5948212bbb4963776415ea4ed5cbf20efb0a387d19",
+      "width": 145,
+      "height": 205,
+      "bonds": [
+        "p3r.bond.empress"
+      ],
+      "status": "matched-social-link"
+    },
+    {
+      "mediaId": "p3r.media.portrait-fuuka",
+      "character": "Fuuka Yamagishi",
+      "asset": "images/img012_4E7AB3CD73D936EB.png",
+      "sha256": "7bc45afcc7b32700c034f7454fe3ad7940a70b449f322ad5d29a073d5c5b2a5a",
+      "width": 145,
+      "height": 205,
+      "bonds": [
+        "p3r.bond.priestess"
+      ],
+      "status": "matched-social-link"
+    },
+    {
+      "mediaId": "p3r.media.portrait-aigis",
+      "character": "Aigis",
+      "asset": "images/img013_2DA5D37F9706693A.png",
+      "sha256": "fabb33a937f1bd8a9fbf0d778702ffe33e9cc58be02c24c41fda465f5dd9051b",
+      "width": 145,
+      "height": 205,
+      "bonds": [
+        "p3r.bond.aeon"
+      ],
+      "status": "matched-social-link"
+    },
+    {
+      "mediaId": "p3r.media.portrait-koromaru",
+      "character": "Koromaru",
+      "asset": "images/img014_48F3EB0D8F866B26.png",
+      "sha256": "b0c78f0ef2e0c84b3e6f9e31aafd5dbd9f20c02b247896e37a76a241114c95ff",
+      "width": 145,
+      "height": 205,
+      "bonds": [],
+      "status": "guide-only"
+    },
+    {
+      "mediaId": "p3r.media.portrait-ken",
+      "character": "Ken Amada",
+      "asset": "images/img015_36FD83EA9E539712.png",
+      "sha256": "df0c6051c67888f9dfc271e8fc906fd9a9b63ab299cc152c5445aad2708a10f9",
+      "width": 145,
+      "height": 205,
+      "bonds": [],
+      "status": "guide-only"
+    },
+    {
+      "mediaId": "p3r.media.portrait-shinjiro",
+      "character": "Shinjiro Aragaki",
+      "asset": "images/img016_2D90B07A614AF894.png",
+      "sha256": "c8c5a5d1645ca3e3d44a62520b08a97e8dc7ee175f9d82a7ebb479eeac91ff96",
+      "width": 145,
+      "height": 205,
+      "bonds": [],
+      "status": "guide-only"
+    }
+  ],
+  "socialLinks": [
+    {
+      "bondId": "p3r.bond.fool",
+      "arcana": "Fool",
+      "character": "S.E.E.S.",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.magician",
+      "arcana": "Magician",
+      "character": "Kenji Tomochika",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.chariot",
+      "arcana": "Chariot",
+      "character": "Kazushi Miyamoto",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.strength",
+      "arcana": "Strength",
+      "character": "Yuko Nishiwaki",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.hierophant",
+      "arcana": "Hierophant",
+      "character": "Bunkichi & Mitsuko Kitamura",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.emperor",
+      "arcana": "Emperor",
+      "character": "Hidetoshi Odagiri",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.hermit",
+      "arcana": "Hermit",
+      "character": "Maya",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.justice",
+      "arcana": "Justice",
+      "character": "Chihiro Fushimi",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.hanged-man",
+      "arcana": "Hanged-Man",
+      "character": "Maiko Oohashi",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.moon",
+      "arcana": "Moon",
+      "character": "Nozomi Suemitsu",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.temperance",
+      "arcana": "Temperance",
+      "character": "Bebe",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.devil",
+      "arcana": "Devil",
+      "character": "President Tanaka",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.tower",
+      "arcana": "Tower",
+      "character": "Mutatsu",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.fortune",
+      "arcana": "Fortune",
+      "character": "Keisuke Hiraga",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.priestess",
+      "arcana": "Priestess",
+      "character": "Fuuka Yamagishi",
+      "portraitMediaIds": [
+        "p3r.media.portrait-fuuka"
+      ],
+      "status": "matched-portrait"
+    },
+    {
+      "bondId": "p3r.bond.death",
+      "arcana": "Death",
+      "character": "Pharos",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.lovers",
+      "arcana": "Lovers",
+      "character": "Yukari Takeba",
+      "portraitMediaIds": [
+        "p3r.media.portrait-yukari"
+      ],
+      "status": "matched-portrait"
+    },
+    {
+      "bondId": "p3r.bond.star",
+      "arcana": "Star",
+      "character": "Mamoru Hayase",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.judgment",
+      "arcana": "Judgment",
+      "character": "Nyx Annihilation Team",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    },
+    {
+      "bondId": "p3r.bond.empress",
+      "arcana": "Empress",
+      "character": "Mitsuru Kirijo",
+      "portraitMediaIds": [
+        "p3r.media.portrait-mitsuru"
+      ],
+      "status": "matched-portrait"
+    },
+    {
+      "bondId": "p3r.bond.aeon",
+      "arcana": "Aeon",
+      "character": "Aigis",
+      "portraitMediaIds": [
+        "p3r.media.portrait-aigis"
+      ],
+      "status": "matched-portrait"
+    },
+    {
+      "bondId": "p3r.bond.sun",
+      "arcana": "Sun",
+      "character": "Akinari Kamiki",
+      "portraitMediaIds": [],
+      "status": "name-fallback"
+    }
+  ],
+  "arcanaArtwork": {
+    "count": 0,
+    "status": "No dedicated Arcana assets declared; readable Arcana and character labels are the fallback."
+  }
+}
