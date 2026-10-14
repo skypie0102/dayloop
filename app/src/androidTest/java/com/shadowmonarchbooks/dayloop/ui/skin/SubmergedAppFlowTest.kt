@@ -350,6 +350,26 @@ class SubmergedAppFlowTest {
         assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
     }
 
+    @Test fun pickerAndMediaUseReloadPlanesAtDefaultTextWithoutChangingProgress() {
+        launch("2009-05-19")
+        val pack = dependencies.store().state.value.selected!!
+        compose.onNodeWithContentDescription("Settings").performClick()
+        compose.onNodeWithText("Change game · saves are kept").performScrollTo().performClick()
+        compose.onNodeWithTag("p3r-game-list").performScrollToNode(hasTestTag("game-choice-p3r"))
+        compose.onNodeWithTag("game-choice-p3r").assertIsDisplayed()
+        capture("p3r-game-picker-normal")
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithText("${pack.media.size} images").performScrollTo().performClick()
+        val marker = pack.media.single { it.id == "p3r.media.full-moon" }
+        compose.onNodeWithTag("p3r-media-list").performScrollToNode(hasTestTag("media-${marker.id}"))
+        compose.waitUntil(10_000) { compose.onAllNodesWithTag("media-image-${pack.assetOf(marker)}").fetchSemanticsNodes().isNotEmpty() }
+        capture("p3r-media-full-moon-normal")
+        compose.onNodeWithContentDescription("Back").performClick()
+        compose.onNodeWithContentDescription("Back").performClick()
+        dateIs("2009-05-19")
+        assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
+    }
+
     @Test fun settingsProfilesAndDialogsStayNamedAtDoubleText() {
         launch("2009-05-19", scale = 2f)
         val original = profileId

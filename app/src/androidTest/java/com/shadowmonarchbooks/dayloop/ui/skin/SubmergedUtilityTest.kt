@@ -165,6 +165,7 @@ class SubmergedUtilityTest {
                 assertTrue(visible.any { it.text.contains("May 19") })
                 val rootLocation = IntArray(2).also { root.getLocationOnScreen(it) }
                 visible.forEach { text ->
+                    assertEquals("RemoteViews must receive the requested font scale", scale, text.resources.configuration.fontScale)
                     val layout = requireNotNull(text.layout)
                     assertTrue("Widget text must not ellipsize: ${text.text}", (0 until layout.lineCount).all { layout.getEllipsisCount(it) == 0 })
                     val location = IntArray(2).also { text.getLocationOnScreen(it) }
