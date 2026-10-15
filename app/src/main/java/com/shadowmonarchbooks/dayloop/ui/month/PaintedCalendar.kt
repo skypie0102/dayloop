@@ -132,6 +132,7 @@ internal fun PaintedMonthScreen(
                                 val inRange = date != null && date in calendar
                                 val event = date != null && events[date].orEmpty().isNotEmpty()
                                 Box(Modifier.weight(1f).heightIn(min = 58.dp)
+                                    .then(if (picked) Modifier.background(colors.background).border(2.dp, colors.onBackground) else Modifier)
                                     .drawWithCache {
                                         onDrawBehind {
                                             drawLine(colors.outlineVariant, Offset(0f, size.height), Offset(size.width, size.height), 1.dp.toPx())
@@ -139,7 +140,7 @@ internal fun PaintedMonthScreen(
                                             if (current) drawLine(colors.secondary, Offset(4.dp.toPx(), size.height - 4.dp.toPx()),
                                                 Offset(size.width - 4.dp.toPx(), size.height - 4.dp.toPx()), 3.dp.toPx())
                                         }
-                                    }.then(if (picked) Modifier.background(colors.background).border(2.dp, colors.onBackground) else Modifier)
+                                    }
                                     .then(if (date != null) Modifier.testTag("calendar-date-$date")
                                         .clickable(role = Role.Button, onClickLabel = "View date details", onClick = { savedDate = date }) else Modifier)
                                     .semantics {
