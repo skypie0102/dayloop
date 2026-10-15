@@ -448,11 +448,18 @@ class SubmergedAppFlowTest {
         val created = runBlocking { dependencies.db().profileDao().all().single { it.name == "Created review profile" } }
         assertEquals("2009-04-08", created.clockDate)
         assertEquals("standard", created.routeId)
+        // The database write precedes the UI projection of the profile list.
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithTag("settings-profile-${created.id}").fetchSemanticsNodes().size == 1
+        }
         compose.onNodeWithTag("settings-profile-${created.id}").performScrollTo().assertIsNotSelected()
         compose.onNodeWithContentDescription("Delete Created review profile").performScrollTo().performClick()
         capture("p3r-settings-delete-profile", dialog = true)
         compose.onNodeWithText("Delete").performClick()
         compose.waitUntil(10_000) { runBlocking { dependencies.db().profileDao().byId(created.id) == null } }
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithTag("settings-profile-${created.id}").fetchSemanticsNodes().isEmpty()
+        }
         compose.onNodeWithTag("settings-profile-$profileId").performScrollTo().assertIsSelected()
         assertEquals("2009-05-19", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
         assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
@@ -718,6 +725,12 @@ class SubmergedAppFlowTest {
         markIs(1, StepMark.DONE, "2009-04-18")
         capture("p3r-app-achievement-proof-source-day")
         compose.onNodeWithContentDescription("Back").performClick()
+        // A returning destination can briefly overlap its outgoing transition.
+        // Match one settled list before issuing a lazy-scroll action, as the
+        // request/episode helpers do, avoiding diagnostic traversal during draw.
+        compose.waitUntil(15_000) {
+            compose.onAllNodesWithTag("achievement-list").fetchSemanticsNodes().size == 1
+        }
         list.performScrollToNode(hasTestTag(proof))
         compose.onNodeWithTag(proof).assertTextEquals("2 / 22 checkpoints recorded")
         list.performScrollToNode(hasText("Review all checkpoints"))
@@ -727,6 +740,9 @@ class SubmergedAppFlowTest {
         compose.onAllNodesWithContentDescription("Done")[1].performScrollTo().assertIsSelected().performClick()
         compose.waitUntil(10_000) { runBlocking { dependencies.repo().marksFor(profileId).first().none { it.date == "2009-04-18" } } }
         compose.onNodeWithContentDescription("Back").performClick()
+        compose.waitUntil(15_000) {
+            compose.onAllNodesWithTag("achievement-list").fetchSemanticsNodes().size == 1
+        }
         list.performScrollToNode(hasTestTag(proof))
         compose.onNodeWithTag(proof).assertTextEquals("1 / 22 checkpoints recorded")
         capture("p3r-app-achievement-proof-reversal")
