@@ -8,7 +8,8 @@
       "steps": [
         { "label": "Continue Hulkenberg's training at Visca Alba Tavern (Follower rank 4).", "slot": "afternoon" },
         { "label": "Take the Spirited Youth's bungee challenge — a sure thing at Courage 2.", "slot": "night", "statGains": { "courage": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-07-02",
@@ -19,7 +20,8 @@
         { "label": "Stop by the Midnight Sunsands.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Another runner ambushes the route — Catherina rematch (Follower rank 2).", "slot": "afternoon" },
         { "label": "Campfire materials, then play a game with Hulkenberg.", "slot": "night", "statGains": { "wisdom": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-07-03",
@@ -28,7 +30,8 @@
       "steps": [
         { "label": "A human blocks the road, then the Greatworm swallows the party.", "slot": "afternoon", "spoiler": true },
         { "label": "Escape Giant Sandworm's Belly inside 15 minutes — run past common foes, loot everything, and fight only the rare Red Elmenta.", "slot": "afternoon" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-07-04",
@@ -36,7 +39,8 @@
       "dayKind": "story",
       "steps": [
         { "label": "Corner the culprit in the underground channel — Heismay joins the party (Follower rank 1).", "slot": "night", "spoiler": true }
-      ]
+      ],
+      "displayOrder": [0]
     },
     {
       "date": "2100-07-05",
@@ -46,7 +50,8 @@
         { "label": "Martira prep: take 'The Man-Eater in the Mine', buy informant notes, and stock up at Cattleracket Road.", "slot": "afternoon" },
         { "label": "Return to Kriegante Castle and settle the castle trials.", "slot": "afternoon", "statGains": { "courage": 10 }, "spoiler": true },
         { "label": "Gallica reaches Follower rank 3 after the Martira operation.", "slot": "afternoon", "spoiler": true }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-07-06",
@@ -56,7 +61,8 @@
         { "label": "Martira farewells: chat with the Cheerful Fairy and the Kind Old Woman, then talk with Bardon (Follower rank 1).", "slot": "afternoon" },
         { "label": "Hear the Elegant Performer's music and take 'The Queen of Cuisine: Heart'.", "slot": "night" },
         { "label": "Debate Loveless at the King's Rock (answer: alcohol won't bring equality).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 5 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-07-07",
@@ -64,11 +70,59 @@
       "dayKind": "free",
       "steps": [
         { "label": "Set off for Man-Eater's Grotto; read 'Pride and Persuasion' (choice: scare them).", "slot": "afternoon", "activityRef": "metaphor.activity.book.pride-and-persuasion", "statGains": { "eloquence": 10 } },
-        { "label": "Komero stop: hand the ornament and journal to Neuras (Follower rank 1); take 'Relic Search: Inventor's Request', then buy the Practical Pidgeon Parcel plus the planned Magla Pills and Orgo Sugar.", "slot": "afternoon" },
-        { "label": "Turn in More's Task Chapter One: Ordeal (Follower rank 3).", "slot": "afternoon", "statGains": { "imagination": 10 } },
-        { "label": "Turn in More's Task Chapter Two: Solitude with Merchant rank 15 already met (Follower rank 4); receive Chapter Three: Drifting.", "slot": "afternoon", "statGains": { "imagination": 10 } },
-        { "label": "Clear Man-Eater's Grotto; recover Neuras' lost relic in the first zone and the Gold Beetle just north of the lower trance crystal.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
-      ]
+        {
+          "label": "Komero stop: hand the ornament and journal to Neuras (Follower rank 1); take 'Relic Search: Inventor's Request', then buy the Practical Pidgeon Parcel plus the planned Magla Pills and Orgo Sugar.",
+          "slot": "afternoon",
+          "guidanceSections": [
+            {
+              "title": "Komero stop",
+              "body": "Deliver the ornament and journal to Neuras, accept his relic request, and buy the Practical Pigeon Parcel here for Hatching a Plan."
+            }
+          ]
+        },
+        {
+          "label": "Turn in More's Task Chapter One: Ordeal (Follower rank 3).",
+          "slot": "afternoon",
+          "statGains": {
+            "imagination": 10
+          },
+          "guidanceSections": [
+            {
+              "title": "Requirement check",
+              "body": "Unlock Gunner before reporting More’s Chapter One. Studying the required Archetype is the task condition; the displayed route date is the planned turn-in."
+            }
+          ]
+        },
+        {
+          "label": "Turn in More's Task Chapter Two: Solitude with Merchant rank 15 already met (Follower rank 4); receive Chapter Three: Drifting.",
+          "slot": "afternoon",
+          "statGains": {
+            "imagination": 10
+          },
+          "guidanceSections": [
+            {
+              "title": "Requirement check",
+              "body": "Raise Merchant to rank 15 for this chapter. If it is still short, finish the training in a dungeon before reporting back to More."
+            }
+          ]
+        },
+        {
+          "label": "Clear Man-Eater's Grotto; recover Neuras' lost relic in the first zone and the Gold Beetle just north of the lower trance crystal.",
+          "slot": "afternoon",
+          "activityRef": "metaphor.activity.gold-beetles",
+          "guidanceSections": [
+            {
+              "title": "Relic route",
+              "body": "In the first area, use the crawl space to reach the relic chest marked on the map."
+            },
+            {
+              "title": "Beetle check",
+              "body": "After the stairs and area transition, keep to the right. Search just north of the crystal before leaving the Grotto."
+            }
+          ]
+        }
+      ],
+      "displayOrder": [0, 1, 2, 3, 4]
     },
     {
       "date": "2100-07-08",
@@ -78,7 +132,8 @@
         { "label": "Report the Practical Pidgeon Parcel to the Gloomy Youth to finish 'Hatching a Plan', then report the Man-Eater bounty at the Recruitment Centre.", "slot": "afternoon", "statGains": { "courage": 10 } },
         { "label": "Catch up with Maria (Follower rank 3).", "slot": "afternoon" },
         { "label": "Deliver the lost relic to Neuras (Follower rank 2); take 'Relic Search: Dregs of Destiny'.", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-07-09",
@@ -88,7 +143,8 @@
         { "label": "Enter the Abandoned Tomb to recover Grius' dagger; Strohl consults you on deck (Follower rank 4).", "slot": "afternoon" },
         { "label": "Win the runner skirmish — swap Archetypes if anyone is weak to Wind or Ice.", "slot": "afternoon" },
         { "label": "Advise Hulkenberg at the campfire (Follower rank 5).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-07-10",
@@ -98,7 +154,8 @@
         { "label": "Runner upkeep, then finish 'Pride and Persuasion' (choice: plead with them).", "slot": "afternoon", "activityRef": "metaphor.activity.book.pride-and-persuasion", "statGains": { "eloquence": 20 } },
         { "label": "Eloquence reaches rank 2 (Articulate).", "slot": "afternoon" },
         { "label": "Tomb depth run: grab the Gold Beetle by the ladder and fight through to the Trove.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "spoiler": true }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-07-11",
@@ -107,7 +164,8 @@
       "steps": [
         { "label": "Catch up with Maria (Follower rank 4).", "slot": "afternoon" },
         { "label": "Hand the ring to Cuculus; Alonzo makes his pitch (Follower rank 1).", "slot": "night", "statGains": { "courage": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-07-12",
@@ -116,7 +174,8 @@
       "steps": [
         { "label": "Accompany Strohl to his old home (Follower rank 5); receive 'A Noble's Legacy'.", "slot": "afternoon" },
         { "label": "Debate Lina at the King's Rock (answer: what are your policies?).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 5 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-07-13",
@@ -125,7 +184,8 @@
       "steps": [
         { "label": "Catch up with Maria (Follower rank 5).", "slot": "afternoon" },
         { "label": "Get to know Heismay (Follower rank 2).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-07-14",
@@ -134,25 +194,53 @@
       "steps": [
         { "label": "Second Spirited Youth challenge — retry until the plunge lands.", "slot": "afternoon", "statGains": { "courage": 10 } },
         { "label": "Debate Roger at the King's Rock (answer: taxes benefit us all).", "slot": "night", "statGains": { "eloquence": 10, "imagination": 5 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-07-15",
       "weekday": "idlesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Warp to Grand Trad and clear the Mausoleum for the outstanding requests — take the left or right door first at three-door rooms, then hand the Mortaskulls to the Nervous Soldier to finish 'Skullduggery'.", "slot": "afternoon" }
-      ]
+        {
+          "label": "Warp to Grand Trad and clear the Mausoleum for the outstanding requests — take the left or right door first at three-door rooms, then hand the Mortaskulls to the Nervous Soldier to finish 'Skullduggery'.",
+          "slot": "afternoon",
+          "guidanceSections": [
+            {
+              "title": "Mausoleum sweep",
+              "body": "Explore the side doors before committing to the central route. Gather the quest items during this visit, then report the Mortaskulls to the Nervous Soldier."
+            },
+            {
+              "title": "If drops are missing",
+              "body": "Fight the relevant skeletons in squad battles rather than relying only on overworld defeats."
+            }
+          ]
+        }
+      ],
+      "displayOrder": [0]
     },
     {
       "date": "2100-07-16",
       "weekday": "flamesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Return the necklace to the Resentful Noble to finish 'A Haunted Heirloom', collect the Angry Man's potion, and help Heismay lay his son to rest (Follower rank 3).", "slot": "afternoon", "statGains": { "courage": 10 } },
+        {
+          "label": "Return the necklace to the Resentful Noble to finish 'A Haunted Heirloom', collect the Angry Man's potion, and help Heismay lay his son to rest (Follower rank 3).",
+          "slot": "afternoon",
+          "statGains": {
+            "courage": 10
+          },
+          "guidanceSections": [
+            {
+              "title": "Capital return",
+              "body": "Give the necklace to the Resentful Noble on Sunlumeo Street. Revisit the Angry Man at the cathedral before the runner routine and Heismay visit."
+            }
+          ]
+        },
         { "label": "Give the King's Rock speech — match the answer to your crowd.", "slot": "night", "statGains": { "eloquence": 10 } },
         { "label": "Eloquence reaches rank 3 (Urbane).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-07-17",
@@ -163,7 +251,8 @@
         { "label": "Finish 'New World Travel Diary' in the lounge, including its completion bonus.", "slot": "afternoon", "activityRef": "metaphor.activity.book.new-world-travel-diary", "statGains": { "imagination": 20 } },
         { "label": "At camp, spend time with Heismay (or another companion) for more Imagination.", "slot": "night", "statGains": { "imagination": 10 } },
         { "label": "Imagination reaches rank 3 (Visionary).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-07-18",
@@ -173,7 +262,8 @@
         { "label": "Cook Critical Meatballs from the worm meat drop.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Play Hulkenberg's game (balance offense and defense), then pass the City Ruins.", "slot": "afternoon", "statGains": { "wisdom": 20 } },
         { "label": "Start 'Bygone Days' at the campfire lounge.", "slot": "night", "activityRef": "metaphor.activity.book.bygone-days", "statGains": { "tolerance": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-07-19",
@@ -183,17 +273,34 @@
         { "label": "Cook Invincible Noodles (or Redgrass Bidou), then continue 'Bygone Days'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.bygone-days", "statGains": { "tolerance": 10 } },
         { "label": "Catherina's runner attacks again — win the rematch (Follower rank 3).", "slot": "afternoon" },
         { "label": "Finish 'Bygone Days'.", "slot": "night", "activityRef": "metaphor.activity.book.bygone-days", "statGains": { "tolerance": 20 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-07-20",
       "weekday": "idlesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Arrive in Brilehaven and collect all five route Gold Beetles: two on Seabreeze Street, two around Merchants' Bazaar, and one on Arenafront Wharf.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        {
+          "label": "Arrive in Brilehaven and collect all five route Gold Beetles: two on Seabreeze Street, two around Merchants' Bazaar, and one on Arenafront Wharf.",
+          "slot": "afternoon",
+          "activityRef": "metaphor.activity.gold-beetles",
+          "guidanceSections": [
+            {
+              "title": "Seabreeze Street",
+              "body": "Search the crates at the end of the Wary Shopkeep alley. For the other beetle, check east of the Calm Ferryman by the dock ramp before taking the ferry."
+            },
+            {
+              "title": "Bazaar and wharf",
+              "body": "Check Black Cat’s Claw, the crates/carriage near the Recruitment Centre, and the open area north of the Arenafront Wharf stairs."
+            }
+          ]
+        },
         { "label": "Big Bargain Day shopping at Merchants' Bazaar; stock the planned Briny Salt, Fruit Cordial, Bluefin Tuna, and Mora Coney Meat.", "slot": "afternoon" },
         { "label": "At Arenafront Wharf, make the route's first Gold Beetle exchanges with the Elderly Entomophile for Arcane Dragonblood and Venomward Charm.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
-      ]
+      ],
+      "notes": "July 21 is a story-only date with no route tasks. End day moves to the next authored date, July 22; this does not mark any July 22 task complete.",
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-07-22",
@@ -201,21 +308,105 @@
       "dayKind": "story",
       "steps": [
         { "label": "Visit the Nightprowler.", "slot": "afternoon" },
-        { "label": "Take the ferry to Charadrius — optional work can be handled through August 12; the main story resumes August 13.", "slot": "night" }
-      ]
+        {
+          "label": "Take the ferry to Charadrius — optional work can be handled through August 12; the main story resumes August 13.",
+          "slot": "night",
+          "guidanceSections": [
+            {
+              "title": "Mission window",
+              "body": "The operation window opens July 23 and ends August 12. The route chooses an earlier infiltration; the main story resumes August 13."
+            }
+          ]
+        }
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-07-23",
       "weekday": "arboursday",
       "dayKind": "free",
       "steps": [
-        { "label": "Brilehaven request sweep: take 'Soldier's Solace', 'Deeds and Diversions', 'The Chalice vs. The Brew', 'Efflorescent Youth', 'Dental Distress', 'Superior Scrimshaw', and the 'Grieving Ghost of the Goblet' bounty; give the Man in Pain a Medicinal Herb for Briny Threads and a Tail Bait.", "slot": "afternoon", "activityRef": "metaphor.activity.bounty-requests" },
-        { "label": "Get 'The Future of Magic' from Julian; this missable book remains obtainable through August 12.", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic" },
-        { "label": "Warp to Grand Trad: buy the Rainbow Flower, collect the newly appeared Gold Beetle at the fourth market stall south of the Herb-Seller, and identify Strohl's inheritance merchant.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
-        { "label": "Return to Brilehaven and give the Rainbow Flower to the Kindly Boy to finish 'Efflorescent Youth'.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
-        { "label": "Warp to Martira: collect the Gold Beetles in the MesmerEyes spice bag and by the Cattleracket Road hay bales, deliver Benevolent Bread to finish 'The Queen of Cuisine: Heart', then talk with Bardon (Follower rank 2).", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
-        { "label": "Debate Jin at the King's Rock (answer: we should help anyone).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 5 } }
-      ]
+        {
+          "label": "Brilehaven request sweep: take 'Soldier's Solace', 'Deeds and Diversions', 'The Chalice vs. The Brew', 'Efflorescent Youth', 'Dental Distress', 'Superior Scrimshaw', and the 'Grieving Ghost of the Goblet' bounty; give the Man in Pain a Medicinal Herb for Briny Threads and a Tail Bait.",
+          "slot": "afternoon",
+          "activityRef": "metaphor.activity.bounty-requests",
+          "guidanceSections": [
+            {
+              "title": "Inn and Nightprowler",
+              "body": "Start with the Exhausted Woman at the Angler’s Inn. The Overfamiliar Man aboard the Nightprowler starts Deeds and Diversions."
+            },
+            {
+              "title": "Wharf and Seabreeze",
+              "body": "Give the wharf’s Man in Pain a Medicinal Herb, then speak with the Brewer. On Seabreeze Street, visit the Kindly Boy and Sullen Man."
+            },
+            {
+              "title": "Merchants’ Bazaar",
+              "body": "Speak with the Craftsman near Strohl, then collect the Grieving Ghost bounty at the Recruitment Centre. Acceptance and later completion are separate route actions."
+            }
+          ],
+          "groupLabel": "Afternoon · Brilehaven"
+        },
+        {
+          "label": "Get 'The Future of Magic' from Julian; this missable book remains obtainable through August 12.",
+          "slot": "afternoon",
+          "activityRef": "metaphor.activity.book.the-future-of-magic",
+          "guidanceSections": [
+            {
+              "title": "Missable book",
+              "body": "Speak with Julian at the Angler’s Inn before August 12 ends. Keep the book pickup separate from the later reading sessions aboard the runner."
+            }
+          ],
+          "groupLabel": "Afternoon · Brilehaven"
+        },
+        {
+          "label": "Warp to Grand Trad: buy the Rainbow Flower, collect the newly appeared Gold Beetle at the fourth market stall south of the Herb-Seller, and identify Strohl's inheritance merchant.",
+          "slot": "afternoon",
+          "activityRef": "metaphor.activity.gold-beetles",
+          "guidanceSections": [
+            {
+              "title": "Grand Trad",
+              "body": "Buy the Rainbow Flower at St. Fermis Church. Search the fourth market stall south of the Herb-Seller for the newly available beetle."
+            },
+            {
+              "title": "Inheritance lead",
+              "body": "Speak with the fishmonger about Strohl’s father, then follow the lead to the Capital Merchant at the cathedral."
+            }
+          ],
+          "groupLabel": "Afternoon · Grand Trad"
+        },
+        {
+          "label": "Return to Brilehaven and give the Rainbow Flower to the Kindly Boy to finish 'Efflorescent Youth'.",
+          "slot": "afternoon",
+          "statGains": {
+            "tolerance": 10
+          },
+          "guidanceSections": [
+            {
+              "title": "Return to the boy",
+              "body": "Bring the Rainbow Flower back to the Kindly Boy in Brilehaven before moving on to Martira. Buying the flower alone does not finish the request."
+            }
+          ],
+          "groupLabel": "Afternoon · Brilehaven return"
+        },
+        {
+          "label": "Warp to Martira: collect the Gold Beetles in the MesmerEyes spice bag and by the Cattleracket Road hay bales, deliver Benevolent Bread to finish 'The Queen of Cuisine: Heart', then talk with Bardon (Follower rank 2).",
+          "slot": "afternoon",
+          "activityRef": "metaphor.activity.gold-beetles",
+          "guidanceSections": [
+            {
+              "title": "Martira pickups",
+              "body": "At MesmerEyes, inspect the red spice bag beside the stairs. On Cattleracket Road, search the hay bales near the separate cow."
+            },
+            {
+              "title": "Finish the visit",
+              "body": "Deliver Benevolent Bread to the Classy Woman at Visca Alba, then meet Bardon. Keep this city stop after the Brilehaven flower delivery."
+            }
+          ],
+          "groupLabel": "Afternoon · Martira"
+        },
+        { "label": "Debate Jin at the King's Rock (answer: we should help anyone).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 5 }, "groupLabel": "Night · Debate" }
+      ],
+      "displayOrder": [0, 1, 2, 3, 4, 5]
     },
     {
       "date": "2100-07-24",
@@ -224,16 +415,48 @@
       "steps": [
         { "label": "Debate Glodell at the King's Rock (answer: you only parrot Louis).", "slot": "afternoon", "statGains": { "eloquence": 11, "imagination": 5 } },
         { "label": "Accompany Heismay to his village (Follower rank 4).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-07-25",
       "weekday": "idlesday",
       "dayKind": "story",
       "steps": [
-        { "label": "With 15 Archetypes studied, turn in More's Task Chapter Three: Drifting (Follower rank 5); receive Chapter Four: Turmoil.", "slot": "afternoon", "statGains": { "imagination": 10 } },
-        { "label": "Infiltrate Charadrius — complete Sergeant Xanth's key objective, then take either the Maintenance Chief Ceiba or Master Sergeant Glechom corridor branch; only one corridor branch is needed for Help Anyone in Need. Tetrabreak is the key item for the boss chain.", "slot": "afternoon", "spoiler": true }
-      ]
+        {
+          "label": "With 15 Archetypes studied, turn in More's Task Chapter Three: Drifting (Follower rank 5); receive Chapter Four: Turmoil.",
+          "slot": "afternoon",
+          "statGains": {
+            "imagination": 10
+          },
+          "guidanceSections": [
+            {
+              "title": "More’s requirement",
+              "body": "Study 15 different Archetypes before reporting Chapter Three. A new chapter in the ledger records a task to do; it does not mean its requirement is already complete."
+            }
+          ]
+        },
+        {
+          "label": "Infiltrate Charadrius — complete Sergeant Xanth's key objective, then take either the Maintenance Chief Ceiba or Master Sergeant Glechom corridor branch; only one corridor branch is needed for Help Anyone in Need. Tetrabreak is the key item for the boss chain.",
+          "slot": "afternoon",
+          "spoiler": true,
+          "guidanceSections": [
+            {
+              "title": "Before entry",
+              "body": "Bring Tetrabreak for Ceiba’s physical barrier. Xanth can be controlled with ailments while you work on his key objective."
+            },
+            {
+              "title": "Choose one corridor",
+              "body": "Ceiba and Glechom are alternative branches for the completion route. Tetrabreak opens Ceiba to physical damage; Glechom calls for handling his opening Daze and attacks."
+            },
+            {
+              "title": "Later guards",
+              "body": "Cabio is weak to Electric and Salva to Pierce. Check party weaknesses before the chain of fights."
+            }
+          ]
+        }
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-07-26",
@@ -242,7 +465,8 @@
       "steps": [
         { "label": "Chat with Bardon (Follower rank 3).", "slot": "afternoon" },
         { "label": "Debate Rudolf at the King's Rock (answer: the tribes must stand together).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 5 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-07-27",
@@ -254,7 +478,8 @@
         { "label": "Tolerance reaches rank 3 (Generous).", "slot": "afternoon" },
         { "label": "Debate Milo at the King's Rock (answer: beauty is deeper than our skin).", "slot": "night", "statGains": { "eloquence": 11, "imagination": 5 } },
         { "label": "Eloquence reaches rank 4 (Influential).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3, 4]
     },
     {
       "date": "2100-07-28",
@@ -263,7 +488,8 @@
       "steps": [
         { "label": "Bardon shows off his project (Follower rank 4).", "slot": "afternoon" },
         { "label": "Coliseum certification battle — down the Crag Manjula quickly via its Strike weakness for the 25,000 reeve prize.", "slot": "night", "activityRef": "metaphor.activity.coliseum.ranked-league" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-07-29",
@@ -273,7 +499,8 @@
         { "label": "Depart on the three-dungeon road trip toward the Tomb of Lament via Inundo; cook Coney Stew; lend Hulkenberg an ear (Follower rank 6).", "slot": "afternoon" },
         { "label": "Inundo stop: buy the Toothbrush of Hygienia for 'Dental Distress', plus the planned Mellow Milk and Briny equipment.", "slot": "afternoon" },
         { "label": "Campfire, then a heart-to-heart with Heismay (Follower rank 5).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-07-30",
@@ -283,8 +510,23 @@
         { "label": "Cook Curative Coney Roast, then read 'The Future of Magic'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic", "statGains": { "wisdom": 10 } },
         { "label": "Stop by the Peregrine Falls.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Wisdom reaches rank 3 (Knowledgeable).", "slot": "afternoon" },
-        { "label": "Tomb of Lament: two Gold Beetles and Neuras' lost relic — hug the left wall and mind the crawl spaces.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
-      ]
+        {
+          "label": "Tomb of Lament: two Gold Beetles and Neuras' lost relic — hug the left wall and mind the crawl spaces.",
+          "slot": "afternoon",
+          "activityRef": "metaphor.activity.gold-beetles",
+          "guidanceSections": [
+            {
+              "title": "Lost relic",
+              "body": "From the stairs beside the Battered Adventurer, use the nearby crawl-space route to the marked relic chest."
+            },
+            {
+              "title": "Two beetles",
+              "body": "After the first wall-door mechanism, search the crawl space north of the lower-floor entry. Before the boss, inspect the crawl space east of its door beyond the mimic."
+            }
+          ]
+        }
+      ],
+      "displayOrder": [0, 1, 2, 3]
     }
   ]
 }

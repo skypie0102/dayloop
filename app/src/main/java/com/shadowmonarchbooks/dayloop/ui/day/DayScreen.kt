@@ -64,6 +64,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDateHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.hasPaintedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.preservesReadingState
+import com.shadowmonarchbooks.dayloop.ui.skin.PaintedDeadlineBoard
 import com.shadowmonarchbooks.dayloop.ui.skin.PaintedDateHeader
 
 /**
@@ -162,7 +163,8 @@ fun DayScreen(
                     )
                 }
 
-                (if (preserveReading) date else state.currentDate)?.let { current ->
+                if (LocalSkin.current.hasPaintedChrome()) PaintedDeadlineBoard(pack, date)
+                else (if (preserveReading) date else state.currentDate)?.let { current ->
                     nextDeadline(pack.deadlines, current, pack.calendar)?.let { (deadline, days) ->
                         DeadlineBanner(
                             deadline = deadline,

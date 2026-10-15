@@ -1,0 +1,467 @@
+{
+  "pass": "Metaphor M2 reading and Calendar",
+  "date": "2026-10-15",
+  "status": "implementation prepared; Actions acceptance pending",
+  "baselineProductionCommit": "784160bbd7ab399a6ac7109d7dd1eaf5fe0e6d80",
+  "candidate": {
+    "versionName": "0.16.0-rc14",
+    "versionCode": 46,
+    "contentVersion": 5,
+    "package": "com.shadowmonarchbooks.dayloop.candidate",
+    "expectedCertificateSha256": "a2ecebfb294ca69b4f09e7cd3da5bf013ade048b940c53eb2c0619060e3bf334"
+  },
+  "sources": {
+    "route": "https://steamcommunity.com/sharedfiles/filedetails/?id=3346632862",
+    "calendarArticle": "https://www.siliconera.com/when-are-special-discount-shop-sale-days-in-metaphor-refantazio/",
+    "calendarCrossCheck": "https://megamitensei.fandom.com/wiki/Calendar/Metaphor:_ReFantazio",
+    "calendarImages": [
+      {
+        "url": "https://www.siliconera.com/wp-content/uploads/2024/09/1923ed9c92e79-screenshoturl.jpg",
+        "dimensions": [
+          3840,
+          2160
+        ],
+        "sha256": "bb937c0439232110204181f06b514122e5b1995704f4cf697ce3af2b79481def",
+        "inspected": true,
+        "bundled": false
+      },
+      {
+        "url": "https://www.siliconera.com/wp-content/uploads/2024/09/1923eda591f23-screenshoturl.jpg",
+        "dimensions": [
+          3840,
+          2160
+        ],
+        "sha256": "618b7b12931109cf3e85ba8cd81e2cba66a14ab0ce1ac8d862a3ac9fd16ac9f6",
+        "inspected": true,
+        "bundled": false
+      },
+      {
+        "url": "https://www.siliconera.com/wp-content/uploads/2024/09/1923ed9f6ee29-screenshoturl.jpg",
+        "dimensions": [
+          3840,
+          2160
+        ],
+        "sha256": "7a6a30e382aa4461ccb4ced51ce48162a324758455f38e0eae0ba09057ef57c4",
+        "inspected": true,
+        "bundled": false
+      }
+    ]
+  },
+  "observed": [
+    "Flamesday, Watersday, Arboursday, Metalsday, Idlesday columns",
+    "Open thin-line grid with white selection frame",
+    "Separate current-date flag",
+    "Paper inspector with dark section strips"
+  ],
+  "mobileDecisions": [
+    "Phone stacks grid then inspector; wide windows show both",
+    "Turquoise underline identifies current game date",
+    "Select date then explicitly open authored walkthrough",
+    "No new bitmap or inferred discount schedule"
+  ],
+  "findings": [
+    "M2-CAL-01 rotated column origin; all date weekdays preserved",
+    "M2-CAL-02 July 21 story-only; no fabricated route day",
+    "M2-DLN-01 inclusive window ends for painted notices"
+  ],
+  "taskIdentity": {
+    "days": 139,
+    "tasks": 396,
+    "gameplayFieldSha256": "9c4ee9fde0b5059bafb9921f4a3e4bb1b4445707e50453f27b40745019769ec5",
+    "fields": [
+      "date",
+      "stepIndex",
+      "label",
+      "slot",
+      "activityRef",
+      "spoiler",
+      "statGains"
+    ]
+  },
+  "packHashes": {
+    "p3r": {
+      "files": 102,
+      "sha256": "11bada4e3a041949caf936ed6ae5b530910d4e9141c20269908eb67bc9fb640f"
+    },
+    "p5r": {
+      "files": 135,
+      "sha256": "cd4b7ee00ca6fd9244d754d5c27112a795d6f49d61531de3fee2648eb67c8313"
+    },
+    "metaphor": {
+      "files": 69,
+      "sha256": "52074950a132f5711a95f40677f9e9264c61e13acc7e6dff59b3ab49945d7775"
+    }
+  },
+  "guidedTasks": [
+    {
+      "date": "2100-06-05",
+      "stepIndex": 2,
+      "sectionTitles": [
+        "Before moving on"
+      ]
+    },
+    {
+      "date": "2100-06-11",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Preparation"
+      ]
+    },
+    {
+      "date": "2100-06-12",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Capital errands",
+        "Before the cathedral"
+      ]
+    },
+    {
+      "date": "2100-06-12",
+      "stepIndex": 1,
+      "sectionTitles": [
+        "Rescue route"
+      ]
+    },
+    {
+      "date": "2100-06-12",
+      "stepIndex": 2,
+      "sectionTitles": [
+        "Chest keys",
+        "Altar preparation"
+      ]
+    },
+    {
+      "date": "2100-06-12",
+      "stepIndex": 3,
+      "sectionTitles": [
+        "Boss sequence"
+      ]
+    },
+    {
+      "date": "2100-06-12",
+      "stepIndex": 4,
+      "sectionTitles": [
+        "More’s requirement"
+      ]
+    },
+    {
+      "date": "2100-06-24",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Runner routine",
+        "Camp supplies"
+      ]
+    },
+    {
+      "date": "2100-07-07",
+      "stepIndex": 1,
+      "sectionTitles": [
+        "Komero stop"
+      ]
+    },
+    {
+      "date": "2100-07-07",
+      "stepIndex": 2,
+      "sectionTitles": [
+        "Requirement check"
+      ]
+    },
+    {
+      "date": "2100-07-07",
+      "stepIndex": 3,
+      "sectionTitles": [
+        "Requirement check"
+      ]
+    },
+    {
+      "date": "2100-07-07",
+      "stepIndex": 4,
+      "sectionTitles": [
+        "Relic route",
+        "Beetle check"
+      ]
+    },
+    {
+      "date": "2100-07-15",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Mausoleum sweep",
+        "If drops are missing"
+      ]
+    },
+    {
+      "date": "2100-07-16",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Capital return"
+      ]
+    },
+    {
+      "date": "2100-07-20",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Seabreeze Street",
+        "Bazaar and wharf"
+      ]
+    },
+    {
+      "date": "2100-07-22",
+      "stepIndex": 1,
+      "sectionTitles": [
+        "Mission window"
+      ]
+    },
+    {
+      "date": "2100-07-23",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Inn and Nightprowler",
+        "Wharf and Seabreeze",
+        "Merchants’ Bazaar"
+      ]
+    },
+    {
+      "date": "2100-07-23",
+      "stepIndex": 1,
+      "sectionTitles": [
+        "Missable book"
+      ]
+    },
+    {
+      "date": "2100-07-23",
+      "stepIndex": 2,
+      "sectionTitles": [
+        "Grand Trad",
+        "Inheritance lead"
+      ]
+    },
+    {
+      "date": "2100-07-23",
+      "stepIndex": 3,
+      "sectionTitles": [
+        "Return to the boy"
+      ]
+    },
+    {
+      "date": "2100-07-23",
+      "stepIndex": 4,
+      "sectionTitles": [
+        "Martira pickups",
+        "Finish the visit"
+      ]
+    },
+    {
+      "date": "2100-07-25",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "More’s requirement"
+      ]
+    },
+    {
+      "date": "2100-07-25",
+      "stepIndex": 1,
+      "sectionTitles": [
+        "Before entry",
+        "Choose one corridor",
+        "Later guards"
+      ]
+    },
+    {
+      "date": "2100-07-30",
+      "stepIndex": 3,
+      "sectionTitles": [
+        "Lost relic",
+        "Two beetles"
+      ]
+    },
+    {
+      "date": "2100-08-19",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Village setup"
+      ]
+    },
+    {
+      "date": "2100-08-19",
+      "stepIndex": 1,
+      "sectionTitles": [
+        "Grand Trad loop",
+        "Newly reachable pickup"
+      ]
+    },
+    {
+      "date": "2100-08-19",
+      "stepIndex": 2,
+      "sectionTitles": [
+        "Back on Virga Island"
+      ]
+    },
+    {
+      "date": "2100-08-19",
+      "stepIndex": 4,
+      "sectionTitles": [
+        "Three Polar Stones",
+        "Temple navigation"
+      ]
+    },
+    {
+      "date": "2100-08-20",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Turn in the stones"
+      ]
+    },
+    {
+      "date": "2100-08-27",
+      "stepIndex": 1,
+      "sectionTitles": [
+        "Storm preparation",
+        "Before leaving"
+      ]
+    },
+    {
+      "date": "2100-08-27",
+      "stepIndex": 2,
+      "sectionTitles": [
+        "More’s requirement"
+      ]
+    },
+    {
+      "date": "2100-09-13",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Altabury errands"
+      ]
+    },
+    {
+      "date": "2100-09-13",
+      "stepIndex": 1,
+      "sectionTitles": [
+        "Runner and request"
+      ]
+    },
+    {
+      "date": "2100-09-13",
+      "stepIndex": 2,
+      "sectionTitles": [
+        "Bridge and bounty"
+      ]
+    },
+    {
+      "date": "2100-09-13",
+      "stepIndex": 3,
+      "sectionTitles": [
+        "New request"
+      ]
+    },
+    {
+      "date": "2100-09-13",
+      "stepIndex": 4,
+      "sectionTitles": [
+        "Night visit"
+      ]
+    },
+    {
+      "date": "2100-09-18",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Before departure"
+      ]
+    },
+    {
+      "date": "2100-09-18",
+      "stepIndex": 3,
+      "sectionTitles": [
+        "Relic and beetle",
+        "Rusty Greatsword detour"
+      ]
+    },
+    {
+      "date": "2100-09-24",
+      "stepIndex": 2,
+      "sectionTitles": [
+        "Before the story marker"
+      ]
+    },
+    {
+      "date": "2100-10-01",
+      "stepIndex": 4,
+      "sectionTitles": [
+        "Exchange requirement"
+      ]
+    },
+    {
+      "date": "2100-10-09",
+      "stepIndex": 1,
+      "sectionTitles": [
+        "Tower pickup",
+        "Dragon preparation"
+      ]
+    },
+    {
+      "date": "2100-10-12",
+      "stepIndex": 2,
+      "sectionTitles": [
+        "Equipment check"
+      ]
+    },
+    {
+      "date": "2100-10-15",
+      "stepIndex": 1,
+      "sectionTitles": [
+        "One continuous run"
+      ]
+    },
+    {
+      "date": "2100-10-17",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Crafting checklist"
+      ]
+    },
+    {
+      "date": "2100-10-25",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Last preparation day"
+      ]
+    },
+    {
+      "date": "2100-10-26",
+      "stepIndex": 0,
+      "sectionTitles": [
+        "Point of no return"
+      ]
+    },
+    {
+      "date": "2100-10-26",
+      "stepIndex": 1,
+      "sectionTitles": [
+        "Optional strongest-boss branch"
+      ]
+    },
+    {
+      "date": "2100-10-26",
+      "stepIndex": 4,
+      "sectionTitles": [
+        "Final preparation"
+      ]
+    }
+  ],
+  "validation": {
+    "localGradle": "blocked distribution host; delegated to required GitHub Actions",
+    "native": "pending",
+    "requiredCI": "pending",
+    "isolatedHandIn": "pending",
+    "baseline": "pending"
+  },
+  "remaining": [
+    "M3 Follower/quest proof",
+    "M4 achievements/references",
+    "M5 utilities/widget/art",
+    "Exact non-Calendar submenu references",
+    "Spoken TalkBack",
+    "Measured performance",
+    "Physical upgrade/stable acceptance"
+  ]
+}

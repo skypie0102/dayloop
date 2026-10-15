@@ -35,6 +35,7 @@ import com.shadowmonarchbooks.dayloop.ui.components.DeadlineBanner
 import com.shadowmonarchbooks.dayloop.ui.components.StepRow
 import com.shadowmonarchbooks.dayloop.ui.components.TasksList
 import com.shadowmonarchbooks.dayloop.ui.theme.DayloopTheme
+import com.shadowmonarchbooks.dayloop.ui.month.PaintedMonthScreen
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -158,5 +159,32 @@ class PaintedDailyTest {
         compose.onNodeWithText("2100", substring = true).assertDoesNotExist()
         compose.onNodeWithText("End day").performScrollTo().assertHeightIsAtLeast(48.dp)
         capture("metaphor-components-header-date-double-text")
+    }
+
+    @Test fun fiveColumnCalendarKeepsItsDateTargetsAndPaperInspectorAtNarrowDoubleText() {
+        val loaded = pack("metaphor")
+        val days = requireNotNull(PackLoader.decodeWalkthrough(asset("metaphor/walkthrough/2100-06.json")))
+            .days.associateBy { it.date }
+        compose.setContent {
+            val density = LocalDensity.current
+            CompositionLocalProvider(LocalDensity provides Density(density.density, 2f)) {
+                DayloopTheme(loaded) {
+                    val skin = LocalSkin.current
+                    SideEffect { fontReady = skin.type.display?.family != null }
+                    Box(Modifier.fillMaxHeight().width(280.dp).background(MaterialTheme.colorScheme.background)) {
+                        PaintedMonthScreen(loaded, days, listOf("2100-06"), 0, "2100-06-12",
+                            "100% Completion Route", "narrow-fixture", {}, {}, {})
+                    }
+                }
+            }
+        }
+        compose.waitUntil(15_000) { fontReady }
+        compose.onNodeWithTag("calendar-date-2100-06-02").assertWidthIsAtLeast(48.dp).assertHeightIsAtLeast(48.dp)
+        compose.onNodeWithContentDescription("Flamesday").assertIsDisplayed()
+        compose.onNodeWithContentDescription("Idlesday").assertIsDisplayed()
+        capture("metaphor-m2-narrow-grid-double-text")
+        compose.onNodeWithTag("calendar-date-2100-06-12").performScrollTo().performClick()
+        compose.onNodeWithTag("painted-open-day").performScrollTo().assertIsDisplayed().assertHeightIsAtLeast(48.dp)
+        capture("metaphor-m2-narrow-inspector-double-text")
     }
 }

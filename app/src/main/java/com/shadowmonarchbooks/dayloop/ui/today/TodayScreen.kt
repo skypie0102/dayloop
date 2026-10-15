@@ -83,6 +83,7 @@ import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDateHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.hasPaintedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.preservesReadingState
+import com.shadowmonarchbooks.dayloop.ui.skin.PaintedDeadlineBoard
 import com.shadowmonarchbooks.dayloop.ui.skin.PaintedDateHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
@@ -320,7 +321,7 @@ fun TodayScreen(
                 emptySet()
             }
         }
-        upcoming?.let { (deadline, days) ->
+        if (skin.hasPaintedChrome()) PaintedDeadlineBoard(pack, date) else upcoming?.let { (deadline, days) ->
             DeadlineBanner(
                 deadline = deadline.copy(label = todayDeadlineLabel(deadline.label)),
                 daysLeft = days,
@@ -362,7 +363,7 @@ fun TodayScreen(
         }
 
         if (day != null) {
-            if (submerged) {
+            if (preserveReading) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -418,7 +419,9 @@ fun TodayScreen(
             }
         } else {
             Text(
-                text = "No authored content for this date yet — coverage grows month by month. The clock still advances.",
+                text = if (skin.hasPaintedChrome() && date in pack.pack.calendar.nonPlayableDates)
+                    "Story-only date. No route tasks are scheduled. Use End day to continue."
+                else "No authored content for this date yet — coverage grows month by month. The clock still advances.",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )

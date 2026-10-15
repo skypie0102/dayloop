@@ -9,7 +9,8 @@
         { "label": "Cook Magical Bread from the campfire moth (or a fallback dish).", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Continue 'The Future of Magic' (answer: immediately is too rash).", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic", "statGains": { "wisdom": 10 } },
         { "label": "Run through Gracia Forest — the mobs are low level; sweep it fully.", "slot": "afternoon" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-08-02",
@@ -19,7 +20,8 @@
         { "label": "Head for the Forsaken Tower; cook Redgrass-Roasted Bidou on the way.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Finish 'The Future of Magic' (answer: we have to live and fight on).", "slot": "afternoon", "activityRef": "metaphor.activity.book.the-future-of-magic", "statGains": { "wisdom": 20 } },
         { "label": "Lina drops out of the tournament after her defeat.", "slot": "afternoon", "spoiler": true }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-08-03",
@@ -30,7 +32,8 @@
         { "label": "Courage reaches rank 3 (Fearless).", "slot": "afternoon" },
         { "label": "Catherina attacks once more — win it (Follower rank 4).", "slot": "afternoon" },
         { "label": "Climb the Forsaken Tower's eight floors; grab the Gold Beetle on the north side.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-08-04",
@@ -40,7 +43,8 @@
         { "label": "Brilehaven turn-in spree: Dragonthistle Berries, Toothbrush of Hygienia (pays a Gold Beetle), Ebony Horn, Fatolich report, Chalice of Legends, and the tower deed.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles", "statGains": { "courage": 20 } },
         { "label": "Accompany Strohl to negotiate with Lord Hydran (Follower rank 7).", "slot": "afternoon" },
         { "label": "Help Heismay search the eugief village for his son's urn (Follower rank 6).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-08-05",
@@ -49,7 +53,8 @@
       "steps": [
         { "label": "Tell Maria about the sights and help with Fabienne's sign (Follower rank 6).", "slot": "afternoon" },
         { "label": "Answer Brigitta's summons in Grand Trad (Follower rank 5).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-08-06",
@@ -58,7 +63,8 @@
       "steps": [
         { "label": "Check on Bardon (Follower rank 5).", "slot": "afternoon" },
         { "label": "See how Alonzo is settling in at Brilehaven (Follower rank 2).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-08-07",
@@ -67,7 +73,8 @@
       "steps": [
         { "label": "Join Strohl visiting his parents at Merchants' Bazaar (Follower rank 8).", "slot": "afternoon" },
         { "label": "Speak with the Watchman for Brigitta (Follower rank 6).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-08-08",
@@ -76,7 +83,8 @@
       "steps": [
         { "label": "Watch Martira's governor vote with Bardon (Follower rank 6); take 'The Right to Rule' (level-60 boss — park it for now).", "slot": "afternoon" },
         { "label": "Tour Alonzo's home village (Follower rank 3).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-08-09",
@@ -85,7 +93,8 @@
       "steps": [
         { "label": "Final bungee challenge with the super-fine rope — reset until the plunge lands.", "slot": "afternoon", "statGains": { "courage": 10 } },
         { "label": "Take in the view from the Watchtower above Angler's Inn Square.", "slot": "night", "statGains": { "wisdom": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-08-10",
@@ -94,7 +103,8 @@
       "steps": [
         { "label": "Take the ferry tour around the bay.", "slot": "afternoon", "statGains": { "wisdom": 11 } },
         { "label": "Alonzo pulls you deeper into his scheme (Follower rank 4).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-08-11",
@@ -103,7 +113,8 @@
       "steps": [
         { "label": "Milk the cow for six Mellow Milk at Cattleracket Road.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
         { "label": "Hear the Masked Woman who only appears at night.", "slot": "night", "statGains": { "tolerance": 8 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-08-12",
@@ -112,7 +123,8 @@
       "steps": [
         { "label": "Donate to the Earnest Youth for the Rainbow Roquefort recipe.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
         { "label": "Alonzo's next move (Follower rank 5).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-08-13",
@@ -121,7 +133,8 @@
       "steps": [
         { "label": "Attend the soiree, then sneak into Louis' quarters for the magic formula.", "slot": "night", "spoiler": true },
         { "label": "Gallica reaches Follower rank 5; daily Pantry & Washroom visit, then bed.", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-08-14",
@@ -131,7 +144,8 @@
         { "label": "Drakodios inquiry chain: The Greatest Catch notes, then the merchant, then the colony scout; depart for Virga Island.", "slot": "afternoon" },
         { "label": "Cook Cursed Love Ballad, then play Hulkenberg's game (answer: my cavalry).", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner", "statGains": { "wisdom": 10 } },
         { "label": "At camp, talk with Junah before bed.", "slot": "night", "statGains": { "imagination": 13 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-08-15",
@@ -142,7 +156,8 @@
         { "label": "Visit the Towering Seawall.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Wisdom reaches rank 4 (Erudite).", "slot": "afternoon" },
         { "label": "The storm breaks — a tentacled horror attacks the fleet; bring Electric and AoE, take the legs first.", "slot": "night", "spoiler": true }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-08-16",
@@ -152,7 +167,8 @@
         { "label": "Cook Stale Blackbread from the pantry leftovers.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Spend the afternoon with any companion aboard the runner to receive their unique +5-all-stats accessory.", "slot": "afternoon" },
         { "label": "At camp, spend time with Junah.", "slot": "night", "statGains": { "imagination": 13 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-08-17",
@@ -160,7 +176,8 @@
       "dayKind": "story",
       "steps": [
         { "label": "The lance must be in hand by September 5 — plan the Virga Island push.", "slot": "afternoon" }
-      ]
+      ],
+      "displayOrder": [0]
     },
     {
       "date": "2100-08-18",
@@ -170,32 +187,98 @@
         { "label": "Land on Virga Island; collect all five Gold Beetles around the Village of Pagans before the Dragon Table.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "On the runner, continue 'Top Secret Poetry! Do Not Read!'.", "slot": "afternoon", "activityRef": "metaphor.activity.book.top-secret-poetry", "statGains": { "courage": 11 } },
         { "label": "Rescue Eupha from the Pagan loyalists.", "slot": "afternoon", "spoiler": true }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-08-19",
       "weekday": "metalsday",
       "dayKind": "story",
       "steps": [
-        { "label": "Receive 'Obtain Drakodios'; around the Village of Pagans take 'Peak Curiosity' and 'The Price of Hope' before following the Potion of Blight lead to Grand Trad.", "slot": "afternoon" },
-        { "label": "In Grand Trad, appraise the mustari igniter, take 'The Greater One-Eyed Scoundrel' bounty, buy Parchwater, and collect the newly unblocked Gold Beetle beside Comfort Concoctions.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
-        { "label": "Back on Virga Island, take 'A Guiding Gift', return the appraised igniter to finish 'The Price of Hope', have Edeni prepare the Potion of Blight, and take Junah's 'Save the Mourning Snakes'.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
-        { "label": "Finish 'Top Secret Poetry! Do Not Read!' on the runner, including its completion bonus.", "slot": "afternoon", "activityRef": "metaphor.activity.book.top-secret-poetry", "statGains": { "courage": 22 } },
-        { "label": "Work the Dragon Temple and Drakongrace Shinjuku to the guardian; collect all three Polar Stones for 'A Guiding Gift' and level General to 15 before the boss.", "slot": "afternoon", "spoiler": true },
-        { "label": "More reaches Follower rank 6 and hands over 'More's Task Chapter Five: Resolve'.", "slot": "afternoon", "statGains": { "imagination": 10 } },
-        { "label": "Gallica reaches Follower rank 6 after the Virga Island operation is cleared.", "slot": "afternoon", "spoiler": true }
-      ]
+        {
+          "label": "Receive 'Obtain Drakodios'; around the Village of Pagans take 'Peak Curiosity' and 'The Price of Hope' before following the Potion of Blight lead to Grand Trad.",
+          "slot": "afternoon",
+          "guidanceSections": [
+            {
+              "title": "Village setup",
+              "body": "Visit the Dejected Man for Peak Curiosity and the Enthusiastic Woman to the west for the igniter appraisal request. Obtain the Potion of Blight lead before warping away."
+            }
+          ],
+          "groupLabel": "Afternoon · Village of Pagans"
+        },
+        {
+          "label": "In Grand Trad, appraise the mustari igniter, take 'The Greater One-Eyed Scoundrel' bounty, buy Parchwater, and collect the newly unblocked Gold Beetle beside Comfort Concoctions.",
+          "slot": "afternoon",
+          "activityRef": "metaphor.activity.gold-beetles",
+          "guidanceSections": [
+            {
+              "title": "Grand Trad loop",
+              "body": "Ask the Igniter Merchant in Lycaon to appraise the mustari igniter. Take the bounty at the Recruitment Centre and buy Parchwater at Comfort Concoctions."
+            },
+            {
+              "title": "Newly reachable pickup",
+              "body": "Check the area beside Comfort Concoctions after the pots have moved. This beetle was blocked on earlier visits."
+            }
+          ],
+          "groupLabel": "Afternoon · Grand Trad"
+        },
+        {
+          "label": "Back on Virga Island, take 'A Guiding Gift', return the appraised igniter to finish 'The Price of Hope', have Edeni prepare the Potion of Blight, and take Junah's 'Save the Mourning Snakes'.",
+          "slot": "afternoon",
+          "statGains": {
+            "wisdom": 10
+          },
+          "guidanceSections": [
+            {
+              "title": "Back on Virga Island",
+              "body": "Visit the Hoarse Fisher-Crone south of the Inn Well for A Guiding Gift. Return the appraised igniter, have Edeni make the potion, then speak with Junah for her request."
+            }
+          ],
+          "groupLabel": "Afternoon · Virga Island return"
+        },
+        { "label": "Finish 'Top Secret Poetry! Do Not Read!' on the runner, including its completion bonus.", "slot": "afternoon", "activityRef": "metaphor.activity.book.top-secret-poetry", "statGains": { "courage": 22 }, "groupLabel": "Afternoon · Runner" },
+        {
+          "label": "Work the Dragon Temple and Drakongrace Shinjuku to the guardian; collect all three Polar Stones for 'A Guiding Gift' and level General to 15 before the boss.",
+          "slot": "afternoon",
+          "spoiler": true,
+          "guidanceSections": [
+            {
+              "title": "Three Polar Stones",
+              "body": "Collect one in the Corridor and two on the Labyrinthine Path. The pickups initially appear unidentified; keep all three for the Fisher-Crone."
+            },
+            {
+              "title": "Temple navigation",
+              "body": "Use the golden ceiling markings to identify safe stairs through the fog. Budget MP and recovery items for the longer Shinjuku section before the guardian."
+            }
+          ],
+          "groupLabel": "Afternoon · Dragon Temple"
+        },
+        { "label": "More reaches Follower rank 6 and hands over 'More's Task Chapter Five: Resolve'.", "slot": "afternoon", "statGains": { "imagination": 10 }, "groupLabel": "Afternoon · Akademeia" },
+        { "label": "Gallica reaches Follower rank 6 after the Virga Island operation is cleared.", "slot": "afternoon", "spoiler": true, "groupLabel": "Afternoon · Story" }
+      ],
+      "displayOrder": [0, 1, 2, 3, 4, 5, 6]
     },
     {
       "date": "2100-08-20",
       "weekday": "idlesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Eht Ria: give the three Polar Stones to the Hoarse Fisher-Crone to finish 'A Guiding Gift', take Edeni's 'Trial of Malnova', and collect the Clumsy Boy's Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        {
+          "label": "Eht Ria: give the three Polar Stones to the Hoarse Fisher-Crone to finish 'A Guiding Gift', take Edeni's 'Trial of Malnova', and collect the Clumsy Boy's Gold Beetle.",
+          "slot": "afternoon",
+          "activityRef": "metaphor.activity.gold-beetles",
+          "guidanceSections": [
+            {
+              "title": "Turn in the stones",
+              "body": "Return all three Polar Stones to the Hoarse Fisher-Crone. Then speak with Edeni for Trial of Malnova and the Clumsy Boy for the beetle."
+            }
+          ]
+        },
         { "label": "Accompany Hulkenberg to settle matters with Rhodanthe (Follower rank 7).", "slot": "afternoon" },
         { "label": "At night, take in the View of the Beach at Eht Ria.", "slot": "night", "statGains": { "imagination": 13 } },
         { "label": "Imagination reaches rank 4 (Revolutionary).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-08-21",
@@ -204,7 +287,8 @@
       "steps": [
         { "label": "Alonzo's thread continues (Follower rank 6).", "slot": "afternoon" },
         { "label": "Heismay's vigil at the eugief village (Follower rank 7).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-08-22",
@@ -215,7 +299,8 @@
         { "label": "Cook Almighty Golden Stew; Hulkenberg's resolve (Follower rank 8).", "slot": "afternoon" },
         { "label": "Stop at the Prismatic Sea.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "At camp, work on the Gauntlet Runner with Neuras.", "slot": "night", "statGains": { "wisdom": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-08-23",
@@ -224,7 +309,8 @@
       "steps": [
         { "label": "Cook Holistic Whitefish Platter; sit with Heismay (Follower rank 8).", "slot": "afternoon" },
         { "label": "Clear the Land of Ceremony — sweep every trance crystal; Eupha's Summon Dragon God synthesis makes the boss simple (Follower rank 1).", "slot": "afternoon", "statGains": { "wisdom": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-08-24",
@@ -235,7 +321,8 @@
         { "label": "Orbwise Path: two Gold Beetles and the Heartwarmers from the Anxious Soldier.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Junah shows herself after the boss (Follower rank 1).", "slot": "afternoon", "statGains": { "imagination": 10 }, "spoiler": true },
         { "label": "Show Neuras the lost relic (Follower rank 4).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-08-25",
@@ -244,7 +331,8 @@
       "steps": [
         { "label": "Fish with the Tail Bait for the Lord of the Lake.", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" },
         { "label": "At camp, keep watch with Heismay.", "slot": "night", "statGains": { "tolerance": 8 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-08-26",
@@ -254,7 +342,8 @@
         { "label": "Cook Secretest of Secrets; tidy the storage room for extra bait.", "slot": "afternoon", "activityRef": "metaphor.activity.cooking.runner" },
         { "label": "Sporico Cave run.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Keep the night watch with Heismay.", "slot": "night", "statGains": { "tolerance": 8 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-08-27",
@@ -262,9 +351,36 @@
       "dayKind": "story",
       "steps": [
         { "label": "Pray at the altar with a companion of your choice.", "slot": "afternoon" },
-        { "label": "Clear the Spire of Blind Faith for Junah's 'Save the Mourning Snakes' request — permanent storm weather; grab the Gold Beetle on the north side of the sixth floor.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
-        { "label": "With 25 Archetypes studied, report to More (Follower rank 7); receive 'More's Task Chapter Six: The End'.", "slot": "afternoon", "statGains": { "imagination": 10 } }
-      ]
+        {
+          "label": "Clear the Spire of Blind Faith for Junah's 'Save the Mourning Snakes' request — permanent storm weather; grab the Gold Beetle on the north side of the sixth floor.",
+          "slot": "afternoon",
+          "activityRef": "metaphor.activity.gold-beetles",
+          "guidanceSections": [
+            {
+              "title": "Storm preparation",
+              "body": "This climb has persistent bad weather on the scheduled route. Do not depend on weakness or critical hits granting extra actions."
+            },
+            {
+              "title": "Before leaving",
+              "body": "Search the north side of floor 6 for the beetle. For the boss, avoid Wind/Ice weaknesses and bring healing plus buff/debuff removal."
+            }
+          ]
+        },
+        {
+          "label": "With 25 Archetypes studied, report to More (Follower rank 7); receive 'More's Task Chapter Six: The End'.",
+          "slot": "afternoon",
+          "statGains": {
+            "imagination": 10
+          },
+          "guidanceSections": [
+            {
+              "title": "More’s requirement",
+              "body": "Study 25 different Archetypes, then report the completed chapter at Akademeia. The count is distinct Archetypes studied, not a single Archetype’s rank."
+            }
+          ]
+        }
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-08-28",
@@ -275,7 +391,8 @@
         { "label": "Courage reaches rank 4 (Dauntless).", "slot": "afternoon" },
         { "label": "Explore Brilehaven with Eupha (Follower rank 2); collect the gamble winnings.", "slot": "afternoon" },
         { "label": "Shop with Junah (Follower rank 2).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-08-29",
@@ -286,7 +403,8 @@
         { "label": "Hear the Village Cleric's mustari history lesson.", "slot": "afternoon", "statGains": { "tolerance": 11 } },
         { "label": "Tolerance reaches rank 4 (Benevolent).", "slot": "afternoon" },
         { "label": "Answer Brigitta's summons (Follower rank 7).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-08-30",
@@ -295,7 +413,8 @@
       "steps": [
         { "label": "Visit the Sanctor with Eupha (Follower rank 3).", "slot": "afternoon" },
         { "label": "Help Junah rehearse for the festival (Follower rank 3).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     }
   ]
 }

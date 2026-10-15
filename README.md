@@ -55,8 +55,10 @@ planes, actual game-date navigation and compact named icon tabs. rc13 (45),
 Metaphor content4, passed 67 full native tests/133 captures, two before-build
 tests/seven captures and the isolated hand-in check. Both Persona packs' content
 and all 396 Metaphor tasks remain unchanged.
-Next is M2's source guidance and exact Calendar comparison, followed by M3
-Followers/quests, M4 achievements/references, M5 utilities/art/widget, M6
+The [M2 reading/Calendar pass](docs/packs/metaphor-reading-calendar-review.md)
+is implemented for rc14 (46), content5, with validation running: 48 guided tasks,
+inclusive mission cutoffs, date previews and a source-matched five-column grid.
+Next are M3 Followers/quests, M4 achievements/references, M5 utilities/art/widget, M6
 motion/accessibility/performance and M7 release acceptance. Specialized submenu,
 spoken, physical-device and performance gates remain open.
 
