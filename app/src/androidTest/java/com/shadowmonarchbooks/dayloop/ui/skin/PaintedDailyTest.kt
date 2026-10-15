@@ -185,6 +185,14 @@ class PaintedDailyTest {
         capture("metaphor-m2-narrow-grid-double-text")
         compose.onNodeWithTag("calendar-date-2100-06-12").performScrollTo().performClick()
         compose.onNodeWithTag("painted-open-day").performScrollTo().assertIsDisplayed().assertHeightIsAtLeast(48.dp)
+        val layouts = mutableListOf<androidx.compose.ui.text.TextLayoutResult>()
+        compose.onNodeWithText("Open walkthrough", useUnmergedTree = true)
+            .performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.GetTextLayoutResult) { it(layouts) }
+        val layout = layouts.single()
+        assertTrue("The command must wrap between words at 200% text", (0 until layout.lineCount).any {
+            layout.layoutInput.text.text.substring(layout.getLineStart(it), layout.getLineEnd(it, visibleEnd = true))
+                .contains("walkthrough")
+        })
         capture("metaphor-m2-narrow-inspector-double-text")
     }
 }

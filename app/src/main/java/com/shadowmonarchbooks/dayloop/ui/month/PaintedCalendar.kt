@@ -201,7 +201,8 @@ private fun PaintedDateInspector(pack: LoadedPack, date: String, day: Day?, curr
             else -> "${day.steps.size} tasks · ${routeLabel}"
         }, style = MaterialTheme.typography.bodyMedium, color = colors.inverseOnSurface)
         if (day != null) {
-            PaintedActionButton("Open walkthrough", { onOpenDay(date) }, Modifier.fillMaxWidth().testTag("painted-open-day"), primary = true)
+            PaintedActionButton("Open walkthrough", { onOpenDay(date) }, Modifier.fillMaxWidth().testTag("painted-open-day"),
+                primary = true, labelStyle = MaterialTheme.typography.titleMedium)
         }
         val events = pack.deadlines.filter { deadlineEnd(it) == date || (it.window != null && deadlineStart(it) == date) }
         if (events.isNotEmpty()) {

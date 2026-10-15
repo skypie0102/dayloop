@@ -22,21 +22,22 @@ class MetaphorReadingFlowTest : MetaphorReviewFlow() {
 
     @Test fun selectedStoryDateSurvivesTabsAndRecreationWithoutChangingTheClockAtDoubleText() {
         launch("2100-07-20", scale = 2f)
+        val calendar = dependencies.store().state.value.selected!!.calendar
         tab("Calendar").performClick()
         compose.onNodeWithTag("calendar-date-2100-07-20").assertIsSelected()
         compose.onNodeWithTag("calendar-date-2100-07-21").performScrollTo().performClick().assertIsSelected()
         compose.onNodeWithTag("calendar-date-2100-07-20").assertIsNotSelected()
             .assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Current game date, Walkthrough available"))
-        compose.onNodeWithTag("painted-selected-date").performScrollTo().assertTextContains("Jul 21")
+        compose.onNodeWithTag("painted-selected-date").performScrollTo().assertTextEquals(formatDate("2100-07-21", calendar))
         compose.onNodeWithText("Story only. No route tasks are scheduled for this date.").assertIsDisplayed()
         compose.onNodeWithTag("painted-open-day").assertDoesNotExist()
         capture("metaphor-m2-story-preview-double-text")
         scenario!!.recreate()
         compose.waitUntil(15_000) { compose.onAllNodesWithTag("painted-selected-date").fetchSemanticsNodes().isNotEmpty() }
-        compose.onNodeWithTag("painted-selected-date").assertTextContains("Jul 21").assertIsDisplayed()
+        compose.onNodeWithTag("painted-selected-date").assertTextEquals(formatDate("2100-07-21", calendar)).assertIsDisplayed()
         tab("Today").performClick()
         tab("Calendar").performClick()
-        compose.onNodeWithTag("painted-selected-date").assertTextContains("Jul 21").assertIsDisplayed()
+        compose.onNodeWithTag("painted-selected-date").assertTextEquals(formatDate("2100-07-21", calendar)).assertIsDisplayed()
         unchangedClockAndMarks("2100-07-20")
         capture("metaphor-m2-story-preview-restored-double-text")
     }
@@ -84,7 +85,7 @@ class MetaphorReadingFlowTest : MetaphorReviewFlow() {
         compose.onNodeWithContentDescription(formatDate("2100-07-30", calendar)).assertIsDisplayed()
         capture("metaphor-m2-july-thirty-source")
         compose.onNodeWithContentDescription("Back").performClick()
-        compose.onNodeWithTag("painted-selected-date").assertTextContains("Jul 30")
+        compose.onNodeWithTag("painted-selected-date").assertTextEquals(formatDate("2100-07-30", calendar))
         repeat(3) { compose.onNodeWithContentDescription("Next month").performScrollTo().performClick() }
         compose.onNodeWithTag("painted-month-heading").assertTextEquals("October")
         compose.onNodeWithContentDescription("Next month").assertIsNotEnabled()
