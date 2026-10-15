@@ -2,7 +2,7 @@
 
 This pass adds inline guidance to 48 existing tasks and replaces the painted
 Calendar with an open five-column ink grid and a paper date inspector. It keeps
-the accepted M1 shell and all 396 stored task identities. Candidate target:
+the accepted M1 shell and all 396 stored task identities. Verified candidate:
 `0.16.0-rc14` / 46, Metaphor content5.
 
 ## Sources and findings
@@ -57,16 +57,42 @@ keeps the existing auto-skip behavior; Back retains those settled marks.
 
 ## Validation and delivery
 
-Implementation and test fixtures are prepared; native/CI review is pending.
-Local Gradle could not download its distribution because this environment blocks
-that host. The required Actions build runs pack/core/progress/app tests,
-Android-test compilation, all three packlint targets and signing verification.
+Validated October 15 in [PR #16](https://github.com/skypie0102/dayloop/pull/16).
+Reviewed source `7adf548b5b70a7d69bfcfbeec0deb5bb987e9a32` was built from
+`afcfab446973912f97b223ed5a073f7a826fcf4c`; both have tree
+`7661f0bd0b185ce78540877af0d50502e39d92cc`. Later documentation edits leave the
+production trees recorded in the ledger unchanged.
 
-The native matrix includes the complete Persona regression suite, new M2 flows,
-an isolated hand-in case and two before-build tests pinned to accepted production
-`784160bbd7ab399a6ac7109d7dd1eaf5fe0e6d80`. Only the baseline test fixture is
-overlaid, with a production/content diff assertion. Evidence and APK identity
-will be recorded after those jobs complete.
+- Required [CI run 38698696624](https://github.com/skypie0102/dayloop/actions/runs/38698696624)
+  passed app/pack/progress tests, Android-test compilation and candidate signing.
+  All three packlint targets report **zero errors and zero warnings**. Candidate
+  and stable packaging checks passed too. Local Gradle could not download its
+  distribution from this environment; Actions performed the build and tests.
+- [Native run 38698696595](https://github.com/skypie0102/dayloop/actions/runs/38698696595)
+  passed **74 full tests**, producing **145 captures**: 28 Metaphor and 117 Persona
+  regression states. Two before-build tests produced seven captures; the isolated
+  hand-in test passed with one capture. There are no skipped tests or failures.
+  Contact sheets and full-resolution Metaphor states cover normal/200% text,
+  the 280dp Calendar, mission cutoffs, explicit date preview, story-only/grey dates,
+  month/swipe boundaries, source/Back, recreation, reversible marking and footer
+  clearance. These checks do not establish spoken TalkBack or measured performance.
+- Before builds pin accepted M1 production
+  `784160bbd7ab399a6ac7109d7dd1eaf5fe0e6d80`. Only the baseline fixture is
+  overlaid; the workflow asserts unchanged production/content inputs.
+- Regression fixtures now wait for rendered profile insertion/removal after
+  Room writes, returning lists and expanded Episode guide commands before scrolling. Persona
+  production rendering and content are unchanged.
+- The APK is `0.16.0-rc14` / 46, package
+  `com.shadowmonarchbooks.dayloop.candidate`, **48,043,428 bytes**. Its ZIP,
+  manifest, pinned signer certificate and all **306 bundled content files**
+  match the reviewed source (P3R 102, P5R 135, Metaphor 69). The staged binary
+  predates the regression-fixture waits; all production trees are identical.
+- APK SHA-256:
+  `beaff368f7b1c39c345b77a33684a96a8c4b951f2d70af06d039d1182180b509`.
+  Certificate SHA-256:
+  `a2ecebfb294ca69b4f09e7cd3da5bf013ade048b940c53eb2c0619060e3bf334`.
+  The candidate keeps its existing update identity. Physical upgrade remains
+  an M7 acceptance gate.
 
 Gameplay-field SHA-256 is
 `9c4ee9fde0b5059bafb9921f4a3e4bb1b4445707e50453f27b40745019769ec5`.

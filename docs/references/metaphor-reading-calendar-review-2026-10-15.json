@@ -1,14 +1,42 @@
 {
   "pass": "Metaphor M2 reading and Calendar",
   "date": "2026-10-15",
-  "status": "implementation prepared; Actions acceptance pending",
+  "status": "verified; M2 accepted as a mobile Calendar and reading adaptation",
   "baselineProductionCommit": "784160bbd7ab399a6ac7109d7dd1eaf5fe0e6d80",
   "candidate": {
     "versionName": "0.16.0-rc14",
     "versionCode": 46,
     "contentVersion": 5,
     "package": "com.shadowmonarchbooks.dayloop.candidate",
-    "expectedCertificateSha256": "a2ecebfb294ca69b4f09e7cd3da5bf013ade048b940c53eb2c0619060e3bf334"
+    "expectedCertificateSha256": "a2ecebfb294ca69b4f09e7cd3da5bf013ade048b940c53eb2c0619060e3bf334",
+    "file": "dayloop-v0.16.0-rc14.apk",
+    "bytes": 48043428,
+    "sha256": "beaff368f7b1c39c345b77a33684a96a8c4b951f2d70af06d039d1182180b509",
+    "manifest": {
+      "package": "com.shadowmonarchbooks.dayloop.candidate",
+      "versionName": "0.16.0-rc14",
+      "versionCode": 46
+    },
+    "v2SignerCertificateSha256": "a2ecebfb294ca69b4f09e7cd3da5bf013ade048b940c53eb2c0619060e3bf334",
+    "zipIntegrity": "passed",
+    "packHashes": {
+      "p3r": {
+        "files": 102,
+        "sha256": "11bada4e3a041949caf936ed6ae5b530910d4e9141c20269908eb67bc9fb640f"
+      },
+      "p5r": {
+        "files": 135,
+        "sha256": "cd4b7ee00ca6fd9244d754d5c27112a795d6f49d61531de3fee2648eb67c8313"
+      },
+      "metaphor": {
+        "files": 69,
+        "sha256": "52074950a132f5711a95f40677f9e9264c61e13acc7e6dff59b3ab49945d7775"
+      }
+    },
+    "signatureVerification": "full APK signature verification is performed by pinned apksigner in the successful CI job",
+    "artifactRun": 38695426486,
+    "artifactSourceCommit": "160ec8bf0b84fad1c266a5f7ba41d3ce723d883c",
+    "productionMatchesReview": true
   },
   "sources": {
     "route": "https://steamcommunity.com/sharedfiles/filedetails/?id=3346632862",
@@ -450,10 +478,52 @@
   ],
   "validation": {
     "localGradle": "blocked distribution host; delegated to required GitHub Actions",
-    "native": "pending",
-    "requiredCI": "pending",
-    "isolatedHandIn": "pending",
-    "baseline": "pending"
+    "native": {
+      "status": "passed",
+      "run": 38698696595,
+      "url": "https://github.com/skypie0102/dayloop/actions/runs/38698696595",
+      "tests": 74,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "captures": 145,
+      "metaphorCaptures": 28,
+      "personaCaptures": 117,
+      "inspected": "all contact sheets and full-resolution Metaphor Calendar, date inspector, story preview, narrow command, guidance/footer and pinned-date states"
+    },
+    "requiredCI": {
+      "status": "passed",
+      "run": 38698696624,
+      "url": "https://github.com/skypie0102/dayloop/actions/runs/38698696624",
+      "sourceCommit": "7adf548b5b70a7d69bfcfbeec0deb5bb987e9a32",
+      "sourceTree": "7661f0bd0b185ce78540877af0d50502e39d92cc",
+      "buildCommit": "afcfab446973912f97b223ed5a073f7a826fcf4c",
+      "packlint": "all three packs: zero errors, zero warnings"
+    },
+    "isolatedHandIn": {
+      "status": "passed",
+      "run": 38698696595,
+      "tests": 1,
+      "failures": 0,
+      "captures": 1
+    },
+    "baseline": {
+      "status": "passed",
+      "run": 38698696595,
+      "tests": 2,
+      "failures": 0,
+      "captures": 7,
+      "productionCommit": "784160bbd7ab399a6ac7109d7dd1eaf5fe0e6d80"
+    },
+    "packaging": {
+      "candidateRun": 38698696441,
+      "stableRun": 38698696526,
+      "status": "passed"
+    },
+    "regressionFixtureCorrections": [
+      "Wait for the created/deleted profile row in the rendered UI after its Room write",
+      "Wait for one returning achievement list before lazy-scroll actions; use the established request/episode navigation pattern"
+    ]
   },
   "remaining": [
     "M3 Follower/quest proof",
@@ -463,5 +533,23 @@
     "Spoken TalkBack",
     "Measured performance",
     "Physical upgrade/stable acceptance"
-  ]
+  ],
+  "reviewCorrections": [
+    "Use exact full game-date assertions in the inspector",
+    "Scroll to the date explanation before asserting enlarged-text visibility and restored reading position",
+    "Retain the current-date underline within the selection frame",
+    "Use a standard command label role to avoid breaking walkthrough mid-word",
+    "Keep the pinned month/day within the fixed toolbar and retain its full accessible date",
+    "Identify older saved non-playable dates as Story, not Rest"
+  ],
+  "productionTrees": {
+    "app/src/main": "d4399c04cb17193bb9aaeba27bd7a16c73bae2de",
+    "core": "176dd03a976128f8d8606dee69f982aeb9b747a2",
+    "content": "3c5332bbc19583e88e765e749f08384825c94642",
+    "app/build.gradle.kts": "5fe2fdca389ba6a212159fbce88609ca12f7ef17"
+  },
+  "pullRequest": "https://github.com/skypie0102/dayloop/pull/16",
+  "reviewSourceCommit": "7adf548b5b70a7d69bfcfbeec0deb5bb987e9a32",
+  "reviewSourceTree": "7661f0bd0b185ce78540877af0d50502e39d92cc",
+  "reviewBuildCommit": "afcfab446973912f97b223ed5a073f7a826fcf4c"
 }

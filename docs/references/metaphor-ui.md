@@ -20,11 +20,12 @@ proposals to be checked in native Compose.
 | Field HUD: large day numeral beside month, paper weekday/slot labels and a separate mission countdown/objective | One truthful game-date composition, prominent mission context and authored Afternoon/Night task sections |
 | Runner dialogue: white name strip, dark text plane, thin irregular white strokes, portrait and separate command hints | Wrapping guidance/dialog bodies and reachable commands; decoration does not own the text viewport |
 | Combat thumbnail: angled painted command fragments and separate status strips | Action/selection energy is a reference; no frame timing or full-screen battle interface is inferred |
+| English Calendar: open five-column grid from Flamesday to Idlesday, white selection frame, separate current-date flag and pale inspector with dark section strips | M2 adapts the grid and explicit date preview to phones; selection and the current clock stay separate |
 
 Exact game font names, color hex values, selection states of uninspected submenus
-and motion durations remain unverified. The bundled **Cinzel Bold** is an app
-stand-in; compare its serif silhouette to the English references before keeping
-or replacing it. A predominantly gold/filigree treatment does not describe the
+and motion durations remain unverified. M1 bundles a licensed static **Bodoni
+Moda Black** substitute for display lettering, retaining system body text; it
+does not claim the game's exact font. A predominantly gold/filigree treatment does not describe the
 inspected main menu. Gold and paper may remain appropriate on other directly
 reviewed surfaces, but palette/geometry must be decided per surface.
 
@@ -39,8 +40,12 @@ the [GDC session description](https://gdcvault.com/play/1035332/From-Persona-to-
 establishes the separate visual-identity goal. This review did not watch the
 entire GDC talk or establish the shipped animation timings.
 
-The exact English Calendar, Follower/Quest lists and detail, Royal Virtue and
-Archetype screens remain comparison gates. The inspected static Japanese
+The exact English Calendar comparison is recorded in the
+[M2 ledger](metaphor-reading-calendar-review-2026-10-15.json), using three
+3840 × 2160 screenshots from the author's
+[Siliconera article](https://www.siliconera.com/when-are-special-discount-shop-sale-days-in-metaphor-refantazio/).
+Follower/Quest lists and detail, Royal Virtue and Archetype screens remain
+comparison gates. The inspected static Japanese
 system-page images are largely story/character scenes, not those menu captures.
 Earlier Game UI Database captures are absent locally and its page was not
 retrievable; do not promote historical pixel estimates into fresh visual proof.
