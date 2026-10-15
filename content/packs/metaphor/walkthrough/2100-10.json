@@ -10,9 +10,20 @@
         { "label": "Courage reaches rank 5 (Heroic).", "slot": "afternoon" },
         { "label": "Ask the Grand Cathedral guard about Neuras' stolen relics.", "slot": "afternoon" },
         { "label": "Persuade Eupha that the Sanctists will listen (Follower rank 7).", "slot": "afternoon" },
-        { "label": "At Arenafront Wharf, hand every collected Gold Beetle to the Elderly Entomophile and claim his remaining rewards, Flameseal Corselet and Dragon's Fall — all possible beetle exchanges are now complete.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" },
+        {
+          "label": "At Arenafront Wharf, hand every collected Gold Beetle to the Elderly Entomophile and claim his remaining rewards, Flameseal Corselet and Dragon's Fall — all possible beetle exchanges are now complete.",
+          "slot": "night",
+          "activityRef": "metaphor.activity.gold-beetles",
+          "guidanceSections": [
+            {
+              "title": "Exchange requirement",
+              "body": "The reward track needs 46 Gold Beetles in total, rather than every beetle in the game. Claim each remaining reward from the Elderly Entomophile; later optional beetle pickups may still appear in the route."
+            }
+          ]
+        },
         { "label": "Join Alonzo for his final act in Brilehaven (Follower rank 7).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3, 4, 5]
     },
     {
       "date": "2100-10-02",
@@ -22,7 +33,8 @@
         { "label": "Help Basilio stop Vinca; receive 'A Brother's Mercy' (Follower rank 7).", "slot": "afternoon" },
         { "label": "Watch 'The Stripling and His Stewards' at the reopened Opera House.", "slot": "night", "statGains": { "eloquence": 13 } },
         { "label": "Eloquence reaches rank 5 (Rhetorician).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-10-03",
@@ -31,7 +43,8 @@
       "steps": [
         { "label": "Harvest the Plant Culture Chamber — a Tail Bait may turn up — then hear Eupha out (Follower rank 8).", "slot": "afternoon" },
         { "label": "Clear the Manor of the Ascendant; find its Gold Beetle through the crawl space after the first ladder, then slay the Kokamordos.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-04",
@@ -41,7 +54,8 @@
         { "label": "Report the Kokamordos kill at the Recruitment Centre.", "slot": "afternoon", "statGains": { "courage": 10 } },
         { "label": "Face Vinca with Basilio — no weaknesses and resistant to all physical damage; completing 'A Brother's Mercy' raises Basilio to Follower rank 8.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
         { "label": "Speak with Daturam in Brilehaven about Alonzo (Follower rank 8); receive 'A Rake's Last Wish'.", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-10-05",
@@ -52,7 +66,8 @@
         { "label": "Recover the relics from Jin (Follower rank 8 for Neuras) — all Followers are now rank 8.", "slot": "afternoon" },
         { "label": "Deliver Alonzo's inheritance to his hometown to conclude 'A Rake's Last Wish'.", "slot": "night" },
         { "label": "Varmareno Coliseum Ranked League: Bronze II → Bronze I.", "slot": "night", "activityRef": "metaphor.activity.coliseum.ranked-league", "statGains": { "courage": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-10-06",
@@ -61,7 +76,8 @@
       "steps": [
         { "label": "Depart for the Abandoned Path; the travel block is free time, so use any remaining Gauntlet Runner activity (the source route sleeps).", "slot": "afternoon" },
         { "label": "At camp, read Neuras' final decrypted journal entry in the Engine Room Corridor, then use another free-time activity if desired.", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-07",
@@ -70,7 +86,8 @@
       "steps": [
         { "label": "Use the travel free-time block as desired (the source route does laundry).", "slot": "afternoon" },
         { "label": "Clear the Abandoned Path — hug the left wall to the north-centre section for its Gold Beetle; Catherina removes roughly half the boss's HP.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-08",
@@ -80,7 +97,8 @@
         { "label": "Report the final bounty request at the Recruitment Centre.", "slot": "afternoon", "activityRef": "metaphor.activity.bounty-requests", "statGains": { "courage": 10 } },
         { "label": "Purify Crimson Split Shoes at St. Fermis Church for the coming dragon trials.", "slot": "afternoon" },
         { "label": "Travel to the Forsaken Tower and defeat the Devourer of Nations; avoid relying on null/repel effects because its counter grants extra actions.", "slot": "afternoon" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-10-09",
@@ -88,8 +106,23 @@
       "dayKind": "story",
       "steps": [
         { "label": "Set off for the Tower of Insolence; use the travel free-time block as desired, then stop at the Decaying Estate.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
-        { "label": "Climb the Tower of Insolence with Catherina; collect the Gold Beetle beside the central railing on floor 2, defeat Ziocropos, then defeat the Almighty-only Devourer of Stars.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
-      ]
+        {
+          "label": "Climb the Tower of Insolence with Catherina; collect the Gold Beetle beside the central railing on floor 2, defeat Ziocropos, then defeat the Almighty-only Devourer of Stars.",
+          "slot": "afternoon",
+          "activityRef": "metaphor.activity.gold-beetles",
+          "guidanceSections": [
+            {
+              "title": "Tower pickup",
+              "body": "The beetle is on floor 2 beside the central railing to the north. Ziocropos comes before the dragon."
+            },
+            {
+              "title": "Dragon preparation",
+              "body": "Bring Hex recovery and Almighty damage or a way to apply a temporary weakness. Keep enemy attack buffs under control; the dragon can remove buffs and debuffs."
+            }
+          ]
+        }
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-10",
@@ -99,7 +132,8 @@
         { "label": "Give Maria the remaining Neuras drawings to hang at the Hushed Honeybee Inn, then ask Edeni to clear the Spire of Blind Faith's bad weather.", "slot": "afternoon" },
         { "label": "On the Gauntlet Runner, hone your weapon with Strohl before the tower.", "slot": "afternoon", "statGains": { "courage": 10 } },
         { "label": "Climb the Spire of Blind Faith and defeat the Devourer of Flames; the three defeated dragons unseal the Dragon Temple and unlock 'Trial of the Dragon: Essence of Power'.", "slot": "afternoon" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-10-11",
@@ -109,7 +143,8 @@
         { "label": "Varmareno Coliseum Ranked League: Bronze I → Silver III.", "slot": "afternoon", "activityRef": "metaphor.activity.coliseum.ranked-league", "statGains": { "courage": 10 } },
         { "label": "Report the Ziocropos defeat to the Obsessive Soldier at Opera House Square.", "slot": "night", "statGains": { "courage": 10 } },
         { "label": "Soak in the Altabury hot spring and collect spring water in the empty vial for the Gentle Merchant's request.", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-10-12",
@@ -118,8 +153,18 @@
       "steps": [
         { "label": "Return the hot-spring water to the Gentle Merchant at Blue Sky Bridge; he gives the route's final Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
         { "label": "Use the Dragon Temple travel block for free time (the source route fishes with Tail Bait for a Lord of the Lake and Queen's Honey Jars).", "slot": "afternoon", "activityRef": "metaphor.activity.fishing" },
-        { "label": "At the Dragon Temple's Divine Altar Path, complete 'Trial of the Dragon: Essence of Power' by defeating the Elegy of the Soul; do not equip Repel gear for this fight.", "slot": "afternoon" }
-      ]
+        {
+          "label": "At the Dragon Temple's Divine Altar Path, complete 'Trial of the Dragon: Essence of Power' by defeating the Elegy of the Soul; do not equip Repel gear for this fight.",
+          "slot": "afternoon",
+          "guidanceSections": [
+            {
+              "title": "Equipment check",
+              "body": "Remove equipment with Repel effects before entering. Null effects are allowed. Bring a planned damage rotation and recovery so the fight does not drag on."
+            }
+          ]
+        }
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-10-13",
@@ -129,7 +174,8 @@
         { "label": "Craft the Masked Dancer masks and Summoner vessels you can make; before Skybound Avatar, the only planned missing vessel material is a Talisman of the Divine.", "slot": "afternoon" },
         { "label": "Varmareno Coliseum Ranked League: Silver III → Silver II.", "slot": "afternoon", "activityRef": "metaphor.activity.coliseum.ranked-league", "statGains": { "courage": 10 } },
         { "label": "Varmareno Coliseum Ranked League: Silver II → Silver I.", "slot": "night", "activityRef": "metaphor.activity.coliseum.ranked-league", "statGains": { "courage": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-10-14",
@@ -138,7 +184,8 @@
       "steps": [
         { "label": "Blight weather blocks the coliseum; hear the Nostalgic Elder's Thief King tale in Martira instead.", "slot": "afternoon", "statGains": { "imagination": 8 } },
         { "label": "At night in Brilehaven, hear the Masked Woman who appears at Angler's Inn Square.", "slot": "night", "statGains": { "tolerance": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-15",
@@ -146,8 +193,22 @@
       "dayKind": "free",
       "steps": [
         { "label": "Varmareno Coliseum Ranked League: Silver I → Gold III; the Brawler-restricted bout is weak to Light and Strike.", "slot": "afternoon", "activityRef": "metaphor.activity.coliseum.ranked-league", "statGains": { "courage": 10 } },
-        { "label": "Varmareno Coliseum Gold Gauntlet — clear all 30 rounds of 'The Furthest Reach' consecutively.", "slot": "night", "activityRef": "metaphor.activity.coliseum.gauntlet-challenge", "statGains": { "courage": 10 } }
-      ]
+        {
+          "label": "Varmareno Coliseum Gold Gauntlet — clear all 30 rounds of 'The Furthest Reach' consecutively.",
+          "slot": "night",
+          "activityRef": "metaphor.activity.coliseum.gauntlet-challenge",
+          "statGains": {
+            "courage": 10
+          },
+          "guidanceSections": [
+            {
+              "title": "One continuous run",
+              "body": "Finish all 30 Gold Gauntlet rounds consecutively for The Furthest Reach. Prepare recovery supplies before starting this separate challenge."
+            }
+          ]
+        }
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-16",
@@ -157,17 +218,28 @@
         { "label": "Storm the Skybound Avatar to stop Louis — thoroughly sweep its chests and loot, including any remaining Talisman materials needed for the summoning vessels.", "slot": "afternoon", "spoiler": true },
         { "label": "Break the King's Servants, defeat Zorba, refuse Louis' offer in the throne room, and complete the Skybound Avatar operation.", "slot": "afternoon", "spoiler": true },
         { "label": "The final operation, 'Save the Country', begins at night.", "slot": "night", "spoiler": true }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-10-17",
       "weekday": "watersday",
       "dayKind": "free",
       "steps": [
-        { "label": "The decisive battle is ten days away. If any Masked Dancer masks or Summoner vessels remain, finish crafting them now that Skybound Avatar materials are available.", "slot": "afternoon" },
+        {
+          "label": "The decisive battle is ten days away. If any Masked Dancer masks or Summoner vessels remain, finish crafting them now that Skybound Avatar materials are available.",
+          "slot": "afternoon",
+          "guidanceSections": [
+            {
+              "title": "Crafting checklist",
+              "body": "Review the Masked Dancer masks and Summoner vessels you still need. Skybound Avatar supplies the remaining materials; verify the crafted items in-game rather than treating this route reminder as ownership proof."
+            }
+          ]
+        },
         { "label": "Varmareno Coliseum Ranked League: Gold III → Gold II (Lina).", "slot": "afternoon", "activityRef": "metaphor.activity.coliseum.ranked-league", "statGains": { "courage": 10 } },
         { "label": "Varmareno Coliseum Ranked League: Gold II → Gold I.", "slot": "night", "activityRef": "metaphor.activity.coliseum.ranked-league", "statGains": { "courage": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-10-18",
@@ -176,7 +248,8 @@
       "steps": [
         { "label": "Varmareno Coliseum Ranked League: defeat Hómo Luano, which resists everything except Almighty, to finish the Ranked League.", "slot": "afternoon", "activityRef": "metaphor.activity.coliseum.ranked-league", "statGains": { "courage": 10 } },
         { "label": "Accept 'Become Champion of the Coliseum', then defeat the Gupatauron within two turns at night to complete the coliseum's final request.", "slot": "night", "activityRef": "metaphor.activity.coliseum.ranked-league" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-19",
@@ -185,7 +258,8 @@
       "steps": [
         { "label": "Take the Bullish Youth's diving competition at Brilehaven's west docks.", "slot": "afternoon", "statGains": { "courage": 10 } },
         { "label": "Hear the Nostalgic Elder finish the Thief King and elda's bread tale in Martira.", "slot": "night", "statGains": { "imagination": 8 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-20",
@@ -194,7 +268,8 @@
       "steps": [
         { "label": "Build the Clumsy Man's cat-like snowman: round and paunchy, pointy headscarf, and make it feel alive.", "slot": "afternoon", "statGains": { "imagination": 13 } },
         { "label": "Hear the Sanctor's first folklore tale at Brilehaven's Angler's Inn Square.", "slot": "night", "statGains": { "imagination": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-21",
@@ -203,7 +278,8 @@
       "steps": [
         { "label": "Donate 250 reeve to the Upper Blue Sky Bridge Activist Woman — receive Fruit Cordial.", "slot": "afternoon", "statGains": { "tolerance": 13 } },
         { "label": "At night, speak with the Maskless Mustari in Lower Blue Sky Bridge about how the mustari survive in Altabury.", "slot": "night", "statGains": { "tolerance": 13 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-22",
@@ -212,7 +288,8 @@
       "steps": [
         { "label": "Return to the Brilehaven Sanctor and hear the rest of his folklore tale.", "slot": "afternoon", "statGains": { "imagination": 10 } },
         { "label": "Hear the Chipper Old Woman's story about an old paripus and a fairy on Dia Franco Street.", "slot": "night", "statGains": { "imagination": 13 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-23",
@@ -221,7 +298,8 @@
       "steps": [
         { "label": "Explain the mustari relic to the Masked Woman in Martira.", "slot": "afternoon", "statGains": { "tolerance": 8 } },
         { "label": "Return to the Chipper Old Woman in Altabury and hear the rest of her story.", "slot": "night", "statGains": { "imagination": 13 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-24",
@@ -230,29 +308,74 @@
       "steps": [
         { "label": "Camp at Lone Isle and meditate with Eupha (answer: breathe deeply).", "slot": "afternoon", "statGains": { "imagination": 13 } },
         { "label": "Listen to Junah sing around the campfire (answer: your singing now).", "slot": "night", "statGains": { "eloquence": 13 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-25",
       "weekday": "idlesday",
       "dayKind": "free",
       "steps": [
-        { "label": "Last day before the Tyrant's Star — final Idlesday toilet bonus (+1 Luck); return from Lone Isle to Grand Trad during the afternoon.", "slot": "afternoon" },
+        {
+          "label": "Last day before the Tyrant's Star — final Idlesday toilet bonus (+1 Luck); return from Lone Isle to Grand Trad during the afternoon.",
+          "slot": "afternoon",
+          "guidanceSections": [
+            {
+              "title": "Last preparation day",
+              "body": "Take the final Idlesday toilet bonus before leaving the runner. Return to Grand Trad during the afternoon so the last shopping and Follower visits remain reachable."
+            }
+          ]
+        },
         { "label": "Check the King's Rock one last time, finish shopping, and speak with every Follower for their final dialogue and keepsakes.", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-10-26",
       "weekday": "flamesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Final Pantry check, then set course for the Tyrant's Star — there is no turning back; Neuras sells consumables aboard.", "slot": "afternoon", "spoiler": true },
-        { "label": "Before the final boss rush, make a separate save if you intend to fight the strongest Destroyer Charadrius variant for Star Shatterer; leaving all six optional Diabolus Human refights alive produces that version.", "slot": "afternoon", "spoiler": true },
-        { "label": "For the normal completion route, defeat the powerful presences for their rewards, then continue toward Louis.", "slot": "afternoon", "spoiler": true },
-        { "label": "Inside Akademeia, answer 'No! Magic hasn't been lost.' — the fight that follows is largely thematic.", "slot": "night", "spoiler": true },
-        { "label": "Defeat Destroyer Charadrius and finish the story.", "slot": "night", "spoiler": true },
-        { "label": "After the credits, the epilogue catches up with the kingdom on Idlesday, December 35.", "slot": "night", "spoiler": true }
-      ]
+        {
+          "label": "Final Pantry check, then set course for the Tyrant's Star — there is no turning back; Neuras sells consumables aboard.",
+          "slot": "afternoon",
+          "spoiler": true,
+          "guidanceSections": [
+            {
+              "title": "Point of no return",
+              "body": "Finish outstanding city preparations before setting course. Neuras can sell consumables aboard, but the route does not return to town after departure."
+            }
+          ],
+          "groupLabel": "Afternoon · Final departure"
+        },
+        {
+          "label": "Before the final boss rush, make a separate save if you intend to fight the strongest Destroyer Charadrius variant for Star Shatterer; leaving all six optional Diabolus Human refights alive produces that version.",
+          "slot": "afternoon",
+          "spoiler": true,
+          "guidanceSections": [
+            {
+              "title": "Optional strongest-boss branch",
+              "body": "Keep a separate save before choosing which powerful presences to defeat. Star Shatterer’s strongest variant requires leaving all six optional Diabolus Human refights alive; the normal route clears them for rewards."
+            }
+          ],
+          "groupLabel": "Afternoon · Boss branch"
+        },
+        { "label": "For the normal completion route, defeat the powerful presences for their rewards, then continue toward Louis.", "slot": "afternoon", "spoiler": true, "groupLabel": "Afternoon · Boss branch" },
+        { "label": "Inside Akademeia, answer 'No! Magic hasn't been lost.' — the fight that follows is largely thematic.", "slot": "night", "spoiler": true, "groupLabel": "Night · Akademeia" },
+        {
+          "label": "Defeat Destroyer Charadrius and finish the story.",
+          "slot": "night",
+          "spoiler": true,
+          "guidanceSections": [
+            {
+              "title": "Final preparation",
+              "body": "Restore HP and MP before ending the first phase. Keep healing available for the next phase and remove the boss’s offensive buffs when needed."
+            }
+          ],
+          "groupLabel": "Night · Final battle"
+        },
+        { "label": "After the credits, the epilogue catches up with the kingdom on Idlesday, December 35.", "slot": "night", "spoiler": true, "groupLabel": "Night · Epilogue" }
+      ],
+      "displayOrder": [0, 1, 2, 3, 4, 5]
     }
   ]
 }

@@ -78,6 +78,7 @@ import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.hasPaintedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.preservesReadingState
+import com.shadowmonarchbooks.dayloop.ui.skin.PaintedSectionHeading
 import com.shadowmonarchbooks.dayloop.ui.skin.PaintedTaskCard
 import com.shadowmonarchbooks.dayloop.ui.skin.PaintedDeadline
 import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedTaskCard
@@ -733,7 +734,9 @@ fun TasksList(
         groupTasksBySlot(steps, displayOrder).forEachIndexed { groupIndex, group ->
             if (crown && groupIndex > 0) FiligreeDivider()
             val heading = group.groupLabel ?: group.slotId?.let(slotLabels::get) ?: "Any time"
-            if (skin.hasSubmergedChrome()) {
+            if (skin.hasPaintedChrome()) {
+                PaintedSectionHeading(heading)
+            } else if (skin.hasSubmergedChrome()) {
                 SubmergedSectionHeading(heading)
             } else {
                 Text(text = heading, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.secondary)

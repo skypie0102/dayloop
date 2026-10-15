@@ -101,12 +101,18 @@ abstract class MetaphorReviewFlow {
                 compose.onAllNodesWithContentDescription(formatDate(date, pack.calendar)).fetchSemanticsNodes().isNotEmpty()
             }
         } else {
-            val day = requireNotNull(pack.day(pack.routes.first().id, date))
-            val index = day.displayOrder.firstOrNull() ?: 0
-            compose.waitUntil(20_000) {
-                compose.onAllNodes(hasTestTag("task-label-$index") and
-                    hasText(day.steps[index].label, substring = true, ignoreCase = true), useUnmergedTree = true)
-                    .fetchSemanticsNodes().isNotEmpty()
+            val day = pack.day(pack.routes.first().id, date)
+            if (day == null) {
+                compose.waitUntil(20_000) {
+                    compose.onAllNodesWithText("Story-only date.", substring = true).fetchSemanticsNodes().isNotEmpty()
+                }
+            } else {
+                val index = day.displayOrder.firstOrNull() ?: 0
+                compose.waitUntil(20_000) {
+                    compose.onAllNodes(hasTestTag("task-label-$index") and
+                        hasText(day.steps[index].label, substring = true, ignoreCase = true), useUnmergedTree = true)
+                        .fetchSemanticsNodes().isNotEmpty()
+                }
             }
         }
     }
@@ -163,6 +169,32 @@ abstract class MetaphorReviewFlow {
     protected fun unchangedClockAndMarks(date: String) {
         assertEquals(date, runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate })
         assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
+    }
+}
+
+/** Compiled against the accepted M1 production commit for the M2 before captures. */
+class MetaphorReadingBaselineTest : MetaphorReviewFlow() {
+    @Test fun acceptedShellBeforeReadingAndCalendarAtNormalText() {
+        launch("2100-06-12")
+        capture("metaphor-m2-before-today")
+        tab("Calendar").performClick()
+        compose.onNodeWithTag("painted-month-heading").assertTextEquals("June")
+        capture("metaphor-m2-before-calendar")
+        compose.onNodeWithTag("calendar-date-2100-06-12").performScrollTo().performClick()
+        capture("metaphor-m2-before-source-day")
+        unchangedClockAndMarks("2100-06-12")
+    }
+
+    @Test fun acceptedShellBeforeDenseCityRouteAtDoubleText() {
+        launch("2100-07-23", scale = 2f)
+        capture("metaphor-m2-before-dense-today-double-text")
+        tab("Calendar").performClick()
+        capture("metaphor-m2-before-calendar-double-text")
+        compose.onNodeWithTag("calendar-date-2100-07-23").performScrollTo().performClick()
+        capture("metaphor-m2-before-dense-source-double-text")
+        compose.onNodeWithContentDescription("Back").performClick()
+        capture("metaphor-m2-before-source-back-double-text")
+        unchangedClockAndMarks("2100-07-23")
     }
 }
 

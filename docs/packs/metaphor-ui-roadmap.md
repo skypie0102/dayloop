@@ -37,9 +37,10 @@ Primary sources:
 - The existing [data audit](../audits/metaphor-data-audit.md) and
   [source policy](../sources.md) govern mechanics and completion-route facts.
 
-Exact English Calendar, Follower list/detail, Quest list/detail, Royal Virtue and
-Archetype submenus still need direct capture/reference review before their final
-geometry is accepted. The old Game UI Database files are absent locally and its
+The [M2 Calendar review](metaphor-reading-calendar-review.md) adds three inspected
+English captures and the corrected column origin. Exact Follower list/detail,
+Quest list/detail, Royal Virtue and Archetype submenus still need direct review
+before their final geometry is accepted. The old Game UI Database files are absent locally and its
 page could not be retrieved in this review. Its earlier pixel estimates remain
 historical evidence. Publisher story illustrations are not proof of those menu
 layouts. Still images do not establish transition duration or performance.
@@ -134,26 +135,27 @@ typography, paint/paper composition, calendar and game vocabulary.
 |---|---|---|---|
 | M0 — References and baseline | Publisher references and before captures recorded; exact submenu comparisons open | Versioned screenshot/source ledger, current-pack Android fixtures, navigation/content/save baseline, missing-art inventory and source-proof plan | Label observed vs proposed decisions; inspect the exact submenu before implementing its layout; record normal/200% baseline and ownership of the existing packlint warning |
 | M1 — Identity and shell | Verified in PR #15; rc13 (45) | Explicit painted-skin opt-in, serif/body roles, static paint/paper/ink primitives, header/date/navigation and shared reading/control metrics | Review Today/Calendar/Follower headings and selected/unselected states; fit narrow/200% layouts; P5R/P3R screenshots and behavior stay isolated |
-| M2 — Walkthrough and calendar | Next; date/reading groundwork delivered in M1 | Inline route guidance, Afternoon/Night sections, mission/route/deadline hierarchy, five-column calendar/swipes, source links and retained reading position | Verify all 396 task identities; no 2100 display or duplicate route-date HUD; five weekdays/30-day boundaries follow the pack; source → Back never changes clock/progress |
+| M2 — Walkthrough and calendar | Verified in PR #16; rc14 (46) | 48 guided tasks, dense city sections, inclusive mission cutoffs, open five-column Calendar/date inspector, swipes and retained source/Back state | Verify all 396 task identities; no 2100 display or duplicate route-date HUD; five weekdays/30-day boundaries follow the pack; source → Back never changes clock/progress |
 | M3 — Followers and quests | Queued; source contract before UI | Fourteen rank ledgers, exact proof/navigation, gates and rewards; audited quest catalog with source-supported stages and a named Quest destination | Every rank/quest state traces to a real task/confirmation; More/Neuras/automatic cases tested; accept/complete/report distinctions only where supported; undo/profile/route isolation pass |
 | M4 — Achievements and references | Queued | Compact 44-entry collection, rule/proof detail, Royal Virtue/Archetype prerequisites and contextual activity/Memorandum guidance | Preserve all achievement identities/rules; distinguish route, cumulative/manual, conditional and NG+ work; no invented owned equipment/classes, hidden-stat percentages or trophy dates |
 | M5 — Utilities, widget and art | Queued | Search, picker/loading/error, Settings/profile/backup dialogs, Media and static widget; correctly identified art with source/hash ledger | Full results, real Back/IME paths, readable missing-art states, correct-pack widget launches at supported sizes; backup cancel/switch leaves saves intact |
 | M6 — Motion, accessibility and performance | Rules apply from M1; final review queued | Short context-appropriate reveal/selection/day-change cues, reduced-motion variants, spoken traversal and measured device profiling | No idle animation loop, forced loading delay or heavy blur; system motion settings respected; record real startup/frame/memory conditions and spoken date/selection/expansion/focus results |
 | M7 — Release acceptance | Queued | Offline walkthrough smoke, same-certificate candidate upgrade/save/restore, all-pack regression, user feedback and final coverage notes | Required CI/all packlint targets, native flows and unchanged-pack evidence; release artifact identity verified; physical/device gates resolved before stable acceptance |
 
-M1 now supplies the painted shell and the M2 date/reading foundation. Next,
-finish the exact Calendar comparison and source-backed walkthrough guidance,
-including ownership of the existing July 21 unauthored-date warning. M0 remains
-open for specialized submenu references; M3–M7 remain queued. Focused candidates
-do not imply a stable-release date.
+M1 supplies the painted shell. The [M2 pass](metaphor-reading-calendar-review.md)
+adds source-backed reading guidance and an exact English Calendar comparison,
+and resolves July 21 as a story-only date without adding tasks. All 74 full native tests and required CI passed; the
+evidence records 145 captures, two before-build tests and the isolated hand-in check. M0 remains open for the other specialized submenu
+references; M3–M7 remain queued. Focused candidates do not imply a stable-release date.
 
 ### M0/M1 immediate checklist
 
 - [x] Inspect publisher English main menu/map/HUD/dialogue and record the
   source images; distinguish sampled combat from full-resolution review.
 - [x] Inventory current data/art/code and identify the date/rank/search gaps.
-- [ ] Acquire and inspect exact English Calendar, Followers, Quests,
-  Royal Virtue and Archetype submenu references; never substitute concept art.
+- [x] Acquire and inspect exact English Calendar references (M2 ledger).
+- [ ] Acquire and inspect exact English Followers, Quests, Royal Virtue and
+  Archetype submenu references; never substitute concept art.
 - [x] Capture the pre-paint Metaphor app at normal/200% text on representative
   dates, including a long task, mission cutoff and retained Calendar/source return.
 - [x] Prototype serif hierarchy and paint/paper selection in native Compose;
@@ -236,3 +238,22 @@ It does not accept exact specialized submenu geometry, Follower/quest proof,
 achievement rules, utility surfaces, spoken TalkBack, physical upgrade or
 measured performance. Achievements still display legacy storage-date labels;
 those and existing automatic story rules belong to M4, not this shell pass.
+
+## October 15 delivery — M2 reading and Calendar
+
+[PR #16](https://github.com/skypie0102/dayloop/pull/16) delivers 48 guided tasks,
+ordered city sections, inclusive mission cutoffs and a source-reviewed five-column
+Calendar/date inspector. Every one of the 396 task identities and its gameplay
+fields is preserved. July 21 is a story-only date; existing saves on it load
+without rewriting the clock. Calendar/source/recreation and reversible commands
+pass at normal/200% text, including the narrow command and pinned reading date.
+
+The [delivery review](metaphor-reading-calendar-review.md) and
+[evidence ledger](../references/metaphor-reading-calendar-review-2026-10-15.json)
+record 74 passing full native tests/145 captures, two passing before-build tests,
+the isolated hand-in check, clean packlint for all games and verified rc14/code46
+with Metaphor content5. Persona content and production rendering remain unchanged.
+
+M2 is accepted as a mobile adaptation of the inspected Calendar and route.
+Next is M3's Follower/quest source contract and exact submenu references.
+M4–M7 and the spoken, device and performance gates remain queued.

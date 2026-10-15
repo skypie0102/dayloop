@@ -153,6 +153,16 @@ fun MonthScreen(
         }
         return
     }
+    if (skin.hasPaintedChrome() && pack.calendar != null) {
+        PaintedMonthScreen(pack, state.days, months, index, state.currentDate, pack.routeLabel(state.activeRouteId),
+            "${state.activeProfile?.id}:${state.activeRouteId}", onSelectedMonthChange, onOpenDay) {
+            if (pack.mediaForMonth(month).any { it.kind == "achievement" }) {
+                SkinSectionHeader("Achievements this month")
+                MonthlyAchievementChecklist(pack, state, month, vm::setAchievementEarned)
+            }
+        }
+        return
+    }
     val markerItems = when {
         skin.motion == "slash" -> slashDeadlineMarkerItems(
             month = month,

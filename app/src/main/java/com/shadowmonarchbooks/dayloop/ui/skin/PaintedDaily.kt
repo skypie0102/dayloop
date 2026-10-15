@@ -49,13 +49,14 @@ internal fun Modifier.paintedCommandSelection(active: Boolean): Modifier {
 
 @Composable
 internal fun PaintedActionButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier,
-    enabled: Boolean = true, primary: Boolean, fillWidth: Boolean = false, largeLabel: Boolean = false) {
+    enabled: Boolean = true, primary: Boolean, fillWidth: Boolean = false, largeLabel: Boolean = false,
+    labelStyle: TextStyle? = null) {
     val colors = MaterialTheme.colorScheme
     Box(modifier.then(if (fillWidth) Modifier.fillMaxWidth() else Modifier)
         .heightIn(min = 48.dp).widthIn(min = 48.dp).clickable(enabled, role = Role.Button, onClick = onClick)
         .paintedCommandSelection(primary && enabled).padding(horizontal = 18.dp, vertical = 10.dp),
         contentAlignment = Alignment.Center) {
-        Text(text, style = (if (largeLabel) MaterialTheme.typography.headlineMedium else MaterialTheme.typography.titleLarge)
+        Text(text, style = (labelStyle ?: if (largeLabel) MaterialTheme.typography.headlineMedium else MaterialTheme.typography.titleLarge)
             .withSkinFont(LocalSkin.current.type.display), fontWeight = FontWeight.Black,
             color = (if (primary && enabled) colors.onPrimary else colors.onBackground).copy(alpha = if (enabled) 1f else .5f))
     }

@@ -9,7 +9,8 @@
         { "label": "Fight through Tradia Desert toward the Royal Capital, looting the two Medicinal Herbs on the way.", "slot": "afternoon" },
         { "label": "Take the Recruitment Centre interview — the second answer sets your starting stats; Magic or Agility is suggested.", "slot": "afternoon" },
         { "label": "Before queueing for equipment, grab the Gold Beetle in the hallway to your right.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-06-05",
@@ -18,9 +19,20 @@
       "steps": [
         { "label": "Enter the fort with Strohl; sweep the map for the eight loot spots.", "slot": "night" },
         { "label": "A human attacks the party and a masked ally joins the mission.", "slot": "night", "spoiler": true },
-        { "label": "Before resting at Mountain Forest Camp, grab the missable Gold Beetle just behind you near the campfire.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" },
+        {
+          "label": "Before resting at Mountain Forest Camp, grab the missable Gold Beetle just behind you near the campfire.",
+          "slot": "night",
+          "activityRef": "metaphor.activity.gold-beetles",
+          "guidanceSections": [
+            {
+              "title": "Before moving on",
+              "body": "Collect the camp Gold Beetle during this visit. This is a missable pickup; the route does not schedule a return."
+            }
+          ]
+        },
         { "label": "More makes contact — Akademeia opens (Follower rank 1).", "slot": "night", "spoiler": true }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-06-06",
@@ -30,7 +42,8 @@
         { "label": "Cross the Nord Mines; in the captain fight, drop the soldiers first so they cannot buff him.", "slot": "afternoon" },
         { "label": "Wake the sleeping dragon for its treasure — it is weak to Ice and alternates physical/fire turns.", "slot": "afternoon", "spoiler": true },
         { "label": "Strohl and Gallica bonds form during the trek.", "slot": "afternoon", "spoiler": true }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-06-10",
@@ -38,29 +51,107 @@
       "dayKind": "free",
       "steps": [
         { "label": "Spend the evening with Maria at the Hushed Honeybee Inn (Follower rank 1).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0]
     },
     {
       "date": "2100-06-11",
       "weekday": "flamesday",
       "dayKind": "story",
       "steps": [
-        { "label": "Switch to the Healer Archetype for More's Task; on Sunshade Row grab one Gold Beetle behind the stairs near Chelonia Shieldworks and another from the Bag of Spices inside Comfort Concoctions.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" },
+        {
+          "label": "Switch to the Healer Archetype for More's Task; on Sunshade Row grab one Gold Beetle behind the stairs near Chelonia Shieldworks and another from the Bag of Spices inside Comfort Concoctions.",
+          "slot": "afternoon",
+          "activityRef": "metaphor.activity.gold-beetles",
+          "guidanceSections": [
+            {
+              "title": "Preparation",
+              "body": "Have the protagonist study Healer for More’s first task. Check behind the stairs at Chelonia Shieldworks and the spice bag inside Comfort Concoctions for the two beetles."
+            }
+          ]
+        },
         { "label": "Attend the royal funeral — the ceremony goes wrong and the cathedral mission begins.", "slot": "afternoon", "spoiler": true },
         { "label": "Hulkenberg joins the party (Follower rank 1); Gallica reaches rank 2.", "slot": "afternoon", "spoiler": true }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-06-12",
       "weekday": "watersday",
       "dayKind": "story",
       "steps": [
-        { "label": "Run the capital errand loop: complete 'Pagan's Dilemma' with Breath of Fresh Air, give the Man in Pain a Medicinal Herb, and accept 'Help the Hushed Honeybee'.", "slot": "afternoon", "statGains": { "tolerance": 10 } },
-        { "label": "In the Catacombs, accept 'A Friend in Need', rescue the trapped hostages, and form Catherina's bond (Follower rank 1).", "slot": "afternoon" },
-        { "label": "Continue through the cathedral: collect both chest keys and stop the Mage Captain first at the altar.", "slot": "afternoon" },
-        { "label": "Face Zorba on the Heavenly Staircase — keep summoned corpses under control while chipping his health.", "slot": "afternoon", "spoiler": true },
-        { "label": "Turn in More's Task: Foreword and Prologue at Akademeia (Follower rank 2) to unlock skill inheritance anywhere.", "slot": "afternoon", "statGains": { "imagination": 10 } }
-      ]
+        {
+          "label": "Run the capital errand loop: complete 'Pagan's Dilemma' with Breath of Fresh Air, give the Man in Pain a Medicinal Herb, and accept 'Help the Hushed Honeybee'.",
+          "slot": "afternoon",
+          "statGains": {
+            "tolerance": 10
+          },
+          "guidanceSections": [
+            {
+              "title": "Capital errands",
+              "body": "Find the Mustari Man near Strohl in Sunshade Row. Buy Breath of Fresh Air at St. Fermis Church for 500 reeve, then return it to him."
+            },
+            {
+              "title": "Before the cathedral",
+              "body": "Give a Medicinal Herb to the Man in Pain near More’s phantom. The Young Nidia who starts Help the Hushed Honeybee is in the southeast of Sunlumeo Street."
+            }
+          ],
+          "groupLabel": "Afternoon · Capital errands"
+        },
+        {
+          "label": "In the Catacombs, accept 'A Friend in Need', rescue the trapped hostages, and form Catherina's bond (Follower rank 1).",
+          "slot": "afternoon",
+          "guidanceSections": [
+            {
+              "title": "Rescue route",
+              "body": "Accept Catherina’s request in the Catacombs. Find the Chamber Side Room Key, open the locked room and free the hostages before continuing."
+            }
+          ],
+          "groupLabel": "Afternoon · Cathedral"
+        },
+        {
+          "label": "Continue through the cathedral: collect both chest keys and stop the Mage Captain first at the altar.",
+          "slot": "afternoon",
+          "guidanceSections": [
+            {
+              "title": "Chest keys",
+              "body": "Crawl through the passage east of the Dying Monk for the Guest Room Key. Use it to reach the Pale Monk, obtain the Treasure Chest Key, then open the Servants’ Chamber chest."
+            },
+            {
+              "title": "Altar preparation",
+              "body": "Use the Sanctified Amulet at the Reception Chamber statue. At the altar, remove the Mage Captain first to stop its party buffs and area magic."
+            }
+          ],
+          "groupLabel": "Afternoon · Cathedral"
+        },
+        {
+          "label": "Face Zorba on the Heavenly Staircase — keep summoned corpses under control while chipping his health.",
+          "slot": "afternoon",
+          "spoiler": true,
+          "guidanceSections": [
+            {
+              "title": "Boss sequence",
+              "body": "Manage Zorba’s summoned corpses while damaging him. Heal and restore resources before the next fight; Brawler’s physical attacks can help break the following boss’s shell."
+            }
+          ],
+          "groupLabel": "Afternoon · Cathedral"
+        },
+        {
+          "label": "Turn in More's Task: Foreword and Prologue at Akademeia (Follower rank 2) to unlock skill inheritance anywhere.",
+          "slot": "afternoon",
+          "statGains": {
+            "imagination": 10
+          },
+          "guidanceSections": [
+            {
+              "title": "More’s requirement",
+              "body": "Report a Healer raised to rank 10. Turn in the completed task at Akademeia to receive the next chapter and portable study/inheritance access."
+            }
+          ],
+          "groupLabel": "Afternoon · Akademeia"
+        }
+      ],
+      "displayOrder": [0, 1, 2, 3, 4]
     },
     {
       "date": "2100-06-13",
@@ -71,7 +162,8 @@
         { "label": "Spend time with Strohl (Follower rank 2).", "slot": "afternoon" },
         { "label": "Check Gloamhall's night-only accessories and boost popularity with the meat skewers.", "slot": "night" },
         { "label": "Help Fabienne cook Redgrass-Roasted Bidou.", "slot": "night", "statGains": { "tolerance": 8 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-06-14",
@@ -81,7 +173,8 @@
         { "label": "Spend time with Hulkenberg (Follower rank 2).", "slot": "afternoon" },
         { "label": "Report 'Help the Hushed Honeybee' to the Young Nidia, then rest at the royal-capital bench.", "slot": "night", "statGains": { "wisdom": 16 } },
         { "label": "Wisdom reaches rank 2 (Informed).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-06-15",
@@ -91,7 +184,8 @@
         { "label": "Big Bargain Day: update equipment, purify a relic at St. Fermis Church, and buy the cathedral cooking stock.", "slot": "afternoon" },
         { "label": "Take 'A Bullish Embargo' (needs Wisdom 2) and depart for Belega Corridor.", "slot": "afternoon" },
         { "label": "Clear Belega Corridor — pick up 3 Stunning Arrows on B1 and the caged Gold Beetle near the stairs down to B3 via the crawl space.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-06-16",
@@ -101,7 +195,8 @@
         { "label": "Spend time with Strohl (Follower rank 3).", "slot": "afternoon" },
         { "label": "Collect the Wandering Student's Curative Coney Roast at the cathedral.", "slot": "night" },
         { "label": "Report the Gupatauros kill to Brigitta (Follower rank 1).", "slot": "night", "statGains": { "courage": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-06-17",
@@ -109,7 +204,8 @@
       "dayKind": "free",
       "steps": [
         { "label": "Hunt the Maneater Manjula in Tradia Desert; check the bush by the rock pile for a Gold Beetle.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
-      ]
+      ],
+      "displayOrder": [0]
     },
     {
       "date": "2100-06-18",
@@ -119,7 +215,8 @@
         { "label": "Claim the bounty reward at the Recruitment Centre.", "slot": "afternoon", "statGains": { "courage": 10 } },
         { "label": "Listen to the Chatty Elder's story near the tavern.", "slot": "afternoon", "statGains": { "imagination": 6 } },
         { "label": "Take Brigitta's next request (Follower rank 2).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-06-19",
@@ -128,7 +225,8 @@
       "steps": [
         { "label": "Hear the end of the Chatty Elder's tale.", "slot": "afternoon", "statGains": { "imagination": 6 } },
         { "label": "Help Fabienne cook Redgrass-Roasted Bidou.", "slot": "night", "statGains": { "tolerance": 8 } }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-06-20",
@@ -137,7 +235,8 @@
       "steps": [
         { "label": "Hear the Masked Man's lesson on mustari history.", "slot": "afternoon", "statGains": { "tolerance": 6 } },
         { "label": "Help Brigitta with her day's work (Follower rank 3).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-06-21",
@@ -147,7 +246,8 @@
         { "label": "Donate 250 reeve to the Activist Woman and encourage her — earns Fairy Dust.", "slot": "afternoon", "statGains": { "eloquence": 6 } },
         { "label": "Help Fabienne cook Redgrass-Roasted Bidou.", "slot": "night", "statGains": { "tolerance": 8 } },
         { "label": "Tolerance reaches rank 2 (Open-Minded).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2]
     },
     {
       "date": "2100-06-22",
@@ -155,7 +255,8 @@
       "dayKind": "story",
       "steps": [
         { "label": "Maria has gone missing — find her at the Regalith Grand Cathedral.", "slot": "afternoon", "spoiler": true }
-      ]
+      ],
+      "displayOrder": [0]
     },
     {
       "date": "2100-06-23",
@@ -164,18 +265,33 @@
       "steps": [
         { "label": "Register for the Tournament to the Throne.", "slot": "afternoon" },
         { "label": "Maria asks for help with 'Promising Returns' before bed.", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-06-24",
       "weekday": "metalsday",
       "dayKind": "story",
       "steps": [
-        { "label": "Board your own Gauntlet Runner: check the Pantry, visit the Engine Room, and unlock the Kitchen's Cooking Table.", "slot": "afternoon" },
+        {
+          "label": "Board your own Gauntlet Runner: check the Pantry, visit the Engine Room, and unlock the Kitchen's Cooking Table.",
+          "slot": "afternoon",
+          "guidanceSections": [
+            {
+              "title": "Runner routine",
+              "body": "Check the Pantry for Gauntlet Shrooms, then use the Washroom. The Engine Room is down the ladder near the rear of the runner."
+            },
+            {
+              "title": "Camp supplies",
+              "body": "Inspect the campfire at night for cooking ingredients. These pickups are separate from the reading or companion activity that spends the time slot."
+            }
+          ]
+        },
         { "label": "Start 'New World Travel Diary' at the lounge bookshelf.", "slot": "afternoon", "activityRef": "metaphor.activity.book.new-world-travel-diary", "statGains": { "imagination": 10 } },
         { "label": "Grab the campfire materials (Dreameater Moth or Lumibee).", "slot": "night" },
         { "label": "Talk with Strohl on deck.", "slot": "night", "statGains": { "imagination": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-06-25",
@@ -186,7 +302,8 @@
         { "label": "Imagination reaches rank 2 (Inspired).", "slot": "afternoon" },
         { "label": "Stop at the Tree of Prophecy.", "slot": "afternoon", "statGains": { "wisdom": 10 } },
         { "label": "Collect campfire materials and talk with Hulkenberg.", "slot": "night", "statGains": { "imagination": 10 } }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-06-26",
@@ -195,7 +312,8 @@
       "steps": [
         { "label": "Fight off the road ambush.", "slot": "afternoon" },
         { "label": "A troubled engineer boards — take his 'Providing a Spark' request.", "slot": "night", "spoiler": true }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-06-27",
@@ -204,7 +322,8 @@
       "steps": [
         { "label": "Arrive in Martira; Bardon treats you to dinner and briefs the kidnapping case.", "slot": "night", "spoiler": true },
         { "label": "Gold Beetles: one in the tavern fireplace and one from drinking at the Guest Room desk water pitcher; the cupboard only contains a Medicinal Herb.", "slot": "night", "activityRef": "metaphor.activity.gold-beetles" }
-      ]
+      ],
+      "displayOrder": [0, 1]
     },
     {
       "date": "2100-06-28",
@@ -212,7 +331,8 @@
       "dayKind": "free",
       "steps": [
         { "label": "Gather information around Kriegante Castle; four days remain before the Heismay push.", "slot": "afternoon" }
-      ]
+      ],
+      "displayOrder": [0]
     },
     {
       "date": "2100-06-29",
@@ -223,7 +343,8 @@
         { "label": "Discount Day at Stairstone Market — update equipment.", "slot": "afternoon" },
         { "label": "Depart for Imp's Den; train with Hulkenberg on deck (Follower rank 3).", "slot": "afternoon" },
         { "label": "Clear Imp's Den — collect the northwest Gold Beetle, then leave one goborn alive before focusing the Goborn King.", "slot": "afternoon", "activityRef": "metaphor.activity.gold-beetles" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3]
     },
     {
       "date": "2100-06-30",
@@ -235,7 +356,8 @@
         { "label": "Big Bargain Day: buy 5 Mellow Milk and 3 Fruit Cordial; pick up 'Skullduggery' and 'A Haunted Heirloom' in the capital.", "slot": "afternoon" },
         { "label": "Tell Maria about your travels at the inn (Follower rank 2).", "slot": "afternoon" },
         { "label": "Help Brigitta (Follower rank 4).", "slot": "night" }
-      ]
+      ],
+      "displayOrder": [0, 1, 2, 3, 4]
     }
   ]
 }

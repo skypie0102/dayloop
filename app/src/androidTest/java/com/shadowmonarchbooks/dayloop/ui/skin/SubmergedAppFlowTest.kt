@@ -221,11 +221,32 @@ class SubmergedAppFlowTest {
     }
 
     private fun openEpisodeStep(id: String) {
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithTag("episode-detail").fetchSemanticsNodes().size == 1
+        }
         compose.onNodeWithTag("episode-detail").performScrollToNode(hasTestTag("episode-step-$id"))
         compose.onNodeWithTag("episode-step-$id").performClick()
+        compose.waitUntil(10_000) {
+            compose.onAllNodes(hasTestTag("episode-step-$id") and
+                SemanticsMatcher.expectValue(SemanticsProperties.Selected, true)).fetchSemanticsNodes().size == 1
+        }
+    }
+
+    private fun openEpisodeGuide(id: String) {
+        val guide = "episode-guide-$id"
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithTag(guide).fetchSemanticsNodes().size == 1
+        }
+        // Expanded lazy items can be taller than the viewport. Scroll the
+        // command itself after expansion rather than relying on the item's
+        // previous size, then interact with the visible command.
+        compose.onNodeWithTag(guide).performScrollTo().assertIsDisplayed().performClick()
     }
 
     private fun episodeChainCountIs(count: Int) {
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithTag("episode-detail").fetchSemanticsNodes().size == 1
+        }
         compose.onNodeWithTag("episode-detail").performScrollToIndex(0)
         compose.waitUntil(10_000) {
             compose.onAllNodesWithText("$count / 5 episodes complete").fetchSemanticsNodes().isNotEmpty()
@@ -448,11 +469,18 @@ class SubmergedAppFlowTest {
         val created = runBlocking { dependencies.db().profileDao().all().single { it.name == "Created review profile" } }
         assertEquals("2009-04-08", created.clockDate)
         assertEquals("standard", created.routeId)
+        // The database write precedes the UI projection of the profile list.
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithTag("settings-profile-${created.id}").fetchSemanticsNodes().size == 1
+        }
         compose.onNodeWithTag("settings-profile-${created.id}").performScrollTo().assertIsNotSelected()
         compose.onNodeWithContentDescription("Delete Created review profile").performScrollTo().performClick()
         capture("p3r-settings-delete-profile", dialog = true)
         compose.onNodeWithText("Delete").performClick()
         compose.waitUntil(10_000) { runBlocking { dependencies.db().profileDao().byId(created.id) == null } }
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithTag("settings-profile-${created.id}").fetchSemanticsNodes().isEmpty()
+        }
         compose.onNodeWithTag("settings-profile-$profileId").performScrollTo().assertIsSelected()
         assertEquals("2009-05-19", runBlocking { dependencies.db().profileDao().byId(profileId)!!.clockDate })
         assertTrue(runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() })
@@ -503,8 +531,7 @@ class SubmergedAppFlowTest {
         openEpisodeChain("p3r.episode.junpei")
         episodeChainCountIs(1)
         openEpisodeStep("p3r.episode.junpei.2")
-        compose.onNodeWithTag("episode-detail").performScrollToNode(hasTestTag("episode-guide-p3r.episode.junpei.2"))
-        compose.onNodeWithTag("episode-guide-p3r.episode.junpei.2").performClick()
+        openEpisodeGuide("p3r.episode.junpei.2")
         val pack = dependencies.store().state.value.selected!!
         val source = pack.episodes!!.events.single { it.id == "p3r.episode.event.junpei.2" }
         val index = pack.day("standard", source.date)!!.steps.indexOfFirst { it.label == source.labelContains }
@@ -516,6 +543,9 @@ class SubmergedAppFlowTest {
         compose.onNodeWithContentDescription("Back").performClick()
         episodeChainCountIs(2)
         compose.onNodeWithContentDescription("Back").performClick()
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithTag("episode-list").fetchSemanticsNodes().size == 1
+        }
         compose.onNodeWithTag("episode-list").performScrollToIndex(0)
         compose.onNodeWithTag("episode-summary").assertTextEquals("2 / 30 episodes complete")
         scenario!!.recreate()
@@ -523,8 +553,7 @@ class SubmergedAppFlowTest {
         compose.onNodeWithTag("episode-summary").assertTextEquals("2 / 30 episodes complete")
         openEpisodeChain("p3r.episode.junpei")
         openEpisodeStep("p3r.episode.junpei.1")
-        compose.onNodeWithTag("episode-detail").performScrollToNode(hasTestTag("episode-guide-p3r.episode.junpei.1"))
-        compose.onNodeWithTag("episode-guide-p3r.episode.junpei.1").performClick()
+        openEpisodeGuide("p3r.episode.junpei.1")
         compose.onAllNodesWithText("Done")[0].performScrollTo().performClick()
         compose.waitUntil(10_000) { runBlocking { dependencies.repo().marksFor(profileId).first().none { it.date == "2009-05-12" && it.stepIndex == 0 } } }
         compose.onNodeWithContentDescription("Back").performClick()
@@ -559,8 +588,7 @@ class SubmergedAppFlowTest {
         compose.onNodeWithTag("episode-status-p3r.episode.shinjiro.3", useUnmergedTree = true).assertTextEquals("Completed")
         capture("p3r-episode-prerequisite-large-text")
         openEpisodeStep("p3r.episode.shinjiro.form")
-        compose.onNodeWithTag("episode-detail").performScrollToNode(hasTestTag("episode-guide-p3r.episode.shinjiro.form"))
-        compose.onNodeWithTag("episode-guide-p3r.episode.shinjiro.form").performClick()
+        openEpisodeGuide("p3r.episode.shinjiro.form")
         compose.onAllNodesWithText("Done")[1].performScrollTo().performClick()
         markIs(1, StepMark.DONE, "2009-09-24")
         compose.onNodeWithContentDescription("Back").performClick()
@@ -718,6 +746,12 @@ class SubmergedAppFlowTest {
         markIs(1, StepMark.DONE, "2009-04-18")
         capture("p3r-app-achievement-proof-source-day")
         compose.onNodeWithContentDescription("Back").performClick()
+        // A returning destination can briefly overlap its outgoing transition.
+        // Match one settled list before issuing a lazy-scroll action, as the
+        // request/episode helpers do, avoiding diagnostic traversal during draw.
+        compose.waitUntil(15_000) {
+            compose.onAllNodesWithTag("achievement-list").fetchSemanticsNodes().size == 1
+        }
         list.performScrollToNode(hasTestTag(proof))
         compose.onNodeWithTag(proof).assertTextEquals("2 / 22 checkpoints recorded")
         list.performScrollToNode(hasText("Review all checkpoints"))
@@ -727,6 +761,9 @@ class SubmergedAppFlowTest {
         compose.onAllNodesWithContentDescription("Done")[1].performScrollTo().assertIsSelected().performClick()
         compose.waitUntil(10_000) { runBlocking { dependencies.repo().marksFor(profileId).first().none { it.date == "2009-04-18" } } }
         compose.onNodeWithContentDescription("Back").performClick()
+        compose.waitUntil(15_000) {
+            compose.onAllNodesWithTag("achievement-list").fetchSemanticsNodes().size == 1
+        }
         list.performScrollToNode(hasTestTag(proof))
         compose.onNodeWithTag(proof).assertTextEquals("1 / 22 checkpoints recorded")
         capture("p3r-app-achievement-proof-reversal")

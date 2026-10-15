@@ -22,9 +22,9 @@ jobs:
       matrix:
         include:
           - review: full
-            classes: com.shadowmonarchbooks.dayloop.ui.skin.PaintedDailyTest,com.shadowmonarchbooks.dayloop.ui.skin.MetaphorAppFlowTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDailyTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedAppFlowTest,com.shadowmonarchbooks.dayloop.ui.skin.P3rWalkthroughTest,com.shadowmonarchbooks.dayloop.ui.skin.P5rWalkthroughTest,com.shadowmonarchbooks.dayloop.ui.skin.SkinMotionReviewTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedUtilityTest
+            classes: com.shadowmonarchbooks.dayloop.ui.skin.PaintedDailyTest,com.shadowmonarchbooks.dayloop.ui.skin.MetaphorAppFlowTest,com.shadowmonarchbooks.dayloop.ui.skin.MetaphorReadingFlowTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDailyTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedAppFlowTest,com.shadowmonarchbooks.dayloop.ui.skin.P3rWalkthroughTest,com.shadowmonarchbooks.dayloop.ui.skin.P5rWalkthroughTest,com.shadowmonarchbooks.dayloop.ui.skin.SkinMotionReviewTest,com.shadowmonarchbooks.dayloop.ui.skin.SubmergedUtilityTest
           - review: baseline
-            classes: com.shadowmonarchbooks.dayloop.ui.skin.MetaphorBaselineTest
+            classes: com.shadowmonarchbooks.dayloop.ui.skin.MetaphorReadingBaselineTest
           - review: hand-in-isolated
             classes: com.shadowmonarchbooks.dayloop.ui.skin.SubmergedAppFlowTest#exactHandInUpdatesRequestsAndUncheckingReversesIt
     steps:
@@ -36,13 +36,13 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: gradle/actions/setup-gradle@v4
-      - name: Restore the original production baseline for a before capture
+      - name: Restore the accepted M1 production baseline for an M2 before capture
         if: matrix.review == 'baseline'
         run: |
           cp app/src/androidTest/java/com/shadowmonarchbooks/dayloop/ui/skin/MetaphorBaselineTest.kt "$RUNNER_TEMP/MetaphorBaselineTest.kt"
-          git checkout 82a86ce287bb62d773555f031e176efb43c3c7ac
+          git checkout 784160bbd7ab399a6ac7109d7dd1eaf5fe0e6d80
           cp "$RUNNER_TEMP/MetaphorBaselineTest.kt" app/src/androidTest/java/com/shadowmonarchbooks/dayloop/ui/skin/MetaphorBaselineTest.kt
-          git diff --exit-code 82a86ce287bb62d773555f031e176efb43c3c7ac -- app/src/main app/build.gradle.kts core content
+          git diff --exit-code 784160bbd7ab399a6ac7109d7dd1eaf5fe0e6d80 -- app/src/main app/build.gradle.kts core content
       - name: Record actual build inputs
         run: |
           mkdir -p build/ui-captures
@@ -57,13 +57,13 @@ jobs:
         run: |
           bash tools/android/verify-candidate-signing.sh app/build/outputs/apk/candidate/app-candidate.apk
           mkdir -p build/review-apk
-          cp app/build/outputs/apk/candidate/app-candidate.apk build/review-apk/dayloop-v0.16.0-rc13.apk
+          cp app/build/outputs/apk/candidate/app-candidate.apk build/review-apk/dayloop-v0.16.0-rc14.apk
       - name: Upload candidate APK
         if: matrix.review == 'full'
         uses: actions/upload-artifact@v4
         with:
-          name: dayloop-v0.16.0-rc13
-          path: build/review-apk/dayloop-v0.16.0-rc13.apk
+          name: dayloop-v0.16.0-rc14
+          path: build/review-apk/dayloop-v0.16.0-rc14.apk
           retention-days: 14
           if-no-files-found: error
       - name: Enable emulator acceleration

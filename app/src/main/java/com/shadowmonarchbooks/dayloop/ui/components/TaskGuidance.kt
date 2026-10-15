@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import com.shadowmonarchbooks.dayloop.pack.schema.Step
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
+import com.shadowmonarchbooks.dayloop.ui.skin.hasPaintedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
 import com.shadowmonarchbooks.dayloop.ui.skin.withSkinFont
 
@@ -28,6 +29,7 @@ internal fun TaskGuidance(step: Step, index: Int? = null) {
     if (!step.hasGuidance) return
     val skin = LocalSkin.current
     val submerged = skin.hasSubmergedChrome()
+    val painted = skin.hasPaintedChrome()
     val colors = MaterialTheme.colorScheme
     val bodyStyle = if (submerged) MaterialTheme.typography.bodyMedium else MaterialTheme.typography.bodyLarge
     // Preserve the original plain-text surface (including its semantics/tag) for legacy packs.
@@ -57,10 +59,10 @@ internal fun TaskGuidance(step: Step, index: Int? = null) {
                     horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     if (submerged) Box(Modifier.size(3.dp, 18.dp).background(colors.tertiary))
                     Text(section.title,
-                        style = if (submerged) MaterialTheme.typography.titleMedium.withSkinFont(skin.type.display)
+                        style = if (submerged || painted) MaterialTheme.typography.titleMedium.withSkinFont(skin.type.display)
                             else MaterialTheme.typography.titleSmall,
                         fontStyle = if (submerged) FontStyle.Italic else null,
-                        color = if (submerged) colors.secondary else colors.onSurface,
+                        color = if (submerged || painted) colors.secondary else colors.onSurface,
                         modifier = Modifier.weight(1f).semantics { heading() }.then(
                             if (index != null) Modifier.testTag("task-guidance-$index-section-$sectionIndex-title") else Modifier))
                 }
