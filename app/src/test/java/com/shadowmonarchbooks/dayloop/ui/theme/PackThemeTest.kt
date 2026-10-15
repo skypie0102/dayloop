@@ -195,7 +195,7 @@ class PackThemeTest {
         assertEquals("cut", theme.shapes?.frame)
         assertEquals("fade", theme.motion)
         val display = assertNotNull(theme.typography?.display)
-        assertEquals("art/fonts/BodoniModa.ttf", display.file)
+        assertEquals("art/fonts/BodoniModa-Black.ttf", display.file)
         assertEquals(null, display.case)
         assertTrue(!display.italic)
         assertTrue(theme.decor.isEmpty(), "legacy gold textures are not part of the new shell")
@@ -207,7 +207,7 @@ class PackThemeTest {
     fun `metaphor bundles its display font and license`() {
         val root = contentPacksDir() ?: error("no content checkout")
         val dir = root.resolve("metaphor")
-        val font = dir.resolve("art/fonts/BodoniModa.ttf")
+        val font = dir.resolve(assertNotNull(themeOf("metaphor").typography?.display?.file))
         assertTrue(font.isRegularFile(), "bundled display font missing")
         assertTrue(font.fileSize() <= 2L * 1024 * 1024, "font exceeds the 2 MB cap")
         assertTrue(font.fileSize() > 10_000, "font suspiciously small — truncated download?")
