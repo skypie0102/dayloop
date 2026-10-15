@@ -95,7 +95,7 @@
     },
     "typography": {
       "display": {
-        "file": "art/fonts/BodoniModa.ttf"
+        "file": "art/fonts/BodoniModa-Black.ttf"
       }
     },
     "motion": "fade",

@@ -5,7 +5,7 @@ This M1 candidate replaces the previous brass/crown shell with heavy upright ser
 ## Scope
 
 - Explicit `painted` theme style and chrome opt-in. Neither a motif nor motion can replace other packs. P3R/P5R content stays byte-identical.
-- Bodoni Moda is a licensed display substitute, bundled unchanged with its OFL/copyright. Body instructions keep the system reading face.
+- Bodoni Moda is a licensed display substitute. A static Black instance (weight 900, optical size 48) avoids the asset loader using the variable font's thin default; the original OFL/copyright is bundled unchanged. The source hash, output hash and instancing tool are recorded in the ledger. Body instructions keep the system reading face.
 - 64dp header, named icon-only navigation and 23dp icons. Narrow windows pan while keeping at least 48dp touch targets.
 - Actual game month/day and declared weekday instead of the old ordinal journey plaque; no synthetic year, invented weather or live Afternoon/Night clock.
 - Separate Done/Skip commands use 40dp visual marks within 48dp touch targets. Legacy Later marks remain editable. Source text and guidance remain independent from marking.

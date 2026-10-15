@@ -38,6 +38,7 @@ class MetaphorAppFlowTest : MetaphorReviewFlow() {
         compose.onNodeWithContentDescription(formatDate("2100-06-12", calendar)).assertIsDisplayed()
         unchangedClockAndMarks("2100-06-12")
         capture("metaphor-source-back-double-text")
+        captureCollectionShells("double-text")
     }
 
     @Test fun namedCommandsSaveAndReverseWhileReadingPositionSurvivesTabsAndRecreation() {
@@ -66,6 +67,19 @@ class MetaphorAppFlowTest : MetaphorReviewFlow() {
         compose.waitUntil(10_000) { runBlocking { dependencies.repo().marksFor(profileId).first().isEmpty() } }
         unchangedClockAndMarks("2100-06-12")
         capture("metaphor-reading-restored-and-reversed")
+        captureCollectionShells("normal-text")
+        tab("Today").performClick()
+        instruction.assertIsDisplayed()
+    }
+
+    private fun captureCollectionShells(size: String) {
+        listOf("Followers" to "FOLLOWERS", "Achievements" to "ACHIEVEMENTS").forEach { (label, title) ->
+            tab(label).performClick()
+            tab(label).assertIsDisplayed().assertIsSelected()
+            compose.onNodeWithTag("painted-toolbar-title").assertTextEquals(title).assertIsDisplayed()
+            capture("metaphor-${label.lowercase()}-shell-$size")
+        }
+        unchangedClockAndMarks("2100-06-12")
     }
 
     @Test fun nonPlayableSpanAdvancesOnceAndBackRestoresTheRealDate() {

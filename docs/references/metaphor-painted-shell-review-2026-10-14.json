@@ -3,10 +3,21 @@
   "baselineProductionCommit": "82a86ce287bb62d773555f031e176efb43c3c7ac",
   "font": [
     {
-      "file": "BodoniModa.ttf",
-      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/bodonimoda/BodoniModa%5Bopsz,wght%5D.ttf",
-      "bytes": 162104,
-      "sha256": "550f5e34ee0a828d7941b1fe9bc58b34e5260d3f33a61532e6d0a0114e79a5cf"
+      "file": "BodoniModa-Black.ttf",
+      "bytes": 58952,
+      "sha256": "f3227927498587dd52e21bd4a1a7f21c2232f36b7fe3651d43ce59a43238eb43",
+      "derivedFrom": {
+        "file": "BodoniModa.ttf",
+        "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/bodonimoda/BodoniModa%5Bopsz,wght%5D.ttf",
+        "bytes": 162104,
+        "sha256": "550f5e34ee0a828d7941b1fe9bc58b34e5260d3f33a61532e6d0a0114e79a5cf"
+      },
+      "instance": {
+        "wght": 900,
+        "opsz": 48
+      },
+      "tool": "fontTools.varLib.instancer",
+      "fontToolsVersion": "4.61.1"
     },
     {
       "file": "BodoniModa-OFL.txt",
@@ -15,8 +26,8 @@
       "sha256": "931dfe2e0cd3c9443295f5c1d754b8a8403bf060df50c1d5900267ade83d0046"
     }
   ],
-  "fontLicense": "SIL Open Font License 1.1; original font and copyright/license bundled unchanged",
-  "fontRole": "Bodoni Moda 400\u2013900 / optical size 6\u201396; heavy upright display only, system body face retained",
+  "fontLicense": "SIL Open Font License 1.1; static instance derived from the recorded source; original copyright/license bundled unchanged",
+  "fontRole": "Bodoni Moda static Black (weight 900, optical size 48) for display only; system body face retained",
   "newStyle": "painted",
   "newChrome": "painted",
   "contentVersion": 4,
