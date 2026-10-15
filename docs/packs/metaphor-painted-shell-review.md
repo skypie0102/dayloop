@@ -17,6 +17,47 @@ This does not complete M2 source-guidance presentation or M3 Follower/quest proo
 
 ## Validation
 
-Required CI, native normal/200% text captures, unchanged-production baseline captures and both Persona regressions are pending. The review workflow pins the old production commit and adds only its baseline test fixture for before screenshots. The new candidate is rc13/code45 with Metaphor content4; same-certificate device upgrade, spoken accessibility and measured device performance remain separate release gates.
+Validated October 15 in [PR #15](https://github.com/skypie0102/dayloop/pull/15).
+Runtime/source commit `812bab2848e9437c4813e9dbb9f6dc228092f9e8` was built from
+merge commit `cfdfbc337ba2ef21f0d0325e14ddd309b1925d54`; both have tree
+`bda038d44f69fe0a46b0930f8da7312df6ea5463`. Later edits only correct the unit
+asset-path expectations and record documentation; runtime/content stay identical.
+
+- Required build, JVM/backup tests, Android-test compilation, all three packlint
+  targets and candidate signing passed on `91f263a8045be69cd0f36be347d9c08ff2ea1505`.
+  Candidate and stable packaging verification passed too.
+- [Native review run 38672796798](https://github.com/skypie0102/dayloop/actions/runs/38672796798)
+  passed **67 full tests**, **two baseline tests** and the isolated hand-in test.
+  Full review produced **133 captures** (16 Metaphor, 117 Persona regressions);
+  the before-build review produced seven. All were inspected as contact sheets,
+  with full-resolution inspection of the Metaphor shell/date/source/collection
+  states. Still captures establish layout, not measured performance.
+- Before captures pin unchanged production `82a86ce287bb62d773555f031e176efb43c3c7ac`;
+  only the baseline test fixture is added and the workflow asserts no production
+  source/content changes. Normal and 200% text cover all four headers, selected
+  tabs, five-column calendar, source/Back and restored reading/mark state.
+- June 2 → June 5 skips the non-playable span exactly once. Existing auto-skips
+  survive Back, while explicit Done marks remain reversible and profile scoped.
+- The APK is `0.16.0-rc13`/45, package
+  `com.shadowmonarchbooks.dayloop.candidate`, 47,986,928 bytes. Its ZIP integrity,
+  manifest, pinned certificate and all **306 bundled content files** match the
+  reviewed source (P3R 102, P5R 135, Metaphor 69).
+- Candidate SHA-256:
+  `698bda3c5d5d2eed6ae3b9e22fb0902d475ed663a3a399089723fc02b88d96c7`.
+  Certificate SHA-256:
+  `a2ecebfb294ca69b4f09e7cd3da5bf013ade048b940c53eb2c0619060e3bf334`.
+  It retains rc7–rc12's candidate update identity; physical in-place upgrade is
+  still an M7 acceptance gate.
+
+Metaphor content4 changes theme/font only. Both Persona content hashes match the
+research ledger, and every Metaphor gameplay metadata field and task file matches
+the pre-paint baseline. The sole Metaphor packlint warning is the pre-existing
+unauthored July 21, assigned to the M2 source pass.
+
+The shell is accepted as a mobile adaptation of the publisher menu/HUD references.
+Exact submenu geometry, the existing Follower matcher and achievement rules,
+remaining utility presentation (including legacy storage-date labels outside the
+shell), spoken accessibility and measured device performance remain open. This
+candidate does not declare the whole Metaphor redesign or stable release complete.
 
 See [the evidence ledger](../references/metaphor-painted-shell-review-2026-10-14.json) for the font provenance and build inputs.

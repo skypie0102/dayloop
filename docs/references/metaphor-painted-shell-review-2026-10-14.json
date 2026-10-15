@@ -1,5 +1,5 @@
 {
-  "stage": "M1 painted shell candidate",
+  "stage": "M1 shell and M2 date/reading foundation verified",
   "baselineProductionCommit": "82a86ce287bb62d773555f031e176efb43c3c7ac",
   "font": [
     {
@@ -33,9 +33,54 @@
   "contentVersion": 4,
   "candidate": {
     "versionName": "0.16.0-rc13",
-    "versionCode": 45
+    "versionCode": 45,
+    "file": "dayloop-v0.16.0-rc13.apk",
+    "bytes": 47986928,
+    "sha256": "698bda3c5d5d2eed6ae3b9e22fb0902d475ed663a3a399089723fc02b88d96c7",
+    "package": "com.shadowmonarchbooks.dayloop.candidate",
+    "certificateSha256": "a2ecebfb294ca69b4f09e7cd3da5bf013ade048b940c53eb2c0619060e3bf334",
+    "matchedContentFiles": {
+      "p3r": 102,
+      "p5r": 135,
+      "metaphor": 69
+    },
+    "sourceRuntimeCommit": "812bab2848e9437c4813e9dbb9f6dc228092f9e8"
   },
   "sourceContentChanged": false,
-  "nativeReview": "pending",
-  "exactSubmenuComparisons": "pending; header/date/navigation use verified publisher main menu and field HUD references only"
+  "nativeReview": {
+    "runId": 38672796798,
+    "url": "https://github.com/skypie0102/dayloop/actions/runs/38672796798",
+    "fullTests": 67,
+    "failures": 0,
+    "skipped": 0,
+    "captures": 133,
+    "metaphorCaptures": 16,
+    "personaCaptures": 117,
+    "baselineTests": 2,
+    "baselineCaptures": 7,
+    "isolatedHandIn": "passed",
+    "visualMethod": "Contact-sheet inspection of all captures and full-resolution Metaphor shell/date/source/collection review",
+    "spokenTalkBack": "not performed",
+    "measuredPerformance": "not performed"
+  },
+  "exactSubmenuComparisons": "pending; header/date/navigation use verified publisher main menu and field HUD references only",
+  "reviewDate": "2026-10-15",
+  "sourceRuntimeCommit": "812bab2848e9437c4813e9dbb9f6dc228092f9e8",
+  "nativeBuildCommit": "cfdfbc337ba2ef21f0d0325e14ddd309b1925d54",
+  "nativeBuildTree": "bda038d44f69fe0a46b0930f8da7312df6ea5463",
+  "requiredChecksCommit": "91f263a8045be69cd0f36be347d9c08ff2ea1505",
+  "packContentSha256": {
+    "p3r": "11bada4e3a041949caf936ed6ae5b530910d4e9141c20269908eb67bc9fb640f",
+    "p5r": "cd4b7ee00ca6fd9244d754d5c27112a795d6f49d61531de3fee2648eb67c8313",
+    "metaphor": "f048ec92d4128e5ac0a10310d3bf42055a90474e6b5dcce4734051a5e0c4f2f7"
+  },
+  "remainingGates": [
+    "M2 source guidance and exact Calendar reference",
+    "M3 Followers/quests exact proof and submenu references",
+    "M4 achievements/references including legacy storage-date labels",
+    "M5 utility/widget/art surfaces",
+    "Spoken TalkBack",
+    "Physical upgrade and provider/launcher checks",
+    "Measured device performance"
+  ]
 }

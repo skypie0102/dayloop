@@ -9,7 +9,10 @@ while staying the same pack-generic engine for P3R, Metaphor, and future drops.
 > P5R/P3R walkthrough and UI refinements are delivered through candidate rc12;
 > additional P3R character art awaits the user's files and its remaining
 > spoken/device/release gates stay on the backlog. Metaphor now receives its own
-> inspected-reference and phased redesign workstream. The older v0.15.0 milestone
+> inspected-reference and phased redesign workstream. The October 15
+> [M1 shell/date/reading pass](packs/metaphor-painted-shell-review.md) is verified
+> for rc13; source guidance and exact Calendar comparison are next.
+> The older v0.15.0 milestone
 > and Phases 11–17 below are historical deliveries, not acceptance of the new
 > Metaphor redesign. Phase 18 remains the final cross-pack verification and
 > release-hardening pass. P5R's stability contract lives in `docs/packs/p5r-baseline.md`;

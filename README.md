@@ -49,13 +49,16 @@ Kotlin · Jetpack Compose · Material 3 · MVVM (ViewModel + StateFlow) · Hilt 
 ## Roadmap
 
 **Current priority: [Metaphor: ReFantazio — UI/UX delivery roadmap](docs/packs/metaphor-ui-roadmap.md).**
-The October 14 request moves the immediate workstream to Metaphor. Research and
-the implementation plan are recorded; the replacement UI is not implemented yet.
-M0 finishes exact submenu/current-app comparisons, followed by M1 identity/shell,
-M2 walkthrough/calendar, M3 Followers/quests, M4 achievements/references, M5
-utilities/art/widget, M6 motion/accessibility/performance and M7 release acceptance.
-The first code slice is the Metaphor header, game-date HUD and compact navigation,
-with explicit skin opt-in and unchanged P5R/P3R behavior.
+The October 15 [painted-shell pass](docs/packs/metaphor-painted-shell-review.md)
+implements M1 and the date/reading foundation: heavy serif headers, paint/paper/ink
+planes, actual game-date navigation and compact named icon tabs. rc13 (45),
+Metaphor content4, passed 67 full native tests/133 captures, two before-build
+tests/seven captures and the isolated hand-in check. Both Persona packs' content
+and all 396 Metaphor tasks remain unchanged.
+Next is M2's source guidance and exact Calendar comparison, followed by M3
+Followers/quests, M4 achievements/references, M5 utilities/art/widget, M6
+motion/accessibility/performance and M7 release acceptance. Specialized submenu,
+spoken, physical-device and performance gates remain open.
 
 The [P3R polish roadmap](docs/packs/p3r-polish-roadmap.md) remains the deferred
 backlog, including user-supplied character art and unverified spoken/device gates.
