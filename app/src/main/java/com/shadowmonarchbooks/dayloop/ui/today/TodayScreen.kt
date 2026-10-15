@@ -284,7 +284,7 @@ fun TodayScreen(
                 horizontalAlignment = Alignment.End,
                 verticalArrangement = Arrangement.spacedBy(2.dp),
             ) {
-                DayKindChip(day?.dayKind ?: "rest")
+                DayKindChip(day?.dayKind ?: if (skin.hasPaintedChrome() && date in pack.pack.calendar.nonPlayableDates) "story" else "rest")
                 state.activeProfile?.let { profile ->
                     Text(
                         text = profile.name,

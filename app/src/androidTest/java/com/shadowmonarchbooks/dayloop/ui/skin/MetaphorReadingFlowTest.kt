@@ -117,6 +117,8 @@ class MetaphorReadingFlowTest : MetaphorReviewFlow() {
 
     @Test fun existingProfileOnJulyTwentyOneLoadsWithoutRewritingItsDateOrMarks() {
         launch("2100-07-21")
+        compose.onNodeWithText("Story").assertIsDisplayed()
+        compose.onNodeWithText("Rest").assertDoesNotExist()
         compose.onNodeWithText("Story-only date.", substring = true).assertIsDisplayed()
         unchangedClockAndMarks("2100-07-21")
         capture("metaphor-m2-existing-story-date-profile")
