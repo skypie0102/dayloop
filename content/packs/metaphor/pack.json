@@ -1,7 +1,7 @@
 {
   "packId": "metaphor",
   "title": "Metaphor: ReFantazio",
-  "contentVersion": 3,
+  "contentVersion": 4,
   "pickerOrder": 2,
   "timeModel": "dayCounter",
   "calendar": {
@@ -84,33 +84,26 @@
     }
   },
   "theme": {
-    "accent": "#9E815F",
-    "accentDark": "#BEA52A",
-    "style": "expressive",
-    "motif": "crown",
+    "accent": "#F2466B",
+    "accentDark": "#F2466B",
+    "style": "painted",
     "shapes": {
-      "card": "plaque",
-      "chip": "seal",
-      "header": "plaque",
-      "frame": "plaque"
+      "card": "cut",
+      "chip": "ribbon",
+      "header": "ribbon",
+      "frame": "cut"
     },
     "typography": {
       "display": {
-        "file": "art/fonts/display.ttf",
-        "case": "upper",
-        "tracking": 0.05
+        "file": "art/fonts/BodoniModa-Black.ttf"
       }
     },
-    "decor": {
-      "header": "art/decor-header.png",
-      "panel": "art/decor-panel.png",
-      "divider": "art/decor-divider.png"
-    },
-    "motion": "flip",
+    "motion": "fade",
     "art": {
       "card": "art/card.png",
       "icon": "art/icon.png",
       "launcherBadge": "art/launcher-badge.png"
-    }
+    },
+    "chrome": "painted"
   }
 }

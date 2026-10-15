@@ -28,6 +28,10 @@ fun SkinSectionHeader(
     modifier: Modifier = Modifier,
 ) {
     val skin = LocalSkin.current
+    if (skin.hasPaintedChrome()) {
+        PaintedSectionHeading(text, modifier)
+        return
+    }
     if (skin.hasSubmergedChrome()) {
         SubmergedSectionHeading(text, modifier)
         return

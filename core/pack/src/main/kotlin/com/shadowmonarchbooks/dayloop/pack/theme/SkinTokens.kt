@@ -32,7 +32,7 @@ object SkinTokens {
     val SHAPES = setOf("jagged", "slash", "cut", "ribbon", "diamond", "plaque", "seal")
 
     /** Explicit shell opt-in; existing motifs never activate replacement chrome. */
-    val CHROMES = setOf("submerged")
+    val CHROMES = setOf("submerged", "painted")
 
     /** `theme.motion` — screen-transition grammar. */
     val MOTIONS = setOf("slash", "fade", "flip", "none")

@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -80,6 +81,9 @@ import com.shadowmonarchbooks.dayloop.ui.skin.SkinActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDateHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
+import com.shadowmonarchbooks.dayloop.ui.skin.hasPaintedChrome
+import com.shadowmonarchbooks.dayloop.ui.skin.preservesReadingState
+import com.shadowmonarchbooks.dayloop.ui.skin.PaintedDateHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSpec
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinTextActionButton
 import com.shadowmonarchbooks.dayloop.ui.skin.rememberAnimationsDisabled
@@ -136,7 +140,8 @@ fun TodayScreen(
     val animationsDisabled = rememberAnimationsDisabled()
     val scrollState = rememberScrollState()
     val submerged = skin.hasSubmergedChrome()
-    val boundedTaskViewport = submerged || pack.pack.walkthroughPresentation.inlineTips
+    val preserveReading = LocalSkin.current.preservesReadingState()
+    val boundedTaskViewport = preserveReading || pack.pack.walkthroughPresentation.inlineTips
     val density = LocalDensity.current
     var dayControlsHeightPx by remember { mutableIntStateOf(0) }
     // Inline walkthroughs must scroll above the control rail, including enlarged labels.
@@ -145,11 +150,11 @@ fun TodayScreen(
     } else 100.dp
     var savedReadingOwner by rememberSaveable(pack.slug) { mutableStateOf<String?>(null) }
     val readingOwner = "${state.activeProfile?.id}:$date"
-    LaunchedEffect(date, boundedTaskViewport, if (submerged) state.activeProfile?.id else null) {
-        // Reload returns to its saved reading position on Back/tab restoration.
+    LaunchedEffect(date, boundedTaskViewport, if (preserveReading) state.activeProfile?.id else null) {
+        // Replacement shells return to their saved reading position on Back/tab restoration.
         // A changed date/profile still starts from the date header.
-        if (boundedTaskViewport && (!submerged || savedReadingOwner != readingOwner)) scrollState.scrollTo(0)
-        if (submerged) savedReadingOwner = readingOwner
+        if (boundedTaskViewport && (!preserveReading || savedReadingOwner != readingOwner)) scrollState.scrollTo(0)
+        if (preserveReading) savedReadingOwner = readingOwner
     }
     var dateBottomPx by remember(date) { mutableIntStateOf(Int.MAX_VALUE) }
     val datePinned by remember(scrollState, dateBottomPx) {
@@ -250,7 +255,10 @@ fun TodayScreen(
         ) {
             // Treat the weighted left side as the date's cell. P5R centers the
             // full date in that cell and only reduces font size when it cannot fit.
-            if (skin.hasSubmergedChrome()) {
+            if (skin.hasPaintedChrome()) {
+                PaintedDateHeader(date, formatDate(date, pack.calendar),
+                    pack.calendar?.weekdayOf(date)?.replaceFirstChar { it.uppercase() }, Modifier.weight(1f))
+            } else if (skin.hasSubmergedChrome()) {
                 SubmergedDateHeader(
                     date = date,
                     accessibleDate = formatDate(date, pack.calendar),
@@ -271,6 +279,7 @@ fun TodayScreen(
                 }
             }
             Column(
+                modifier = if (skin.hasPaintedChrome()) Modifier.widthIn(max = 104.dp) else Modifier,
                 horizontalAlignment = Alignment.End,
                 verticalArrangement = Arrangement.spacedBy(2.dp),
             ) {
@@ -280,7 +289,7 @@ fun TodayScreen(
                         text = profile.name,
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.secondary,
-                        maxLines = 1,
+                        maxLines = if (skin.hasPaintedChrome()) Int.MAX_VALUE else 1,
                         overflow = TextOverflow.Ellipsis,
                     )
                 }

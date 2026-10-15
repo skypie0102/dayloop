@@ -184,58 +184,54 @@ class PackThemeTest {
     // ---- Phase 15 (docs/ROADMAP-v3.md): the Royal skin data ----
 
     @Test
-    fun `metaphor declares the royal skin data`() {
+    fun `metaphor explicitly opts into painted ink paper and serif chrome`() {
         val theme = themeOf("metaphor")
-        assertEquals("crown", theme.motif)
-        assertNotNull(theme.shapes, "metaphor must declare shapes")
-        assertEquals("plaque", theme.shapes?.card, "parchment plaques")
-        assertEquals("seal", theme.shapes?.chip, "wax-stamp chips")
-        assertEquals("plaque", theme.shapes?.header, "ornate plaque headers")
-        assertEquals("plaque", theme.shapes?.frame, "plaque frames")
-        assertEquals("flip", theme.motion, "royal motion is the page turn")
-        val display = assertNotNull(theme.typography?.display, "metaphor must declare a display font role")
-        assertEquals("art/fonts/display.ttf", display.file)
-        assertEquals("upper", display.case, "display case token")
-        assertTrue(!display.italic, "engraved roman type is upright")
-        assertTrue((display.tracking ?: 0.0) > 0.0, "generous engraved tracking")
-        assertTrue("header" in theme.decor, "metaphor decor header slot")
-        assertTrue("panel" in theme.decor, "metaphor decor panel slot")
-        assertTrue("divider" in theme.decor, "metaphor decor divider slot")
-        // Royal seeds over the expressive scheme (docs/references/metaphor-ui.md §2).
-        assertEquals("#9E815F", theme.accent, "brass light seed")
-        assertEquals("#BEA52A", theme.accentDark, "ornament-gold dark seed")
-        assertEquals("expressive", theme.style)
+        assertEquals("painted", theme.chrome)
+        assertEquals("painted", theme.style)
+        assertEquals(null, theme.motif, "old crown rendering must not leak into painted pages")
+        assertEquals("cut", theme.shapes?.card)
+        assertEquals("ribbon", theme.shapes?.chip)
+        assertEquals("ribbon", theme.shapes?.header)
+        assertEquals("cut", theme.shapes?.frame)
+        assertEquals("fade", theme.motion)
+        val display = assertNotNull(theme.typography?.display)
+        assertEquals("art/fonts/BodoniModa-Black.ttf", display.file)
+        assertEquals(null, display.case)
+        assertTrue(!display.italic)
+        assertTrue(theme.decor.isEmpty(), "legacy gold textures are not part of the new shell")
+        assertEquals("#F2466B", theme.accent)
+        assertEquals(theme.accent, theme.accentDark)
     }
 
     @Test
     fun `metaphor bundles its display font and license`() {
         val root = contentPacksDir() ?: error("no content checkout")
         val dir = root.resolve("metaphor")
-        val font = dir.resolve("art/fonts/display.ttf")
+        val font = dir.resolve(assertNotNull(themeOf("metaphor").typography?.display?.file))
         assertTrue(font.isRegularFile(), "bundled display font missing")
         assertTrue(font.fileSize() <= 2L * 1024 * 1024, "font exceeds the 2 MB cap")
         assertTrue(font.fileSize() > 10_000, "font suspiciously small — truncated download?")
         val head = Files.readAllBytes(font).take(4)
         assertEquals(listOf<Byte>(0, 1, 0, 0), head, "display.ttf must start with the TTF magic")
-        assertTrue(dir.resolve("art/fonts/OFL.txt").isRegularFile(), "OFL license must ship beside the font")
+        assertTrue(dir.resolve("art/fonts/BodoniModa-OFL.txt").isRegularFile(), "OFL license must ship beside the font")
     }
 
     @Test
-    fun `metaphor decor art files exist on disk`() {
+    fun `metaphor retains its licensed legacy assets without declaring gold decor`() {
         val root = contentPacksDir() ?: error("no content checkout")
         val dir = root.resolve("metaphor")
         val theme = themeOf("metaphor")
-        theme.decor.forEach { (slot, rel) ->
-            assertTrue(dir.resolve(rel).isRegularFile(), "metaphor theme.decor['$slot'] missing file $rel")
-        }
+        assertTrue(theme.decor.isEmpty())
+        assertTrue(dir.resolve("art/fonts/display.ttf").isRegularFile())
+        assertTrue(dir.resolve("art/fonts/OFL.txt").isRegularFile())
     }
 
     @Test
-    fun `the three skins keep distinct motion languages`() {
+    fun `packs choose their motion without forcing an unverified page flip`() {
         // Each pack's transition grammar stays its own: no skin bleeds into
         // another (Phase 14's slash-language gating, generalized).
         assertEquals(
-            listOf("slash", "fade", "flip"),
+            listOf("slash", "fade", "fade"),
             listOf("p5r", "p3r", "metaphor").map { themeOf(it).motion },
         )
     }
@@ -274,7 +270,7 @@ class PackThemeTest {
     // P3R-1: replacement shell opt-in; legacy panel/motion work remains staged.
 
     @Test
-    fun `p3r declares replacement chrome without changing other pack opt-ins`() {
+    fun `replacement shells remain explicit and the phantom skin stays protected`() {
         val theme = themeOf("p3r")
         assertEquals("moon", theme.motif)
         assertEquals("submerged", theme.chrome)
@@ -292,7 +288,7 @@ class PackThemeTest {
         assertEquals("#09134E", theme.accent)
         assertEquals("#1A46CE", theme.accentDark)
         assertEquals(null, themeOf("p5r").chrome, "protected pack keeps existing chrome")
-        assertEquals(null, themeOf("metaphor").chrome, "other pack keeps existing chrome")
+        assertEquals("painted", themeOf("metaphor").chrome, "painted shell has a separate opt-in")
         assertEquals(packColorScheme(theme, true).background, packColorScheme(theme, false).background)
         assertEquals(packColorScheme(theme, true).primary, packColorScheme(theme, false).primary)
     }

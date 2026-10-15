@@ -39,6 +39,8 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -56,6 +58,8 @@ import com.shadowmonarchbooks.dayloop.ui.components.EmptyState
 import com.shadowmonarchbooks.dayloop.ui.components.MediaImage
 import com.shadowmonarchbooks.dayloop.ui.components.SkinHeader
 import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
+import com.shadowmonarchbooks.dayloop.ui.skin.hasPaintedChrome
+import com.shadowmonarchbooks.dayloop.ui.skin.withSkinFont
 import com.shadowmonarchbooks.dayloop.ui.skin.LocalSkin
 import com.shadowmonarchbooks.dayloop.ui.skin.SkinSectionHeader
 import com.shadowmonarchbooks.dayloop.pack.schema.Deadline
@@ -198,7 +202,21 @@ fun MonthScreen(
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
     ) {
-        Box(
+        if (skin.hasPaintedChrome()) {
+            Row(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.inverseSurface),
+                verticalAlignment = Alignment.CenterVertically) {
+                IconButton(onClick = { if (index > 0) onSelectedMonthChange(months[index - 1]) }, enabled = index > 0) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, "Previous month", tint = MaterialTheme.colorScheme.inverseOnSurface)
+                }
+                Text(java.time.Month.of(month.takeLast(2).toInt()).getDisplayName(java.time.format.TextStyle.FULL, java.util.Locale.ENGLISH),
+                    style = MaterialTheme.typography.headlineMedium.withSkinFont(skin.type.display), fontWeight = FontWeight.Black,
+                    textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.inverseOnSurface,
+                    modifier = Modifier.weight(1f).testTag("painted-month-heading").semantics { heading() }.padding(vertical = 6.dp))
+                IconButton(onClick = { if (index < months.lastIndex) onSelectedMonthChange(months[index + 1]) }, enabled = index < months.lastIndex) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowForward, "Next month", tint = MaterialTheme.colorScheme.inverseOnSurface)
+                }
+            }
+        } else Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxWidth(),
         ) {

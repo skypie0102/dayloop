@@ -59,6 +59,7 @@ private fun SkinSpec.isSlashChrome(): Boolean = hasSkin && motion == "slash"
 @Composable
 fun Modifier.skinBackdrop(skin: SkinSpec, showHaze: Boolean = true): Modifier {
     if (skin.hasSubmergedChrome()) return this.submergedBackdrop()
+    if (skin.hasPaintedChrome()) return this.paintedBackdrop()
     if (!skin.isSlashChrome()) return this
     val colors = MaterialTheme.colorScheme
     val background = Color.Black
@@ -113,6 +114,8 @@ fun SkinTopBar(
         )
         if (skin.hasSubmergedChrome()) {
             SubmergedTopBar(title, canGoBack, onBack, onOpenSearch, settingsEnabled, onOpenSettings)
+        } else if (skin.hasPaintedChrome()) {
+            PaintedTopBar(title, canGoBack, onBack, onOpenSearch, settingsEnabled, onOpenSettings)
         } else if (!skin.isSlashChrome()) {
             TopAppBar(
                 modifier = Modifier
@@ -229,6 +232,10 @@ fun SkinBottomBar(
 ) {
     val skin = LocalSkin.current
     val colors = MaterialTheme.colorScheme
+    if (skin.hasPaintedChrome()) {
+        PaintedBottomBar(items, selectedRoute, onSelect)
+        return
+    }
     if (skin.hasSubmergedChrome()) {
         SubmergedBottomBar(items, selectedRoute, onSelect)
         return

@@ -7,8 +7,10 @@ spoken/device and stable-release gates remain in the [P3R backlog](p3r-polish-ro
 
 **Goal:** make Metaphor feel like its own game while giving its completion route
 the reading clarity, accurate progress, retained navigation and lightweight
-feedback established in P5R/P3R. This change records research and a plan; it does
-not implement a replacement skin or declare Android visual acceptance.
+feedback established in P5R/P3R. The research baseline remains below. The first
+painted-shell implementation is tracked in [PR #15](https://github.com/skypie0102/dayloop/pull/15)
+and its [delivery review](metaphor-painted-shell-review.md). Its shell, date and
+reading/navigation behavior passed native review on October 15.
 
 ## Research and evidence
 
@@ -42,7 +44,7 @@ page could not be retrieved in this review. Its earlier pixel estimates remain
 historical evidence. Publisher story illustrations are not proof of those menu
 layouts. Still images do not establish transition duration or performance.
 
-## Current pack and code baseline
+## Research baseline before PR #15
 
 | Area | Baseline to preserve |
 |---|---|
@@ -130,19 +132,20 @@ typography, paint/paper composition, calendar and game vocabulary.
 
 | Pass | Status | Deliverable | Acceptance gate |
 |---|---|---|---|
-| M0 — References and baseline | Research/proposal recorded; runtime/submenu comparison open | Versioned screenshot/source ledger, current-pack Android fixtures, navigation/content/save baseline, missing-art inventory and source-proof plan | Label observed vs proposed decisions; inspect the exact submenu before implementing its layout; record normal/200% baseline and ownership of the existing packlint warning |
-| M1 — Identity and shell | Next implementation | Explicit painted-skin opt-in, serif/body roles, static paint/paper/ink primitives, header/date/navigation and shared reading/control metrics | Review Today/Calendar/Follower headings and selected/unselected states; fit narrow/200% layouts; P5R/P3R screenshots and behavior stay isolated |
-| M2 — Walkthrough and calendar | Queued after shell | Inline route guidance, Afternoon/Night sections, mission/route/deadline hierarchy, five-column calendar/swipes, source links and retained reading position | Verify all 396 task identities; no 2100 display or duplicate route-date HUD; five weekdays/30-day boundaries follow the pack; source → Back never changes clock/progress |
+| M0 — References and baseline | Publisher references and before captures recorded; exact submenu comparisons open | Versioned screenshot/source ledger, current-pack Android fixtures, navigation/content/save baseline, missing-art inventory and source-proof plan | Label observed vs proposed decisions; inspect the exact submenu before implementing its layout; record normal/200% baseline and ownership of the existing packlint warning |
+| M1 — Identity and shell | Verified in PR #15; rc13 (45) | Explicit painted-skin opt-in, serif/body roles, static paint/paper/ink primitives, header/date/navigation and shared reading/control metrics | Review Today/Calendar/Follower headings and selected/unselected states; fit narrow/200% layouts; P5R/P3R screenshots and behavior stay isolated |
+| M2 — Walkthrough and calendar | Next; date/reading groundwork delivered in M1 | Inline route guidance, Afternoon/Night sections, mission/route/deadline hierarchy, five-column calendar/swipes, source links and retained reading position | Verify all 396 task identities; no 2100 display or duplicate route-date HUD; five weekdays/30-day boundaries follow the pack; source → Back never changes clock/progress |
 | M3 — Followers and quests | Queued; source contract before UI | Fourteen rank ledgers, exact proof/navigation, gates and rewards; audited quest catalog with source-supported stages and a named Quest destination | Every rank/quest state traces to a real task/confirmation; More/Neuras/automatic cases tested; accept/complete/report distinctions only where supported; undo/profile/route isolation pass |
 | M4 — Achievements and references | Queued | Compact 44-entry collection, rule/proof detail, Royal Virtue/Archetype prerequisites and contextual activity/Memorandum guidance | Preserve all achievement identities/rules; distinguish route, cumulative/manual, conditional and NG+ work; no invented owned equipment/classes, hidden-stat percentages or trophy dates |
 | M5 — Utilities, widget and art | Queued | Search, picker/loading/error, Settings/profile/backup dialogs, Media and static widget; correctly identified art with source/hash ledger | Full results, real Back/IME paths, readable missing-art states, correct-pack widget launches at supported sizes; backup cancel/switch leaves saves intact |
 | M6 — Motion, accessibility and performance | Rules apply from M1; final review queued | Short context-appropriate reveal/selection/day-change cues, reduced-motion variants, spoken traversal and measured device profiling | No idle animation loop, forced loading delay or heavy blur; system motion settings respected; record real startup/frame/memory conditions and spoken date/selection/expansion/focus results |
 | M7 — Release acceptance | Queued | Offline walkthrough smoke, same-certificate candidate upgrade/save/restore, all-pack regression, user feedback and final coverage notes | Required CI/all packlint targets, native flows and unchanged-pack evidence; release artifact identity verified; physical/device gates resolved before stable acceptance |
 
-First implementation scope: finish the M0 runtime/comparison fixtures, then M1's
-shell and Today date/control prototype. The first useful candidate should include
-the M2 reading/calendar paths reviewed together. Later passes can ship focused
-candidates; there is no stable-release date implied by this plan.
+M1 now supplies the painted shell and the M2 date/reading foundation. Next,
+finish the exact Calendar comparison and source-backed walkthrough guidance,
+including ownership of the existing July 21 unauthored-date warning. M0 remains
+open for specialized submenu references; M3–M7 remain queued. Focused candidates
+do not imply a stable-release date.
 
 ### M0/M1 immediate checklist
 
@@ -151,11 +154,11 @@ candidates; there is no stable-release date implied by this plan.
 - [x] Inventory current data/art/code and identify the date/rank/search gaps.
 - [ ] Acquire and inspect exact English Calendar, Followers, Quests,
   Royal Virtue and Archetype submenu references; never substitute concept art.
-- [ ] Capture the current Metaphor app at normal/200% text on representative
+- [x] Capture the pre-paint Metaphor app at normal/200% text on representative
   dates, including a long task, mission cutoff and retained Calendar/source return.
-- [ ] Prototype serif hierarchy and paint/paper selection in native Compose;
+- [x] Prototype serif hierarchy and paint/paper selection in native Compose;
   compare the same states to the references before locking tokens/font assets.
-- [ ] Introduce an explicit optional skin contract, then the header/date/nav
+- [x] Introduce an explicit optional skin contract, then the header/date/nav
   slice. A crown motif or flip-motion token alone must not activate new chrome.
 
 ## Screen contracts
@@ -206,6 +209,30 @@ date/index migrations require an explicit tested plan. Preserve P5R/P3R content
 and rendering unless a separately reviewed shared change is justified.
 
 Each pass records its PR, reviewed code SHA, fixtures, CI/native evidence,
-candidate identity and remaining limitations. The existing candidate stays rc12
-for this documentation-only plan. No Metaphor Android redesign, spoken session,
-performance improvement or stable completion is claimed yet.
+candidate identity and remaining limitations. PR #15 prepares rc13/code45 with
+Metaphor content4; its [review](metaphor-painted-shell-review.md) records the
+validated scope. Exact submenu comparisons, spoken sessions, measured performance
+and stable-release acceptance remain open.
+
+## October 15 delivery — M1 and date/reading foundation
+
+[PR #15](https://github.com/skypie0102/dayloop/pull/15) introduces the explicit
+painted shell, static heavy serif face, 64dp header and named 23dp icon tabs.
+Today and browsed days use the game month/day; Calendar hides the storage year.
+Done/Skip have separate 48dp targets, and Today/tab/source/recreation paths
+preserve the correct reading owner. End Day retains the existing auto-skip
+behavior; Back preserves those marks and source browsing awards nothing.
+
+The [delivery review](metaphor-painted-shell-review.md) and
+[evidence ledger](../references/metaphor-painted-shell-review-2026-10-14.json)
+record the validated runtime, 67 passing full native tests, 133 captures, two
+passing before-build tests/seven captures and the isolated hand-in check.
+Metaphor content4 changes presentation metadata/font only; all 396 task
+identities and both Persona packs' content remain unchanged. rc13/code45 uses
+the existing candidate certificate.
+
+This accepts the mobile shell treatment against the publisher main menu/HUD.
+It does not accept exact specialized submenu geometry, Follower/quest proof,
+achievement rules, utility surfaces, spoken TalkBack, physical upgrade or
+measured performance. Achievements still display legacy storage-date labels;
+those and existing automatic story rules belong to M4, not this shell pass.

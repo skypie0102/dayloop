@@ -76,6 +76,10 @@ import com.shadowmonarchbooks.dayloop.progress.DayProgress
 import com.shadowmonarchbooks.dayloop.progress.StepKey
 import com.shadowmonarchbooks.dayloop.progress.StepMark
 import com.shadowmonarchbooks.dayloop.ui.skin.hasSubmergedChrome
+import com.shadowmonarchbooks.dayloop.ui.skin.hasPaintedChrome
+import com.shadowmonarchbooks.dayloop.ui.skin.preservesReadingState
+import com.shadowmonarchbooks.dayloop.ui.skin.PaintedTaskCard
+import com.shadowmonarchbooks.dayloop.ui.skin.PaintedDeadline
 import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedTaskCard
 import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedDeadline
 import com.shadowmonarchbooks.dayloop.ui.skin.SubmergedSectionHeading
@@ -96,7 +100,7 @@ import kotlin.math.hypot
 
 @Composable
 fun DayKindChip(kind: String) {
-    if (LocalSkin.current.hasSubmergedChrome()) {
+    if (LocalSkin.current.preservesReadingState()) {
         Text(kind.replaceFirstChar { it.uppercase() }, style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.onBackground)
         return
@@ -489,6 +493,11 @@ fun StepRow(
             onDismiss = { showTip = false },
         )
     }
+    if (skin.hasPaintedChrome()) {
+        PaintedTaskCard(index, step, mark, onToggleMark, statLabels, activityLabel, onOpenActivity,
+            displayNumber, inlineTips) { showTip = true }
+        return
+    }
     if (skin.hasSubmergedChrome()) {
         SubmergedTaskCard(index, step, mark, onToggleMark, statLabels, activityLabel, onOpenActivity,
             displayNumber = displayNumber, inlineTips = inlineTips) { showTip = true }
@@ -860,6 +869,10 @@ fun DeadlineBanner(
     kindLabel: String? = null,
 ) {
     val skin = LocalSkin.current
+    if (skin.hasPaintedChrome()) {
+        PaintedDeadline(deadline.label, daysLeft, kindLabel, modifier)
+        return
+    }
     if (skin.hasSubmergedChrome()) {
         SubmergedDeadline(deadline.label, daysLeft, kindLabel, modifier)
         return
