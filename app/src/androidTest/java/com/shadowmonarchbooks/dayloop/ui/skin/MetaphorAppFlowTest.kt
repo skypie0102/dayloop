@@ -75,9 +75,22 @@ class MetaphorAppFlowTest : MetaphorReviewFlow() {
         compose.waitUntil(15_000) { runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate == "2100-06-05" } }
         val calendar = dependencies.store().state.value.selected!!.calendar
         compose.onNodeWithContentDescription(formatDate("2100-06-05", calendar)).assertIsDisplayed()
+        // End Day intentionally settles unchecked tasks as Skip. Back moves the
+        // clock without clearing those saved marks or granting Done progress.
+        val taskCount = dependencies.store().state.value.selected!!
+            .day("standard", "2100-06-02")!!.steps.size
+        val skipped = runBlocking { dependencies.repo().marksFor(profileId).first() }
+            .map { Triple(it.date, it.stepIndex, it.mark) }.toSet()
+        assertEquals((0 until taskCount).map { Triple("2100-06-02", it, "SKIP") }.toSet(), skipped)
         capture("metaphor-next-playable-day")
         compose.onNodeWithText("Back").performClick()
         compose.waitUntil(15_000) { runBlocking { dependencies.db().profileDao().byId(profileId)?.clockDate == "2100-06-02" } }
-        unchangedClockAndMarks("2100-06-02")
+        compose.waitUntil(15_000) {
+            compose.onAllNodesWithContentDescription(formatDate("2100-06-02", calendar)).fetchSemanticsNodes().isNotEmpty()
+        }
+        compose.onNodeWithContentDescription(formatDate("2100-06-02", calendar)).assertIsDisplayed()
+        assertEquals(skipped, runBlocking { dependencies.repo().marksFor(profileId).first() }
+            .map { Triple(it.date, it.stepIndex, it.mark) }.toSet())
+        capture("metaphor-playable-day-back-preserves-skips")
     }
 }

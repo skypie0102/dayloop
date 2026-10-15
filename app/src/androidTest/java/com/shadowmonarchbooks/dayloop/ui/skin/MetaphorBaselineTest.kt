@@ -172,7 +172,7 @@ class MetaphorBaselineTest : MetaphorReviewFlow() {
         launch("2100-06-12")
         capture("metaphor-before-today")
         tab("Calendar").performClick()
-        compose.onNodeWithText("Jun 2100").assertIsDisplayed()
+        compose.onNodeWithText("JUN 2100").assertIsDisplayed()
         capture("metaphor-before-calendar")
         compose.onNodeWithTag("calendar-date-2100-06-12").performScrollTo().performClick()
         capture("metaphor-before-source-day")

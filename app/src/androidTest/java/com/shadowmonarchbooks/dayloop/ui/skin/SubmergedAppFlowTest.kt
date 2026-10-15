@@ -185,6 +185,13 @@ class SubmergedAppFlowTest {
 
     private fun openRequest(title: String) {
         compose.onNodeWithText("Search name or number").assertDoesNotExist()
+        // Detail expansion/source navigation can briefly leave two transition
+        // roots. Query one settled list rather than formatting a missing-node
+        // diagnostic while Compose is still measuring the outgoing tree.
+        compose.waitUntil(15_000) {
+            compose.onAllNodesWithTag("request-list").fetchSemanticsNodes().size == 1
+        }
+        compose.waitForIdle()
         compose.onNodeWithTag("request-list").performScrollToNode(hasText(title))
         compose.onNodeWithText(title).performClick()
     }
