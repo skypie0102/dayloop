@@ -98,8 +98,11 @@ internal fun PaintedTopBar(title: String, canGoBack: Boolean, onBack: () -> Unit
                 Modifier.fillMaxSize().testTag("painted-toolbar-title").semantics { heading() })
         }
         parts.getOrNull(1)?.let { context ->
-            Text(context, style = MaterialTheme.typography.labelMedium, color = colors.onBackground,
-                modifier = Modifier.widthIn(max = 104.dp).padding(end = 4.dp).testTag("painted-toolbar-date"))
+            // The fixed-height reading toolbar shows month/day; its complete
+            // weekday/date stays available to accessibility services.
+            Text(context.substringAfter(", ", context), style = MaterialTheme.typography.labelMedium, color = colors.onBackground,
+                modifier = Modifier.widthIn(max = 104.dp).padding(end = 4.dp).testTag("painted-toolbar-date")
+                    .clearAndSetSemantics { contentDescription = context })
         }
         IconButton(onClick = onOpenSearch) { Icon(Icons.Filled.Search, "Search", tint = colors.onBackground) }
         IconButton(onClick = if (settingsBack) onBack else onOpenSettings, enabled = settingsBack || settingsEnabled) {

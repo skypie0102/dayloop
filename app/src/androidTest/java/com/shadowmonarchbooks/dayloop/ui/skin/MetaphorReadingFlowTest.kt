@@ -49,6 +49,8 @@ class MetaphorReadingFlowTest : MetaphorReviewFlow() {
         capture("metaphor-m2-city-guidance-double-text")
         val body = compose.onNodeWithTag("task-guidance-4-section-1-body", useUnmergedTree = true)
         body.performScrollTo().assertIsDisplayed()
+        compose.onNodeWithTag("painted-toolbar-date").assertIsDisplayed()
+            .assertContentDescriptionEquals(formatDate("2100-07-23", dependencies.store().state.value.selected!!.calendar))
         val end = compose.onNodeWithText("End day", ignoreCase = true)
         assertTrue("Guidance must remain above the fixed End day rail",
             body.fetchSemanticsNode().boundsInRoot.bottom <= end.fetchSemanticsNode().boundsInRoot.top)

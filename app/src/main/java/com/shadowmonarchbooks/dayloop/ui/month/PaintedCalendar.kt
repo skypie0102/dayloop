@@ -202,7 +202,7 @@ private fun PaintedDateInspector(pack: LoadedPack, date: String, day: Day?, curr
         }, style = MaterialTheme.typography.bodyMedium, color = colors.inverseOnSurface)
         if (day != null) {
             PaintedActionButton("Open walkthrough", { onOpenDay(date) }, Modifier.fillMaxWidth().testTag("painted-open-day"),
-                primary = true, labelStyle = MaterialTheme.typography.titleMedium)
+                primary = true, labelStyle = MaterialTheme.typography.labelLarge)
         }
         val events = pack.deadlines.filter { deadlineEnd(it) == date || (it.window != null && deadlineStart(it) == date) }
         if (events.isNotEmpty()) {
