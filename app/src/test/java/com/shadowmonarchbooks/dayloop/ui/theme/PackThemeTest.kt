@@ -237,11 +237,9 @@ class PackThemeTest {
     }
 
     @Test
-    fun `royal skin leaves the dayCounter month grid intact`() {
-        // Phase 15 acceptance: the Royal skin must not break the dayCounter
-        // month grid — 30-day game months and the cycle weekday math. The
-        // skin touches presentation only; the calendar contract is re-pinned
-        // here with the skin data in place.
+    fun `painted skin preserves custom month lengths and anchored weekdays`() {
+        // M2 rotates the display columns to Flamesday first. Actual weekdays
+        // and the declared 30-day month arithmetic stay unchanged.
         val root = contentPacksDir() ?: error("no content checkout")
         val pack = PackLoader.load(root.resolve("metaphor")).pack ?: error("metaphor must decode")
         val cal = assertNotNull(GameCalendar.of(pack.calendar), "travel calendar constructs")
@@ -262,7 +260,7 @@ class PackThemeTest {
         assertEquals("watersday", cal.weekdayOf("2100-06-02"), "anchor weekday")
         assertEquals("arboursday", cal.weekdayOf("2100-06-03"), "cycle advances")
         assertEquals("idlesday", cal.weekdayOf("2100-06-05"), "the rest day")
-        assertEquals(3, cal.cyclePosition("2100-06-02"), "watersday's position in the cycle")
+        assertEquals(1, cal.cyclePosition("2100-06-02"), "Watersday follows Flamesday in the displayed grid")
         // End of calendar: 2010-01-31-style terminus equivalent for the travel pack.
         assertEquals("2100-10-26", cal.endDate, "the journey's last day")
     }
